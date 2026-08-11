@@ -1,8 +1,8 @@
 # pyCelda
 
-Hola. Esto es **pyCelda**: un sistema para gestionar las guías docentes de una universidad -- el documento que cada profesor rellena cada curso con el contenido, la evaluación y la bibliografía de su asignatura, y que un director de grado revisa y aprueba antes de que se publique.
+**pyCelda** gestiona las guías docentes de una universidad: el documento que cada profesor completa cada curso con el contenido, la evaluación y la bibliografía de su asignatura, y que un director de grado revisa y aprueba antes de que se publique.
 
-Este repositorio es un subconjunto público de un proyecto de trabajo más amplio. Aquí puedes hacer dos cosas: **verlo funcionar** y, si te pica la curiosidad, **asomarte a cómo está pensado por dentro**.
+Este repositorio es un subconjunto público de un proyecto de trabajo más amplio. Dos caminos: **verlo funcionar**, o **asomarte a cómo está pensado por dentro**.
 
 ## 1. Pruébalo
 
