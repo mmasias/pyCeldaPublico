@@ -1,6 +1,6 @@
 # pyCelda
 
-**pyCelda** gestiona las guías docentes de una universidad: el documento que cada profesor completa cada curso con el contenido, la evaluación y la bibliografía de su asignatura, y que un director de grado revisa y aprueba antes de que se publique.
+**pyCelda** (**C**atálogo **E**structurado de **L**egajos **D**e **A**signaturas) gestiona las guías docentes de una universidad: el documento que cada profesor completa cada curso con el contenido, la evaluación y la bibliografía de su asignatura, y que un director de grado revisa y aprueba antes de que se publique.
 
 Este repositorio es un subconjunto público de un proyecto de trabajo más amplio. Dos caminos: **verlo funcionar**, o **asomarte a cómo está pensado por dentro**.
 
