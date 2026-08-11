@@ -2,6 +2,13 @@
 
 skinparam linetype polyline
 
+' Parametrizado: invocación directa de Admin (este diagrama, sin filtro, con
+' Crear/Eliminar) vs. invocación incluida desde iniciarSesion(directorGrado)
+' del actor DirectorGrado (<<include>>, filtrado a los grados que dirige, sin
+' Crear/Eliminar) -- ver actoresCasosUsoDirectorGrado.puml y
+' wireframe-porDirector.svg. Mismo patrón que abrirAsignaturasGrado()
+' (issue #48): el filtro es el parámetro, no una rama nueva del statechart.
+
 state FACULTAD_ABIERTO
 state GRADOS_ABIERTO
 

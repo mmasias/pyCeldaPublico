@@ -3,11 +3,35 @@
 left to right direction
 
 ' Vista de Profesor, partida de actoresCasosUso.puml -- mismos usecase id, solo
-' el subconjunto que usa este actor. Fuente de verdad sigue siendo el fichero
-' completo hasta que se decida el reparto final. DirectorGrado --|> Profesor
+' el subconjunto que usa este actor. El fichero completo (actoresCasosUso.puml)
+' se retiró -- el reparto por actor es la fuente de verdad. DirectorGrado --|> Profesor
 ' hereda todo este catálogo -- ver actoresCasosUsoDirectorGrado.puml.
 
 actor Profesor
+
+' Acceso: abrirAsignaturasGrado() EXTIENDE a iniciarSesion() -- no lo incluye.
+' CU reutilizado de DirectorGrado (issue #48/#49), no un CU nuevo. Sin
+' asociación directa Profesor--abrirAsignaturasGrado: se dispara solo como
+' extensión condicional, no es un caso de uso que el profesor invoque por su
+' cuenta. <<include>> es incondicional por definición UML (el caso base
+' siempre incorpora el incluido); aquí solo se dispara si el rol resuelto es
+' Profesor, una de tres ramas mutuamente excluyentes -- semántica de
+' <<extend>>, no de <<include>> (issue de corrección posterior a #48/#49).
+'
+' iniciarSesion() lo invoca UsuarioNoLogueado, no Profesor -- error sistemático
+' de la literatura RUP: el rol "Profesor" solo existe DESPUÉS de que las
+' credenciales se validen, no puede ser quien invoca la validación. Profesor
+' (ya identificado) invoca cerrarSesion(), nunca iniciarSesion().
+actor UsuarioNoLogueado
+package Acceso {
+  usecase iniciarSesion as "iniciarSesion()"
+  usecase cerrarSesion as "cerrarSesion()"
+  usecase abrirAsignaturasGrado as "abrirAsignaturasGrado()"
+}
+
+UsuarioNoLogueado -- iniciarSesion
+Profesor -- cerrarSesion
+abrirAsignaturasGrado ..> iniciarSesion : <<extend>>\n(condición: rol == Profesor)\n(punto: tras validación exitosa)
 
 ' Las cuatro cajas son todas "Guía docente" -- sin wrapper exterior:
 ' agruparlas en un único package bloquea el layout mariposa, PlantUML deja

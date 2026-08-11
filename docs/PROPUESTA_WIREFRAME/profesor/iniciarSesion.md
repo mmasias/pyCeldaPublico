@@ -4,7 +4,7 @@
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturasGrado/wireframe.svg)
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturasGrado/wireframe-porProfesor.svg)
 
 |Acción|CdU|
 |---|---|

@@ -3,8 +3,8 @@
 left to right direction
 
 ' Vista de Admin, partida de actoresCasosUso.puml -- mismos usecase id, solo
-' el subconjunto que usa este actor. Fuente de verdad sigue siendo el fichero
-' completo hasta que se decida el reparto final.
+' el subconjunto que usa este actor. El fichero completo (actoresCasosUso.puml)
+' se retiró -- el reparto por actor es la fuente de verdad.
 '
 ' Solo "Catálogos institucionales" -- el resto de Admin (Profesorado de
 ' asignaturas, Curso académico, Configuración del grado, Guía docente) vive
@@ -12,6 +12,23 @@ left to right direction
 
 actor Admin
 
+' Acceso: sin <<include>> hacia otro CU -- a diferencia de Profesor/DirectorGrado
+' (issue #48/#49/#50), el aterrizaje de Admin (dashboard de SISTEMA_DISPONIBLE)
+' es contenido propio, no reutilizado -- issue #51. Entrada a todo Admin, no
+' solo a los catálogos de este fichero (también a actoresCasosUsoAdminOperativa.puml).
+'
+' iniciarSesion() lo invoca UsuarioNoLogueado, no Admin -- mismo error
+' sistemático corregido en actoresCasosUsoProfesor.puml: el rol específico
+' solo existe después de validar credenciales. Admin (ya identificado) invoca
+' cerrarSesion(), nunca iniciarSesion().
+actor UsuarioNoLogueado
+package Acceso {
+  usecase iniciarSesion as "iniciarSesion()"
+  usecase cerrarSesion as "cerrarSesion()"
+}
+
+UsuarioNoLogueado -- iniciarSesion
+Admin -- cerrarSesion
 
   package Universidad {
     usecase abrirUniversidades as "abrirUniversidades()"

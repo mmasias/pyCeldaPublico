@@ -3,8 +3,8 @@
 left to right direction
 
 ' Vista de DirectorGrado, partida de actoresCasosUso.puml -- mismos usecase id,
-' solo el subconjunto que usa este actor. Fuente de verdad sigue siendo el
-' fichero completo hasta que se decida el reparto final.
+' solo el subconjunto que usa este actor. El fichero completo (actoresCasosUso.puml)
+' se retiró -- el reparto por actor es la fuente de verdad.
 '
 ' DirectorGrado --|> Profesor: hereda todo el catálogo de actoresCasosUsoProfesor.puml
 ' (abrirGuia(), guardarBorradorGuia(), enviarGuiaARevision(), descargarGuiaPDF(),
@@ -17,6 +17,22 @@ actor Profesor
 
 Profesor <|-d- DirectorGrado
 
+' Acceso: abrirGrados() EXTIENDE a iniciarSesion() -- no lo incluye, mismo
+' mecanismo que Profesor/abrirAsignaturasGrado() (corregido en
+' actoresCasosUsoProfesor.puml), destino propio (GRADOS_ABIERTO, no
+' ASIGNATURAS_GRADO_ABIERTO) -- issue #50. <<include>> es incondicional por
+' definición UML; aquí solo se dispara si el rol resuelto es DirectorGrado,
+' una de tres ramas mutuamente excluyentes -- semántica de <<extend>>.
+'
+' iniciarSesion() lo invoca UsuarioNoLogueado, no DirectorGrado -- mismo error
+' sistemático corregido en actoresCasosUsoProfesor.puml: el rol específico
+' solo existe después de validar credenciales. cerrarSesion() no se redeclara
+' aquí -- heredado de Profesor (DirectorGrado --|> Profesor, ya declarado).
+actor UsuarioNoLogueado
+package Acceso {
+  usecase iniciarSesion as "iniciarSesion()"
+}
+
 ' "Catálogos institucionales", "Configuración del grado" y "Guía docente"
 ' eran wrappers exteriores -- se aplanan: agrupar en un único package
 ' bloquea el layout mariposa, PlantUML deja todo el contenido a un único
@@ -25,6 +41,9 @@ package Grado {
   usecase abrirGrados as "abrirGrados()"
   usecase abrirGrado as "abrirGrado()"
 }
+
+UsuarioNoLogueado -- iniciarSesion
+abrirGrados ..> iniciarSesion : <<extend>>\n(condición: rol == DirectorGrado)\n(punto: tras validación exitosa)
 
 package Materia {
   usecase abrirMaterias as "abrirMaterias()"

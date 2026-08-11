@@ -12,3 +12,14 @@
     [ <b>+ Crear Grado</b> ]
 }
 @endsalt
+
+@startsalt abrirGrados-wireframe-porDirector
+{
+    <b>MIS GRADOS</b>
+    ====
+    {#
+        <b>Código | <b>Nombre | <b>Estado | .
+        GII | Grado en Ingeniería Informática | Vigente | [Abrir]
+    }
+}
+@endsalt

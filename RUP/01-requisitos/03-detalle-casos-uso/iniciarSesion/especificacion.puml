@@ -1,0 +1,58 @@
+@startuml iniciarSesion
+
+skinparam linetype polyline
+
+' Invocado por UsuarioNoLogueado, no por Profesor/DirectorGrado/Admin -- error
+' sistemático de la literatura RUP corregido aquí: el rol específico (Profesor,
+' etc.) solo existe DESPUÉS de que iniciarSesion() tenga éxito, no antes. Quien
+' invoca no puede ser el resultado de la propia invocación. Los actores ya
+' identificados invocan cerrarSesion(), nunca iniciarSesion() -- ver
+' actoresCasosUso{Profesor,DirectorGrado,AdminCatalogos}.puml.
+'
+' Punto de extensión: "tras validación exitosa" (la rama verde de <<choice>>
+' c, abajo). abrirAsignaturasGrado() y abrirGrados() EXTIENDEN a iniciarSesion()
+' en ese punto -- no lo incluyen. <<include>> es incondicional por definición
+' UML (el caso base SIEMPRE incorpora el incluido); aquí solo se dispara UNA
+' de tres ramas mutuamente excluyentes según el rol que resulte identificado
+' (condición), y iniciarSesion() es completo y tiene sentido sin ninguna
+' extensión -- exactamente la semántica de <<extend>>, no la de <<include>>.
+' Admin no extiende: su contenido (dashboard) es propio de este mismo CU, no
+' de otro -- ninguna extensión se dispara en ese caso, la rama base continúa.
+' Ver actoresCasosUsoProfesor.puml / actoresCasosUsoDirectorGrado.puml para
+' las relaciones <<extend>> con su condición.
+
+state SESION_CERRADA
+state ASIGNATURAS_GRADO_ABIERTO_SALIDA as "ASIGNATURAS_GRADO_ABIERTO"
+state SESION_CERRADA_SALIDA as "SESION_CERRADA"
+
+SESION_CERRADA -[#green]-> iniciarSesion
+note on link
+<b>UsuarioNoLogueado</b> introduce credenciales
+end note
+
+state iniciarSesion as "iniciarSesion()" {
+
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta el punto de partida propio del rol identificado
+    <b>punto de extensión:</b> tras validación exitosa
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de credenciales inválidas
+    end note
+}
+
+iniciarSesion -[#green]-> ASIGNATURAS_GRADO_ABIERTO_SALIDA
+
+iniciarSesion -[#red]-> SESION_CERRADA_SALIDA
+note on link
+credenciales inválidas, self-loop
+end note
+
+@enduml

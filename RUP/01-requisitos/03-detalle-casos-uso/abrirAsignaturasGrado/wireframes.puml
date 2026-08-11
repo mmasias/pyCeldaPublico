@@ -3,8 +3,26 @@
     <b>ASIGNATURAS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
     ====
     {#
-        <b>Asignatura | <b>Materia | <b>Curso | <b>Carácter | <b>Profesorado | .
-        Programación I | Programación | 1 | Básica | Dr. Manuel Masías | [Abrir]
+    <b>Asignatura                          | <b>Materia    | <b>Curso  | <b>Carácter | <b>Profesorado      |<b>Estado| .
+    Programación I                         | Programación  | 1         | Básica | Dr. Manuel Masías        |Borrador| [Abrir]
+    Estructuras de datos y algoritmos I    | Programación  | 2         | Obligatoria | Dr. Manuel Masías   |En revisión| [Abrir]
+    Ingeniería de Software I               | IdSw          | 3         | Obligatoria | Dr. Manuel Masías   |Aprobada| [Abrir]
+    Redes de Ordenadores                   | Redes         | 2         | Obligatoria | Dr. Mariano Benito Hoz |Rechazada| [Abrir]
+
+    }
+}
+@endsalt
+
+@startsalt abrirAsignaturasGrado-wireframe-porProfesor
+{
+    <b>MIS ASIGNATURAS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+    <b>Asignatura                          | <b>Materia    | <b>Curso  | <b>Carácter |<b>Estado| .
+    Programación I                         | Programación  | 1         | Básica |Borrador| [Abrir]
+    Estructuras de datos y algoritmos I    | Programación  | 2         | Obligatoria |En revisión| [Abrir]
+    Ingeniería de Software I               | IdSw          | 3         | Obligatoria |Aprobada| [Abrir]
+
     }
 }
 @endsalt

@@ -1,8 +1,10 @@
+<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
+
 # Admin
 
 <div align=center>
 
-*Pendiente de detallar: `iniciarSesion()`*
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/iniciarSesion/wireframe.svg)
 
 |Acción|CdU|
 |---|---|

@@ -1,3 +1,5 @@
+<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
+
 # DirectorGrado
 
 <div align=center>

@@ -1,3 +1,5 @@
+<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
+
 # Admin
 
 <div align=center>

@@ -1,19 +1,24 @@
 @startuml guia
 
+left to right direction
+
 [*] --> Borrador : <sub><b>sistema</b></sub>\n<sub>clonado al activar CursoAcademico</sub>
 
-Borrador -> EnRevision : <sub><b>Profesor</b></sub>\n<sub>envía a revisión</sub>
-Borrador -> Aprobada : <sub><b>DirectorGrado</b></sub>\n<sub>escalado directo</sub>
+Borrador --> EnRevision : <sub><b>Profesor</b></sub>\n<sub>envía a revisión</sub>
+Borrador --> Aprobada : <sub><b>DirectorGrado</b></sub>\n<sub>escalado directo</sub>
 
-EnRevision -> Aprobada : <sub><b>DirectorGrado</b></sub>\n<sub>aprueba</sub>
-EnRevision -> Rechazada : <sub><b>DirectorGrado</b></sub>\n<sub>rechaza</sub>
+EnRevision --> Aprobada : <sub><b>DirectorGrado</b></sub>\n<sub>aprueba</sub>
+EnRevision --> Rechazada : <sub><b>DirectorGrado</b></sub>\n<sub>rechaza</sub>
 
-Rechazada -> EnRevision : <sub><b>Profesor</b></sub>\n<sub>reenvía a revisión</sub>
-Rechazada -> Aprobada : <sub><b>DirectorGrado</b></sub>\n<sub>escalado directo</sub>
+EnRevision --> Borrador : <sub><b>Profesor</b></sub>\n<sub>se retira de la revisión</sub>\n<sub>para seguir trabajando</sub>
+EnRevision --> EnRevision : <sub><b>Profesor</b></sub>\n<sub>corrige y reenvía</sub>\n<sub>sin esperar decisión</sub>
 
-Aprobada ---> EnRevision : <sub><b>Profesor</b></sub>\n<sub>detecta un error</sub>\n<sub>y completa su corrección</sub>
-Aprobada ---> Borrador : <sub><b>Profesor</b></sub>\n<sub>detecta un error y</sub>\n<sub>empieza a trabajar en él</sub>
-Aprobada ---> Borrador : <sub><b>DirectorGrado</b></sub>\n<sub>revoca la aprobación</sub>
-Aprobada ---> EnRevision : <sub><b>Admin</b></sub>\n<sub>incidencia al generar el PDF</sub>
+Rechazada --> EnRevision : <sub><b>Profesor</b></sub>\n<sub>reenvía a revisión</sub>
+Rechazada --> Aprobada : <sub><b>DirectorGrado</b></sub>\n<sub>escalado directo</sub>
+
+Aprobada --> EnRevision : <sub><b>Profesor</b></sub>\n<sub>detecta un error</sub>\n<sub>y completa su corrección</sub>
+Aprobada --> Borrador : <sub><b>Profesor</b></sub>\n<sub>detecta un error y</sub>\n<sub>empieza a trabajar en él</sub>
+Aprobada --> Borrador : <sub><b>DirectorGrado</b></sub>\n<sub>revoca la aprobación</sub>
+Aprobada --> EnRevision : <sub><b>Admin</b></sub>\n<sub>incidencia al generar el PDF</sub>
 
 @enduml

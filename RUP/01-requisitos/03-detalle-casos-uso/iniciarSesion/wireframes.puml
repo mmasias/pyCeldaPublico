@@ -1,0 +1,12 @@
+@startsalt iniciarSesion-wireframe-admin
+{
+    <b>PANEL DE ADMINISTRACIÓN</b>
+    ====
+    [ <b>Universidades</b> ]
+    [ <b>Asignaturas</b> ]
+    [ <b>Metodologías docentes</b> ]
+    [ <b>Profesores</b> ]
+    [ <b>Cursos académicos</b> ]
+    [ <b>Generar guías PDF</b> ]
+}
+@endsalt
