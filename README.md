@@ -22,7 +22,7 @@ Entra, ve sus asignaturas, abre la guía de una de ellas, la edita, la envía a 
 
 </div>
 
-## 2. Cómo está pensado por dentro
+## Cómo está pensado por dentro
 
 Tres piezas, de la más conceptual a la más concreta:
 
