@@ -60,6 +60,10 @@ Estos hallazgos se revisarán visualmente sobre el artefacto publicado antes de 
 
 - **[Issue #42](https://github.com/mmasias/pyCelda/issues/42)**: al intentar generar la primera página del mockup del Profesor, se detectó que `iniciarSesion()` no tiene ficha de detalle, ni existe un CU `abrirMisAsignaturasGrado()` separado del login. El mockup actuó como detector de un defecto de catálogo que el diagrama de contexto por sí solo no revelaba.
 
+## Divergencia deliberada con el repo privado
+
+Las 116 páginas de este repo llevan un breadcrumb (`Volver: Al inicio / inicio de <Actor>`) justo antes del título, ausente en el repo de trabajo privado -- decisión explícita: el privado lo navega alguien que ya conoce la estructura, el público necesita una salida visible sin depender del botón atrás del navegador. No está en `generar_mockup_navegable.py` (compartido entre ambos repos) para no imponerlo también al privado; se aplica como paso manual tras cada sincronización -- ver historial de commits de este fichero para el script de inyección usado.
+
 ## Pendiente
 
 - [x] Profesor: resuelto (ver issue #42 y sección "Detecciones anteriores").
