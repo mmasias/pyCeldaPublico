@@ -12,9 +12,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear resultado aprendizaje**](crearResultadoAprendizaje.md)|<sub>crearResultadoAprendizaje()</sub>|
-|[**Abrir resultado aprendizaje**](abrirResultadoAprendizaje.md)|<sub>abrirResultadoAprendizaje()</sub>|
-|[**Eliminar resultado aprendizaje**](eliminarResultadoAprendizaje.md)|<sub>eliminarResultadoAprendizaje()</sub>|
+|[**Crear Resultado de Aprendizaje**](crearResultadoAprendizaje.md)|<sub>crearResultadoAprendizaje()</sub>|
+|[**Abrir**](abrirResultadoAprendizaje.md)|<sub>abrirResultadoAprendizaje()</sub>|
+|[**Eliminar**](eliminarResultadoAprendizaje.md)|<sub>eliminarResultadoAprendizaje()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

@@ -13,6 +13,6 @@
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarPonderacionEvaluacion.md)|<sub>editarPonderacionEvaluacion()</sub>|
-|[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
+|[**Volver al listado**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
 
 </div>

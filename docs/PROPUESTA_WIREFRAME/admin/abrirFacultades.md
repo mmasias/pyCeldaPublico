@@ -12,9 +12,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear facultad**](crearFacultad.md)|<sub>crearFacultad()</sub>|
-|[**Abrir facultad**](abrirFacultad.md)|<sub>abrirFacultad()</sub>|
-|[**Eliminar facultad**](eliminarFacultad.md)|<sub>eliminarFacultad()</sub>|
+|[**Crear Facultad**](crearFacultad.md)|<sub>crearFacultad()</sub>|
+|[**Abrir**](abrirFacultad.md)|<sub>abrirFacultad()</sub>|
+|[**Eliminar**](eliminarFacultad.md)|<sub>eliminarFacultad()</sub>|
 |[**Abrir universidad**](abrirUniversidad.md)|<sub>abrirUniversidad()</sub>|
 
 </div>

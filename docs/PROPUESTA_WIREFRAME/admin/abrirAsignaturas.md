@@ -12,9 +12,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
-|[**Abrir asignatura**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|
-|[**Eliminar asignatura**](eliminarAsignatura.md)|<sub>eliminarAsignatura()</sub>|
+|[**Crear Asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
+|[**Abrir**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|
+|[**Eliminar**](eliminarAsignatura.md)|<sub>eliminarAsignatura()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

@@ -1,10 +1,10 @@
-<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
-
 <div align=right>
 
 <sub>Volver: [Al inicio](/README.md) / [inicio de Admin](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)</sub>
 
 </div>
+
+<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
 
 # Admin
 
@@ -14,9 +14,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear grado**](crearGrado.md)|<sub>crearGrado()</sub>|
-|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
-|[**Eliminar grado**](eliminarGrado.md)|<sub>eliminarGrado()</sub>|
+|[**Crear Grado**](crearGrado.md)|<sub>crearGrado()</sub>|
+|[**Abrir**](abrirGrado.md)|<sub>abrirGrado()</sub>|
+|[**Eliminar**](eliminarGrado.md)|<sub>eliminarGrado()</sub>|
 |[**Abrir facultad**](abrirFacultad.md)|<sub>abrirFacultad()</sub>|
 
 </div>

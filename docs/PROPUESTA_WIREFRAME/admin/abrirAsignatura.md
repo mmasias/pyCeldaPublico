@@ -13,6 +13,6 @@
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarAsignatura.md)|<sub>editarAsignatura()</sub>|
-|[**Abrir asignaturas**](abrirAsignaturas.md)|<sub>abrirAsignaturas()</sub>|
+|[**Volver al listado**](abrirAsignaturas.md)|<sub>abrirAsignaturas()</sub>|
 
 </div>

@@ -13,6 +13,6 @@
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarResultadoAprendizaje.md)|<sub>editarResultadoAprendizaje()</sub>|
-|[**Abrir resultados aprendizaje**](abrirResultadosAprendizaje.md)|<sub>abrirResultadosAprendizaje()</sub>|
+|[**Volver al listado**](abrirResultadosAprendizaje.md)|<sub>abrirResultadosAprendizaje()</sub>|
 
 </div>

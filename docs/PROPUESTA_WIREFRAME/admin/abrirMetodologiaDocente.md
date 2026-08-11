@@ -13,6 +13,6 @@
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarMetodologiaDocente.md)|<sub>editarMetodologiaDocente()</sub>|
-|[**Abrir metodologias docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
+|[**Volver al listado**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
 
 </div>

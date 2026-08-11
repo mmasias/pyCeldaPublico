@@ -12,10 +12,10 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir grados**](abrirGrados.md)|<sub>abrirGrados()</sub>|
+|[**Volver al listado**](abrirGrados.md)|<sub>abrirGrados()</sub>|
 |[**Abrir asignaturas grado**](abrirAsignaturasGrado.md)|<sub>abrirAsignaturasGrado()</sub>|
 |[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
-|[**Abrir asignatura grado**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
+|[**Abrir**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
 |[**Abrir resultados aprendizaje**](abrirResultadosAprendizaje.md)|<sub>abrirResultadosAprendizaje()</sub>|
 |[**Consultar estado de guías**](consultarEstadoGuias.md)|<sub>consultarEstadoGuias()</sub>|
 

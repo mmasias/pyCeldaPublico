@@ -1,10 +1,10 @@
-<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
-
 <div align=right>
 
 <sub>Volver: [Al inicio](/README.md) / [inicio de Admin](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)</sub>
 
 </div>
+
+<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
 
 # Admin
 
@@ -14,9 +14,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Asignar profesor**](asignarProfesorAAsignaturaGrado.md)|<sub>asignarProfesorAAsignaturaGrado()</sub>|
+|[**Asignar Profesor**](asignarProfesorAAsignaturaGrado.md)|<sub>asignarProfesorAAsignaturaGrado()</sub>|
 |**Quitar profesor**|<sub>desasignarProfesorAsignaturaGrado() (pendiente wireframe)</sub>|
-|[**Volver al grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
+|[**Volver al Grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 |**Editar**||
 |**Asociar metodología docente**||
 |**Quitar metodología**||

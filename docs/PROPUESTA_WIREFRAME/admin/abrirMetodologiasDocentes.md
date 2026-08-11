@@ -12,9 +12,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear metodologia docente**](crearMetodologiaDocente.md)|<sub>crearMetodologiaDocente()</sub>|
-|[**Abrir metodologia docente**](abrirMetodologiaDocente.md)|<sub>abrirMetodologiaDocente()</sub>|
-|[**Eliminar metodologia docente**](eliminarMetodologiaDocente.md)|<sub>eliminarMetodologiaDocente()</sub>|
+|[**Crear Metodología Docente**](crearMetodologiaDocente.md)|<sub>crearMetodologiaDocente()</sub>|
+|[**Abrir**](abrirMetodologiaDocente.md)|<sub>abrirMetodologiaDocente()</sub>|
+|[**Eliminar**](eliminarMetodologiaDocente.md)|<sub>eliminarMetodologiaDocente()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

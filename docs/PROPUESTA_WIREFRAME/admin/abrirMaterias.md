@@ -12,9 +12,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear materia**](crearMateria.md)|<sub>crearMateria()</sub>|
-|[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|
-|[**Eliminar materia**](eliminarMateria.md)|<sub>eliminarMateria()</sub>|
+|[**Crear Materia**](crearMateria.md)|<sub>crearMateria()</sub>|
+|[**Abrir**](abrirMateria.md)|<sub>abrirMateria()</sub>|
+|[**Eliminar**](eliminarMateria.md)|<sub>eliminarMateria()</sub>|
 |[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

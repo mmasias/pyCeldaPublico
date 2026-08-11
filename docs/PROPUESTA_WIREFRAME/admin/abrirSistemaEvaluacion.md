@@ -13,6 +13,6 @@
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarSistemaEvaluacion.md)|<sub>editarSistemaEvaluacion()</sub>|
-|[**Abrir sistemas evaluacion**](abrirSistemasEvaluacion.md)|<sub>abrirSistemasEvaluacion()</sub>|
+|[**Volver al listado**](abrirSistemasEvaluacion.md)|<sub>abrirSistemasEvaluacion()</sub>|
 
 </div>
