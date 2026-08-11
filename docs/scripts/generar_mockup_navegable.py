@@ -92,6 +92,17 @@ CONTEXTUAL_LABELS = {
     ("abrirReferenciasBibliograficas", "eliminarReferenciaBibliografica"): "Eliminar",
     ("abrirReferenciasBibliograficas", "crearReferenciaBibliografica"): "Crear Referencia",
     ("enviarGuiaARevision", "abrirGuia"): "Volver a la guía",
+    ("abrirGuia", "abrirPonderacionesEvaluacion"): "Gestionar evaluación",
+    ("abrirGuia", "abrirReferenciasBibliograficas"): "Gestionar bibliografía",
+    ("abrirGuia", "guardarBorradorGuia"): "Guardar borrador",
+    ("abrirGuia", "completarGestion"): "Volver a mis asignaturas",
+    ("abrirGuia", "enviarGuiaARevision"): "Enviar a revisión",
+    ("abrirGuia", "aprobarGuia"): "Aprobar",
+    ("abrirGuia", "rechazarGuia"): "Rechazar",
+    ("abrirGuia", "escalarGuiaAAprobada"): "Escalar a aprobada",
+    ("abrirGuia", "revocarAprobacionGuia"): "Revocar aprobación",
+    ("abrirGuia", "editarSemestreGuia"): "Editar semestre",
+    ("abrirGuia", "consultarEstadoGuias"): "Volver al listado de guías",
 }
 
 def label(cu, owner_cu=None):
@@ -159,10 +170,12 @@ def render_page(actor, cu, outgoing, is_placeholder=False):
     for dst, cu_out in outgoing:
         if cu_out == cu:
             continue
-        key = (cu_out, dst)
-        if key in seen:
+        # dedup solo por cu_out: un mismo botón puede tener más de un destino
+        # posible (éxito/fracaso, p.ej. enviarGuiaARevision()) sin dejar de ser
+        # una sola fila -- es un único clic, no uno por posible desenlace interno.
+        if cu_out in seen:
             continue
-        seen.add(key)
+        seen.add(cu_out)
         lbl = label(cu_out, owner_cu=cu)
         if dst == "SESION_CERRADA":
             lines.append(f"|**{lbl}**|<sub>{cu_out}() (sin página: vuelve a login)</sub>|")

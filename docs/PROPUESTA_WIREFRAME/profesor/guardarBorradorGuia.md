@@ -17,6 +17,5 @@
 |[**Abrir referencias bibliograficas**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 |[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
-|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 
 </div>

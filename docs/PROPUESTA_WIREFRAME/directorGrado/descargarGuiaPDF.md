@@ -17,7 +17,6 @@
 |[**Guardar borrador de guía**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 |[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
-|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 |[**Aprobar guia**](aprobarGuia.md)|<sub>aprobarGuia()</sub>|
 |[**Rechazar guia**](rechazarGuia.md)|<sub>rechazarGuia()</sub>|
 |[**Escalar guia a aprobada**](escalarGuiaAAprobada.md)|<sub>escalarGuiaAAprobada()</sub>|

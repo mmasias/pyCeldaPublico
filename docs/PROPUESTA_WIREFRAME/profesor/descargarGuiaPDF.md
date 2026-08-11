@@ -17,6 +17,5 @@
 |[**Guardar borrador de guía**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 |[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
-|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 
 </div>

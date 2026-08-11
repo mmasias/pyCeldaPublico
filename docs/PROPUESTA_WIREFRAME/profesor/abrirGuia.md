@@ -15,11 +15,10 @@
 |Acción|CdU|
 |---|---|
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
-|[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
-|[**Abrir referencias bibliograficas**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
-|[**Guardar borrador de guía**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
-|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
-|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
+|[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
+|[**Gestionar bibliografía**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
+|[**Guardar borrador**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
+|**Volver a mis asignaturas**|<sub>completarGestion() (pendiente)</sub>|
+|[**Enviar a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 
 </div>
