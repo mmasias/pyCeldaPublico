@@ -10,6 +10,6 @@
 |---|---|
 |[**Crear metodologia docente**](crearMetodologiaDocente.md)|<sub>crearMetodologiaDocente()</sub>|
 |[**Abrir metodologia docente**](abrirMetodologiaDocente.md)|<sub>abrirMetodologiaDocente()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

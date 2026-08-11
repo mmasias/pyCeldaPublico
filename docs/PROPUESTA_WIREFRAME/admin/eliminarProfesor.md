@@ -10,6 +10,6 @@
 |---|---|
 |[**Crear profesor**](crearProfesor.md)|<sub>crearProfesor()</sub>|
 |[**Abrir profesor**](abrirProfesor.md)|<sub>abrirProfesor()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

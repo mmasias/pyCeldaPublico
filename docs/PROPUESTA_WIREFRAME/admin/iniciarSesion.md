@@ -8,7 +8,7 @@
 
 |Acción|CdU|
 |---|---|
-|**Cerrar sesión**|<sub>cerrarSesion()</sub> (sin página: vuelve a login)|
+|**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
 |[**Abrir universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
 |[**Abrir asignaturas**](abrirAsignaturas.md)|<sub>abrirAsignaturas()</sub>|
 |[**Abrir metodologias docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|

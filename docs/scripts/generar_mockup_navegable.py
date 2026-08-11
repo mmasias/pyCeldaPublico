@@ -156,11 +156,11 @@ def render_page(actor, cu, outgoing, is_placeholder=False):
         seen.add(key)
         lbl = label(cu_out, owner_cu=cu)
         if dst == "SESION_CERRADA":
-            lines.append(f"|**{lbl}**|<sub>{cu_out}()</sub> (sin página: vuelve a login)|")
+            lines.append(f"|**{lbl}**|<sub>{cu_out}() (sin página: vuelve a login)</sub>|")
         elif cu_out in detailed_cus and cu_out in cus_in_actor:
             lines.append(f"|[**{lbl}**]({cu_out}.md)|<sub>{cu_out}()</sub>|")
         else:
-            lines.append(f"|**{lbl}**|<sub>{cu_out}()</sub> (pendiente)|")
+            lines.append(f"|**{lbl}**|<sub>{cu_out}() (pendiente)</sub>|")
     lines.extend(["", "</div>", ""])
     return "\n".join(lines)
 

@@ -9,7 +9,7 @@
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
 |[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
 |[**Abrir referencias bibliograficas**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 |[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 |[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 |[**Aprobar guia**](aprobarGuia.md)|<sub>aprobarGuia()</sub>|

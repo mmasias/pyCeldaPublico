@@ -48,7 +48,7 @@ Cada página generada contiene una tabla `|Acción|CdU|`. La celda CdU admite tr
 | Tipo | Forma | Significado |
 |---|---|---|
 | Enlace | `[**Label**](cu.md)` con `<sub>cu()</sub>` | El actor tiene permiso y el CU destino está detallado. Navegación activa. |
-| Pendiente | `**Label**` con `<sub>cu()</sub> (pendiente)` | El actor tiene permiso (la transición está en el diagrama) pero el CU no tiene `wireframe.svg` generado. Deuda de catalogación. |
+| Pendiente | `**Label**` con `<sub>cu() (pendiente)</sub>` | El actor tiene permiso (la transición está en el diagrama) pero el CU no tiene `wireframe.svg` generado. Deuda de catalogación. |
 | Vacía | `**Label**` con celda CdU vacía | El actor ve el botón en la interfaz pero no tiene permiso (la transición no está en el diagrama del actor). Restricción por rol. |
 
 La distinción entre `pendiente` y vacía es informativa: comunica al lector del mockup por qué no hay navegación desde ese botón — deuda de catalogación frente a restricción de permisos. El script produce solo las dos primeras (`enlace` y `pendiente`); la celda vacía solo aparece en overrides manuales, donde el editor ha contrastado el wireframe con el diagrama del actor.

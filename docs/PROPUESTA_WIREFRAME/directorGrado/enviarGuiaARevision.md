@@ -9,6 +9,6 @@
 |Acción|CdU|
 |---|---|
 |[**Abrir guia**](abrirGuia.md)|<sub>abrirGuia()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

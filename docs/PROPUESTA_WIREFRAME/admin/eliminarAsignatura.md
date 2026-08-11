@@ -8,6 +8,6 @@
 |---|---|
 |[**Crear asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
 |[**Abrir asignatura**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

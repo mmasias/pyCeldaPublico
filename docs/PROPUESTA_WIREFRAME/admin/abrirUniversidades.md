@@ -8,6 +8,6 @@
 |---|---|
 |[**Crear universidad**](crearUniversidad.md)|<sub>crearUniversidad()</sub>|
 |[**Abrir**](abrirUniversidad.md)|<sub>abrirUniversidad()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

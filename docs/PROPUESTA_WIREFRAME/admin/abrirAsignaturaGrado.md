@@ -9,7 +9,7 @@
 |Acción|CdU|
 |---|---|
 |[**Asignar profesor**](asignarProfesorAAsignaturaGrado.md)|<sub>asignarProfesorAAsignaturaGrado()</sub>|
-|**Quitar profesor**|<sub>desasignarProfesorAsignaturaGrado()</sub> (pendiente wireframe)|
+|**Quitar profesor**|<sub>desasignarProfesorAsignaturaGrado() (pendiente wireframe)</sub>|
 |[**Volver al grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 |**Editar**||
 |**Asociar metodología docente**||

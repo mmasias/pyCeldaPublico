@@ -8,7 +8,7 @@
 
 |Acción|CdU|
 |---|---|
-|**Cerrar sesión**|<sub>cerrarSesion()</sub> (sin página: vuelve a login)|
+|**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
 |[**Abrir guia**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>

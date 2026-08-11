@@ -10,6 +10,6 @@
 |---|---|
 |[**Crear curso academico**](crearCursoAcademico.md)|<sub>crearCursoAcademico()</sub>|
 |[**Abrir curso academico**](abrirCursoAcademico.md)|<sub>abrirCursoAcademico()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

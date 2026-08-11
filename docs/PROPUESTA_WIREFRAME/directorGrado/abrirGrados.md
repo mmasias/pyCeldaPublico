@@ -6,7 +6,7 @@
 
 |Acción|CdU|
 |---|---|
-|**Cerrar sesión**|<sub>cerrarSesion()</sub> (sin página: vuelve a login)|
+|**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
 |[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

@@ -7,6 +7,6 @@
 |Acción|CdU|
 |---|---|
 |[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|
-|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>
