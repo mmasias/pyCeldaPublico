@@ -1,25 +1,29 @@
-<div align=right>
+# pyCelda
 
-<sub>**Home** / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub>
+Hola. Esto es **pyCelda**: un sistema para gestionar las guías docentes de una universidad -- el documento que cada profesor rellena cada curso con el contenido, la evaluación y la bibliografía de su asignatura, y que un director de grado revisa y aprueba antes de que se publique.
 
-</div>
+Este repositorio es un subconjunto público de un proyecto de trabajo más amplio. Aquí puedes hacer dos cosas: **verlo funcionar** y, si te pica la curiosidad, **asomarte a cómo está pensado por dentro**.
 
-# pyCelda -- subconjunto público
+## 1. Pruébalo
 
-Subconjunto público de **pyCelda**, sistema de gestión de guías docentes universitarias modelado con RUP. Este repo expone la capa de **Requisitos**: actores y casos de uso, el catálogo detallado de los 91 casos de uso (especificación + wireframe de cada uno) y el mockup navegable por actor derivado de ambos.
+No hay que instalar nada: es un prototipo navegable, pantalla a pantalla, en Markdown. Elige un papel y empieza a hacer clic como lo haría esa persona:
 
-No incluye modelo de dominio, fases de Análisis/Diseño ni datos reales de la institución (nombres/emails de profesorado) -- esas partes viven en el repo de trabajo privado.
+- **[Soy profesor](/docs/PROPUESTA_WIREFRAME/profesor/iniciarSesion.md)** -- entro, veo mis asignaturas, abro la guía de una de ellas, la edito, y la envío a revisión.
+- **[Soy director de grado](/docs/PROPUESTA_WIREFRAME/directorGrado/iniciarSesion.md)** -- reviso las guías de mi grado, las apruebo o las rechazo, y gestiono asignaturas y resultados de aprendizaje.
+- **[Soy administrador](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)** -- doy de alta grados, asignaturas y profesorado, y genero el PDF de las guías ya aprobadas.
 
-## Navegación
+Cada pantalla es una imagen (el diseño) más una tabla de botones: pulsas uno y saltas a la siguiente pantalla, igual que en la aplicación real. Si un botón no tiene enlace es porque, en ese papel, no tienes permiso para pulsarlo -- es intencionado, no un enlace roto.
 
-- **[Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md)** -- diagramas de actores y diagrama de contexto (estados de disponibilidad de casos de uso) por actor: `Admin`, `DirectorGrado`, `Profesor`.
-- **[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)** -- una carpeta por caso de uso (91 en total), con su statechart de especificación y su wireframe.
-- **[Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)** -- el catálogo anterior recorrido como prototipo clicable, una página por caso de uso con su wireframe y la tabla de botones que lleva al siguiente. Punto de entrada por actor: [Admin](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md) / [DirectorGrado](/docs/PROPUESTA_WIREFRAME/directorGrado/iniciarSesion.md) / [Profesor](/docs/PROPUESTA_WIREFRAME/profesor/iniciarSesion.md).
+## 2. Cómo está pensado por dentro
 
-## Cómo se generan los mockups
+Esto ya es el terreno de quien haya cursado ingeniería del software o le interese el oficio de diseñar un sistema antes de programarlo. Tres piezas, de la más conceptual a la más concreta:
 
-[`docs/scripts/generar_mockup_navegable.py`](/docs/scripts/generar_mockup_navegable.py) deriva cada página del mockup a partir del diagrama de contexto del actor más los wireframes disponibles en el catálogo de detalle -- no se escribe a mano. Detalle completo del mecanismo en el [README de mockups](/docs/PROPUESTA_WIREFRAME/README.md).
+- **[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md)** -- las entidades del sistema (`Guia`, `AsignaturaGrado`, `Profesor`...) y cómo se relacionan. Incluye el diagrama de estados de la `Guia`: Borrador, En revisión, Aprobada, Rechazada, y quién puede moverla de un estado a otro.
+- **[Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md)** -- quién usa el sistema (Profesor, DirectorGrado, Admin) y qué puede hacer cada uno, con el diagrama de estados de disponibilidad que marca qué acciones están vivas en cada momento.
+- **[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)** -- las 91 acciones del catálogo, una por una: qué pasos sigue, qué puede salir mal, y el wireframe de la pantalla correspondiente. Es el material del que sale el prototipo de la sección 1.
 
-## Citas al repo de trabajo
+Todo el catálogo está enlazado entre sí -- el modelo de dominio explica el porqué de una regla, el diagrama de actores dice cuándo se puede invocar, el detalle cuenta el cómo paso a paso, y el mockup lo enseña en pantalla. Se puede entrar por cualquier puerta y llegar a las demás.
 
-Varias fichas de caso de uso referencian discussions/issues del repo privado (`github.com/mmasias/pyCelda`) donde se debatió la decisión de modelado correspondiente. Son citas de procedencia, no enlaces navegables para quien no tenga acceso a ese repo -- el texto que las acompaña ya explica la decisión sin necesidad de abrirlas.
+---
+
+<sub>Varias fichas citan discussions/issues del repo de trabajo privado (`github.com/mmasias/pyCelda`) donde se debatió la decisión de modelado correspondiente -- son citas de procedencia, no enlaces navegables para quien no tenga acceso a ese repo; el texto que las acompaña ya explica la decisión sin necesidad de abrirlas. Este repo tampoco incluye las fases de Análisis/Diseño (aún sin empezar) ni el dashboard de seguimiento del proyecto.</sub>

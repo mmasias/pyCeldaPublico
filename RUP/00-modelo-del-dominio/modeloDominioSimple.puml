@@ -1,0 +1,65 @@
+@startuml modeloDominioSimple
+
+hide empty members
+hide circle
+
+package "Estructura curricular" {
+  class Universidad
+  class Facultad
+  class Grado
+  class Materia
+  class SistemaEvaluacion
+  class MetodologiaDocente
+  class MetodologiaMateria
+  class Asignatura
+  class AsignaturaGrado
+  class ResultadoAprendizaje
+  class Requisito
+  class CursoAcademico
+  Universidad *-d- Facultad
+  Facultad *-d- Grado
+  Grado *-- Materia
+  Materia *-- AsignaturaGrado
+  Materia *-- SistemaEvaluacion
+  Materia o-- MetodologiaDocente
+  (Materia, MetodologiaDocente) .. MetodologiaMateria
+  Universidad *-- MetodologiaDocente
+  (Grado, Asignatura) .. AsignaturaGrado
+  Grado *-d- ResultadoAprendizaje
+  Materia o-u- ResultadoAprendizaje
+  AsignaturaGrado o- ResultadoAprendizaje
+  AsignaturaGrado --> AsignaturaGrado : <sub>requiere</sub>
+  AsignaturaGrado -[hidden]r- Requisito
+  (AsignaturaGrado, AsignaturaGrado) .. Requisito
+  Universidad -- CursoAcademico
+}
+
+package "Guía docente" {
+  class Guia
+  class HistorialCambio
+  class PonderacionEvaluacion
+  (AsignaturaGrado, CursoAcademico) .. Guia
+  Guia *- HistorialCambio
+  Guia *-d- PonderacionEvaluacion
+  PonderacionEvaluacion -> SistemaEvaluacion
+  class ReferenciaBibliografica
+  Guia *-- ReferenciaBibliografica
+}
+
+package "Personas y roles" {
+  class Actor
+  class Profesor
+  class Admin
+  class DirectorGrado
+
+  Profesor -u-|> Actor
+  Admin -u-|> Actor
+  DirectorGrado -u-|> Profesor
+  Actor -> HistorialCambio
+  AsignaturaGrado - Profesor
+  Grado o- DirectorGrado
+}
+
+Guia -- Profesor
+
+@enduml

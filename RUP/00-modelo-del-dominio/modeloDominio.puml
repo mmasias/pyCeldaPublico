@@ -1,0 +1,134 @@
+@startuml modeloDominio
+
+hide empty members
+hide circle
+
+package "Estructura curricular" {
+  class Universidad
+  class Facultad
+  class Grado {
+    codigo
+    estado
+  }
+  class Materia {
+    nombre
+  }
+  class SistemaEvaluacion {
+    tipo
+    descripcion
+    ponderacionMinima
+    ponderacionMaxima
+  }
+  class MetodologiaDocente {
+    codigo
+    descripcion
+  }
+  class MetodologiaMateria {
+    descripcionPropia
+  }
+  class Asignatura {
+    codigo
+    nombre
+    ects
+    contenido
+    estado
+  }
+  class AsignaturaGrado {
+    nombre
+    curso
+    caracter
+    idioma
+    ects
+    semestreDefault
+    contenido
+    estado
+  }
+
+  class ResultadoAprendizaje {
+    codigo
+    tipo
+    descripcion
+  }
+
+  class Requisito {
+    tipo
+  }
+  class CursoAcademico {
+    inicio
+    fin
+    estado
+    semestreActivo
+  }
+  Universidad *-d- Facultad
+  Facultad *-d- Grado
+  Grado *-- Materia
+  Materia *-- AsignaturaGrado
+  Materia *-- SistemaEvaluacion
+  Materia o-- MetodologiaDocente
+  (Materia, MetodologiaDocente) .. MetodologiaMateria
+  Universidad *-- MetodologiaDocente
+  (Grado, Asignatura) .. AsignaturaGrado
+  Grado *-d- ResultadoAprendizaje
+  Materia o-u- ResultadoAprendizaje
+  AsignaturaGrado o- ResultadoAprendizaje
+  AsignaturaGrado o-r- MetodologiaDocente
+  AsignaturaGrado --> AsignaturaGrado : <sub>requiere</sub>
+  AsignaturaGrado -[hidden]r- Requisito
+  (AsignaturaGrado, AsignaturaGrado) .. Requisito
+  Universidad -- CursoAcademico
+}
+
+package "Guía docente" {
+  class Guia {
+    semestre
+    estado
+    fechaCreacion
+    fechaUltimaModificacion
+    fechaGeneracionPDF
+  }
+  class HistorialCambio {
+    campo
+    valorAnterior
+    valorNuevo
+    fecha
+    comentario
+  }
+
+  class PonderacionEvaluacion {
+    descripcion
+    ponderacion
+  }
+
+  (AsignaturaGrado, CursoAcademico) .. Guia
+  Guia *- HistorialCambio
+  Guia *-d- PonderacionEvaluacion
+  PonderacionEvaluacion -> SistemaEvaluacion
+
+  class ReferenciaBibliografica {
+    tipo
+    referencia
+  }
+
+  Guia *-- ReferenciaBibliografica
+}
+
+package "Personas y roles" {
+  class Actor
+  class Profesor {
+    nombre
+    email
+  }
+  class Admin
+  class DirectorGrado
+
+  Profesor -u-|> Actor
+  Admin -u-|> Actor
+  DirectorGrado -u-|> Profesor
+  Actor -> HistorialCambio
+  AsignaturaGrado - Profesor
+  Grado o- DirectorGrado
+}
+
+Guia -- Profesor
+
+@enduml
