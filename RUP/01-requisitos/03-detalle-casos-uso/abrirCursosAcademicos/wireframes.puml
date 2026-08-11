@@ -1,0 +1,15 @@
+@startsalt abrirCursosAcademicos-wireframe
+{
+    <b>CURSOS ACADÉMICOS</b>
+    ====
+    {#
+        <b>Curso académico | <b>Estado | . | .
+        2024-2025 | Inactivo | [Abrir] | .
+        2025-2026 | Inactivo | [Abrir] | .
+        2026-2027 | Activo (semestre 1) | [Abrir] | .
+        2027-2028 | Inactivo | [Abrir] | [Activar]
+    }
+    ====
+    [ <b>+ Crear Curso Académico</b> ]
+}
+@endsalt

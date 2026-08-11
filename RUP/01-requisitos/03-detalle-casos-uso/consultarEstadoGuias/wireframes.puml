@@ -1,0 +1,12 @@
+@startsalt consultarEstadoGuias-wireframe
+{
+    <b>GUÍAS DEL GRADO -- GII</b>
+    ====
+    {#
+        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | .
+        Programación I | Dr. Manuel Masías | EnRevision | [Abrir]
+    }
+    ====
+    [ <b>Volver al grado</b> ]
+}
+@endsalt

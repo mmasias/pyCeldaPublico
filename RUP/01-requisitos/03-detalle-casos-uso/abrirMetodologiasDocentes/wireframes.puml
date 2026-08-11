@@ -1,0 +1,18 @@
+@startsalt abrirMetodologiasDocentes-wireframe
+{
+    <b>METODOLOGÍAS DOCENTES</b>
+    ====
+    {#
+        <b>Código | <b>Descripción | . | .
+        MD1 | Método expositivo | [Abrir] | [Eliminar]
+        MD2 | Estudio y análisis de casos | [Abrir] | [Eliminar]
+        MD3 | Resolución de ejercicios | [Abrir] | [Eliminar]
+        MD4 | Aprendizaje basado en problemas | [Abrir] | [Eliminar]
+        MD5 | Aprendizaje orientado a proyectos | [Abrir] | [Eliminar]
+        MD6 | Aprendizaje cooperativo / Trabajo en grupos | [Abrir] | [Eliminar]
+        MD7 | Trabajo autónomo | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Metodología Docente</b> ]
+}
+@endsalt

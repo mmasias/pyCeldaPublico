@@ -1,0 +1,161 @@
+@startuml diagramaContextoAdmin
+
+left to right direction
+skinparam linetype polyline
+
+state SESION_CERRADA
+state SISTEMA_DISPONIBLE
+
+state UNIVERSIDADES_ABIERTO
+state UNIVERSIDAD_ABIERTO
+state FACULTADES_ABIERTO
+state FACULTAD_ABIERTO
+state GRADOS_ABIERTO
+state GRADO_ABIERTO
+state ASIGNATURAS_ABIERTO
+state ASIGNATURA_ABIERTO
+state METODOLOGIAS_DOCENTES_ABIERTO
+state METODOLOGIA_DOCENTE_ABIERTO
+state PROFESORES_ABIERTO
+state PROFESOR_ABIERTO
+state SISTEMAS_EVALUACION_ABIERTO
+state SISTEMA_EVALUACION_ABIERTO
+state MATERIAS_ABIERTO
+state MATERIA_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO
+state CURSOS_ACADEMICOS_ABIERTO
+state CURSO_ACADEMICO_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTO
+state GUIA_ABIERTO
+
+[*] --> SESION_CERRADA
+
+SESION_CERRADA --> SISTEMA_DISPONIBLE : iniciarSesion()
+' credenciales invalidas: no hay transicion de estado, self-loop explicito
+' -- detectado al construir la especificacion de enviarGuiaARevision()
+SESION_CERRADA --> SESION_CERRADA : iniciarSesion()
+SISTEMA_DISPONIBLE --> SESION_CERRADA : cerrarSesion()
+
+SISTEMA_DISPONIBLE --> UNIVERSIDADES_ABIERTO : abrirUniversidades()
+SISTEMA_DISPONIBLE --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
+SISTEMA_DISPONIBLE --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
+SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()
+SISTEMA_DISPONIBLE --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
+
+SISTEMA_DISPONIBLE --> SISTEMA_DISPONIBLE : generarGuiasPDF()
+
+' Universidad -- sin eliminarUniversidad(): única excepción del catálogo
+UNIVERSIDADES_ABIERTO --> UNIVERSIDAD_ABIERTO : crearUniversidad()
+UNIVERSIDADES_ABIERTO --> UNIVERSIDAD_ABIERTO : abrirUniversidad()
+UNIVERSIDAD_ABIERTO --> UNIVERSIDAD_ABIERTO : editarUniversidad()
+UNIVERSIDAD_ABIERTO --> UNIVERSIDADES_ABIERTO : abrirUniversidades()
+UNIVERSIDADES_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+' Facultad no es catálogo institucional (a diferencia de Asignatura/MetodologiaDocente):
+' es composición real de Universidad (Universidad *-- Facultad), se navega desde dentro de ella
+UNIVERSIDAD_ABIERTO --> FACULTADES_ABIERTO : abrirFacultades()
+
+FACULTADES_ABIERTO --> FACULTAD_ABIERTO : crearFacultad()
+FACULTADES_ABIERTO --> FACULTAD_ABIERTO : abrirFacultad()
+FACULTADES_ABIERTO --> FACULTADES_ABIERTO : eliminarFacultad()
+FACULTAD_ABIERTO --> FACULTAD_ABIERTO : editarFacultad()
+FACULTAD_ABIERTO --> FACULTADES_ABIERTO : abrirFacultades()
+FACULTADES_ABIERTO --> UNIVERSIDAD_ABIERTO : abrirUniversidad()
+
+' Grado tampoco es catálogo: composición real de Facultad (Facultad *-d- Grado),
+' mismo patrón que Facultad dentro de Universidad
+FACULTAD_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
+
+GRADOS_ABIERTO --> GRADO_ABIERTO : crearGrado()
+GRADOS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+GRADOS_ABIERTO --> GRADOS_ABIERTO : eliminarGrado()
+GRADO_ABIERTO --> GRADO_ABIERTO : editarGrado()
+GRADO_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
+GRADOS_ABIERTO --> FACULTAD_ABIERTO : abrirFacultad()
+
+' Materia tampoco es catálogo: composición real de Grado (Grado *-- Materia),
+' se navega desde dentro de él -- necesaria pese a ser fina para Admin (nombre):
+' otros hijos de Materia (SistemaEvaluacion, pendiente; asociaciones de DirectorGrado
+' mas adelante) sí requieren "una Materia concreta abierta"
+GRADO_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
+
+MATERIAS_ABIERTO --> MATERIA_ABIERTO : crearMateria()
+MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
+MATERIAS_ABIERTO --> MATERIAS_ABIERTO : eliminarMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarMateria()
+MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
+MATERIAS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+
+' AsignaturaGrado: dos entradas (atajo plano desde GRADO_ABIERTO, agrupado por
+' materias; y desde la propia MATERIA_ABIERTO), pero un solo retorno -- vuelve
+' siempre a GRADO_ABIERTO, la entrada más lógica y previsiblemente más usada
+GRADO_ABIERTO --> GRADO_ABIERTO : crearAsignaturaGrado()
+GRADO_ABIERTO --> GRADO_ABIERTO : eliminarAsignaturaGrado()
+GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
+MATERIA_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
+
+' SistemaEvaluacion: mismo patrón que AsignaturaGrado -- composición real de Materia
+' (Materia *-- SistemaEvaluacion), cero reutilización cruzada, se navega desde dentro de ella
+MATERIA_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : abrirSistemasEvaluacion()
+
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asignarProfesorAAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : desasignarProfesorAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+
+' Reabertura por incidencia de PDF (issue #6): Admin no gestiona ni revisa el
+' contenido de las guias, pero necesita localizar la guia concreta con incidencia
+' para reabrirla -- mismo hilo GUIAS_DEL_GRADO_ABIERTO/GUIA_ABIERTO que usa
+' DirectorGrado para revision (consultarEstadoGuias()/abrirGuia() reutilizados,
+' ver diagramaContextoDirectorGrado.puml), no el de edicion propia del profesor
+GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : consultarEstadoGuias()
+GUIAS_DEL_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
+GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : reabrirGuiaPorIncidencia()
+GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : completarGestion()
+
+ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : crearAsignatura()
+ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : abrirAsignatura()
+ASIGNATURAS_ABIERTO --> ASIGNATURAS_ABIERTO : eliminarAsignatura()
+ASIGNATURA_ABIERTO --> ASIGNATURA_ABIERTO : editarAsignatura()
+ASIGNATURA_ABIERTO --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
+ASIGNATURAS_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : crearMetodologiaDocente()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : abrirMetodologiaDocente()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()
+METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()
+METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
+METODOLOGIAS_DOCENTES_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+' definirDirectorGrado()/quitarDirectorGrado(): rol sobre un Profesor ya abierto, no entidad propia
+PROFESORES_ABIERTO --> PROFESOR_ABIERTO : crearProfesor()
+PROFESORES_ABIERTO --> PROFESOR_ABIERTO : abrirProfesor()
+PROFESORES_ABIERTO --> PROFESORES_ABIERTO : eliminarProfesor()
+PROFESOR_ABIERTO --> PROFESOR_ABIERTO : editarProfesor()
+PROFESOR_ABIERTO --> PROFESOR_ABIERTO : definirDirectorGrado()
+PROFESOR_ABIERTO --> PROFESOR_ABIERTO : quitarDirectorGrado()
+PROFESOR_ABIERTO --> PROFESORES_ABIERTO : abrirProfesores()
+PROFESORES_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+SISTEMAS_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : crearSistemaEvaluacion()
+SISTEMAS_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : abrirSistemaEvaluacion()
+SISTEMAS_EVALUACION_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : eliminarSistemaEvaluacion()
+SISTEMA_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : editarSistemaEvaluacion()
+SISTEMA_EVALUACION_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : abrirSistemasEvaluacion()
+SISTEMAS_EVALUACION_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
+
+' activarCursoAcademico(): acción de conjunto sobre el listado, no requiere abrir el curso concreto
+' (como eliminarX()) -- <<choice>> interno valida elegibilidad (último, o penúltimo si el
+' último no tiene actividad registrada), desactiva automáticamente el otro como efecto colateral.
+' Sin desactivarCursoAcademico() suelto: activar siempre implica desactivar el otro, no hace
+' falta un "apagar sin encender otro".
+' editarCursoAcademico()/activarSemestre(): granularidad de detalle sobre un único curso ya abierto (como editarX())
+CURSOS_ACADEMICOS_ABIERTO --> CURSO_ACADEMICO_ABIERTO : crearCursoAcademico()
+CURSOS_ACADEMICOS_ABIERTO --> CURSO_ACADEMICO_ABIERTO : abrirCursoAcademico()
+CURSOS_ACADEMICOS_ABIERTO --> CURSOS_ACADEMICOS_ABIERTO : activarCursoAcademico()
+CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : editarCursoAcademico()
+CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : activarSemestre()
+CURSO_ACADEMICO_ABIERTO --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
+CURSOS_ACADEMICOS_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+@enduml

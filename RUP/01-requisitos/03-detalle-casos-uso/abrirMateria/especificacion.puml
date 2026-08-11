@@ -1,0 +1,23 @@
+@startuml abrirMateria
+
+skinparam linetype polyline
+
+state MATERIAS_ABIERTO
+state MATERIA_ABIERTO
+
+MATERIAS_ABIERTO -[#green]-> abrirMateria
+note on link
+<b>Admin</b> solicita abrir Materia
+end note
+
+state abrirMateria as "abrirMateria()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la Materia
+    end note
+}
+
+abrirMateria -[#green]-> MATERIA_ABIERTO
+
+@enduml

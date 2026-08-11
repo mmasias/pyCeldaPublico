@@ -1,0 +1,19 @@
+@startsalt crearReferenciaBibliografica-wireframe
+{
+    <b>CREAR REFERENCIA</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    {
+        <b>Tipo (*):</b>
+        ^Basica^
+        <b>Referencia (*):</b>
+        "                                                   "
+        "                                                   "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

@@ -1,0 +1,14 @@
+# Profesor
+
+<div align=center>
+
+|**Estado de error**|**Formulario**|
+|---|---|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearPonderacionEvaluacion/wireframe-error.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearPonderacionEvaluacion/wireframe-formulario.svg)|
+
+|Acción|CdU|
+|---|---|
+|[**Editar ponderacion evaluacion**](editarPonderacionEvaluacion.md)|<sub>editarPonderacionEvaluacion()</sub>|
+|[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
+
+</div>

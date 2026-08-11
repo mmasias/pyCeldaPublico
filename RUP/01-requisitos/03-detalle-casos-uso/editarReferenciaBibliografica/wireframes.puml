@@ -1,0 +1,19 @@
+@startsalt editarReferenciaBibliografica-wireframe
+{
+    <b>EDITAR REFERENCIA</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    {
+        <b>Tipo (*):</b>
+        ^Basica^
+        <b>Referencia (*):</b>
+        "Sedgewick, R. (2008) Introduction to programming in "
+        "Java, An interdisciplinary approach Ed. Pearson      "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

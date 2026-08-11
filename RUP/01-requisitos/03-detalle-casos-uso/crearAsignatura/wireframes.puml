@@ -1,0 +1,15 @@
+@startsalt crearAsignatura-wireframe
+{
+    <b>CREAR ASIGNATURA</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>ECTS, contenido y estado se completan al editar</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

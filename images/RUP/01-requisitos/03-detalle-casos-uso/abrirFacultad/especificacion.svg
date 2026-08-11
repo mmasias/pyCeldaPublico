@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="455px" preserveAspectRatio="none" style="width:374px;height:455px;" version="1.1" viewBox="0 0 374 455" width="374px" zoomAndPan="magnify"><defs><filter height="300%" id="f1gfmxd8j7nejm" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f1gfmxd8j7nejm)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="170" x="79" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="79" x2="249" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="150" x="89" y="27.8959">FACULTADES_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1gfmxd8j7nejm)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="154" x="87" y="394"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="87" x2="241" y1="423.0679" y2="423.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="134" x="97" y="413.9659">FACULTAD_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1gfmxd8j7nejm)" height="174.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="316" x="6" y="158.93"/><rect fill="#FFFFFF" height="139" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="310" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="322" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="115" y="178.8959">abrirFacultad()</text><ellipse cx="27" cy="210.9979" fill="#000000" filter="url(#f1gfmxd8j7nejm)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="27" cy="307.9979" fill="none" filter="url(#f1gfmxd8j7nejm)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="27.5" cy="308.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[34a8086b243c7f8e2b02b2082c58d622]
+link *start*abrirFacultad to *end*abrirFacultad--><path d="M27,221.4579 C27,237.7479 27,271.2579 27,291.1579 " fill="none" id="*start*abrirFacultad-&gt;*end*abrirFacultad" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="27,296.0679,31,287.0679,27,291.0679,23,287.0679,27,296.0679" style="stroke: #008000; stroke-width: 1.0;"/><path d="M32,243.9979 L32,270.9979 L280,270.9979 L280,253.9979 L270,243.9979 L32,243.9979 " fill="#FBFB77" filter="url(#f1gfmxd8j7nejm)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M270,243.9979 L270,253.9979 L280,253.9979 L270,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="38" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="172" x="93" y="262.8949">muestra datos de la Facultad</text><!--MD5=[22ef8cb554d681b2888baa0d4751858b]
+link FACULTADES_ABIERTO to abrirFacultad--><path d="M164,58.14 C164,81.28 164,117.65 164,152.17 " fill="none" id="FACULTADES_ABIERTO-&gt;abrirFacultad" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="164,157.08,168,148.08,164,152.08,160,148.08,164,157.08" style="stroke: #008000; stroke-width: 1.0;"/><path d="M169,92.93 L169,119.93 L362,119.93 L362,102.93 L352,92.93 L169,92.93 " fill="#FBFB77" filter="url(#f1gfmxd8j7nejm)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M352,92.93 L352,102.93 L362,102.93 L352,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="175" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="221" y="111.827">solicita abrir Facultad</text><!--MD5=[0eb83de51f65df104f4fb21a17fecd27]
+link abrirFacultad to FACULTAD_ABIERTO--><path d="M164,333.49 C164,352.91 164,372.28 164,387.55 " fill="none" id="abrirFacultad-&gt;FACULTAD_ABIERTO" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="164,392.33,168,383.33,164,387.33,160,383.33,164,392.33" style="stroke: #008000; stroke-width: 1.0;"/><!--MD5=[bdd1c7655ba854f77145e1a9071b160c]
+@startuml abrirFacultad
+
+skinparam linetype polyline
+
+state FACULTADES_ABIERTO
+state FACULTAD_ABIERTO
+
+FACULTADES_ABIERTO -[#green]-> abrirFacultad
+note on link
+<b>Admin</b> solicita abrir Facultad
+end note
+
+state abrirFacultad as "abrirFacultad()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la Facultad
+    end note
+}
+
+abrirFacultad -[#green]-> FACULTAD_ABIERTO
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

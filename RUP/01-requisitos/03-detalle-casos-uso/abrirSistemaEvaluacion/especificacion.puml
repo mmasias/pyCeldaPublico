@@ -1,0 +1,23 @@
+@startuml abrirSistemaEvaluacion
+
+skinparam linetype polyline
+
+state SISTEMAS_EVALUACION_ABIERTO
+state SISTEMA_EVALUACION_ABIERTO
+
+SISTEMAS_EVALUACION_ABIERTO -[#green]-> abrirSistemaEvaluacion
+note on link
+<b>Admin</b> solicita abrir SistemaEvaluacion
+end note
+
+state abrirSistemaEvaluacion as "abrirSistemaEvaluacion()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos del sistema de evaluación
+    end note
+}
+
+abrirSistemaEvaluacion -[#green]-> SISTEMA_EVALUACION_ABIERTO
+
+@enduml

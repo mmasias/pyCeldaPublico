@@ -1,0 +1,23 @@
+@startuml abrirResultadosAprendizaje
+
+skinparam linetype polyline
+
+state GRADO_ABIERTO
+state RESULTADOS_APRENDIZAJE_ABIERTO
+
+GRADO_ABIERTO -[#green]-> abrirResultadosAprendizaje
+note on link
+<b>DirectorGrado</b> solicita abrir resultados de aprendizaje
+end note
+
+state abrirResultadosAprendizaje as "abrirResultadosAprendizaje()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de resultados de aprendizaje
+    end note
+}
+
+abrirResultadosAprendizaje -[#green]-> RESULTADOS_APRENDIZAJE_ABIERTO
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml abrirPonderacionesEvaluacion
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state PONDERACION_EVALUACION_ABIERTO
+state PONDERACIONES_EVALUACION_ABIERTOS_SALIDA as "PONDERACIONES_EVALUACION_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> abrirPonderacionesEvaluacion
+note on link
+<b>Profesor</b> solicita abrir Ponderaciones de Evaluación
+end note
+
+PONDERACION_EVALUACION_ABIERTO -[#green]-> abrirPonderacionesEvaluacion
+note on link
+<b>Profesor</b> solicita volver al listado de Ponderaciones de Evaluación
+end note
+
+state abrirPonderacionesEvaluacion as "abrirPonderacionesEvaluacion()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de PonderacionEvaluacion de la Guia
+    end note
+}
+
+abrirPonderacionesEvaluacion -[#green]-> PONDERACIONES_EVALUACION_ABIERTOS_SALIDA
+
+@enduml

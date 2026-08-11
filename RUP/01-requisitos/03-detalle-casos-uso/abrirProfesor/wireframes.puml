@@ -1,0 +1,16 @@
+@startsalt abrirProfesor-wireframe
+{
+    <b>DR. MANUEL MASÍAS VERGARA</b>
+    ====
+    <b>Nombre:</b> Dr. Manuel Masías Vergara
+    <b>Email:</b> manuel.masias@uneatlantico.es
+    ====
+    <b>Grados que dirige:</b>
+    {
+        {GII -- Grado en Ingeniería Informática | [Quitar]}
+    }
+    [ <b>+ Nombrar director de Grado</b> ]
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

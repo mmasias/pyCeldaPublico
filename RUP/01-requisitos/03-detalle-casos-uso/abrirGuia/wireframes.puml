@@ -1,0 +1,107 @@
+@startsalt abrirGuia-wireframe-profesor
+{
+    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    ====
+    <b>Semestre:</b> 1
+    <b>Estado:</b> Borrador
+    <b>Fecha de creación:</b> 01/09/2026
+    <b>Fecha de última modificación:</b> 01/09/2026
+    <b>Fecha de generación de PDF:</b> --
+    ====
+    <b>Contenido:</b> (heredado de AsignaturaGrado)
+    ====
+    Resultados de aprendizaje:
+    {#
+        <b>Código | <b>Tipo
+        RAK1 | Conocimientos o contenidos
+    }
+    ====
+    Metodologías docentes:
+    {#
+        <b>Código | <b>Descripción
+        MD3 | Resolución de ejercicios
+    }
+    ====
+    Evaluación:
+    {#
+        <b>Descripción | <b>Sistema de evaluación | <b>Ponderación
+        Examen Parcial | Evaluación continua | 25%
+        Actividades y ejercicios | Evaluación continua | 20%
+        Interés y participación | Evaluación continua | 5%
+        Examen Teórico-Práctico | Evaluación final | 50%
+    }
+    <b>Suma: 100%</b>
+    [ <b>Gestionar evaluación</b> ]
+    ====
+    Bibliografía:
+    {#
+        <b>Tipo | <b>Referencia
+        Basica | Sedgewick, R. (2008) Introduction to programming in Java...
+        Basica | Streib, J. (2014) Guide to Java, A concise introduction...
+        Complementaria | Serbat, A (2016) Fundamentos de Programación con Java...
+        Complementaria | Sedgewick R. Algorithms, 4th Edition Ed. Pearson
+        Complementaria | Martin, R. (2011) The Clean Coder Ed. Prentice Hall
+        WebsReferencia | http://www.java.com/es/
+        WebsReferencia | http://docs.oracle.com/javase/8/
+        WebsReferencia | https://developers.google.com/blockly/
+        WebsReferencia | http://introcs.cs.princeton.edu/java/home/
+        OtrasFuentes | https://github.com/mmasias/prg1
+    }
+    [ <b>Gestionar bibliografía</b> ]
+    ====
+    {[Guardar borrador] | [Enviar a revisión] | [Volver a mis asignaturas]}
+}
+@endsalt
+
+@startsalt abrirGuia-wireframe-revision
+{
+    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    ====
+    <b>Semestre:</b> 1
+    <b>Estado:</b> EnRevision
+    <b>Fecha de creación:</b> 01/09/2026
+    <b>Fecha de última modificación:</b> 05/09/2026
+    <b>Fecha de generación de PDF:</b> --
+    ====
+    <b>Contenido:</b> (heredado de AsignaturaGrado)
+    ====
+    Resultados de aprendizaje:
+    {#
+        <b>Código | <b>Tipo
+        RAK1 | Conocimientos o contenidos
+    }
+    ====
+    Metodologías docentes:
+    {#
+        <b>Código | <b>Descripción
+        MD3 | Resolución de ejercicios
+    }
+    ====
+    Evaluación:
+    {#
+        <b>Descripción | <b>Sistema de evaluación | <b>Ponderación
+        Examen Parcial | Evaluación continua | 25%
+        Actividades y ejercicios | Evaluación continua | 20%
+        Interés y participación | Evaluación continua | 5%
+        Examen Teórico-Práctico | Evaluación final | 50%
+    }
+    <b>Suma: 100%</b>
+    ====
+    Bibliografía:
+    {#
+        <b>Tipo | <b>Referencia
+        Basica | Sedgewick, R. (2008) Introduction to programming in Java...
+        Basica | Streib, J. (2014) Guide to Java, A concise introduction...
+        Complementaria | Serbat, A (2016) Fundamentos de Programación con Java...
+        Complementaria | Sedgewick R. Algorithms, 4th Edition Ed. Pearson
+        Complementaria | Martin, R. (2011) The Clean Coder Ed. Prentice Hall
+        WebsReferencia | http://www.java.com/es/
+        WebsReferencia | http://docs.oracle.com/javase/8/
+        WebsReferencia | https://developers.google.com/blockly/
+        WebsReferencia | http://introcs.cs.princeton.edu/java/home/
+        OtrasFuentes | https://github.com/mmasias/prg1
+    }
+    ====
+    {[Aprobar] | [Rechazar] | [Editar semestre] | [Volver al listado de guías]}
+}
+@endsalt

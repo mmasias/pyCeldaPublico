@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="455px" preserveAspectRatio="none" style="width:423px;height:455px;" version="1.1" viewBox="0 0 423 455" width="423px" zoomAndPan="magnify"><defs><filter height="300%" id="f1jxh96d9atad1" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f1jxh96d9atad1)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="167" x="95.5" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="95.5" x2="262.5" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="147" x="105.5" y="27.8959">SISTEMA_DISPONIBLE</text><rect fill="#FEFECE" filter="url(#f1jxh96d9atad1)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="194" x="82" y="394"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="82" x2="276" y1="423.0679" y2="423.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="174" x="92" y="413.9659">UNIVERSIDADES_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1jxh96d9atad1)" height="174.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="346" x="6" y="158.93"/><rect fill="#FFFFFF" height="139" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="340" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="352" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="137" x="110.5" y="178.8959">abrirUniversidades()</text><ellipse cx="27" cy="210.9979" fill="#000000" filter="url(#f1jxh96d9atad1)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="27" cy="307.9979" fill="none" filter="url(#f1jxh96d9atad1)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="27.5" cy="308.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[ccb0d66e8270fca32880a619fdcb809b]
+link *start*abrirUniversidades to *end*abrirUniversidades--><path d="M27,221.4579 C27,237.7479 27,271.2579 27,291.1579 " fill="none" id="*start*abrirUniversidades-&gt;*end*abrirUniversidades" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="27,296.0679,31,287.0679,27,291.0679,23,287.0679,27,296.0679" style="stroke: #008000; stroke-width: 1.0;"/><path d="M32,243.9979 L32,270.9979 L310,270.9979 L310,253.9979 L300,243.9979 L32,243.9979 " fill="#FBFB77" filter="url(#f1jxh96d9atad1)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M300,243.9979 L300,253.9979 L310,253.9979 L300,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="38" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="93" y="262.8949">presenta listado de Universidades</text><!--MD5=[babe6cded369d66831c6dafe340f7bbc]
+link SISTEMA_DISPONIBLE to abrirUniversidades--><path d="M179,58.14 C179,81.28 179,117.65 179,152.17 " fill="none" id="SISTEMA_DISPONIBLE-&gt;abrirUniversidades" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="179,157.08,183,148.08,179,152.08,175,148.08,179,157.08" style="stroke: #008000; stroke-width: 1.0;"/><path d="M184,92.93 L184,119.93 L411,119.93 L411,102.93 L401,92.93 L184,92.93 " fill="#FBFB77" filter="url(#f1jxh96d9atad1)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M401,92.93 L401,102.93 L411,102.93 L401,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="190" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="236" y="111.827">solicita abrir Universidades</text><!--MD5=[b862b08f3ac799502d22c57ffa52e8c1]
+link abrirUniversidades to UNIVERSIDADES_ABIERTO--><path d="M179,333.49 C179,352.91 179,372.28 179,387.55 " fill="none" id="abrirUniversidades-&gt;UNIVERSIDADES_ABIERTO" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="179,392.33,183,383.33,179,387.33,175,383.33,179,392.33" style="stroke: #008000; stroke-width: 1.0;"/><!--MD5=[204e6d341a6db60113c926a08fb0c11a]
+@startuml abrirUniversidades
+
+skinparam linetype polyline
+
+state SISTEMA_DISPONIBLE
+state UNIVERSIDADES_ABIERTO
+
+SISTEMA_DISPONIBLE -[#green]-> abrirUniversidades
+note on link
+<b>Admin</b> solicita abrir Universidades
+end note
+
+state abrirUniversidades as "abrirUniversidades()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de Universidades
+    end note
+}
+
+abrirUniversidades -[#green]-> UNIVERSIDADES_ABIERTO
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

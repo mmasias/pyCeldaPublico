@@ -1,0 +1,32 @@
+@startuml asociarMetodologiaDocenteAMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> asociarMetodologiaDocenteAMateria
+note on link
+<b>DirectorGrado</b> solicita asociar MetodologiaDocente a Materia
+end note
+
+state asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta selección de MetodologiaDocente del catálogo institucional
+    <b>Sistema</b> permite solicitar asociar
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> selecciona MetodologiaDocente
+    <b>DirectorGrado</b> solicita asociar
+    end note
+}
+
+asociarMetodologiaDocenteAMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+
+@enduml

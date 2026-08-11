@@ -1,0 +1,56 @@
+@startuml crearPonderacionEvaluacion
+
+skinparam linetype polyline
+
+state PONDERACIONES_EVALUACION_ABIERTO
+state PONDERACION_EVALUACION_ABIERTO
+state PONDERACIONES_EVALUACION_ABIERTOS_SALIDA as "PONDERACIONES_EVALUACION_ABIERTO"
+
+PONDERACIONES_EVALUACION_ABIERTO -[#green]-> crearPonderacionEvaluacion
+note on link
+<b>Profesor</b> solicita crear PonderacionEvaluacion
+end note
+
+state crearPonderacionEvaluacion as "crearPonderacionEvaluacion()" {
+
+    state " " as SolicitandoDatos
+    state c <<choice>>
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos de la ponderación
+    <b>Sistema</b> presenta selección de SistemaEvaluacion de la Materia
+    <b>Sistema</b> muestra rango y margen disponible del SistemaEvaluacion seleccionado
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> c
+    note on link
+    <b>Profesor</b> selecciona SistemaEvaluacion
+    <b>Profesor</b> introduce descripción
+    <b>Profesor</b> introduce ponderación
+    <b>Profesor</b> solicita crear
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta PonderacionEvaluacion creada
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de rango inválido para el SistemaEvaluacion seleccionado
+    end note
+}
+
+crearPonderacionEvaluacion -[#green]-> PONDERACION_EVALUACION_ABIERTO
+note on link
+editarPonderacionEvaluacion()
+end note
+
+crearPonderacionEvaluacion -[#red]-> PONDERACIONES_EVALUACION_ABIERTOS_SALIDA
+note on link
+suma de ponderaciones del SistemaEvaluacion fuera de rango, no se crea
+end note
+
+@enduml

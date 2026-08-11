@@ -1,0 +1,17 @@
+@startsalt abrirResultadosAprendizaje-wireframe
+{
+    <b>RESULTADOS DE APRENDIZAJE -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | . | .
+        RAK1 | Conocimientos o contenidos | Describir los conceptos fundamentales de álgebra lineal... | [Abrir] | [Eliminar]
+        RAK2 | Conocimientos o contenidos | Describir la estructura, organización y arquitectura... | [Abrir] | [Eliminar]
+        RAH1 | Habilidades o destrezas | Aplicar principios físicos y electrónicos en la... | [Abrir] | [Eliminar]
+        RAH2 | Habilidades o destrezas | Aplicar métodos matemáticos avanzados en la... | [Abrir] | [Eliminar]
+        RAC1 | Competencias o capacidades | Aplicar conceptos de economía, organización y... | [Abrir] | [Eliminar]
+        RAC2 | Competencias o capacidades | Desarrollar sistemas informáticos, considerando... | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Resultado de Aprendizaje</b> ]
+}
+@endsalt

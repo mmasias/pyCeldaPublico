@@ -1,0 +1,14 @@
+@startsalt crearFacultad-wireframe
+{
+    <b>CREAR FACULTAD</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

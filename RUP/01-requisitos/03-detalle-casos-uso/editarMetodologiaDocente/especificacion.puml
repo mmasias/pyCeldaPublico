@@ -1,0 +1,33 @@
+@startuml editarMetodologiaDocente
+
+skinparam linetype polyline
+
+state METODOLOGIA_DOCENTE_ABIERTO
+state METODOLOGIA_DOCENTE_ABIERTO_SALIDA as "METODOLOGIA_DOCENTE_ABIERTO"
+
+METODOLOGIA_DOCENTE_ABIERTO -[#green]-> editarMetodologiaDocente
+note on link
+<b>Admin</b> solicita editar MetodologiaDocente
+end note
+
+state editarMetodologiaDocente as "editarMetodologiaDocente()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la MetodologiaDocente
+    <b>Sistema</b> muestra código
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce descripción
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarMetodologiaDocente -[#green]-> METODOLOGIA_DOCENTE_ABIERTO_SALIDA
+
+@enduml

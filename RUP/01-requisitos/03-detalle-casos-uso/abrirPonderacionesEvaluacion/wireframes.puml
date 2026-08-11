@@ -1,0 +1,18 @@
+@startsalt abrirPonderacionesEvaluacion-wireframe
+{
+    <b>EVALUACIÓN -- Programación I (GII)</b>
+    ====
+    {#
+        <b>Descripción | <b>Sistema de evaluación | <b>Ponderación | . | .
+        Examen Parcial | Evaluación continua | 25% | [Abrir] | [Eliminar]
+        Actividades y ejercicios | Evaluación continua | 20% | [Abrir] | [Eliminar]
+        Interés y participación | Evaluación continua | 5% | [Abrir] | [Eliminar]
+        Examen Teórico-Práctico | Evaluación final | 50% | [Abrir] | [Eliminar]
+    }
+    <b>Suma: 100%</b>
+    ====
+    [ <b>+ Crear Ponderación</b> ]
+    ====
+    {[Volver a la guía]}
+}
+@endsalt

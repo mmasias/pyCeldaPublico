@@ -1,0 +1,32 @@
+@startuml editarUniversidad
+
+skinparam linetype polyline
+
+state UNIVERSIDAD_ABIERTO
+state UNIVERSIDAD_ABIERTO_SALIDA as "UNIVERSIDAD_ABIERTO"
+
+UNIVERSIDAD_ABIERTO -[#green]-> editarUniversidad
+note on link
+<b>Admin</b> solicita editar Universidad
+end note
+
+state editarUniversidad as "editarUniversidad()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la Universidad
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarUniversidad -[#green]-> UNIVERSIDAD_ABIERTO_SALIDA
+
+@enduml

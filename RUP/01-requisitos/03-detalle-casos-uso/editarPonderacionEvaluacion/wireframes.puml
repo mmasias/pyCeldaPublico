@@ -1,0 +1,50 @@
+@startsalt editarPonderacionEvaluacion-wireframe-formulario
+{
+    <b>EDITAR PONDERACIÓN</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    {
+        <b>Sistema de evaluación (*):</b>
+        ^Evaluación continua^
+        <i>Rango: 20% - 60%</i>
+        <i>Ya asignado en esta Guía (Evaluación continua, sin contar esta ponderación): 25% (Actividades y ejercicios, Interés y participación)</i>
+        <i>Margen disponible: hasta 35% más</i>
+        <b>Descripción (*):</b>
+        "Examen Parcial                                    "
+        <b>Ponderación (*):</b>
+        "  30" %
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt
+
+@startsalt editarPonderacionEvaluacion-wireframe-error
+{
+    <b>EDITAR PONDERACIÓN</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    <color:red><b>⚠ NO SE PUEDE GUARDAR</b></color>
+    <color:red>Con esta ponderación, Evaluación continua sumaría 65% -- fuera del rango 20%-60%</color>
+    --
+    {
+        <b>Sistema de evaluación (*):</b>
+        ^Evaluación continua^
+        <i>Rango: 20% - 60%</i>
+        <i>Ya asignado en esta Guía (Evaluación continua, sin contar esta ponderación): 25% (Actividades y ejercicios, Interés y participación)</i>
+        <i>Margen disponible: hasta 35% más</i>
+        <b>Descripción (*):</b>
+        "Examen Parcial                                    "
+        <b>Ponderación (*):</b>
+        "  40" %
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

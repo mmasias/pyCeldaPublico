@@ -1,0 +1,13 @@
+@startsalt abrirSistemaEvaluacion-wireframe
+{
+    <b>EVALUACIÓN CONTINUA</b>
+    ====
+    <b>Tipo:</b> Evaluación continua
+    <b>Descripción:</b>
+    "Incluye prácticas de laboratorio y entregas semanales"
+    <b>Ponderación mínima:</b> 30%
+    <b>Ponderación máxima:</b> 50%
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

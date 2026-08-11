@@ -1,0 +1,67 @@
+@startuml diagramaContextoProfesor
+
+left to right direction
+skinparam linetype polyline
+
+state SESION_CERRADA
+state ASIGNATURAS_GRADO_ABIERTO
+state GUIA_ABIERTO
+state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
+state REFERENCIA_BIBLIOGRAFICA_ABIERTO
+state PONDERACIONES_EVALUACION_ABIERTO
+state PONDERACION_EVALUACION_ABIERTO
+
+[*] --> SESION_CERRADA
+
+' A diferencia de Admin, Profesor no tiene un SISTEMA_DISPONIBLE generico: su
+' alcance entero cabe en el listado de sus propias AsignaturaGrado (con el estado
+' de la Guia de cada una como dato mostrado, no como estado de este diagrama)
+SESION_CERRADA --> ASIGNATURAS_GRADO_ABIERTO : iniciarSesion()
+' credenciales invalidas: no hay transicion de estado, self-loop explicito
+' -- detectado al construir la especificacion de enviarGuiaARevision()
+SESION_CERRADA --> SESION_CERRADA : iniciarSesion()
+ASIGNATURAS_GRADO_ABIERTO --> SESION_CERRADA : cerrarSesion()
+
+ASIGNATURAS_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+' crear/editar/eliminar de PonderacionEvaluacion y ReferenciaBibliografica quedan
+' en memoria hasta que se persisten en guardarBorradorGuia() o enviarGuiaARevision()
+GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
+
+' PonderacionEvaluacion: mismo patrón lista/detalle completo que ReferenciaBibliografica
+GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
+
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : crearPonderacionEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : abrirPonderacionEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : eliminarPonderacionEvaluacion()
+PONDERACION_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : editarPonderacionEvaluacion()
+PONDERACION_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+' ReferenciaBibliografica: patrón lista/detalle completo (a diferencia de
+' AsignaturaGrado, aquí no existía ya un listado plano en el padre que reutilizar)
+GUIA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
+
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : crearReferenciaBibliografica()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : abrirReferenciaBibliografica()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()
+REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : editarReferenciaBibliografica()
+REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+' guardarBorradorGuia(): persiste y sigue editando (self-loop)
+GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()
+
+' completarGestion(): sale sin garantía de persistencia de lo que quedó en memoria
+' (transición de navegación no catalogada, no un caso de uso)
+GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : completarGestion()
+
+' enviarGuiaARevision(): persiste, cambia el estado de dominio de la Guia a
+' EnRevision (ver guia.puml) y cierra la sesión de edición -- ya no es turno del profesor.
+' Asimetria real (ver especificacion.puml de este caso de uso): solo el envio con
+' exito sale de aqui -- si la suma de PonderacionEvaluacion no da 100%, el sistema
+' rechaza y la sesion de edicion sigue abierta, de ahi el self-loop de abajo.
+GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : enviarGuiaARevision()
+GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
+
+@enduml

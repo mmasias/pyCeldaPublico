@@ -1,0 +1,14 @@
+@startsalt editarMateria-wireframe
+{
+    <b>EDITAR MATERIA</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "Programación"
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

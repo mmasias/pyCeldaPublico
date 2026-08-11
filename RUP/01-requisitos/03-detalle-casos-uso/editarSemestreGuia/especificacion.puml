@@ -1,0 +1,35 @@
+@startuml editarSemestreGuia
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> editarSemestreGuia
+note on link
+<b>DirectorGrado</b> solicita editar semestre de Guia
+end note
+
+state editarSemestreGuia as "editarSemestreGuia()" {
+
+    state " " as EditandoSemestre
+
+    [*] -[#green]-> EditandoSemestre
+    note on link
+    <b>Sistema</b> presenta semestre actual
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoSemestre -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce semestre
+    <b>DirectorGrado</b> solicita guardar
+    end note
+}
+
+editarSemestreGuia -[#green]-> GUIA_ABIERTO_SALIDA
+note on link
+actualiza semestre; si la Guia estaba Aprobada, regenera el PDF y actualiza fechaGeneracionPDF
+end note
+
+@enduml

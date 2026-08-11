@@ -1,0 +1,33 @@
+@startuml editarReferenciaBibliografica
+
+skinparam linetype polyline
+
+state REFERENCIA_BIBLIOGRAFICA_ABIERTO
+state REFERENCIA_BIBLIOGRAFICA_ABIERTO_SALIDA as "REFERENCIA_BIBLIOGRAFICA_ABIERTO"
+
+REFERENCIA_BIBLIOGRAFICA_ABIERTO -[#green]-> editarReferenciaBibliografica
+note on link
+<b>Profesor</b> solicita editar ReferenciaBibliografica
+end note
+
+state editarReferenciaBibliografica as "editarReferenciaBibliografica()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la referencia
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Profesor</b> introduce tipo
+    <b>Profesor</b> introduce referencia
+    <b>Profesor</b> solicita guardar
+    end note
+}
+
+editarReferenciaBibliografica -[#green]-> REFERENCIA_BIBLIOGRAFICA_ABIERTO_SALIDA
+
+@enduml

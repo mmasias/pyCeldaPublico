@@ -1,0 +1,32 @@
+@startuml asignarProfesorAAsignaturaGrado
+
+skinparam linetype polyline
+
+state ASIGNATURA_GRADO_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO_SALIDA as "ASIGNATURA_GRADO_ABIERTO"
+
+ASIGNATURA_GRADO_ABIERTO -[#green]-> asignarProfesorAAsignaturaGrado
+note on link
+<b>Admin</b> solicita asignar Profesor a AsignaturaGrado
+end note
+
+state asignarProfesorAAsignaturaGrado as "asignarProfesorAAsignaturaGrado()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta selección de Profesores no asignados aún a esta AsignaturaGrado
+    <b>Sistema</b> permite solicitar asignar
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> selecciona Profesor
+    <b>Admin</b> solicita asignar
+    end note
+}
+
+asignarProfesorAAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+
+@enduml

@@ -1,0 +1,10 @@
+@startsalt abrirAsignaturasGrado-wireframe
+{
+    <b>ASIGNATURAS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+        <b>Asignatura | <b>Materia | <b>Curso | <b>Carácter | <b>Profesorado | .
+        Programación I | Programación | 1 | Básica | Dr. Manuel Masías | [Abrir]
+    }
+}
+@endsalt

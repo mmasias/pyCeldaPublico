@@ -1,0 +1,22 @@
+@startsalt crearSistemaEvaluacion-wireframe
+{
+    <b>CREAR SISTEMA DE EVALUACIÓN</b>
+    ====
+    <b>Programación</b>
+    --
+    {
+        <b>Tipo (*):</b>
+        ^Evaluación continua^
+        <b>Descripción:</b>
+        "                                                  "
+        <b>Ponderación mínima (*):</b>
+        "    " %
+        <b>Ponderación máxima (*):</b>
+        "    " %
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

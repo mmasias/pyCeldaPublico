@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="701px" preserveAspectRatio="none" style="width:1010px;height:701px;" version="1.1" viewBox="0 0 1010 701" width="1010px" zoomAndPan="magnify"><defs><filter height="300%" id="f1qmt5bto9jouf" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f1qmt5bto9jouf)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="275" x="364.5" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="364.5" x2="639.5" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="255" x="374.5" y="27.8959">METODOLOGIAS_DOCENTES_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1qmt5bto9jouf)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="275" x="364.5" y="640"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="364.5" x2="639.5" y1="669.0679" y2="669.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="255" x="374.5" y="659.9659">METODOLOGIAS_DOCENTES_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1qmt5bto9jouf)" height="380.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="992" x="6" y="158.93"/><rect fill="#FFFFFF" height="345" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="986" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="998" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="203" x="400.5" y="178.8959">eliminarMetodologiaDocente()</text><rect fill="#FEFECE" filter="url(#f1qmt5bto9jouf)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="17" y="376.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="17" x2="67" y1="406.0658" y2="406.0658"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="44" y="396.9639"/><polygon fill="#FEFECE" filter="url(#f1qmt5bto9jouf)" points="310,257.9979,322,269.9979,310,281.9979,298,269.9979,310,257.9979" style="stroke: #A80036; stroke-width: 1.5;"/><ellipse cx="310" cy="210.9979" fill="#000000" filter="url(#f1qmt5bto9jouf)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="319" cy="513.9979" fill="none" filter="url(#f1qmt5bto9jouf)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="319.5" cy="514.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[e3e9bd8ad2dd211ecc0374b64805dde7]
+link *start*eliminarMetodologiaDocente to c--><path d="M310,221.4079 C310,229.4279 310,241.1679 310,250.9879 " fill="none" id="*start*eliminarMetodologiaDocente-&gt;c" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="310,255.8879,314,246.8879,310,250.8879,306,246.8879,310,255.8879" style="stroke: #008000; stroke-width: 1.0;"/><!--MD5=[267dcfd677017b421db4b5825432603a]
+link c to ConfirmandoEliminacion--><path d="M299.63,272.0679 C248.75,277.2979 28,299.9979 28,299.9979 C28,299.9979 28,358.9979 28,358.9979 C28,358.9979 29.69,364.0779 31.9,370.7079 " fill="none" id="c-&gt;ConfirmandoEliminacion" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="33.38,375.1279,34.3464,365.3266,31.8074,370.3816,26.7524,367.8427,33.38,375.1279" style="stroke: #008000; stroke-width: 1.0;"/><path d="M33,304.9979 L33,349.9979 L570,349.9979 L570,314.9979 L560,304.9979 L33,304.9979 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M560,304.9979 L560,314.9979 L570,314.9979 L560,304.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="39" y="323.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="461" x="94" y="323.8949">presenta información de la MetodologiaDocente y advertencia de eliminación</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="39" y="341.6009">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="94" y="341.6009">permite solicitar confirmar/cancelar eliminación</text><!--MD5=[496db57de3ae704e7458437d6134a095]
+link c to *end*eliminarMetodologiaDocente--><path d="M320.55,272.1379 C370.28,277.4979 579,299.9979 579,299.9979 C579,299.9979 579,358.9979 579,358.9979 C579,358.9979 559,485.9979 559,485.9979 C559,485.9979 389.26,505.0979 335.28,511.1679 " fill="none" id="c-&gt;*end*eliminarMetodologiaDocente" style="stroke: #FF0000; stroke-width: 1.0;"/><polygon fill="#FF0000" points="330.51,511.6979,339.9089,514.641,335.4771,511.1253,338.9927,506.6936,330.51,511.6979" style="stroke: #FF0000; stroke-width: 1.0;"/><path d="M581,386.4979 L581,413.4979 L956,413.4979 L956,396.4979 L946,386.4979 L581,386.4979 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #FF0000; stroke-width: 1.0;"/><path d="M946,386.4979 L946,396.4979 L956,396.4979 L946,386.4979 " fill="#FBFB77" style="stroke: #FF0000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="587" y="405.3949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="299" x="642" y="405.3949">presenta mensaje de bloqueo por uso en Materias</text><!--MD5=[a80436502c8036c5f4b3a0a21a575763]
+link ConfirmandoEliminacion to *end*eliminarMetodologiaDocente--><path d="M42.29,427.4479 C42.59,451.9379 43,485.9979 43,485.9979 C43,485.9979 243.32,505.5979 302.64,511.3979 " fill="none" id="ConfirmandoEliminacion-&gt;*end*eliminarMetodologiaDocente" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="307.34,511.8579,298.7716,507.0017,302.3637,511.3717,297.9937,514.9638,307.34,511.8579" style="stroke: #008000; stroke-width: 1.0;"/><path d="M48,449.9979 L48,476.9979 L288,476.9979 L288,459.9979 L278,449.9979 L48,449.9979 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M278,449.9979 L278,459.9979 L288,459.9979 L278,449.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="54" y="468.8949">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="100" y="468.8949">solicita confirmar eliminación</text><!--MD5=[a80436502c8036c5f4b3a0a21a575763]
+link ConfirmandoEliminacion to *end*eliminarMetodologiaDocente--><path d="M67.38,407.1779 C131.88,417.7979 297,444.9979 297,444.9979 C297,444.9979 307.72,478.1179 314.19,498.1279 " fill="none" id="ConfirmandoEliminacion-&gt;*end*eliminarMetodologiaDocente-1" style="stroke: #0000FF; stroke-width: 1.0;"/><polygon fill="#0000FF" points="315.66,502.6679,316.6883,492.8729,314.1175,497.9118,309.0786,495.3409,315.66,502.6679" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M314.97,449.9979 L314.97,476.9979 L545.97,476.9979 L545.97,459.9979 L535.97,449.9979 L314.97,449.9979 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M535.97,449.9979 L535.97,459.9979 L545.97,459.9979 L535.97,449.9979 " fill="#FBFB77" style="stroke: #0000FF; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="320.97" y="468.8949">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="164" x="366.97" y="468.8949">solicita cancelar eliminación</text><!--MD5=[e0a39e052f266796c8333695a7736723]
+link METODOLOGIAS_DOCENTES_ABIERTO to eliminarMetodologiaDocente--><path d="M502,58.31 C502,80.27 502,114.8 502,152.49 " fill="none" id="METODOLOGIAS_DOCENTES_ABIERTO-&gt;eliminarMetodologiaDocente" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="502,157.05,506,148.05,502,152.05,498,148.05,502,157.05" style="stroke: #008000; stroke-width: 1.0;"/><path d="M507,92.93 L507,119.93 L796,119.93 L796,102.93 L786,92.93 L507,92.93 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M786,92.93 L786,102.93 L796,102.93 L786,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="513" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="222" x="559" y="111.827">solicita eliminar MetodologiaDocente</text><!--MD5=[9b88df7e4b1f5bb881358532169d365a]
+link eliminarMetodologiaDocente to METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA--><path d="M353.2,539.46 C339.14,557.37 330,569 330,569 C330,569 330,610 330,610 C330,610 374.28,623.9 417.91,637.6 " fill="none" id="eliminarMetodologiaDocente-&gt;METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="422.61,639.07,415.2239,632.555,417.8401,637.5705,412.8247,640.1868,422.61,639.07" style="stroke: #008000; stroke-width: 1.0;"/><path d="M335,574 L335,601 L450,601 L450,584 L440,574 L335,574 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M440,574 L440,584 L450,584 L440,574 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="341" y="592.897">lista actualizada</text><!--MD5=[9b88df7e4b1f5bb881358532169d365a]
+link eliminarMetodologiaDocente to METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA--><path d="M499.4,539.46 C499.16,557.37 499,569 499,569 C499,569 499,610 499,610 C499,610 499.61,621.05 500.29,633.16 " fill="none" id="eliminarMetodologiaDocente-&gt;METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA-1" style="stroke: #FF0000; stroke-width: 1.0;"/><polygon fill="#FF0000" points="500.56,638.02,504.0663,628.8164,500.289,633.0274,496.078,629.2501,500.56,638.02" style="stroke: #FF0000; stroke-width: 1.0;"/><path d="M504,574 L504,601 L665,601 L665,584 L655,574 L504,574 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #FF0000; stroke-width: 1.0;"/><path d="M655,574 L655,584 L665,584 L655,574 " fill="#FBFB77" style="stroke: #FF0000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="510" y="592.897">bloqueada, sin cambios</text><!--MD5=[9b88df7e4b1f5bb881358532169d365a]
+link eliminarMetodologiaDocente to METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA--><path d="M654.26,539.46 C668.65,557.37 678,569 678,569 C678,569 678,610 678,610 C678,610 632.51,623.96 587.78,637.68 " fill="none" id="eliminarMetodologiaDocente-&gt;METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA-2" style="stroke: #0000FF; stroke-width: 1.0;"/><polygon fill="#0000FF" points="583.21,639.08,592.9881,640.2584,587.9892,637.6106,590.637,632.6117,583.21,639.08" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M683,574 L683,601 L839,601 L839,584 L829,574 L683,574 " fill="#FBFB77" filter="url(#f1qmt5bto9jouf)" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M829,574 L829,584 L839,584 L829,574 " fill="#FBFB77" style="stroke: #0000FF; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="689" y="592.897">cancelada, sin cambios</text><!--MD5=[4cfae017482fbfa65e350e7861e9680c]
+@startuml eliminarMetodologiaDocente
+
+skinparam linetype polyline
+
+state METODOLOGIAS_DOCENTES_ABIERTO
+state METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA as "METODOLOGIAS_DOCENTES_ABIERTO"
+
+METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> eliminarMetodologiaDocente
+note on link
+<b>Admin</b> solicita eliminar MetodologiaDocente
+end note
+
+state eliminarMetodologiaDocente as "eliminarMetodologiaDocente()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información de la MetodologiaDocente y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarMetodologiaDocente -[#green]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarMetodologiaDocente -[#red]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarMetodologiaDocente -[#blue]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

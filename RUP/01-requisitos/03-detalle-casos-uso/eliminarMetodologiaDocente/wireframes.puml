@@ -1,0 +1,28 @@
+@startsalt eliminarMetodologiaDocente-wireframe-bloqueada
+{
+    <b>ELIMINAR METODOLOGÍA DOCENTE</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    ====
+    <b>MD1 -- Método expositivo</b>
+
+    Esta metodología docente está en uso en materias del catálogo.
+
+    <i>Retira su asociación de las materias antes de eliminarla.</i>
+    ====
+    [ <b>Volver al listado</b> ]
+}
+@endsalt
+
+@startsalt eliminarMetodologiaDocente-wireframe-confirmacion
+{
+    <b>ELIMINAR METODOLOGÍA DOCENTE</b>
+    ====
+    <b>MD7 -- Trabajo autónomo</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Sin materias asociadas.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

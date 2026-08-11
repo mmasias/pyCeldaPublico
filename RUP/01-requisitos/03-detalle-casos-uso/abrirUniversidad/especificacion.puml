@@ -1,0 +1,23 @@
+@startuml abrirUniversidad
+
+skinparam linetype polyline
+
+state UNIVERSIDADES_ABIERTO
+state UNIVERSIDAD_ABIERTO
+
+UNIVERSIDADES_ABIERTO -[#green]-> abrirUniversidad
+note on link
+<b>Admin</b> solicita abrir Universidad
+end note
+
+state abrirUniversidad as "abrirUniversidad()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la Universidad
+    end note
+}
+
+abrirUniversidad -[#green]-> UNIVERSIDAD_ABIERTO
+
+@enduml

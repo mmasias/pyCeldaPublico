@@ -1,0 +1,32 @@
+@startsalt eliminarProfesor-wireframe-bloqueada
+{
+    <b>ELIMINAR PROFESOR</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    ====
+    <b>Dr. Manuel Masías Vergara</b>
+
+    Este profesor no se puede eliminar:
+    • Tiene 3 AsignaturaGrado asignadas
+    • Es DirectorGrado del Grado en Ingeniería Informática
+    • Ha impartido Guías en cursos anteriores
+
+    <i>Desasigna sus asignaturas y quítale el rol de director antes de eliminarlo.
+    Las Guías impartidas no se pueden desasignar: el bloqueo por ese motivo es permanente.</i>
+    ====
+    [ <b>Volver al listado</b> ]
+}
+@endsalt
+
+@startsalt eliminarProfesor-wireframe-confirmacion
+{
+    <b>ELIMINAR PROFESOR</b>
+    ====
+    <b>Dr. Jorge Crespo Álvarez</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Sin AsignaturaGrado asignadas, sin rol de DirectorGrado y sin Guías impartidas.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

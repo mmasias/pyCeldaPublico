@@ -1,0 +1,17 @@
+@startsalt asignarProfesorAAsignaturaGrado-wireframe
+{
+    <b>ASIGNAR PROFESOR</b>
+    ====
+    <b>Programación I -- GII, 1er curso</b>
+    --
+    {
+        <b>Profesor (*):</b>
+        ^Dr. Manuel Masías Vergara^
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>Solo se listan los Profesores todavía no asignados a esta asignatura-en-grado</i>
+    }
+    ~~
+    {[Asignar]}
+}
+@endsalt

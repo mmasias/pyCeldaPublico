@@ -1,0 +1,23 @@
+@startuml consultarEstadoGuias
+
+skinparam linetype polyline
+
+state GRADO_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTO_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+
+GRADO_ABIERTO -[#green]-> consultarEstadoGuias
+note on link
+<b>DirectorGrado</b> solicita consultar estado de las Guias
+end note
+
+state consultarEstadoGuias as "consultarEstadoGuias()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de Guias del Grado con su estado
+    end note
+}
+
+consultarEstadoGuias -[#green]-> GUIAS_DEL_GRADO_ABIERTO_SALIDA
+
+@enduml

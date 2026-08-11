@@ -1,0 +1,35 @@
+@startuml reabrirGuiaPorIncidencia
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> reabrirGuiaPorIncidencia
+note on link
+<b>Admin</b> solicita reabrir Guia
+end note
+
+state reabrirGuiaPorIncidencia as "reabrirGuiaPorIncidencia()" {
+
+    state " " as IntroduciendoComentario
+
+    [*] -[#green]-> IntroduciendoComentario
+    note on link
+    <b>Sistema</b> permite introducir comentario
+    <b>Sistema</b> permite solicitar reabrir
+    end note
+
+    IntroduciendoComentario -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce comentario
+    <b>Admin</b> solicita reabrir
+    end note
+}
+
+reabrirGuiaPorIncidencia -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+note on link
+Aprobada -> EnRevision; registra comentario (obligatorio) en HistorialCambio
+end note
+
+@enduml

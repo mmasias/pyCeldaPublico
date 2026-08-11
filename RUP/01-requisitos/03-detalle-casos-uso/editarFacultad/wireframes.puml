@@ -1,0 +1,14 @@
+@startsalt editarFacultad-wireframe
+{
+    <b>EDITAR FACULTAD</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "Escuela Politécnica Superior"
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

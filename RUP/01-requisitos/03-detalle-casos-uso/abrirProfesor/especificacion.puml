@@ -1,0 +1,23 @@
+@startuml abrirProfesor
+
+skinparam linetype polyline
+
+state PROFESORES_ABIERTO
+state PROFESOR_ABIERTO
+
+PROFESORES_ABIERTO -[#green]-> abrirProfesor
+note on link
+<b>Admin</b> solicita abrir Profesor
+end note
+
+state abrirProfesor as "abrirProfesor()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos del Profesor
+    end note
+}
+
+abrirProfesor -[#green]-> PROFESOR_ABIERTO
+
+@enduml

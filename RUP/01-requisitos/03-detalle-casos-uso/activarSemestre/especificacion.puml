@@ -1,0 +1,32 @@
+@startuml activarSemestre
+
+skinparam linetype polyline
+
+state CURSO_ACADEMICO_ABIERTO
+state CURSO_ACADEMICO_ABIERTO_SALIDA as "CURSO_ACADEMICO_ABIERTO"
+
+CURSO_ACADEMICO_ABIERTO -[#green]-> activarSemestre
+note on link
+<b>Admin</b> solicita activar semestre
+end note
+
+state activarSemestre as "activarSemestre()" {
+
+    state " " as EditandoSemestre
+
+    [*] -[#green]-> EditandoSemestre
+    note on link
+    <b>Sistema</b> presenta semestre activo actual del CursoAcademico
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoSemestre -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce semestre
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+activarSemestre -[#green]-> CURSO_ACADEMICO_ABIERTO_SALIDA
+
+@enduml

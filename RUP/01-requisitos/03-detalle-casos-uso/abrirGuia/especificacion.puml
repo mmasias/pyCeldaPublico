@@ -1,0 +1,23 @@
+@startuml abrirGuia
+
+skinparam linetype polyline
+
+state ASIGNATURAS_GRADO_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+
+ASIGNATURAS_GRADO_ABIERTO -[#green]-> abrirGuia
+note on link
+<b>Profesor</b> solicita abrir Guia
+end note
+
+state abrirGuia as "abrirGuia()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la Guia
+    end note
+}
+
+abrirGuia -[#green]-> GUIA_ABIERTO_SALIDA
+
+@enduml

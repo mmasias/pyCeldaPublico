@@ -1,0 +1,57 @@
+@startuml desasociarResultadoAprendizajeAMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> desasociarResultadoAprendizajeAMateria
+note on link
+<b>DirectorGrado</b> solicita desasociar ResultadoAprendizaje de Materia
+end note
+
+state desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()" {
+
+    state " " as ConfirmandoDesasociacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoDesasociacion
+    note on link
+    <b>Sistema</b> presenta información de la asociación y advertencia de desasociación
+    <b>Sistema</b> permite solicitar confirmar/cancelar desasociación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en AsignaturaGrado de la Materia
+    end note
+
+    ConfirmandoDesasociacion -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> solicita confirmar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#blue]-> [*]
+    note on link
+    <b>DirectorGrado</b> solicita cancelar desasociación
+    end note
+}
+
+desasociarResultadoAprendizajeAMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+desasociarResultadoAprendizajeAMateria -[#red]-> MATERIA_ABIERTO_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+desasociarResultadoAprendizajeAMateria -[#blue]-> MATERIA_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml descargarGuiaPDF
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> descargarGuiaPDF
+note on link
+<b>Admin</b>/<b>Profesor</b> solicita descargar PDF de Guia
+end note
+
+state descargarGuiaPDF as "descargarGuiaPDF()" {
+
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta el PDF
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo: PDF no generado todavía
+    end note
+}
+
+descargarGuiaPDF -[#green]-> GUIA_ABIERTO_SALIDA
+
+descargarGuiaPDF -[#red]-> GUIA_ABIERTO_SALIDA
+
+@enduml

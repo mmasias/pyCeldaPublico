@@ -1,0 +1,28 @@
+@startsalt eliminarMateria-wireframe-bloqueada
+{
+    <b>ELIMINAR MATERIA</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    ====
+    <b>Programación</b>
+
+    Esta materia tiene asignaturas-en-grado asociadas.
+
+    <i>Elimina primero las AsignaturaGrado de esta materia.</i>
+    ====
+    [ <b>Volver al listado</b> ]
+}
+@endsalt
+
+@startsalt eliminarMateria-wireframe-confirmacion
+{
+    <b>ELIMINAR MATERIA</b>
+    ====
+    <b>Ingeniería del Software</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Sin asignaturas-en-grado asociadas.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

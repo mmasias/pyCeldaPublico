@@ -1,0 +1,17 @@
+@startsalt asociarResultadoAprendizajeAAsignaturaGrado-wireframe
+{
+    <b>ASOCIAR RESULTADO DE APRENDIZAJE</b>
+    ====
+    <b>Programación I -- GII, 1er curso</b>
+    --
+    {
+        <b>Resultado de aprendizaje (*):</b>
+        ^RAK1 -- Conocimientos o contenidos^
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>Solo se listan los ya asignados a la Materia (Programación) y no asignados aún a esta asignatura-en-grado</i>
+    }
+    ~~
+    {[Asociar]}
+}
+@endsalt

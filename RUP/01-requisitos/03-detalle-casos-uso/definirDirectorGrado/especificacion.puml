@@ -1,0 +1,35 @@
+@startuml definirDirectorGrado
+
+skinparam linetype polyline
+
+state PROFESOR_ABIERTO
+state PROFESOR_ABIERTO_SALIDA as "PROFESOR_ABIERTO"
+
+PROFESOR_ABIERTO -[#green]-> definirDirectorGrado
+note on link
+<b>Admin</b> solicita nombrar director de Grado
+end note
+
+state definirDirectorGrado as "definirDirectorGrado()" {
+
+    state " " as SeleccionandoGrado
+
+    [*] -[#green]-> SeleccionandoGrado
+    note on link
+    <b>Sistema</b> presenta selector de Grados que el Profesor no dirige
+    <b>Sistema</b> permite solicitar nombrar
+    end note
+
+    SeleccionandoGrado -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce Grado
+    <b>Admin</b> solicita nombrar
+    end note
+}
+
+definirDirectorGrado -[#green]-> PROFESOR_ABIERTO_SALIDA
+note on link
+Grado añadido a los que dirige
+end note
+
+@enduml

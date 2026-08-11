@@ -1,0 +1,264 @@
+@startuml actoresCasosUso
+
+left to right direction
+
+actor Admin
+actor Profesor
+actor DirectorGrado
+
+DirectorGrado --|> Profesor
+
+package "Catálogos institucionales" {
+  package Universidad {
+    usecase abrirUniversidades as "abrirUniversidades()"
+    usecase crearUniversidad as "crearUniversidad()"
+    usecase abrirUniversidad as "abrirUniversidad()"
+    usecase editarUniversidad as "editarUniversidad()"
+  }
+
+  package Facultad {
+    usecase abrirFacultades as "abrirFacultades()"
+    usecase crearFacultad as "crearFacultad()"
+    usecase abrirFacultad as "abrirFacultad()"
+    usecase editarFacultad as "editarFacultad()"
+    usecase eliminarFacultad as "eliminarFacultad()"
+  }
+
+  package Grado {
+    usecase abrirGrados as "abrirGrados()"
+    usecase crearGrado as "crearGrado()"
+    usecase abrirGrado as "abrirGrado()"
+    usecase editarGrado as "editarGrado()"
+    usecase eliminarGrado as "eliminarGrado()"
+  }
+
+  package Asignatura {
+
+    usecase abrirAsignaturas as "abrirAsignaturas()"
+    usecase crearAsignatura as "crearAsignatura()"
+    usecase abrirAsignatura as "abrirAsignatura()"
+    usecase editarAsignatura as "editarAsignatura()"
+    usecase eliminarAsignatura as "eliminarAsignatura()"
+  }
+
+  package MetodologiaDocente {
+
+    usecase abrirMetodologiasDocentes as "abrirMetodologiasDocentes()"
+    usecase crearMetodologiaDocente as "crearMetodologiaDocente()"
+    usecase abrirMetodologiaDocente as "abrirMetodologiaDocente()"
+    usecase editarMetodologiaDocente as "editarMetodologiaDocente()"
+    usecase eliminarMetodologiaDocente as "eliminarMetodologiaDocente()"
+  }
+
+  package Academico {
+    usecase abrirProfesores as "abrirProfesores()"
+    usecase crearProfesor as "crearProfesor()"
+    usecase abrirProfesor as "abrirProfesor()"
+    usecase editarProfesor as "editarProfesor()"
+    usecase eliminarProfesor as "eliminarProfesor()"
+    usecase definirDirectorGrado as "definirDirectorGrado()"
+    usecase quitarDirectorGrado as "quitarDirectorGrado()"
+  }
+
+}
+
+package "Profesorado de asignaturas" {
+  usecase asignarProfesorAAsignaturaGrado as "asignarProfesorAAsignaturaGrado()"
+  usecase desasignarProfesorAsignaturaGrado as "desasignarProfesorAsignaturaGrado()"
+}
+
+package "Curso académico" {
+  usecase abrirCursosAcademicos as "abrirCursosAcademicos()"
+  usecase crearCursoAcademico as "crearCursoAcademico()"
+  usecase abrirCursoAcademico as "abrirCursoAcademico()"
+  usecase editarCursoAcademico as "editarCursoAcademico()"
+  usecase activarCursoAcademico as "activarCursoAcademico()"
+  usecase activarSemestre as "activarSemestre()"
+}
+
+package "Configuración del grado" {
+  package Materia {
+    usecase abrirMaterias as "abrirMaterias()"
+    usecase crearMateria as "crearMateria()"
+    usecase abrirMateria as "abrirMateria()"
+    usecase editarMateria as "editarMateria()"
+    usecase eliminarMateria as "eliminarMateria()"
+    usecase asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()"
+    usecase desasociarMetodologiaDocenteMateria as "desasociarMetodologiaDocenteMateria()"
+    usecase editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()"
+    usecase asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()"
+    usecase desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()"
+  }
+
+  package SistemaEvaluacion {
+    usecase abrirSistemasEvaluacion as "abrirSistemasEvaluacion()"
+    usecase crearSistemaEvaluacion as "crearSistemaEvaluacion()"
+    usecase abrirSistemaEvaluacion as "abrirSistemaEvaluacion()"
+    usecase editarSistemaEvaluacion as "editarSistemaEvaluacion()"
+    usecase eliminarSistemaEvaluacion as "eliminarSistemaEvaluacion()"
+  }
+
+  package ResultadoAprendizaje {
+    usecase abrirResultadosAprendizaje as "abrirResultadosAprendizaje()"
+    usecase crearResultadoAprendizaje as "crearResultadoAprendizaje()"
+    usecase abrirResultadoAprendizaje as "abrirResultadoAprendizaje()"
+    usecase eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()"
+    usecase editarResultadoAprendizaje as "editarResultadoAprendizaje()"
+  }
+
+  package AsignaturaGrado {
+    usecase crearAsignaturaGrado as "crearAsignaturaGrado()"
+    usecase abrirAsignaturaGrado as "abrirAsignaturaGrado()"
+    usecase eliminarAsignaturaGrado as "eliminarAsignaturaGrado()"
+    usecase editarAsignaturaGrado as "editarAsignaturaGrado()"
+    usecase asociarResultadoAprendizajeAAsignaturaGrado as "asociarResultadoAprendizajeAAsignaturaGrado()"
+    usecase desasociarResultadoAprendizajeAsignaturaGrado as "desasociarResultadoAprendizajeAsignaturaGrado()"
+    usecase asociarMetodologiaDocenteAAsignaturaGrado as "asociarMetodologiaDocenteAAsignaturaGrado()"
+    usecase desasociarMetodologiaDocenteAsignaturaGrado as "desasociarMetodologiaDocenteAsignaturaGrado()"
+  }
+}
+
+package "Guía docente" {
+  package Edicion {
+    usecase abrirAsignaturasGrado as "abrirAsignaturasGrado()"
+    usecase abrirGuia as "abrirGuia()"
+    usecase guardarBorradorGuia as "guardarBorradorGuia()"
+    usecase enviarGuiaARevision as "enviarGuiaARevision()"
+  }
+
+  package PonderacionEvaluacion {
+    usecase abrirPonderacionesEvaluacion as "abrirPonderacionesEvaluacion()"
+    usecase crearPonderacionEvaluacion as "crearPonderacionEvaluacion()"
+    usecase abrirPonderacionEvaluacion as "abrirPonderacionEvaluacion()"
+    usecase editarPonderacionEvaluacion as "editarPonderacionEvaluacion()"
+    usecase eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()"
+  }
+
+  package ReferenciaBibliografica {
+    usecase abrirReferenciasBibliograficas as "abrirReferenciasBibliograficas()"
+    usecase crearReferenciaBibliografica as "crearReferenciaBibliografica()"
+    usecase abrirReferenciaBibliografica as "abrirReferenciaBibliografica()"
+    usecase editarReferenciaBibliografica as "editarReferenciaBibliografica()"
+    usecase eliminarReferenciaBibliografica as "eliminarReferenciaBibliografica()"
+  }
+
+  package Revision {
+    usecase consultarEstadoGuias as "consultarEstadoGuias()"
+    usecase aprobarGuia as "aprobarGuia()"
+    usecase rechazarGuia as "rechazarGuia()"
+    usecase escalarGuiaAAprobada as "escalarGuiaAAprobada()"
+    usecase notificarGuiasActualizadas as "notificarGuiasActualizadas()"
+    usecase revocarAprobacionGuia as "revocarAprobacionGuia()"
+    usecase editarSemestreGuia as "editarSemestreGuia()"
+  }
+
+  package PDF {
+    usecase generarGuiasPDF as "generarGuiasPDF()"
+    usecase reabrirGuiaPorIncidencia as "reabrirGuiaPorIncidencia()"
+    usecase descargarGuiaPDF as "descargarGuiaPDF()"
+  }
+}
+
+Admin --> abrirUniversidades
+Admin --> crearUniversidad
+Admin --> abrirUniversidad
+Admin --> editarUniversidad
+Admin --> abrirFacultades
+Admin --> crearFacultad
+Admin --> abrirFacultad
+Admin --> editarFacultad
+Admin --> eliminarFacultad
+Admin --> abrirGrados
+Admin --> crearGrado
+Admin --> abrirGrado
+Admin --> editarGrado
+Admin --> eliminarGrado
+Admin --> abrirAsignaturas
+Admin --> crearAsignatura
+Admin --> abrirAsignatura
+Admin --> editarAsignatura
+Admin --> eliminarAsignatura
+Admin --> abrirMetodologiasDocentes
+Admin --> crearMetodologiaDocente
+Admin --> abrirMetodologiaDocente
+Admin --> editarMetodologiaDocente
+Admin --> eliminarMetodologiaDocente
+Admin --> abrirProfesores
+Admin --> crearProfesor
+Admin --> abrirProfesor
+Admin --> editarProfesor
+Admin --> eliminarProfesor
+Admin --> definirDirectorGrado
+Admin --> quitarDirectorGrado
+Admin --> abrirSistemasEvaluacion
+Admin --> crearSistemaEvaluacion
+Admin --> abrirSistemaEvaluacion
+Admin --> editarSistemaEvaluacion
+Admin --> eliminarSistemaEvaluacion
+Admin --> abrirMaterias
+Admin --> crearMateria
+Admin --> abrirMateria
+Admin --> editarMateria
+Admin --> eliminarMateria
+Admin --> crearAsignaturaGrado
+Admin --> abrirAsignaturaGrado
+Admin --> eliminarAsignaturaGrado
+Admin --> asignarProfesorAAsignaturaGrado
+Admin --> desasignarProfesorAsignaturaGrado
+Admin --> abrirCursosAcademicos
+Admin --> crearCursoAcademico
+Admin --> abrirCursoAcademico
+Admin --> editarCursoAcademico
+Admin --> activarCursoAcademico
+Admin --> activarSemestre
+Admin --> generarGuiasPDF
+Admin --> consultarEstadoGuias
+Admin --> abrirGuia
+Admin --> descargarGuiaPDF
+Admin --> reabrirGuiaPorIncidencia
+
+Profesor --> abrirGuia
+Profesor --> guardarBorradorGuia
+Profesor --> enviarGuiaARevision
+Profesor --> descargarGuiaPDF
+Profesor --> abrirPonderacionesEvaluacion
+Profesor --> crearPonderacionEvaluacion
+Profesor --> abrirPonderacionEvaluacion
+Profesor --> editarPonderacionEvaluacion
+Profesor --> eliminarPonderacionEvaluacion
+Profesor --> abrirReferenciasBibliograficas
+Profesor --> crearReferenciaBibliografica
+Profesor --> abrirReferenciaBibliografica
+Profesor --> editarReferenciaBibliografica
+Profesor --> eliminarReferenciaBibliografica
+
+DirectorGrado --> abrirGrados
+DirectorGrado --> abrirGrado
+DirectorGrado --> abrirAsignaturasGrado
+DirectorGrado --> abrirMaterias
+DirectorGrado --> abrirMateria
+DirectorGrado --> abrirAsignaturaGrado
+DirectorGrado --> asociarMetodologiaDocenteAMateria
+DirectorGrado --> desasociarMetodologiaDocenteMateria
+DirectorGrado --> editarAsociacionMetodologiaDocenteMateria
+DirectorGrado --> abrirResultadosAprendizaje
+DirectorGrado --> crearResultadoAprendizaje
+DirectorGrado --> abrirResultadoAprendizaje
+DirectorGrado --> eliminarResultadoAprendizaje
+DirectorGrado --> editarResultadoAprendizaje
+DirectorGrado --> asociarResultadoAprendizajeAMateria
+DirectorGrado --> desasociarResultadoAprendizajeAMateria
+DirectorGrado --> editarAsignaturaGrado
+DirectorGrado --> asociarResultadoAprendizajeAAsignaturaGrado
+DirectorGrado --> desasociarResultadoAprendizajeAsignaturaGrado
+DirectorGrado --> asociarMetodologiaDocenteAAsignaturaGrado
+DirectorGrado --> desasociarMetodologiaDocenteAsignaturaGrado
+DirectorGrado --> consultarEstadoGuias
+DirectorGrado --> aprobarGuia
+DirectorGrado --> rechazarGuia
+DirectorGrado --> escalarGuiaAAprobada
+DirectorGrado --> notificarGuiasActualizadas
+DirectorGrado --> revocarAprobacionGuia
+DirectorGrado --> editarSemestreGuia
+
+@enduml

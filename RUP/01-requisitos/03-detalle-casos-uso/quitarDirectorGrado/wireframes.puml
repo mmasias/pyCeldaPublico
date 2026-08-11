@@ -1,0 +1,30 @@
+@startsalt quitarDirectorGrado-wireframe-bloqueada
+{
+    <b>QUITAR DIRECTOR DE GRADO</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE QUITAR</b></color>
+    ====
+    <b>Dr. Manuel Masías Vergara</b> es el único DirectorGrado de:
+
+    <b>GII -- Grado en Ingeniería Informática</b>
+
+    <i>Nombra a otro Profesor como director de este Grado antes de quitar el rol.</i>
+    ====
+    [ <b>Volver</b> ]
+}
+@endsalt
+
+@startsalt quitarDirectorGrado-wireframe-confirmacion
+{
+    <b>QUITAR DIRECTOR DE GRADO</b>
+    ====
+    <b>Dr. Jon Arambarri Basañez</b> deja de dirigir:
+
+    <b>GII -- Grado en Ingeniería Informática</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Queda otro DirectorGrado activo en este Grado (Dr. Manuel Masías Vergara).
+    ====
+    {[Confirmar] | [Cancelar]}
+}
+@endsalt

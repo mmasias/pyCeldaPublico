@@ -1,0 +1,13 @@
+@startsalt eliminarGrado-wireframe
+{
+    <b>ELIMINAR GRADO</b>
+    ====
+    <b>GIOI -- Grado en Ingeniería de Organización Industrial</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    El grado pasará a estado <b>Extinguido</b>: no admitirá altas nuevas
+    (Materia, AsignaturaGrado...), pero lo ya existente seguirá intacto.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

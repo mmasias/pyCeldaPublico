@@ -1,0 +1,32 @@
+@startuml asociarResultadoAprendizajeAMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> asociarResultadoAprendizajeAMateria
+note on link
+<b>DirectorGrado</b> solicita asociar ResultadoAprendizaje a Materia
+end note
+
+state asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta selección de ResultadoAprendizaje del Grado
+    <b>Sistema</b> permite solicitar asociar
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> selecciona ResultadoAprendizaje
+    <b>DirectorGrado</b> solicita asociar
+    end note
+}
+
+asociarResultadoAprendizajeAMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+
+@enduml

@@ -1,0 +1,27 @@
+@startsalt desasociarMetodologiaDocenteMateria-wireframe-bloqueada
+{
+    <b>DESASOCIAR METODOLOGÍA DOCENTE</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE DESASOCIAR</b></color>
+    ====
+    <b>MD1 -- Método expositivo</b> (Programación)
+
+    Esta metodología docente está en uso en asignaturas-en-grado de esta materia.
+
+    <i>Quítala primero de esas AsignaturaGrado.</i>
+    ====
+    [ <b>Volver a Programación</b> ]
+}
+@endsalt
+
+@startsalt desasociarMetodologiaDocenteMateria-wireframe-confirmacion
+{
+    <b>DESASOCIAR METODOLOGÍA DOCENTE</b>
+    ====
+    <b>MD5 -- Aprendizaje orientado a proyectos</b> (Programación)
+
+    Sin asignaturas-en-grado de esta materia usándola.
+    ====
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

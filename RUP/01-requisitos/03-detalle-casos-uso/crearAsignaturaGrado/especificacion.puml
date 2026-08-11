@@ -1,0 +1,50 @@
+@startuml crearAsignaturaGrado
+
+skinparam linetype polyline
+
+state GRADO_ABIERTO
+state GRADO_ABIERTO_SALIDA as "GRADO_ABIERTO"
+
+GRADO_ABIERTO -[#green]-> crearAsignaturaGrado
+note on link
+<b>Admin</b> solicita crear AsignaturaGrado
+end note
+
+state crearAsignaturaGrado as "crearAsignaturaGrado()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos de la AsignaturaGrado
+    <b>Sistema</b> muestra catálogo de Asignatura
+    <b>Sistema</b> muestra curso
+    <b>Sistema</b> muestra carácter
+    <b>Sistema</b> muestra idioma
+    <b>Sistema</b> muestra semestre por defecto
+    <b>Sistema</b> muestra nombre heredado de la Asignatura
+    <b>Sistema</b> muestra ects heredados de la Asignatura
+    <b>Sistema</b> muestra contenido heredado de la Asignatura
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> selecciona Asignatura
+    <b>Admin</b> introduce curso
+    <b>Admin</b> introduce carácter
+    <b>Admin</b> introduce idioma
+    <b>Admin</b> introduce semestre por defecto
+    <b>Admin</b> introduce nombre, si difiere del heredado
+    <b>Admin</b> introduce ects, si difieren de los heredados
+    <b>Admin</b> introduce contenido, si difiere del heredado
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearAsignaturaGrado -[#green]-> GRADO_ABIERTO_SALIDA
+note on link
+AsignaturaGrado creada (estado Vigente), tabla actualizada
+end note
+
+@enduml

@@ -1,0 +1,47 @@
+@startsalt generarGuiasPDF-wireframe-seleccion
+{
+    <b>GENERAR PDFs DE GUÍAS DOCENTES</b>
+    ====
+    <b>Grado:</b>
+    ^GII -- Grado en Ingeniería Informática^
+    <b>Curso académico:</b>
+    ^2026-2027^
+    ====
+    {[Generar]}
+}
+@endsalt
+
+@startsalt generarGuiasPDF-wireframe-bloqueada
+{
+    <b>GENERAR PDFs DE GUÍAS DOCENTES</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDEN GENERAR</b></color>
+    ====
+    <b>GII -- 2026-2027</b>
+    --
+    Guias pendientes de Aprobada:
+    {#
+        <b>AsignaturaGrado | <b>Estado
+        Programación I | Borrador
+    }
+    ====
+    [ <b>Volver</b> ]
+}
+@endsalt
+
+@startsalt generarGuiasPDF-wireframe-generada
+{
+    <b>GENERAR PDFs DE GUÍAS DOCENTES</b>
+    ====
+    <color:green><b>✓ PDFs GENERADOS</b></color>
+    ====
+    <b>GII -- 2026-2027</b>
+    --
+    {#
+        <b>AsignaturaGrado | <b>Fecha de generación de PDF
+        Programación I | 08/08/2026
+    }
+    ====
+    [ <b>Volver</b> ]
+}
+@endsalt

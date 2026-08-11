@@ -1,0 +1,35 @@
+@startuml editarSistemaEvaluacion
+
+skinparam linetype polyline
+
+state SISTEMA_EVALUACION_ABIERTO
+state SISTEMA_EVALUACION_ABIERTO_SALIDA as "SISTEMA_EVALUACION_ABIERTO"
+
+SISTEMA_EVALUACION_ABIERTO -[#green]-> editarSistemaEvaluacion
+note on link
+<b>Admin</b> solicita editar SistemaEvaluacion
+end note
+
+state editarSistemaEvaluacion as "editarSistemaEvaluacion()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales del sistema de evaluación
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce tipo
+    <b>Admin</b> introduce descripción
+    <b>Admin</b> introduce ponderación mínima
+    <b>Admin</b> introduce ponderación máxima
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarSistemaEvaluacion -[#green]-> SISTEMA_EVALUACION_ABIERTO_SALIDA
+
+@enduml

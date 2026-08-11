@@ -1,0 +1,11 @@
+@startsalt editarSemestreGuia-wireframe
+{
+    <b>EDITAR SEMESTRE -- Programación I (GII)</b>
+    ====
+    <b>Semestre:</b>
+    ^2^
+    <i>Grupo especial: esta asignatura se imparte en los dos semestres del curso</i>
+    ====
+    {[Guardar]}
+}
+@endsalt

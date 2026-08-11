@@ -1,0 +1,27 @@
+@startsalt desasociarResultadoAprendizajeAMateria-wireframe-bloqueada
+{
+    <b>DESASOCIAR RESULTADO DE APRENDIZAJE</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE DESASOCIAR</b></color>
+    ====
+    <b>RAK1</b> (Programación)
+
+    Este resultado de aprendizaje está en uso en asignaturas-en-grado de esta materia.
+
+    <i>Quítalo primero de esas AsignaturaGrado.</i>
+    ====
+    [ <b>Volver a Programación</b> ]
+}
+@endsalt
+
+@startsalt desasociarResultadoAprendizajeAMateria-wireframe-confirmacion
+{
+    <b>DESASOCIAR RESULTADO DE APRENDIZAJE</b>
+    ====
+    <b>RAH1</b> (Programación)
+
+    Sin asignaturas-en-grado de esta materia usándolo.
+    ====
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

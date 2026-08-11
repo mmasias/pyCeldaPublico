@@ -1,0 +1,12 @@
+@startsalt abrirReferenciaBibliografica-wireframe
+{
+    <b>REFERENCIA BIBLIOGRÁFICA</b>
+    ====
+    <b>Tipo:</b> Basica
+    <b>Referencia:</b>
+    "Sedgewick, R. (2008) Introduction to programming in Java,
+    An interdisciplinary approach Ed. Pearson"
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

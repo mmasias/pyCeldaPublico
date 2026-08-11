@@ -1,0 +1,11 @@
+@startsalt abrirPonderacionEvaluacion-wireframe
+{
+    <b>EXAMEN PARCIAL</b>
+    ====
+    <b>Sistema de evaluación:</b> Evaluación continua
+    <b>Descripción:</b> Examen Parcial
+    <b>Ponderación:</b> 25%
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

@@ -1,0 +1,44 @@
+@startuml eliminarPonderacionEvaluacion
+
+skinparam linetype polyline
+
+state PONDERACIONES_EVALUACION_ABIERTO
+state PONDERACIONES_EVALUACION_ABIERTOS_SALIDA as "PONDERACIONES_EVALUACION_ABIERTO"
+
+PONDERACIONES_EVALUACION_ABIERTO -[#green]-> eliminarPonderacionEvaluacion
+note on link
+<b>Profesor</b> solicita eliminar PonderacionEvaluacion
+end note
+
+state eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()" {
+
+    state " " as ConfirmandoEliminacion
+
+    [*] -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información de la PonderacionEvaluacion
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Profesor</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Profesor</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarPonderacionEvaluacion -[#green]-> PONDERACIONES_EVALUACION_ABIERTOS_SALIDA
+note on link
+eliminada en memoria, lista actualizada
+end note
+
+eliminarPonderacionEvaluacion -[#blue]-> PONDERACIONES_EVALUACION_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml guardarBorradorGuia
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> guardarBorradorGuia
+note on link
+<b>Profesor</b> solicita guardar borrador
+end note
+
+state guardarBorradorGuia as "guardarBorradorGuia()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta Guia guardada como borrador
+    end note
+}
+
+guardarBorradorGuia -[#green]-> GUIA_ABIERTO_SALIDA
+note on link
+guarda cambios en memoria; si la Guia estaba Aprobada, pasa a Borrador
+end note
+
+@enduml

@@ -1,0 +1,15 @@
+@startsalt abrirProfesores-wireframe
+{
+    <b>PROFESORES</b>
+    ====
+    {#
+        <b>Nombre | <b>Email | . | .
+        Dr. Manuel Masías Vergara | manuel.masias@uneatlantico.es | [Abrir] | [Eliminar]
+        Dr. Jorge Crespo Álvarez | jorge.crespo@uneatlantico.es | [Abrir] | [Eliminar]
+        Dr. Vicente Bayarri Cayón | vicente.bayarri@uneatlantico.es | [Abrir] | [Eliminar]
+        Dr. Jon Arambarri Basañez | loyda.alas@uneatlantico.es | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Profesor</b> ]
+}
+@endsalt

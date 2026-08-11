@@ -1,0 +1,31 @@
+@startsalt abrirMateria-wireframe
+{
+    <b>PROGRAMACIÓN</b>
+    ====
+    <b>Nombre:</b> Programación
+    ====
+    <b>Metodologías docentes asociadas:</b>
+    {#
+        <b>Código | <b>Descripción | <b>Descripción propia | . | .
+        MD1 | Método expositivo | -- | [Editar] | [Quitar]
+        MD5 | Aprendizaje orientado a proyectos | Incluye trabajo por sprints | [Editar] | [Quitar]
+    }
+    [ <b>+ Asociar Metodología Docente</b> ]
+    ====
+    <b>Resultados de aprendizaje asociados:</b>
+    {#
+        <b>Código | <b>Tipo | .
+        RAK1 | Conocimientos o contenidos | [Quitar]
+        RAH1 | Habilidades o destrezas | [Quitar]
+    }
+    [ <b>+ Asociar Resultado de Aprendizaje</b> ]
+    ====
+    <b>Asignaturas de esta materia:</b>
+    {#
+        <b>Asignatura | <b>Curso | <b>Carácter | .
+        Programación I | 1 | Básica | [Abrir]
+    }
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

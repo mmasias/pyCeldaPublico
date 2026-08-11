@@ -1,0 +1,28 @@
+@startsalt eliminarSistemaEvaluacion-wireframe-bloqueada
+{
+    <b>ELIMINAR SISTEMA DE EVALUACIÓN</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    ====
+    <b>Evaluación continua</b>
+
+    Este sistema de evaluación está en uso en ponderaciones de guías.
+
+    <i>Elimina primero las PonderacionEvaluacion que lo usan.</i>
+    ====
+    [ <b>Volver al listado</b> ]
+}
+@endsalt
+
+@startsalt eliminarSistemaEvaluacion-wireframe-confirmacion
+{
+    <b>ELIMINAR SISTEMA DE EVALUACIÓN</b>
+    ====
+    <b>Evaluación final</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Sin ponderaciones asociadas.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

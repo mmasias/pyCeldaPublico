@@ -1,0 +1,41 @@
+@startuml enviarGuiaARevision
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+state ASIGNATURAS_GRADO_ABIERTOS_SALIDA as "ASIGNATURAS_GRADO_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> enviarGuiaARevision
+note on link
+<b>Profesor</b> solicita enviar guía a revisión
+end note
+
+state enviarGuiaARevision as "enviarGuiaARevision()" {
+
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta guía enviada a revisión
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta error de suma de ponderaciones
+    end note
+}
+
+enviarGuiaARevision -[#green]-> ASIGNATURAS_GRADO_ABIERTOS_SALIDA
+note on link
+enviada a revisión
+end note
+
+enviarGuiaARevision -[#red]-> GUIA_ABIERTO_SALIDA
+note on link
+rechazada, sigue en edición
+end note
+
+@enduml

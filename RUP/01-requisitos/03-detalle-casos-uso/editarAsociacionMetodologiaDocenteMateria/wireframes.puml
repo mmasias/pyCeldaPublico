@@ -1,0 +1,16 @@
+@startsalt editarAsociacionMetodologiaDocenteMateria-wireframe
+{
+    <b>EDITAR ASOCIACIÓN -- METODOLOGÍA DOCENTE</b>
+    ====
+    <b>Programación</b>
+    --
+    {
+        <b>Código:</b> MD5
+        <b>Descripción:</b> Aprendizaje orientado a proyectos
+        <b>Descripción propia:</b>
+        "Incluye trabajo por sprints"
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

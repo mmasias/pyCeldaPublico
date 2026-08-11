@@ -1,0 +1,14 @@
+@startsalt crearMateria-wireframe
+{
+    <b>CREAR MATERIA</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

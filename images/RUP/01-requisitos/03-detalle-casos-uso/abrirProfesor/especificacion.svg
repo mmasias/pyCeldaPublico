@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="455px" preserveAspectRatio="none" style="width:369px;height:455px;" version="1.1" viewBox="0 0 369 455" width="369px" zoomAndPan="magnify"><defs><filter height="300%" id="f1cnh6gzp1fqox" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f1cnh6gzp1fqox)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="172" x="73" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="73" x2="245" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="152" x="83" y="27.8959">PROFESORES_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1cnh6gzp1fqox)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="156" x="81" y="394"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="81" x2="237" y1="423.0679" y2="423.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="136" x="91" y="413.9659">PROFESOR_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1cnh6gzp1fqox)" height="174.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="306" x="6" y="158.93"/><rect fill="#FFFFFF" height="139" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="300" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="312" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="110.5" y="178.8959">abrirProfesor()</text><ellipse cx="27" cy="210.9979" fill="#000000" filter="url(#f1cnh6gzp1fqox)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="27" cy="307.9979" fill="none" filter="url(#f1cnh6gzp1fqox)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="27.5" cy="308.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[cce135a64c636f9a26bfa2b09805ed40]
+link *start*abrirProfesor to *end*abrirProfesor--><path d="M27,221.4579 C27,237.7479 27,271.2579 27,291.1579 " fill="none" id="*start*abrirProfesor-&gt;*end*abrirProfesor" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="27,296.0679,31,287.0679,27,291.0679,23,287.0679,27,296.0679" style="stroke: #008000; stroke-width: 1.0;"/><path d="M32,243.9979 L32,270.9979 L270,270.9979 L270,253.9979 L260,243.9979 L32,243.9979 " fill="#FBFB77" filter="url(#f1cnh6gzp1fqox)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M260,243.9979 L260,253.9979 L270,253.9979 L260,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="38" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="93" y="262.8949">muestra datos del Profesor</text><!--MD5=[46f771090b867ee4d7a92ed29a7c9034]
+link PROFESORES_ABIERTO to abrirProfesor--><path d="M159,58.14 C159,81.28 159,117.65 159,152.17 " fill="none" id="PROFESORES_ABIERTO-&gt;abrirProfesor" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="159,157.08,163,148.08,159,152.08,155,148.08,159,157.08" style="stroke: #008000; stroke-width: 1.0;"/><path d="M164,92.93 L164,119.93 L357,119.93 L357,102.93 L347,92.93 L164,92.93 " fill="#FBFB77" filter="url(#f1cnh6gzp1fqox)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M347,92.93 L347,102.93 L357,102.93 L347,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="170" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="216" y="111.827">solicita abrir Profesor</text><!--MD5=[020d8adec17018a842cbb4ea0827d028]
+link abrirProfesor to PROFESOR_ABIERTO--><path d="M159,333.49 C159,352.91 159,372.28 159,387.55 " fill="none" id="abrirProfesor-&gt;PROFESOR_ABIERTO" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="159,392.33,163,383.33,159,387.33,155,383.33,159,392.33" style="stroke: #008000; stroke-width: 1.0;"/><!--MD5=[0b363d504b7bb8b1fd0d097f99f02974]
+@startuml abrirProfesor
+
+skinparam linetype polyline
+
+state PROFESORES_ABIERTO
+state PROFESOR_ABIERTO
+
+PROFESORES_ABIERTO -[#green]-> abrirProfesor
+note on link
+<b>Admin</b> solicita abrir Profesor
+end note
+
+state abrirProfesor as "abrirProfesor()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos del Profesor
+    end note
+}
+
+abrirProfesor -[#green]-> PROFESOR_ABIERTO
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

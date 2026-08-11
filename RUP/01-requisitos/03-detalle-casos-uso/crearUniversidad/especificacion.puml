@@ -1,0 +1,35 @@
+@startuml crearUniversidad
+
+skinparam linetype polyline
+
+state UNIVERSIDADES_ABIERTO
+state UNIVERSIDAD_ABIERTO
+
+UNIVERSIDADES_ABIERTO -[#green]-> crearUniversidad
+note on link
+<b>Admin</b> solicita crear Universidad
+end note
+
+state crearUniversidad as "crearUniversidad()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de nombre de la Universidad
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearUniversidad -[#green]-> UNIVERSIDAD_ABIERTO
+note on link
+editarUniversidad()
+end note
+
+@enduml

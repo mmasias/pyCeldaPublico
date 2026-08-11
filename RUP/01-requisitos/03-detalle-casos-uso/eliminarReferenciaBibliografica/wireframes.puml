@@ -1,0 +1,13 @@
+@startsalt eliminarReferenciaBibliografica-wireframe
+{
+    <b>ELIMINAR REFERENCIA</b>
+    ====
+    <b>Tipo:</b> OtrasFuentes
+    <b>Referencia:</b>
+    "https://github.com/mmasias/prg1"
+    ====
+    <i>¿Seguro que quieres eliminar esta referencia de la Guía?</i>
+    ====
+    {[Confirmar] | [Cancelar]}
+}
+@endsalt

@@ -1,0 +1,14 @@
+@startsalt reabrirGuiaPorIncidencia-wireframe
+{
+    <b>REABRIR GUÍA -- Programación I (GII)</b>
+    ====
+    <b>Estado actual:</b> Aprobada
+    --
+    <b>Comentario (*):</b>
+    "El PDF generado no incluye la bibliografía completa, revisar antes de regenerar"
+    --
+    <i>(*) Campo obligatorio</i>
+    ====
+    {[Reabrir]}
+}
+@endsalt

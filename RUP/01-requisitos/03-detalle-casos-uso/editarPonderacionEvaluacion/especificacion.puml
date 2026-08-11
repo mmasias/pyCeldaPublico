@@ -1,0 +1,55 @@
+@startuml editarPonderacionEvaluacion
+
+skinparam linetype polyline
+
+state PONDERACION_EVALUACION_ABIERTO
+state PONDERACION_EVALUACION_ABIERTO_SALIDA as "PONDERACION_EVALUACION_ABIERTO"
+
+PONDERACION_EVALUACION_ABIERTO -[#green]-> editarPonderacionEvaluacion
+note on link
+<b>Profesor</b> solicita editar PonderacionEvaluacion
+end note
+
+state editarPonderacionEvaluacion as "editarPonderacionEvaluacion()" {
+
+    state " " as EditandoDatos
+    state c <<choice>>
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la ponderación
+    <b>Sistema</b> presenta selección de SistemaEvaluacion de la Materia
+    <b>Sistema</b> muestra rango y margen disponible del SistemaEvaluacion seleccionado
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> c
+    note on link
+    <b>Profesor</b> selecciona SistemaEvaluacion
+    <b>Profesor</b> introduce descripción
+    <b>Profesor</b> introduce ponderación
+    <b>Profesor</b> solicita guardar
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta PonderacionEvaluacion actualizada
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de rango inválido para el SistemaEvaluacion seleccionado
+    end note
+}
+
+editarPonderacionEvaluacion -[#green]-> PONDERACION_EVALUACION_ABIERTO_SALIDA
+note on link
+datos actualizados
+end note
+
+editarPonderacionEvaluacion -[#red]-> PONDERACION_EVALUACION_ABIERTO_SALIDA
+note on link
+suma de ponderaciones del SistemaEvaluacion fuera de rango, sin cambios
+end note
+
+@enduml

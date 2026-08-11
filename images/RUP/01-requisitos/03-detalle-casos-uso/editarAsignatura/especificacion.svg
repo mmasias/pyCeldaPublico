@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="653px" preserveAspectRatio="none" style="width:437px;height:653px;" version="1.1" viewBox="0 0 437 653" width="437px" zoomAndPan="magnify"><defs><filter height="300%" id="f8eyhv1qaf7yq" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f8eyhv1qaf7yq)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="173" x="119.5" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="119.5" x2="292.5" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="153" x="129.5" y="27.8959">ASIGNATURA_ABIERTO</text><rect fill="#FEFECE" filter="url(#f8eyhv1qaf7yq)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="173" x="119.5" y="592"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="119.5" x2="292.5" y1="621.0679" y2="621.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="153" x="129.5" y="611.9659">ASIGNATURA_ABIERTO</text><rect fill="#FEFECE" filter="url(#f8eyhv1qaf7yq)" height="372.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="400" x="6" y="158.93"/><rect fill="#FFFFFF" height="337" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="394" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="406" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="145" y="178.8959">editarAsignatura()</text><rect fill="#FEFECE" filter="url(#f8eyhv1qaf7yq)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="17" y="315.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="17" x2="67" y1="345.0658" y2="345.0658"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="44" y="335.9639"/><ellipse cx="42" cy="210.9979" fill="#000000" filter="url(#f8eyhv1qaf7yq)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="42" cy="505.9979" fill="none" filter="url(#f8eyhv1qaf7yq)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="42.5" cy="506.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[2cbc1577a6aaac12eaea25b820454117]
+link *start*editarAsignatura to EditandoDatos--><path d="M42,221.2079 C42,239.3779 42,280.5879 42,309.3379 " fill="none" id="*start*editarAsignatura-&gt;EditandoDatos" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="42,314.1279,46,305.1279,42,309.1279,38,305.1279,42,314.1279" style="stroke: #008000; stroke-width: 1.0;"/><path d="M47,243.9979 L47,288.9979 L364,288.9979 L364,253.9979 L354,243.9979 L47,243.9979 " fill="#FBFB77" filter="url(#f8eyhv1qaf7yq)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M354,243.9979 L354,253.9979 L364,253.9979 L354,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="53" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="241" x="108" y="262.8949">presenta datos actuales de la Asignatura</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="53" y="280.6009">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="108" y="280.6009">permite solicitar guardar</text><!--MD5=[c15f42cb588b80fdf1d52b660c2ef072]
+link EditandoDatos to *end*editarAsignatura--><path d="M42,366.3979 C42,400.4379 42,461.1879 42,489.5779 " fill="none" id="EditandoDatos-&gt;*end*editarAsignatura" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="42,494.2379,46,485.2379,42,489.2379,38,485.2379,42,494.2379" style="stroke: #008000; stroke-width: 1.0;"/><path d="M47,388.9979 L47,468.9979 L236,468.9979 L236,398.9979 L226,388.9979 L47,388.9979 " fill="#FBFB77" filter="url(#f8eyhv1qaf7yq)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M226,388.9979 L226,398.9979 L236,398.9979 L226,388.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="53" y="407.8949">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="99" y="407.8949">introduce nombre</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="53" y="425.6009">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="99" y="425.6009">introduce ects</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="53" y="443.307">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="122" x="99" y="443.307">introduce contenido</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="53" y="461.013">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="99" y="461.013">solicita guardar</text><!--MD5=[d673f32f806b588b908ffcfe0427f4c5]
+link ASIGNATURA_ABIERTO to editarAsignatura--><path d="M206,58.26 C206,80.28 206,114.96 206,152.68 " fill="none" id="ASIGNATURA_ABIERTO-&gt;editarAsignatura" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="206,157.24,210,148.24,206,152.24,202,148.24,206,157.24" style="stroke: #008000; stroke-width: 1.0;"/><path d="M211,92.93 L211,119.93 L425,119.93 L425,102.93 L415,92.93 L211,92.93 " fill="#FBFB77" filter="url(#f8eyhv1qaf7yq)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M415,92.93 L415,102.93 L425,102.93 L415,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="217" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="263" y="111.827">solicita editar Asignatura</text><!--MD5=[ac34871946e65101bce1a522ab02592f]
+link editarAsignatura to ASIGNATURA_ABIERTO_SALIDA--><path d="M206,531.3 C206,551.89 206,570.66 206,585.27 " fill="none" id="editarAsignatura-&gt;ASIGNATURA_ABIERTO_SALIDA" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="206,590.16,210,581.16,206,585.16,202,581.16,206,590.16" style="stroke: #008000; stroke-width: 1.0;"/><!--MD5=[73db999109b2713878d01b2d63139349]
+@startuml editarAsignatura
+
+skinparam linetype polyline
+
+state ASIGNATURA_ABIERTO
+state ASIGNATURA_ABIERTO_SALIDA as "ASIGNATURA_ABIERTO"
+
+ASIGNATURA_ABIERTO -[#green]-> editarAsignatura
+note on link
+<b>Admin</b> solicita editar Asignatura
+end note
+
+state editarAsignatura as "editarAsignatura()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la Asignatura
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> introduce ects
+    <b>Admin</b> introduce contenido
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarAsignatura -[#green]-> ASIGNATURA_ABIERTO_SALIDA
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

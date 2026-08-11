@@ -1,0 +1,32 @@
+@startuml editarAsociacionMetodologiaDocenteMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> editarAsociacionMetodologiaDocenteMateria
+note on link
+<b>DirectorGrado</b> solicita editar asociación de MetodologiaDocente
+end note
+
+state editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la asociación
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce descripción propia
+    <b>DirectorGrado</b> solicita guardar
+    end note
+}
+
+editarAsociacionMetodologiaDocenteMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+
+@enduml

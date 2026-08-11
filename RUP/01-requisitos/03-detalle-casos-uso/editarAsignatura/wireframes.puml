@@ -1,0 +1,19 @@
+@startsalt editarAsignatura-wireframe
+{
+    <b>EDITAR ASIGNATURA</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "Programación I"
+        <b>ECTS (*):</b>
+        "6"
+        <b>Contenido:</b>
+        "Introducción a la programación estructurada: variables, control
+        de flujo, funciones, estructuras de datos básicas y depuración."
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

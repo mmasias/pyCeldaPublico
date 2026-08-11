@@ -1,0 +1,17 @@
+@startsalt crearCursoAcademico-wireframe
+{
+    <b>CREAR CURSO ACADÉMICO</b>
+    ====
+    {
+        <b>Inicio (*):</b>
+        "          "
+        <b>Fin (*):</b>
+        "          "
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>Estado y semestre activo se gestionan al activar el curso</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

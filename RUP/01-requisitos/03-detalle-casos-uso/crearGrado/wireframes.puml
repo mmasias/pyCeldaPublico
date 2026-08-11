@@ -1,0 +1,16 @@
+@startsalt crearGrado-wireframe
+{
+    <b>CREAR GRADO</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "          "
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

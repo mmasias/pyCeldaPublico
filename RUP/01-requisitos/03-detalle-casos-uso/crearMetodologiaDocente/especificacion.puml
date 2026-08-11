@@ -1,0 +1,38 @@
+@startuml crearMetodologiaDocente
+
+skinparam linetype polyline
+
+state METODOLOGIAS_DOCENTES_ABIERTO
+state METODOLOGIA_DOCENTE_ABIERTO
+
+METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> crearMetodologiaDocente
+note on link
+<b>Admin</b> solicita crear MetodologiaDocente
+end note
+
+state crearMetodologiaDocente as "crearMetodologiaDocente()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos de la MetodologiaDocente
+    <b>Sistema</b> muestra código
+    <b>Sistema</b> muestra descripción
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce código
+    <b>Admin</b> introduce descripción
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearMetodologiaDocente -[#green]-> METODOLOGIA_DOCENTE_ABIERTO
+note on link
+editarMetodologiaDocente()
+end note
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml crearResultadoAprendizaje
+
+skinparam linetype polyline
+
+state RESULTADOS_APRENDIZAJE_ABIERTO
+state RESULTADO_APRENDIZAJE_ABIERTO
+
+RESULTADOS_APRENDIZAJE_ABIERTO -[#green]-> crearResultadoAprendizaje
+note on link
+<b>DirectorGrado</b> solicita crear resultado de aprendizaje
+end note
+
+state crearResultadoAprendizaje as "crearResultadoAprendizaje()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos del resultado de aprendizaje
+    <b>Sistema</b> muestra código
+    <b>Sistema</b> muestra tipo
+    <b>Sistema</b> muestra descripción
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce código
+    <b>DirectorGrado</b> introduce tipo
+    <b>DirectorGrado</b> introduce descripción
+    <b>DirectorGrado</b> solicita crear
+    end note
+}
+
+crearResultadoAprendizaje -[#green]-> RESULTADO_APRENDIZAJE_ABIERTO
+note on link
+editarResultadoAprendizaje()
+end note
+
+@enduml

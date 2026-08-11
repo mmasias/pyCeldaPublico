@@ -1,0 +1,34 @@
+@startuml editarResultadoAprendizaje
+
+skinparam linetype polyline
+
+state RESULTADO_APRENDIZAJE_ABIERTO
+state RESULTADO_APRENDIZAJE_ABIERTO_SALIDA as "RESULTADO_APRENDIZAJE_ABIERTO"
+
+RESULTADO_APRENDIZAJE_ABIERTO -[#green]-> editarResultadoAprendizaje
+note on link
+<b>DirectorGrado</b> solicita editar resultado de aprendizaje
+end note
+
+state editarResultadoAprendizaje as "editarResultadoAprendizaje()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales del resultado de aprendizaje
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce código
+    <b>DirectorGrado</b> introduce tipo
+    <b>DirectorGrado</b> introduce descripción
+    <b>DirectorGrado</b> solicita guardar
+    end note
+}
+
+editarResultadoAprendizaje -[#green]-> RESULTADO_APRENDIZAJE_ABIERTO_SALIDA
+
+@enduml

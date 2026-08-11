@@ -1,0 +1,49 @@
+@startuml editarCursoAcademico
+
+skinparam linetype polyline
+
+state CURSO_ACADEMICO_ABIERTO
+state CURSO_ACADEMICO_ABIERTO_SALIDA as "CURSO_ACADEMICO_ABIERTO"
+
+CURSO_ACADEMICO_ABIERTO -[#green]-> editarCursoAcademico
+note on link
+<b>Admin</b> solicita editar CursoAcademico
+end note
+
+state editarCursoAcademico as "editarCursoAcademico()" {
+
+    state " " as EditandoDatos
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales del CursoAcademico
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por Guias asociadas
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce inicio
+    <b>Admin</b> introduce fin
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarCursoAcademico -[#green]-> CURSO_ACADEMICO_ABIERTO_SALIDA
+note on link
+datos actualizados
+end note
+
+editarCursoAcademico -[#red]-> CURSO_ACADEMICO_ABIERTO_SALIDA
+note on link
+bloqueado, sin cambios
+end note
+
+@enduml

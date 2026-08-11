@@ -1,0 +1,29 @@
+@startsalt eliminarResultadoAprendizaje-wireframe-bloqueada
+{
+    <b>ELIMINAR RESULTADO DE APRENDIZAJE</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    ====
+    <b>RAC2 -- Competencias o capacidades</b>
+
+    Este resultado de aprendizaje está asignado a materias o
+    asignaturas-en-grado del catálogo.
+
+    <i>Retira su asociación antes de eliminarlo.</i>
+    ====
+    [ <b>Volver al listado</b> ]
+}
+@endsalt
+
+@startsalt eliminarResultadoAprendizaje-wireframe-confirmacion
+{
+    <b>ELIMINAR RESULTADO DE APRENDIZAJE</b>
+    ====
+    <b>RAH2 -- Habilidades o destrezas</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Sin asignaciones a materias ni asignaturas-en-grado.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

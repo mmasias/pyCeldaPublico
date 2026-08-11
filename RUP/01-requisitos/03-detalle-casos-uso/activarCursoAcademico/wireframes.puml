@@ -1,0 +1,34 @@
+@startsalt activarCursoAcademico-wireframe-bloqueada
+{
+    <b>ACTIVAR CURSO ACADÉMICO</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ACTIVAR</b></color>
+    ====
+    <b>Curso Académico 2026-2027</b>
+
+    El curso académico 2027-2028 (último) ya tiene actividad registrada.
+    Solo el último curso académico creado, o el penúltimo si el último
+    no tiene actividad registrada, pueden activarse.
+
+    ====
+    [ <b>Volver al listado</b> ]
+}
+@endsalt
+
+@startsalt activarCursoAcademico-wireframe-activado
+{
+    <b>CURSOS ACADÉMICOS</b>
+    ====
+    <color:green><b>Curso Académico 2027-2028 activado.</b></color>
+    2026-2027 pasa a Inactivo.
+    ====
+    {
+        {2024-2025 | Inactivo | [Abrir]}
+        {2025-2026 | Inactivo | [Abrir]}
+        {2026-2027 | Inactivo | [Abrir] | [Activar]}
+        {2027-2028 | Activo (semestre 1) | [Abrir]}
+    }
+    ====
+    [ <b>+ Crear Curso Académico</b> ]
+}
+@endsalt

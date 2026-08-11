@@ -1,0 +1,14 @@
+@startsalt notificarGuiasActualizadas-wireframe
+{
+    <b>GUÍAS DEL GRADO -- GII</b>
+    ====
+    {#
+        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | .
+        Programación I | Dr. Manuel Masías | Aprobada | [Abrir]
+    }
+    ====
+    <color:green><b>✓ Notificación enviada al Admin</b></color>
+    ====
+    [ <b>Volver al grado</b> ]
+}
+@endsalt

@@ -1,0 +1,16 @@
+@startsalt editarGrado-wireframe
+{
+    <b>EDITAR GRADO</b>
+    ====
+    {
+        <b>Código:</b> GII
+        <b>Nombre (*):</b>
+        "Grado en Ingeniería Informática"
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>El código no es editable una vez creado el Grado</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

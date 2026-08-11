@@ -1,0 +1,29 @@
+@startsalt desasignarProfesorAsignaturaGrado-wireframe-normal
+{
+    <b>DESASIGNAR PROFESOR</b>
+    ====
+    <b>Dr. Jon Arambarri Basañez</b> deja de impartir:
+
+    <b>Programación I -- GII, 1er curso</b>
+
+    Queda otro Profesor asignado (Dr. Manuel Masías Vergara).
+    ====
+    {[Confirmar desasignación] | [Cancelar]}
+}
+@endsalt
+
+@startsalt desasignarProfesorAsignaturaGrado-wireframe-advertencia
+{
+    <b>DESASIGNAR PROFESOR</b>
+    ====
+    <color:orange><b>⚠ Sin profesorado tras esta acción</b></color>
+    ====
+    <b>Dr. Manuel Masías Vergara</b> deja de impartir:
+
+    <b>Programación I -- GII, 1er curso</b>
+
+    <i>Esta asignatura-en-grado se quedará sin ningún Profesor asignado. La guía docente que se genere para ella podría quedar incompleta.</i>
+    ====
+    {[Confirmar desasignación] | [Cancelar]}
+}
+@endsalt

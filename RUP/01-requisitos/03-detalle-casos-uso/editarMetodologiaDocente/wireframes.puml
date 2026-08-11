@@ -1,0 +1,16 @@
+@startsalt editarMetodologiaDocente-wireframe
+{
+    <b>EDITAR METODOLOGÍA DOCENTE</b>
+    ====
+    {
+        <b>Código:</b> MD3
+        <b>Descripción (*):</b>
+        "Resolución de ejercicios"
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>El código no es editable una vez creada la metodología</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

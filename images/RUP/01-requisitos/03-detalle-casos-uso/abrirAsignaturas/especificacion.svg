@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="455px" preserveAspectRatio="none" style="width:402px;height:455px;" version="1.1" viewBox="0 0 402 455" width="402px" zoomAndPan="magnify"><defs><filter height="300%" id="f1iwklhvw87wq9" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f1iwklhvw87wq9)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="167" x="88.5" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="88.5" x2="255.5" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="147" x="98.5" y="27.8959">SISTEMA_DISPONIBLE</text><rect fill="#FEFECE" filter="url(#f1iwklhvw87wq9)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="181" x="81.5" y="394"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="81.5" x2="262.5" y1="423.0679" y2="423.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="161" x="91.5" y="413.9659">ASIGNATURAS_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1iwklhvw87wq9)" height="174.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="332" x="6" y="158.93"/><rect fill="#FFFFFF" height="139" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="326" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="338" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="111" y="178.8959">abrirAsignaturas()</text><ellipse cx="27" cy="210.9979" fill="#000000" filter="url(#f1iwklhvw87wq9)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="27" cy="307.9979" fill="none" filter="url(#f1iwklhvw87wq9)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="27.5" cy="308.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[5e22ad4bebd56dea9b03d87d40e573ea]
+link *start*abrirAsignaturas to *end*abrirAsignaturas--><path d="M27,221.4579 C27,237.7479 27,271.2579 27,291.1579 " fill="none" id="*start*abrirAsignaturas-&gt;*end*abrirAsignaturas" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="27,296.0679,31,287.0679,27,291.0679,23,287.0679,27,296.0679" style="stroke: #008000; stroke-width: 1.0;"/><path d="M32,243.9979 L32,270.9979 L296,270.9979 L296,253.9979 L286,243.9979 L32,243.9979 " fill="#FBFB77" filter="url(#f1iwklhvw87wq9)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M286,243.9979 L286,253.9979 L296,253.9979 L286,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="38" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="93" y="262.8949">presenta listado de Asignaturas</text><!--MD5=[12e2f300a0a5661690ac2102e2ff9354]
+link SISTEMA_DISPONIBLE to abrirAsignaturas--><path d="M172,58.14 C172,81.28 172,117.65 172,152.17 " fill="none" id="SISTEMA_DISPONIBLE-&gt;abrirAsignaturas" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="172,157.08,176,148.08,172,152.08,168,148.08,172,157.08" style="stroke: #008000; stroke-width: 1.0;"/><path d="M177,92.93 L177,119.93 L390,119.93 L390,102.93 L380,92.93 L177,92.93 " fill="#FBFB77" filter="url(#f1iwklhvw87wq9)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M380,92.93 L380,102.93 L390,102.93 L380,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="183" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="146" x="229" y="111.827">solicita abrir Asignaturas</text><!--MD5=[f70176be2f710d70fab4e38ff2e4ddeb]
+link abrirAsignaturas to ASIGNATURAS_ABIERTO--><path d="M172,333.49 C172,352.91 172,372.28 172,387.55 " fill="none" id="abrirAsignaturas-&gt;ASIGNATURAS_ABIERTO" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="172,392.33,176,383.33,172,387.33,168,383.33,172,392.33" style="stroke: #008000; stroke-width: 1.0;"/><!--MD5=[eeabb6711e69affe7dd9bac7935404ab]
+@startuml abrirAsignaturas
+
+skinparam linetype polyline
+
+state SISTEMA_DISPONIBLE
+state ASIGNATURAS_ABIERTO
+
+SISTEMA_DISPONIBLE -[#green]-> abrirAsignaturas
+note on link
+<b>Admin</b> solicita abrir Asignaturas
+end note
+
+state abrirAsignaturas as "abrirAsignaturas()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de Asignaturas
+    end note
+}
+
+abrirAsignaturas -[#green]-> ASIGNATURAS_ABIERTO
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

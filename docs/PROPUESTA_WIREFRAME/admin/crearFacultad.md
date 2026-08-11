@@ -1,0 +1,13 @@
+# Admin
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearFacultad/wireframe.svg)
+
+|Acción|CdU|
+|---|---|
+|[**Editar facultad**](editarFacultad.md)|<sub>editarFacultad()</sub>|
+|[**Abrir facultades**](abrirFacultades.md)|<sub>abrirFacultades()</sub>|
+|[**Abrir grados**](abrirGrados.md)|<sub>abrirGrados()</sub>|
+
+</div>

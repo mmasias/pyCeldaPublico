@@ -1,0 +1,32 @@
+@startuml editarMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> editarMateria
+note on link
+<b>Admin</b> solicita editar Materia
+end note
+
+state editarMateria as "editarMateria()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la Materia
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+
+@enduml

@@ -1,0 +1,14 @@
+@startsalt editarUniversidad-wireframe
+{
+    <b>EDITAR UNIVERSIDAD</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "Universidad Europea del Atlántico (UNEATLANTICO)"
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

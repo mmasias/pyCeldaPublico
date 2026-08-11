@@ -1,0 +1,44 @@
+@startuml desasociarMetodologiaDocenteAsignaturaGrado
+
+skinparam linetype polyline
+
+state ASIGNATURA_GRADO_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO_SALIDA as "ASIGNATURA_GRADO_ABIERTO"
+
+ASIGNATURA_GRADO_ABIERTO -[#green]-> desasociarMetodologiaDocenteAsignaturaGrado
+note on link
+<b>DirectorGrado</b> solicita desasociar MetodologiaDocente de AsignaturaGrado
+end note
+
+state desasociarMetodologiaDocenteAsignaturaGrado as "desasociarMetodologiaDocenteAsignaturaGrado()" {
+
+    state " " as ConfirmandoDesasociacion
+
+    [*] -[#green]-> ConfirmandoDesasociacion
+    note on link
+    <b>Sistema</b> presenta información de la asociación y advertencia si es la única MetodologiaDocente de la AsignaturaGrado
+    <b>Sistema</b> permite solicitar confirmar/cancelar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> solicita confirmar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#blue]-> [*]
+    note on link
+    <b>DirectorGrado</b> solicita cancelar desasociación
+    end note
+}
+
+desasociarMetodologiaDocenteAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+desasociarMetodologiaDocenteAsignaturaGrado -[#blue]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

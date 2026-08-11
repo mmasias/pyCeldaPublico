@@ -1,0 +1,16 @@
+@startsalt editarProfesor-wireframe
+{
+    <b>EDITAR PROFESOR</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "Dr. Manuel Masías Vergara"
+        <b>Email (*):</b>
+        "manuel.masias@uneatlantico.es"
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

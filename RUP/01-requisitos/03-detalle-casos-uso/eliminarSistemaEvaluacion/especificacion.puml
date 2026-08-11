@@ -1,0 +1,57 @@
+@startuml eliminarSistemaEvaluacion
+
+skinparam linetype polyline
+
+state SISTEMAS_EVALUACION_ABIERTO
+state SISTEMAS_EVALUACION_ABIERTOS_SALIDA as "SISTEMAS_EVALUACION_ABIERTO"
+
+SISTEMAS_EVALUACION_ABIERTO -[#green]-> eliminarSistemaEvaluacion
+note on link
+<b>Admin</b> solicita eliminar SistemaEvaluacion
+end note
+
+state eliminarSistemaEvaluacion as "eliminarSistemaEvaluacion()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información del sistema de evaluación y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por PonderacionEvaluacion asociadas
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarSistemaEvaluacion -[#green]-> SISTEMAS_EVALUACION_ABIERTOS_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarSistemaEvaluacion -[#red]-> SISTEMAS_EVALUACION_ABIERTOS_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarSistemaEvaluacion -[#blue]-> SISTEMAS_EVALUACION_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

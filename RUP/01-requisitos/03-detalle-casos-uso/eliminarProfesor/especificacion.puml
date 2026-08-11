@@ -1,0 +1,57 @@
+@startuml eliminarProfesor
+
+skinparam linetype polyline
+
+state PROFESORES_ABIERTO
+state PROFESORES_ABIERTOS_SALIDA as "PROFESORES_ABIERTO"
+
+PROFESORES_ABIERTO -[#green]-> eliminarProfesor
+note on link
+<b>Admin</b> solicita eliminar Profesor
+end note
+
+state eliminarProfesor as "eliminarProfesor()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información del Profesor y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por AsignaturaGrado asignadas, rol de DirectorGrado activo o Guias que lo referencian
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarProfesor -[#green]-> PROFESORES_ABIERTOS_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarProfesor -[#red]-> PROFESORES_ABIERTOS_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarProfesor -[#blue]-> PROFESORES_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

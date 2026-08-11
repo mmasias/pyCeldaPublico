@@ -1,0 +1,104 @@
+@startuml actoresCasosUsoDirectorGrado
+
+left to right direction
+
+' Vista de DirectorGrado, partida de actoresCasosUso.puml -- mismos usecase id,
+' solo el subconjunto que usa este actor. Fuente de verdad sigue siendo el
+' fichero completo hasta que se decida el reparto final.
+'
+' DirectorGrado --|> Profesor: hereda todo el catálogo de actoresCasosUsoProfesor.puml
+' (abrirGuia(), guardarBorradorGuia(), enviarGuiaARevision(), descargarGuiaPDF(),
+' CRUD de PonderacionEvaluacion y de ReferenciaBibliografica) -- no redeclarado
+' aquí, mismo criterio que el fichero original (sin relacion explicita para lo
+' heredado).
+
+actor DirectorGrado
+actor Profesor
+
+Profesor <|-d- DirectorGrado
+
+' "Catálogos institucionales", "Configuración del grado" y "Guía docente"
+' eran wrappers exteriores -- se aplanan: agrupar en un único package
+' bloquea el layout mariposa, PlantUML deja todo el contenido a un único
+' lado del actor con independencia del sentido de la asociación.
+package Grado {
+  usecase abrirGrados as "abrirGrados()"
+  usecase abrirGrado as "abrirGrado()"
+}
+
+package Materia {
+  usecase abrirMaterias as "abrirMaterias()"
+  usecase abrirMateria as "abrirMateria()"
+  usecase asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()"
+  usecase desasociarMetodologiaDocenteMateria as "desasociarMetodologiaDocenteMateria()"
+  usecase editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()"
+  usecase asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()"
+  usecase desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()"
+}
+
+package ResultadoAprendizaje {
+  usecase abrirResultadosAprendizaje as "abrirResultadosAprendizaje()"
+  usecase crearResultadoAprendizaje as "crearResultadoAprendizaje()"
+  usecase abrirResultadoAprendizaje as "abrirResultadoAprendizaje()"
+  usecase eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()"
+  usecase editarResultadoAprendizaje as "editarResultadoAprendizaje()"
+}
+
+package AsignaturaGrado {
+  usecase abrirAsignaturaGrado as "abrirAsignaturaGrado()"
+  usecase editarAsignaturaGrado as "editarAsignaturaGrado()"
+  usecase asociarResultadoAprendizajeAAsignaturaGrado as "asociarResultadoAprendizajeAAsignaturaGrado()"
+  usecase desasociarResultadoAprendizajeAsignaturaGrado as "desasociarResultadoAprendizajeAsignaturaGrado()"
+  usecase asociarMetodologiaDocenteAAsignaturaGrado as "asociarMetodologiaDocenteAAsignaturaGrado()"
+  usecase desasociarMetodologiaDocenteAsignaturaGrado as "desasociarMetodologiaDocenteAsignaturaGrado()"
+}
+
+package Edicion {
+  usecase abrirAsignaturasGrado as "abrirAsignaturasGrado()"
+}
+
+package Revision {
+  usecase consultarEstadoGuias as "consultarEstadoGuias()"
+  usecase aprobarGuia as "aprobarGuia()"
+  usecase rechazarGuia as "rechazarGuia()"
+  usecase escalarGuiaAAprobada as "escalarGuiaAAprobada()"
+  usecase notificarGuiasActualizadas as "notificarGuiasActualizadas()"
+  usecase revocarAprobacionGuia as "revocarAprobacionGuia()"
+  usecase editarSemestreGuia as "editarSemestreGuia()"
+}
+
+abrirGrados -- DirectorGrado
+abrirGrado -- DirectorGrado
+
+DirectorGrado -- abrirAsignaturasGrado
+
+abrirMaterias -- DirectorGrado
+abrirMateria -- DirectorGrado
+asociarMetodologiaDocenteAMateria -- DirectorGrado
+desasociarMetodologiaDocenteMateria -- DirectorGrado
+editarAsociacionMetodologiaDocenteMateria -- DirectorGrado
+asociarResultadoAprendizajeAMateria -- DirectorGrado
+desasociarResultadoAprendizajeAMateria -- DirectorGrado
+
+DirectorGrado -- abrirResultadosAprendizaje
+DirectorGrado -- crearResultadoAprendizaje
+DirectorGrado -- abrirResultadoAprendizaje
+DirectorGrado -- eliminarResultadoAprendizaje
+DirectorGrado -- editarResultadoAprendizaje
+
+DirectorGrado -- editarAsignaturaGrado
+DirectorGrado -- asociarResultadoAprendizajeAAsignaturaGrado
+DirectorGrado -- desasociarResultadoAprendizajeAsignaturaGrado
+DirectorGrado -- asociarMetodologiaDocenteAAsignaturaGrado
+DirectorGrado -- desasociarMetodologiaDocenteAsignaturaGrado
+DirectorGrado -- abrirAsignaturaGrado
+
+consultarEstadoGuias -- DirectorGrado
+aprobarGuia -- DirectorGrado
+rechazarGuia -- DirectorGrado
+escalarGuiaAAprobada -- DirectorGrado
+notificarGuiasActualizadas -- DirectorGrado
+revocarAprobacionGuia -- DirectorGrado
+editarSemestreGuia -- DirectorGrado
+
+@enduml

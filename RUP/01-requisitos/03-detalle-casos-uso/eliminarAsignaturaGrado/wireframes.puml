@@ -1,0 +1,13 @@
+@startsalt eliminarAsignaturaGrado-wireframe
+{
+    <b>ELIMINAR ASIGNATURA DEL GRADO</b>
+    ====
+    <b>Programación I -- GII, 1er curso</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    La asignatura del grado pasará a estado <b>Extinguido</b>: no admitirá
+    altas nuevas apoyadas en ella, pero las Guías ya existentes seguirán intactas.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

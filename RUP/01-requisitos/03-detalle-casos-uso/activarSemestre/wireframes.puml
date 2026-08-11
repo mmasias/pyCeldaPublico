@@ -1,0 +1,15 @@
+@startsalt activarSemestre-wireframe
+{
+    <b>ACTIVAR SEMESTRE -- CURSO ACADÉMICO 2026-2027</b>
+    ====
+    <b>Semestre activo actual:</b> 1
+    ====
+    {
+        <b>Nuevo semestre:</b>
+        (X) 1
+        ( ) 2
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

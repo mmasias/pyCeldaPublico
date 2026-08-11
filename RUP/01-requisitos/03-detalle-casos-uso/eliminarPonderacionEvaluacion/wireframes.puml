@@ -1,0 +1,13 @@
+@startsalt eliminarPonderacionEvaluacion-wireframe
+{
+    <b>ELIMINAR PONDERACIÓN</b>
+    ====
+    <b>Sistema de evaluación:</b> Evaluación continua
+    <b>Descripción:</b> Interés y participación
+    <b>Ponderación:</b> 5%
+    ====
+    <i>¿Seguro que quieres eliminar esta ponderación de la Guía?</i>
+    ====
+    {[Confirmar] | [Cancelar]}
+}
+@endsalt

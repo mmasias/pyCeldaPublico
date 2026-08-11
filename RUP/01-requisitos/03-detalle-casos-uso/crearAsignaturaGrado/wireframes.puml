@@ -1,0 +1,35 @@
+@startsalt crearAsignaturaGrado-wireframe
+{
+    <b>CREAR ASIGNATURA DEL GRADO</b>
+    ====
+    <b>Grado en Ingeniería Informática</b>
+    --
+    {
+        <b>Asignatura (*):</b>
+        ^Programación I^
+        <b>Curso (*):</b>
+        "1  "
+        <b>Carácter (*):</b>
+        ^Básica^
+        <b>Idioma (*):</b>
+        ^Español^
+        <b>Semestre por defecto (*):</b>
+        ^1^
+        --
+        <b>Nombre:</b>
+        "Programación I                                    "
+        <i>Heredado de la Asignatura -- edítalo solo si difiere</i>
+        <b>ECTS:</b>
+        "6 "
+        <i>Heredado de la Asignatura -- edítalo solo si difieren</i>
+        <b>Contenido:</b>
+        "Heredado de la Asignatura: Tema 1. Introducción a la
+        programación...                                    "
+        <i>Heredado de la Asignatura -- edítalo solo si difiere</i>
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

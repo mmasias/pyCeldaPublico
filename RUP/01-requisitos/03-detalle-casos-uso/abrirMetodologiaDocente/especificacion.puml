@@ -1,0 +1,23 @@
+@startuml abrirMetodologiaDocente
+
+skinparam linetype polyline
+
+state METODOLOGIAS_DOCENTES_ABIERTO
+state METODOLOGIA_DOCENTE_ABIERTO
+
+METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> abrirMetodologiaDocente
+note on link
+<b>Admin</b> solicita abrir MetodologiaDocente
+end note
+
+state abrirMetodologiaDocente as "abrirMetodologiaDocente()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la MetodologiaDocente
+    end note
+}
+
+abrirMetodologiaDocente -[#green]-> METODOLOGIA_DOCENTE_ABIERTO
+
+@enduml

@@ -1,0 +1,20 @@
+@startsalt editarSistemaEvaluacion-wireframe
+{
+    <b>EDITAR SISTEMA DE EVALUACIÓN</b>
+    ====
+    {
+        <b>Tipo (*):</b>
+        ^Evaluación continua^
+        <b>Descripción:</b>
+        "Incluye prácticas de laboratorio y entregas semanales"
+        <b>Ponderación mínima (*):</b>
+        "30  " %
+        <b>Ponderación máxima (*):</b>
+        "50  " %
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

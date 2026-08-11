@@ -1,0 +1,14 @@
+@startsalt abrirAsignatura-wireframe
+{
+    <b>PROGRAMACIÓN I</b>
+    ====
+    <b>Nombre:</b> Programación I
+    <b>ECTS:</b> 6
+    <b>Estado:</b> Vigente
+    <b>Contenido:</b>
+    "Introducción a la programación estructurada: variables, control
+    de flujo, funciones, estructuras de datos básicas y depuración."
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

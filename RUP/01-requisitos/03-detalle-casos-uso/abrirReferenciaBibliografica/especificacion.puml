@@ -1,0 +1,23 @@
+@startuml abrirReferenciaBibliografica
+
+skinparam linetype polyline
+
+state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
+state REFERENCIA_BIBLIOGRAFICA_ABIERTO_SALIDA as "REFERENCIA_BIBLIOGRAFICA_ABIERTO"
+
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO -[#green]-> abrirReferenciaBibliografica
+note on link
+<b>Profesor</b> solicita abrir ReferenciaBibliografica
+end note
+
+state abrirReferenciaBibliografica as "abrirReferenciaBibliografica()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la ReferenciaBibliografica
+    end note
+}
+
+abrirReferenciaBibliografica -[#green]-> REFERENCIA_BIBLIOGRAFICA_ABIERTO_SALIDA
+
+@enduml

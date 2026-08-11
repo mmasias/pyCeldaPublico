@@ -1,0 +1,57 @@
+@startuml eliminarResultadoAprendizaje
+
+skinparam linetype polyline
+
+state RESULTADOS_APRENDIZAJE_ABIERTO
+state RESULTADOS_APRENDIZAJE_ABIERTOS_SALIDA as "RESULTADOS_APRENDIZAJE_ABIERTO"
+
+RESULTADOS_APRENDIZAJE_ABIERTO -[#green]-> eliminarResultadoAprendizaje
+note on link
+<b>DirectorGrado</b> solicita eliminar resultado de aprendizaje
+end note
+
+state eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información del resultado de aprendizaje y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias/AsignaturaGrado
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>DirectorGrado</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarResultadoAprendizaje -[#green]-> RESULTADOS_APRENDIZAJE_ABIERTOS_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarResultadoAprendizaje -[#red]-> RESULTADOS_APRENDIZAJE_ABIERTOS_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarResultadoAprendizaje -[#blue]-> RESULTADOS_APRENDIZAJE_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

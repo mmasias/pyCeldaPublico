@@ -1,0 +1,15 @@
+@startsalt definirDirectorGrado-wireframe
+{
+    <b>NOMBRAR DIRECTOR DE GRADO -- DR. JON ARAMBARRI BASAÑEZ</b>
+    ====
+    {
+        <b>Grado (*):</b>
+        ^GII -- Grado en Ingeniería Informática^
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>Solo se listan los Grados que el Profesor todavía no dirige</i>
+    }
+    ~~
+    {[Nombrar]}
+}
+@endsalt

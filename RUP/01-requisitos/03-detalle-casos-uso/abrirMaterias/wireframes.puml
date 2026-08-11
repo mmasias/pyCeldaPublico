@@ -1,0 +1,15 @@
+@startsalt abrirMaterias-wireframe
+{
+    <b>MATERIAS</b>
+    ====
+    {#
+        <b>Nombre | . | .
+        Programación | [Abrir] | [Eliminar]
+        Matemáticas | [Abrir] | [Eliminar]
+        Bases de Datos | [Abrir] | [Eliminar]
+        Ingeniería del Software | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Materia</b> ]
+}
+@endsalt

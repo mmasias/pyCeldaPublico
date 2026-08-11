@@ -1,0 +1,57 @@
+@startuml eliminarMetodologiaDocente
+
+skinparam linetype polyline
+
+state METODOLOGIAS_DOCENTES_ABIERTO
+state METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA as "METODOLOGIAS_DOCENTES_ABIERTO"
+
+METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> eliminarMetodologiaDocente
+note on link
+<b>Admin</b> solicita eliminar MetodologiaDocente
+end note
+
+state eliminarMetodologiaDocente as "eliminarMetodologiaDocente()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información de la MetodologiaDocente y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarMetodologiaDocente -[#green]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarMetodologiaDocente -[#red]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarMetodologiaDocente -[#blue]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

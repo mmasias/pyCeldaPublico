@@ -1,0 +1,23 @@
+@startuml abrirCursosAcademicos
+
+skinparam linetype polyline
+
+state SISTEMA_DISPONIBLE
+state CURSOS_ACADEMICOS_ABIERTO
+
+SISTEMA_DISPONIBLE -[#green]-> abrirCursosAcademicos
+note on link
+<b>Admin</b> solicita abrir Cursos Académicos
+end note
+
+state abrirCursosAcademicos as "abrirCursosAcademicos()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de CursoAcademico
+    end note
+}
+
+abrirCursosAcademicos -[#green]-> CURSOS_ACADEMICOS_ABIERTO
+
+@enduml

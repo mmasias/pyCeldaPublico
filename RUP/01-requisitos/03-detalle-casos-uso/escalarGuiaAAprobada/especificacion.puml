@@ -1,0 +1,26 @@
+@startuml escalarGuiaAAprobada
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> escalarGuiaAAprobada
+note on link
+<b>DirectorGrado</b> solicita escalar Guia a aprobada
+end note
+
+state escalarGuiaAAprobada as "escalarGuiaAAprobada()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta Guia escalada a aprobada
+    end note
+}
+
+escalarGuiaAAprobada -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+note on link
+{Borrador,Rechazada} -> Aprobada; registra "escalada a aprobada sin incidencia" en HistorialCambio
+end note
+
+@enduml

@@ -1,0 +1,136 @@
+@startuml diagramaContextoDirectorGrado
+
+left to right direction
+skinparam linetype polyline
+
+' Estados heredados literalmente de Profesor (DirectorGrado --|> Profesor):
+' mismos nombres, mismas transiciones -- ver diagramaContextoProfesor.puml
+state SESION_CERRADA
+state ASIGNATURAS_GRADO_ABIERTO
+state GUIA_ABIERTO
+state PONDERACIONES_EVALUACION_ABIERTO
+state PONDERACION_EVALUACION_ABIERTO
+state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
+state REFERENCIA_BIBLIOGRAFICA_ABIERTO
+
+' Estados propios de DirectorGrado
+state GRADOS_ABIERTO
+state GRADO_ABIERTO
+state MATERIAS_ABIERTO
+state MATERIA_ABIERTO
+state RESULTADOS_APRENDIZAJE_ABIERTO
+state RESULTADO_APRENDIZAJE_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTO
+
+[*] --> SESION_CERRADA
+
+' === Heredado de Profesor, con una diferencia: el login ya no aterriza aqui
+' directamente -- un DirectorGrado puede dirigir varios Grados (Grado o- DirectorGrado,
+' agregacion, sin exclusividad), asi que primero elige cual antes de ver sus propias
+' asignaturas. El resto de ASIGNATURAS_GRADO_ABIERTO y todo lo que cuelga de ella
+' (GUIA_ABIERTO y anidados) se mantiene identico a diagramaContextoProfesor.puml ===
+ASIGNATURAS_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
+
+GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : crearPonderacionEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : abrirPonderacionEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : eliminarPonderacionEvaluacion()
+PONDERACION_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : editarPonderacionEvaluacion()
+PONDERACION_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+GUIA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : crearReferenciaBibliografica()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : abrirReferenciaBibliografica()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()
+REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : editarReferenciaBibliografica()
+REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()
+GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : completarGestion()
+
+' enviarGuiaARevision() heredado de Profesor sin cambios -- misma asimetria real
+' (ver especificacion.puml del caso de uso): solo el envio con exito sale de aqui,
+' si la suma de PonderacionEvaluacion no da 100% el sistema rechaza y la sesion
+' de edicion sigue abierta, de ahi el self-loop de abajo.
+GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : enviarGuiaARevision()
+GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
+
+' === Propio de DirectorGrado: entrada real es el listado de TODOS sus grados ===
+SESION_CERRADA --> GRADOS_ABIERTO : iniciarSesion()
+' credenciales invalidas: no hay transicion de estado, self-loop explicito
+' -- detectado al construir la especificacion de enviarGuiaARevision()
+SESION_CERRADA --> SESION_CERRADA : iniciarSesion()
+GRADOS_ABIERTO --> SESION_CERRADA : cerrarSesion()
+GRADOS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+GRADO_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
+
+' abrirAsignaturasGrado(): nuevo, propio de DirectorGrado -- ve sus propias
+' AsignaturaGrado (con el profesorado que imparte) dentro de ESTE grado concreto
+GRADO_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
+ASIGNATURAS_GRADO_ABIERTO --> GRADO_ABIERTO : completarGestion()
+
+' --- Configuracion del grado: Materia (CRUD es de Admin, DirectorGrado solo asocia) ---
+' abrirMaterias()/abrirMateria() reutilizados de Admin, misma logica que abrirGrado()
+GRADO_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
+MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarMetodologiaDocenteAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarMetodologiaDocenteMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarAsociacionMetodologiaDocenteMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarResultadoAprendizajeAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarResultadoAprendizajeAMateria()
+MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
+MATERIAS_ABIERTO --> GRADO_ABIERTO : completarGestion()
+
+' --- AsignaturaGrado: refinamiento de detalle, reutiliza abrirAsignaturaGrado() de Admin.
+' Igual que en Admin: dos entradas (atajo plano desde GRADO_ABIERTO, agrupado por
+' materia; y desde MATERIA_ABIERTO), un solo retorno a GRADO_ABIERTO -- la entrada
+' mas logica y previsiblemente mas usada, no su padre por composicion ---
+GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
+MATERIA_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : editarAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asociarResultadoAprendizajeAAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : desasociarResultadoAprendizajeAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asociarMetodologiaDocenteAAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : desasociarMetodologiaDocenteAsignaturaGrado()
+ASIGNATURA_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+
+' --- ResultadoAprendizaje: catalogo propio de Grado (Grado *-d- ResultadoAprendizaje),
+' cascada de asociacion hacia Materia/AsignaturaGrado ya modelada arriba ---
+GRADO_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : crearResultadoAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultadoAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : eliminarResultadoAprendizaje()
+RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()
+RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> GRADO_ABIERTO : completarGestion()
+
+' --- Revision de guias del grado: la entrada hace el mismo papel que un abrirXs()
+' plural. Reutiliza GUIA_ABIERTO (heredado de Profesor) para revisar contenido antes
+' de decidir -- aprobar/rechazar/escalar cierran hacia el listado de revision, no
+' hacia ASIGNATURAS_GRADO_ABIERTO (nunca son acciones sobre "mi" guia) ---
+GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : consultarEstadoGuias()
+GUIAS_DEL_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : aprobarGuia()
+GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : rechazarGuia()
+GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : escalarGuiaAAprobada()
+
+' revocarAprobacionGuia(): cuarta decision de la misma familia que aprobar/rechazar/
+' escalar -- mismo patron, abre la guia antes de decidir, no self-loop de listado
+GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : revocarAprobacionGuia()
+
+' editarSemestreGuia(): es editarX(), sigue el mismo patron que el resto de editarX()
+' del catalogo (edita dentro del detalle ya abierto, nunca desde el listado)
+GUIA_ABIERTO --> GUIA_ABIERTO : editarSemestreGuia()
+
+' notificarGuiasActualizadas(): accion sobre el conjunto completo de guias del grado,
+' no sobre una en particular
+GUIAS_DEL_GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : notificarGuiasActualizadas()
+
+GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : completarGestion()
+
+@enduml

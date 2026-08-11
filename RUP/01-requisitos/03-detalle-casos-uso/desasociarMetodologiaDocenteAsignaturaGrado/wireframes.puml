@@ -1,0 +1,25 @@
+@startsalt desasociarMetodologiaDocenteAsignaturaGrado-wireframe-normal
+{
+    <b>DESASOCIAR METODOLOGÍA DOCENTE</b>
+    ====
+    <b>MD5 -- Aprendizaje orientado a proyectos</b> (Programación I -- GII, 1er curso)
+
+    Queda otra Metodología Docente asociada (MD3 -- Resolución de ejercicios).
+    ====
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt
+
+@startsalt desasociarMetodologiaDocenteAsignaturaGrado-wireframe-advertencia
+{
+    <b>DESASOCIAR METODOLOGÍA DOCENTE</b>
+    ====
+    <color:orange><b>⚠ Sin metodologías docentes tras esta acción</b></color>
+    ====
+    <b>MD3 -- Resolución de ejercicios</b> (Programación I -- GII, 1er curso)
+
+    <i>Esta asignatura-en-grado se quedará sin ninguna Metodología Docente asociada. La guía docente que se genere para ella podría quedar incompleta.</i>
+    ====
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

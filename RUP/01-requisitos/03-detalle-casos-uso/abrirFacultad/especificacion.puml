@@ -1,0 +1,23 @@
+@startuml abrirFacultad
+
+skinparam linetype polyline
+
+state FACULTADES_ABIERTO
+state FACULTAD_ABIERTO
+
+FACULTADES_ABIERTO -[#green]-> abrirFacultad
+note on link
+<b>Admin</b> solicita abrir Facultad
+end note
+
+state abrirFacultad as "abrirFacultad()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la Facultad
+    end note
+}
+
+abrirFacultad -[#green]-> FACULTAD_ABIERTO
+
+@enduml

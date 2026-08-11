@@ -1,0 +1,103 @@
+@startuml actoresCasosUsoAdminCatalogos
+
+left to right direction
+
+' Vista de Admin, partida de actoresCasosUso.puml -- mismos usecase id, solo
+' el subconjunto que usa este actor. Fuente de verdad sigue siendo el fichero
+' completo hasta que se decida el reparto final.
+'
+' Solo "Catálogos institucionales" -- el resto de Admin (Profesorado de
+' asignaturas, Curso académico, Configuración del grado, Guía docente) vive
+' en actoresCasosUsoAdminOperativa.puml.
+
+actor Admin
+
+
+  package Universidad {
+    usecase abrirUniversidades as "abrirUniversidades()"
+    usecase crearUniversidad as "crearUniversidad()"
+    usecase abrirUniversidad as "abrirUniversidad()"
+    usecase editarUniversidad as "editarUniversidad()"
+  }
+
+  package Facultad {
+    usecase abrirFacultades as "abrirFacultades()"
+    usecase crearFacultad as "crearFacultad()"
+    usecase abrirFacultad as "abrirFacultad()"
+    usecase editarFacultad as "editarFacultad()"
+    usecase eliminarFacultad as "eliminarFacultad()"
+  }
+
+  package Grado {
+    usecase abrirGrados as "abrirGrados()"
+    usecase crearGrado as "crearGrado()"
+    usecase abrirGrado as "abrirGrado()"
+    usecase editarGrado as "editarGrado()"
+    usecase eliminarGrado as "eliminarGrado()"
+  }
+
+  package Asignatura {
+    usecase abrirAsignaturas as "abrirAsignaturas()"
+    usecase crearAsignatura as "crearAsignatura()"
+    usecase abrirAsignatura as "abrirAsignatura()"
+    usecase editarAsignatura as "editarAsignatura()"
+    usecase eliminarAsignatura as "eliminarAsignatura()"
+  }
+
+  package MetodologiaDocente {
+    usecase abrirMetodologiasDocentes as "abrirMetodologiasDocentes()"
+    usecase crearMetodologiaDocente as "crearMetodologiaDocente()"
+    usecase abrirMetodologiaDocente as "abrirMetodologiaDocente()"
+    usecase editarMetodologiaDocente as "editarMetodologiaDocente()"
+    usecase eliminarMetodologiaDocente as "eliminarMetodologiaDocente()"
+  }
+
+  package Academico {
+    usecase abrirProfesores as "abrirProfesores()"
+    usecase crearProfesor as "crearProfesor()"
+    usecase abrirProfesor as "abrirProfesor()"
+    usecase editarProfesor as "editarProfesor()"
+    usecase eliminarProfesor as "eliminarProfesor()"
+    usecase definirDirectorGrado as "definirDirectorGrado()"
+    usecase quitarDirectorGrado as "quitarDirectorGrado()"
+  }
+
+
+abrirUniversidades -- Admin
+crearUniversidad -- Admin
+abrirUniversidad -- Admin
+editarUniversidad -- Admin
+
+abrirFacultades --- Admin
+crearFacultad --- Admin
+abrirFacultad --- Admin
+editarFacultad --- Admin
+eliminarFacultad --- Admin
+
+Admin -- abrirGrados
+Admin -- crearGrado
+Admin -- abrirGrado
+Admin -- editarGrado
+Admin -- eliminarGrado
+
+Admin ---- abrirAsignaturas
+Admin ---- crearAsignatura
+Admin ---- abrirAsignatura
+Admin ---- editarAsignatura
+Admin ---- eliminarAsignatura
+
+abrirMetodologiasDocentes -- Admin
+crearMetodologiaDocente -- Admin
+abrirMetodologiaDocente -- Admin
+editarMetodologiaDocente -- Admin
+eliminarMetodologiaDocente -- Admin
+
+Admin -- abrirProfesores
+Admin -- crearProfesor
+Admin -- abrirProfesor
+Admin -- editarProfesor
+Admin -- eliminarProfesor
+Admin -- definirDirectorGrado
+Admin -- quitarDirectorGrado
+
+@enduml

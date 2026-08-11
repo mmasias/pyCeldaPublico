@@ -1,0 +1,18 @@
+@startsalt abrirGrado-wireframe
+{
+    <b>GII -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    <b>Código:</b> GII
+    <b>Nombre:</b> Grado en Ingeniería Informática
+    <b>Estado:</b> Vigente
+    ====
+    <b>Asignaturas del grado:</b>
+    {#
+        <b>Asignatura | <b>Materia | <b>Curso | <b>Carácter | . | .
+        Programación I | Programación | 1 | Básica | [Abrir] | [Eliminar]
+    }
+    [ <b>+ Crear AsignaturaGrado</b> ]
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

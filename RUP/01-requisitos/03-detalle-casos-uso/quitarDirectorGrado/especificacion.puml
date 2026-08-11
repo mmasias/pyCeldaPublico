@@ -1,0 +1,57 @@
+@startuml quitarDirectorGrado
+
+skinparam linetype polyline
+
+state PROFESOR_ABIERTO
+state PROFESOR_ABIERTO_SALIDA as "PROFESOR_ABIERTO"
+
+PROFESOR_ABIERTO -[#green]-> quitarDirectorGrado
+note on link
+<b>Admin</b> solicita quitar rol de director de Grado
+end note
+
+state quitarDirectorGrado as "quitarDirectorGrado()" {
+
+    state " " as ConfirmandoQuitarRol
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoQuitarRol
+    note on link
+    <b>Sistema</b> presenta información del Grado y advertencia de pérdida del rol
+    <b>Sistema</b> permite solicitar confirmar/cancelar
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorGrado del Grado
+    end note
+
+    ConfirmandoQuitarRol -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar quitar director
+    end note
+
+    ConfirmandoQuitarRol -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar quitar director
+    end note
+}
+
+quitarDirectorGrado -[#green]-> PROFESOR_ABIERTO_SALIDA
+note on link
+rol quitado, lista actualizada
+end note
+
+quitarDirectorGrado -[#red]-> PROFESOR_ABIERTO_SALIDA
+note on link
+bloqueado, sin cambios
+end note
+
+quitarDirectorGrado -[#blue]-> PROFESOR_ABIERTO_SALIDA
+note on link
+cancelado, sin cambios
+end note
+
+@enduml

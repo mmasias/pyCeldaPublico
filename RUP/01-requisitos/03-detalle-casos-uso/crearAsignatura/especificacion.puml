@@ -1,0 +1,36 @@
+@startuml crearAsignatura
+
+skinparam linetype polyline
+
+state ASIGNATURAS_ABIERTO
+state ASIGNATURA_ABIERTO
+
+ASIGNATURAS_ABIERTO -[#green]-> crearAsignatura
+note on link
+<b>Admin</b> solicita crear Asignatura
+end note
+
+state crearAsignatura as "crearAsignatura()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos mínimos de la Asignatura
+    <b>Sistema</b> muestra nombre
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearAsignatura -[#green]-> ASIGNATURA_ABIERTO
+note on link
+editarAsignatura()
+end note
+
+@enduml

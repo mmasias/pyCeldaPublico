@@ -1,0 +1,12 @@
+@startsalt rechazarGuia-wireframe
+{
+    <b>RECHAZAR GUÍA -- Programación I (GII)</b>
+    ====
+    <b>Estado actual:</b> EnRevision
+    --
+    <b>Comentario (opcional):</b>
+    "Falta justificar la ponderación de Interés y participación"
+    ====
+    {[Rechazar]}
+}
+@endsalt

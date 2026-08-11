@@ -1,0 +1,16 @@
+@startsalt crearProfesor-wireframe
+{
+    <b>CREAR PROFESOR</b>
+    ====
+    {
+        <b>Nombre (*):</b>
+        "                                                  "
+        <b>Email (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

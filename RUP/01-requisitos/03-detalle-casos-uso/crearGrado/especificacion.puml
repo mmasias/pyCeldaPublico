@@ -1,0 +1,36 @@
+@startuml crearGrado
+
+skinparam linetype polyline
+
+state GRADOS_ABIERTO
+state GRADO_ABIERTO
+
+GRADOS_ABIERTO -[#green]-> crearGrado
+note on link
+<b>Admin</b> solicita crear Grado
+end note
+
+state crearGrado as "crearGrado()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos mínimos del Grado
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce código
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearGrado -[#green]-> GRADO_ABIERTO
+note on link
+editarGrado()
+end note
+
+@enduml

@@ -1,0 +1,16 @@
+@startsalt crearMetodologiaDocente-wireframe
+{
+    <b>CREAR METODOLOGÍA DOCENTE</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "          "
+        <b>Descripción (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

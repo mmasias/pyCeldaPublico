@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="640px" preserveAspectRatio="none" style="width:675px;height:640px;" version="1.1" viewBox="0 0 675 640" width="675px" zoomAndPan="magnify"><defs><filter height="300%" id="f1jz8zqj50zs19" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f1jz8zqj50zs19)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="181" x="244" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="244" x2="425" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="161" x="254" y="27.8959">ASIGNATURAS_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1jz8zqj50zs19)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="181" x="244" y="579"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="244" x2="425" y1="608.0679" y2="608.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="161" x="254" y="598.9659">ASIGNATURAS_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1jz8zqj50zs19)" height="319.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="657" x="6" y="158.93"/><rect fill="#FFFFFF" height="284" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="651" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="663" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="265.5" y="178.8959">eliminarAsignatura()</text><rect fill="#FEFECE" filter="url(#f1jz8zqj50zs19)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="129" y="315.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="129" x2="179" y1="345.0658" y2="345.0658"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="156" y="335.9639"/><ellipse cx="154" cy="210.9979" fill="#000000" filter="url(#f1jz8zqj50zs19)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="154" cy="452.9979" fill="none" filter="url(#f1jz8zqj50zs19)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="154.5" cy="453.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[8ef9a24f4cfe68ddc367bb11c56e8627]
+link *start*eliminarAsignatura to ConfirmandoEliminacion--><path d="M154,221.2079 C154,239.3779 154,280.5879 154,309.3379 " fill="none" id="*start*eliminarAsignatura-&gt;ConfirmandoEliminacion" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="154,314.1279,158,305.1279,154,309.1279,150,305.1279,154,314.1279" style="stroke: #008000; stroke-width: 1.0;"/><path d="M159,243.9979 L159,288.9979 L621,288.9979 L621,253.9979 L611,243.9979 L159,243.9979 " fill="#FBFB77" filter="url(#f1jz8zqj50zs19)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M611,243.9979 L611,253.9979 L621,253.9979 L611,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="165" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="386" x="220" y="262.8949">presenta información de la Asignatura y advertencia de extinción</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="165" y="280.6009">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="220" y="280.6009">permite solicitar confirmar/cancelar eliminación</text><!--MD5=[2aa7d16909b7b4af8b3cef69e6a4a58a]
+link ConfirmandoEliminacion to *end*eliminarAsignatura--><path d="M128.55,349.7979 C88.93,361.9479 17,383.9979 17,383.9979 C17,383.9979 17,424.9979 17,424.9979 C17,424.9979 101.84,441.7179 138,448.8479 " fill="none" id="ConfirmandoEliminacion-&gt;*end*eliminarAsignatura" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="142.66,449.7679,134.6065,444.0986,137.7549,448.7983,133.0552,451.9467,142.66,449.7679" style="stroke: #008000; stroke-width: 1.0;"/><path d="M22,388.9979 L22,415.9979 L262,415.9979 L262,398.9979 L252,388.9979 L22,388.9979 " fill="#FBFB77" filter="url(#f1jz8zqj50zs19)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M252,388.9979 L252,398.9979 L262,398.9979 L252,388.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="28" y="407.8949">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="74" y="407.8949">solicita confirmar eliminación</text><!--MD5=[2aa7d16909b7b4af8b3cef69e6a4a58a]
+link ConfirmandoEliminacion to *end*eliminarAsignatura--><path d="M179.39,351.1079 C213.8,363.4679 271,383.9979 271,383.9979 C271,383.9979 271,424.9979 271,424.9979 C271,424.9979 201.72,440.9879 169.78,448.3579 " fill="none" id="ConfirmandoEliminacion-&gt;*end*eliminarAsignatura-1" style="stroke: #0000FF; stroke-width: 1.0;"/><polygon fill="#0000FF" points="165.05,449.4479,174.7153,451.3404,169.9241,448.333,172.9315,443.5418,165.05,449.4479" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M276,388.9979 L276,415.9979 L507,415.9979 L507,398.9979 L497,388.9979 L276,388.9979 " fill="#FBFB77" filter="url(#f1jz8zqj50zs19)" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M497,388.9979 L497,398.9979 L507,398.9979 L497,388.9979 " fill="#FBFB77" style="stroke: #0000FF; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="282" y="407.8949">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="164" x="328" y="407.8949">solicita cancelar eliminación</text><!--MD5=[3e35c8fa6e029aecf484ebe41076747b]
+link ASIGNATURAS_ABIERTO to eliminarAsignatura--><path d="M334.5,58.11 C334.5,80.26 334.5,115.17 334.5,152.29 " fill="none" id="ASIGNATURAS_ABIERTO-&gt;eliminarAsignatura" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="334.5,157.24,338.5,148.24,334.5,152.24,330.5,148.24,334.5,157.24" style="stroke: #008000; stroke-width: 1.0;"/><path d="M339.5,92.93 L339.5,119.93 L566.5,119.93 L566.5,102.93 L556.5,92.93 L339.5,92.93 " fill="#FBFB77" filter="url(#f1jz8zqj50zs19)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M556.5,92.93 L556.5,102.93 L566.5,102.93 L556.5,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="345.5" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="391.5" y="111.827">solicita eliminar Asignatura</text><!--MD5=[ec82409140d0c8e16cd99865ae53c627]
+link eliminarAsignatura to ASIGNATURAS_ABIERTOS_SALIDA--><path d="M195.64,478.13 C179.97,496.03 169.5,508 169.5,508 C169.5,508 169.5,549 169.5,549 C169.5,549 211.8,562.84 253.57,576.51 " fill="none" id="eliminarAsignatura-&gt;ASIGNATURAS_ABIERTOS_SALIDA" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="258.29,578.06,250.9809,571.4587,253.5381,576.5046,248.4922,579.0618,258.29,578.06" style="stroke: #008000; stroke-width: 1.0;"/><path d="M174.5,513 L174.5,540 L445.5,540 L445.5,523 L435.5,513 L174.5,513 " fill="#FBFB77" filter="url(#f1jz8zqj50zs19)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M435.5,513 L435.5,523 L445.5,523 L435.5,513 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="250" x="180.5" y="531.897">estado pasa a Extinguido, lista actualizada</text><!--MD5=[ec82409140d0c8e16cd99865ae53c627]
+link eliminarAsignatura to ASIGNATURAS_ABIERTOS_SALIDA--><path d="M438.85,478.13 C450.63,496.03 458.5,508 458.5,508 C458.5,508 458.5,549 458.5,549 C458.5,549 427.48,562.51 396.48,576.01 " fill="none" id="eliminarAsignatura-&gt;ASIGNATURAS_ABIERTOS_SALIDA-1" style="stroke: #0000FF; stroke-width: 1.0;"/><polygon fill="#0000FF" points="392.08,577.92,401.9286,577.9885,396.6631,575.9212,398.7305,570.6556,392.08,577.92" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M463.5,513 L463.5,540 L619.5,540 L619.5,523 L609.5,513 L463.5,513 " fill="#FBFB77" filter="url(#f1jz8zqj50zs19)" style="stroke: #0000FF; stroke-width: 1.0;"/><path d="M609.5,513 L609.5,523 L619.5,523 L609.5,513 " fill="#FBFB77" style="stroke: #0000FF; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="469.5" y="531.897">cancelada, sin cambios</text><!--MD5=[d4045ea60f5697c3b5fff1f44a233518]
+@startuml eliminarAsignatura
+
+skinparam linetype polyline
+
+state ASIGNATURAS_ABIERTO
+state ASIGNATURAS_ABIERTOS_SALIDA as "ASIGNATURAS_ABIERTO"
+
+ASIGNATURAS_ABIERTO -[#green]-> eliminarAsignatura
+note on link
+<b>Admin</b> solicita eliminar Asignatura
+end note
+
+state eliminarAsignatura as "eliminarAsignatura()" {
+
+    state " " as ConfirmandoEliminacion
+
+    [*] -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información de la Asignatura y advertencia de extinción
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarAsignatura -[#green]-> ASIGNATURAS_ABIERTOS_SALIDA
+note on link
+estado pasa a Extinguido, lista actualizada
+end note
+
+eliminarAsignatura -[#blue]-> ASIGNATURAS_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

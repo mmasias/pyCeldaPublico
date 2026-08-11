@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="711px" preserveAspectRatio="none" style="width:489px;height:711px;" version="1.1" viewBox="0 0 489 711" width="489px" zoomAndPan="magnify"><defs><filter height="300%" id="f1a0lrp50q2w1i" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f1a0lrp50q2w1i)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="237" x="109.5" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="109.5" x2="346.5" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="217" x="119.5" y="27.8959">CURSOS_ACADEMICOS_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1a0lrp50q2w1i)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="221" x="117.5" y="650"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="117.5" x2="338.5" y1="679.0679" y2="679.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="201" x="127.5" y="669.9659">CURSO_ACADEMICO_ABIERTO</text><rect fill="#FEFECE" filter="url(#f1a0lrp50q2w1i)" height="390.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="444" x="6" y="158.93"/><rect fill="#FFFFFF" height="355" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="438" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="450" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="150.5" y="178.8959">crearCursoAcademico()</text><rect fill="#FEFECE" filter="url(#f1a0lrp50q2w1i)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="17" y="350.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="17" x2="67" y1="380.0658" y2="380.0658"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="44" y="370.9639"/><ellipse cx="42" cy="210.9979" fill="#000000" filter="url(#f1a0lrp50q2w1i)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="42" cy="523.9979" fill="none" filter="url(#f1a0lrp50q2w1i)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="42.5" cy="524.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[8db42c97ba3b19c34ff635d19bd3f8fe]
+link *start*crearCursoAcademico to SolicitandoDatos--><path d="M42,221.2279 C42,244.5279 42,306.5579 42,344.3279 " fill="none" id="*start*crearCursoAcademico-&gt;SolicitandoDatos" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="42,349.1179,46,340.1179,42,344.1179,38,340.1179,42,349.1179" style="stroke: #008000; stroke-width: 1.0;"/><path d="M47,243.9979 L47,323.9979 L408,323.9979 L408,253.9979 L398,243.9979 L47,243.9979 " fill="#FBFB77" filter="url(#f1a0lrp50q2w1i)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M398,243.9979 L398,253.9979 L408,253.9979 L398,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="53" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="108" y="262.8949">presenta solicitud de datos del CursoAcademico</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="53" y="280.6009">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="84" x="108" y="280.6009">muestra inicio</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="53" y="298.307">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="108" y="298.307">muestra fin</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="53" y="316.013">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="108" y="316.013">permite solicitar crear</text><!--MD5=[febc42d456627075cbed30825eaada11]
+link SolicitandoDatos to *end*crearCursoAcademico--><path d="M42,401.4379 C42,431.5579 42,481.8779 42,507.2879 " fill="none" id="SolicitandoDatos-&gt;*end*crearCursoAcademico" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="42,512.2479,46,503.2479,42,507.2479,38,503.2479,42,512.2479" style="stroke: #008000; stroke-width: 1.0;"/><path d="M47,423.9979 L47,486.9979 L206,486.9979 L206,433.9979 L196,423.9979 L47,423.9979 " fill="#FBFB77" filter="url(#f1a0lrp50q2w1i)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M196,423.9979 L196,433.9979 L206,433.9979 L196,423.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="53" y="442.8949">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="99" y="442.8949">introduce inicio</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="53" y="460.6009">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="99" y="460.6009">introduce fin</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="53" y="478.307">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="74" x="99" y="478.307">solicita crear</text><!--MD5=[b31e667db480013a9bab03010ec244e4]
+link CURSOS_ACADEMICOS_ABIERTO to crearCursoAcademico--><path d="M228,58.17 C228,80.12 228,114.74 228,152.66 " fill="none" id="CURSOS_ACADEMICOS_ABIERTO-&gt;crearCursoAcademico" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="228,157.26,232,148.26,228,152.26,224,148.26,228,157.26" style="stroke: #008000; stroke-width: 1.0;"/><path d="M233,92.93 L233,119.93 L477,119.93 L477,102.93 L467,92.93 L233,92.93 " fill="#FBFB77" filter="url(#f1a0lrp50q2w1i)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M467,92.93 L467,102.93 L477,102.93 L467,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="239" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="177" x="285" y="111.827">solicita crear CursoAcademico</text><!--MD5=[f58ac6dd31cc6fb2a86344643c5fea08]
+link crearCursoAcademico to CURSO_ACADEMICO_ABIERTO--><path d="M228,549.28 C228,586.15 228,620.41 228,643.66 " fill="none" id="crearCursoAcademico-&gt;CURSO_ACADEMICO_ABIERTO" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="228,648.4,232,639.4,228,643.4,224,639.4,228,648.4" style="stroke: #008000; stroke-width: 1.0;"/><path d="M233,584 L233,611 L397,611 L397,594 L387,584 L233,584 " fill="#FBFB77" filter="url(#f1a0lrp50q2w1i)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M387,584 L387,594 L397,594 L387,584 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="143" x="239" y="602.897">editarCursoAcademico()</text><!--MD5=[372f4c0c0f4e08da6752882927fb4fab]
+@startuml crearCursoAcademico
+
+skinparam linetype polyline
+
+state CURSOS_ACADEMICOS_ABIERTO
+state CURSO_ACADEMICO_ABIERTO
+
+CURSOS_ACADEMICOS_ABIERTO -[#green]-> crearCursoAcademico
+note on link
+<b>Admin</b> solicita crear CursoAcademico
+end note
+
+state crearCursoAcademico as "crearCursoAcademico()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos del CursoAcademico
+    <b>Sistema</b> muestra inicio
+    <b>Sistema</b> muestra fin
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce inicio
+    <b>Admin</b> introduce fin
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearCursoAcademico -[#green]-> CURSO_ACADEMICO_ABIERTO
+note on link
+editarCursoAcademico()
+end note
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

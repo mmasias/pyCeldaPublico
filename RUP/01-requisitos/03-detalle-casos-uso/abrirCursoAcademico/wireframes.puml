@@ -1,0 +1,12 @@
+@startsalt abrirCursoAcademico-wireframe
+{
+    <b>CURSO ACADÉMICO 2026-2027</b>
+    ====
+    <b>Inicio:</b> 01/09/2026
+    <b>Fin:</b> 31/07/2027
+    <b>Estado:</b> Activo
+    <b>Semestre activo:</b> 1
+    ====
+    {[Editar] | [Activar semestre] | [Volver al listado]}
+}
+@endsalt

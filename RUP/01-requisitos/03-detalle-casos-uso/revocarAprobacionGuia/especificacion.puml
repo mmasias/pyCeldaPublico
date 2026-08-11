@@ -1,0 +1,35 @@
+@startuml revocarAprobacionGuia
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> revocarAprobacionGuia
+note on link
+<b>DirectorGrado</b> solicita revocar aprobación de Guia
+end note
+
+state revocarAprobacionGuia as "revocarAprobacionGuia()" {
+
+    state " " as IntroduciendoComentario
+
+    [*] -[#green]-> IntroduciendoComentario
+    note on link
+    <b>Sistema</b> permite introducir comentario
+    <b>Sistema</b> permite solicitar revocar
+    end note
+
+    IntroduciendoComentario -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce comentario
+    <b>DirectorGrado</b> solicita revocar
+    end note
+}
+
+revocarAprobacionGuia -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+note on link
+Aprobada -> Borrador; registra comentario (opcional) en HistorialCambio
+end note
+
+@enduml

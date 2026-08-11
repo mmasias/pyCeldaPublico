@@ -1,0 +1,38 @@
+@startuml editarAsignaturaGrado
+
+skinparam linetype polyline
+
+state ASIGNATURA_GRADO_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO_SALIDA as "ASIGNATURA_GRADO_ABIERTO"
+
+ASIGNATURA_GRADO_ABIERTO -[#green]-> editarAsignaturaGrado
+note on link
+<b>DirectorGrado</b> solicita editar AsignaturaGrado
+end note
+
+state editarAsignaturaGrado as "editarAsignaturaGrado()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la AsignaturaGrado
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce curso
+    <b>DirectorGrado</b> introduce carácter
+    <b>DirectorGrado</b> introduce idioma
+    <b>DirectorGrado</b> introduce semestre por defecto
+    <b>DirectorGrado</b> introduce nombre
+    <b>DirectorGrado</b> introduce ects
+    <b>DirectorGrado</b> introduce contenido
+    <b>DirectorGrado</b> solicita guardar
+    end note
+}
+
+editarAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+
+@enduml

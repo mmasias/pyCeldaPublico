@@ -1,0 +1,14 @@
+@startsalt abrirResultadoAprendizaje-wireframe
+{
+    <b>RAK1</b>
+    ====
+    <b>Código:</b> RAK1
+    <b>Tipo:</b> Conocimientos o contenidos
+    <b>Descripción:</b>
+    "Describir los conceptos fundamentales de álgebra lineal, cálculo
+    diferencial e integral, métodos numéricos, algorítmica numérica,
+    estadística y optimización relevantes para la ingeniería."
+    ====
+    {[Editar] | [Volver al listado]}
+}
+@endsalt

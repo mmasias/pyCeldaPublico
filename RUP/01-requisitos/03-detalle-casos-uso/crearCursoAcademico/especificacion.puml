@@ -1,0 +1,38 @@
+@startuml crearCursoAcademico
+
+skinparam linetype polyline
+
+state CURSOS_ACADEMICOS_ABIERTO
+state CURSO_ACADEMICO_ABIERTO
+
+CURSOS_ACADEMICOS_ABIERTO -[#green]-> crearCursoAcademico
+note on link
+<b>Admin</b> solicita crear CursoAcademico
+end note
+
+state crearCursoAcademico as "crearCursoAcademico()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos del CursoAcademico
+    <b>Sistema</b> muestra inicio
+    <b>Sistema</b> muestra fin
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce inicio
+    <b>Admin</b> introduce fin
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearCursoAcademico -[#green]-> CURSO_ACADEMICO_ABIERTO
+note on link
+editarCursoAcademico()
+end note
+
+@enduml

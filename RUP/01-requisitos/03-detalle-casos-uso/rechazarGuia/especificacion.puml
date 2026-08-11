@@ -1,0 +1,35 @@
+@startuml rechazarGuia
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> rechazarGuia
+note on link
+<b>DirectorGrado</b> solicita rechazar Guia
+end note
+
+state rechazarGuia as "rechazarGuia()" {
+
+    state " " as IntroduciendoComentario
+
+    [*] -[#green]-> IntroduciendoComentario
+    note on link
+    <b>Sistema</b> permite introducir comentario
+    <b>Sistema</b> permite solicitar rechazar
+    end note
+
+    IntroduciendoComentario -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce comentario
+    <b>DirectorGrado</b> solicita rechazar
+    end note
+}
+
+rechazarGuia -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+note on link
+EnRevision -> Rechazada; registra comentario (opcional) en HistorialCambio
+end note
+
+@enduml

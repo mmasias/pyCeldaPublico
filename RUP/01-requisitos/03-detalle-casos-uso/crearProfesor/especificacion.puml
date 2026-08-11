@@ -1,0 +1,38 @@
+@startuml crearProfesor
+
+skinparam linetype polyline
+
+state PROFESORES_ABIERTO
+state PROFESOR_ABIERTO
+
+PROFESORES_ABIERTO -[#green]-> crearProfesor
+note on link
+<b>Admin</b> solicita crear Profesor
+end note
+
+state crearProfesor as "crearProfesor()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos del Profesor
+    <b>Sistema</b> muestra nombre
+    <b>Sistema</b> muestra email
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> introduce email
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearProfesor -[#green]-> PROFESOR_ABIERTO
+note on link
+editarProfesor()
+end note
+
+@enduml

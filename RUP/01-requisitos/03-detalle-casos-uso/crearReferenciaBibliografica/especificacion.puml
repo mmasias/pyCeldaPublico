@@ -1,0 +1,38 @@
+@startuml crearReferenciaBibliografica
+
+skinparam linetype polyline
+
+state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
+state REFERENCIA_BIBLIOGRAFICA_ABIERTO
+
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO -[#green]-> crearReferenciaBibliografica
+note on link
+<b>Profesor</b> solicita crear ReferenciaBibliografica
+end note
+
+state crearReferenciaBibliografica as "crearReferenciaBibliografica()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos de la referencia
+    <b>Sistema</b> muestra tipo
+    <b>Sistema</b> muestra referencia
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Profesor</b> introduce tipo
+    <b>Profesor</b> introduce referencia
+    <b>Profesor</b> solicita crear
+    end note
+}
+
+crearReferenciaBibliografica -[#green]-> REFERENCIA_BIBLIOGRAFICA_ABIERTO
+note on link
+editarReferenciaBibliografica()
+end note
+
+@enduml

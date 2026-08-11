@@ -1,0 +1,53 @@
+@startuml generarGuiasPDF
+
+skinparam linetype polyline
+
+state SISTEMA_DISPONIBLE
+state SISTEMA_DISPONIBLE_SALIDA as "SISTEMA_DISPONIBLE"
+
+SISTEMA_DISPONIBLE -[#green]-> generarGuiasPDF
+note on link
+<b>Admin</b> solicita generar PDFs de Guias
+end note
+
+state generarGuiasPDF as "generarGuiasPDF()" {
+
+    state " " as SeleccionandoGrado
+    state c <<choice>>
+
+    [*] -[#green]-> SeleccionandoGrado
+    note on link
+    <b>Sistema</b> presenta selección de Grado
+    <b>Sistema</b> presenta selección de CursoAcademico
+    <b>Sistema</b> permite solicitar generar
+    end note
+
+    SeleccionandoGrado -[#green]-> c
+    note on link
+    <b>Admin</b> selecciona Grado
+    <b>Admin</b> selecciona CursoAcademico
+    <b>Admin</b> solicita generar
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta PDFs generados
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo: Guias pendientes de Aprobada
+    end note
+}
+
+generarGuiasPDF -[#green]-> SISTEMA_DISPONIBLE_SALIDA
+note on link
+generados; fechaGeneracionPDF actualizada en cada Guia del Grado
+end note
+
+generarGuiasPDF -[#red]-> SISTEMA_DISPONIBLE_SALIDA
+note on link
+bloqueado, sin cambios
+end note
+
+@enduml

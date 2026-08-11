@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="455px" preserveAspectRatio="none" style="width:488px;height:455px;" version="1.1" viewBox="0 0 488 455" width="488px" zoomAndPan="magnify"><defs><filter height="300%" id="ft8oj402pkiy8" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#ft8oj402pkiy8)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="275" x="64.5" y="7.93"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="64.5" x2="339.5" y1="36.9979" y2="36.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="255" x="74.5" y="27.8959">METODOLOGIAS_DOCENTES_ABIERTO</text><rect fill="#FEFECE" filter="url(#ft8oj402pkiy8)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="259" x="72.5" y="394"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="72.5" x2="331.5" y1="423.0679" y2="423.0679"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="239" x="82.5" y="413.9659">METODOLOGIA_DOCENTE_ABIERTO</text><rect fill="#FEFECE" filter="url(#ft8oj402pkiy8)" height="174.0679" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="392" x="6" y="158.93"/><rect fill="#FFFFFF" height="139" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="386" x="9" y="190.9979"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="398" y1="187.9979" y2="187.9979"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="180" x="112" y="178.8959">abrirMetodologiaDocente()</text><ellipse cx="27" cy="210.9979" fill="#000000" filter="url(#ft8oj402pkiy8)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><ellipse cx="27" cy="307.9979" fill="none" filter="url(#ft8oj402pkiy8)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="27.5" cy="308.4979" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--MD5=[3ec8f35a0179888e64f783761f2297b1]
+link *start*abrirMetodologiaDocente to *end*abrirMetodologiaDocente--><path d="M27,221.4579 C27,237.7479 27,271.2579 27,291.1579 " fill="none" id="*start*abrirMetodologiaDocente-&gt;*end*abrirMetodologiaDocente" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="27,296.0679,31,287.0679,27,291.0679,23,287.0679,27,296.0679" style="stroke: #008000; stroke-width: 1.0;"/><path d="M32,243.9979 L32,270.9979 L356,270.9979 L356,253.9979 L346,243.9979 L32,243.9979 " fill="#FBFB77" filter="url(#ft8oj402pkiy8)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M346,243.9979 L346,253.9979 L356,253.9979 L346,243.9979 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="38" y="262.8949">Sistema</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="248" x="93" y="262.8949">muestra datos de la MetodologiaDocente</text><!--MD5=[a1d7e06de72e4a8f6bf47ef559784acb]
+link METODOLOGIAS_DOCENTES_ABIERTO to abrirMetodologiaDocente--><path d="M202,58.14 C202,81.28 202,117.65 202,152.17 " fill="none" id="METODOLOGIAS_DOCENTES_ABIERTO-&gt;abrirMetodologiaDocente" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="202,157.08,206,148.08,202,152.08,198,148.08,202,157.08" style="stroke: #008000; stroke-width: 1.0;"/><path d="M207,92.93 L207,119.93 L476,119.93 L476,102.93 L466,92.93 L207,92.93 " fill="#FBFB77" filter="url(#ft8oj402pkiy8)" style="stroke: #008000; stroke-width: 1.0;"/><path d="M466,92.93 L466,102.93 L476,102.93 L466,92.93 " fill="#FBFB77" style="stroke: #008000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="213" y="111.827">Admin</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="259" y="111.827">solicita abrir MetodologiaDocente</text><!--MD5=[43b65160b87dfb804e4fe24ca9ab169b]
+link abrirMetodologiaDocente to METODOLOGIA_DOCENTE_ABIERTO--><path d="M202,333.49 C202,352.91 202,372.28 202,387.55 " fill="none" id="abrirMetodologiaDocente-&gt;METODOLOGIA_DOCENTE_ABIERTO" style="stroke: #008000; stroke-width: 1.0;"/><polygon fill="#008000" points="202,392.33,206,383.33,202,387.33,198,383.33,202,392.33" style="stroke: #008000; stroke-width: 1.0;"/><!--MD5=[463e79d011bcc12baa48f3967a2e186d]
+@startuml abrirMetodologiaDocente
+
+skinparam linetype polyline
+
+state METODOLOGIAS_DOCENTES_ABIERTO
+state METODOLOGIA_DOCENTE_ABIERTO
+
+METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> abrirMetodologiaDocente
+note on link
+<b>Admin</b> solicita abrir MetodologiaDocente
+end note
+
+state abrirMetodologiaDocente as "abrirMetodologiaDocente()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la MetodologiaDocente
+    end note
+}
+
+abrirMetodologiaDocente -[#green]-> METODOLOGIA_DOCENTE_ABIERTO
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.3+9-2-26.04.2-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

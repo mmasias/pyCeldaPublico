@@ -1,0 +1,16 @@
+@startsalt asociarResultadoAprendizajeAMateria-wireframe
+{
+    <b>ASOCIAR RESULTADO DE APRENDIZAJE</b>
+    ====
+    <b>Programación</b>
+    --
+    {
+        <b>Resultado de aprendizaje (*):</b>
+        ^RAK2 -- Describir la estructura, organización y arquitectura...^
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Asociar]}
+}
+@endsalt

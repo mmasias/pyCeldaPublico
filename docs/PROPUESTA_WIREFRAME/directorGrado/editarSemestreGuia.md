@@ -1,0 +1,21 @@
+# DirectorGrado
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSemestreGuia/wireframe.svg)
+
+|Acción|CdU|
+|---|---|
+|[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
+|[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
+|[**Abrir referencias bibliograficas**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
+|[**Guardar borrador de guía**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
+|**Completar gestión**|<sub>completarGestion()</sub> (pendiente)|
+|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
+|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
+|[**Aprobar guia**](aprobarGuia.md)|<sub>aprobarGuia()</sub>|
+|[**Rechazar guia**](rechazarGuia.md)|<sub>rechazarGuia()</sub>|
+|[**Escalar guia a aprobada**](escalarGuiaAAprobada.md)|<sub>escalarGuiaAAprobada()</sub>|
+|[**Revocar aprobacion guia**](revocarAprobacionGuia.md)|<sub>revocarAprobacionGuia()</sub>|
+
+</div>

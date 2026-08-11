@@ -1,0 +1,29 @@
+@startuml abrirAsignaturaGrado
+
+skinparam linetype polyline
+
+state GRADO_ABIERTO
+state MATERIA_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO
+
+GRADO_ABIERTO -[#green]-> abrirAsignaturaGrado
+note on link
+<b>Admin</b> solicita abrir AsignaturaGrado
+end note
+
+MATERIA_ABIERTO -[#green]-> abrirAsignaturaGrado
+note on link
+<b>Admin</b> solicita abrir AsignaturaGrado
+end note
+
+state abrirAsignaturaGrado as "abrirAsignaturaGrado()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la AsignaturaGrado
+    end note
+}
+
+abrirAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO
+
+@enduml

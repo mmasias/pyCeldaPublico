@@ -1,0 +1,50 @@
+@startsalt crearPonderacionEvaluacion-wireframe-formulario
+{
+    <b>CREAR PONDERACIÓN</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    {
+        <b>Sistema de evaluación (*):</b>
+        ^Evaluación continua^
+        <i>Rango: 20% - 60%</i>
+        <i>Ya asignado en esta Guía (Evaluación continua): 50% (Examen Parcial, Actividades y ejercicios, Interés y participación)</i>
+        <i>Margen disponible: hasta 10% más</i>
+        <b>Descripción (*):</b>
+        "Prácticas de laboratorio                          "
+        <b>Ponderación (*):</b>
+        "  10" %
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt
+
+@startsalt crearPonderacionEvaluacion-wireframe-error
+{
+    <b>CREAR PONDERACIÓN</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    <color:red><b>⚠ NO SE PUEDE CREAR</b></color>
+    <color:red>Con esta ponderación, Evaluación continua sumaría 65% -- fuera del rango 20%-60%</color>
+    --
+    {
+        <b>Sistema de evaluación (*):</b>
+        ^Evaluación continua^
+        <i>Rango: 20% - 60%</i>
+        <i>Ya asignado en esta Guía (Evaluación continua): 50% (Examen Parcial, Actividades y ejercicios, Interés y participación)</i>
+        <i>Margen disponible: hasta 10% más</i>
+        <b>Descripción (*):</b>
+        "Prácticas de laboratorio                          "
+        <b>Ponderación (*):</b>
+        "  15" %
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

@@ -1,0 +1,35 @@
+@startuml crearMateria
+
+skinparam linetype polyline
+
+state MATERIAS_ABIERTO
+state MATERIA_ABIERTO
+
+MATERIAS_ABIERTO -[#green]-> crearMateria
+note on link
+<b>Admin</b> solicita crear Materia
+end note
+
+state crearMateria as "crearMateria()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de nombre de la Materia
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearMateria -[#green]-> MATERIA_ABIERTO
+note on link
+editarMateria()
+end note
+
+@enduml

@@ -1,0 +1,38 @@
+@startsalt abrirAsignaturaGrado-wireframe
+{
+    <b>PROGRAMACIÓN I -- GII, 1er CURSO</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    <b>Materia:</b> Programación
+    <b>Curso:</b> 1
+    <b>Carácter:</b> Básica
+    <b>Idioma:</b> Español
+    <b>ECTS:</b> 6 (heredado de Asignatura)
+    <b>Semestre por defecto:</b> 1
+    <b>Contenido:</b> (heredado de Asignatura)
+    <b>Estado:</b> Vigente
+    ====
+    <b>Profesorado asignado:</b>
+    {#
+        <b>Profesor | .
+        Dr. Manuel Masías Vergara | [Quitar]
+    }
+    [ <b>+ Asignar Profesor</b> ]
+    ====
+    <b>Resultados de aprendizaje asociados:</b>
+    {#
+        <b>Código | <b>Tipo | .
+        RAK1 | Conocimientos o contenidos | [Quitar]
+    }
+    [ <b>+ Asociar Resultado de Aprendizaje</b> ]
+    ====
+    <b>Metodologías docentes asociadas:</b>
+    {#
+        <b>Código | <b>Descripción | .
+        MD3 | Resolución de ejercicios | [Quitar]
+    }
+    [ <b>+ Asociar Metodología Docente</b> ]
+    ====
+    {[Editar] | [Volver al Grado]}
+}
+@endsalt

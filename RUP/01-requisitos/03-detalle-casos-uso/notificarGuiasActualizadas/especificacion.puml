@@ -1,0 +1,26 @@
+@startuml notificarGuiasActualizadas
+
+skinparam linetype polyline
+
+state GUIAS_DEL_GRADO_ABIERTO
+state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+
+GUIAS_DEL_GRADO_ABIERTO -[#green]-> notificarGuiasActualizadas
+note on link
+<b>DirectorGrado</b> solicita notificar guías actualizadas
+end note
+
+state notificarGuiasActualizadas as "notificarGuiasActualizadas()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta notificación enviada
+    end note
+}
+
+notificarGuiasActualizadas -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+note on link
+notifica al Admin que las Guias del Grado están listas
+end note
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml asociarResultadoAprendizajeAAsignaturaGrado
+
+skinparam linetype polyline
+
+state ASIGNATURA_GRADO_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO_SALIDA as "ASIGNATURA_GRADO_ABIERTO"
+
+ASIGNATURA_GRADO_ABIERTO -[#green]-> asociarResultadoAprendizajeAAsignaturaGrado
+note on link
+<b>DirectorGrado</b> solicita asociar ResultadoAprendizaje a AsignaturaGrado
+end note
+
+state asociarResultadoAprendizajeAAsignaturaGrado as "asociarResultadoAprendizajeAAsignaturaGrado()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta selección de ResultadoAprendizaje ya asignados a la Materia y no asignados aún a esta AsignaturaGrado
+    <b>Sistema</b> permite solicitar asociar
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> selecciona ResultadoAprendizaje
+    <b>DirectorGrado</b> solicita asociar
+    end note
+}
+
+asociarResultadoAprendizajeAAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+
+@enduml

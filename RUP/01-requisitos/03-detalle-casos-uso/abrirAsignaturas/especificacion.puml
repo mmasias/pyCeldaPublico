@@ -1,0 +1,23 @@
+@startuml abrirAsignaturas
+
+skinparam linetype polyline
+
+state SISTEMA_DISPONIBLE
+state ASIGNATURAS_ABIERTO
+
+SISTEMA_DISPONIBLE -[#green]-> abrirAsignaturas
+note on link
+<b>Admin</b> solicita abrir Asignaturas
+end note
+
+state abrirAsignaturas as "abrirAsignaturas()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de Asignaturas
+    end note
+}
+
+abrirAsignaturas -[#green]-> ASIGNATURAS_ABIERTO
+
+@enduml

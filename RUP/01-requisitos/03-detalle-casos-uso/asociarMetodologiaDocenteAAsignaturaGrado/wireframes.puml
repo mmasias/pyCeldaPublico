@@ -1,0 +1,17 @@
+@startsalt asociarMetodologiaDocenteAAsignaturaGrado-wireframe
+{
+    <b>ASOCIAR METODOLOGÍA DOCENTE</b>
+    ====
+    <b>Programación I -- GII, 1er curso</b>
+    --
+    {
+        <b>Metodología docente (*):</b>
+        ^MD3 -- Resolución de ejercicios^
+        --
+        <i>(*) Campo obligatorio</i>
+        <i>Solo se listan las ya asociadas a la Materia (Programación) y no asociadas aún a esta asignatura-en-grado</i>
+    }
+    ~~
+    {[Asociar]}
+}
+@endsalt

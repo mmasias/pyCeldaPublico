@@ -1,0 +1,13 @@
+@startsalt aprobarGuia-wireframe
+{
+    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    ====
+    <color:green><b>✓ GUÍA APROBADA</b></color>
+    ====
+    <b>Estado anterior:</b> EnRevision
+    <b>Estado actual:</b> Aprobada
+    <b>Comentario registrado:</b> "Aprobada sin incidencia"
+    ====
+    [ <b>Volver al listado de guías</b> ]
+}
+@endsalt

@@ -1,0 +1,103 @@
+@startuml actoresCasosUsoAdminOperativa
+
+left to right direction
+
+' Vista de Admin, partida de actoresCasosUso.puml -- mismos usecase id, solo
+' el subconjunto que usa este actor. Fuente de verdad sigue siendo el fichero
+' completo hasta que se decida el reparto final.
+'
+' Admin sin "Catálogos institucionales" -- ese bloque vive en
+' actoresCasosUsoAdminCatalogos.puml.
+
+actor Admin
+
+package "Profesorado de asignaturas" {
+  usecase asignarProfesorAAsignaturaGrado as "asignarProfesorAAsignaturaGrado()"
+  usecase desasignarProfesorAsignaturaGrado as "desasignarProfesorAsignaturaGrado()"
+}
+
+package "Curso académico" {
+  usecase abrirCursosAcademicos as "abrirCursosAcademicos()"
+  usecase crearCursoAcademico as "crearCursoAcademico()"
+  usecase abrirCursoAcademico as "abrirCursoAcademico()"
+  usecase editarCursoAcademico as "editarCursoAcademico()"
+  usecase activarCursoAcademico as "activarCursoAcademico()"
+  usecase activarSemestre as "activarSemestre()"
+}
+
+' "Configuración del grado" y "Guía docente" eran wrappers exteriores sobre
+' Materia/SistemaEvaluacion/AsignaturaGrado y Edicion/Revision/PDF -- se
+' aplanan: agrupar en un único package bloquea el layout mariposa, PlantUML
+' deja todo el contenido a un único lado del actor con independencia del
+' sentido de la asociación.
+package Materia {
+  usecase abrirMaterias as "abrirMaterias()"
+  usecase crearMateria as "crearMateria()"
+  usecase abrirMateria as "abrirMateria()"
+  usecase editarMateria as "editarMateria()"
+  usecase eliminarMateria as "eliminarMateria()"
+}
+
+package SistemaEvaluacion {
+  usecase abrirSistemasEvaluacion as "abrirSistemasEvaluacion()"
+  usecase crearSistemaEvaluacion as "crearSistemaEvaluacion()"
+  usecase abrirSistemaEvaluacion as "abrirSistemaEvaluacion()"
+  usecase editarSistemaEvaluacion as "editarSistemaEvaluacion()"
+  usecase eliminarSistemaEvaluacion as "eliminarSistemaEvaluacion()"
+}
+
+package AsignaturaGrado {
+  usecase crearAsignaturaGrado as "crearAsignaturaGrado()"
+  usecase abrirAsignaturaGrado as "abrirAsignaturaGrado()"
+  usecase eliminarAsignaturaGrado as "eliminarAsignaturaGrado()"
+}
+
+package Edicion {
+  usecase abrirGuia as "abrirGuia()"
+}
+
+package Revision {
+  usecase consultarEstadoGuias as "consultarEstadoGuias()"
+}
+
+package PDF {
+  usecase generarGuiasPDF as "generarGuiasPDF()"
+  usecase reabrirGuiaPorIncidencia as "reabrirGuiaPorIncidencia()"
+  usecase descargarGuiaPDF as "descargarGuiaPDF()"
+}
+
+abrirSistemasEvaluacion -- Admin
+crearSistemaEvaluacion -- Admin
+abrirSistemaEvaluacion -- Admin
+editarSistemaEvaluacion -- Admin
+eliminarSistemaEvaluacion -- Admin
+
+abrirMaterias --- Admin
+crearMateria --- Admin
+abrirMateria --- Admin
+editarMateria --- Admin
+eliminarMateria --- Admin
+
+abrirCursosAcademicos -- Admin
+crearCursoAcademico -- Admin
+abrirCursoAcademico -- Admin
+editarCursoAcademico -- Admin
+activarCursoAcademico -- Admin
+activarSemestre -- Admin
+
+
+Admin -- asignarProfesorAAsignaturaGrado
+Admin -- desasignarProfesorAsignaturaGrado
+
+Admin --- crearAsignaturaGrado
+Admin --- abrirAsignaturaGrado
+Admin --- eliminarAsignaturaGrado
+
+Admin --- consultarEstadoGuias
+Admin --- abrirGuia
+
+Admin -- generarGuiasPDF
+Admin -- descargarGuiaPDF
+Admin -- reabrirGuiaPorIncidencia
+
+@enduml

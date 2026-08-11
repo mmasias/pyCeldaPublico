@@ -1,0 +1,57 @@
+@startuml eliminarFacultad
+
+skinparam linetype polyline
+
+state FACULTADES_ABIERTO
+state FACULTADES_ABIERTOS_SALIDA as "FACULTADES_ABIERTO"
+
+FACULTADES_ABIERTO -[#green]-> eliminarFacultad
+note on link
+<b>Admin</b> solicita eliminar Facultad
+end note
+
+state eliminarFacultad as "eliminarFacultad()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información de la Facultad y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo por Grados asociados
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarFacultad -[#green]-> FACULTADES_ABIERTOS_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarFacultad -[#red]-> FACULTADES_ABIERTOS_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarFacultad -[#blue]-> FACULTADES_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

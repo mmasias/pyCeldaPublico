@@ -1,0 +1,13 @@
+@startsalt abrirSistemasEvaluacion-wireframe
+{
+    <b>SISTEMAS DE EVALUACIÓN -- PROGRAMACIÓN</b>
+    ====
+    {#
+        <b>Tipo | <b>Descripción | <b>Ponderación | . | .
+        Evaluación continua | Incluye prácticas de laboratorio y entregas semanales | 30% -- 50% | [Abrir] | [Eliminar]
+        Evaluación final | Examen escrito individual | 50% -- 70% | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Sistema de Evaluación</b> ]
+}
+@endsalt

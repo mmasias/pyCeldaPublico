@@ -1,0 +1,29 @@
+@startsalt editarAsignaturaGrado-wireframe
+{
+    <b>EDITAR ASIGNATURA DEL GRADO</b>
+    ====
+    <b>Asignatura: Programación I -- Materia: Programación</b>
+    --
+    {
+        <b>Curso (*):</b>
+        "1  "
+        <b>Carácter (*):</b>
+        ^Básica^
+        <b>Idioma (*):</b>
+        ^Español^
+        <b>Semestre por defecto (*):</b>
+        ^1^
+        --
+        <b>Nombre:</b>
+        "Programación I                                    "
+        <b>ECTS:</b>
+        "6 "
+        <b>Contenido:</b>
+        "Tema 1. Introducción a la programación..."
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

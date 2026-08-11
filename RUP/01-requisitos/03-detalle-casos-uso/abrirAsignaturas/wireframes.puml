@@ -1,0 +1,15 @@
+@startsalt abrirAsignaturas-wireframe
+{
+    <b>ASIGNATURAS</b>
+    ====
+    {#
+        <b>Nombre | <b>ECTS | <b>Estado | . | .
+        Programación I | 6 | Vigente | [Abrir] | [Eliminar]
+        Matemática I | 6 | Vigente | [Abrir] | [Eliminar]
+        Bases de Datos II | 6 | Vigente | [Abrir] | [Eliminar]
+        Física | 6 | Vigente | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Asignatura</b> ]
+}
+@endsalt

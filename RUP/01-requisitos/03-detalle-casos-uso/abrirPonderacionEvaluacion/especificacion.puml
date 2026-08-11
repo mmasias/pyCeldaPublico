@@ -1,0 +1,23 @@
+@startuml abrirPonderacionEvaluacion
+
+skinparam linetype polyline
+
+state PONDERACIONES_EVALUACION_ABIERTO
+state PONDERACION_EVALUACION_ABIERTO_SALIDA as "PONDERACION_EVALUACION_ABIERTO"
+
+PONDERACIONES_EVALUACION_ABIERTO -[#green]-> abrirPonderacionEvaluacion
+note on link
+<b>Profesor</b> solicita abrir PonderacionEvaluacion
+end note
+
+state abrirPonderacionEvaluacion as "abrirPonderacionEvaluacion()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la PonderacionEvaluacion
+    end note
+}
+
+abrirPonderacionEvaluacion -[#green]-> PONDERACION_EVALUACION_ABIERTO_SALIDA
+
+@enduml

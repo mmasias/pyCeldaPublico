@@ -1,0 +1,40 @@
+@startuml activarCursoAcademico
+
+skinparam linetype polyline
+
+state CURSOS_ACADEMICOS_ABIERTO
+state CURSOS_ACADEMICOS_ABIERTOS_SALIDA as "CURSOS_ACADEMICOS_ABIERTO"
+
+CURSOS_ACADEMICOS_ABIERTO -[#green]-> activarCursoAcademico
+note on link
+<b>Admin</b> solicita activar CursoAcademico
+end note
+
+state activarCursoAcademico as "activarCursoAcademico()" {
+
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta CursoAcademico activado
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo: solo el último CursoAcademico, o el penúltimo si el último no tiene actividad registrada, son elegibles
+    end note
+}
+
+activarCursoAcademico -[#green]-> CURSOS_ACADEMICOS_ABIERTOS_SALIDA
+note on link
+activado; el otro CursoAcademico Activo pasa a Inactivo automáticamente, lista actualizada
+end note
+
+activarCursoAcademico -[#red]-> CURSOS_ACADEMICOS_ABIERTOS_SALIDA
+note on link
+bloqueado, sin cambios
+end note
+
+@enduml

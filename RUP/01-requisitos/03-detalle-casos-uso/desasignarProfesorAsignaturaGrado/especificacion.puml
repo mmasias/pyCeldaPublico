@@ -1,0 +1,44 @@
+@startuml desasignarProfesorAsignaturaGrado
+
+skinparam linetype polyline
+
+state ASIGNATURA_GRADO_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO_SALIDA as "ASIGNATURA_GRADO_ABIERTO"
+
+ASIGNATURA_GRADO_ABIERTO -[#green]-> desasignarProfesorAsignaturaGrado
+note on link
+<b>Admin</b> solicita desasignar Profesor de AsignaturaGrado
+end note
+
+state desasignarProfesorAsignaturaGrado as "desasignarProfesorAsignaturaGrado()" {
+
+    state " " as ConfirmandoDesasignacion
+
+    [*] -[#green]-> ConfirmandoDesasignacion
+    note on link
+    <b>Sistema</b> presenta información de la asignación y advertencia si es el único Profesor de la AsignaturaGrado
+    <b>Sistema</b> permite solicitar confirmar/cancelar desasignación
+    end note
+
+    ConfirmandoDesasignacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar desasignación
+    end note
+
+    ConfirmandoDesasignacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar desasignación
+    end note
+}
+
+desasignarProfesorAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+desasignarProfesorAsignaturaGrado -[#blue]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

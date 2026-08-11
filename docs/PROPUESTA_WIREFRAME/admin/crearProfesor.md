@@ -1,0 +1,14 @@
+# Admin
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearProfesor/wireframe.svg)
+
+|Acción|CdU|
+|---|---|
+|[**Editar profesor**](editarProfesor.md)|<sub>editarProfesor()</sub>|
+|[**Definir director de grado**](definirDirectorGrado.md)|<sub>definirDirectorGrado()</sub>|
+|[**Quitar director de grado**](quitarDirectorGrado.md)|<sub>quitarDirectorGrado()</sub>|
+|[**Abrir profesores**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
+
+</div>

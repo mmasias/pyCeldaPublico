@@ -1,0 +1,14 @@
+@startsalt abrirFacultades-wireframe
+{
+    <b>FACULTADES</b>
+    ====
+    {#
+        <b>Nombre | . | .
+        Escuela Politécnica Superior | [Abrir] | [Eliminar]
+        Facultad de Ciencias Sociales y Humanidades | [Abrir] | [Eliminar]
+        Facultad de Ciencias de la Salud | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Facultad</b> ]
+}
+@endsalt

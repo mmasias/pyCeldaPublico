@@ -1,0 +1,13 @@
+@startsalt eliminarAsignatura-wireframe
+{
+    <b>ELIMINAR ASIGNATURA</b>
+    ====
+    <b>Bases de Datos II</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    La asignatura pasará a estado <b>Extinguido</b>: no se podrá usar en
+    nuevas AsignaturaGrado, pero las ya existentes seguirán intactas.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

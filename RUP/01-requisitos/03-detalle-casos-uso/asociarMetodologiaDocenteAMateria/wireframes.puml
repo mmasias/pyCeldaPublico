@@ -1,0 +1,16 @@
+@startsalt asociarMetodologiaDocenteAMateria-wireframe
+{
+    <b>ASOCIAR METODOLOGÍA DOCENTE</b>
+    ====
+    <b>Programación</b>
+    --
+    {
+        <b>Metodología docente (*):</b>
+        ^MD3 -- Resolución de ejercicios^
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Asociar]}
+}
+@endsalt

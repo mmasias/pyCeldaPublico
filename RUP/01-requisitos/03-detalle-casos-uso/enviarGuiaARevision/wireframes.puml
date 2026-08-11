@@ -1,0 +1,41 @@
+@startsalt enviarGuiaARevision-wireframe-exito
+{
+    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    ====
+    <color:green><b>✓ GUÍA ENVIADA A REVISIÓN</b></color>
+    ====
+    Evaluación:
+    {T
+        Examen Parcial | 25%
+        Actividades y ejercicios | 20%
+        Interés y participación | 5%
+        Examen Teórico-Práctico | 50%
+    }
+    <b>Suma: 100%</b>
+    ====
+    <i>La guía queda a la espera de revisión del director de grado.</i>
+    ====
+    [ <b>Volver a mis asignaturas</b> ]
+}
+@endsalt
+
+@startsalt enviarGuiaARevision-wireframe-error
+{
+    <b>GUÍA DOCENTE -- Bases de Datos I (GII)</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
+    ====
+    Evaluación:
+    {T
+        Exámenes Parciales | 25%
+        Entregas de Portafolios y Ejercicios | 25%
+        Interés y participación | 5%
+        Prueba Teórico Práctica | 50%
+    }
+    <color:red><b>Suma: 105% -- debe ser exactamente 100%</b></color>
+    ====
+    <i>Corrige las ponderaciones antes de enviar a revisión.</i>
+    ====
+    [ <b>Volver a la guía</b> ]
+}
+@endsalt

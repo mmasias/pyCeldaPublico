@@ -1,0 +1,60 @@
+@startuml actoresCasosUsoProfesor
+
+left to right direction
+
+' Vista de Profesor, partida de actoresCasosUso.puml -- mismos usecase id, solo
+' el subconjunto que usa este actor. Fuente de verdad sigue siendo el fichero
+' completo hasta que se decida el reparto final. DirectorGrado --|> Profesor
+' hereda todo este catálogo -- ver actoresCasosUsoDirectorGrado.puml.
+
+actor Profesor
+
+' Las cuatro cajas son todas "Guía docente" -- sin wrapper exterior:
+' agruparlas en un único package bloquea el layout mariposa, PlantUML deja
+' todo el contenido a un único lado del actor con independencia del sentido
+' de la asociación.
+package Edicion {
+  usecase abrirGuia as "abrirGuia()"
+  usecase guardarBorradorGuia as "guardarBorradorGuia()"
+  usecase enviarGuiaARevision as "enviarGuiaARevision()"
+}
+
+package PonderacionEvaluacion {
+  usecase abrirPonderacionesEvaluacion as "abrirPonderacionesEvaluacion()"
+  usecase crearPonderacionEvaluacion as "crearPonderacionEvaluacion()"
+  usecase abrirPonderacionEvaluacion as "abrirPonderacionEvaluacion()"
+  usecase editarPonderacionEvaluacion as "editarPonderacionEvaluacion()"
+  usecase eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()"
+}
+
+package ReferenciaBibliografica {
+  usecase abrirReferenciasBibliograficas as "abrirReferenciasBibliograficas()"
+  usecase crearReferenciaBibliografica as "crearReferenciaBibliografica()"
+  usecase abrirReferenciaBibliografica as "abrirReferenciaBibliografica()"
+  usecase editarReferenciaBibliografica as "editarReferenciaBibliografica()"
+  usecase eliminarReferenciaBibliografica as "eliminarReferenciaBibliografica()"
+}
+
+package PDF {
+  usecase descargarGuiaPDF as "descargarGuiaPDF()"
+}
+
+abrirGuia -- Profesor
+guardarBorradorGuia -- Profesor
+enviarGuiaARevision -- Profesor
+
+Profesor -- descargarGuiaPDF
+
+abrirPonderacionesEvaluacion -- Profesor
+crearPonderacionEvaluacion -- Profesor
+abrirPonderacionEvaluacion -- Profesor
+editarPonderacionEvaluacion -- Profesor
+eliminarPonderacionEvaluacion -- Profesor
+
+Profesor -- abrirReferenciasBibliograficas
+Profesor -- crearReferenciaBibliografica
+Profesor -- abrirReferenciaBibliografica
+Profesor -- editarReferenciaBibliografica
+Profesor -- eliminarReferenciaBibliografica
+
+@enduml
