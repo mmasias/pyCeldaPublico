@@ -12,8 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear ponderacion evaluacion**](crearPonderacionEvaluacion.md)|<sub>crearPonderacionEvaluacion()</sub>|
-|[**Abrir ponderacion evaluacion**](abrirPonderacionEvaluacion.md)|<sub>abrirPonderacionEvaluacion()</sub>|
-|[**Abrir guia**](abrirGuia.md)|<sub>abrirGuia()</sub>|
+|[**Crear Ponderación**](crearPonderacionEvaluacion.md)|<sub>crearPonderacionEvaluacion()</sub>|
+|[**Abrir**](abrirPonderacionEvaluacion.md)|<sub>abrirPonderacionEvaluacion()</sub>|
+|[**Volver a la guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>

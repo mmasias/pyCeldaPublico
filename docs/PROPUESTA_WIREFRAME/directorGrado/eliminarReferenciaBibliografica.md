@@ -12,8 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear referencia bibliografica**](crearReferenciaBibliografica.md)|<sub>crearReferenciaBibliografica()</sub>|
-|[**Abrir referencia bibliografica**](abrirReferenciaBibliografica.md)|<sub>abrirReferenciaBibliografica()</sub>|
-|[**Abrir guia**](abrirGuia.md)|<sub>abrirGuia()</sub>|
+|[**Crear Referencia**](crearReferenciaBibliografica.md)|<sub>crearReferenciaBibliografica()</sub>|
+|[**Abrir**](abrirReferenciaBibliografica.md)|<sub>abrirReferenciaBibliografica()</sub>|
+|[**Volver a la guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>
