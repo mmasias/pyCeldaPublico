@@ -1,18 +1,26 @@
 # pyCelda
 
-**pyCelda** (**C**atálogo **E**structurado de **L**egajos **D**e **A**signaturas) gestiona las guías docentes de una universidad: el documento que cada profesor completa cada curso con el contenido, la evaluación y la bibliografía de su asignatura, y que un director de grado revisa y aprueba antes de que se publique.
+**pyCelda** (**C**atálogo **E**structurado de **L**egajos **D**e **A**signaturas): gestión de guías docentes.
 
-Este repositorio es un subconjunto público de un proyecto de trabajo más amplio. Dos caminos: **verlo funcionar**, o **asomarte a cómo está pensado por dentro**.
+Prototipo navegable en Markdown, organizado por actor. *Si un botón no tiene enlace es porque, en ese papel, no hay permiso para pulsarlo -- restricción intencionada, no un enlace roto.*
 
-## 1. El sistema, en pantalla
+<div align=center>
 
-Prototipo navegable en Markdown, organizado por actor -- cada pantalla es el wireframe correspondiente más la tabla de acciones que lleva a la siguiente, igual que la navegación real de la aplicación:
+|[Profesor](/docs/PROPUESTA_WIREFRAME/profesor/iniciarSesion.md)|[Director de grado](/docs/PROPUESTA_WIREFRAME/directorGrado/iniciarSesion.md)|[Administrador](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)|
+|-|-|-|
+Entra, ve sus asignaturas, abre la guía de una de ellas, la edita, la envía a revisión|Revisa las guías de su grado, las aprueba o las rechaza|Da de alta grados, asignaturas y profesorado
+||Adicionalmente gestiona su grado: las asignaturas y resultados de aprendizaje|Genera el PDF de las guías ya aprobadas.
 
-- **[Profesor](/docs/PROPUESTA_WIREFRAME/profesor/iniciarSesion.md)** -- entra, ve sus asignaturas, abre la guía de una de ellas, la edita, la envía a revisión.
-- **[Director de grado](/docs/PROPUESTA_WIREFRAME/directorGrado/iniciarSesion.md)** -- revisa las guías de su grado, las aprueba o las rechaza, gestiona asignaturas y resultados de aprendizaje.
-- **[Administrador](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)** -- da de alta grados, asignaturas y profesorado, genera el PDF de las guías ya aprobadas.
+</div>
 
-Si un botón no tiene enlace es porque, en ese papel, no hay permiso para pulsarlo -- restricción intencionada, no un enlace roto.
+## Estados de una guía
+
+<div align=center>
+
+|![](images/RUP/00-modelo-del-dominio/estados-entidades/guia.svg)
+|-
+
+</div>
 
 ## 2. Cómo está pensado por dentro
 
