@@ -12,9 +12,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar materia**](editarMateria.md)|<sub>editarMateria()</sub>|
-|[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
-|[**Abrir asignatura grado**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
+|[**Editar**](editarMateria.md)|<sub>editarMateria()</sub>|
+|[**Volver al listado**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
+|[**Abrir**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
 |[**Abrir sistemas evaluacion**](abrirSistemasEvaluacion.md)|<sub>abrirSistemasEvaluacion()</sub>|
 
 </div>

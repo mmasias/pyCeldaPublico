@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar curso academico**](editarCursoAcademico.md)|<sub>editarCursoAcademico()</sub>|
-|[**Abrir cursos academicos**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
+|[**Editar**](editarCursoAcademico.md)|<sub>editarCursoAcademico()</sub>|
+|[**Volver al listado**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
 
 </div>

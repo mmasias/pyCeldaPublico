@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar referencia bibliografica**](editarReferenciaBibliografica.md)|<sub>editarReferenciaBibliografica()</sub>|
-|[**Abrir referencias bibliograficas**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
+|[**Editar**](editarReferenciaBibliografica.md)|<sub>editarReferenciaBibliografica()</sub>|
+|[**Volver al listado**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
 
 </div>

@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Desasignar profesor asignatura grado**](desasignarProfesorAsignaturaGrado.md)|<sub>desasignarProfesorAsignaturaGrado()</sub>|
-|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
+|[**Quitar profesor**](desasignarProfesorAsignaturaGrado.md)|<sub>desasignarProfesorAsignaturaGrado()</sub>|
+|[**Volver al Grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

@@ -14,6 +14,6 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
+|[**Volver al listado**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
 
 </div>

@@ -12,6 +12,6 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir resultados aprendizaje**](abrirResultadosAprendizaje.md)|<sub>abrirResultadosAprendizaje()</sub>|
+|[**Volver al listado**](abrirResultadosAprendizaje.md)|<sub>abrirResultadosAprendizaje()</sub>|
 
 </div>

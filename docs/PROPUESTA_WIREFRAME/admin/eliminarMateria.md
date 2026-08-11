@@ -14,8 +14,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear materia**](crearMateria.md)|<sub>crearMateria()</sub>|
-|[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|
+|[**Crear Materia**](crearMateria.md)|<sub>crearMateria()</sub>|
+|[**Abrir**](abrirMateria.md)|<sub>abrirMateria()</sub>|
 |[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

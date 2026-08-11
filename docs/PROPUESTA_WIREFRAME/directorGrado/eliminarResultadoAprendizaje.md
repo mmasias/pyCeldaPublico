@@ -14,8 +14,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear resultado aprendizaje**](crearResultadoAprendizaje.md)|<sub>crearResultadoAprendizaje()</sub>|
-|[**Abrir resultado aprendizaje**](abrirResultadoAprendizaje.md)|<sub>abrirResultadoAprendizaje()</sub>|
+|[**Crear Resultado de Aprendizaje**](crearResultadoAprendizaje.md)|<sub>crearResultadoAprendizaje()</sub>|
+|[**Abrir**](abrirResultadoAprendizaje.md)|<sub>abrirResultadoAprendizaje()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

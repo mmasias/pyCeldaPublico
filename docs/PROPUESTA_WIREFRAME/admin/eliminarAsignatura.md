@@ -12,8 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
-|[**Abrir asignatura**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|
+|[**Crear Asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
+|[**Abrir**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

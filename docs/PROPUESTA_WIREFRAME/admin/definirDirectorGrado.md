@@ -12,8 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar profesor**](editarProfesor.md)|<sub>editarProfesor()</sub>|
-|[**Quitar director de grado**](quitarDirectorGrado.md)|<sub>quitarDirectorGrado()</sub>|
-|[**Abrir profesores**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
+|[**Editar**](editarProfesor.md)|<sub>editarProfesor()</sub>|
+|[**Quitar**](quitarDirectorGrado.md)|<sub>quitarDirectorGrado()</sub>|
+|[**Volver al listado**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
 
 </div>

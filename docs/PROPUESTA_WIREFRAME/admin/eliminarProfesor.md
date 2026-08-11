@@ -14,8 +14,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear profesor**](crearProfesor.md)|<sub>crearProfesor()</sub>|
-|[**Abrir profesor**](abrirProfesor.md)|<sub>abrirProfesor()</sub>|
+|[**Crear Profesor**](crearProfesor.md)|<sub>crearProfesor()</sub>|
+|[**Abrir**](abrirProfesor.md)|<sub>abrirProfesor()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
 
 </div>

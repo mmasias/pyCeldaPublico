@@ -12,6 +12,6 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir referencias bibliograficas**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
+|[**Volver al listado**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
 
 </div>

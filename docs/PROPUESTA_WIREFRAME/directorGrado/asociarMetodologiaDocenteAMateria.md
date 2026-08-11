@@ -12,11 +12,11 @@
 
 |Botón|CdU|
 |---|---|
-|[**Desasociar metodologia docente materia**](desasociarMetodologiaDocenteMateria.md)|<sub>desasociarMetodologiaDocenteMateria()</sub>|
-|[**Editar asociacion metodologia docente materia**](editarAsociacionMetodologiaDocenteMateria.md)|<sub>editarAsociacionMetodologiaDocenteMateria()</sub>|
-|[**Asociar resultado aprendizaje a materia**](asociarResultadoAprendizajeAMateria.md)|<sub>asociarResultadoAprendizajeAMateria()</sub>|
-|[**Desasociar resultado aprendizaje a materia**](desasociarResultadoAprendizajeAMateria.md)|<sub>desasociarResultadoAprendizajeAMateria()</sub>|
-|[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
-|[**Abrir asignatura grado**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
+|[**Quitar**](desasociarMetodologiaDocenteMateria.md)|<sub>desasociarMetodologiaDocenteMateria()</sub>|
+|[**Editar**](editarAsociacionMetodologiaDocenteMateria.md)|<sub>editarAsociacionMetodologiaDocenteMateria()</sub>|
+|[**Asociar Resultado de Aprendizaje**](asociarResultadoAprendizajeAMateria.md)|<sub>asociarResultadoAprendizajeAMateria()</sub>|
+|[**Quitar**](desasociarResultadoAprendizajeAMateria.md)|<sub>desasociarResultadoAprendizajeAMateria()</sub>|
+|[**Volver al listado**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
+|[**Abrir**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
 
 </div>

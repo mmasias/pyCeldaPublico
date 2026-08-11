@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir facultades**](abrirFacultades.md)|<sub>abrirFacultades()</sub>|
+|[**Volver al listado**](abrirFacultades.md)|<sub>abrirFacultades()</sub>|
 |[**Abrir grados**](abrirGrados.md)|<sub>abrirGrados()</sub>|
 
 </div>

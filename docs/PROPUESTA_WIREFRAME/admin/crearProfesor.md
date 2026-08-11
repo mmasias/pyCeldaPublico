@@ -12,9 +12,9 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar profesor**](editarProfesor.md)|<sub>editarProfesor()</sub>|
-|[**Definir director de grado**](definirDirectorGrado.md)|<sub>definirDirectorGrado()</sub>|
-|[**Quitar director de grado**](quitarDirectorGrado.md)|<sub>quitarDirectorGrado()</sub>|
-|[**Abrir profesores**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
+|[**Editar**](editarProfesor.md)|<sub>editarProfesor()</sub>|
+|[**Nombrar director de Grado**](definirDirectorGrado.md)|<sub>definirDirectorGrado()</sub>|
+|[**Quitar**](quitarDirectorGrado.md)|<sub>quitarDirectorGrado()</sub>|
+|[**Volver al listado**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
 
 </div>

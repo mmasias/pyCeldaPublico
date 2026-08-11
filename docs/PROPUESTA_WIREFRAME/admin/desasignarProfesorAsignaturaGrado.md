@@ -14,7 +14,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Asignar profesor a asignatura grado**](asignarProfesorAAsignaturaGrado.md)|<sub>asignarProfesorAAsignaturaGrado()</sub>|
-|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
+|[**Asignar Profesor**](asignarProfesorAAsignaturaGrado.md)|<sub>asignarProfesorAAsignaturaGrado()</sub>|
+|[**Volver al Grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

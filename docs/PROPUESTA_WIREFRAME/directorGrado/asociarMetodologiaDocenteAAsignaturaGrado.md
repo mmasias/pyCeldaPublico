@@ -12,10 +12,10 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar asignatura grado**](editarAsignaturaGrado.md)|<sub>editarAsignaturaGrado()</sub>|
-|[**Asociar resultado aprendizaje a asignatura grado**](asociarResultadoAprendizajeAAsignaturaGrado.md)|<sub>asociarResultadoAprendizajeAAsignaturaGrado()</sub>|
-|[**Desasociar resultado aprendizaje asignatura grado**](desasociarResultadoAprendizajeAsignaturaGrado.md)|<sub>desasociarResultadoAprendizajeAsignaturaGrado()</sub>|
-|[**Desasociar metodologia docente asignatura grado**](desasociarMetodologiaDocenteAsignaturaGrado.md)|<sub>desasociarMetodologiaDocenteAsignaturaGrado()</sub>|
-|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
+|[**Editar**](editarAsignaturaGrado.md)|<sub>editarAsignaturaGrado()</sub>|
+|[**Asociar Resultado de Aprendizaje**](asociarResultadoAprendizajeAAsignaturaGrado.md)|<sub>asociarResultadoAprendizajeAAsignaturaGrado()</sub>|
+|[**Quitar**](desasociarResultadoAprendizajeAsignaturaGrado.md)|<sub>desasociarResultadoAprendizajeAsignaturaGrado()</sub>|
+|[**Quitar**](desasociarMetodologiaDocenteAsignaturaGrado.md)|<sub>desasociarMetodologiaDocenteAsignaturaGrado()</sub>|
+|[**Volver al Grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

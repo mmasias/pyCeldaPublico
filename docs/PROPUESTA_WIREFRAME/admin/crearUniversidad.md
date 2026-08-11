@@ -12,8 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar universidad**](editarUniversidad.md)|<sub>editarUniversidad()</sub>|
-|[**Abrir universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
+|[**Editar**](editarUniversidad.md)|<sub>editarUniversidad()</sub>|
+|[**Volver al listado**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
 |[**Abrir facultades**](abrirFacultades.md)|<sub>abrirFacultades()</sub>|
 
 </div>

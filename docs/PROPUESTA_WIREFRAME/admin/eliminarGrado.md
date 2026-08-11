@@ -12,8 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear grado**](crearGrado.md)|<sub>crearGrado()</sub>|
-|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
+|[**Crear Grado**](crearGrado.md)|<sub>crearGrado()</sub>|
+|[**Abrir**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 |[**Abrir facultad**](abrirFacultad.md)|<sub>abrirFacultad()</sub>|
 
 </div>

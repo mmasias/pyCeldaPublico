@@ -138,6 +138,9 @@ CONTEXTUAL_LABELS = {
     ("abrirAsignaturaGrado", "asociarMetodologiaDocenteAAsignaturaGrado"): "Asociar Metodología Docente",
     ("abrirAsignaturaGrado", "desasociarMetodologiaDocenteAsignaturaGrado"): "Quitar",
     ("abrirAsignaturaGrado", "abrirGrado"): "Volver al Grado",
+    # desasignarProfesorAsignaturaGrado() no tiene wireframe propio (pendiente
+    # wireframe) -- texto ya fijado a mano en el override admin/abrirAsignaturaGrado.md.
+    ("abrirAsignaturaGrado", "desasignarProfesorAsignaturaGrado"): "Quitar profesor",
     ("abrirAsignatura", "abrirAsignaturas"): "Volver al listado",
     ("abrirAsignaturas", "crearAsignatura"): "Crear Asignatura",
     ("abrirAsignaturas", "abrirAsignatura"): "Abrir",
@@ -180,11 +183,30 @@ CONTEXTUAL_LABELS = {
     ("abrirGuia", "revocarAprobacionGuia"): "Revocar aprobación",
     ("abrirGuia", "editarSemestreGuia"): "Editar semestre",
     ("abrirGuia", "consultarEstadoGuias"): "Volver al listado de guías",
+    # Panel de Admin (iniciarSesion-wireframe-admin): únicos botones reales,
+    # no derivables del estado destino porque SISTEMA_DISPONIBLE es un hub sin
+    # CU "abrir" propio -- iniciarSesion() es su propio CU canónico.
+    ("iniciarSesion", "abrirUniversidades"): "Universidades",
+    ("iniciarSesion", "abrirAsignaturas"): "Asignaturas",
+    ("iniciarSesion", "abrirMetodologiasDocentes"): "Metodologías docentes",
+    ("iniciarSesion", "abrirProfesores"): "Profesores",
+    ("iniciarSesion", "abrirCursosAcademicos"): "Cursos académicos",
 }
 
 def label(cu, owner_cu=None):
     if owner_cu is not None and (owner_cu, cu) in CONTEXTUAL_LABELS:
         return CONTEXTUAL_LABELS[(owner_cu, cu)]
+    # CU "inseguros" (crear/editar/eliminar/asociar/desasociar/...): su tabla de
+    # navegación refleja el ESTADO DESTINO al que aterrizan (no su propio
+    # wireframe, transitorio). Si ese estado ya tiene un CU canónico (típicamente
+    # un abrir*) con etiqueta real conocida, reusarla en vez de exigir una entrada
+    # duplicada por cada dueño posible -- auditoría 11 ago 2026 (Z.AI/OpenCode),
+    # ver feedback_mockup_etiqueta_literal_boton en memoria.
+    if owner_cu is not None:
+        dst_state = cu_to_dst.get(owner_cu)
+        canonical = state_to_canonical_cu.get(dst_state) if dst_state else None
+        if canonical and canonical != owner_cu and (canonical, cu) in CONTEXTUAL_LABELS:
+            return CONTEXTUAL_LABELS[(canonical, cu)]
     if cu in LABELS:
         return LABELS[cu]
     s = re.sub(r"([A-Z])", r" \1", cu).strip().lower()
@@ -278,7 +300,7 @@ def main(actor):
         state_outgoing.setdefault(src, []).append((dst, cu))
 
     # cu -> estado destino (preferir no-self)
-    global cu_to_dst, detailed_cus, cus_in_actor
+    global cu_to_dst, detailed_cus, cus_in_actor, state_to_canonical_cu
     cu_to_dst = {}
     for src, dst, cu in transitions:
         if cu not in cu_to_dst:
@@ -379,4 +401,5 @@ if __name__ == "__main__":
     detailed_cus = set()
     cus_in_actor = set()
     cu_to_dst = {}
+    state_to_canonical_cu = {}
     main(sys.argv[1])

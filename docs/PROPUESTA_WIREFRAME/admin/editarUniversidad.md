@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
+|[**Volver al listado**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
 |[**Abrir facultades**](abrirFacultades.md)|<sub>abrirFacultades()</sub>|
 
 </div>

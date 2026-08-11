@@ -12,8 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
-|[**Abrir asignatura grado**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
+|[**Volver al listado**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
+|[**Abrir**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
 |[**Abrir sistemas evaluacion**](abrirSistemasEvaluacion.md)|<sub>abrirSistemasEvaluacion()</sub>|
 
 </div>

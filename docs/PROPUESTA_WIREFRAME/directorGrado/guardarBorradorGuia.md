@@ -13,14 +13,14 @@
 |Botón|CdU|
 |---|---|
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
-|[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
-|[**Abrir referencias bibliograficas**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
-|[**Enviar guía a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
-|[**Aprobar guia**](aprobarGuia.md)|<sub>aprobarGuia()</sub>|
-|[**Rechazar guia**](rechazarGuia.md)|<sub>rechazarGuia()</sub>|
-|[**Escalar guia a aprobada**](escalarGuiaAAprobada.md)|<sub>escalarGuiaAAprobada()</sub>|
-|[**Revocar aprobacion guia**](revocarAprobacionGuia.md)|<sub>revocarAprobacionGuia()</sub>|
-|[**Editar semestre guia**](editarSemestreGuia.md)|<sub>editarSemestreGuia()</sub>|
+|[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
+|[**Gestionar bibliografía**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
+|**Volver a mis asignaturas**|<sub>completarGestion() (pendiente)</sub>|
+|[**Enviar a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
+|[**Aprobar**](aprobarGuia.md)|<sub>aprobarGuia()</sub>|
+|[**Rechazar**](rechazarGuia.md)|<sub>rechazarGuia()</sub>|
+|[**Escalar a aprobada**](escalarGuiaAAprobada.md)|<sub>escalarGuiaAAprobada()</sub>|
+|[**Revocar aprobación**](revocarAprobacionGuia.md)|<sub>revocarAprobacionGuia()</sub>|
+|[**Editar semestre**](editarSemestreGuia.md)|<sub>editarSemestreGuia()</sub>|
 
 </div>

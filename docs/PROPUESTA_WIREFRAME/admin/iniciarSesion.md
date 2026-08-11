@@ -1,10 +1,10 @@
-<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
-
 <div align=right>
 
 <sub>Volver: [Al inicio](/README.md) / [inicio de Admin](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)</sub>
 
 </div>
+
+<!-- MANUAL OVERRIDE: el script no sobreescribe este fichero -->
 
 # Admin
 
@@ -15,11 +15,11 @@
 |Botón|CdU|
 |---|---|
 |**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
-|[**Abrir universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
-|[**Abrir asignaturas**](abrirAsignaturas.md)|<sub>abrirAsignaturas()</sub>|
-|[**Abrir metodologias docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
-|[**Abrir profesores**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
-|[**Abrir cursos academicos**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
+|[**Universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
+|[**Asignaturas**](abrirAsignaturas.md)|<sub>abrirAsignaturas()</sub>|
+|[**Metodologías docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
+|[**Profesores**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
+|[**Cursos académicos**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
 |[**Generar guías PDF**](generarGuiasPDF.md)|<sub>generarGuiasPDF()</sub>|
 
 </div>

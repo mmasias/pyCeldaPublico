@@ -12,6 +12,6 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir metodologias docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
+|[**Volver al listado**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
 
 </div>

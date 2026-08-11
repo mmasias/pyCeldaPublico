@@ -12,11 +12,11 @@
 
 |Botón|CdU|
 |---|---|
-|[**Editar grado**](editarGrado.md)|<sub>editarGrado()</sub>|
-|[**Abrir grados**](abrirGrados.md)|<sub>abrirGrados()</sub>|
+|[**Editar**](editarGrado.md)|<sub>editarGrado()</sub>|
+|[**Volver al listado**](abrirGrados.md)|<sub>abrirGrados()</sub>|
 |[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
-|[**Crear asignatura grado**](crearAsignaturaGrado.md)|<sub>crearAsignaturaGrado()</sub>|
-|[**Abrir asignatura grado**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
+|[**Crear AsignaturaGrado**](crearAsignaturaGrado.md)|<sub>crearAsignaturaGrado()</sub>|
+|[**Abrir**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
 |[**Consultar estado de guías**](consultarEstadoGuias.md)|<sub>consultarEstadoGuias()</sub>|
 
 </div>
