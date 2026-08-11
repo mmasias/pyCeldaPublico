@@ -12,7 +12,7 @@
 |---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteAsignaturaGrado/wireframe-advertencia.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteAsignaturaGrado/wireframe-normal.svg)|
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar asignatura grado**](editarAsignaturaGrado.md)|<sub>editarAsignaturaGrado()</sub>|
 |[**Asociar resultado aprendizaje a asignatura grado**](asociarResultadoAprendizajeAAsignaturaGrado.md)|<sub>asociarResultadoAprendizajeAAsignaturaGrado()</sub>|

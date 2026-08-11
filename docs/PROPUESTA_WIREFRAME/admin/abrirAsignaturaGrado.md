@@ -12,7 +12,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaGrado/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Asignar profesor**](asignarProfesorAAsignaturaGrado.md)|<sub>asignarProfesorAAsignaturaGrado()</sub>|
 |**Quitar profesor**|<sub>desasignarProfesorAsignaturaGrado() (pendiente wireframe)</sub>|

@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSemestreGuia/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
 |[**Abrir ponderaciones evaluacion**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|

@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarAsignatura/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
 |[**Abrir asignatura**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|

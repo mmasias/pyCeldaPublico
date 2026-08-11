@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearCursoAcademico/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar curso academico**](editarCursoAcademico.md)|<sub>editarCursoAcademico()</sub>|
 |[**Activar semestre**](activarSemestre.md)|<sub>activarSemestre()</sub>|

@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear metodologia docente**](crearMetodologiaDocente.md)|<sub>crearMetodologiaDocente()</sub>|
 |[**Abrir metodologia docente**](abrirMetodologiaDocente.md)|<sub>abrirMetodologiaDocente()</sub>|

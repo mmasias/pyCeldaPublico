@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirFacultades/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear facultad**](crearFacultad.md)|<sub>crearFacultad()</sub>|
 |[**Abrir facultad**](abrirFacultad.md)|<sub>abrirFacultad()</sub>|

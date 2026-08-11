@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarGrado/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear grado**](crearGrado.md)|<sub>crearGrado()</sub>|
 |[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|

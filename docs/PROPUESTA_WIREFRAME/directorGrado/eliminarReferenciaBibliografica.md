@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear referencia bibliografica**](crearReferenciaBibliografica.md)|<sub>crearReferenciaBibliografica()</sub>|
 |[**Abrir referencia bibliografica**](abrirReferenciaBibliografica.md)|<sub>abrirReferenciaBibliografica()</sub>|

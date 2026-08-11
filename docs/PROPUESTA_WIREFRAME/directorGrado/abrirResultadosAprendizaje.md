@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirResultadosAprendizaje/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear resultado aprendizaje**](crearResultadoAprendizaje.md)|<sub>crearResultadoAprendizaje()</sub>|
 |[**Abrir resultado aprendizaje**](abrirResultadoAprendizaje.md)|<sub>abrirResultadoAprendizaje()</sub>|

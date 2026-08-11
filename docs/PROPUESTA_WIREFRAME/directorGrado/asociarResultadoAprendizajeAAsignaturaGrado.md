@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaGrado/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar asignatura grado**](editarAsignaturaGrado.md)|<sub>editarAsignaturaGrado()</sub>|
 |[**Desasociar resultado aprendizaje asignatura grado**](desasociarResultadoAprendizajeAsignaturaGrado.md)|<sub>desasociarResultadoAprendizajeAsignaturaGrado()</sub>|

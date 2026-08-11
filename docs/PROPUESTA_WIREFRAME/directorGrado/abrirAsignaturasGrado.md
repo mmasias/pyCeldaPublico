@@ -12,7 +12,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturasGrado/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Abrir**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|

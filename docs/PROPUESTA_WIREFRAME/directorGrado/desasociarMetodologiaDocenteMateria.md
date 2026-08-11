@@ -12,7 +12,7 @@
 |---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteMateria/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteMateria/wireframe-confirmacion.svg)|
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Asociar metodologia docente a materia**](asociarMetodologiaDocenteAMateria.md)|<sub>asociarMetodologiaDocenteAMateria()</sub>|
 |[**Editar asociacion metodologia docente materia**](editarAsociacionMetodologiaDocenteMateria.md)|<sub>editarAsociacionMetodologiaDocenteMateria()</sub>|

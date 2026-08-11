@@ -165,7 +165,7 @@ def render_page(actor, cu, outgoing, is_placeholder=False):
             sep = "|" + "|".join(["---"] * len(wireframes)) + "|"
             row = "|" + "|".join(f"![]({svg_path})" for svg_path, _ in wireframes) + "|"
             lines.extend([header, sep, row])
-    lines.extend(["", "|Acción|CdU|", "|---|---|"])
+    lines.extend(["", "|Botón|CdU|", "|---|---|"])
     seen = set()
     for dst, cu_out in outgoing:
         if cu_out == cu:

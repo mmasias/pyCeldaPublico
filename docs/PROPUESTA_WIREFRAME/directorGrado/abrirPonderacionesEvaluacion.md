@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear Ponderación**](crearPonderacionEvaluacion.md)|<sub>crearPonderacionEvaluacion()</sub>|
 |[**Abrir**](abrirPonderacionEvaluacion.md)|<sub>abrirPonderacionEvaluacion()</sub>|

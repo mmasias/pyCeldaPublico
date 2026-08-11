@@ -12,7 +12,7 @@
 |---|---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarGuiasPDF/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarGuiasPDF/wireframe-generada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarGuiasPDF/wireframe-seleccion.svg)|
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
 |[**Abrir universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|

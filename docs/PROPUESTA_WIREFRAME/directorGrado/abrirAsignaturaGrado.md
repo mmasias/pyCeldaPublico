@@ -12,7 +12,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaGrado/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar**](editarAsignaturaGrado.md)|<sub>editarAsignaturaGrado()</sub>|
 |[**Asociar resultado de aprendizaje**](asociarResultadoAprendizajeAAsignaturaGrado.md)|<sub>asociarResultadoAprendizajeAAsignaturaGrado()</sub>|

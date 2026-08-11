@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Abrir guia**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 |[**Notificar guias actualizadas**](notificarGuiasActualizadas.md)|<sub>notificarGuiasActualizadas()</sub>|

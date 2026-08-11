@@ -12,7 +12,7 @@
 |---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarFacultad/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarFacultad/wireframe-confirmacion.svg)|
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear facultad**](crearFacultad.md)|<sub>crearFacultad()</sub>|
 |[**Abrir facultad**](abrirFacultad.md)|<sub>abrirFacultad()</sub>|

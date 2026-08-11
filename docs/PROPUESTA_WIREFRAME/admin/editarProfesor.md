@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarProfesor/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Definir director de grado**](definirDirectorGrado.md)|<sub>definirDirectorGrado()</sub>|
 |[**Quitar director de grado**](quitarDirectorGrado.md)|<sub>quitarDirectorGrado()</sub>|

@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMaterias/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|

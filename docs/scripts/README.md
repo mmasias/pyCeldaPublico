@@ -43,7 +43,7 @@ Cualquier otra página del mismo actor se regenera normalmente. Para retirar la 
 
 ### Tres tipos de celda CdU en las tablas
 
-Cada página generada contiene una tabla `|Acción|CdU|`. La celda CdU admite tres formas distinguibles, cada una comunica una razón distinta al lector:
+Cada página generada contiene una tabla `|Botón|CdU|`. La celda CdU admite tres formas distinguibles, cada una comunica una razón distinta al lector:
 
 | Tipo | Forma | Significado |
 |---|---|---|

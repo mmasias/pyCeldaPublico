@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearProfesor/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar profesor**](editarProfesor.md)|<sub>editarProfesor()</sub>|
 |[**Definir director de grado**](definirDirectorGrado.md)|<sub>definirDirectorGrado()</sub>|

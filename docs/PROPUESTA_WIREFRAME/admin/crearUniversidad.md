@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearUniversidad/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar universidad**](editarUniversidad.md)|<sub>editarUniversidad()</sub>|
 |[**Abrir universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|

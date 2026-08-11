@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar materia**](editarMateria.md)|<sub>editarMateria()</sub>|
 |[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|

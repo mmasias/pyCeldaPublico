@@ -12,7 +12,7 @@
 |---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-exito.svg)|
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Volver a la guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 |**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|

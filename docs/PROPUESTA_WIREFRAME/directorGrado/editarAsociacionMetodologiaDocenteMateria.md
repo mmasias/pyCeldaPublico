@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsociacionMetodologiaDocenteMateria/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Asociar metodologia docente a materia**](asociarMetodologiaDocenteAMateria.md)|<sub>asociarMetodologiaDocenteAMateria()</sub>|
 |[**Desasociar metodologia docente materia**](desasociarMetodologiaDocenteMateria.md)|<sub>desasociarMetodologiaDocenteMateria()</sub>|

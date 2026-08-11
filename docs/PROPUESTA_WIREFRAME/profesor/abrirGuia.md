@@ -12,7 +12,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-profesor.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
 |[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|

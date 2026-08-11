@@ -12,7 +12,7 @@
 |---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarMateria/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarMateria/wireframe-confirmacion.svg)|
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear materia**](crearMateria.md)|<sub>crearMateria()</sub>|
 |[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|

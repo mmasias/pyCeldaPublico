@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarPonderacionEvaluacion/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Crear ponderacion evaluacion**](crearPonderacionEvaluacion.md)|<sub>crearPonderacionEvaluacion()</sub>|
 |[**Abrir ponderacion evaluacion**](abrirPonderacionEvaluacion.md)|<sub>abrirPonderacionEvaluacion()</sub>|

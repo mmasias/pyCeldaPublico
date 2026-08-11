@@ -10,7 +10,7 @@
 
 ![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGrado/wireframe.svg)
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Abrir grados**](abrirGrados.md)|<sub>abrirGrados()</sub>|
 |[**Abrir asignaturas grado**](abrirAsignaturasGrado.md)|<sub>abrirAsignaturasGrado()</sub>|

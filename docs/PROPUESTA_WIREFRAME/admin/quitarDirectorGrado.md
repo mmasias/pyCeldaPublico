@@ -12,7 +12,7 @@
 |---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/quitarDirectorGrado/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/quitarDirectorGrado/wireframe-confirmacion.svg)|
 
-|Acción|CdU|
+|Botón|CdU|
 |---|---|
 |[**Editar profesor**](editarProfesor.md)|<sub>editarProfesor()</sub>|
 |[**Definir director de grado**](definirDirectorGrado.md)|<sub>definirDirectorGrado()</sub>|
