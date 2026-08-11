@@ -83,6 +83,15 @@ CONTEXTUAL_LABELS = {
     ("abrirReferenciaBibliografica", "editarReferenciaBibliografica"): "Editar",
     ("abrirResultadoAprendizaje", "editarResultadoAprendizaje"): "Editar",
     ("notificarGuiasActualizadas", "abrirGuia"): "Abrir",
+    ("abrirPonderacionesEvaluacion", "abrirGuia"): "Volver a la guía",
+    ("abrirPonderacionesEvaluacion", "abrirPonderacionEvaluacion"): "Abrir",
+    ("abrirPonderacionesEvaluacion", "eliminarPonderacionEvaluacion"): "Eliminar",
+    ("abrirPonderacionesEvaluacion", "crearPonderacionEvaluacion"): "Crear Ponderación",
+    ("abrirReferenciasBibliograficas", "abrirGuia"): "Volver a la guía",
+    ("abrirReferenciasBibliograficas", "abrirReferenciaBibliografica"): "Abrir",
+    ("abrirReferenciasBibliograficas", "eliminarReferenciaBibliografica"): "Eliminar",
+    ("abrirReferenciasBibliograficas", "crearReferenciaBibliografica"): "Crear Referencia",
+    ("enviarGuiaARevision", "abrirGuia"): "Volver a la guía",
 }
 
 def label(cu, owner_cu=None):
