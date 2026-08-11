@@ -79,27 +79,10 @@ CONTEXTUAL_LABELS = {
     ("abrirUniversidades", "abrirUniversidad"): "Abrir",
     ("consultarEstadoGuias", "abrirGuia"): "Abrir",
     ("consultarEstadoGuias", "completarGestion"): "Volver al grado",
-    ("aprobarGuia", "abrirGuia"): "Abrir",
-    ("aprobarGuia", "completarGestion"): "Volver al grado",
-    ("rechazarGuia", "abrirGuia"): "Abrir",
-    ("rechazarGuia", "completarGestion"): "Volver al grado",
-    ("escalarGuiaAAprobada", "abrirGuia"): "Abrir",
-    ("escalarGuiaAAprobada", "completarGestion"): "Volver al grado",
-    ("revocarAprobacionGuia", "abrirGuia"): "Abrir",
-    ("revocarAprobacionGuia", "completarGestion"): "Volver al grado",
-    ("reabrirGuiaPorIncidencia", "abrirGuia"): "Abrir",
-    ("reabrirGuiaPorIncidencia", "completarGestion"): "Volver al grado",
-    ("eliminarPonderacionEvaluacion", "crearPonderacionEvaluacion"): "Crear Ponderación",
-    ("eliminarPonderacionEvaluacion", "abrirPonderacionEvaluacion"): "Abrir",
-    ("eliminarPonderacionEvaluacion", "abrirGuia"): "Volver a la guía",
-    ("eliminarReferenciaBibliografica", "crearReferenciaBibliografica"): "Crear Referencia",
-    ("eliminarReferenciaBibliografica", "abrirReferenciaBibliografica"): "Abrir",
-    ("eliminarReferenciaBibliografica", "abrirGuia"): "Volver a la guía",
     ("abrirAsignaturasGrado", "abrirGuia"): "Abrir",
     ("abrirPonderacionEvaluacion", "editarPonderacionEvaluacion"): "Editar",
     ("abrirReferenciaBibliografica", "editarReferenciaBibliografica"): "Editar",
     ("abrirResultadoAprendizaje", "editarResultadoAprendizaje"): "Editar",
-    ("notificarGuiasActualizadas", "abrirGuia"): "Abrir",
     ("abrirPonderacionesEvaluacion", "abrirGuia"): "Volver a la guía",
     ("abrirPonderacionesEvaluacion", "abrirPonderacionEvaluacion"): "Abrir",
     ("abrirPonderacionesEvaluacion", "eliminarPonderacionEvaluacion"): "Eliminar",
@@ -202,6 +185,13 @@ def label(cu, owner_cu=None):
     # un abrir*) con etiqueta real conocida, reusarla en vez de exigir una entrada
     # duplicada por cada dueño posible -- auditoría 11 ago 2026 (Z.AI/OpenCode),
     # ver feedback_mockup_etiqueta_literal_boton en memoria.
+    #
+    # CONTRATO, no implementación (riesgo señalado por Z.AI en discussion #52):
+    # si state_to_canonical_cu elige un CU canónico distinto para un estado ya
+    # cubierto (p.ej. porque entra un CU nuevo a ese estado), TODOS los dueños
+    # que caen aquí por fallback cambian de etiqueta en cascada y en silencio.
+    # Al añadir un CU nuevo a un estado con dueños existentes en fallback,
+    # regenerar los tres actores y diffear antes de comitear.
     if owner_cu is not None:
         dst_state = cu_to_dst.get(owner_cu)
         canonical = state_to_canonical_cu.get(dst_state) if dst_state else None
