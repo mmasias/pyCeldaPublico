@@ -2,7 +2,7 @@
 
 **pyCelda** (**C**atálogo **E**structurado de **L**egajos **D**e **A**signaturas): gestión de guías docentes.
 
-Prototipo navegable en Markdown, organizado por actor. *Si un botón no tiene enlace es porque, en ese papel, no hay permiso para pulsarlo -- restricción intencionada, no un enlace roto.*
+Prototipo navegable en Markdown, organizado por actor.
 
 <div align=center>
 
@@ -12,6 +12,7 @@ Entra, ve sus asignaturas, abre la guía de una de ellas, la edita, la envía a 
 ||Adicionalmente gestiona su grado: las asignaturas y resultados de aprendizaje|Genera el PDF de las guías ya aprobadas.
 
 </div>
+<div align=right><sub>NOTA: Se navega a través de la tabla de la parte inferior. Si un botón no tiene enlace es porque, en ese papel, no hay permiso para pulsarlo -- restricción intencionada, no un enlace roto.</sub></div>
 
 ## Estados de una guía
 
