@@ -12,10 +12,17 @@ left to right direction
 
 actor Admin
 
-' Acceso: sin <<include>> hacia otro CU -- a diferencia de Profesor/DirectorGrado
-' (issue #48/#49/#50), el aterrizaje de Admin (dashboard de SISTEMA_DISPONIBLE)
-' es contenido propio, no reutilizado -- issue #51. Entrada a todo Admin, no
-' solo a los catálogos de este fichero (también a actoresCasosUsoAdminOperativa.puml).
+' Acceso: abrirPanelAdministracion() EXTIENDE a iniciarSesion() -- mismo
+' mecanismo que Profesor/abrirAsignaturasGrado() y DirectorGrado/abrirGrados()
+' (issues #48/#49/#50). Corrección sobre la versión anterior (issue #51): se
+' había modelado como contenido propio de iniciarSesion(), sin CU propio --
+' error, detectado al cerrar el patrón completo de completarGestion() en los
+' tres diagramas de contexto (discussion #47): SISTEMA_DISPONIBLE es también
+' destino de las vueltas desde cada área de catálogo (antes completarGestion()
+' genérico, ver diagramaContextoAdmin.puml), y ese destino necesita nombre
+' propio igual que ASIGNATURAS_GRADO_ABIERTO/GRADOS_ABIERTO ya lo tenían.
+' Entrada a todo Admin, no solo a los catálogos de este fichero (también a
+' actoresCasosUsoAdminOperativa.puml).
 '
 ' iniciarSesion() lo invoca UsuarioNoLogueado, no Admin -- mismo error
 ' sistemático corregido en actoresCasosUsoProfesor.puml: el rol específico
@@ -25,10 +32,13 @@ actor UsuarioNoLogueado
 package Acceso {
   usecase iniciarSesion as "iniciarSesion()"
   usecase cerrarSesion as "cerrarSesion()"
+  usecase abrirPanelAdministracion as "abrirPanelAdministracion()"
 }
 
 UsuarioNoLogueado -- iniciarSesion
 Admin -- cerrarSesion
+Admin -- abrirPanelAdministracion
+abrirPanelAdministracion ..> iniciarSesion : <<extend>>\n(condición: rol == Admin)\n(punto: tras validación exitosa)
 
   package Universidad {
     usecase abrirUniversidades as "abrirUniversidades()"

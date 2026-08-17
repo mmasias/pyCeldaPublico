@@ -15,6 +15,6 @@
 |Botón|CdU|
 |---|---|
 |[**Volver a la guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

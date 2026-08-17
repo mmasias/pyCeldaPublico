@@ -16,6 +16,6 @@
 |---|---|
 |[**Crear Curso Académico**](crearCursoAcademico.md)|<sub>crearCursoAcademico()</sub>|
 |[**Abrir**](abrirCursoAcademico.md)|<sub>abrirCursoAcademico()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir panel administracion**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
 
 </div>

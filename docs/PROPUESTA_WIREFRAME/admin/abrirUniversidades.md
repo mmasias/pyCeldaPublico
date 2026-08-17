@@ -14,6 +14,6 @@
 |---|---|
 |[**Crear Universidad**](crearUniversidad.md)|<sub>crearUniversidad()</sub>|
 |[**Abrir**](abrirUniversidad.md)|<sub>abrirUniversidad()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir panel administracion**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
 
 </div>

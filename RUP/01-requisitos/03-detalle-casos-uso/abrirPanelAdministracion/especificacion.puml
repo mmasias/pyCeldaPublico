@@ -1,0 +1,30 @@
+@startuml abrirPanelAdministracion
+
+skinparam linetype polyline
+
+' Sin parámetro (a diferencia de abrirAsignaturasGrado()/abrirGrados()): Admin
+' ve siempre el mismo panel, sin filtrado por identidad -- un solo actor.
+' Extendido por iniciarSesion() (<<extend>>, condición rol == Admin, ver
+' iniciarSesion/README.md) y target de las vueltas desde cada área de catálogo
+' -- ver diagramaContextoAdmin.puml, antes modeladas como completarGestion()
+' genérico, ahora que el destino tiene nombre propio (mismo patrón que
+' abrirAsignaturasGrado()/abrirGrado() en Profesor/DirectorGrado).
+
+state SISTEMA_DISPONIBLE
+
+SISTEMA_DISPONIBLE -[#green]-> abrirPanelAdministracion
+note on link
+<b>Admin</b> solicita volver al panel de administración
+end note
+
+state abrirPanelAdministracion as "abrirPanelAdministracion()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta panel de administración
+    end note
+}
+
+abrirPanelAdministracion -[#green]-> SISTEMA_DISPONIBLE
+
+@enduml

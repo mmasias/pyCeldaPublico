@@ -18,7 +18,7 @@
 |[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
 |[**Gestionar bibliografía**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
 |[**Guardar borrador**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
-|**Volver a mis asignaturas**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir asignaturas grado**](abrirAsignaturasGrado.md)|<sub>abrirAsignaturasGrado()</sub>|
 |[**Enviar a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 |[**Aprobar**](aprobarGuia.md)|<sub>aprobarGuia()</sub>|
 |[**Rechazar**](rechazarGuia.md)|<sub>rechazarGuia()</sub>|

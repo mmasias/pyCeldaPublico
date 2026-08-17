@@ -14,6 +14,6 @@
 |---|---|
 |[**Abrir**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 |[**Notificar guias actualizadas**](notificarGuiasActualizadas.md)|<sub>notificarGuiasActualizadas()</sub>|
-|**Volver al grado**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

@@ -10,16 +10,16 @@ skinparam linetype polyline
 ' actoresCasosUso{Profesor,DirectorGrado,AdminCatalogos}.puml.
 '
 ' Punto de extensión: "tras validación exitosa" (la rama verde de <<choice>>
-' c, abajo). abrirAsignaturasGrado() y abrirGrados() EXTIENDEN a iniciarSesion()
-' en ese punto -- no lo incluyen. <<include>> es incondicional por definición
-' UML (el caso base SIEMPRE incorpora el incluido); aquí solo se dispara UNA
-' de tres ramas mutuamente excluyentes según el rol que resulte identificado
-' (condición), y iniciarSesion() es completo y tiene sentido sin ninguna
-' extensión -- exactamente la semántica de <<extend>>, no la de <<include>>.
-' Admin no extiende: su contenido (dashboard) es propio de este mismo CU, no
-' de otro -- ninguna extensión se dispara en ese caso, la rama base continúa.
-' Ver actoresCasosUsoProfesor.puml / actoresCasosUsoDirectorGrado.puml para
-' las relaciones <<extend>> con su condición.
+' c, abajo). abrirAsignaturasGrado(), abrirGrados() y abrirPanelAdministracion()
+' EXTIENDEN a iniciarSesion() en ese punto -- no lo incluyen. <<include>> es
+' incondicional por definición UML (el caso base SIEMPRE incorpora el
+' incluido); aquí solo se dispara UNA de tres ramas mutuamente excluyentes
+' según el rol que resulte identificado (condición), y iniciarSesion() es
+' completo y tiene sentido sin ninguna extensión -- exactamente la semántica
+' de <<extend>>, no la de <<include>>. Las tres ramas son simétricas: ningún
+' rol tiene contenido propio embebido aquí.
+' Ver actoresCasosUsoProfesor.puml / actoresCasosUsoDirectorGrado.puml /
+' actoresCasosUsoAdminCatalogos.puml para las relaciones <<extend>> con su condición.
 
 state SESION_CERRADA
 state ASIGNATURAS_GRADO_ABIERTO_SALIDA as "ASIGNATURAS_GRADO_ABIERTO"

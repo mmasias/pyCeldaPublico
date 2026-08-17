@@ -13,6 +13,6 @@
 |Botón|CdU|
 |---|---|
 |[**Abrir**](abrirMateria.md)|<sub>abrirMateria()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

@@ -8,9 +8,9 @@ El artefacto hace de **puente entre requisitos y análisis**: su valor no es sol
 
 ## Navegadores por actor
 
-- [Admin](admin/iniciarSesion.md) — 58 páginas (56 con SVG, 1 placeholder, 1 override manual).
-- [Director de grado](directorGrado/iniciarSesion.md) — 43 páginas (42 con SVG, 1 placeholder, 1 override manual).
-- [Profesor](profesor/iniciarSesion.md) — 15 páginas (15 con SVG, 1 override manual). Resuelve [issue #42](https://github.com/mmasias/pyCelda/issues/42): `iniciarSesion()` no tiene ficha de detalle propia en el catálogo (el listado de AsignaturaGrado es efecto lateral del login, no un CU independiente), así que su página reutiliza como override manual el wireframe de `abrirAsignaturasGrado` -- CU cuya ficha pertenece a DirectorGrado, con la salvedad de que el botón "Abrir" de ese wireframe se reasigna a `abrirGuia()` (Profesor edita la Guía, no configura la AsignaturaGrado como haría DirectorGrado con `abrirAsignaturaGrado()`).
+- [Admin](admin/iniciarSesion.md) — 59 páginas (56 con SVG, 3 override manual). Incluye [`abrirPanelAdministracion.md`](admin/abrirPanelAdministracion.md), nueva al planificar Análisis (discussion [#47](https://github.com/mmasias/pyCelda/discussions/47)) -- ver [README de fase](/RUP/01-requisitos/03-detalle-casos-uso/README.md).
+- [Director de grado](directorGrado/iniciarSesion.md) — 43 páginas (39 con SVG, 4 override manual).
+- [Profesor](profesor/iniciarSesion.md) — 16 páginas (14 con SVG, 2 override manual). Resuelve [issue #42](https://github.com/mmasias/pyCelda/issues/42): `iniciarSesion()` no tiene ficha de detalle propia en el catálogo (el listado de AsignaturaGrado es efecto lateral del login, no un CU independiente), así que su página reutiliza como override manual el wireframe de `abrirAsignaturasGrado` -- CU cuya ficha pertenece a DirectorGrado, con la salvedad de que el botón "Abrir" de ese wireframe se reasigna a `abrirGuia()` (Profesor edita la Guía, no configura la AsignaturaGrado como haría DirectorGrado con `abrirAsignaturaGrado()`). Gana también [`abrirAsignaturasGrado.md`](profesor/abrirAsignaturasGrado.md) (override manual, misma variante filtrada): destino real de `GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO`, antes `completarGestion()` genérico sin página propia.
 
 ## Cómo se genera
 
@@ -21,6 +21,20 @@ python3 docs/scripts/generar_mockup_navegable.py Admin
 python3 docs/scripts/generar_mockup_navegable.py Profesor
 python3 docs/scripts/generar_mockup_navegable.py DirectorGrado
 ```
+
+### Verificación tras retocar un wireframe ya mockeado
+
+`CONTEXTUAL_LABELS` (diccionario en `generar_mockup_navegable.py`) transcribe a mano el texto literal de los botones de cada `wireframes.puml` -- es una segunda fuente de verdad, no derivada del propio `.puml`. El riesgo real no es tocar el diccionario (eso ya se corre a mano), es tocar el wireframe de un CU que un lote posterior retoca sin que nadie recuerde actualizar la entrada correspondiente -- ya ha ocurrido cinco veces en el catálogo (`abrirProfesor`, `abrirMateria`, `abrirGrado`, `abrirAsignaturaGrado`, `abrirGuia`, todos retocados desde un lote posterior al que los cerró).
+
+**Regla**: si un lote retoca un `wireframes.puml` de un CU que ya tiene página en el mockup, correr antes de comitear:
+
+```bash
+python3 docs/scripts/verificar_contextual_labels.py
+```
+
+No elimina la doble fuente de verdad (aparcado hasta que el proyecto entre en fase de Diseño, ver discussion #52) -- solo evita que la deriva quede en silencio hasta la próxima auditoría manual.
+
+Si el CU retocado tiene página propagada al repo hermano público (`github.com/mmasias/pyCeldaPublico`, subconjunto no sensible del proyecto -- expone justo este mockup), regenerar también la página correspondiente allí: copiar el fichero cambiado y reinyectar el breadcrumb propio del público (nunca copia ciega, machacaría esa adaptación), luego auditar enlaces/imágenes internos del público antes de comitear. Commit y push del público van siempre después de verificar el privado, nunca en paralelo.
 
 ### Protección de ediciones manuales
 

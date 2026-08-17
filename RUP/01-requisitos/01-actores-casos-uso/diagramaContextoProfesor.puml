@@ -52,9 +52,12 @@ REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 ' guardarBorradorGuia(): persiste y sigue editando (self-loop)
 GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()
 
-' completarGestion(): sale sin garantía de persistencia de lo que quedó en memoria
-' (transición de navegación no catalogada, no un caso de uso)
-GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : completarGestion()
+' abrirAsignaturasGrado(): vuelve al listado propio -- lo que quedó en memoria sin
+' persistir (ver guardarBorradorGuia()/enviarGuiaARevision()) no se garantiza guardado.
+' Antes modelado como completarGestion() genérico (placeholder de "vuelve al punto
+' de partida"); el destino ya tenía nombre propio -- corregido al planificar
+' Análisis (discussion #47), mismo criterio en los tres diagramas de contexto.
+GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
 
 ' enviarGuiaARevision(): persiste, cambia el estado de dominio de la Guia a
 ' EnRevision (ver guia.puml) y cierra la sesión de edición -- ya no es turno del profesor.

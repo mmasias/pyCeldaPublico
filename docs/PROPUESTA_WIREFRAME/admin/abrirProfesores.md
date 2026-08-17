@@ -15,6 +15,6 @@
 |[**Crear Profesor**](crearProfesor.md)|<sub>crearProfesor()</sub>|
 |[**Abrir**](abrirProfesor.md)|<sub>abrirProfesor()</sub>|
 |[**Eliminar**](eliminarProfesor.md)|<sub>eliminarProfesor()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir panel administracion**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
 
 </div>

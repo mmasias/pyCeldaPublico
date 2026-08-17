@@ -15,6 +15,6 @@
 |[**Crear Metodología Docente**](crearMetodologiaDocente.md)|<sub>crearMetodologiaDocente()</sub>|
 |[**Abrir**](abrirMetodologiaDocente.md)|<sub>abrirMetodologiaDocente()</sub>|
 |[**Eliminar**](eliminarMetodologiaDocente.md)|<sub>eliminarMetodologiaDocente()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir panel administracion**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
 
 </div>

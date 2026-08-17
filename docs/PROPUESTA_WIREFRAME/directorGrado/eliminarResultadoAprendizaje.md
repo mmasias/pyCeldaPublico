@@ -16,6 +16,6 @@
 |---|---|
 |[**Crear Resultado de Aprendizaje**](crearResultadoAprendizaje.md)|<sub>crearResultadoAprendizaje()</sub>|
 |[**Abrir**](abrirResultadoAprendizaje.md)|<sub>abrirResultadoAprendizaje()</sub>|
-|**Completar gestión**|<sub>completarGestion() (pendiente)</sub>|
+|[**Abrir grado**](abrirGrado.md)|<sub>abrirGrado()</sub>|
 
 </div>

@@ -28,5 +28,9 @@ state asignarProfesorAAsignaturaGrado as "asignarProfesorAAsignaturaGrado()" {
 }
 
 asignarProfesorAAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+note on link
+lista actualizada; si existe una Guia del CursoAcademico activo para esta AsignaturaGrado
+con Guia--Profesor vacío, se rellena con este Profesor -- si ya tenía profesor, no se toca
+end note
 
 @enduml

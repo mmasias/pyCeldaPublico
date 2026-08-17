@@ -44,12 +44,16 @@ SISTEMA_DISPONIBLE --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
 
 SISTEMA_DISPONIBLE --> SISTEMA_DISPONIBLE : generarGuiasPDF()
 
+' Las cinco vueltas a SISTEMA_DISPONIBLE de este fichero usan
+' abrirPanelAdministracion() -- antes completarGestion() genérico, corregido
+' al planificar Análisis (discussion #47): son listados, no formularios, y el
+' destino ya tiene CU propio (ver abrirPanelAdministracion/README.md).
 ' Universidad -- sin eliminarUniversidad(): única excepción del catálogo
 UNIVERSIDADES_ABIERTO --> UNIVERSIDAD_ABIERTO : crearUniversidad()
 UNIVERSIDADES_ABIERTO --> UNIVERSIDAD_ABIERTO : abrirUniversidad()
 UNIVERSIDAD_ABIERTO --> UNIVERSIDAD_ABIERTO : editarUniversidad()
 UNIVERSIDAD_ABIERTO --> UNIVERSIDADES_ABIERTO : abrirUniversidades()
-UNIVERSIDADES_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+UNIVERSIDADES_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 ' Facultad no es catálogo institucional (a diferencia de Asignatura/MetodologiaDocente):
 ' es composición real de Universidad (Universidad *-- Facultad), se navega desde dentro de ella
@@ -111,21 +115,24 @@ GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : consultarEstadoGuias()
 GUIAS_DEL_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
 GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : reabrirGuiaPorIncidencia()
-GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : completarGestion()
+' abrirGrado(): mismo patrón que las cuatro vueltas equivalentes de
+' diagramaContextoDirectorGrado.puml -- listado, no formulario, destino ya con
+' nombre propio. Corregido al planificar Análisis (discussion #47).
+GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 
 ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : crearAsignatura()
 ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : abrirAsignatura()
 ASIGNATURAS_ABIERTO --> ASIGNATURAS_ABIERTO : eliminarAsignatura()
 ASIGNATURA_ABIERTO --> ASIGNATURA_ABIERTO : editarAsignatura()
 ASIGNATURA_ABIERTO --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
-ASIGNATURAS_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+ASIGNATURAS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : crearMetodologiaDocente()
 METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : abrirMetodologiaDocente()
 METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()
 METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()
 METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
-METODOLOGIAS_DOCENTES_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+METODOLOGIAS_DOCENTES_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 ' definirDirectorGrado()/quitarDirectorGrado(): rol sobre un Profesor ya abierto, no entidad propia
 PROFESORES_ABIERTO --> PROFESOR_ABIERTO : crearProfesor()
@@ -135,7 +142,7 @@ PROFESOR_ABIERTO --> PROFESOR_ABIERTO : editarProfesor()
 PROFESOR_ABIERTO --> PROFESOR_ABIERTO : definirDirectorGrado()
 PROFESOR_ABIERTO --> PROFESOR_ABIERTO : quitarDirectorGrado()
 PROFESOR_ABIERTO --> PROFESORES_ABIERTO : abrirProfesores()
-PROFESORES_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+PROFESORES_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 SISTEMAS_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : crearSistemaEvaluacion()
 SISTEMAS_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : abrirSistemaEvaluacion()
@@ -156,6 +163,6 @@ CURSOS_ACADEMICOS_ABIERTO --> CURSOS_ACADEMICOS_ABIERTO : activarCursoAcademico(
 CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : editarCursoAcademico()
 CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : activarSemestre()
 CURSO_ACADEMICO_ABIERTO --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
-CURSOS_ACADEMICOS_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+CURSOS_ACADEMICOS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 @enduml

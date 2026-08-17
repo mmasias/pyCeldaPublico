@@ -51,7 +51,9 @@ REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirR
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 
 GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()
-GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : completarGestion()
+' abrirAsignaturasGrado(): heredado de Profesor, misma corrección (antes
+' completarGestion() genérico, ver diagramaContextoProfesor.puml) -- discussion #47
+GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
 
 ' enviarGuiaARevision() heredado de Profesor sin cambios -- misma asimetria real
 ' (ver especificacion.puml del caso de uso): solo el envio con exito sale de aqui,
@@ -72,7 +74,12 @@ GRADO_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
 ' abrirAsignaturasGrado(): nuevo, propio de DirectorGrado -- ve sus propias
 ' AsignaturaGrado (con el profesorado que imparte) dentro de ESTE grado concreto
 GRADO_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
-ASIGNATURAS_GRADO_ABIERTO --> GRADO_ABIERTO : completarGestion()
+' Las cuatro vueltas a GRADO_ABIERTO de este fichero (aquí y en Materia,
+' ResultadoAprendizaje, revisión de guías) usan abrirGrado(), no completarGestion():
+' son listados, no formularios -- nada en memoria que arriesgar al volver, mismo
+' criterio que ya usaba ASIGNATURA_GRADO_ABIERTO --> GRADO_ABIERTO más abajo.
+' Corregido al planificar Análisis (discussion #47).
+ASIGNATURAS_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 
 ' --- Configuracion del grado: Materia (CRUD es de Admin, DirectorGrado solo asocia) ---
 ' abrirMaterias()/abrirMateria() reutilizados de Admin, misma logica que abrirGrado()
@@ -84,7 +91,7 @@ MATERIA_ABIERTO --> MATERIA_ABIERTO : editarAsociacionMetodologiaDocenteMateria(
 MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarResultadoAprendizajeAMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarResultadoAprendizajeAMateria()
 MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
-MATERIAS_ABIERTO --> GRADO_ABIERTO : completarGestion()
+MATERIAS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 
 ' --- AsignaturaGrado: refinamiento de detalle, reutiliza abrirAsignaturaGrado() de Admin.
 ' Igual que en Admin: dos entradas (atajo plano desde GRADO_ABIERTO, agrupado por
@@ -107,7 +114,7 @@ RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultad
 RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : eliminarResultadoAprendizaje()
 RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()
 RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
-RESULTADOS_APRENDIZAJE_ABIERTO --> GRADO_ABIERTO : completarGestion()
+RESULTADOS_APRENDIZAJE_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 
 ' --- Revision de guias del grado: la entrada hace el mismo papel que un abrirXs()
 ' plural. Reutiliza GUIA_ABIERTO (heredado de Profesor) para revisar contenido antes
@@ -131,6 +138,6 @@ GUIA_ABIERTO --> GUIA_ABIERTO : editarSemestreGuia()
 ' no sobre una en particular
 GUIAS_DEL_GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : notificarGuiasActualizadas()
 
-GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : completarGestion()
+GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 
 @enduml

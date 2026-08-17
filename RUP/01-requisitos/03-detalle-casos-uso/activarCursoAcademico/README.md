@@ -43,8 +43,12 @@ Acción de conjunto sobre el listado (self-loop en `CURSOS_ACADEMICOS_ABIERTO`),
 
 El botón `[Activar]` en el listado ya refleja esto (ver [`abrirCursosAcademicos()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirCursosAcademicos/README.md)): no aparece en cursos anteriores al penúltimo, siempre bloqueados, así que el `<<choice>>` de este caso de uso solo se dispara desde dos puntos de entrada reales. El wireframe de "activado" ilustra el caso simple (activar el último, `2027-2028`, desactiva automáticamente `2026-2027`, que pasa a ser el nuevo penúltimo Inactivo). El wireframe de "bloqueada" ilustra el otro punto de entrada real -- reactivar `2026-2027` (el penúltimo) después de que `2027-2028` (el último) ya acumuló actividad registrada -- en vez de un intento sobre un curso anterior al penúltimo, que ya no tiene botón que pulsar. No existe `desactivarCursoAcademico()` suelto: activar siempre implica desactivar el otro.
 
+**Efecto colateral más relevante del caso de uso, cerrado al planificar Análisis (discussion [#47](https://github.com/mmasias/pyCelda/discussions/47))**: activar instancia una `Guia` nueva por cada `AsignaturaGrado` de la institución, con o sin `Profesor` asignado. Cada `Guia` clona `PonderacionEvaluacion`/`ReferenciaBibliografica`/`semestre` de la del curso anterior para la misma `AsignaturaGrado` si existe (si no, nace vacía con `semestre = AsignaturaGrado.semestreDefault`); nace siempre en `Borrador`. Contrato completo, incluido el efecto derivado sobre `asignarProfesorAAsignaturaGrado()`, en el [modelo del dominio](/RUP/00-modelo-del-dominio/README.md).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `CURSOS_ACADEMICOS_ABIERTO --> CURSOS_ACADEMICOS_ABIERTO : activarCursoAcademico()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `CursoAcademico`
 - Modelo del dominio -- `CursoAcademico.estado`: regla de elegibilidad de activación completa, `<<choice>>` al inicio del caso de uso
+- [Discussion #47](https://github.com/mmasias/pyCelda/discussions/47) -- planificación de Análisis; origen del cierre del contrato de clonado de `Guia`
+- [`asignarProfesorAAsignaturaGrado()`](/RUP/01-requisitos/03-detalle-casos-uso/asignarProfesorAAsignaturaGrado/README.md) -- puede terminar de rellenar el `Profesor` de una `Guia` que nació sin él
