@@ -36,6 +36,12 @@ No elimina la doble fuente de verdad (aparcado hasta que el proyecto entre en fa
 
 Si el CU retocado tiene página propagada al repo hermano público (`github.com/mmasias/pyCeldaPublico`, subconjunto no sensible del proyecto -- expone justo este mockup), regenerar también la página correspondiente allí: copiar el fichero cambiado y reinyectar el breadcrumb propio del público (nunca copia ciega, machacaría esa adaptación), luego auditar enlaces/imágenes internos del público antes de comitear. Commit y push del público van siempre después de verificar el privado, nunca en paralelo.
 
+### Limitación conocida: crearX()/asociarX() muestran la etiqueta de aterrizaje, no su propio botón
+
+`crearX()`/`asociarX()` no tienen estado propio en el diagrama de contexto -- son una arista (transición), no un nodo. Al generar su página, el script no tiene un estado del que leer "qué transiciones salen de aquí", así que reutiliza la tabla del estado de aterrizaje (`cu_to_dst[cu]`) completa -- típicamente el self-loop de `editarX()`. Resultado: la tabla de `crearReferenciaBibliografica.md` (por ejemplo) muestra la fila "Editar" enlazando a `editarReferenciaBibliografica.md`, aunque el único botón dibujado en su propio wireframe sea `[Crear]`. El enlace es correcto -- ahí aterrizas de verdad -- solo el texto de la fila describe el CU invocado (`editarReferenciaBibliografica()`) en vez del botón pulsado.
+
+**No es un hallazgo a corregir ahora, mismo criterio que la doble fuente de verdad de `CONTEXTUAL_LABELS`** (ver arriba, discussion #52): la fuente de verdad -- `especificacion.puml`/`README.md` de cada `crearX()` -- ya deja esto sin ambigüedad (la nota de la transición de salida cita el CU real, `editarX()`, junto al wireframe con el botón real). El coste es cosmético mientras el mockup sea evidencia de Requisitos, no UI real; aparcado hasta fase de Diseño, mismo disparador ya acordado. Patrón sistémico (confirmado en `crearFacultad.md`, `crearPonderacionEvaluacion.md`), no aislado -- documentado aquí para no redescubrirlo como sorpresa en una sesión futura.
+
 ### Protección de ediciones manuales
 
 Cualquier página puede marcarse con `<!-- MANUAL OVERRIDE -->` para que el script no la sobrescriba al regenerar. Útil cuando se aplica la convención de "botones visibles sin enlace" u otros ajustes que el script no sabe producir. Mecanismo completo y tipos de celda CdU documentados en [`docs/scripts/README.md`](../scripts/README.md#generar_mockup_navegablepy).
