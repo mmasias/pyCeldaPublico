@@ -36,16 +36,16 @@
     Bibliografía:
     {#
         <b>Tipo | <b>Referencia
-        Basica | Sedgewick, R. (2008) Introduction to programming in Java...
-        Basica | Streib, J. (2014) Guide to Java, A concise introduction...
+        Básica | Sedgewick, R. (2008) Introduction to programming in Java...
+        Básica | Streib, J. (2014) Guide to Java, A concise introduction...
         Complementaria | Serbat, A (2016) Fundamentos de Programación con Java...
         Complementaria | Sedgewick R. Algorithms, 4th Edition Ed. Pearson
         Complementaria | Martin, R. (2011) The Clean Coder Ed. Prentice Hall
-        WebsReferencia | http://www.java.com/es/
-        WebsReferencia | http://docs.oracle.com/javase/8/
-        WebsReferencia | https://developers.google.com/blockly/
-        WebsReferencia | http://introcs.cs.princeton.edu/java/home/
-        OtrasFuentes | https://github.com/mmasias/prg1
+        Webs de referencia | http://www.java.com/es/
+        Webs de referencia | http://docs.oracle.com/javase/8/
+        Webs de referencia | https://developers.google.com/blockly/
+        Webs de referencia | http://introcs.cs.princeton.edu/java/home/
+        Otras fuentes de consulta | https://github.com/mmasias/prg1
     }
     [ <b>Gestionar bibliografía</b> ]
     ====
@@ -90,16 +90,16 @@
     Bibliografía:
     {#
         <b>Tipo | <b>Referencia
-        Basica | Sedgewick, R. (2008) Introduction to programming in Java...
-        Basica | Streib, J. (2014) Guide to Java, A concise introduction...
+        Básica | Sedgewick, R. (2008) Introduction to programming in Java...
+        Básica | Streib, J. (2014) Guide to Java, A concise introduction...
         Complementaria | Serbat, A (2016) Fundamentos de Programación con Java...
         Complementaria | Sedgewick R. Algorithms, 4th Edition Ed. Pearson
         Complementaria | Martin, R. (2011) The Clean Coder Ed. Prentice Hall
-        WebsReferencia | http://www.java.com/es/
-        WebsReferencia | http://docs.oracle.com/javase/8/
-        WebsReferencia | https://developers.google.com/blockly/
-        WebsReferencia | http://introcs.cs.princeton.edu/java/home/
-        OtrasFuentes | https://github.com/mmasias/prg1
+        Webs de referencia | http://www.java.com/es/
+        Webs de referencia | http://docs.oracle.com/javase/8/
+        Webs de referencia | https://developers.google.com/blockly/
+        Webs de referencia | http://introcs.cs.princeton.edu/java/home/
+        Otras fuentes de consulta | https://github.com/mmasias/prg1
     }
     ====
     {[Aprobar] | [Rechazar] | [Editar semestre] | [Volver al listado de guías]}
