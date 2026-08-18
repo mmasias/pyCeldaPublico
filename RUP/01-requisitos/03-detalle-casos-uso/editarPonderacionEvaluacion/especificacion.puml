@@ -19,7 +19,7 @@ state editarPonderacionEvaluacion as "editarPonderacionEvaluacion()" {
     note on link
     <b>Sistema</b> presenta datos actuales de la ponderación
     <b>Sistema</b> presenta selección de SistemaEvaluacion de la Materia
-    <b>Sistema</b> muestra rango y margen disponible del SistemaEvaluacion seleccionado
+    <b>Sistema</b> muestra el máximo por instrumento del SistemaEvaluacion seleccionado
     <b>Sistema</b> permite solicitar guardar
     end note
 
@@ -38,7 +38,7 @@ state editarPonderacionEvaluacion as "editarPonderacionEvaluacion()" {
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de rango inválido para el SistemaEvaluacion seleccionado
+    <b>Sistema</b> presenta mensaje de máximo superado para el SistemaEvaluacion seleccionado
     end note
 }
 
@@ -49,7 +49,7 @@ end note
 
 editarPonderacionEvaluacion -[#red]-> PONDERACION_EVALUACION_ABIERTO_SALIDA
 note on link
-suma de ponderaciones del SistemaEvaluacion fuera de rango, sin cambios
+ponderación supera el máximo del SistemaEvaluacion, sin cambios
 end note
 
 @enduml

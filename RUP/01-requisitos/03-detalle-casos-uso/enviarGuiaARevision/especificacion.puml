@@ -13,18 +13,26 @@ end note
 
 state enviarGuiaARevision as "enviarGuiaARevision()" {
 
-    state c <<choice>>
+    state c1 <<choice>>
+    state c2 <<choice>>
 
-    [*] -[#green]-> c
+    [*] -[#green]-> c1
 
-    c -[#green]-> [*]
+    c1 -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta error de ítems sin guardar
+    end note
+
+    c1 -[#green]-> c2
+
+    c2 -[#green]-> [*]
     note on link
     <b>Sistema</b> presenta guía enviada a revisión
     end note
 
-    c -[#red]-> [*]
+    c2 -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta error de suma de ponderaciones
+    <b>Sistema</b> presenta error de rango o suma de ponderaciones
     end note
 }
 

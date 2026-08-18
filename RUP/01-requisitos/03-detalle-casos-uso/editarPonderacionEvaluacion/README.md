@@ -41,7 +41,7 @@
 
 Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver modelo del dominio (`DirectorGrado --|> Profesor`).
 
-Misma mecánica de `<<choice>>` que [`crearPonderacionEvaluacion()`](../crearPonderacionEvaluacion/README.md), cerrada en la discussion [#38](https://github.com/mmasias/pyCelda/discussions/38), con una diferencia de destino: aquí la rama roja no saca al actor de la `PonderacionEvaluacion` -- vuelve al mismo `PONDERACION_EVALUACION_ABIERTO` ("sin cambios"), mismo mecanismo que usa [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) al devolver su rama roja al mismo estado de origen. El cálculo de "ya asignado" excluye el propio valor anterior de esta `PonderacionEvaluacion` (se está reemplazando, no sumando aparte).
+Misma mecánica de `<<choice>>` que [`crearPonderacionEvaluacion()`](../crearPonderacionEvaluacion/README.md) -- **corregida posteriormente**: valida el **máximo puntual** (el valor introducido, por sí solo, contra `ponderacionMaxima` del `SistemaEvaluacion`), no la suma de hermanas. Sin exclusión del valor anterior -- ya no hace falta, no hay suma de la que excluirlo. Diferencia de destino respecto a `crearPonderacionEvaluacion()`: aquí la rama roja no saca al actor de la `PonderacionEvaluacion` -- vuelve al mismo `PONDERACION_EVALUACION_ABIERTO` ("sin cambios"), mismo mecanismo que usa [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) al devolver su rama roja al mismo estado de origen.
 
 `SistemaEvaluacion` es editable igual que `descripcion`/`ponderacion` -- no hay ninguna razón de dominio para fijarlo tras la creación, mismo criterio de "todo editable" que [`editarResultadoAprendizaje()`](../editarResultadoAprendizaje/README.md).
 
