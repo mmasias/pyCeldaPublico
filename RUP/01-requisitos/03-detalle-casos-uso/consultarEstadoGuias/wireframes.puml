@@ -2,11 +2,27 @@
 {
     <b>GUÍAS DEL GRADO -- GII</b>
     ====
-    {#
-        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | .
-        Programación I | Dr. Manuel Masías | EnRevision | [Abrir]
-    }
+    [ <b>Notificar guías actualizadas</b> ]
     ====
-    [ <b>Volver al grado</b> ]
+    {#
+        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | <b>Última actualización | .
+        Programación I | Dr. Manuel Masías, Dr. Pablo Herrero | [ En revisión ] ámbar | Administración, hace dos días | [Abrir]
+    }
+    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
+    <i>Estado como badge de color (issue 280): 4 estados de guia.puml, etiqueta legible ("En revisión", no "EnRevision"), color aditivo -- el texto se queda. Salt no pinta fondos, se anota el color. Profesorado en vivo desde AsignaturaGrado; "Administración" en Última actualización = volvió a EnRevision por cambio de profesorado del Admin (issue 254)</i>
+}
+@endsalt
+
+@startsalt consultarEstadoGuias-wireframe-admin
+{
+    <b>GUÍAS DEL GRADO -- GII (curso actual)</b>
+    ====
+    {#
+        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | <b>Última actualización | . | .
+        Programación I | Dr. Manuel Masías | [ Aprobada ] verde | Administración, hace dos días | [Previsualizar] | [Descargar PDF]
+        Cálculo I | Dra. Paz Gutiérrez | [ Borrador ] neutro | Profesor, hace cinco días | [Previsualizar] | [Descargar PDF] !!disabled
+    }
+    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
+    <i>Estado como badge de color (issue 280). Vista de Admin (issue 262): sin [Abrir] (abrirGuia() da 403 al Admin), sin [Notificar]. [Descargar PDF] deshabilitado con motivo cuando la guia no tiene PDF generado (fechaGeneracionPDF nula). [Previsualizar] funciona en cualquier estado.</i>
 }
 @endsalt

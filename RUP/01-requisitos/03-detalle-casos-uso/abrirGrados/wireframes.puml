@@ -18,8 +18,8 @@
     <b>MIS GRADOS</b>
     ====
     {#
-        <b>Código | <b>Nombre | <b>Estado | .
-        GII | Grado en Ingeniería Informática | Vigente | [Abrir]
+        <b>Nombre | <b>Código | <b>Estado | .
+        Grado en Ingeniería Informática | GII | Vigente | [Abrir]
     }
 }
 @endsalt

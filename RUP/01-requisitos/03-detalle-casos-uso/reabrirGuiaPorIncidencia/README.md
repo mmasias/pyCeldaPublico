@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -38,7 +38,7 @@
 
 </div>
 
-Cuarta de las cuatro transiciones de reapertura desde `Aprobada` (ver README del modelo de dominio), única a cargo de `Admin`. Destino `EnRevision`, nunca `Borrador`: `Admin` no tiene autoridad para asignar trabajo al `Profesor` directamente -- eso es privilegio exclusivo de `DirectorGrado` (ver [`revocarAprobacionGuia()`](../revocarAprobacionGuia/README.md)). `Admin` solo puede escalar, no asignar: la guía aterriza en la bandeja de decisión del director, que es quien decide si hace falta corrección -- si la hace falta, el director rechaza (`EnRevision -> Rechazada`, [`rechazarGuia()`](../rechazarGuia/README.md)) y desde ahí el `Profesor` reenvía.
+Cuarta de las cuatro transiciones de reapertura desde `Aprobada` (ver [README del modelo de dominio](/RUP/00-modelo-del-dominio/README.md)), única a cargo de `Admin`. Destino `EnRevision`, nunca `Borrador`: `Admin` no tiene autoridad para asignar trabajo al `Profesor` directamente -- eso es privilegio exclusivo de `DirectorGrado` (ver [`revocarAprobacionGuia()`](../revocarAprobacionGuia/README.md)). `Admin` solo puede escalar, no asignar: la guía aterriza en la bandeja de decisión del director, que es quien decide si hace falta corrección -- si la hace falta, el director rechaza (`EnRevision -> Rechazada`, [`rechazarGuia()`](../rechazarGuia/README.md)) y desde ahí el `Profesor` reenvía.
 
 Reutiliza el mismo hilo `GUIAS_DEL_GRADO_ABIERTO`/`GUIA_ABIERTO` que usa `DirectorGrado` para revisión (`consultarEstadoGuias()`/`abrirGuia()`), no el de edición propia del profesor -- `Admin` no gestiona ni revisa contenido, solo necesita localizar la guía con incidencia (issue [#6](https://github.com/mmasias/pyCelda/issues/6)).
 
@@ -50,7 +50,7 @@ Wireframe con `GII__IYA003` mostrada hipotéticamente `Aprobada` -- estado real 
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : reabrirGuiaPorIncidencia()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `Guia`
-- Diagrama de estados de Guia -- `Aprobada -> EnRevision` (`Admin`)
-- Modelo del dominio -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`, entrada "Reapertura desde Aprobada"
+- [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `Aprobada -> EnRevision` (`Admin`)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`, entrada "Reapertura desde Aprobada"
 - [Issue #6](https://github.com/mmasias/pyCelda/issues/6) -- cierre del hilo de navegación reutilizado (`consultarEstadoGuias()`/`abrirGuia()`)
 - [Discussion #44](https://github.com/mmasias/pyCelda/discussions/44) -- cierre de L9, puntos 1 y 4

@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -44,10 +44,12 @@ Retocado el wireframe al construir L4 (mismo criterio que `abrirProfesor()` en L
 
 **Retocado de nuevo al construir L5**: `MATERIA_ABIERTO` es también la segunda entrada de [`abrirAsignaturaGrado()`](../abrirAsignaturaGrado/README.md) (ver [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml): `MATERIA_ABIERTO --> ASIGNATURA_GRADO_ABIERTO`), a diferencia de `SistemasEvaluacion` esta transición no lleva a un listado propio sino directo al detalle de una `AsignaturaGrado` concreta -- sin una mini-tabla aquí no habría forma de elegir cuál abrir. Solo `[Abrir]`, sin `[Eliminar]`/`+ Crear`: esas acciones son self-loops de `GRADO_ABIERTO` (ver retoque de [`abrirGrado()`](../abrirGrado/README.md)), no de `MATERIA_ABIERTO`.
 
+**Retocado el wireframe al construir el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227))**: `MATERIA_ABIERTO` gana la sección "Actividades formativas de la materia" -- una tabla con las 10 actividades formativas siempre presentes (`horas` de la materia y `Σ horas` de sus `AsignaturaGrado`), con dos entradas nuevas: `[Editar reparto]` -> [`editarActividadesFormativasMateria()`](../editarActividadesFormativasMateria/README.md) (self-loop) y el medidor de la regla `AfM = Σ AfAdM` compuesto desde aquí ([`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md), self-loop informativo, no bloquea). Sin `+ Asociar`/`[Quitar]`: las 10 filas se autopueblan a 0 al crear la `Materia`, no se asocian ni se desasocian. No se toca la especificación de `abrirMateria()`.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()`
 - [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `Materia`
 - [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- reutilización del caso de uso por `DirectorGrado`
-- Modelo del dominio -- `Materia{nombre}`, `Grado *-- Materia`; Materia real de referencia (mezcla asignaturas Básicas y Obligatorias)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia{nombre}`, `Grado *-- Materia`; Materia real de referencia (mezcla asignaturas Básicas y Obligatorias)

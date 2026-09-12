@@ -1,0 +1,12 @@
+@startsalt importarPlanificacionDocenteDeGuiaHermana-wireframe
+{
+    <b>IMPORTAR PLANIFICACIÓN DOCENTE -- Programación I (GII)</b>
+    ====
+    <b>Importar desde:</b>
+    ^GIOI / IYA003 -- Informática (aprobada 04/09/2026, 30 sesiones)^
+    --
+    <color:red>Esto reemplazará las 25 sesiones actuales de esta guía, incluidas las que hayas añadido a mano. Las sesiones importadas se renumeran 1..N.</color>
+    ~~
+    {[Importar planificación docente]}
+}
+@endsalt

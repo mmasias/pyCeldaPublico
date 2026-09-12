@@ -26,6 +26,17 @@ package "Estructura curricular" {
   class MetodologiaMateria {
     descripcionPropia
   }
+  class ActividadFormativa {
+    codigo
+    nombre
+  }
+  class ActividadFormativaMateria {
+    horas
+  }
+  class ActividadFormativaAsignaturaGrado {
+    horas
+    porcentajePresencialidad
+  }
   class Asignatura {
     codigo
     nombre
@@ -41,6 +52,7 @@ package "Estructura curricular" {
     ects
     semestreDefault
     contenido
+    requisitosPrevios
     estado
   }
 
@@ -67,6 +79,11 @@ package "Estructura curricular" {
   Materia o-- MetodologiaDocente
   (Materia, MetodologiaDocente) .. MetodologiaMateria
   Universidad *-- MetodologiaDocente
+  Universidad *-- ActividadFormativa
+  Materia o-- ActividadFormativa
+  (Materia, ActividadFormativa) .. ActividadFormativaMateria
+  AsignaturaGrado o-- ActividadFormativa
+  (AsignaturaGrado, ActividadFormativa) .. ActividadFormativaAsignaturaGrado
   (Grado, Asignatura) .. AsignaturaGrado
   Grado *-d- ResultadoAprendizaje
   Materia o-u- ResultadoAprendizaje
@@ -75,12 +92,19 @@ package "Estructura curricular" {
   AsignaturaGrado --> AsignaturaGrado : <sub>requiere</sub>
   AsignaturaGrado -[hidden]r- Requisito
   (AsignaturaGrado, AsignaturaGrado) .. Requisito
+  note on link
+    AsignaturaGrado.requisitosPrevios (texto plano, nullable) es lo que
+    hoy renderiza la guia docente en vivo y edita el DirectorGrado (#259,
+    item 2 de #217). La malla estructural Requisito{tipo} queda modelada
+    sin construir -- mismo regimen que CursoAcademico (#222).
+  end note
   Universidad -- CursoAcademico
 }
 
 package "Guía docente" {
   class Guia {
     semestre
+    contenido
     estado
     fechaCreacion
     fechaUltimaModificacion
@@ -110,6 +134,16 @@ package "Guía docente" {
   }
 
   Guia *-- ReferenciaBibliografica
+
+  class PlanificacionDocente
+  class Sesion {
+    numero
+    tipo
+    descripcion
+  }
+
+  Guia *-- PlanificacionDocente
+  PlanificacionDocente *-- Sesion
 }
 
 package "Personas y roles" {
@@ -118,7 +152,9 @@ package "Personas y roles" {
     nombre
     email
   }
-  class Admin
+  class Admin {
+    email
+  }
   class DirectorGrado
 
   Profesor -u-|> Actor
@@ -130,5 +166,14 @@ package "Personas y roles" {
 }
 
 Guia -- Profesor
+note on link
+  Quien impartio esa guia. Se materializa al aprobar la Guia
+  (Guia.aprobar / escalarAAprobada re-derivan de AsignaturaGrado -- Profesor)
+  y se re-captura en cada aprobacion de la guia activa. Entre un cambio
+  de plantilla del Admin y la siguiente aprobacion, la app lee
+  AsignaturaGrado -- Profesor en vivo y el PDF lee esta copia.
+  Con CursoAcademico (#222) las guias archivadas quedan congeladas.
+  Issue #254 / discussion #255.
+end note
 
 @enduml

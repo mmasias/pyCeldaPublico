@@ -1,0 +1,54 @@
+@startuml generarPlanificacionDocenteGenerica
+
+skinparam linetype polyline
+
+state PLANIFICACION_DOCENTE_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
+
+PLANIFICACION_DOCENTE_ABIERTO -[#green]-> generarPlanificacionDocenteGenerica
+note on link
+<b>Profesor</b> solicita generar una planificación docente genérica
+end note
+
+state generarPlanificacionDocenteGenerica as "generarPlanificacionDocenteGenerica()" {
+
+    state c <<choice>>
+    state " " as ConfirmandoGeneracion
+
+    [*] -[#green]-> c
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo: la planificación docente ya tiene sesiones
+    end note
+
+    c -[#green]-> ConfirmandoGeneracion
+    note on link
+    <b>Sistema</b> muestra el número de sesiones que se crearán (el mínimo de la guía)
+    <b>Sistema</b> permite solicitar confirmar/cancelar la generación
+    end note
+
+    ConfirmandoGeneracion -[#green]-> [*]
+    note on link
+    <b>Profesor</b> solicita confirmar la generación
+    end note
+
+    ConfirmandoGeneracion -[#blue]-> [*]
+    note on link
+    <b>Profesor</b> solicita cancelar la generación
+    end note
+}
+
+generarPlanificacionDocenteGenerica -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+crea tantas Sesion genéricas como el mínimo de la guía (CLASE_TEORICA, sin descripción), numeradas 1..N y vinculadas
+end note
+
+generarPlanificacionDocenteGenerica -[#blue]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+generarPlanificacionDocenteGenerica -[#red]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+
+@enduml

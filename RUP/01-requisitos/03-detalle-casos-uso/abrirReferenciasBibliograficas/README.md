@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -38,15 +38,18 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver modelo del dominio (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
 
 **Dos entradas, un solo retorno**, mismo patrón que [`abrirPonderacionesEvaluacion()`](../abrirPonderacionesEvaluacion/README.md): desde `GUIA_ABIERTO` y desde `REFERENCIA_BIBLIOGRAFICA_ABIERTO` (vuelta desde el detalle, mismo verbo plural reutilizado). La salida hacia `GUIA_ABIERTO` reutiliza [`abrirGuia()`](../abrirGuia/README.md).
 
-Diez referencias reales de `GII__IYA003`, aportadas por el usuario en la discussion [#39](https://github.com/mmasias/pyCelda/discussions/39) (no estaban en el seed, a diferencia de `PonderacionEvaluacion`): dos `Basica`, tres `Complementaria`, cuatro `WebsReferencia`, una `OtrasFuentes` -- confirma que el enum de cuatro categorías del modelo de dominio cierra bien con el corpus real, incluida la nomenclatura exacta de la cuarta sección ("OTRAS FUENTES DE CONSULTA" en la guía real). El wireframe muestra el `tipo` con su forma legible ("Básica", "Complementaria", "Webs de referencia", "Otras fuentes de consulta"), no el literal del enum -- corregido, mismas cuatro secciones que el corpus real. `referencia` se muestra tal cual la aportó el usuario, sin normalizar (ISBN ausente, año dentro o fuera de la referencia, URL directa según el caso) -- mismo criterio documentado en el modelo del dominio.
+Diez referencias reales de `GII__IYA003`, aportadas por el usuario en la discussion [#39](https://github.com/mmasias/pyCelda/discussions/39) (no estaban en el seed, a diferencia de `PonderacionEvaluacion`): dos `Basica`, tres `Complementaria`, cuatro `WebsReferencia`, una `OtrasFuentes` -- confirma que el enum de cuatro categorías del modelo de dominio cierra bien con el corpus real, incluida la nomenclatura exacta de la cuarta sección ("OTRAS FUENTES DE CONSULTA" en la guía real). El wireframe muestra el `tipo` con su forma legible ("Básica", "Complementaria", "Webs de referencia", "Otras fuentes de consulta"), no el literal del enum -- corregido, mismas cuatro secciones que el corpus real. `referencia` se muestra tal cual la aportó el usuario, sin normalizar (ISBN ausente, año dentro o fuera de la referencia, URL directa según el caso) -- mismo criterio documentado en el [modelo del dominio](/RUP/00-modelo-del-dominio/README.md).
+
+**Retocado al construir el issue [#184](https://github.com/mmasias/pyCelda/issues/184)**: el wireframe gana el botón `[Importar de asignatura hermana]` junto a `[+ Crear Referencia]` -- dispara [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md), self-loop sobre `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO` (reemplaza al completo la bibliografía con la de una `Guia` `Aprobada` de una `AsignaturaGrado` hermana). El botón se ofrece condicionalmente: ausente si ninguna hermana tiene guía aprobada. El aviso del recuento a reemplazar tiene aquí las N referencias a la vista -- por eso el caso de uso vive en esta pantalla y no en [`abrirGuia()`](../abrirGuia/README.md).
 
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()`, `REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()`
 - [actoresCasosUsoProfesor.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoProfesor.puml) -- catálogo de casos de uso de `Profesor` sobre `ReferenciaBibliografica`
-- Modelo del dominio -- `Guia *-- ReferenciaBibliografica`, `tipo` enum cerrado de 4 valores
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Guia *-- ReferenciaBibliografica`, `tipo` enum cerrado de 4 valores
 - [Discussion #39](https://github.com/mmasias/pyCelda/discussions/39) -- origen de los datos reales usados en este wireframe
+- [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) -- caso de uso disparado desde esta pantalla (issue [#184](https://github.com/mmasias/pyCelda/issues/184))

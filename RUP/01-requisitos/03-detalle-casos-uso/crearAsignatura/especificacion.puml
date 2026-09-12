@@ -13,24 +13,42 @@ end note
 state crearAsignatura as "crearAsignatura()" {
 
     state " " as SolicitandoDatos
+    state c <<choice>>
 
     [*] -[#green]-> SolicitandoDatos
     note on link
     <b>Sistema</b> presenta solicitud de datos mínimos de la Asignatura
+    <b>Sistema</b> muestra código
     <b>Sistema</b> muestra nombre
     <b>Sistema</b> permite solicitar crear
     end note
 
-    SolicitandoDatos -[#green]-> [*]
+    SolicitandoDatos -[#green]-> c
     note on link
+    <b>Admin</b> introduce código
     <b>Admin</b> introduce nombre
     <b>Admin</b> solicita crear
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta Asignatura creada
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de código ya existente
     end note
 }
 
 crearAsignatura -[#green]-> ASIGNATURA_ABIERTO
 note on link
 editarAsignatura()
+end note
+
+crearAsignatura -[#red]-> ASIGNATURAS_ABIERTO
+note on link
+código ya existente (issue #181), sin crear
 end note
 
 @enduml

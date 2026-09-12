@@ -7,7 +7,7 @@ state GUIAS_DEL_GRADO_ABIERTO_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
 
 GRADO_ABIERTO -[#green]-> consultarEstadoGuias
 note on link
-<b>DirectorGrado</b> solicita consultar estado de las Guias
+<b>DirectorGrado</b>/<b>Admin</b> solicita consultar estado de las Guias
 end note
 
 state consultarEstadoGuias as "consultarEstadoGuias()" {

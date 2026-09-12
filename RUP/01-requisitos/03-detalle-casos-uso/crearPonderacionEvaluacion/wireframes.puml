@@ -1,13 +1,13 @@
 @startsalt crearPonderacionEvaluacion-wireframe-formulario
 {
-    <b>CREAR PONDERACIÓN</b>
+    <b>CREAR INSTRUMENTO</b>
     ====
     <b>Programación I -- GII</b>
     --
     {
         <b>Sistema de evaluación (*):</b>
         ^Evaluación continua^
-        <i>Máximo por instrumento: 60%</i>
+        <i>Ponderación: mayor que 0, hasta 60% (máximo por instrumento)</i>
         <b>Descripción (*):</b>
         "Prácticas de laboratorio                          "
         <b>Ponderación (*):</b>
@@ -22,7 +22,7 @@
 
 @startsalt crearPonderacionEvaluacion-wireframe-error
 {
-    <b>CREAR PONDERACIÓN</b>
+    <b>CREAR INSTRUMENTO</b>
     ====
     <b>Programación I -- GII</b>
     --
@@ -32,7 +32,7 @@
     {
         <b>Sistema de evaluación (*):</b>
         ^Evaluación continua^
-        <i>Máximo por instrumento: 60%</i>
+        <i>Ponderación: mayor que 0, hasta 60% (máximo por instrumento)</i>
         <b>Descripción (*):</b>
         "Prácticas de laboratorio                          "
         <b>Ponderación (*):</b>

@@ -9,14 +9,18 @@ left to right direction
 
 actor Profesor
 
-' Acceso: abrirAsignaturasGrado() EXTIENDE a iniciarSesion() -- no lo incluye.
-' CU reutilizado de DirectorGrado (issue #48/#49), no un CU nuevo. Sin
-' asociación directa Profesor--abrirAsignaturasGrado: se dispara solo como
-' extensión condicional, no es un caso de uso que el profesor invoque por su
-' cuenta. <<include>> es incondicional por definición UML (el caso base
-' siempre incorpora el incluido); aquí solo se dispara si el rol resuelto es
-' Profesor, una de tres ramas mutuamente excluyentes -- semántica de
-' <<extend>>, no de <<include>> (issue de corrección posterior a #48/#49).
+' Acceso: abrirInicio() EXTIENDE a iniciarSesion() -- no lo incluye (discussion
+' #274, antes lo hacía abrirAsignaturasGrado() directamente). abrirInicio() es
+' primitiva de navegación (no cuenta en el catálogo de 102) que <<include>>
+' abrirAsignaturasGrado() (variante Profesor, "Mis guías") y abrirGrados()
+' (variante DirectorGrado, "Mis grados") -- esa inclusión SÍ es incondicional:
+' el hub incorpora las dos secciones siempre, la vacuidad por rol es un
+' resultado de datos, no una rama. Sin asociación directa
+' Profesor--abrirAsignaturasGrado: se dispara solo como <<include>> del hub.
+' <<extend>> (no <<include>>) para abrirInicio ..> iniciarSesion: solo se
+' dispara UNA de dos ramas según el rol resuelto (abrirInicio para
+' Profesor/DirectorGrado, abrirPanelAdministracion para Admin), y
+' iniciarSesion() es completo sin extensión.
 '
 ' iniciarSesion() lo invoca UsuarioNoLogueado, no Profesor -- error sistemático
 ' de la literatura RUP: el rol "Profesor" solo existe DESPUÉS de que las
@@ -26,12 +30,14 @@ actor UsuarioNoLogueado
 package Acceso {
   usecase iniciarSesion as "iniciarSesion()"
   usecase cerrarSesion as "cerrarSesion()"
+  usecase abrirInicio as "abrirInicio()"
   usecase abrirAsignaturasGrado as "abrirAsignaturasGrado()"
 }
 
 UsuarioNoLogueado -- iniciarSesion
 Profesor -- cerrarSesion
-abrirAsignaturasGrado ..> iniciarSesion : <<extend>>\n(condición: rol == Profesor)\n(punto: tras validación exitosa)
+abrirInicio ..> iniciarSesion : <<extend>>\n(condición: rol in {Profesor, DirectorGrado})\n(punto: tras validación exitosa)
+abrirInicio ..> abrirAsignaturasGrado : <<include>>\n(sección "Mis guías")
 
 ' Las cuatro cajas son todas "Guía docente" -- sin wrapper exterior:
 ' agruparlas en un único package bloquea el layout mariposa, PlantUML deja
@@ -57,10 +63,21 @@ package ReferenciaBibliografica {
   usecase abrirReferenciaBibliografica as "abrirReferenciaBibliografica()"
   usecase editarReferenciaBibliografica as "editarReferenciaBibliografica()"
   usecase eliminarReferenciaBibliografica as "eliminarReferenciaBibliografica()"
+  usecase importarBibliografiaDeGuiaHermana as "importarBibliografiaDeGuiaHermana()"
 }
 
-package PDF {
+package "Planificacion docente" {
+  usecase abrirPlanificacionDocente as "abrirPlanificacionDocente()"
+  usecase crearSesion as "crearSesion()"
+  usecase editarSesion as "editarSesion()"
+  usecase eliminarSesion as "eliminarSesion()"
+  usecase importarPlanificacionDocenteDeGuiaHermana as "importarPlanificacionDocenteDeGuiaHermana()"
+  usecase generarPlanificacionDocenteGenerica as "generarPlanificacionDocenteGenerica()"
+}
+
+package "Documento de la guía" {
   usecase descargarGuiaPDF as "descargarGuiaPDF()"
+  usecase previsualizarGuia as "previsualizarGuia()"
 }
 
 abrirGuia -- Profesor
@@ -68,6 +85,7 @@ guardarBorradorGuia -- Profesor
 enviarGuiaARevision -- Profesor
 
 Profesor -- descargarGuiaPDF
+Profesor -- previsualizarGuia
 
 abrirPonderacionesEvaluacion -- Profesor
 crearPonderacionEvaluacion -- Profesor
@@ -80,5 +98,13 @@ Profesor -- crearReferenciaBibliografica
 Profesor -- abrirReferenciaBibliografica
 Profesor -- editarReferenciaBibliografica
 Profesor -- eliminarReferenciaBibliografica
+Profesor -- importarBibliografiaDeGuiaHermana
+
+Profesor -- abrirPlanificacionDocente
+Profesor -- crearSesion
+Profesor -- editarSesion
+Profesor -- eliminarSesion
+Profesor -- importarPlanificacionDocenteDeGuiaHermana
+Profesor -- generarPlanificacionDocenteGenerica
 
 @enduml

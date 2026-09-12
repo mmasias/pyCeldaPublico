@@ -1,0 +1,24 @@
+@startsalt abrirInicio-wireframe
+{
+    <b>INICIO</b>
+    ====
+    <b>Mis guías</b>
+    Manual del profesor
+    {#
+    <b>Asignatura                          | <b>Grado                          | <b>Carácter    |<b>Estado    | .
+    Programación I                         | Grado en Ingeniería Informática    | Básica         |Borrador     | [Abrir guía]
+    Ingeniería de Software I               | Grado en Ingeniería Informática    | Obligatoria    |Aprobada     | [Abrir guía]
+    Estructuras de datos y algoritmos I    | Grado en Ingeniería Informática    | Obligatoria    |En revisión  | [Abrir guía]
+    }
+    <i>Filas ordenadas por cuatrimestre -> curso -> nombre -> grado (planificación del profesor), aunque esas columnas no se muestran (issue 292 -- Curso+Cuatrimestre adyacentes cargaban la tabla).</i>
+    <i>"Manual del profesor" (issue 321): enlace real a una página externa (el manual de usuario publicado, fuera de la aplicación), se abre en una pestaña nueva -- salt no distingue un enlace de texto plano, en la pantalla real es un hipervínculo subrayado.</i>
+    ====
+    <b>Mis grados</b>
+    {#
+    <b>Nombre                          | <b>Código | <b>Estado | .
+    Grado en Ingeniería Informática    | GII      | Vigente   | [Abrir]
+    }
+    ====
+    [ Cerrar sesión ]
+}
+@endsalt

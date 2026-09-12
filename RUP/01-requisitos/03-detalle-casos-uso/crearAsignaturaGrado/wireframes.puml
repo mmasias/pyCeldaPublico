@@ -5,6 +5,8 @@
     <b>Grado en Ingeniería Informática</b>
     --
     {
+        <b>Materia (*):</b>
+        ^Programación^
         <b>Asignatura (*):</b>
         ^Programación I^
         <b>Curso (*):</b>

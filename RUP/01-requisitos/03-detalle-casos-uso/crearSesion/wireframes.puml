@@ -1,0 +1,19 @@
+@startsalt crearSesion-wireframe-formulario
+{
+    <b>CREAR SESIÓN</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    {
+        <b>Sesión número:</b> 6 (automático)
+        <b>Tipo (*):</b>
+        ^Clase Teórica^Clase Práctica^Clase Teórico/Práctica^Clase Laboratorio^Evaluación Continua^Evaluación Parcial^
+        <b>Descripción (*):</b>
+        "Tema eeee                                          "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

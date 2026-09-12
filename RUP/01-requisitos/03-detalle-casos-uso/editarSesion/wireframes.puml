@@ -1,0 +1,18 @@
+@startsalt editarSesion-wireframe-formulario
+{
+    <b>EDITAR SESIÓN 3</b>
+    ====
+    <b>Programación I -- GII</b>
+    --
+    {
+        <b>Tipo (*):</b>
+        ^Clase Teórica^Clase Práctica^Clase Teórico/Práctica^Clase Laboratorio^Evaluación Continua^Evaluación Parcial^
+        <b>Descripción (*):</b>
+        "Temas aaa bbb                                      "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

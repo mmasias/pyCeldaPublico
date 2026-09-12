@@ -1,0 +1,49 @@
+@startuml editarActividadesFormativasAsignaturaGrado
+
+skinparam linetype polyline
+
+state ASIGNATURA_GRADO_ABIERTO
+state ASIGNATURA_GRADO_ABIERTO_SALIDA as "ASIGNATURA_GRADO_ABIERTO"
+
+ASIGNATURA_GRADO_ABIERTO -[#green]-> editarActividadesFormativasAsignaturaGrado
+note on link
+<b>DirectorGrado</b> solicita editar las actividades formativas de la AsignaturaGrado
+end note
+
+state editarActividadesFormativasAsignaturaGrado as "editarActividadesFormativasAsignaturaGrado()" {
+
+    state " " as EditandoReparto
+    state c <<choice>>
+
+    [*] -[#green]-> EditandoReparto
+    note on link
+    <b>Sistema</b> presenta las 10 actividades formativas con sus horas y porcentaje de presencialidad actuales
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoReparto -[#green]-> c
+    note on link
+    <b>DirectorGrado</b> introduce las horas de cada actividad formativa
+    <b>DirectorGrado</b> introduce el porcentaje de presencialidad de cada actividad formativa
+    <b>DirectorGrado</b> solicita guardar
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta el reparto guardado
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de valores no válidos (horas negativas o presencialidad fuera de 0-100)
+    end note
+}
+
+editarActividadesFormativasAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+
+editarActividadesFormativasAsignaturaGrado -[#red]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+note on link
+algún valor no válido, no se guarda nada
+end note
+
+@enduml

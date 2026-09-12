@@ -1,0 +1,37 @@
+@startuml crearSesion
+
+skinparam linetype polyline
+
+state PLANIFICACION_DOCENTE_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
+
+PLANIFICACION_DOCENTE_ABIERTO -[#green]-> crearSesion
+note on link
+<b>Profesor</b> solicita crear Sesion de la Planificación docente
+end note
+
+state crearSesion as "crearSesion()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos de la sesión
+    <b>Sistema</b> presenta selección de tipo
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Profesor</b> selecciona tipo
+    <b>Profesor</b> introduce descripción
+    <b>Profesor</b> solicita crear
+    end note
+}
+
+crearSesion -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+sesión creada con el siguiente número correlativo, listado actualizado
+end note
+
+@enduml

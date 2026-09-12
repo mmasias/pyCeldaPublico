@@ -1,0 +1,23 @@
+@startsalt editarActividadesFormativasAsignaturaGrado-wireframe
+{
+    <b>EDITAR ACTIVIDADES FORMATIVAS -- ASIGNATURA</b>
+    ====
+    <b>Programación I</b> (Programación)
+    --
+    {#
+        <b>Actividad formativa</b>          | <b>Horas</b> | <b>% presencialidad</b>
+        Clases expositivas                  | "30  "       | "100 "
+        Clases prácticas                    | "15  "       | "100 "
+        Clases prácticas (laboratorio)      | "10  "       | "100 "
+        Seminarios y talleres               | "0   "       | "0   "
+        Supervisión de actividades          | "2   "       | "50  "
+        Tutorías (individual / en grupo)    | "3   "       | "50  "
+        Preparación de clases               | "0   "       | "0   "
+        Estudio personal y lecturas         | "45  "       | "0   "
+        Elaboración de trabajos             | "20  "       | "0   "
+        Trabajo individual en campus virtual| "0   "       | "0   "
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt

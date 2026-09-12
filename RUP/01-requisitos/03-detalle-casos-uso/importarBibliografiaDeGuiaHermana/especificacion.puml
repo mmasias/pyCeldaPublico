@@ -1,0 +1,45 @@
+@startuml importarBibliografiaDeGuiaHermana
+
+skinparam linetype polyline
+
+state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
+state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO_SALIDA as "REFERENCIAS_BIBLIOGRAFICAS_ABIERTO"
+
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO -[#green]-> importarBibliografiaDeGuiaHermana
+note on link
+<b>Profesor</b> solicita importar bibliografía de una asignatura hermana
+end note
+
+state importarBibliografiaDeGuiaHermana as "importarBibliografiaDeGuiaHermana()" {
+
+    state c <<choice>>
+    state " " as SolicitandoOrigen
+
+    [*] -[#green]-> c
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo: ninguna asignatura hermana tiene guía aprobada
+    end note
+
+    c -[#green]-> SolicitandoOrigen
+    note on link
+    <b>Sistema</b> presenta las guías aprobadas de asignaturas hermanas
+    <b>Sistema</b> muestra el número de referencias que se reemplazarán
+    end note
+
+    SolicitandoOrigen -[#green]-> [*]
+    note on link
+    <b>Profesor</b> selecciona la guía origen
+    <b>Profesor</b> solicita importar
+    end note
+}
+
+importarBibliografiaDeGuiaHermana -[#green]-> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO_SALIDA
+note on link
+reemplaza la bibliografía; si la guía estaba Aprobada, pasa a Borrador
+end note
+
+importarBibliografiaDeGuiaHermana -[#red]-> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO_SALIDA
+
+@enduml

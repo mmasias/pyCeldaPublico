@@ -1,0 +1,39 @@
+@startsalt abrirPlanificacionDocente-wireframe
+{
+    <b>PLANIFICACIÓN DOCENTE -- Programación I (GII)</b>
+    ====
+    <b>Leyenda:</b> [ celeste ] Clase teórica   [ verde ] Clase práctica / de laboratorio   [ amarillo ] Clase teórico/práctica
+    ~~
+    {#
+        <b># | <b>Tipo | <b>Descripción | . | .
+        1 | CLASE_TEORICA <&caret-right> celeste | Tema aaaa | [Editar] | [Eliminar]
+        2 | CLASE_PRACTICA <&caret-right> verde | Temas aaa bbb | [Editar] | [Eliminar]
+        3 | CLASE_LABORATORIO <&caret-right> verde | Temas ccc | [Editar] | [Eliminar]
+        4 | CLASE_TEORICO_PRACTICA <&caret-right> amarillo | Temas ddd | [Editar] | [Eliminar]
+        5 | EVALUACION_CONTINUA <&caret-right> sin fondo | Temas aaa bbb ccc | [Editar] | [Eliminar]
+    }
+    <i>El fondo de cada fila deriva de Sesion.tipo (leyenda del SigHor original); PlantUML/salt no pinta fondos de celda, se anota el color aquí.</i>
+    ~~
+    <color:red><b>Planificación docente: 5 sesiones (mínimo 25) (faltan 20)</b></color>
+    ====
+    [ <b>+ Crear Sesión</b> ] | [ <b>Importar de asignatura hermana</b> ]
+    ====
+    {[Volver a la guía] | [Mis asignaturas]}
+}
+@endsalt
+
+@startsalt abrirPlanificacionDocente-wireframe-vacia
+{
+    <b>PLANIFICACIÓN DOCENTE -- Programación I (GII)</b>
+    ====
+    <b>Leyenda:</b> [ celeste ] Clase teórica   [ verde ] Clase práctica / de laboratorio   [ amarillo ] Clase teórico/práctica
+    ~~
+    <i>Todavía no hay sesiones en esta planificación docente.</i>
+    ~~
+    <color:red><b>Planificación docente: 0 sesiones (mínimo 25) (faltan 25)</b></color>
+    ====
+    [ <b>+ Crear Sesión</b> ] | [ <b>Crear 25 sesiones genéricas</b> ] | [ <b>Importar de asignatura hermana</b> ]
+    ====
+    {[Volver a la guía] | [Mis asignaturas]}
+}
+@endsalt

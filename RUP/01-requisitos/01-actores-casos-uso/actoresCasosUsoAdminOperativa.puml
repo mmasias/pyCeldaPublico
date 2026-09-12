@@ -60,10 +60,17 @@ package Revision {
   usecase consultarEstadoGuias as "consultarEstadoGuias()"
 }
 
-package PDF {
+package "Documento de la guía" {
   usecase generarGuiasPDF as "generarGuiasPDF()"
   usecase reabrirGuiaPorIncidencia as "reabrirGuiaPorIncidencia()"
   usecase descargarGuiaPDF as "descargarGuiaPDF()"
+  usecase previsualizarGuia as "previsualizarGuia()"
+}
+
+' issue #308 -- sin CRUD: CopiaSeguridad no es entidad de modeloDominio.puml,
+' es un diagnóstico de infraestructura (manifiesto de backups fuera de la BD).
+package "Copias de seguridad" {
+  usecase consultarCopiasSeguridad as "consultarCopiasSeguridad()"
 }
 
 abrirSistemasEvaluacion -- Admin
@@ -98,6 +105,9 @@ Admin --- abrirGuia
 
 Admin -- generarGuiasPDF
 Admin -- descargarGuiaPDF
+Admin -- previsualizarGuia
 Admin -- reabrirGuiaPorIncidencia
+
+Admin -- consultarCopiasSeguridad
 
 @enduml

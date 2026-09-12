@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -45,4 +45,4 @@ Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIAS_ABIERTO --> MATERIAS_ABIERTO : eliminarMateria()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `Materia`
-- Modelo del dominio -- `Materia *-- AsignaturaGrado` (composición sin ventana de orfandad, origen de la regla de bloqueo); README, "Cambiar el reparto de Materia... de un Grado implica un Grado nuevo... ni Materia ni ResultadoAprendizaje necesitan estado propio"
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia *-- AsignaturaGrado` (composición sin ventana de orfandad, origen de la regla de bloqueo); README, "Cambiar el reparto de Materia... de un Grado implica un Grado nuevo... ni Materia ni ResultadoAprendizaje necesitan estado propio"

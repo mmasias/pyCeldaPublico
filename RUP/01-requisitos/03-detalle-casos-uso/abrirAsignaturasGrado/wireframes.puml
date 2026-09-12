@@ -4,12 +4,15 @@
     ====
     {#
     <b>Asignatura                          | <b>Materia    | <b>Curso  | <b>Carácter | <b>Profesorado      |<b>Estado| .
-    Programación I                         | Programación  | 1         | Básica | Dr. Manuel Masías        |Borrador| [Abrir]
-    Estructuras de datos y algoritmos I    | Programación  | 2         | Obligatoria | Dr. Manuel Masías   |En revisión| [Abrir]
-    Ingeniería de Software I               | IdSw          | 3         | Obligatoria | Dr. Manuel Masías   |Aprobada| [Abrir]
-    Redes de Ordenadores                   | Redes         | 2         | Obligatoria | Dr. Mariano Benito Hoz |Rechazada| [Abrir]
+    Programación I                         | Programación  | 1         | Básica | Dr. Manuel Masías        |[ Borrador ] neutro| [Abrir]
+    Estructuras de datos y algoritmos I    | Programación  | 2         | Obligatoria | Dr. Manuel Masías   |[ En revisión ] ámbar| [Abrir]
+    Redes de Ordenadores                   | Redes         | 2         | Obligatoria | Dr. Mariano Benito Hoz |[ Rechazada ] rojo| [Abrir]
+    Ingeniería de Software I               | IdSw          | 3         | Obligatoria | Dr. Manuel Masías   |[ Aprobada ] verde| [Abrir]
 
     }
+    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
+    <i>Estado como badge de color (issue 280): 4 estados de guia.puml, etiqueta legible, color aditivo -- el texto se queda. Salt no pinta fondos, se anota el color. Variante DirectorGrado (AsignaturasGrado.tsx), listado por-grado que el director escanea igual que consultarEstadoGuias().</i>
+    <i>Orden curso -> cuatrimestre -> nombre: vista del director dentro de un grado (issue 290).</i>
 }
 @endsalt
 
@@ -18,11 +21,14 @@
     <b>MIS ASIGNATURAS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
     ====
     {#
-    <b>Asignatura                          | <b>Materia    | <b>Curso  | <b>Carácter |<b>Estado| .
-    Programación I                         | Programación  | 1         | Básica |Borrador| [Abrir]
-    Estructuras de datos y algoritmos I    | Programación  | 2         | Obligatoria |En revisión| [Abrir]
-    Ingeniería de Software I               | IdSw          | 3         | Obligatoria |Aprobada| [Abrir]
+    <b>Asignatura                          | <b>Grado                          | <b>Carácter |<b>Estado| .
+    Programación I                         | Grado en Ingeniería Informática    | Básica |[ Borrador ] neutro| [Abrir]
+    Ingeniería de Software I               | Grado en Ingeniería Informática    | Obligatoria |[ Aprobada ] verde| [Abrir]
+    Estructuras de datos y algoritmos I    | Grado en Ingeniería Informática    | Obligatoria |[ En revisión ] ámbar| [Abrir]
 
     }
+    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
+    <i>Estado como badge de color (issue 280): 4 estados de guia.puml, etiqueta legible, color aditivo -- el texto se queda. Salt no pinta fondos, se anota el color. Variante Profesor de abrirAsignaturasGrado(), la que compone abrirInicio() y la pantalla /mis-asignaturas-grado.</i>
+    <i>Filas ordenadas por cuatrimestre -> curso -> nombre -> grado (planificación del profesor), aunque esas columnas no se muestran (issue 292).</i>
 }
 @endsalt

@@ -1,0 +1,23 @@
+@startuml abrirPlanificacionDocente
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> abrirPlanificacionDocente
+note on link
+<b>Profesor</b> solicita abrir Planificación docente
+end note
+
+state abrirPlanificacionDocente as "abrirPlanificacionDocente()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de Sesion de la Planificación docente de la Guia
+    end note
+}
+
+abrirPlanificacionDocente -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+
+@enduml

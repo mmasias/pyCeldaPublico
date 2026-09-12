@@ -15,6 +15,7 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
 
     state c1 <<choice>>
     state c2 <<choice>>
+    state c3 <<choice>>
 
     [*] -[#green]-> c1
 
@@ -25,14 +26,21 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
 
     c1 -[#green]-> c2
 
-    c2 -[#green]-> [*]
+    c2 -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta error de rango o suma de ponderaciones
+    end note
+
+    c2 -[#green]-> c3
+
+    c3 -[#green]-> [*]
     note on link
     <b>Sistema</b> presenta guía enviada a revisión
     end note
 
-    c2 -[#red]-> [*]
+    c3 -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta error de rango o suma de ponderaciones
+    <b>Sistema</b> presenta error de planificación docente incompleta
     end note
 }
 

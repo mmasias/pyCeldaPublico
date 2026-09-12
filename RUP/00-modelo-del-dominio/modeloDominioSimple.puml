@@ -11,6 +11,9 @@ package "Estructura curricular" {
   class SistemaEvaluacion
   class MetodologiaDocente
   class MetodologiaMateria
+  class ActividadFormativa
+  class ActividadFormativaMateria
+  class ActividadFormativaAsignaturaGrado
   class Asignatura
   class AsignaturaGrado
   class ResultadoAprendizaje
@@ -24,6 +27,11 @@ package "Estructura curricular" {
   Materia o-- MetodologiaDocente
   (Materia, MetodologiaDocente) .. MetodologiaMateria
   Universidad *-- MetodologiaDocente
+  Universidad *-- ActividadFormativa
+  Materia o-- ActividadFormativa
+  (Materia, ActividadFormativa) .. ActividadFormativaMateria
+  AsignaturaGrado o-- ActividadFormativa
+  (AsignaturaGrado, ActividadFormativa) .. ActividadFormativaAsignaturaGrado
   (Grado, Asignatura) .. AsignaturaGrado
   Grado *-d- ResultadoAprendizaje
   Materia o-u- ResultadoAprendizaje

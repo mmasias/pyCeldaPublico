@@ -29,8 +29,10 @@ state asignarProfesorAAsignaturaGrado as "asignarProfesorAAsignaturaGrado()" {
 
 asignarProfesorAAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
 note on link
-lista actualizada; si existe una Guia del CursoAcademico activo para esta AsignaturaGrado
-con Guia--Profesor vacío, se rellena con este Profesor -- si ya tenía profesor, no se toca
+lista actualizada. Si la plantilla cambio de verdad y la Guia activa de esta
+AsignaturaGrado esta Aprobada, pasa a EnRevision (+ fila de HistorialCambio,
+autor centinela) para que el director re-apruebe -- al aprobar, Guia--Profesor
+se re-deriva de la plantilla (issue 254). Otro estado: nada mas.
 end note
 
 @enduml

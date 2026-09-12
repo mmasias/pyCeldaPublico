@@ -1,0 +1,44 @@
+@startuml abrirInicio
+
+skinparam linetype polyline
+
+' Primitiva de navegacion: NO cuenta en el catalogo de 102 casos de uso --
+' misma categoria que iniciarSesion()/cerrarSesion()/abrirPanelAdministracion().
+' Compone dos listados ya catalogados sin logica de dominio propia:
+' abrirAsignaturasGrado() en su variante Profesor ("Mis guias") y abrirGrados()
+' en su variante DirectorGrado ("Mis grados"), via <<include>> -- ver
+' actoresCasosUso{Profesor,DirectorGrado}.puml. Sin <<choice>>, sin
+' postcondicion sobre ninguna entidad nueva.
+'
+' Extendido por iniciarSesion() (<<extend>>, condicion: rol in {Profesor,
+' DirectorGrado}, punto: tras validacion exitosa). Sustituye las dos ramas
+' <<extend>> por rol que iniciarSesion() tenia hacia abrirAsignaturasGrado()
+' (Profesor) y abrirGrados() (DirectorGrado) -- discussion #274. La rama de
+' Admin (abrirPanelAdministracion()) no cambia.
+'
+' Una capacidad ausente se presenta como seccion vacia, nunca como error: un
+' Profesor que no dirige ningun Grado ve "Mis grados" vacio; un ex-director
+' que ya no dirige nada entra igual (rol resuelto como Profesor, ver
+' iniciarSesion/README.md). Nunca se expulsa a una cuenta autenticada y
+' conocida.
+
+state SESION_CERRADA
+state INICIO_ABIERTO
+
+SESION_CERRADA -[#green]-> abrirInicio
+note on link
+tras validacion exitosa -- punto de extension de <b>iniciarSesion()</b>
+end note
+
+state abrirInicio as "abrirInicio()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta la pantalla de inicio: seccion "Mis guias" si la
+    cuenta es Profesor, seccion "Mis grados" si dirige algun Grado
+    end note
+}
+
+abrirInicio -[#green]-> INICIO_ABIERTO
+
+@enduml

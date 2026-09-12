@@ -1,0 +1,59 @@
+@startsalt previsualizarGuia-noOficial
+{
+    <b>&#9888; BORRADOR -- documento no oficial (estado de la Guía: EnRevisión)</b>
+    ====
+    {
+        <i>[ logo Universidad Europea del Atlántico ]</i>       <b>GUÍA DOCENTE 2026-2027</b>
+    }
+    ====
+    <b>DATOS GENERALES DE LA ASIGNATURA</b>
+    Asignatura            | Programación I
+    Plan de estudios      | Grado en Ingeniería Informática
+    Facultad              | Escuela Politécnica Superior
+    ECTS / Curso / Sem.   | 6  /  Primero  /  Primero
+    Idioma                | Castellano
+    Profesorado           | Dr. Manuel Masías  (manuel.masias@uneatlantico.es)
+    ====
+    <b>CONTENIDOS</b>
+    Tema 1: Algoritmos
+    Tema 2: El lenguaje de programación JAVA
+    Tema 3: Variables, Tipos de Datos y Operadores
+    ..(temario propio de la Guía, Guia.contenido)
+    ====
+    <b>RESULTADOS DE APRENDIZAJE</b>
+    ..(bloque único, leído en vivo de AsignaturaGrado.resultados_aprendizaje)
+    ====
+    <b>METODOLOGÍAS DOCENTES</b>
+    ..(AsignaturaGrado.metodologias_docentes)
+    ====
+    ACTIVIDADES_FORMATIVAS_AQUI
+    ====
+    <b>SISTEMA DE EVALUACIÓN - CONVOCATORIA ORDINARIA</b>
+    Evaluación continua | Examen Parcial                                   | 25 %
+    Evaluación continua | Actividades y ejercicios                         | 20 %
+    Evaluación continua | Interés y participación del alumno               |  5 %
+    Evaluación final    | Examen Teórico-Práctico                          | 50 %
+    ^La calificación del instrumento de la evaluación final no podrá ser inferior a 4,0 puntos.^
+    ====
+    <b>BIBLIOGRAFÍA</b>
+    ..(Guia.referencias vinculadas, agrupadas por tipo)
+    ====
+    [ <b>Volver a la guía</b> ]
+}
+@endsalt
+
+@startsalt previsualizarGuia-aprobada
+{
+    {
+        <i>[ logo Universidad Europea del Atlántico ]</i>       <b>GUÍA DOCENTE 2026-2027</b>
+    }
+    ====
+    <b>DATOS GENERALES DE LA ASIGNATURA</b>
+    Asignatura            | Programación I
+    ..                    | ..
+    ====
+    <i>(mismo documento que la pantalla anterior, sin la banda de aviso: la Guía está Aprobada)</i>
+    ====
+    [ <b>Volver a la guía</b> ]
+}
+@endsalt

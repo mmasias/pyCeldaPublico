@@ -1,0 +1,12 @@
+@startsalt eliminarSesion-wireframe-confirmacion
+{
+    <b>ELIMINAR SESIÓN</b>
+    ====
+    <b>Sesión 3 -- Clase Práctica</b>
+    "Temas aaa bbb"
+    --
+    <color:orange><b>Las sesiones siguientes se renumerarán.</b></color>
+    ====
+    {[ <b>Eliminar</b> ] | [Cancelar]}
+}
+@endsalt

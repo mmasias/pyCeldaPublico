@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -42,13 +42,16 @@ Tercera decisión de la familia -- ver [`aprobarGuia()`](../aprobarGuia/README.m
 
 **Sin campo de formulario**, igual que `aprobarGuia()`: es un "sí" sin incidencia que explicar, el sistema registra `"escalada a aprobada sin incidencia"` en `HistorialCambio.comentario` sin pedir nada al `DirectorGrado`. **Sin pantalla de confirmación**: se deshace igual que `aprobarGuia()`, con `revocarAprobacionGuia()`. Ambos puntos cerrados en la discussion [#44](https://github.com/mmasias/pyCelda/discussions/44).
 
+**Sincronización de `Guia -- Profesor`** (issue [#254](https://github.com/mmasias/pyCelda/issues/254)), igual que `aprobarGuia()`: pasar a `Aprobada` re-deriva la copia de la plantilla `AsignaturaGrado -- Profesor`. Un escalado directo desde `Borrador`/`Rechazada` también es un punto de sincronización.
+
 Único caso de uso de L9 con dato real, sin hipótesis: `GII__IYA003` está realmente en `Borrador` (estado visible en el catálogo desde L7), así que el wireframe la usa tal cual -- no hace falta forzar un estado hipotético, a diferencia del resto de decisiones de esta familia.
 
 ## Referencias
 
 - [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : escalarGuiaAAprobada()`
 - [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `Guia`
-- Diagrama de estados de Guia -- `{Borrador,Rechazada} -> Aprobada`, escalado directo
-- Modelo del dominio -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`
-- [`aprobarGuia()`](../aprobarGuia/README.md) -- misma mecánica de "sí sin incidencia", origen `EnRevision` en vez de `{Borrador,Rechazada}`
+- [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `{Borrador,Rechazada} -> Aprobada`, escalado directo
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`
+- [`aprobarGuia()`](../aprobarGuia/README.md) -- misma mecánica de "sí sin incidencia", origen `EnRevision` en vez de `{Borrador,Rechazada}`; mismo punto de sincronización de `Guia -- Profesor`
+- [Issue #254](https://github.com/mmasias/pyCelda/issues/254) / [discussion #255](https://github.com/mmasias/pyCelda/discussions/255) -- re-derivación de `Guia -- Profesor` al pasar a `Aprobada`
 - [Discussion #44](https://github.com/mmasias/pyCelda/discussions/44) -- cierre de L9, puntos 1 y 4

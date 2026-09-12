@@ -1,4 +1,4 @@
-@startsalt editarAsignaturaGrado-wireframe
+@startsalt editarAsignaturaGrado-wireframe-completo
 {
     <b>EDITAR ASIGNATURA DEL GRADO</b>
     ====
@@ -20,6 +20,41 @@
         "6 "
         <b>Contenido:</b>
         "Tema 1. Introducción a la programación..."
+        <b>Requisitos previos:</b>
+        "Se recomienda haber cursado previamente Matemáticas I"
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar]}
+}
+@endsalt
+
+@startsalt editarAsignaturaGrado-wireframe-semestre-bloqueado
+{
+    <b>EDITAR ASIGNATURA DEL GRADO</b>
+    ====
+    <b>Asignatura: Programación I -- Materia: Programación</b>
+    --
+    {
+        <b>Curso (*):</b>
+        "1  "
+        <b>Carácter (*):</b>
+        ^Básica^
+        <b>Idioma (*):</b>
+        ^Español^
+        <b>Semestre por defecto:</b>
+        "1  " !!disabled
+        <i>Ya existen Guías creadas con este semestre por defecto -- no editable.</i>
+        --
+        <b>Nombre:</b>
+        "Programación I                                    "
+        <b>ECTS:</b>
+        "6 "
+        <b>Contenido:</b>
+        "Tema 1. Introducción a la programación..."
+        <b>Requisitos previos:</b>
+        "Se recomienda haber cursado previamente Matemáticas I"
         --
         <i>(*) Campo obligatorio</i>
     }

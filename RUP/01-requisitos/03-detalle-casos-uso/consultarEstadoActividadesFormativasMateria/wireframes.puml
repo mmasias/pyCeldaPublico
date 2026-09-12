@@ -1,0 +1,25 @@
+@startsalt consultarEstadoActividadesFormativasMateria-wireframe
+{
+    <b>ACTIVIDADES FORMATIVAS -- ESTADO DE LA MATERIA</b>
+    ====
+    <b>Programación</b>
+    --
+    {#
+        <b>Actividad formativa</b>          | <b>Horas materia</b> | <b>Σ asignaturas</b> | <b>Estado</b>
+        Clases expositivas                  | 45                   | 45                   | OK
+        Clases prácticas                    | 20                   | 15                   | -5 (falta)
+        Clases prácticas (laboratorio)      | 10                   | 12                   | +2 (sobra)
+        Seminarios y talleres               | 0                    | 0                    | OK
+        Supervisión de actividades          | 5                    | 5                    | OK
+        Tutorías (individual / en grupo)    | 5                    | 5                    | OK
+        Preparación de clases               | 0                    | 0                    | OK
+        Estudio personal y lecturas         | 40                   | 40                   | OK
+        Elaboración de trabajos             | 20                   | 20                   | OK
+        Trabajo individual en campus virtual| 0                    | 0                    | OK
+    }
+    --
+    "Medidor informativo: las discrepancias NO impiden guardar ningún reparto (regla blanda)."
+    ~~
+    {[Volver a la materia]}
+}
+@endsalt

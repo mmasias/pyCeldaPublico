@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -38,7 +38,7 @@
 
 </div>
 
-Segundo escalón de la cascada en dos pasos documentada en el modelo del dominio: el director reparte primero un subconjunto del catálogo de `ResultadoAprendizaje` del `Grado` a cada `Materia` (`asociarResultadoAprendizajeAMateria()`), y después, de ese subconjunto ya asignado a la `Materia`, reparte a cada `AsignaturaGrado` concreta dentro de ella. El selector solo ofrece los `ResultadoAprendizaje` que cumplen las dos condiciones -- ya asignados a la `Materia` y no asignados aún a esta `AsignaturaGrado` -- por la regla de consistencia del modelo de dominio: los RA de una `AsignaturaGrado` deben ser subconjunto de los ya asignados a su `Materia`.
+Segundo escalón de la cascada en dos pasos documentada en el [modelo del dominio](/RUP/00-modelo-del-dominio/README.md): el director reparte primero un subconjunto del catálogo de `ResultadoAprendizaje` del `Grado` a cada `Materia` (`asociarResultadoAprendizajeAMateria()`), y después, de ese subconjunto ya asignado a la `Materia`, reparte a cada `AsignaturaGrado` concreta dentro de ella. El selector solo ofrece los `ResultadoAprendizaje` que cumplen las dos condiciones -- ya asignados a la `Materia` y no asignados aún a esta `AsignaturaGrado` -- por la regla de consistencia del modelo de dominio: los RA de una `AsignaturaGrado` deben ser subconjunto de los ya asignados a su `Materia`.
 
 Sin `<<choice>>`: asignación libre, mismo patrón que `asociarResultadoAprendizajeAMateria()`/`asociarMetodologiaDocenteAMateria()`.
 
@@ -46,6 +46,6 @@ Sin `<<choice>>`: asignación libre, mismo patrón que `asociarResultadoAprendiz
 
 - [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asociarResultadoAprendizajeAAsignaturaGrado()`
 - [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `AsignaturaGrado`
-- Modelo del dominio -- `AsignaturaGrado o- ResultadoAprendizaje`; README, cascada `Grado`->`Materia`->`AsignaturaGrado` y regla de consistencia (subconjunto de la `Materia`)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `AsignaturaGrado o- ResultadoAprendizaje`; README, cascada `Grado`->`Materia`->`AsignaturaGrado` y regla de consistencia (subconjunto de la `Materia`)
 - [`asociarResultadoAprendizajeAMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAMateria/README.md) -- primer escalón de la misma cascada
 - [`desasociarResultadoAprendizajeAsignaturaGrado()`](/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaGrado/README.md) -- caso de uso complementario (baja de la asociación)

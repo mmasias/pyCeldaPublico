@@ -1,0 +1,31 @@
+@startuml previsualizarGuia
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> previsualizarGuia
+note on link
+<b>Admin</b>/<b>Profesor</b> solicita previsualizar la Guia
+end note
+
+state previsualizarGuia as "previsualizarGuia()" {
+
+    state " " as Previsualizando
+
+    [*] -[#green]-> Previsualizando
+    note on link
+    <b>Sistema</b> presenta la Guia con el formato de la guia docente oficial
+    <b>Sistema</b> presenta aviso de borrador no oficial cuando la Guia no esta Aprobada
+    end note
+
+    Previsualizando -[#green]-> [*]
+    note on link
+    <b>Admin</b>/<b>Profesor</b> solicita volver a la Guia
+    end note
+}
+
+previsualizarGuia -[#green]-> GUIA_ABIERTO_SALIDA
+
+@enduml

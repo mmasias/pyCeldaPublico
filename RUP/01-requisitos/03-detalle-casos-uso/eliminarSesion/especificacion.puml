@@ -1,0 +1,44 @@
+@startuml eliminarSesion
+
+skinparam linetype polyline
+
+state PLANIFICACION_DOCENTE_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
+
+PLANIFICACION_DOCENTE_ABIERTO -[#green]-> eliminarSesion
+note on link
+<b>Profesor</b> solicita eliminar Sesion de la Planificación docente
+end note
+
+state eliminarSesion as "eliminarSesion()" {
+
+    state " " as ConfirmandoEliminacion
+
+    [*] -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información de la sesión
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Profesor</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Profesor</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarSesion -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+eliminada, listado renumerado en pantalla
+end note
+
+eliminarSesion -[#blue]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

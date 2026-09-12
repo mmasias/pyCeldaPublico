@@ -1,0 +1,25 @@
+@startsalt editarActividadesFormativasMateria-wireframe
+{
+    <b>EDITAR ACTIVIDADES FORMATIVAS -- MATERIA</b>
+    ====
+    <b>Programación</b>
+    --
+    {#
+        <b>Actividad formativa</b>          | <b>Horas</b>
+        Clases expositivas                  | "45  "
+        Clases prácticas                    | "20  "
+        Clases prácticas (laboratorio)      | "10  "
+        Seminarios y talleres               | "0   "
+        Supervisión de actividades          | "5   "
+        Tutorías (individual / en grupo)    | "5   "
+        Preparación de clases               | "0   "
+        Estudio personal y lecturas         | "40  "
+        Elaboración de trabajos             | "20  "
+        Trabajo individual en campus virtual| "0   "
+    }
+    --
+    "Regla AfM = ΣAfAdM: se valida en consultarEstadoActividadesFormativasMateria(), no bloquea guardar."
+    ~~
+    {[Guardar]}
+}
+@endsalt

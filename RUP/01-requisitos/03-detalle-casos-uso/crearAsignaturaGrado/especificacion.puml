@@ -17,6 +17,7 @@ state crearAsignaturaGrado as "crearAsignaturaGrado()" {
     [*] -[#green]-> SolicitandoDatos
     note on link
     <b>Sistema</b> presenta solicitud de datos de la AsignaturaGrado
+    <b>Sistema</b> muestra catálogo de Materia del Grado
     <b>Sistema</b> muestra catálogo de Asignatura
     <b>Sistema</b> muestra curso
     <b>Sistema</b> muestra carácter
@@ -30,6 +31,7 @@ state crearAsignaturaGrado as "crearAsignaturaGrado()" {
 
     SolicitandoDatos -[#green]-> [*]
     note on link
+    <b>Admin</b> selecciona Materia
     <b>Admin</b> selecciona Asignatura
     <b>Admin</b> introduce curso
     <b>Admin</b> introduce carácter

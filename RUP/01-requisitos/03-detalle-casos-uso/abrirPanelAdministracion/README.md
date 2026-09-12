@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -50,5 +50,6 @@ Es el destino que `iniciarSesion()` extiende cuando el rol identificado es `Admi
 - [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- `Admin -- abrirPanelAdministracion`, `<<extend>>` de `iniciarSesion()`
 - [`iniciarSesion()`](../iniciarSesion/README.md) -- extendido en el punto "tras validación exitosa", condición `rol == Admin`; mismo estatus de primitiva sin contar
 - [`abrirAsignaturasGrado()`](../abrirAsignaturasGrado/README.md) / [`abrirGrados()`](../abrirGrados/README.md) -- mismo papel estructural para `Profesor`/`DirectorGrado`, pero sí cuentan (listan entidades reales)
+- [Dashboard de seguimiento](/RUP/99-seguimiento/README.md) -- nota bajo la tabla de Estadísticas sobre por qué no suma al 91
 - Discussion [#47](https://github.com/mmasias/pyCelda/discussions/47) -- planificación de Análisis, origen de la corrección
 - Issue [#51](https://github.com/mmasias/pyCelda/issues/51) -- decisión original que esta ficha corrige

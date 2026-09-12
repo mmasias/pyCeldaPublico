@@ -1,0 +1,30 @@
+@startuml consultarCopiasSeguridad
+
+skinparam linetype polyline
+
+' Lectura pura, sin precondición que pueda rechazarla (issue #308): el
+' manifiesto ausente o vacío es un estado válido del listado (lista vacía),
+' no un error -- sin <<choice>>, mismo criterio que consultarEstadoGuias().
+
+state SISTEMA_DISPONIBLE
+state SISTEMA_DISPONIBLE_SALIDA as "SISTEMA_DISPONIBLE"
+
+SISTEMA_DISPONIBLE -[#green]-> consultarCopiasSeguridad
+note on link
+<b>Admin</b> solicita consultar copias de seguridad
+end note
+
+state consultarCopiasSeguridad as "consultarCopiasSeguridad()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de copias de seguridad, ordenado por fecha descendente
+    end note
+}
+
+consultarCopiasSeguridad -[#green]-> SISTEMA_DISPONIBLE_SALIDA
+note on link
+abrirPanelAdministracion()
+end note
+
+@enduml

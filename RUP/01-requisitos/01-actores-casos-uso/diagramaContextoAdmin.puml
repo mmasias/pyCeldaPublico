@@ -27,6 +27,7 @@ state CURSOS_ACADEMICOS_ABIERTO
 state CURSO_ACADEMICO_ABIERTO
 state GUIAS_DEL_GRADO_ABIERTO
 state GUIA_ABIERTO
+state COPIAS_SEGURIDAD_ABIERTO
 
 [*] --> SESION_CERRADA
 
@@ -41,10 +42,11 @@ SISTEMA_DISPONIBLE --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
 SISTEMA_DISPONIBLE --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
 SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()
 SISTEMA_DISPONIBLE --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
+SISTEMA_DISPONIBLE --> COPIAS_SEGURIDAD_ABIERTO : consultarCopiasSeguridad()
 
 SISTEMA_DISPONIBLE --> SISTEMA_DISPONIBLE : generarGuiasPDF()
 
-' Las cinco vueltas a SISTEMA_DISPONIBLE de este fichero usan
+' Las seis vueltas a SISTEMA_DISPONIBLE de este fichero usan
 ' abrirPanelAdministracion() -- antes completarGestion() genérico, corregido
 ' al planificar Análisis (discussion #47): son listados, no formularios, y el
 ' destino ya tiene CU propio (ver abrirPanelAdministracion/README.md).
@@ -91,8 +93,12 @@ MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
 MATERIAS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 
 ' AsignaturaGrado: dos entradas (atajo plano desde GRADO_ABIERTO, agrupado por
-' materias; y desde la propia MATERIA_ABIERTO), pero un solo retorno -- vuelve
-' siempre a GRADO_ABIERTO, la entrada más lógica y previsiblemente más usada
+' materias; y desde la propia MATERIA_ABIERTO) y dos retornos, uno por cada entrada
+' (abrirGrado() y abrirMateria()) -- retoque de Manuel usando el producto (issue
+' #252, 2026-09-05): el retorno unico original a GRADO_ABIERTO ("la entrada mas
+' usada") resulto incomodo para quien entra desde MATERIA_ABIERTO. Segunda oleada
+' del mismo patron que #227/PR#234; DirectorGrado gano su segundo retorno antes
+' (ver diagramaContextoDirectorGrado.puml).
 GRADO_ABIERTO --> GRADO_ABIERTO : crearAsignaturaGrado()
 GRADO_ABIERTO --> GRADO_ABIERTO : eliminarAsignaturaGrado()
 GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
@@ -102,17 +108,35 @@ MATERIA_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
 ' (Materia *-- SistemaEvaluacion), cero reutilización cruzada, se navega desde dentro de ella
 MATERIA_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : abrirSistemasEvaluacion()
 
+' asignar/desasignarProfesorAAsignaturaGrado(): self-loop de navegacion (el Admin
+' no sale de ASIGNATURA_GRADO_ABIERTO), pero con efecto colateral sobre el ciclo de
+' vida de la Guia activa (issue #254): si la plantilla cambio de verdad y esa Guia
+' esta Aprobada, pasa a EnRevision (+ fila de HistorialCambio, autor centinela) para
+' que el DirectorGrado re-apruebe -- al aprobar, Guia--Profesor se re-deriva de la
+' plantilla. Es el segundo trigger Admin de Aprobada->EnRevision (el otro es
+' reabrirGuiaPorIncidencia()), no una transicion de navegacion propia.
 ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asignarProfesorAAsignaturaGrado()
 ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : desasignarProfesorAsignaturaGrado()
 ASIGNATURA_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+ASIGNATURA_GRADO_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
 
-' Reabertura por incidencia de PDF (issue #6): Admin no gestiona ni revisa el
-' contenido de las guias, pero necesita localizar la guia concreta con incidencia
-' para reabrirla -- mismo hilo GUIAS_DEL_GRADO_ABIERTO/GUIA_ABIERTO que usa
-' DirectorGrado para revision (consultarEstadoGuias()/abrirGuia() reutilizados,
-' ver diagramaContextoDirectorGrado.puml), no el de edicion propia del profesor
+' consultarEstadoGuias() del Admin, DOS propositos sobre el mismo listado:
+' (1) issue #6 -- localizar la guia con incidencia para reabrirla; el paso
+'     abrirGuia() de ese flujo da hoy 403 al Admin en codigo (deriva
+'     pre-existente, issue #265; reabrirGuiaPorIncidencia() nunca se construyo).
+' (2) issue #262 -- pantalla propia de Admin ([Estado del curso actual] en
+'     GradoAdmin) para monitorear el estado de las guias durante la beta.
 GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : consultarEstadoGuias()
 GUIAS_DEL_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+' previsualizarGuia()/descargarGuiaPDF() desde la LISTA (issue #262): los
+' botones de fila de la pantalla de Admin abren pestana / descargan blob, la
+' pantalla no cambia -- self-loop de GUIAS_DEL_GRADO_ABIERTO, no de GUIA_ABIERTO
+' (el Admin no abre la guia). Actor Profesor/DirectorGrado/Admin, 404 uniforme
+' (discussion #218 P3; Admin alineado en #263/#238).
+GUIAS_DEL_GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : previsualizarGuia()
+GUIAS_DEL_GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : descargarGuiaPDF()
+' descargarGuiaPDF() desde GUIA_ABIERTO se conserva por el flujo de #6
+' (localizar -> abrir -> descargar -> reabrir); #262 lo invoca ademas desde la lista.
 GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
 GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : reabrirGuiaPorIncidencia()
 ' abrirGrado(): mismo patrón que las cuatro vueltas equivalentes de
@@ -164,5 +188,14 @@ CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : editarCursoAcademico()
 CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : activarSemestre()
 CURSO_ACADEMICO_ABIERTO --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
 CURSOS_ACADEMICOS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
+
+' consultarCopiasSeguridad() (issue #308): listado de solo lectura del
+' manifiesto de backups, sin CRUD -- no hay CopiaSeguridad en modeloDominio.puml,
+' es un diagnóstico de infraestructura, no una entidad. Verbo consultar, no
+' abrir: mismo criterio que consultarEstadoGuias() (lectura/monitoreo sin
+' alta-edición-baja), no el de abrirX()/abrirXs() (reservado a catálogos
+' reales del dominio con CRUD). Self-loop de listado: no hay detalle que abrir,
+' ninguna fila es una entidad propia sobre la que navegar.
+COPIAS_SEGURIDAD_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 @enduml

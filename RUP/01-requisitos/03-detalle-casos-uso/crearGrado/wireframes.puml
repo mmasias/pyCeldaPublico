@@ -14,3 +14,23 @@
     {[Crear]}
 }
 @endsalt
+
+@startsalt crearGrado-wireframe-error
+{
+    <b>CREAR GRADO</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE CREAR</b></color>
+    <color:red>Ya existe un Grado con código GIOI</color>
+    --
+    {
+        <b>Código (*):</b>
+        "GIOI      "
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

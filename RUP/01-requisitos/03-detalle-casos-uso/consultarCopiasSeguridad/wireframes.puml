@@ -1,0 +1,26 @@
+@startsalt consultarCopiasSeguridad-wireframe
+{
+    <b>COPIAS DE SEGURIDAD</b>
+    ====
+    [ Volver al panel de administración ]
+    ====
+    {#
+        <b>Familia | <b>Fecha | <b>Tamaño | <b>Motivo
+        Puntual | 11/09/2026, 2:00:00 | 928.0 KB | deploy #307
+        Diario  | 11/09/2026, 4:30:00 | 1.1 MB   | --
+        Diario  | 10/09/2026, 4:30:00 | 921.7 KB | --
+    }
+    <i>Fecha y hora exactas (no fechaImprecisa() -- issue 306, precisión importa en un diagnóstico de incidente). Tamaño legible KB/MB, no bytes crudos. Motivo "--" si null. Sin acción sobre las filas: solo lectura, sin descarga.</i>
+}
+@endsalt
+
+@startsalt consultarCopiasSeguridad-wireframe-vacia
+{
+    <b>COPIAS DE SEGURIDAD</b>
+    ====
+    [ Volver al panel de administración ]
+    ====
+    <i>No hay copias de seguridad registradas todavía.</i>
+    <i>Manifiesto ausente o vacío -- estado válido, no error (p. ej. Prometeus todavía no hizo el backfill).</i>
+}
+@endsalt

@@ -39,3 +39,32 @@
     [ <b>Volver a la guía</b> ]
 }
 @endsalt
+
+@startsalt enviarGuiaARevision-wireframe-error-items-sin-guardar
+{
+    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
+    ====
+    <color:red>Hay ítems sin guardar. Guarda el borrador antes de enviar a revisión.</color>
+    ====
+    <i>Se han creado o editado ponderaciones, bibliografía o sesiones que aún no están en el borrador guardado.</i>
+    ====
+    [ <b>Volver a la guía</b> ]
+}
+@endsalt
+
+@startsalt enviarGuiaARevision-wireframe-error-planificacion
+{
+    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
+    ====
+    Planificación docente:
+    <color:red><b>18 / 25 sesiones -- planificación docente incompleta</b></color>
+    ====
+    <i>Añade las sesiones que faltan antes de enviar a revisión.</i>
+    ====
+    [ <b>Volver a la guía</b> ]
+}
+@endsalt

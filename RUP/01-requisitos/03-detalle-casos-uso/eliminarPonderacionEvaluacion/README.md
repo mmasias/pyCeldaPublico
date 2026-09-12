@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / **Detalle** / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [**Detalle**](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Mockups navegables](/docs/PROPUESTA_WIREFRAME/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- no incluye análisis/diseño ni dashboard de seguimiento.</sub>
 
 </div>
 
@@ -38,7 +38,7 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver modelo del dominio (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
 
 **Sin `<<choice>>` bloqueante, a diferencia de la mayoría de `eliminarX()` del catálogo**: nada depende estructuralmente de una `PonderacionEvaluacion` (no es padre de ninguna otra entidad, a diferencia de `Materia`/`ResultadoAprendizaje`), así que no hay nada que bloquear -- confirmación simple, mismo patrón sin `<<choice>>` que los `desasignar`/`desasociar` de L6/L7. Que la suma deje de dar 100% o que la suma de un `SistemaEvaluacion` caiga fuera de rango tras el borrado no se avisa aquí: ambas validaciones ya están cubiertas en otro punto del flujo -- la primera en [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) (ya cerrado), la segunda en el próximo `crearPonderacionEvaluacion()`/`editarPonderacionEvaluacion()` que se intente sobre ese mismo `SistemaEvaluacion`.
 
@@ -50,4 +50,4 @@ Solicitada desde el listado ([`abrirPonderacionesEvaluacion()`](../abrirPonderac
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PONDERACIONES_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : eliminarPonderacionEvaluacion()`
 - [actoresCasosUsoProfesor.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoProfesor.puml) -- catálogo de casos de uso de `Profesor` sobre `PonderacionEvaluacion`
-- Modelo del dominio -- `Guia *-d- PonderacionEvaluacion`, sin entidad que dependa de ella
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Guia *-d- PonderacionEvaluacion`, sin entidad que dependa de ella

@@ -8,7 +8,7 @@ left to right direction
 '
 ' DirectorGrado --|> Profesor: hereda todo el catálogo de actoresCasosUsoProfesor.puml
 ' (abrirGuia(), guardarBorradorGuia(), enviarGuiaARevision(), descargarGuiaPDF(),
-' CRUD de PonderacionEvaluacion y de ReferenciaBibliografica) -- no redeclarado
+' previsualizarGuia(), CRUD de PonderacionEvaluacion y de ReferenciaBibliografica) -- no redeclarado
 ' aquí, mismo criterio que el fichero original (sin relacion explicita para lo
 ' heredado).
 
@@ -17,12 +17,17 @@ actor Profesor
 
 Profesor <|-d- DirectorGrado
 
-' Acceso: abrirGrados() EXTIENDE a iniciarSesion() -- no lo incluye, mismo
-' mecanismo que Profesor/abrirAsignaturasGrado() (corregido en
-' actoresCasosUsoProfesor.puml), destino propio (GRADOS_ABIERTO, no
-' ASIGNATURAS_GRADO_ABIERTO) -- issue #50. <<include>> es incondicional por
-' definición UML; aquí solo se dispara si el rol resuelto es DirectorGrado,
-' una de tres ramas mutuamente excluyentes -- semántica de <<extend>>.
+' Acceso: abrirInicio() EXTIENDE a iniciarSesion() -- no lo incluye (discussion
+' #274, antes lo hacía abrirGrados() directamente, issue #50). abrirInicio() es
+' primitiva de navegación (no cuenta en el catálogo de 102) que <<include>>
+' abrirGrados() (variante DirectorGrado, "Mis grados") y abrirAsignaturasGrado()
+' (variante Profesor, "Mis guías" -- la ve un DirectorGrado que además imparte,
+' antes era el "tercer punto de extensión" de abrirAsignaturasGrado(), issue
+' #103, ahora subsumido). Esa inclusión SÍ es incondicional: el hub incorpora
+' las dos secciones siempre, la vacuidad por rol es un resultado de datos.
+' <<extend>> (no <<include>>) para abrirInicio ..> iniciarSesion: solo se
+' dispara UNA de dos ramas según el rol resuelto (abrirInicio para
+' Profesor/DirectorGrado, abrirPanelAdministracion para Admin).
 '
 ' iniciarSesion() lo invoca UsuarioNoLogueado, no DirectorGrado -- mismo error
 ' sistemático corregido en actoresCasosUsoProfesor.puml: el rol específico
@@ -31,6 +36,7 @@ Profesor <|-d- DirectorGrado
 actor UsuarioNoLogueado
 package Acceso {
   usecase iniciarSesion as "iniciarSesion()"
+  usecase abrirInicio as "abrirInicio()"
 }
 
 ' "Catálogos institucionales", "Configuración del grado" y "Guía docente"
@@ -43,7 +49,8 @@ package Grado {
 }
 
 UsuarioNoLogueado -- iniciarSesion
-abrirGrados ..> iniciarSesion : <<extend>>\n(condición: rol == DirectorGrado)\n(punto: tras validación exitosa)
+abrirInicio ..> iniciarSesion : <<extend>>\n(condición: rol in {Profesor, DirectorGrado})\n(punto: tras validación exitosa)
+abrirInicio ..> abrirGrados : <<include>>\n(sección "Mis grados")
 
 package Materia {
   usecase abrirMaterias as "abrirMaterias()"
@@ -53,6 +60,8 @@ package Materia {
   usecase editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()"
   usecase asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()"
   usecase desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()"
+  usecase editarActividadesFormativasMateria as "editarActividadesFormativasMateria()"
+  usecase consultarEstadoActividadesFormativasMateria as "consultarEstadoActividadesFormativasMateria()"
 }
 
 package ResultadoAprendizaje {
@@ -70,6 +79,7 @@ package AsignaturaGrado {
   usecase desasociarResultadoAprendizajeAsignaturaGrado as "desasociarResultadoAprendizajeAsignaturaGrado()"
   usecase asociarMetodologiaDocenteAAsignaturaGrado as "asociarMetodologiaDocenteAAsignaturaGrado()"
   usecase desasociarMetodologiaDocenteAsignaturaGrado as "desasociarMetodologiaDocenteAsignaturaGrado()"
+  usecase editarActividadesFormativasAsignaturaGrado as "editarActividadesFormativasAsignaturaGrado()"
 }
 
 package Edicion {
@@ -98,6 +108,8 @@ desasociarMetodologiaDocenteMateria -- DirectorGrado
 editarAsociacionMetodologiaDocenteMateria -- DirectorGrado
 asociarResultadoAprendizajeAMateria -- DirectorGrado
 desasociarResultadoAprendizajeAMateria -- DirectorGrado
+editarActividadesFormativasMateria -- DirectorGrado
+consultarEstadoActividadesFormativasMateria -- DirectorGrado
 
 DirectorGrado -- abrirResultadosAprendizaje
 DirectorGrado -- crearResultadoAprendizaje
@@ -110,6 +122,7 @@ DirectorGrado -- asociarResultadoAprendizajeAAsignaturaGrado
 DirectorGrado -- desasociarResultadoAprendizajeAsignaturaGrado
 DirectorGrado -- asociarMetodologiaDocenteAAsignaturaGrado
 DirectorGrado -- desasociarMetodologiaDocenteAsignaturaGrado
+DirectorGrado -- editarActividadesFormativasAsignaturaGrado
 DirectorGrado -- abrirAsignaturaGrado
 
 consultarEstadoGuias -- DirectorGrado
@@ -119,5 +132,12 @@ escalarGuiaAAprobada -- DirectorGrado
 notificarGuiasActualizadas -- DirectorGrado
 revocarAprobacionGuia -- DirectorGrado
 editarSemestreGuia -- DirectorGrado
+
+' Relación cruzada entre packages -- al final para no duplicar el usecase
+' (ver actoresCasosUso*.puml). abrirInicio() (package Acceso) <<include>>
+' abrirAsignaturasGrado() (package Edicion) como sección "Mis guías" -- la ve
+' un DirectorGrado que además tiene fila propia en Profesor (issue #103,
+' subsumido en discussion #274).
+abrirInicio ..> abrirAsignaturasGrado : <<include>>\n(sección "Mis guías", si además imparte)
 
 @enduml

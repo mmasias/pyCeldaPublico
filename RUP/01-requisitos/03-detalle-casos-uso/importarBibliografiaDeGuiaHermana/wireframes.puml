@@ -1,0 +1,12 @@
+@startsalt importarBibliografiaDeGuiaHermana-wireframe
+{
+    <b>IMPORTAR BIBLIOGRAFÍA -- Programación I (GII)</b>
+    ====
+    <b>Importar desde:</b>
+    ^GIOI / IYA003 -- Informática (aprobada 04/09/2026, 12 referencias)^
+    --
+    <color:red>Esto reemplazará las 10 referencias actuales de esta guía, incluidas las que hayas añadido a mano.</color>
+    ~~
+    {[Importar bibliografía]}
+}
+@endsalt

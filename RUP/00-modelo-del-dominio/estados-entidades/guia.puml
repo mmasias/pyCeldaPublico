@@ -20,5 +20,23 @@ Aprobada --> EnRevision : <sub><b>Profesor</b></sub>\n<sub>detecta un error</sub
 Aprobada --> Borrador : <sub><b>Profesor</b></sub>\n<sub>detecta un error y</sub>\n<sub>empieza a trabajar en él</sub>
 Aprobada --> Borrador : <sub><b>DirectorGrado</b></sub>\n<sub>revoca la aprobación</sub>
 Aprobada --> EnRevision : <sub><b>Admin</b></sub>\n<sub>incidencia al generar el PDF</sub>
+Aprobada --> EnRevision : <sub><b>Admin</b></sub>\n<sub>cambio en los profesores que</sub>\n<sub>la imparten (issue 254)</sub>
+
+note as N2
+  El segundo <b>Aprobada a EnRevision</b> del <b>Admin</b> (issue 254) no es un caso
+  de uso propio: es efecto colateral de asignarProfesorAAsignaturaGrado() /
+  desasignarProfesorAsignaturaGrado() cuando cambian la plantilla de una
+  AsignaturaGrado cuya guia activa esta Aprobada. Al re-aprobar el director,
+  Guia.aprobar() re-deriva Guia -- Profesor de AsignaturaGrado -- Profesor.
+  Un banner en la guia lo explica (patron comentario_rechazo).
+end note
+
+note as N1
+  La transicion <b>Aprobada a Borrador</b> del <b>Profesor</b> la disparan tres
+  casos de uso por el mismo mecanismo (Guia.confirmar_guardado): guardarBorradorGuia(),
+  importarBibliografiaDeGuiaHermana() e importarPlanificacionDocenteDeGuiaHermana()
+  (issue 184). Los tres persisten cambios de contenido de la guia y la devuelven a
+  Borrador si estaba Aprobada.
+end note
 
 @enduml

@@ -1,14 +1,10 @@
-<div align=right>
-
-<sub>Volver: [Al inicio](/README.md) / [inicio de DirectorGrado](/docs/PROPUESTA_WIREFRAME/directorGrado/iniciarSesion.md)</sub>
-
-</div>
-
 # DirectorGrado
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaGrado/wireframe.svg)
+|**Completo**|**Semestre-bloqueado**|
+|---|---|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaGrado/wireframe-completo.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaGrado/wireframe-semestre-bloqueado.svg)|
 
 |Botón|CdU|
 |---|---|

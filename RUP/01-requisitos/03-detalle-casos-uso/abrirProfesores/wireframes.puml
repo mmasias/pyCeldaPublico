@@ -3,12 +3,14 @@
     <b>PROFESORES</b>
     ====
     {#
-        <b>Nombre | <b>Email | . | .
-        Dr. Manuel Masías Vergara | manuel.masias@uneatlantico.es | [Abrir] | [Eliminar]
-        Dr. Jorge Crespo Álvarez | jorge.crespo@uneatlantico.es | [Abrir] | [Eliminar]
-        Dr. Vicente Bayarri Cayón | vicente.bayarri@uneatlantico.es | [Abrir] | [Eliminar]
-        Dr. Jon Arambarri Basañez | loyda.alas@uneatlantico.es | [Abrir] | [Eliminar]
+        <b>Profesor | <b>Asignaturas | . | .
+        Dr. Manuel Masías Vergara / manuel.masias@uneatlantico.es | 3 | [Abrir] | [Eliminar]
+        Dr. Jorge Crespo Álvarez / jorge.crespo@uneatlantico.es | 1 | [Abrir] | [Eliminar]
+        Dr. Vicente Bayarri Cayón / vicente.bayarri@uneatlantico.es | 2 | [Abrir] | [Eliminar]
+        loyda.alas@uneatlantico.es | 0 | [Abrir] | [Eliminar]
     }
+    <i>Columna "Profesor" (issue 312): salt no apila dos líneas dentro de una celda -- el "/" de arriba es una aproximación. Render real de la celda: nombre en línea principal, email debajo con className="nota" (0.875rem, gris). Última fila: Profesor sin nombre (null, fila del seed sin backfillear) -- línea principal cae al email, sin .nota debajo (no se duplica).</i>
+    <i>Columna "Asignaturas" = número de AsignaturaGrado impartidas hoy (issue 310), recuento en vivo vía asignaturas_grado_profesores -- no columna propia, sin migración. Tabla en jerarquía de texto (patrón #283): "Profesor" a tamaño base (con el email en su .nota interno), "Asignaturas" y los botones un punto menos.</i>
     ====
     [ <b>+ Crear Profesor</b> ]
 }

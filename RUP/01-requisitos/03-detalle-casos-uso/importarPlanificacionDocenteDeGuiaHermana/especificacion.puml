@@ -1,0 +1,45 @@
+@startuml importarPlanificacionDocenteDeGuiaHermana
+
+skinparam linetype polyline
+
+state PLANIFICACION_DOCENTE_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
+
+PLANIFICACION_DOCENTE_ABIERTO -[#green]-> importarPlanificacionDocenteDeGuiaHermana
+note on link
+<b>Profesor</b> solicita importar planificación docente de una asignatura hermana
+end note
+
+state importarPlanificacionDocenteDeGuiaHermana as "importarPlanificacionDocenteDeGuiaHermana()" {
+
+    state c <<choice>>
+    state " " as SolicitandoOrigen
+
+    [*] -[#green]-> c
+
+    c -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de bloqueo: ninguna asignatura hermana tiene guía aprobada
+    end note
+
+    c -[#green]-> SolicitandoOrigen
+    note on link
+    <b>Sistema</b> presenta las guías aprobadas de asignaturas hermanas
+    <b>Sistema</b> muestra el número de sesiones que se reemplazarán
+    end note
+
+    SolicitandoOrigen -[#green]-> [*]
+    note on link
+    <b>Profesor</b> selecciona la guía origen
+    <b>Profesor</b> solicita importar
+    end note
+}
+
+importarPlanificacionDocenteDeGuiaHermana -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+reemplaza la planificación docente; si la guía estaba Aprobada, pasa a Borrador
+end note
+
+importarPlanificacionDocenteDeGuiaHermana -[#red]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+
+@enduml

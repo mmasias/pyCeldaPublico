@@ -7,20 +7,31 @@ state ASIGNATURA_GRADO_ABIERTO_SALIDA as "ASIGNATURA_GRADO_ABIERTO"
 
 ASIGNATURA_GRADO_ABIERTO -[#green]-> editarAsignaturaGrado
 note on link
-<b>DirectorGrado</b> solicita editar AsignaturaGrado
+<b>DirectorGrado</b> solicita editar la AsignaturaGrado
 end note
 
 state editarAsignaturaGrado as "editarAsignaturaGrado()" {
 
-    state " " as EditandoDatos
+    state c <<choice>>
+    state " " as EditandoDatosCompleto
+    state " " as EditandoDatosSemestreBloqueado
 
-    [*] -[#green]-> EditandoDatos
+    [*] -[#green]-> c
+
+    c -[#green]-> EditandoDatosCompleto
     note on link
-    <b>Sistema</b> presenta datos actuales de la AsignaturaGrado
+    <b>Sistema</b> presenta los 8 campos editables, semestre por defecto incluido
     <b>Sistema</b> permite solicitar guardar
     end note
 
-    EditandoDatos -[#green]-> [*]
+    c -[#green]-> EditandoDatosSemestreBloqueado
+    note on link
+    <b>Sistema</b> presenta los 7 campos editables
+    <b>Sistema</b> muestra el semestre por defecto bloqueado, con el motivo
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatosCompleto -[#green]-> [*]
     note on link
     <b>DirectorGrado</b> introduce curso
     <b>DirectorGrado</b> introduce carácter
@@ -29,10 +40,26 @@ state editarAsignaturaGrado as "editarAsignaturaGrado()" {
     <b>DirectorGrado</b> introduce nombre
     <b>DirectorGrado</b> introduce ects
     <b>DirectorGrado</b> introduce contenido
+    <b>DirectorGrado</b> introduce requisitos previos
+    <b>DirectorGrado</b> solicita guardar
+    end note
+
+    EditandoDatosSemestreBloqueado -[#green]-> [*]
+    note on link
+    <b>DirectorGrado</b> introduce curso
+    <b>DirectorGrado</b> introduce carácter
+    <b>DirectorGrado</b> introduce idioma
+    <b>DirectorGrado</b> introduce nombre
+    <b>DirectorGrado</b> introduce ects
+    <b>DirectorGrado</b> introduce contenido
+    <b>DirectorGrado</b> introduce requisitos previos
     <b>DirectorGrado</b> solicita guardar
     end note
 }
 
 editarAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
+note on link
+datos actualizados
+end note
 
 @enduml

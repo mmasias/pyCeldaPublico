@@ -1,0 +1,20 @@
+@startsalt generarPlanificacionDocenteGenerica-wireframe-confirmacion
+{
+    <b>GENERAR PLANIFICACIÓN DOCENTE GENÉRICA -- Programación I (GII)</b>
+    ====
+    Se crearán <b>25 sesiones</b> genéricas (el mínimo de esta guía), todas de tipo CLASE_TEORICA y sin descripción, numeradas 1..25.
+    Podrás editar el tipo y la descripción de cada una después.
+    ~~
+    {[ <b>Crear 25 sesiones</b> ] | [Cancelar]}
+}
+@endsalt
+
+@startsalt generarPlanificacionDocenteGenerica-wireframe-bloqueo
+{
+    <b>GENERAR PLANIFICACIÓN DOCENTE GENÉRICA -- Programación I (GII)</b>
+    ====
+    <color:red>Esta planificación docente ya tiene sesiones. La generación genérica solo está disponible cuando la planificación está vacía.</color>
+    ~~
+    {[Volver a la planificación docente]}
+}
+@endsalt

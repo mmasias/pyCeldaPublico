@@ -14,6 +14,7 @@ state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
 state REFERENCIA_BIBLIOGRAFICA_ABIERTO
 
 ' Estados propios de DirectorGrado
+state INICIO_ABIERTO
 state GRADOS_ABIERTO
 state GRADO_ABIERTO
 state MATERIAS_ABIERTO
@@ -33,6 +34,9 @@ state GUIAS_DEL_GRADO_ABIERTO
 ASIGNATURAS_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 
 GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
+' previsualizarGuia(): heredado de Profesor sin cambios (DirectorGrado --|> Profesor),
+' misma plantilla que descargarGuiaPDF(), salida HTML, cualquier estado -- discussion #218
+GUIA_ABIERTO --> GUIA_ABIERTO : previsualizarGuia()
 
 GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
 PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : crearPonderacionEvaluacion()
@@ -46,6 +50,8 @@ GUIA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograf
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : crearReferenciaBibliografica()
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : abrirReferenciaBibliografica()
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()
+' importarBibliografiaDeGuiaHermana() heredado de Profesor sin cambios (issue #184)
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : importarBibliografiaDeGuiaHermana()
 REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : editarReferenciaBibliografica()
 REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
@@ -62,13 +68,38 @@ GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
 GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : enviarGuiaARevision()
 GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
 
-' === Propio de DirectorGrado: entrada real es el listado de TODOS sus grados ===
-SESION_CERRADA --> GRADOS_ABIERTO : iniciarSesion()
+' === Propio de DirectorGrado: el aterrizaje tras el login es INICIO_ABIERTO ===
+' (discussion #274, antes era GRADOS_ABIERTO directamente). abrirInicio()
+' compone "Mis grados" (abrirGrados() variante DirectorGrado) y "Mis guias"
+' (abrirAsignaturasGrado() variante Profesor, si la cuenta ademas imparte --
+' antes era el "tercer punto de extension", issue #103, ahora subsumido: el
+' hub es las dos listas juntas por construccion). abrirInicio() es primitiva
+' de navegacion, no cuenta en el catalogo de 102. GRADOS_ABIERTO se conserva
+' como pantalla completa alcanzable por deep link / al expandir "Mis grados".
+SESION_CERRADA --> INICIO_ABIERTO : iniciarSesion()
 ' credenciales invalidas: no hay transicion de estado, self-loop explicito
 ' -- detectado al construir la especificacion de enviarGuiaARevision()
 SESION_CERRADA --> SESION_CERRADA : iniciarSesion()
+INICIO_ABIERTO --> SESION_CERRADA : cerrarSesion()
 GRADOS_ABIERTO --> SESION_CERRADA : cerrarSesion()
+
+' abrirGrados(): <<include>> de abrirInicio() (seccion "Mis grados"); tambien
+' pantalla completa por deep link. abrirGrado() alcanzable directamente desde
+' una fila de "Mis grados" del hub y desde la pantalla completa.
+INICIO_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
+INICIO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 GRADOS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+GRADOS_ABIERTO --> INICIO_ABIERTO : abrirInicio()
+
+' abrirAsignaturasGrado() (variante Profesor, seccion "Mis guias") y abrirGuia()
+' desde una fila de esa seccion: solo si la cuenta con doble identidad ademas
+' imparte. Mismo estado heredado ASIGNATURAS_GRADO_ABIERTO ya usado en
+' GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO mas abajo, no el por-grado
+' admin-like de GRADO_ABIERTO. El "tercer punto de extension" de #103 queda
+' subsumido en abrirInicio() (discussion #274).
+INICIO_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
+INICIO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
 GRADO_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
 
 ' abrirAsignaturasGrado(): nuevo, propio de DirectorGrado -- ve sus propias
@@ -90,13 +121,26 @@ MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarMetodologiaDocenteMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : editarAsociacionMetodologiaDocenteMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarResultadoAprendizajeAMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarResultadoAprendizajeAMateria()
+' editarActividadesFormativasMateria(): un solo self-loop -- exito y fallo (algun
+' valor de horas negativo, no se guarda nada) vuelven ambos a MATERIA_ABIERTO,
+' misma que el estado de partida. La regla AfM = ΣAfAdM NO valida aqui: es blanda,
+' vive en consultarEstadoActividadesFormativasMateria() (medidor, discussion #227).
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()
+' consultarEstadoActividadesFormativasMateria(): medidor de la regla AfM = ΣAfAdM,
+' solo lectura, compuesto desde abrirMateria() -- mismo patron que previsualizarGuia()
+' sobre GUIA_ABIERTO. Sin <<choice>>: presenta el estado, no bloquea nada.
+MATERIA_ABIERTO --> MATERIA_ABIERTO : consultarEstadoActividadesFormativasMateria()
 MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
 MATERIAS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
 
 ' --- AsignaturaGrado: refinamiento de detalle, reutiliza abrirAsignaturaGrado() de Admin.
 ' Igual que en Admin: dos entradas (atajo plano desde GRADO_ABIERTO, agrupado por
-' materia; y desde MATERIA_ABIERTO), un solo retorno a GRADO_ABIERTO -- la entrada
-' mas logica y previsiblemente mas usada, no su padre por composicion ---
+' materia; y desde MATERIA_ABIERTO) y dos retornos, uno por cada entrada -- retoque
+' de Manuel usando el producto (DirectorGrado 2026-09-04 via pySigHor, Admin issue
+' #252 2026-09-05), dos oleadas del mismo patron de reversion que #227/PR#234 ("el
+' Profesor no ve las AF" revertido tras uso real). Admin gana los mismos dos retornos
+' en diagramaContextoAdmin.puml -- pantallas de frontend distintas (AsignaturaGrado.tsx
+' -> Materia.tsx vs AsignaturaGradoAdmin.tsx -> MateriaAdmin.tsx), misma navegacion.
 GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
 MATERIA_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
 ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : editarAsignaturaGrado()
@@ -104,7 +148,15 @@ ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asociarResultadoAprendiz
 ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : desasociarResultadoAprendizajeAsignaturaGrado()
 ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asociarMetodologiaDocenteAAsignaturaGrado()
 ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : desasociarMetodologiaDocenteAsignaturaGrado()
+' editarActividadesFormativasAsignaturaGrado(): self-loop unico -- exito y fallo
+' (horas negativas o presencialidad fuera de 0-100, no se guarda nada) vuelven a
+' ASIGNATURA_GRADO_ABIERTO. Este nivel es el que consume el render de la Guia.
+ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : editarActividadesFormativasAsignaturaGrado()
 ASIGNATURA_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+' abrirMateria(): segundo retorno -- boton "Volver a la materia" ademas del
+' "Volver al Grado" ya existente. Incondicional, sin guarda de rol nueva: mismo
+' actor que ya tiene acceso a MATERIA_ABIERTO por la entrada de arriba.
+ASIGNATURA_GRADO_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
 
 ' --- ResultadoAprendizaje: catalogo propio de Grado (Grado *-d- ResultadoAprendizaje),
 ' cascada de asociacion hacia Materia/AsignaturaGrado ya modelada arriba ---
@@ -139,5 +191,18 @@ GUIA_ABIERTO --> GUIA_ABIERTO : editarSemestreGuia()
 GUIAS_DEL_GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : notificarGuiasActualizadas()
 
 GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+
+' abrirGuia()/notificarGuiasActualizadas() TAMBIEN sobre GRADO_ABIERTO -- retoque
+' de Manuel usando el producto (2026-09-05, relay via pySigHor): la portada del
+' grado (Grado.tsx) pasa a mostrar por defecto el listado de Guias (antes
+' Asignaturas, que era duplicado exacto de la propia pestana AsignaturasGrado.tsx
+' y no llevaba a ninguna Guia real) -- "ver guias es ver guias", lo que mas
+' aporta al entrar al grado. Variante CONSERVADORA elegida por Manuel: NO se
+' fusiona GRADO_ABIERTO con GUIAS_DEL_GRADO_ABIERTO, siguen siendo dos
+' estados/CU formalmente distintos (consultarEstadoGuias() sigue existiendo tal
+' cual) -- se duplica el CONTENIDO de pantalla, redundancia documental aceptada
+' a cambio de no tocar la maquina de estados. Ver abrirGrado()/README.md.
+GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+GRADO_ABIERTO --> GRADO_ABIERTO : notificarGuiasActualizadas()
 
 @enduml

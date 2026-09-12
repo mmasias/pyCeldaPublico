@@ -3,12 +3,21 @@
     <b>GUÍA DOCENTE -- Programación I (GII)</b>
     ====
     <b>Semestre:</b> 1
-    <b>Estado:</b> Borrador
+    <b>Estado:</b> [ Borrador ] neutro
+    <i>badge de color en la cabecera (issue 280): neutro Borrador, ámbar En revisión, verde Aprobada, rojo Rechazada; etiqueta legible, color aditivo. Sin caja "Leyenda" aquí (guia única). Salt no pinta fondos, se anota el color.</i>
+    <b>Profesorado:</b> profesor1@uneatlantico.es
+    <i>(en vivo desde AsignaturaGrado -- issue 254)</i>
     <b>Fecha de creación:</b> 01/09/2026
     <b>Fecha de última modificación:</b> 01/09/2026
     <b>Fecha de generación de PDF:</b> --
     ====
-    <b>Contenido:</b> (heredado de AsignaturaGrado)
+    <b>Contenido:</b>
+    {+
+        "Tema 1. Fundamentos de la programación"
+        "Tema 2. Estructuras de control"
+        "Tema 3. Estructuras de datos"
+    }
+    <i>Se guarda con [Guardar borrador]. Semilla del curso anterior o de AsignaturaGrado; el profesor lo mantiene cada curso. Contador "1.322 / 10.000" bajo el textarea, en rojo al llegar al tope (issue 303).</i>
     ====
     Resultados de aprendizaje:
     {#
@@ -22,15 +31,28 @@
         MD3 | Resolución de ejercicios
     }
     ====
+    Actividades formativas:
+    {#
+        <b>Actividad formativa | <b>Horas | <b>% presencialidad
+        Clases expositivas | 30 | 100
+        Clases prácticas | 15 | 100
+        ... (las 10, solo lectura) | |
+    }
+    ====
     Evaluación:
     {#
-        <b>Descripción | <b>Sistema de evaluación | <b>Ponderación
+        <b>Instrumento | <b>Sistema de evaluación | <b>Ponderación
         Examen Parcial | Evaluación continua | 25%
         Actividades y ejercicios | Evaluación continua | 20%
-        Interés y participación | Evaluación continua | 5%
-        Examen Teórico-Práctico | Evaluación final | 50%
+        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35%
+        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20%
     }
-    <b>Suma: 100%</b>
+    <i>Col "Sistema de evaluación": "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo con rangos distintos; solo "Tipo" si la descripción está vacía o coincide (issue 285).</i>
+    Evaluación continua: 45% / [30%, 60%]
+    Examen final teoría (Evaluación final): 35% / [25%, 80%]
+    Examen final prácticas (Evaluación final): 20% / [10%, 40%]
+    <b>Total asignado: 100% / 100%</b>
+    <i>Caja del medidor (subtotales + Total asignado) en cuerpo 0.875rem; el rojo de "(fuera de rango)" se conserva (issue 285).</i>
     [ <b>Gestionar evaluación</b> ]
     ====
     Bibliografía:
@@ -57,13 +79,22 @@
 {
     <b>GUÍA DOCENTE -- Programación I (GII)</b>
     ====
+    <color:orange>En revisión por cambio en los profesores que la imparten</color>
+    <i>(banner solo si volvió a EnRevision por acción del Admin -- issue 254; re-aprobar sincroniza el profesorado)</i>
+    ====
     <b>Semestre:</b> 1
-    <b>Estado:</b> EnRevision
+    <b>Estado:</b> [ En revisión ] ámbar
+    <b>Profesorado:</b> profesor1@uneatlantico.es, profesor2@uneatlantico.es
+    <i>(en vivo desde AsignaturaGrado; se fija en la copia de la guía al aprobar -- issue 254)</i>
     <b>Fecha de creación:</b> 01/09/2026
     <b>Fecha de última modificación:</b> 05/09/2026
     <b>Fecha de generación de PDF:</b> --
     ====
-    <b>Contenido:</b> (heredado de AsignaturaGrado)
+    <b>Contenido:</b>
+    Tema 1. Fundamentos de la programación
+    Tema 2. Estructuras de control
+    Tema 3. Estructuras de datos
+    <i>(solo lectura; el director contrasta contra el temario oficial de AsignaturaGrado)</i>
     ====
     Resultados de aprendizaje:
     {#
@@ -77,15 +108,28 @@
         MD3 | Resolución de ejercicios
     }
     ====
+    Actividades formativas:
+    {#
+        <b>Actividad formativa | <b>Horas | <b>% presencialidad
+        Clases expositivas | 30 | 100
+        Clases prácticas | 15 | 100
+        ... (las 10, solo lectura) | |
+    }
+    ====
     Evaluación:
     {#
-        <b>Descripción | <b>Sistema de evaluación | <b>Ponderación
+        <b>Instrumento | <b>Sistema de evaluación | <b>Ponderación
         Examen Parcial | Evaluación continua | 25%
         Actividades y ejercicios | Evaluación continua | 20%
-        Interés y participación | Evaluación continua | 5%
-        Examen Teórico-Práctico | Evaluación final | 50%
+        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35%
+        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20%
     }
-    <b>Suma: 100%</b>
+    <i>Col "Sistema de evaluación": "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo con rangos distintos; solo "Tipo" si la descripción está vacía o coincide (issue 285).</i>
+    Evaluación continua: 45% / [30%, 60%]
+    Examen final teoría (Evaluación final): 35% / [25%, 80%]
+    Examen final prácticas (Evaluación final): 20% / [10%, 40%]
+    <b>Total asignado: 100% / 100%</b>
+    <i>Caja del medidor (subtotales + Total asignado) en cuerpo 0.875rem; el rojo de "(fuera de rango)" se conserva (issue 285).</i>
     ====
     Bibliografía:
     {#

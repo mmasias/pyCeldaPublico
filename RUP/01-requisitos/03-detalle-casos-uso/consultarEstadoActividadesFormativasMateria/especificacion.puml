@@ -1,0 +1,24 @@
+@startuml consultarEstadoActividadesFormativasMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> consultarEstadoActividadesFormativasMateria
+note on link
+<b>DirectorGrado</b> solicita consultar el estado de las actividades formativas de la Materia
+end note
+
+state consultarEstadoActividadesFormativasMateria as "consultarEstadoActividadesFormativasMateria()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta las 10 actividades formativas con las horas de la materia y la suma de las de sus AsignaturaGrado
+    <b>Sistema</b> visualiza las actividades formativas cuya regla AfM = ΣAfAdM no cuadra
+    end note
+}
+
+consultarEstadoActividadesFormativasMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+
+@enduml

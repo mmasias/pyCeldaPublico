@@ -4,29 +4,48 @@ left to right direction
 skinparam linetype polyline
 
 state SESION_CERRADA
+state INICIO_ABIERTO
 state ASIGNATURAS_GRADO_ABIERTO
 state GUIA_ABIERTO
 state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
 state REFERENCIA_BIBLIOGRAFICA_ABIERTO
 state PONDERACIONES_EVALUACION_ABIERTO
 state PONDERACION_EVALUACION_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO
 
 [*] --> SESION_CERRADA
 
-' A diferencia de Admin, Profesor no tiene un SISTEMA_DISPONIBLE generico: su
-' alcance entero cabe en el listado de sus propias AsignaturaGrado (con el estado
-' de la Guia de cada una como dato mostrado, no como estado de este diagrama)
-SESION_CERRADA --> ASIGNATURAS_GRADO_ABIERTO : iniciarSesion()
+' INICIO_ABIERTO es el aterrizaje tras el login (discussion #274, antes era
+' ASIGNATURAS_GRADO_ABIERTO directamente): la pantalla abrirInicio() compone
+' "Mis guias" (listado de abrirAsignaturasGrado() variante Profesor) y "Mis
+' grados" (abrirGrados() variante DirectorGrado, vacio para un Profesor puro).
+' abrirInicio() es primitiva de navegacion, no cuenta en el catalogo de 102.
+' ASIGNATURAS_GRADO_ABIERTO se conserva como pantalla completa alcanzable por
+' deep link / al expandir la seccion "Mis guias".
+SESION_CERRADA --> INICIO_ABIERTO : iniciarSesion()
 ' credenciales invalidas: no hay transicion de estado, self-loop explicito
 ' -- detectado al construir la especificacion de enviarGuiaARevision()
 SESION_CERRADA --> SESION_CERRADA : iniciarSesion()
+INICIO_ABIERTO --> SESION_CERRADA : cerrarSesion()
 ASIGNATURAS_GRADO_ABIERTO --> SESION_CERRADA : cerrarSesion()
+
+' abrirAsignaturasGrado(): <<include>> de abrirInicio() (seccion "Mis guias");
+' tambien pantalla completa por deep link. abrirGrados() (seccion "Mis grados")
+' no se dibuja como transicion propia de Profesor -- es vacia para un Profesor
+' puro y su edge coloreado vive en el diagrama de DirectorGrado.
+INICIO_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
+INICIO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 
 ASIGNATURAS_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 
 ' crear/editar/eliminar de PonderacionEvaluacion y ReferenciaBibliografica quedan
 ' en memoria hasta que se persisten en guardarBorradorGuia() o enviarGuiaARevision()
 GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
+
+' previsualizarGuia(): vista HTML de la guia renderizada con la plantilla oficial,
+' cualquier estado, aviso si no Aprobada -- misma plantilla que descargarGuiaPDF(),
+' salida HTML. Sin <<choice>> (disponible en todos los estados). Discussion #218.
+GUIA_ABIERTO --> GUIA_ABIERTO : previsualizarGuia()
 
 ' PonderacionEvaluacion: mismo patrón lista/detalle completo que ReferenciaBibliografica
 GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
@@ -38,6 +57,26 @@ PONDERACION_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : editarPonder
 PONDERACION_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
 PONDERACIONES_EVALUACION_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 
+' Planificacion docente: catálogo inline en un único estado (a diferencia de
+' PonderacionEvaluacion/ReferenciaBibliografica, sin detalle de sesión separado)
+GUIA_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : abrirPlanificacionDocente()
+
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : crearSesion()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : editarSesion()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : eliminarSesion()
+' importarPlanificacionDocenteDeGuiaHermana(): reemplaza al completo la planificación
+' docente de la guía con la de una guía Aprobada de una AsignaturaGrado hermana (mismo
+' asignatura_id + Asignatura.codigo, FK del issue #181). Self-loop; <<choice>> de
+' salvaguarda estructural con botón condicional (molde descargarGuiaPDF()). Issue #184.
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : importarPlanificacionDocenteDeGuiaHermana()
+' generarPlanificacionDocenteGenerica(): arranca la planificación docente de una
+' guía vacía creando Guia.sesiones_minimas Sesion genéricas (CLASE_TEORICA, sin
+' descripción, vinculadas, numero 1..N). Self-loop; <<choice>> de vacío (409 si
+' ya hay sesiones) con botón condicional (solo en el empty-state). Familia del
+' issue #184, sin lectura cross-grado. Verbo generar (precedente generarGuiasPDF()).
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : generarPlanificacionDocenteGenerica()
+PLANIFICACION_DOCENTE_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
 ' ReferenciaBibliografica: patrón lista/detalle completo (a diferencia de
 ' AsignaturaGrado, aquí no existía ya un listado plano en el padre que reutilizar)
 GUIA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
@@ -45,6 +84,11 @@ GUIA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograf
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : crearReferenciaBibliografica()
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : abrirReferenciaBibliografica()
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()
+' importarBibliografiaDeGuiaHermana(): reemplaza al completo la bibliografía de la guía
+' con la de una guía Aprobada de una AsignaturaGrado hermana (mismo asignatura_id +
+' Asignatura.codigo, FK del issue #181). Self-loop; <<choice>> de salvaguarda estructural
+' con botón condicional (molde descargarGuiaPDF()). Issue #184.
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : importarBibliografiaDeGuiaHermana()
 REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : editarReferenciaBibliografica()
 REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
@@ -58,6 +102,10 @@ GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()
 ' de partida"); el destino ya tenía nombre propio -- corregido al planificar
 ' Análisis (discussion #47), mismo criterio en los tres diagramas de contexto.
 GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : abrirAsignaturasGrado()
+
+' abrirInicio(): vuelta a la pantalla de inicio desde la pantalla completa de
+' "Mis guias" (discussion #274)
+ASIGNATURAS_GRADO_ABIERTO --> INICIO_ABIERTO : abrirInicio()
 
 ' enviarGuiaARevision(): persiste, cambia el estado de dominio de la Guia a
 ' EnRevision (ver guia.puml) y cierra la sesión de edición -- ya no es turno del profesor.

@@ -26,6 +26,15 @@
         Programación I | 1 | Básica | [Abrir]
     }
     ====
+    <b>Actividades formativas de la materia:</b>
+    {#
+        <b>Actividad formativa | <b>Horas materia | <b>Σ asignaturas | .
+        Clases expositivas | 45 | 45 | OK
+        Clases prácticas | 20 | 15 | discrepancia -5
+        ... (las 10, siempre) | | |
+    }
+    [ <b>Editar reparto</b> ]  |  "Medidor AfM = ΣAfAdM (informativo, no bloquea)"
+    ====
     {[Editar] | [Volver al listado]}
 }
 @endsalt

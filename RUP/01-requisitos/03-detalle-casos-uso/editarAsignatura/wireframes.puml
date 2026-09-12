@@ -3,6 +3,7 @@
     <b>EDITAR ASIGNATURA</b>
     ====
     {
+        <b>Código:</b> IYA003
         <b>Nombre (*):</b>
         "Programación I"
         <b>ECTS (*):</b>
@@ -12,6 +13,7 @@
         de flujo, funciones, estructuras de datos básicas y depuración."
         --
         <i>(*) Campo obligatorio</i>
+        <i>El código no es editable una vez creada la Asignatura</i>
     }
     ~~
     {[Guardar]}

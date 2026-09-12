@@ -16,3 +16,21 @@
     {[Editar] | [Volver al listado]}
 }
 @endsalt
+
+@startsalt abrirGrado-wireframe-porDirectorGrado
+{
+    <b>GII -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    <b>Código:</b> GII
+    <b>Nombre:</b> Grado en Ingeniería Informática
+    <b>Estado:</b> Vigente
+    ====
+    [ <b>Notificar guías actualizadas</b> ]
+    ====
+    <b>Guías:</b>
+    {#
+        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | <b>Última actualización | .
+        Programación I | Dr. Manuel Masías | EnRevision | Profesor, hace 2 días | [Abrir]
+    }
+}
+@endsalt

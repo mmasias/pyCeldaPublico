@@ -1,18 +1,26 @@
 @startsalt abrirPonderacionesEvaluacion-wireframe
 {
-    <b>EVALUACIÓN -- Programación I (GII)</b>
+    <b>INSTRUMENTOS DE EVALUACIÓN</b>
+    ====
+    [ <b>Crear Instrumento</b> ] | [ <b>Volver a la guía</b> ] | [ Mis asignaturas ]
     ====
     {#
-        <b>Descripción | <b>Sistema de evaluación | <b>Ponderación | . | .
-        Examen Parcial | Evaluación continua | 25% | [Abrir] | [Eliminar]
-        Actividades y ejercicios | Evaluación continua | 20% | [Abrir] | [Eliminar]
-        Interés y participación | Evaluación continua | 5% | [Abrir] | [Eliminar]
-        Examen Teórico-Práctico | Evaluación final | 50% | [Abrir] | [Eliminar]
+        <b>Instrumento | <b>Sistema | <b>Ponderación | <b>Vinculada | . | .
+        Examen Parcial | Evaluación continua | 25% | Sí | [Abrir] | [Eliminar]
+        Actividades y ejercicios | Evaluación continua | 20% | Sí | [Abrir] | [Eliminar]
+        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Abrir] | [Eliminar]
+        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Abrir] | [Eliminar]
     }
-    <b>Suma: 100%</b>
+    <i>Col "Sistema": "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo; solo "Tipo" si la descripción está vacía o coincide (issue 285).</i>
+    <b>Total asignado: 100% / 100%</b>
+    <i>"Total asignado" en cuerpo 0.875rem (issue 285). La 2.ª tabla ya distingue por su columna Descripción propia (issue 279), no lleva el paréntesis.</i>
     ====
-    [ <b>+ Crear Ponderación</b> ]
-    ====
-    {[Volver a la guía]}
+    <b>Sistemas de evaluación de la materia</b>
+    {#
+        <b>Tipo | <b>Descripción | <b>Ponderación mínima | <b>Ponderación máxima | <b>Asignado
+        Evaluación continua | Pruebas y actividades durante el curso | 40% | 60% | 45%
+        Evaluación final | Examen final teoría | 25% | 80% | 35%
+        Evaluación final | Examen final prácticas | 10% | 40% | 20%
+    }
 }
 @endsalt

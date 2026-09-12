@@ -33,7 +33,9 @@ state desasignarProfesorAsignaturaGrado as "desasignarProfesorAsignaturaGrado()"
 
 desasignarProfesorAsignaturaGrado -[#green]-> ASIGNATURA_GRADO_ABIERTO_SALIDA
 note on link
-lista actualizada
+lista actualizada. Si la plantilla cambio y la Guia activa esta Aprobada, pasa a
+EnRevision (+ fila de HistorialCambio, autor centinela) -- al re-aprobar el director,
+Guia--Profesor se re-deriva y el profesor desasignado sale de la copia (issue 254).
 end note
 
 desasignarProfesorAsignaturaGrado -[#blue]-> ASIGNATURA_GRADO_ABIERTO_SALIDA

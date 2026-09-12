@@ -33,6 +33,15 @@
     }
     [ <b>+ Asociar Metodología Docente</b> ]
     ====
-    {[Editar] | [Volver al Grado]}
+    <b>Actividades formativas:</b>
+    {#
+        <b>Actividad formativa | <b>Horas | <b>% presencialidad
+        Clases expositivas | 30 | 100
+        Clases prácticas | 15 | 100
+        ... (las 10, siempre) | |
+    }
+    [ <b>Editar reparto</b> ]
+    ====
+    {[Editar] | [Volver al Grado] | [Volver a la materia]}
 }
 @endsalt
