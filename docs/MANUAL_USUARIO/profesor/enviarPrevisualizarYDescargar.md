@@ -8,7 +8,7 @@
 
 ## Enviar la guía a revisión
 
-Cuando el temario, la evaluación, la bibliografía y la planificación docente están listos, corresponde pulsar **Enviar a revisión**, en la propia guía. La guía pasa a estado **En revisión** y queda a la espera de que el director o directora del grado la apruebe o la rechace.
+Cuando el temario, la evaluación, la bibliografía y la planificación docente están listos, corresponde pulsar **Enviar a revisión**, en la propia guía. La guía pasa a estado **En revisión** y queda a la espera de que el director de grado la apruebe o la rechace.
 
 Antes del envío se comprueban tres cosas -- si alguna falla, aparece un aviso explicando exactamente cuál:
 

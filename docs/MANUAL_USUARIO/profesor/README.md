@@ -1,6 +1,6 @@
 # Manual de usuario -- Profesor
 
-pyCelda gestiona la guía docente de las asignaturas: temario, evaluación, bibliografía, planificación de sesiones y su ciclo de revisión con el director o directora de grado.
+pyCelda gestiona la guía docente de las asignaturas: temario, evaluación, bibliografía, planificación de sesiones y su ciclo de revisión con el director de grado.
 
 ## Qué permite hacer
 

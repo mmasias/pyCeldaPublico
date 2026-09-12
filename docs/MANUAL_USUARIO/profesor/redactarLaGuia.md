@@ -34,13 +34,13 @@ Si el texto del temario supera los 10.000 caracteres, al guardar aparece el erro
 ## Los cuatro estados de la guía
 
 - **Borrador**: la guía está en preparación. El contenido, la evaluación, la bibliografía y la planificación docente son editables libremente.
-- **En revisión**: la guía se ha enviado y está pendiente de que el director o directora del grado la revise. Sigue siendo editable mientras tanto.
-- **Aprobada**: el director o directora ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se pulsa **Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar.
-- **Rechazada**: el director o directora ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva, justo debajo del estado, tanto en el listado de asignaturas como al abrir la guía. Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
+- **En revisión**: la guía se ha enviado y está pendiente de que el director de grado la revise. Sigue siendo editable mientras tanto.
+- **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se pulsa **Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar.
+- **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva, justo debajo del estado, tanto en el listado de asignaturas como al abrir la guía. Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
 Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque administración ha cambiado el profesorado asignado a esa asignatura estando la guía ya aprobada -- es automático, no un error.
 
-Si el director o directora revoca una aprobación ya concedida, la guía vuelve a **Borrador** y aparece su comentario en cursiva, igual que con un rechazo.
+Si el director revoca una aprobación ya concedida, la guía vuelve a **Borrador** y aparece su comentario en cursiva, igual que con un rechazo.
 
 ## Qué no es editable aquí
 
