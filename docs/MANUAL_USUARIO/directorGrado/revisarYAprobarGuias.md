@@ -16,7 +16,7 @@ Desde la barra de navegación del grado, pulsar **Guías**.
 
 ## Qué muestra
 
-Una tabla con la asignatura, el **Profesorado** (los correos asignados, o "Sin profesorado asignado"), el **Estado** de la guía y la **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Última columna, sin título: el botón **Abrir**.
+Una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Última columna, sin título: el botón **Abrir**.
 
 Encima de la tabla, el botón **Notificar guías actualizadas** avisa a administración de que hay guías con cambios recientes; al pulsarlo aparece una confirmación en pantalla.
 
@@ -50,7 +50,3 @@ Pulsar **Revocar aprobación** en una guía **Aprobada** que necesita corregirse
 ## Editar el semestre
 
 Pulsar **Editar semestre**, cambiar el número y pulsar **Guardar**. Disponible en cualquier estado de la guía.
-
-## Limitación conocida
-
-Las pantallas de **Rechazar**, **Revocar aprobación** y **Editar semestre** no muestran el nombre de la asignatura en su cabecera -- la pantalla de la guía, justo antes de entrar en cualquiera de ellas, sí lo muestra.
