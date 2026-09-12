@@ -8,40 +8,40 @@
 
 ## Qué es
 
-La guía docente es el documento oficial de tu asignatura: temario, evaluación, bibliografía y planificación de clases.
+La guía docente es el documento oficial de la asignatura: temario, evaluación, bibliografía y planificación de clases.
 
 ## Cómo llegar
 
-Desde **Inicio** (o desde **Mis asignaturas**), pulsa **Abrir guía** en la fila de la asignatura que te interesa.
+Desde **Inicio** (o desde **Mis asignaturas**), pulsar **Abrir guía** en la fila de la asignatura correspondiente.
 
-## Qué ves
+## Qué muestra
 
-Arriba de la guía tienes los datos generales: semestre, estado, profesorado asignado, fecha de creación y fecha de última modificación. Si tu guía ya se aprobó alguna vez, también verás la fecha en que se generó el PDF.
+Arriba de la guía aparecen los datos generales: semestre, estado, profesorado asignado, fecha de creación y fecha de última modificación. Si la guía se aprobó alguna vez, también aparece la fecha en que se generó el PDF.
 
-Debajo, el campo de texto **Contenido** con el temario de la asignatura. Puedes escribir hasta 10.000 caracteres; el contador que hay bajo el cuadro de texto te avisa de cuánto llevas y se pone en rojo al llegar al límite.
+Debajo, el campo de texto **Contenido** con el temario de la asignatura, con un límite de 10.000 caracteres; el contador bajo el cuadro de texto indica cuánto se lleva escrito y se pone en rojo al llegar al límite.
 
-Más abajo encontrarás, en este orden: **Resultados de aprendizaje** y **Metodologías docentes** (información fija de la asignatura, no editable desde aquí), **Actividades formativas** (igual, solo lectura), la sección **Evaluación**, la sección **Bibliografía** y la sección **Planificación docente**. Las tres últimas tienen su propio capítulo en este manual: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
+Más abajo aparecen, en este orden: **Resultados de aprendizaje** y **Metodologías docentes** (información fija de la asignatura, no editable desde aquí), **Actividades formativas** (igual, solo lectura), la sección **Evaluación**, la sección **Bibliografía** y la sección **Planificación docente**. Las tres últimas tienen su propio capítulo en este manual: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
 
 ## Editar y guardar el temario
 
-1. Escribe o corrige el texto en el cuadro **Contenido**.
-2. Pulsa **Guardar borrador**.
+1. Escribir o corregir el texto en el cuadro **Contenido**.
+2. Pulsar **Guardar borrador**.
 
-Al pulsar **Guardar borrador** se confirma de una sola vez todo lo que hayas cambiado desde el último guardado: el texto del temario, y cualquier instrumento de evaluación, referencia bibliográfica o sesión de planificación que hayas creado, editado o marcado para eliminar en las pantallas de gestión (ver los capítulos correspondientes). Si sales de la guía sin pulsar **Guardar borrador**, esos cambios pendientes no se pierden del todo, pero tampoco quedan confirmados -- la próxima vez que entres seguirán ahí, a la espera de que guardes.
+Al pulsar **Guardar borrador** se confirma de una sola vez todo lo cambiado desde el último guardado: el texto del temario, y cualquier instrumento de evaluación, referencia bibliográfica o sesión de planificación creado, editado o marcado para eliminar en las pantallas de gestión (ver los capítulos correspondientes). Si la guía se abandona sin pulsar **Guardar borrador**, esos cambios pendientes no se pierden del todo, pero tampoco quedan confirmados -- siguen ahí, a la espera de guardarse, la próxima vez que se entra.
 
-Si el texto del temario supera los 10.000 caracteres, al guardar verás el error "El contenido supera el límite de 10.000 caracteres" y no se guardará nada, ni siquiera lo demás que tuvieras pendiente. Recorta el texto y guarda de nuevo.
+Si el texto del temario supera los 10.000 caracteres, al guardar aparece el error "El contenido supera el límite de 10.000 caracteres" y no se guarda nada, ni siquiera el resto de lo pendiente. Corresponde recortar el texto y guardar de nuevo.
 
 ## Los cuatro estados de la guía
 
-- **Borrador**: la guía está en preparación. Puedes editar libremente el contenido, la evaluación, la bibliografía y la planificación docente.
-- **En revisión**: has enviado la guía y está pendiente de que el director o directora del grado la revise. Puedes seguir editándola mientras esperas.
-- **Aprobada**: el director o directora ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. Puedes seguir editando el contenido si hace falta, pero en cuanto pulses **Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que tendrás que enviarla a revisión otra vez cuando termines de editar.
-- **Rechazada**: el director o directora ha devuelto la guía con comentarios. Verás el motivo del rechazo en cursiva, justo debajo del estado, tanto en el listado de tus asignaturas como al abrir la guía. Corrige lo que haga falta y vuelve a enviarla a revisión.
+- **Borrador**: la guía está en preparación. El contenido, la evaluación, la bibliografía y la planificación docente son editables libremente.
+- **En revisión**: la guía se ha enviado y está pendiente de que el director o directora del grado la revise. Sigue siendo editable mientras tanto.
+- **Aprobada**: el director o directora ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se pulsa **Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar.
+- **Rechazada**: el director o directora ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva, justo debajo del estado, tanto en el listado de asignaturas como al abrir la guía. Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
-Si tu guía pasa a **En revisión** sin que hayas hecho nada tú, y ves un aviso en la parte de arriba de la guía explicando el motivo, es porque administración ha cambiado el profesorado asignado a tu asignatura estando la guía ya aprobada -- es automático, no un error tuyo.
+Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque administración ha cambiado el profesorado asignado a esa asignatura estando la guía ya aprobada -- es automático, no un error.
 
-Si el director o directora revoca una aprobación ya concedida, la guía vuelve a **Borrador** y verás su comentario en cursiva, igual que con un rechazo.
+Si el director o directora revoca una aprobación ya concedida, la guía vuelve a **Borrador** y aparece su comentario en cursiva, igual que con un rechazo.
 
-## Qué no puedes tocar
+## Qué no es editable aquí
 
-Los datos generales de la parte de arriba (semestre, profesorado asignado), los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona la administración del grado, no el profesor -- en esta pantalla se muestran para que tengas el contexto completo de tu asignatura, pero no son editables aquí.
+Los datos generales de la parte de arriba (semestre, profesorado asignado), los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona la administración del grado, no el profesorado -- se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.

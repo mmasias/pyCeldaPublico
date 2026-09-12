@@ -4,34 +4,34 @@
 
 </div>
 
-# Entrar y ver tus asignaturas
+# Entrar y ver las asignaturas
 
 ## Cómo entrar
 
-1. Abre pyCelda en el navegador. Verás el botón **Iniciar sesión con Google**.
-2. Pulsa el botón e inicia sesión con tu cuenta de correo de la universidad. Tiene que ser exactamente la cuenta que la administración haya dado de alta como tuya -- con otra cuenta no podrás entrar.
-3. Tras iniciar sesión llegas a la pantalla **Inicio**.
+1. Abrir pyCelda en el navegador. Aparece el botón **Iniciar sesión con Google**.
+2. Pulsar el botón e iniciar sesión con la cuenta de correo de la universidad dada de alta por administración. Con otra cuenta, el acceso no se completa.
+3. Tras iniciar sesión, la pantalla de destino es **Inicio**.
 
-Si tu cuenta no está dada de alta como profesor, contacta con administración: pyCelda no permite crear tu propia cuenta desde la pantalla de entrada.
+Si la cuenta no está dada de alta como profesor, corresponde contactar con administración: pyCelda no permite crear una cuenta propia desde la pantalla de entrada.
 
-## Qué ves en Inicio
+## Qué muestra Inicio
 
-En **Inicio** aparece la sección **Mis guías**: una tabla con una fila por cada asignatura que impartes este curso.
+En **Inicio** aparece la sección **Mis guías**: una tabla con una fila por cada asignatura impartida en el curso.
 
 Columnas de la tabla:
 
 - **Asignatura**: el nombre de la asignatura.
-- **Grado**: el grado al que pertenece (si impartes en varios grados, verás varias filas de la misma asignatura, una por grado).
+- **Grado**: el grado al que pertenece (si la misma asignatura se imparte en varios grados, aparece una fila por grado).
 - **Carácter**: Básica, Obligatoria, Optativa, etc.
-- **Estado guía**: el estado actual de la guía docente de esa asignatura -- Borrador, En revisión, Aprobada o Rechazada. Debajo de la tabla hay una leyenda de colores que te ayuda a distinguirlos de un vistazo. El significado de cada estado se explica en el capítulo [Redactar la guía](redactarLaGuia.md).
-- Última columna, sin título: el botón **Abrir guía**, que te lleva directamente a esa guía. Si no ves el botón en una fila, es que la asignatura todavía no tiene una guía creada -- avisa a administración.
+- **Estado guía**: el estado actual de la guía docente de esa asignatura -- Borrador, En revisión, Aprobada o Rechazada. Debajo de la tabla hay una leyenda de colores para distinguirlos de un vistazo. El significado de cada estado se explica en el capítulo [Redactar la guía](redactarLaGuia.md).
+- Última columna, sin título: el botón **Abrir guía**, que lleva a la guía correspondiente. Si el botón no aparece en una fila, es que esa asignatura todavía no tiene una guía creada -- corresponde avisar a administración.
 
-Si tu cuenta no imparte ninguna asignatura este curso, verás el mensaje "No tienes asignaturas asignadas" en lugar de la tabla.
+Si la cuenta no imparte ninguna asignatura este curso, en lugar de la tabla aparece el mensaje "No tienes asignaturas asignadas".
 
 ## Cerrar sesión
 
-En cualquier momento puedes pulsar **Cerrar sesión**, arriba de la pantalla de Inicio, para salir de tu cuenta.
+En cualquier momento, **Cerrar sesión**, arriba de la pantalla de Inicio, cierra la cuenta.
 
 ## Volver a esta pantalla
 
-Desde cualquier guía, el botón **Mis asignaturas** (o **Volver a mis asignaturas**, según la pantalla) te devuelve al listado completo de tus asignaturas.
+Desde cualquier guía, el botón **Mis asignaturas** (o **Volver a mis asignaturas**, según la pantalla) lleva de vuelta al listado completo de asignaturas.
