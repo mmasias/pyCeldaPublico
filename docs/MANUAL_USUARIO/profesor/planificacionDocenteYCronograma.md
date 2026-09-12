@@ -20,7 +20,7 @@ Desde la guía, pulsar **Gestionar planificación docente**, en la sección **Pl
 
 ## Qué muestra
 
-Una tabla numerada con cada sesión: **#** (el orden), **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, un aviso con el total de sesiones y el mínimo exigido, en rojo si todavía no se alcanza.
+Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, un aviso con el total de sesiones y el mínimo exigido, en rojo si todavía no se alcanza.
 
 ## Crear una sesión
 

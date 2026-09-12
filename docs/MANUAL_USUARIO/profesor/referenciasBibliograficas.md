@@ -16,7 +16,7 @@ Desde la guía, pulsar **Gestionar bibliografía**, en la sección **Bibliograf�
 
 ## Qué muestra
 
-Una tabla con todas las referencias ya creadas: **Tipo**, **Referencia** (el texto de la cita) y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **Guardar borrador** en la guía).
+Una tabla con todas las referencias ya creadas: **Tipo**, **Referencia** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **Guardar borrador** en la guía).
 
 ## Crear una referencia
 

@@ -20,7 +20,7 @@ Desde la guía, pulsar **Gestionar evaluación**, en la sección **Evaluación**
 
 ## Qué muestra
 
-Una tabla con todos los instrumentos ya creados: **Instrumento** (la descripción asignada), **Sistema** (el tipo de evaluación al que pertenece), **Ponderación** (el porcentaje) y **Vinculada** (Sí o No -- ver más abajo). Debajo, el total asignado sobre 100%, en rojo si no cuadra.
+Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, **Ponderación** y **Vinculada** (Sí o No -- ver más abajo). Debajo, el total asignado sobre 100%, en rojo si no cuadra.
 
 Más abajo, la tabla **Sistemas de evaluación de la materia**: el catálogo completo de tipos de evaluación de la asignatura, con su porcentaje mínimo y máximo permitido, y cuánto hay asignado a cada uno. Si un sistema está fuera de su rango permitido, o en 0% siendo obligatorio, aparece marcado en rojo.
 
