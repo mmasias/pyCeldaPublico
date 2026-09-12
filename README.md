@@ -6,7 +6,9 @@
 
 - **[Profesor](docs/MANUAL_USUARIO/profesor/README.md)**
 
-Manual de Director de grado y de Administrador: en preparación.
+- **[Director de Grado](docs/MANUAL_USUARIO/directorGrado/README.md)**
+
+Manual de Administrador: en preparación.
 
 ## Prototipo navegable
 
