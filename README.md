@@ -2,7 +2,15 @@
 
 **pyCelda** (**C**atálogo **E**structurado de **L**egajos **D**e **A**signaturas): gestión de guías docentes.
 
-Prototipo navegable en Markdown, organizado por actor.
+## Manual de usuario
+
+- **[Profesor](docs/MANUAL_USUARIO/profesor/README.md)**
+
+Manual de Director de grado y de Administrador: en preparación.
+
+## Prototipo navegable
+
+Organizado por actor.
 
 <div align=center>
 
