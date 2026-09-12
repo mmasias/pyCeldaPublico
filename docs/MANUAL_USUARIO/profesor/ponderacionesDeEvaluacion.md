@@ -8,7 +8,7 @@
 
 ## Qué es
 
-Cada instrumento de evaluación de tu asignatura (un examen, un trabajo, unas prácticas...) se registra con un porcentaje sobre la nota final. Esta pantalla es donde los gestionas.
+Cada instrumento de evaluación de tu asignatura (un examen, un trabajo, unas prácticas...) se registra con un porcentaje sobre la nota final.
 
 ## Cuándo lo necesitas
 

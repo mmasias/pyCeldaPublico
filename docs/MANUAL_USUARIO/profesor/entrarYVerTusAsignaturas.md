@@ -6,10 +6,6 @@
 
 # Entrar y ver tus asignaturas
 
-## Qué es
-
-La pantalla de entrada te lleva directamente a tus asignaturas del curso, sin pasos intermedios.
-
 ## Cómo entrar
 
 1. Abre pyCelda en el navegador. Verás el botón **Iniciar sesión con Google**.

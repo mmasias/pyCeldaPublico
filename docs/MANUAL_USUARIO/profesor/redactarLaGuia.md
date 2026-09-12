@@ -8,7 +8,7 @@
 
 ## Qué es
 
-La guía docente es el documento oficial de tu asignatura: temario, evaluación, bibliografía y planificación de clases. Esta pantalla es el centro desde el que rediges y gestionas todo eso.
+La guía docente es el documento oficial de tu asignatura: temario, evaluación, bibliografía y planificación de clases.
 
 ## Cómo llegar
 

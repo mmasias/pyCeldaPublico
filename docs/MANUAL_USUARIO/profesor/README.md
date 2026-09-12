@@ -1,6 +1,6 @@
 # Manual de usuario -- Profesor
 
-pyCelda es la aplicación donde redactas y mantienes la guía docente de las asignaturas que impartes, curso a curso.
+pyCelda gestiona la guía docente de tus asignaturas: temario, evaluación, bibliografía, planificación de sesiones y su ciclo de revisión con el director o directora de grado.
 
 ## Qué puedes hacer
 
