@@ -14,6 +14,8 @@ pyCelda gestiona el catálogo académico de la institución (universidades, facu
 
 Cursos académicos y la generación masiva de guías en PDF no están disponibles en esta versión.
 
+Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).
+
 ## Índice
 
 1. [Entrar y el panel de administración](entrarYElPanel.md)

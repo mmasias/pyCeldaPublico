@@ -12,6 +12,8 @@ pyCelda gestiona el catálogo académico del grado (materias, asignaturas, resul
 
 Si la cuenta también imparte alguna asignatura, la gestión de esa guía propia (redactar el temario, la evaluación, la bibliografía y la planificación docente) se explica en el [manual de Profesor](../profesor/README.md), no en este.
 
+Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).
+
 ## Índice
 
 1. [Entrar y ver los grados](entrarYVerLosGrados.md)

@@ -11,6 +11,8 @@ pyCelda gestiona la guía docente de las asignaturas: temario, evaluación, bibl
 - Crear, editar y eliminar las sesiones de la planificación docente (el cronograma de clases), arrancarla de golpe con una plantilla genérica, o importarla de una guía hermana.
 - Enviar la guía a revisión, previsualizar el documento oficial y descargar el PDF una vez aprobada.
 
+Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).
+
 ## Índice
 
 1. [Entrar y ver las asignaturas](entrarYVerTusAsignaturas.md)

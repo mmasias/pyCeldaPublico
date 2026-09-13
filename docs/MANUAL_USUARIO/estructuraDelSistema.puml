@@ -1,0 +1,53 @@
+@startuml estructuraDelSistema
+
+hide empty members
+hide circle
+
+left to right direction
+skinparam linetype ortho
+
+<style>
+legend {
+  BackGroundColor #f0f0f0;
+}
+</style>
+
+legend top
+    **Responsable de cada bloque**
+    |<#A9CCE3>     | Admin |<#A9DFBF>     | Director de grado |<#F9E79F>     | Profesor |<#D2B4DE>     | Mixto -- Admin crea, Director gestiona el contenido |<#F5CBA7>     | Compartida -- redacta Profesor, decide Director, supervisa Admin |<#D5D8DC>     | Sin gestión -- catálogo fijo |
+    --
+    Borde discontinuo = especificado en el catálogo de requisitos, todavía sin construir en la aplicación.
+end legend
+
+' Categoría 1 -- contención estricta: nace y muere con su padre.
+class "Universidad" as Universidad #A9CCE3;line:gray;line.dashed
+class "Facultad" as Facultad #A9CCE3;line:gray;line.dashed
+class "Grado" as Grado #A9CCE3
+class "Materia" as Materia #D2B4DE
+class "Sistema de evaluación" as SistemaEvaluacion #A9CCE3
+class "Asignatura de grado" as AsignaturaGrado #D2B4DE
+class "Guía docente" as Guia #F5CBA7
+
+Universidad --> Facultad
+Facultad --> Grado
+Grado --> Materia
+Materia --> SistemaEvaluacion
+Materia --> AsignaturaGrado
+AsignaturaGrado --> Guia
+
+' Categoría 2 -- catálogos asignados en cascada: existen con independencia de
+' dónde se usan: la misma entrada puede asignarse en varios sitios.
+class "Asignatura" as Asignatura #A9CCE3
+class "Metodología docente" as MetodologiaDocente #A9CCE3
+class "Resultado de aprendizaje" as ResultadoAprendizaje #A9DFBF
+class "Actividad formativa" as ActividadFormativa #D5D8DC
+
+Asignatura ..> AsignaturaGrado
+MetodologiaDocente ..> Materia
+MetodologiaDocente ..> AsignaturaGrado
+ResultadoAprendizaje ..> Materia
+ResultadoAprendizaje ..> AsignaturaGrado
+ActividadFormativa ..> Materia
+ActividadFormativa ..> AsignaturaGrado
+
+@enduml
