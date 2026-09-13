@@ -20,7 +20,7 @@ Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesora
 
 ## Detalle de una asignatura de grado
 
-Al abrir una asignatura aparecen sus datos: Asignatura, Materia, Curso, Carácter, Idioma, ECTS, Semestre por defecto, Contenido, Requisitos previos y Estado. Debajo, el **Profesorado asignado** (de solo lectura -- asignar o quitar profesorado lo gestiona administración, no esta pantalla), y las mismas cuatro secciones que en una materia: **Resultados de aprendizaje asociados**, **Metodologías docentes asociadas** y **Actividades formativas**, con el mismo mecanismo de asociar/quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados y metodologías que ya están en la materia y todavía no están en esta asignatura.
+Al abrir una asignatura aparecen sus datos: Asignatura, Materia, Curso, Carácter, Idioma, ECTS, Semestre por defecto, Contenido, Requisitos previos y Estado. Debajo, el **Profesorado asignado** (de solo lectura -- asignar o quitar profesorado lo gestiona Admin, no esta pantalla), y las mismas cuatro secciones que en una materia: **Resultados de aprendizaje asociados**, **Metodologías docentes asociadas** y **Actividades formativas**, con el mismo mecanismo de asociar/quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados y metodologías que ya están en la materia y todavía no están en esta asignatura.
 
 ## Editar una asignatura de grado
 

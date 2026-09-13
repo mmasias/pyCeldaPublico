@@ -12,7 +12,7 @@ El cronograma de sesiones de la asignatura: una lista numerada de las clases pre
 
 ## Cuándo se necesita
 
-Antes de poder enviar la guía a revisión, es necesario alcanzar un número mínimo de sesiones registradas (indicado en la propia pantalla, por ejemplo "mínimo 25"). Ese mínimo lo fija administración para la asignatura.
+Antes de poder enviar la guía a revisión, es necesario alcanzar un número mínimo de sesiones registradas (indicado en la propia pantalla, por ejemplo "mínimo 25"). Ese mínimo lo fija Admin para la asignatura.
 
 ## Cómo llegar
 

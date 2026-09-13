@@ -8,7 +8,7 @@
 
 ## Qué es
 
-El ciclo de decisión sobre las guías docentes que redacta el profesorado del grado: aprobar, rechazar, escalar directamente a aprobada, revocar una aprobación ya concedida, ajustar el semestre y avisar a administración de que hay guías actualizadas. La redacción del contenido, la evaluación, la bibliografía y la planificación docente es tarea del profesorado -- se explica en el [manual de Profesor](../profesor/README.md), no aquí.
+El ciclo de decisión sobre las guías docentes que redacta el profesorado del grado: aprobar, rechazar, escalar directamente a aprobada, revocar una aprobación ya concedida, ajustar el semestre y avisar a Admin de que hay guías actualizadas. La redacción del contenido, la evaluación, la bibliografía y la planificación docente es tarea del profesorado -- se explica en el [manual de Profesor](../profesor/README.md), no aquí.
 
 ## Cómo llegar
 
@@ -16,9 +16,9 @@ Desde la barra de navegación del grado, pulsar **Guías**.
 
 ## Qué muestra
 
-Una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Última columna, sin título: el botón **Abrir**.
+Una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Admin) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Última columna, sin título: el botón **Abrir**.
 
-Encima de la tabla, el botón **Notificar guías actualizadas** avisa a administración de que hay guías con cambios recientes; al pulsarlo aparece una confirmación en pantalla.
+Encima de la tabla, el botón **Notificar guías actualizadas** avisa a Admin de que hay guías con cambios recientes; al pulsarlo aparece una confirmación en pantalla.
 
 ## Abrir una guía para revisarla
 

@@ -38,10 +38,10 @@ Si el texto del temario supera los 10.000 caracteres, al guardar aparece el erro
 - **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se pulsa **Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar.
 - **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva, justo debajo del estado, tanto en el listado de asignaturas como al abrir la guía. Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
-Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque administración ha cambiado el profesorado asignado a esa asignatura estando la guía ya aprobada -- es automático, no un error.
+Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque Admin ha cambiado el profesorado asignado a esa asignatura estando la guía ya aprobada -- es automático, no un error.
 
 Si el director revoca una aprobación ya concedida, la guía vuelve a **Borrador** y aparece su comentario en cursiva, igual que con un rechazo.
 
 ## Qué no es editable aquí
 
-Los datos generales de la parte de arriba (semestre, profesorado asignado), los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona la administración del grado, no el profesorado -- se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.
+El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona el director de grado -- no el profesorado. Se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.

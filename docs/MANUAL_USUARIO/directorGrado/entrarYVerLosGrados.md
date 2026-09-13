@@ -8,7 +8,7 @@
 
 ## Cómo entrar
 
-El acceso es el mismo mecanismo que para el profesorado: iniciar sesión con la cuenta de correo de la universidad dada de alta por administración, mediante el botón **Iniciar sesión con Google** de la pantalla de entrada. Tras iniciar sesión, la pantalla de destino es **Inicio**.
+El acceso es el mismo mecanismo que para el profesorado: iniciar sesión con la cuenta de correo de la universidad dada de alta por Admin, mediante el botón **Iniciar sesión con Google** de la pantalla de entrada. Tras iniciar sesión, la pantalla de destino es **Inicio**.
 
 ## Qué muestra Inicio
 

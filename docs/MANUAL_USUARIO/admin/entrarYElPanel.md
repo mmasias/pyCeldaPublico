@@ -8,7 +8,7 @@
 
 ## Entrar
 
-El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de grado. Pulsar **Iniciar sesión con Google** y autenticarse con una cuenta con permisos de administración.
+El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de grado. Pulsar **Iniciar sesión con Google** y autenticarse con una cuenta con permisos de Admin.
 
 ## El panel de administración
 
