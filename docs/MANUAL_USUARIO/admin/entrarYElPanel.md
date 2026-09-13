@@ -28,9 +28,9 @@ Dos botones más, **Cursos académicos** y **Generar guías PDF**, aparecen desa
 
 ---
 
-<sub>
+<div align=center>
 
 |  | [Índice](README.md) | [Estructura académica](estructuraAcademica.md) |
 |---|:-:|---|
 
-</sub>
+</div>

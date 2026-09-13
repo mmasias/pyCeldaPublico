@@ -38,9 +38,9 @@ Desde cualquier guía, el botón **Mis asignaturas** (o **Volver a mis asignatur
 
 ---
 
-<sub>
+<div align=center>
 
 |  | [Índice](README.md) | [Redactar la guía](redactarLaGuia.md) |
 |---|:-:|---|
 
-</sub>
+</div>

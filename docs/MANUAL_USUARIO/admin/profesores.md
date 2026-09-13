@@ -42,9 +42,9 @@ Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el profesor ti
 
 ---
 
-<sub>
+<div align=center>
 
 | [Asignaturas de grado y profesorado](asignaturasDeGradoYProfesorado.md) | [Índice](README.md) | [Seguimiento de guías](seguimientoDeGuias.md) |
 |---|:-:|---|
 
-</sub>
+</div>

@@ -57,9 +57,9 @@ Un instrumento recién creado o editado aparece como **Vinculada: No** hasta con
 
 ---
 
-<sub>
+<div align=center>
 
 | [Redactar la guía](redactarLaGuia.md) | [Índice](README.md) | [Referencias bibliográficas](referenciasBibliograficas.md) |
 |---|:-:|---|
 
-</sub>
+</div>

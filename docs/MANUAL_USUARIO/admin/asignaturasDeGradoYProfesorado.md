@@ -49,9 +49,9 @@ Pulsar **Quitar** en su fila. Si es el único profesor asignado, la pantalla adv
 
 ---
 
-<sub>
+<div align=center>
 
 | [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md) | [Índice](README.md) | [Profesores](profesores.md) |
 |---|:-:|---|
 
-</sub>
+</div>

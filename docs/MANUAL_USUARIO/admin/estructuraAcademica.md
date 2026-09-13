@@ -43,9 +43,9 @@ Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Esta acción no s
 
 ---
 
-<sub>
+<div align=center>
 
 | [Entrar y el panel de administración](entrarYElPanel.md) | [Índice](README.md) | [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) |
 |---|:-:|---|
 
-</sub>
+</div>

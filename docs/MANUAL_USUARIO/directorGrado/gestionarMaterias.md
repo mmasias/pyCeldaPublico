@@ -54,9 +54,9 @@ Si las horas de la materia no coinciden con la suma de las horas de sus asignatu
 
 ---
 
-<sub>
+<div align=center>
 
 | [Entrar y ver los grados](entrarYVerLosGrados.md) | [Índice](README.md) | [Gestionar asignaturas de grado](gestionarAsignaturasDeGrado.md) |
 |---|:-:|---|
 
-</sub>
+</div>

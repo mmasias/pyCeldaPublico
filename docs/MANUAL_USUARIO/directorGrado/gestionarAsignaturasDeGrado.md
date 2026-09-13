@@ -36,9 +36,9 @@ Tabla de solo lectura con **Actividad formativa**, **Horas** y **% presencialida
 
 ---
 
-<sub>
+<div align=center>
 
 | [Gestionar materias](gestionarMaterias.md) | [Índice](README.md) | [Resultados de aprendizaje](resultadosDeAprendizaje.md) |
 |---|:-:|---|
 
-</sub>
+</div>

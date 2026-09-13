@@ -50,9 +50,9 @@ Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si ninguna materi
 
 ---
 
-<sub>
+<div align=center>
 
 | [Estructura académica](estructuraAcademica.md) | [Índice](README.md) | [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md) |
 |---|:-:|---|
 
-</sub>
+</div>

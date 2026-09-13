@@ -46,9 +46,9 @@ A diferencia de crear o editar una referencia a mano, importar sustituye la bibl
 
 ---
 
-<sub>
+<div align=center>
 
 | [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) | [Índice](README.md) | [Planificación docente y cronograma](planificacionDocenteYCronograma.md) |
 |---|:-:|---|
 
-</sub>
+</div>

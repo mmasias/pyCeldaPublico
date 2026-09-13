@@ -20,9 +20,9 @@ Una tabla con **Familia** (**Diario** o **Puntual**), **Fecha**, **Tamaño** y *
 
 ---
 
-<sub>
+<div align=center>
 
 | [Seguimiento de guías](seguimientoDeGuias.md) | [Índice](README.md) |  |
 |---|:-:|---|
 
-</sub>
+</div>

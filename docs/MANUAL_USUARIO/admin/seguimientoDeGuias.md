@@ -24,9 +24,9 @@ Debajo de la tabla, una leyenda de colores relaciona cada estado con el color de
 
 ---
 
-<sub>
+<div align=center>
 
 | [Profesores](profesores.md) | [Índice](README.md) | [Copias de seguridad](copiasDeSeguridad.md) |
 |---|:-:|---|
 
-</sub>
+</div>

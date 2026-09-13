@@ -48,9 +48,9 @@ El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprend
 
 ---
 
-<sub>
+<div align=center>
 
 | [Entrar y ver las asignaturas](entrarYVerTusAsignaturas.md) | [Índice](README.md) | [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) |
 |---|:-:|---|
 
-</sub>
+</div>

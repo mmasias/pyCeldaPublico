@@ -54,9 +54,9 @@ Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el sistema est
 
 ---
 
-<sub>
+<div align=center>
 
 | [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) | [Índice](README.md) | [Asignaturas de grado y profesorado](asignaturasDeGradoYProfesorado.md) |
 |---|:-:|---|
 
-</sub>
+</div>

@@ -59,9 +59,9 @@ Como con la bibliografía, importar sustituye la planificación de inmediato -- 
 
 ---
 
-<sub>
+<div align=center>
 
 | [Referencias bibliográficas](referenciasBibliograficas.md) | [Índice](README.md) | [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md) |
 |---|:-:|---|
 
-</sub>
+</div>

@@ -40,9 +40,9 @@ Pulsar **Eliminar** en la fila del resultado. Si está asociado a alguna materia
 
 ---
 
-<sub>
+<div align=center>
 
 | [Gestionar asignaturas de grado](gestionarAsignaturasDeGrado.md) | [Índice](README.md) | [Revisar y aprobar guías](revisarYAprobarGuias.md) |
 |---|:-:|---|
 
-</sub>
+</div>

@@ -32,9 +32,9 @@ El PDF descargable corresponde a la última vez que la guía estuvo aprobada. Si
 
 ---
 
-<sub>
+<div align=center>
 
 | [Planificación docente y cronograma](planificacionDocenteYCronograma.md) | [Índice](README.md) |  |
 |---|:-:|---|
 
-</sub>
+</div>

@@ -26,9 +26,9 @@ Arriba de cada pantalla dentro de un grado hay una barra de navegación con los 
 
 ---
 
-<sub>
+<div align=center>
 
 |  | [Índice](README.md) | [Gestionar materias](gestionarMaterias.md) |
 |---|:-:|---|
 
-</sub>
+</div>

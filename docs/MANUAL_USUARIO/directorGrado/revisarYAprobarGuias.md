@@ -53,9 +53,9 @@ Pulsar **Editar semestre**, cambiar el número y pulsar **Guardar**. Disponible 
 
 ---
 
-<sub>
+<div align=center>
 
 | [Resultados de aprendizaje](resultadosDeAprendizaje.md) | [Índice](README.md) |  |
 |---|:-:|---|
 
-</sub>
+</div>
