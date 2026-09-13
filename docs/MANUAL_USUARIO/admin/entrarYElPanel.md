@@ -25,3 +25,12 @@ Cada uno lleva al capítulo correspondiente de este manual. Los grados y sus mat
 Dos botones más, **Cursos académicos** y **Generar guías PDF**, aparecen desactivados: no están disponibles en esta versión.
 
 **Cerrar sesión** vuelve a la pantalla de entrada.
+
+---
+
+<sub>
+
+|  | [Índice](README.md) | [Estructura académica](estructuraAcademica.md) |
+|---|:-:|---|
+
+</sub>

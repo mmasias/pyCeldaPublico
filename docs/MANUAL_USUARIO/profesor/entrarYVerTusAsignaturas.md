@@ -35,3 +35,12 @@ En cualquier momento, **Cerrar sesión**, arriba de la pantalla de Inicio, cierr
 ## Volver a esta pantalla
 
 Desde cualquier guía, el botón **Mis asignaturas** (o **Volver a mis asignaturas**, según la pantalla) lleva de vuelta al listado completo de asignaturas.
+
+---
+
+<sub>
+
+|  | [Índice](README.md) | [Redactar la guía](redactarLaGuia.md) |
+|---|:-:|---|
+
+</sub>

@@ -40,3 +40,12 @@ Al abrir un grado aparecen su **Código**, **Nombre** y **Estado**, y una tabla 
 ## Dar de baja un grado
 
 Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Esta acción no se puede deshacer: el grado pasa a estado **Extinguido**, deja de admitir altas nuevas apoyadas en él, pero todo lo ya existente permanece intacto.
+
+---
+
+<sub>
+
+| [Entrar y el panel de administración](entrarYElPanel.md) | [Índice](README.md) | [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) |
+|---|:-:|---|
+
+</sub>

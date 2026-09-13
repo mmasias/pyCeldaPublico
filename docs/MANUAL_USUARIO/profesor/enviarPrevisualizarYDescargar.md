@@ -29,3 +29,12 @@ El PDF descargable corresponde a la última vez que la guía estuvo aprobada. Si
 ## Volver
 
 **Volver a mis asignaturas** lleva de vuelta al listado completo de asignaturas.
+
+---
+
+<sub>
+
+| [Planificación docente y cronograma](planificacionDocenteYCronograma.md) | [Índice](README.md) |  |
+|---|:-:|---|
+
+</sub>

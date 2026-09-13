@@ -51,3 +51,12 @@ Pulsar **Editar** en el detalle. Los mismos campos que en el alta quedan editabl
 ### Eliminar un sistema de evaluación
 
 Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el sistema está en uso en la evaluación de alguna guía docente, la eliminación queda bloqueada y la pantalla lo indica -- hace falta retirarlo primero de esas guías.
+
+---
+
+<sub>
+
+| [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) | [Índice](README.md) | [Asignaturas de grado y profesorado](asignaturasDeGradoYProfesorado.md) |
+|---|:-:|---|
+
+</sub>

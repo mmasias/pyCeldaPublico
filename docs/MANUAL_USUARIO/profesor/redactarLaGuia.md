@@ -45,3 +45,12 @@ Si el director revoca una aprobación ya concedida, la guía vuelve a **Borrador
 ## Qué no es editable aquí
 
 El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona el director de grado -- no el profesorado. Se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.
+
+---
+
+<sub>
+
+| [Entrar y ver las asignaturas](entrarYVerTusAsignaturas.md) | [Índice](README.md) | [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) |
+|---|:-:|---|
+
+</sub>

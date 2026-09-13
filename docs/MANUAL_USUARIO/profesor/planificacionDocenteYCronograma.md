@@ -56,3 +56,12 @@ Como con la bibliografía, importar sustituye la planificación de inmediato -- 
 ## Volver
 
 **Volver a la guía** lleva de vuelta a la guía docente. **Mis asignaturas** lleva al listado completo de asignaturas.
+
+---
+
+<sub>
+
+| [Referencias bibliográficas](referenciasBibliograficas.md) | [Índice](README.md) | [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md) |
+|---|:-:|---|
+
+</sub>

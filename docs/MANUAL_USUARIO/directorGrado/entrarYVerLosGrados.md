@@ -23,3 +23,12 @@ Si la cuenta no dirige ningún grado, en lugar de la tabla aparece el mensaje "N
 Al abrir un grado aparecen el código, el nombre y el estado, seguidos de la sección **Guías** (ver el capítulo [Revisar y aprobar guías](revisarYAprobarGuias.md)).
 
 Arriba de cada pantalla dentro de un grado hay una barra de navegación con los botones **Mis grados**, **Grado**, **Materias**, **Resultados de aprendizaje**, **Asignaturas** y **Guías** -- presente en todas las pantallas del grado, se cita en el resto de este manual simplemente como "la barra de navegación del grado".
+
+---
+
+<sub>
+
+|  | [Índice](README.md) | [Gestionar materias](gestionarMaterias.md) |
+|---|:-:|---|
+
+</sub>

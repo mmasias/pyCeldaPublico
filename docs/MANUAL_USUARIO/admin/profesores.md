@@ -39,3 +39,12 @@ Si ya dirige todos los grados existentes, la pantalla lo indica y solo ofrece vo
 ## Dar de baja un profesor
 
 Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el profesor tiene asignaturas de grado asignadas o dirige algún grado, la baja queda bloqueada y la pantalla lo indica -- hace falta desasignarlo de esas asignaturas y cesarlo como director antes de eliminarlo.
+
+---
+
+<sub>
+
+| [Asignaturas de grado y profesorado](asignaturasDeGradoYProfesorado.md) | [Índice](README.md) | [Seguimiento de guías](seguimientoDeGuias.md) |
+|---|:-:|---|
+
+</sub>

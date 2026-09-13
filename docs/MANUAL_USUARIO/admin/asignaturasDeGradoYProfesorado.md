@@ -46,3 +46,12 @@ Si ya está todo el profesorado disponible asignado, la pantalla lo indica y sol
 ### Quitar un profesor
 
 Pulsar **Quitar** en su fila. Si es el único profesor asignado, la pantalla advierte de que la asignatura quedará sin profesorado y de que la guía docente que se genere para ella podría quedar incompleta. Pulsar **Confirmar desasignación** para aplicarlo.
+
+---
+
+<sub>
+
+| [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md) | [Índice](README.md) | [Profesores](profesores.md) |
+|---|:-:|---|
+
+</sub>

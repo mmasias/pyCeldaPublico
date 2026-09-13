@@ -37,3 +37,12 @@ Pulsar **Editar** y cambiar código, tipo o descripción; **Guardar** confirma l
 ## Eliminar un resultado de aprendizaje
 
 Pulsar **Eliminar** en la fila del resultado. Si está asociado a alguna materia o asignatura de grado, la eliminación queda bloqueada y la pantalla lista dónde está en uso -- hace falta retirar esas asociaciones antes de eliminarlo. Si no está en uso, aparece una pantalla de confirmación (**Confirmar eliminación** / **Cancelar**); la eliminación no se puede deshacer.
+
+---
+
+<sub>
+
+| [Gestionar asignaturas de grado](gestionarAsignaturasDeGrado.md) | [Índice](README.md) | [Revisar y aprobar guías](revisarYAprobarGuias.md) |
+|---|:-:|---|
+
+</sub>

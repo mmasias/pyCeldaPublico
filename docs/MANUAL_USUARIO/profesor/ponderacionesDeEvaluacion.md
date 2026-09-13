@@ -54,3 +54,12 @@ Un instrumento recién creado o editado aparece como **Vinculada: No** hasta con
 ## Volver
 
 **Volver a la guía** lleva de vuelta a la guía docente. **Mis asignaturas** lleva al listado completo de asignaturas.
+
+---
+
+<sub>
+
+| [Redactar la guía](redactarLaGuia.md) | [Índice](README.md) | [Referencias bibliográficas](referenciasBibliograficas.md) |
+|---|:-:|---|
+
+</sub>

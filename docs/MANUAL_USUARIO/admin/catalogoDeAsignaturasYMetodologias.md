@@ -47,3 +47,12 @@ Pulsar **Editar** en el detalle. El **Código** no es editable una vez creada; l
 ### Eliminar una metodología docente
 
 Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si ninguna materia la tiene asociada, la baja se aplica. Si alguna materia la está usando, la eliminación queda bloqueada y la pantalla lo indica -- esa asociación se retira desde la materia, en la gestión del director de grado, no desde el panel de Admin.
+
+---
+
+<sub>
+
+| [Estructura académica](estructuraAcademica.md) | [Índice](README.md) | [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md) |
+|---|:-:|---|
+
+</sub>

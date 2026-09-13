@@ -50,3 +50,12 @@ Pulsar **Revocar aprobación** en una guía **Aprobada** que necesita corregirse
 ## Editar el semestre
 
 Pulsar **Editar semestre**, cambiar el número y pulsar **Guardar**. Disponible en cualquier estado de la guía.
+
+---
+
+<sub>
+
+| [Resultados de aprendizaje](resultadosDeAprendizaje.md) | [Índice](README.md) |  |
+|---|:-:|---|
+
+</sub>

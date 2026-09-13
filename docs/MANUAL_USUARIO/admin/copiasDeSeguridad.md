@@ -17,3 +17,12 @@ Pulsar **Copias de seguridad** en el panel de administración.
 ## Qué muestra
 
 Una tabla con **Familia** (**Diario** o **Puntual**), **Fecha**, **Tamaño** y **Motivo** de cada copia. Si todavía no hay ninguna registrada, la pantalla lo indica.
+
+---
+
+<sub>
+
+| [Seguimiento de guías](seguimientoDeGuias.md) | [Índice](README.md) |  |
+|---|:-:|---|
+
+</sub>

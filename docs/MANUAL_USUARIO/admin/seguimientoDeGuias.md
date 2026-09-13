@@ -21,3 +21,12 @@ Una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin pro
 Cada fila tiene los botones **Previsualizar** y **Descargar PDF**; este último aparece desactivado mientras la guía no tenga un PDF generado todavía.
 
 Debajo de la tabla, una leyenda de colores relaciona cada estado con el color de su indicador.
+
+---
+
+<sub>
+
+| [Profesores](profesores.md) | [Índice](README.md) | [Copias de seguridad](copiasDeSeguridad.md) |
+|---|:-:|---|
+
+</sub>

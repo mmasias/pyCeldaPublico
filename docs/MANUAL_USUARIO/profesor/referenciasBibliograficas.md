@@ -43,3 +43,12 @@ A diferencia de crear o editar una referencia a mano, importar sustituye la bibl
 ## Volver
 
 **Volver a la guía** lleva de vuelta a la guía docente. **Mis asignaturas** lleva al listado completo de asignaturas.
+
+---
+
+<sub>
+
+| [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) | [Índice](README.md) | [Planificación docente y cronograma](planificacionDocenteYCronograma.md) |
+|---|:-:|---|
+
+</sub>
