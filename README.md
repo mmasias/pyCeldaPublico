@@ -8,7 +8,7 @@
 
 - **[Director de Grado](docs/MANUAL_USUARIO/directorGrado/README.md)**
 
-Manual de Administrador: en preparación.
+- **[Administrador](docs/MANUAL_USUARIO/admin/README.md)**
 
 ## Prototipo navegable
 
