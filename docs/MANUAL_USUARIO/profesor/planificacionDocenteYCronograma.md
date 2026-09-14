@@ -24,14 +24,23 @@ Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las fil
 
 ## Crear una sesión
 
-1. Pulsar **+ Crear Sesión**.
+1. Pulsar **+ Añadir fila**. Se añade una fila vacía al final de la tabla.
 2. Elegir el **Tipo**: Clase Teórica, Clase Práctica, Clase Teórico/Práctica, Clase Laboratorio, Evaluación Continua o Evaluación Parcial.
 3. Escribir una **Descripción** breve de lo que se trabaja en esa sesión.
-4. Pulsar **Guardar**.
+
+La fila se guarda sola en cuanto la descripción deja de estar vacía y se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". **+ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **Quitar** antes de completarla.
 
 ## Editar o eliminar una sesión
 
-Pulsar **Editar** en la fila de la sesión para cambiar su tipo o descripción. Pulsar **Eliminar** dos veces seguidas (la segunda para confirmar) para quitarla de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
+Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Pulsar **Eliminar** dos veces seguidas (la segunda para confirmar) para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
+
+Si un guardado falla (por ejemplo, por un corte de red), aparece un mensaje de error con el botón **Reintentar**; lo escrito no se pierde.
+
+## Duplicar una sesión
+
+Pulsar **Duplicar** en la fila de una sesión crea una copia con el mismo tipo y la misma descripción, justo debajo de la original -- las sesiones que venían después se renumeran automáticamente para dejar sitio a la copia. Si falla, aparece el mismo tipo de aviso con el botón **Reintentar**.
+
+Pensado para sesiones consecutivas parecidas -- un tema que continúa, una práctica que se repite -- editando después solo lo que cambia en vez de escribir la sesión entera de nuevo.
 
 ## Arrancar la planificación de golpe
 
