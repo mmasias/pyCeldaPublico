@@ -52,6 +52,10 @@ package "Guía docente" {
   PonderacionEvaluacion -> SistemaEvaluacion
   class ReferenciaBibliografica
   Guia *-- ReferenciaBibliografica
+  class PlanificacionDocente
+  class Sesion
+  Guia *-- PlanificacionDocente
+  PlanificacionDocente *-- Sesion
 }
 
 package "Personas y roles" {
@@ -59,13 +63,16 @@ package "Personas y roles" {
   class Profesor
   class Admin
   class DirectorGrado
+  class PerfilProfesorCurso
 
   Profesor -u-|> Actor
   Admin -u-|> Actor
   DirectorGrado -u-|> Profesor
   Actor -> HistorialCambio
+  Universidad -- Profesor
   AsignaturaGrado - Profesor
   Grado o- DirectorGrado
+  (Profesor, CursoAcademico) .. PerfilProfesorCurso
 }
 
 Guia -- Profesor

@@ -4,10 +4,15 @@ hide empty members
 hide circle
 
 package "Estructura curricular" {
-  class Universidad
-  class Facultad
+  class Universidad {
+    nombre
+  }
+  class Facultad {
+    nombre
+  }
   class Grado {
     codigo
+    nombre
     estado
   }
   class Materia {
@@ -53,6 +58,7 @@ package "Estructura curricular" {
     semestreDefault
     contenido
     requisitosPrevios
+    sesionesMinimas
     estado
   }
 
@@ -92,12 +98,6 @@ package "Estructura curricular" {
   AsignaturaGrado --> AsignaturaGrado : <sub>requiere</sub>
   AsignaturaGrado -[hidden]r- Requisito
   (AsignaturaGrado, AsignaturaGrado) .. Requisito
-  note on link
-    AsignaturaGrado.requisitosPrevios (texto plano, nullable) es lo que
-    hoy renderiza la guia docente en vivo y edita el DirectorGrado (#259,
-    item 2 de #217). La malla estructural Requisito{tipo} queda modelada
-    sin construir -- mismo regimen que CursoAcademico (#222).
-  end note
   Universidad -- CursoAcademico
 }
 
@@ -106,6 +106,7 @@ package "Guía docente" {
     semestre
     contenido
     estado
+    sesionesMinimas
     fechaCreacion
     fechaUltimaModificacion
     fechaGeneracionPDF
@@ -121,6 +122,7 @@ package "Guía docente" {
   class PonderacionEvaluacion {
     descripcion
     ponderacion
+    vinculada
   }
 
   (AsignaturaGrado, CursoAcademico) .. Guia
@@ -131,6 +133,7 @@ package "Guía docente" {
   class ReferenciaBibliografica {
     tipo
     referencia
+    vinculada
   }
 
   Guia *-- ReferenciaBibliografica
@@ -140,6 +143,7 @@ package "Guía docente" {
     numero
     tipo
     descripcion
+    vinculada
   }
 
   Guia *-- PlanificacionDocente
@@ -156,24 +160,42 @@ package "Personas y roles" {
     email
   }
   class DirectorGrado
+  class PerfilProfesorCurso {
+    validado
+    orcid
+    esDoctor
+    universidadDoctorado
+    anioDoctorado
+    programaDoctorado
+    mencionInternacional
+    nivelAcreditacionSiiu
+    organismoAcreditador
+    organismoAcreditadorOtro
+    numSexenios
+    anioUltimoSexenio
+    tramitandoSexenio
+    numQuinquenios
+    anioUltimoQuinquenio
+    biografia
+    aniosExperienciaDocente
+    aniosExperienciaDocenteVirtual
+    aniosExperienciaProfesional
+    aniosExperienciaInvestigadora
+    enlaceCvn
+    enlaceFoto
+    enlaceScholar
+  }
 
   Profesor -u-|> Actor
   Admin -u-|> Actor
   DirectorGrado -u-|> Profesor
   Actor -> HistorialCambio
+  Universidad -- Profesor
   AsignaturaGrado - Profesor
   Grado o- DirectorGrado
+  (Profesor, CursoAcademico) .. PerfilProfesorCurso
 }
 
 Guia -- Profesor
-note on link
-  Quien impartio esa guia. Se materializa al aprobar la Guia
-  (Guia.aprobar / escalarAAprobada re-derivan de AsignaturaGrado -- Profesor)
-  y se re-captura en cada aprobacion de la guia activa. Entre un cambio
-  de plantilla del Admin y la siguiente aprobacion, la app lee
-  AsignaturaGrado -- Profesor en vivo y el PDF lee esta copia.
-  Con CursoAcademico (#222) las guias archivadas quedan congeladas.
-  Issue #254 / discussion #255.
-end note
 
 @enduml
