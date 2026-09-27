@@ -1,0 +1,46 @@
+@startuml abrirAsignaturaGrado-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_GRADO_ABIERTO" as AsignaturaGradoAbiertoSalida
+
+package abrirAsignaturaGrado as "abrirAsignaturaGrado()" {
+    rectangle #629EF9 AbrirAsignaturaGradoView
+    rectangle #b5bd68 AsignaturaGradoController
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E Profesor
+}
+
+GradoAbierto --> AbrirAsignaturaGradoView: <font size=8>abrirAsignaturaGrado(asignaturaGradoId)
+MateriaAbierto --> AbrirAsignaturaGradoView: <font size=8>abrirAsignaturaGrado(asignaturaGradoId)
+
+AbrirAsignaturaGradoView --> AsignaturaGradoController: <font size=8>cargarAsignaturaGrado(asignaturaGradoId) : AsignaturaGrado
+
+AsignaturaGradoController --> AsignaturaGradoRepository: <font size=8>obtener(asignaturaGradoId) : AsignaturaGrado
+
+AbrirAsignaturaGradoView --> AsignaturaGradoController: <font size=8>listarMetodologiasDocentesAsociadas(asignaturaGradoId) : List<MetodologiaDocente>
+
+AsignaturaGradoController --> AsignaturaGradoRepository: <font size=8>listarMetodologiasDocentesDe(asignaturaGradoId) : List<MetodologiaDocente>
+
+AbrirAsignaturaGradoView --> AsignaturaGradoController: <font size=8>listarResultadosAprendizajeAsociados(asignaturaGradoId) : List<ResultadoAprendizaje>
+
+AsignaturaGradoController --> AsignaturaGradoRepository: <font size=8>listarResultadosAprendizajeDe(asignaturaGradoId) : List<ResultadoAprendizaje>
+
+AbrirAsignaturaGradoView --> AsignaturaGradoController: <font size=8>listarProfesoradoAsignado(asignaturaGradoId) : List<Profesor>
+
+AsignaturaGradoController --> AsignaturaGradoRepository: <font size=8>listarProfesoradoDe(asignaturaGradoId) : List<Profesor>
+
+AsignaturaGradoRepository -- AsignaturaGrado
+AsignaturaGrado -- MetodologiaDocente
+AsignaturaGrado -- ResultadoAprendizaje
+AsignaturaGrado -- Profesor
+
+AbrirAsignaturaGradoView --> AsignaturaGradoAbiertoSalida: <font size=8>muestra datos de la AsignaturaGrado, su profesorado, MetodologiaDocente y ResultadoAprendizaje asociados
+
+@enduml

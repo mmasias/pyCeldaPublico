@@ -1,0 +1,28 @@
+@startuml crearMateria-diseño
+title Diagrama de Secuencia - Crear Materia
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: introduce el nombre de la Materia del Grado abierto, confirma
+activate Vista
+Vista -> API: POST /api/v1/admin/grados/{grado_id}/materias (MateriaCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- guard de Admin.\ngrado_id viaja en la URL, no en el body\n(mismo patrón que POST /admin/facultades/{facultad_id}/grados)
+API -> MateriaRepo: crear(nombre, grado_id)
+activate MateriaRepo
+MateriaRepo -> DB: INSERT INTO materias (nombre, grado_id)\nVALUES (:nombre, :grado_id)
+activate DB
+DB --> MateriaRepo: id nueva fila
+deactivate DB
+MateriaRepo --> API: Materia (con id)
+deactivate MateriaRepo
+API --> Vista: 201 Created (MateriaResponse JSON)
+deactivate API
+Vista --> Admin: navega a editarMateria() (<<include>>)
+deactivate Vista
+
+@enduml

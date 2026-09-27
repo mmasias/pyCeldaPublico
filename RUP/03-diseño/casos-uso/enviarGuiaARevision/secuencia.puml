@@ -1,0 +1,97 @@
+@startuml enviarGuiaARevision-diseño
+title Diagrama de Secuencia - Enviar Guía a Revisión
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "Guia" as Guia
+participant "PonderacionEvaluacionRepository" as PonderacionRepo
+participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
+participant "SesionRepository" as SesionRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: solicita enviar la Guía a revisión
+activate Vista
+Vista -> API: POST /api/v1/guias/{guia_id}/enviar-a-revision
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia (con vinculadas)
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> PonderacionRepo: existe_pendiente_de(guia_id)
+activate PonderacionRepo
+PonderacionRepo -> DB: SELECT EXISTS (... WHERE guia_id = :guia_id AND vinculada = false)
+activate DB
+DB --> PonderacionRepo: boolean
+deactivate DB
+PonderacionRepo --> API: boolean
+deactivate PonderacionRepo
+
+API -> ReferenciaRepo: existe_pendiente_de(guia_id)
+activate ReferenciaRepo
+ReferenciaRepo -> DB: SELECT EXISTS (... WHERE guia_id = :guia_id AND vinculada = false)
+activate DB
+DB --> ReferenciaRepo: boolean
+deactivate DB
+ReferenciaRepo --> API: boolean
+deactivate ReferenciaRepo
+
+API -> SesionRepo: existe_pendiente_de(guia_id)
+activate SesionRepo
+SesionRepo -> DB: SELECT EXISTS (... WHERE guia_id = :guia_id AND vinculada = false)
+activate DB
+DB --> SesionRepo: boolean
+deactivate DB
+SesionRepo --> API: boolean
+deactivate SesionRepo
+
+alt c1 -- hay pendientes sin guardar
+  API --> Vista: 409 Conflict (guarda el borrador primero)
+  Vista --> Profesor: "guarda el borrador primero"
+else c1 -- sin pendientes
+  API -> Guia: bloqueo_ponderaciones()
+  activate Guia
+  Guia --> API: String motivo | null
+  deactivate Guia
+
+  alt c2 -- bloqueo_ponderaciones() devuelve motivo (no null)
+    API --> Vista: 422 Unprocessable Entity (detail = motivo)
+    Vista --> Profesor: "NO SE PUEDE ENVIAR A REVISIÓN"
+  else c2 -- bloqueo_ponderaciones() es null
+    API -> Guia: planificacion_docente_completa()
+    activate Guia
+    Guia --> API: boolean
+    deactivate Guia
+
+    alt c3 -- sesiones vinculadas < sesiones_minimas
+      API --> Vista: 422 Unprocessable Entity ("Planificación docente incompleta: N de M sesiones")
+      Vista --> Profesor: "NO SE PUEDE ENVIAR A REVISIÓN"
+    else c3 -- planificación docente completa
+      API -> Guia: enviar_a_revision()
+      activate Guia
+      deactivate Guia
+      API -> GuiaRepo: actualizar(guia)
+      activate GuiaRepo
+      GuiaRepo -> DB: UPDATE guias SET estado = 'EnRevision'
+      activate DB
+      DB --> GuiaRepo: ok
+      deactivate DB
+      GuiaRepo --> API: Guia
+      deactivate GuiaRepo
+      API --> Vista: 200 OK (GuiaResponse JSON)
+      Vista --> Profesor: "GUÍA ENVIADA A REVISIÓN"
+    end
+  end
+end
+
+deactivate API
+deactivate Vista
+
+@enduml

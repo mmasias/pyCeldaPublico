@@ -1,0 +1,48 @@
+@startuml editarMateria-diseño
+title Diagrama de Secuencia - Editar Materia
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+participant "Materia" as Materia
+database "Base de Datos" as DB
+
+Admin -> Vista: abre la Materia a editar
+activate Vista
+Vista -> API: GET /api/v1/admin/materias/{materia_id}
+activate API
+note right of API: Depends(require_admin) -- guard de Admin.\nEndpoint propio de la variante Admin de abrirMateria(),\nno el GET /api/v1/materias/{materia_id} de DirectorGrado\n(que agrega las colecciones de asociación)
+API -> MateriaRepo: obtener(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
+activate DB
+DB --> MateriaRepo: fila Materia
+deactivate DB
+MateriaRepo --> API: Materia (404 si None)
+deactivate MateriaRepo
+API --> Vista: 200 OK (MateriaAdminDetalleResponse JSON)
+deactivate API
+Vista --> Admin: muestra formulario -- nombre editable
+
+Admin -> Vista: modifica el nombre, confirma
+Vista -> API: PUT /api/v1/admin/materias/{materia_id} (MateriaUpdate JSON)
+activate API
+note right of API: Depends(require_admin)
+API -> Materia: actualizar(nombre)
+activate Materia
+deactivate Materia
+API -> MateriaRepo: actualizar(materia)
+activate MateriaRepo
+MateriaRepo -> DB: UPDATE materias SET nombre = ...
+activate DB
+DB --> MateriaRepo: ok
+deactivate DB
+MateriaRepo --> API: Materia
+deactivate MateriaRepo
+API --> Vista: 200 OK (MateriaResponse JSON)
+deactivate API
+Vista --> Admin: datos actualizados
+deactivate Vista
+
+@enduml

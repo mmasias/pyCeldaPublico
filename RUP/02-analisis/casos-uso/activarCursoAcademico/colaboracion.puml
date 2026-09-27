@@ -1,0 +1,53 @@
+@startuml activarCursoAcademico-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":CURSOS_ACADEMICOS_ABIERTO" as CursosAcademicosAbierto
+rectangle #CDEBA5 ":CURSOS_ACADEMICOS_ABIERTO" as CursosAcademicosAbiertoSalida
+
+package activarCursoAcademico as "activarCursoAcademico()" {
+    rectangle #629EF9 ActivarCursoAcademicoView
+    rectangle #b5bd68 CursoAcademicoController
+    rectangle #F2AC4E CursoAcademico
+    rectangle #F2AC4E CursoAcademicoRepository
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E HistorialCambio
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E PonderacionEvaluacion
+    rectangle #F2AC4E ReferenciaBibliografica
+}
+
+CursosAcademicosAbierto --> ActivarCursoAcademicoView: <font size=8>activarCursoAcademico(cursoAcademicoId)
+
+ActivarCursoAcademicoView --> CursoAcademicoController: <font size=8>esElegibleParaActivar(cursoAcademicoId) : <<choice>>
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>ultimo() : CursoAcademico
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>penultimo() : CursoAcademico
+
+CursoAcademicoController --> HistorialCambio: <font size=8>tieneActividadRegistrada(ultimoId) : boolean
+
+ActivarCursoAcademicoView --> CursoAcademicoController: <font size=8>activarCursoAcademico(cursoAcademicoId)
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>activar(cursoAcademicoId)
+
+CursoAcademicoRepository --> CursoAcademico: <font size=8>desactiva el que estaba Activo, activa el elegido
+
+CursoAcademicoRepository --> AsignaturaGrado: <font size=8>lista las Activo de la institución
+
+CursoAcademicoRepository --> Guia: <font size=8>por cada AsignaturaGrado -- clona de la Guia\ndel curso anterior si existe, si no deriva de AsignaturaGrado
+
+Guia --> PonderacionEvaluacion: <font size=8>clona las de la Guia anterior (filas nuevas)
+
+Guia --> ReferenciaBibliografica: <font size=8>clona las de la Guia anterior (filas nuevas)
+
+CursoAcademicoRepository -- CursoAcademico
+CursoAcademicoRepository -- AsignaturaGrado
+CursoAcademicoRepository -- Guia
+
+ActivarCursoAcademicoView --> CursosAcademicosAbiertoSalida: <font size=8>activado (verde) -- lista actualizada,\notro CursoAcademico pasa a Inactivo automáticamente
+
+ActivarCursoAcademicoView --> CursosAcademicosAbiertoSalida: <font size=8>bloqueado (rojo) -- sin cambios
+
+@enduml

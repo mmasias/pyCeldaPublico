@@ -1,0 +1,53 @@
+@startuml abrirMaterias-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":MATERIAS_ABIERTO" as MateriasAbiertoSalida
+
+package abrirMaterias as "abrirMaterias()" {
+    rectangle #629EF9 AbrirMateriasView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+}
+
+GradoAbierto --> AbrirMateriasView: <font size=8>abrirMaterias(gradoId)
+
+AbrirMateriasView --> MateriaController: <font size=8>listarMateriasDelGrado(gradoId) : List<Materia>
+
+MateriaController --> MateriaRepository: <font size=8>listarDelGrado(gradoId) : List<Materia>
+
+MateriaRepository -- Materia
+
+AbrirMateriasView --> MateriasAbiertoSalida: <font size=8>presenta listado de Materias del Grado
+
+@enduml
+
+@startuml abrirMaterias-admin-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":MATERIAS_ABIERTO" as MateriasAbiertoSalida
+
+package abrirMateriasAdmin as "abrirMaterias() -- Admin" {
+    rectangle #629EF9 AbrirMateriasView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+}
+
+GradoAbierto --> AbrirMateriasView: <font size=8>abrirMaterias(gradoId)
+
+AbrirMateriasView --> MateriaController: <font size=8>listarMateriasDelGrado(gradoId) : List<Materia>
+
+MateriaController --> MateriaRepository: <font size=8>listarDelGrado(gradoId) : List<Materia>
+
+MateriaRepository -- Materia
+
+AbrirMateriasView --> MateriasAbiertoSalida: <font size=8>presenta listado con [Abrir], [Eliminar] y + Crear Materia
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml abrirPonderacionEvaluacion-diseño
+title Diagrama de Secuencia - Abrir Ponderación de Evaluación
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "PonderacionEvaluacionRepository" as PonderacionRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: abre una PonderacionEvaluacion desde su fila en el listado
+activate Vista
+Vista -> API: GET /api/v1/ponderaciones-evaluacion/{ponderacion_id}
+activate API
+API -> PonderacionRepo: obtener(ponderacion_id)
+activate PonderacionRepo
+PonderacionRepo -> DB: SELECT ... FROM ponderaciones_evaluacion WHERE id = :ponderacion_id
+activate DB
+DB --> PonderacionRepo: fila PonderacionEvaluacion
+deactivate DB
+PonderacionRepo --> API: PonderacionEvaluacion
+deactivate PonderacionRepo
+API --> Vista: 200 OK (PonderacionEvaluacionResponse JSON)
+deactivate API
+Vista --> Profesor: muestra SistemaEvaluacion, descripción y ponderación, sin edición
+deactivate Vista
+
+@enduml

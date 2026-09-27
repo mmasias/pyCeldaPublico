@@ -1,0 +1,47 @@
+@startuml desasociarResultadoAprendizajeAsignaturaGrado-diseño
+title Diagrama de Secuencia - Desasociar Resultado de Aprendizaje de AsignaturaGrado
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita desasociar un ResultadoAprendizaje de la AsignaturaGrado
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-grado/{asignatura_grado_id}/resultados-aprendizaje/{resultado_aprendizaje_id}/quedaria-sin-resultados
+activate API
+API -> AsignaturaGradoRepo: quedaria_sin_resultados_tras_desasociar(asignatura_grado_id, resultado_aprendizaje_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT EXISTS (... WHERE asignatura_grado_id = :asignatura_grado_id\nAND resultado_aprendizaje_id != :resultado_aprendizaje_id)
+activate DB
+DB --> AsignaturaGradoRepo: boolean
+deactivate DB
+AsignaturaGradoRepo --> API: boolean
+deactivate AsignaturaGradoRepo
+API --> Vista: 200 OK (boolean JSON)
+deactivate API
+note right of Vista: true no bloquea -- solo añade la advertencia\nde que quedaría sin ninguno al diálogo de confirmación
+
+alt el DirectorGrado confirma (con o sin advertencia)
+  DirectorGrado -> Vista: confirma
+  Vista -> API: DELETE /api/v1/asignaturas-grado/{asignatura_grado_id}/resultados-aprendizaje/{resultado_aprendizaje_id}
+  activate API
+  API -> AsignaturaGradoRepo: desasociar_resultado_aprendizaje(asignatura_grado_id, resultado_aprendizaje_id)
+  activate AsignaturaGradoRepo
+  AsignaturaGradoRepo -> DB: DELETE FROM asignaturas_grado_resultados_aprendizaje\nWHERE asignatura_grado_id = :asignatura_grado_id\nAND resultado_aprendizaje_id = :resultado_aprendizaje_id
+  activate DB
+  DB --> AsignaturaGradoRepo: ok
+  deactivate DB
+  AsignaturaGradoRepo --> API: void
+  deactivate AsignaturaGradoRepo
+  API --> Vista: 204 No Content
+  deactivate API
+  Vista --> DirectorGrado: presenta la lista actualizada
+else el DirectorGrado cancela
+  DirectorGrado -> Vista: cancela
+  Vista --> DirectorGrado: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

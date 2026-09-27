@@ -1,0 +1,51 @@
+@startuml abrirPonderacionesEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":PONDERACION_EVALUACION_ABIERTO" as PonderacionEvaluacionAbierto
+rectangle #CDEBA5 ":PONDERACIONES_EVALUACION_ABIERTO" as PonderacionesEvaluacionSalida
+
+package abrirPonderacionesEvaluacion as "abrirPonderacionesEvaluacion()" {
+    rectangle #629EF9 AbrirPonderacionesEvaluacionView
+    rectangle #b5bd68 PonderacionEvaluacionController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E PonderacionEvaluacion
+    rectangle #F2AC4E PonderacionEvaluacionRepository
+}
+
+GuiaAbierto --> AbrirPonderacionesEvaluacionView: <font size=8>abrirPonderacionesEvaluacion(guiaId)
+PonderacionEvaluacionAbierto --> AbrirPonderacionesEvaluacionView: <font size=8>abrirPonderacionesEvaluacion(guiaId)
+
+AbrirPonderacionesEvaluacionView --> PonderacionEvaluacionController: <font size=8>listarPonderacionesEvaluacion(guiaId) : List<PonderacionEvaluacion>
+
+PonderacionEvaluacionController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
+PonderacionEvaluacionController --> PonderacionEvaluacionRepository: <font size=8>listarVinculadasDe(guia) : List<PonderacionEvaluacion>
+PonderacionEvaluacionController --> PonderacionEvaluacionRepository: <font size=8>listarPendientesDe(guiaId) : List<PonderacionEvaluacion>
+
+PonderacionEvaluacionController --> AbrirPonderacionesEvaluacionView: <font size=8>fusiona vinculadas + pendientes
+
+AbrirPonderacionesEvaluacionView --> PonderacionEvaluacionController: <font size=8>listarSistemasEvaluacionDeGuia(guiaId) : List<SistemaEvaluacion>
+
+PonderacionEvaluacionController --> AsignaturaGradoRepository: <font size=8>obtener(guia.asignaturaGradoId) : AsignaturaGrado
+PonderacionEvaluacionController --> MateriaRepository: <font size=8>obtener(asignaturaGrado.materiaId) : Materia
+PonderacionEvaluacionController --> Materia: <font size=8>listarSistemasEvaluacion() : List<SistemaEvaluacion>
+
+PonderacionEvaluacionController --> AbrirPonderacionesEvaluacionView: <font size=8>catálogo completo de SistemaEvaluacion de la materia, no solo los ya usados en esta guía (discussion #38)
+
+GuiaRepository -- Guia
+AsignaturaGradoRepository -- AsignaturaGrado
+MateriaRepository -- Materia
+Materia -- SistemaEvaluacion
+PonderacionEvaluacionRepository -- PonderacionEvaluacion
+
+AbrirPonderacionesEvaluacionView --> PonderacionesEvaluacionSalida: <font size=8>presenta listado agrupado por SistemaEvaluacion, con suma total, y la tabla de rangos de la materia con el medidor de completitud (#206)
+
+@enduml

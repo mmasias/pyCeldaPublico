@@ -1,0 +1,28 @@
+@startuml abrirAsignaturas-diseño
+title Diagrama de Secuencia - Abrir Asignaturas
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaRepository" as AsignaturaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir Asignaturas
+activate Vista
+Vista -> API: GET /api/v1/asignaturas
+activate API
+note right of API: listado completo, sin filtro por quien llama\n(ninguna Asignatura es "propia" del Admin).\nDepends(require_admin) -- ya disponible en\nbackend/app/core/auth.py (bloque anterior, ya mergeado)
+API -> AsignaturaRepo: listar()
+activate AsignaturaRepo
+AsignaturaRepo -> DB: SELECT * FROM asignaturas
+activate DB
+DB --> AsignaturaRepo: filas Asignatura
+deactivate DB
+AsignaturaRepo --> API: List[Asignatura]
+deactivate AsignaturaRepo
+API --> Vista: 200 OK (List[AsignaturaResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado de Asignaturas
+deactivate Vista
+
+@enduml

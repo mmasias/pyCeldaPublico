@@ -1,0 +1,75 @@
+@startuml eliminarProfesor-diseño
+title Diagrama de Secuencia - Eliminar Profesor
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProfesorRepository" as ProfesorRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita eliminar un Profesor del listado
+activate Vista
+Vista -> API: GET /api/v1/profesores/{profesor_id}
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> ProfesorRepo: obtener(profesor_id)
+activate ProfesorRepo
+ProfesorRepo -> DB: SELECT ... FROM profesores WHERE id = :profesor_id
+activate DB
+DB --> ProfesorRepo: fila Profesor
+deactivate DB
+ProfesorRepo --> API: Profesor (404 si None)
+deactivate ProfesorRepo
+API --> Vista: 200 OK (ProfesorDetalleResponse JSON)
+deactivate API
+Vista --> Admin: presenta la información y pide confirmar/cancelar
+
+alt el Admin confirma
+  Admin -> Vista: confirma
+  Vista -> API: DELETE /api/v1/profesores/{profesor_id}
+  activate API
+  API -> ProfesorRepo: motivos_bloqueo_eliminacion(profesor_id)
+  activate ProfesorRepo
+  ProfesorRepo -> DB: SELECT ag.nombre FROM asignaturas_grado ag\nJOIN asignaturas_grado_profesores agp ON agp.asignatura_grado_id = ag.id\nWHERE agp.profesor_id = :id
+  activate DB
+  DB --> ProfesorRepo: nombres de AsignaturaGrado
+  deactivate DB
+  ProfesorRepo -> DB: SELECT ag.nombre FROM asignaturas_grado ag\nJOIN guias g ON g.asignatura_grado_id = ag.id\nJOIN guias_profesores gp ON gp.guia_id = g.id\nWHERE gp.profesor_id = :id
+  note right of DB: tabla propia -- copia puntual al crear la Guia,\nno derivada de asignaturas_grado_profesores (issue #13)
+  activate DB
+  DB --> ProfesorRepo: nombres de AsignaturaGrado (vía Guia)
+  deactivate DB
+  ProfesorRepo -> DB: SELECT d.email FROM directores_grado d WHERE d.email = :email
+  activate DB
+  DB --> ProfesorRepo: None / fila DirectorGrado
+  deactivate DB
+  ProfesorRepo -> DB: (si existe) SELECT grados dirigidos por ese director
+  activate DB
+  DB --> ProfesorRepo: List[Grado]
+  deactivate DB
+  ProfesorRepo --> API: List[String] -- un motivo por condición real
+  deactivate ProfesorRepo
+  alt hay motivos (AsignaturaGrado asignadas, Guia impartida, y/o rol de DirectorGrado activo)
+    API --> Vista: 409 Conflict (detail: "Profesor asignado a: ...; dirige: ...")
+    deactivate API
+    Vista --> Admin: presenta el bloqueo con el detail del 409 tal cual, sin cambios
+  else sin motivos
+    API -> ProfesorRepo: eliminar(profesor_id)
+    activate ProfesorRepo
+    ProfesorRepo -> DB: DELETE FROM profesores WHERE id = :profesor_id
+    activate DB
+    DB --> ProfesorRepo: ok
+    deactivate DB
+    ProfesorRepo --> API: void
+    deactivate ProfesorRepo
+    API --> Vista: 204 No Content
+    deactivate API
+    Vista --> Admin: presenta la lista actualizada
+  end
+else el Admin cancela
+  Admin -> Vista: cancela
+  Vista --> Admin: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

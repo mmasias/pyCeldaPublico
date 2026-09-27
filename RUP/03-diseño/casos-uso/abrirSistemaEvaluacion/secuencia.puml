@@ -1,0 +1,29 @@
+@startuml abrirSistemaEvaluacion-diseño
+title Diagrama de Secuencia - Abrir Sistema de Evaluación
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "SistemaEvaluacionRepository" as SistemaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir un SistemaEvaluacion del listado
+activate Vista
+Vista -> API: GET /api/v1/sistemas-evaluacion/{sistema_evaluacion_id}
+activate API
+note right of API: Depends(require_admin)
+API -> SistemaRepo: obtener(sistema_evaluacion_id)
+activate SistemaRepo
+SistemaRepo -> DB: SELECT ... FROM sistemas_evaluacion WHERE id = :sistema_evaluacion_id
+activate DB
+DB --> SistemaRepo: fila SistemaEvaluacion
+deactivate DB
+SistemaRepo --> API: SistemaEvaluacion (404 si None)
+deactivate SistemaRepo
+
+API --> Vista: 200 OK (SistemaEvaluacionResponse JSON, con materia_id)
+deactivate API
+Vista --> Admin: muestra tipo, descripción y rango de ponderación
+deactivate Vista
+
+@enduml

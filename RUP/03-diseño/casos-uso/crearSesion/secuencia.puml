@@ -1,0 +1,37 @@
+@startuml crearSesion-diseño
+title Diagrama de Secuencia - Crear Sesión
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "SesionRepository" as SesionRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: abre formulario de creación desde el listado de la Planificación docente
+activate Vista
+Vista --> Profesor: muestra formulario: selector tipo (6 valores del enum cerrado) y descripcion; numero automático, no editable
+
+Profesor -> Vista: elige tipo, completa descripcion, confirma
+Vista -> API: POST /api/v1/guias/{guia_id}/sesiones (SesionCreate JSON)
+activate API
+
+API -> SesionRepo: siguiente_numero(guia_id)
+activate SesionRepo
+SesionRepo -> DB: SELECT COALESCE(MAX(numero), 0) + 1 FROM sesiones WHERE guia_id = :guia_id
+activate DB
+DB --> SesionRepo: numero siguiente
+deactivate DB
+SesionRepo --> API: int
+API -> SesionRepo: crear(guia_id, numero, tipo, descripcion)
+SesionRepo -> DB: INSERT INTO sesiones ... (vinculada = false)
+activate DB
+DB --> SesionRepo: id nueva fila
+deactivate DB
+SesionRepo --> API: Sesion (con id)
+deactivate SesionRepo
+API --> Vista: 201 Created (SesionResponse JSON)
+deactivate API
+Vista --> Profesor: vuelve al listado de abrirPlanificacionDocente(), la sesión nueva ya es visible
+deactivate Vista
+
+@enduml

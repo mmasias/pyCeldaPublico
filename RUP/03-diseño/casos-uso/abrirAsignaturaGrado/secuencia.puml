@@ -1,0 +1,56 @@
+@startuml abrirAsignaturaGrado-diseño
+title Diagrama de Secuencia - Abrir AsignaturaGrado
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita abrir una AsignaturaGrado
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-grado/{asignatura_grado_id}
+activate API
+
+API -> AsignaturaGradoRepo: obtener(asignatura_grado_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT ... FROM asignaturas_grado WHERE id = :asignatura_grado_id
+activate DB
+DB --> AsignaturaGradoRepo: fila AsignaturaGrado
+deactivate DB
+AsignaturaGradoRepo --> API: AsignaturaGrado
+deactivate AsignaturaGradoRepo
+
+API -> AsignaturaGradoRepo: listar_metodologias_docentes_de(asignatura_grado_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT md.* FROM metodologias_docentes md\nJOIN asignaturas_grado_metodologias_docentes agmd\nON agmd.metodologia_docente_id = md.id\nWHERE agmd.asignatura_grado_id = :asignatura_grado_id
+activate DB
+DB --> AsignaturaGradoRepo: filas MetodologiaDocente
+deactivate DB
+AsignaturaGradoRepo --> API: List[MetodologiaDocente]
+deactivate AsignaturaGradoRepo
+
+API -> AsignaturaGradoRepo: listar_resultados_aprendizaje_de(asignatura_grado_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT ra.* FROM resultados_aprendizaje ra\nJOIN asignaturas_grado_resultados_aprendizaje agra\nON agra.resultado_aprendizaje_id = ra.id\nWHERE agra.asignatura_grado_id = :asignatura_grado_id
+activate DB
+DB --> AsignaturaGradoRepo: filas ResultadoAprendizaje
+deactivate DB
+AsignaturaGradoRepo --> API: List[ResultadoAprendizaje]
+deactivate AsignaturaGradoRepo
+
+API -> AsignaturaGradoRepo: listar_profesorado_de(asignatura_grado_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT p.* FROM profesores p\nJOIN asignaturas_grado_profesores agp ON agp.profesor_id = p.id\nWHERE agp.asignatura_grado_id = :asignatura_grado_id
+activate DB
+DB --> AsignaturaGradoRepo: filas Profesor
+deactivate DB
+AsignaturaGradoRepo --> API: List[Profesor]
+deactivate AsignaturaGradoRepo
+
+API --> Vista: 200 OK (AsignaturaGradoDetalleResponse JSON, con las tres colecciones)
+deactivate API
+Vista --> DirectorGrado: muestra datos, profesorado, MetodologiaDocente y ResultadoAprendizaje
+deactivate Vista
+
+@enduml

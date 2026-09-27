@@ -1,0 +1,26 @@
+@startuml abrirSistemasEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":SISTEMAS_EVALUACION_ABIERTO" as SistemasEvaluacionAbiertoSalida
+
+package abrirSistemasEvaluacion as "abrirSistemasEvaluacion()" {
+    rectangle #629EF9 AbrirSistemasEvaluacionView
+    rectangle #b5bd68 SistemaEvaluacionController
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E SistemaEvaluacionRepository
+}
+
+MateriaAbierto --> AbrirSistemasEvaluacionView: <font size=8>abrirSistemasEvaluacion(materiaId)
+
+AbrirSistemasEvaluacionView --> SistemaEvaluacionController: <font size=8>listarSistemasEvaluacionDeMateria(materiaId) : List<SistemaEvaluacion>
+
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>listarDeMateria(materiaId) : List<SistemaEvaluacion>
+
+SistemaEvaluacionRepository -- SistemaEvaluacion
+
+AbrirSistemasEvaluacionView --> SistemasEvaluacionAbiertoSalida: <font size=8>presenta listado de SistemaEvaluacion de la Materia
+
+@enduml

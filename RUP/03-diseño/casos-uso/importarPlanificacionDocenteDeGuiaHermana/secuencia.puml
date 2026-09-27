@@ -1,0 +1,52 @@
+@startuml importarPlanificacionDocenteDeGuiaHermana-diseño
+title Diagrama de Secuencia - Importar Planificación Docente de Guía Hermana
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaGradoRepository" as AGRepo
+participant "GuiaRepository" as GuiaRepo
+participant "SesionRepository" as SesionRepo
+participant "Guia (destino)" as Guia
+database "Base de Datos" as DB
+
+== Elegir origen (GET, mismo endpoint que bibliografía) ==
+
+Profesor -> Vista: abre "Importar planificación docente"
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/importables
+activate API
+API -> GuiaRepo: obtener(guia_id) + AGRepo.imparte(...)  -> destino (o 404)
+API -> AGRepo: listar_hermanas(destino.asignatura_grado_id)
+API -> GuiaRepo: listar_aprobadas_de_asignaturas_grado([ids hermanas])
+GuiaRepo --> API: [Guia aprobadas de hermanas]
+API --> Vista: 200 [{..., n_sesiones, ...}]
+Vista --> Profesor: desplegable + aviso "reemplazará N sesiones, se renumeran 1..N"
+deactivate API
+
+== Importar (POST, operación atómica) ==
+
+Profesor -> Vista: selecciona guía origen, confirma
+Vista -> API: POST /api/v1/guias/{guia_id}/importar-planificacion-docente {origen_guia_id}
+activate API
+API -> API: _guia_destino_o_404 + _origen_o_404 (revalidación server-side)
+API -> SesionRepo: reemplazar_desde(destino, origen.sesiones)
+activate SesionRepo
+SesionRepo -> DB: DELETE (vía ORM) todas las sesiones del destino
+SesionRepo -> SesionRepo: sorted(sesiones_origen, key=numero)
+SesionRepo -> DB: INSERT copias con numero = 1..N (tipo, descripcion, vinculada replicada)
+note right of SesionRepo: renumeración 1..N EN PERSISTENCIA (filas nuevas);\nNO toca Guia.sesiones_minimas del destino
+SesionRepo -> SesionRepo: flush() -- sin commit
+SesionRepo --> API: [Sesion copiadas]
+deactivate SesionRepo
+API -> DB: INSERT historial_cambios (campo="planificacion_docente", ...)
+API -> Guia: confirmar_guardado()
+note right of Guia: fecha_ultima_modificacion; si Aprobada -> Borrador
+API -> DB: COMMIT (borrado + copias + historial + estado en un commit)
+API --> Vista: 200 GuiaResponse
+deactivate API
+Vista -> Vista: limpiarExcluidos(claveSesionesExcluidas)
+Vista --> Profesor: navega a la planificación docente, ya reemplazada
+deactivate Vista
+
+@enduml

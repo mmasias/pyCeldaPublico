@@ -1,0 +1,29 @@
+@startuml abrirResultadosAprendizaje-diseño
+title Diagrama de Secuencia - Abrir Resultados de Aprendizaje
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ResultadoAprendizajeRepository" as ResultadoRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita abrir el catálogo de ResultadosAprendizaje del Grado
+activate Vista
+Vista -> API: GET /api/v1/grados/{grado_id}/resultados-aprendizaje
+activate API
+
+API -> ResultadoRepo: listar_del_grado(grado_id)
+activate ResultadoRepo
+ResultadoRepo -> DB: SELECT ... FROM resultados_aprendizaje WHERE grado_id = :grado_id
+activate DB
+DB --> ResultadoRepo: filas ResultadoAprendizaje
+deactivate DB
+ResultadoRepo --> API: List[ResultadoAprendizaje]
+deactivate ResultadoRepo
+
+API --> Vista: 200 OK (List[ResultadoAprendizajeResponse] JSON)
+deactivate API
+Vista --> DirectorGrado: presenta catálogo de ResultadoAprendizaje del Grado
+deactivate Vista
+
+@enduml

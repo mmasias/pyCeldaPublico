@@ -1,0 +1,47 @@
+@startuml editarAsignatura-diseño
+title Diagrama de Secuencia - Editar Asignatura
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaRepository" as AsignaturaRepo
+participant "Asignatura" as Asignatura
+database "Base de Datos" as DB
+
+Admin -> Vista: abre la Asignatura a editar
+activate Vista
+Vista -> API: GET /api/v1/asignaturas/{asignatura_id}
+activate API
+note right of API: Depends(require_admin) -- ya disponible en\nbackend/app/core/auth.py (bloque anterior, ya mergeado)
+API -> AsignaturaRepo: obtener(asignatura_id)
+activate AsignaturaRepo
+AsignaturaRepo -> DB: SELECT ... FROM asignaturas WHERE id = :asignatura_id
+activate DB
+DB --> AsignaturaRepo: fila Asignatura
+deactivate DB
+AsignaturaRepo --> API: Asignatura (404 si None)
+deactivate AsignaturaRepo
+API --> Vista: 200 OK (AsignaturaResponse JSON)
+deactivate API
+Vista --> Admin: muestra formulario con datos actuales (sin estado)
+
+Admin -> Vista: modifica nombre/ects/contenido, confirma
+Vista -> API: PUT /api/v1/asignaturas/{asignatura_id} (AsignaturaUpdate JSON)
+activate API
+API -> Asignatura: actualizar(nombre, ects, contenido)
+activate Asignatura
+deactivate Asignatura
+API -> AsignaturaRepo: actualizar(asignatura)
+activate AsignaturaRepo
+AsignaturaRepo -> DB: UPDATE asignaturas SET nombre = ..., ects = ..., contenido = ...
+activate DB
+DB --> AsignaturaRepo: ok
+deactivate DB
+AsignaturaRepo --> API: Asignatura
+deactivate AsignaturaRepo
+API --> Vista: 200 OK (AsignaturaResponse JSON)
+deactivate API
+Vista --> Admin: datos actualizados
+deactivate Vista
+
+@enduml

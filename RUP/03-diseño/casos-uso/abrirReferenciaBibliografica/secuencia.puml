@@ -1,0 +1,27 @@
+@startuml abrirReferenciaBibliografica-diseño
+title Diagrama de Secuencia - Abrir Referencia Bibliográfica
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: abre una ReferenciaBibliografica desde su fila en el listado
+activate Vista
+Vista -> API: GET /api/v1/referencias-bibliograficas/{referencia_id}
+activate API
+API -> ReferenciaRepo: obtener(referencia_id)
+activate ReferenciaRepo
+ReferenciaRepo -> DB: SELECT ... FROM referencias_bibliograficas WHERE id = :referencia_id
+activate DB
+DB --> ReferenciaRepo: fila ReferenciaBibliografica
+deactivate DB
+ReferenciaRepo --> API: ReferenciaBibliografica
+deactivate ReferenciaRepo
+API --> Vista: 200 OK (ReferenciaBibliograficaResponse JSON)
+deactivate API
+Vista --> Profesor: muestra tipo y referencia, sin edición
+deactivate Vista
+
+@enduml

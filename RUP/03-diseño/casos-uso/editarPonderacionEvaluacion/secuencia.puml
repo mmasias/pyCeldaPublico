@@ -1,0 +1,86 @@
+@startuml editarPonderacionEvaluacion-diseño
+title Diagrama de Secuencia - Editar Ponderación de Evaluación
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "PonderacionEvaluacionRepository" as PonderacionRepo
+participant "PonderacionEvaluacion" as PonderacionEvaluacion
+participant "MateriaRepository" as MateriaRepo
+participant "Materia" as Materia
+participant "SistemaEvaluacionRepository" as SistemaRepo
+participant "SistemaEvaluacion" as SistemaEvaluacion
+database "Base de Datos" as DB
+
+Profesor -> Vista: abre la ponderación a editar
+activate Vista
+Vista -> API: GET /api/v1/ponderaciones-evaluacion/{ponderacion_id}
+activate API
+API -> PonderacionRepo: obtener(ponderacion_id)
+activate PonderacionRepo
+PonderacionRepo -> DB: SELECT ... FROM ponderaciones_evaluacion WHERE id = :ponderacion_id
+activate DB
+DB --> PonderacionRepo: fila PonderacionEvaluacion
+deactivate DB
+PonderacionRepo --> API: PonderacionEvaluacion
+deactivate PonderacionRepo
+API --> Vista: 200 OK (PonderacionEvaluacionResponse JSON)
+deactivate API
+Vista --> Profesor: muestra formulario con datos actuales
+
+Vista -> API: GET /api/v1/materias/{materia_id}/sistemas-evaluacion
+activate API
+API -> MateriaRepo: obtener(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
+activate DB
+DB --> MateriaRepo: fila Materia (con SistemaEvaluacion asociados)
+deactivate DB
+MateriaRepo --> API: Materia
+deactivate MateriaRepo
+API -> Materia: listar_sistemas_evaluacion()
+activate Materia
+Materia --> API: List[SistemaEvaluacion]
+deactivate Materia
+API --> Vista: 200 OK (List[SistemaEvaluacionResponse])
+deactivate API
+Vista --> Profesor: muestra selector de SistemaEvaluacion
+
+Profesor -> Vista: modifica SistemaEvaluacion, descripcion y/o ponderacion, confirma
+Vista -> API: PUT /api/v1/ponderaciones-evaluacion/{ponderacion_id} (PonderacionEvaluacionUpdate JSON)
+activate API
+API -> SistemaRepo: obtener(sistema_evaluacion_id)
+activate SistemaRepo
+SistemaRepo -> DB: SELECT ... FROM sistemas_evaluacion WHERE id = :sistema_evaluacion_id
+activate DB
+DB --> SistemaRepo: fila SistemaEvaluacion
+deactivate DB
+SistemaRepo --> API: SistemaEvaluacion
+deactivate SistemaRepo
+API -> SistemaEvaluacion: validar_maximo(ponderacion)
+activate SistemaEvaluacion
+SistemaEvaluacion --> API: boolean
+deactivate SistemaEvaluacion
+
+alt dentro del máximo
+  API -> PonderacionEvaluacion: actualizar(sistema_evaluacion_id, descripcion, ponderacion)
+  activate PonderacionEvaluacion
+  deactivate PonderacionEvaluacion
+  API -> PonderacionRepo: actualizar(ponderacion)
+  activate PonderacionRepo
+  PonderacionRepo -> DB: UPDATE ponderaciones_evaluacion SET ...
+  activate DB
+  DB --> PonderacionRepo: ok
+  deactivate DB
+  PonderacionRepo --> API: PonderacionEvaluacion
+  deactivate PonderacionRepo
+  API --> Vista: 200 OK (PonderacionEvaluacionResponse JSON)
+  Vista --> Profesor: datos actualizados
+else supera el máximo
+  API --> Vista: 422 Unprocessable Entity (detalle: máximo superado)
+  Vista --> Profesor: muestra aviso de rechazo, sin cambios
+end
+deactivate API
+deactivate Vista
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml crearResultadoAprendizaje-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":RESULTADOS_APRENDIZAJE_ABIERTO" as ResultadosAprendizajeAbierto
+rectangle #CDEBA5 ":Collaboration EditarResultadoAprendizaje" as EditarResultadoAprendizaje
+rectangle #CDEBA5 ":RESULTADO_APRENDIZAJE_ABIERTO" as ResultadoAprendizajeSalida
+
+package crearResultadoAprendizaje as "crearResultadoAprendizaje()" {
+    rectangle #629EF9 CrearResultadoAprendizajeView
+    rectangle #b5bd68 ResultadoAprendizajeController
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E ResultadoAprendizajeRepository
+}
+
+ResultadosAprendizajeAbierto --> CrearResultadoAprendizajeView: <font size=8>crearResultadoAprendizaje(gradoId)
+
+CrearResultadoAprendizajeView --> ResultadoAprendizajeController: <font size=8>crearResultadoAprendizaje(gradoId, codigo, tipo, descripcion) : ResultadoAprendizaje
+
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>crear(gradoId, codigo, tipo, descripcion) : ResultadoAprendizaje
+
+ResultadoAprendizajeRepository -- ResultadoAprendizaje
+
+CrearResultadoAprendizajeView ..> EditarResultadoAprendizaje: <font size=8> <<include>> editarResultadoAprendizaje()
+CrearResultadoAprendizajeView --> ResultadoAprendizajeSalida: <font size=8>ResultadoAprendizaje creado
+
+@enduml

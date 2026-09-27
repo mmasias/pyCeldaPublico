@@ -1,0 +1,34 @@
+@startuml editarSistemaEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMA_EVALUACION_ABIERTO" as SistemaEvaluacionAbierto
+rectangle #CDEBA5 ":SISTEMA_EVALUACION_ABIERTO" as SistemaEvaluacionAbiertoSalida
+
+package editarSistemaEvaluacion as "editarSistemaEvaluacion()" {
+    rectangle #629EF9 EditarSistemaEvaluacionView
+    rectangle #b5bd68 SistemaEvaluacionController
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E SistemaEvaluacionRepository
+}
+
+SistemaEvaluacionAbierto --> EditarSistemaEvaluacionView: <font size=8>editarSistemaEvaluacion(sistemaEvaluacionId)
+
+EditarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>cargarSistemaEvaluacion(sistemaEvaluacionId) : SistemaEvaluacion
+
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>obtener(sistemaEvaluacionId) : SistemaEvaluacion
+
+EditarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>validarDatosObligatorios(tipo, ponderacionMinima, ponderacionMaxima) : boolean
+
+EditarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>guardarCambios(sistemaEvaluacionId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : boolean
+
+SistemaEvaluacionController --> SistemaEvaluacion: <font size=8>actualizar(tipo, descripcion, ponderacionMinima, ponderacionMaxima)
+
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>editar(sistemaEvaluacion)
+
+SistemaEvaluacionRepository -- SistemaEvaluacion
+
+EditarSistemaEvaluacionView --> SistemaEvaluacionAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml abrirResultadoAprendizaje-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":RESULTADOS_APRENDIZAJE_ABIERTO" as ResultadosAprendizajeAbierto
+rectangle #CDEBA5 ":RESULTADO_APRENDIZAJE_ABIERTO" as ResultadoAprendizajeAbiertoSalida
+
+package abrirResultadoAprendizaje as "abrirResultadoAprendizaje()" {
+    rectangle #629EF9 AbrirResultadoAprendizajeView
+    rectangle #b5bd68 ResultadoAprendizajeController
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E ResultadoAprendizajeRepository
+}
+
+ResultadosAprendizajeAbierto --> AbrirResultadoAprendizajeView: <font size=8>abrirResultadoAprendizaje(resultadoAprendizajeId)
+
+AbrirResultadoAprendizajeView --> ResultadoAprendizajeController: <font size=8>cargarResultadoAprendizaje(resultadoAprendizajeId) : ResultadoAprendizaje
+
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>obtener(resultadoAprendizajeId) : ResultadoAprendizaje
+
+ResultadoAprendizajeRepository -- ResultadoAprendizaje
+
+AbrirResultadoAprendizajeView --> ResultadoAprendizajeAbiertoSalida: <font size=8>muestra código, tipo y descripción
+
+@enduml

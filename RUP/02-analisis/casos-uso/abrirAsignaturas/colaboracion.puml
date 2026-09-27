@@ -1,0 +1,26 @@
+@startuml abrirAsignaturas-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":ASIGNATURAS_ABIERTO" as AsignaturasAbiertoSalida
+
+package abrirAsignaturas as "abrirAsignaturas()" {
+    rectangle #629EF9 AbrirAsignaturasView
+    rectangle #b5bd68 AsignaturaController
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E AsignaturaRepository
+}
+
+SistemaDisponible --> AbrirAsignaturasView: <font size=8>abrirAsignaturas()
+
+AbrirAsignaturasView --> AsignaturaController: <font size=8>listarAsignaturas() : List<Asignatura>
+
+AsignaturaController --> AsignaturaRepository: <font size=8>listar() : List<Asignatura>
+
+AsignaturaRepository -- Asignatura
+
+AbrirAsignaturasView --> AsignaturasAbiertoSalida: <font size=8>presenta listado de Asignaturas
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml crearCursoAcademico-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":CURSOS_ACADEMICOS_ABIERTO" as CursosAcademicosAbierto
+rectangle #CDEBA5 ":Collaboration EditarCursoAcademico" as EditarCursoAcademico
+
+package crearCursoAcademico as "crearCursoAcademico()" {
+    rectangle #629EF9 CrearCursoAcademicoView
+    rectangle #b5bd68 CursoAcademicoController
+    rectangle #F2AC4E CursoAcademico
+    rectangle #F2AC4E CursoAcademicoRepository
+}
+
+CursosAcademicosAbierto --> CrearCursoAcademicoView: <font size=8>crearCursoAcademico()
+
+CrearCursoAcademicoView --> CursoAcademicoController: <font size=8>validarDatosObligatorios(inicio, fin) : boolean
+
+CrearCursoAcademicoView --> CursoAcademicoController: <font size=8>crearCursoAcademico(inicio, fin) : CursoAcademico
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>crear(inicio, fin) : CursoAcademico
+
+CursoAcademicoRepository -- CursoAcademico
+
+CrearCursoAcademicoView ..> EditarCursoAcademico:<font size=8> <<include>> editarCursoAcademico()
+
+@enduml

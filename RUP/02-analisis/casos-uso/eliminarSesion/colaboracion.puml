@@ -1,0 +1,21 @@
+@startuml eliminarSesion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteAbierto
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteSalida
+
+package eliminarSesion as "eliminarSesion()" {
+    rectangle #629EF9 EliminarSesionView
+    rectangle #b5bd68 PlanificacionDocenteController
+}
+
+PlanificacionDocenteAbierto --> EliminarSesionView: <font size=8>eliminarSesion(sesionId)
+
+EliminarSesionView --> PlanificacionDocenteController: <font size=8>confirmarEliminacion(sesionId) : boolean
+
+EliminarSesionView ..[#green]> PlanificacionDocenteSalida: <font size=8>quitada de la lista de trabajo de la sesión, sesiones siguientes renumeradas en la vista
+EliminarSesionView ..[#blue]> PlanificacionDocenteSalida: <font size=8>cancelada, sin cambios
+
+@enduml

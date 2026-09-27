@@ -1,0 +1,26 @@
+@startuml abrirUniversidades-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":UNIVERSIDADES_ABIERTO" as UniversidadesAbiertoSalida
+
+package abrirUniversidades as "abrirUniversidades()" {
+    rectangle #629EF9 AbrirUniversidadesView
+    rectangle #b5bd68 UniversidadController
+    rectangle #F2AC4E Universidad
+    rectangle #F2AC4E UniversidadRepository
+}
+
+SistemaDisponible --> AbrirUniversidadesView: <font size=8>abrirUniversidades()
+
+AbrirUniversidadesView --> UniversidadController: <font size=8>listarUniversidades() : List<Universidad>
+
+UniversidadController --> UniversidadRepository: <font size=8>listar() : List<Universidad>
+
+UniversidadRepository -- Universidad
+
+AbrirUniversidadesView --> UniversidadesAbiertoSalida: <font size=8>presenta listado de Universidades
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml crearCursoAcademico-diseño
+title Diagrama de Secuencia - Crear Curso Académico
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CursoAcademicoRepository" as CursoAcademicoRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa inicio/fin, confirma
+activate Vista
+Vista -> API: POST /api/v1/admin/cursos-academicos (CursoAcademicoCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento
+API -> CursoAcademicoRepo: crear(inicio, fin)
+activate CursoAcademicoRepo
+CursoAcademicoRepo -> DB: INSERT INTO cursos_academicos (inicio, fin, estado) VALUES (..., ..., 'Inactivo')
+activate DB
+DB --> CursoAcademicoRepo: id nueva fila
+deactivate DB
+CursoAcademicoRepo --> API: CursoAcademico (con id, estado=Inactivo)
+deactivate CursoAcademicoRepo
+API --> Vista: 201 Created (CursoAcademicoResponse JSON)
+deactivate API
+Vista --> Admin: navega a editarCursoAcademico() (<<include>>)
+deactivate Vista
+
+@enduml

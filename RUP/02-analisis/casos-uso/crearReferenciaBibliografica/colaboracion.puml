@@ -1,0 +1,28 @@
+@startuml crearReferenciaBibliografica-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":REFERENCIAS_BIBLIOGRAFICAS_ABIERTO" as ReferenciasBibliograficasAbierto
+rectangle #CDEBA5 ":Collaboration EditarReferenciaBibliografica" as EditarReferenciaBibliografica
+
+package crearReferenciaBibliografica as "crearReferenciaBibliografica()" {
+    rectangle #629EF9 CrearReferenciaBibliograficaView
+    rectangle #b5bd68 ReferenciaBibliograficaController
+    rectangle #F2AC4E ReferenciaBibliografica
+    rectangle #F2AC4E ReferenciaBibliograficaRepository
+}
+
+ReferenciasBibliograficasAbierto --> CrearReferenciaBibliograficaView: <font size=8>crearReferenciaBibliografica(guiaId)
+
+CrearReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>validarDatosObligatorios(tipo, referencia) : boolean
+
+CrearReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>crearReferenciaBibliografica(guiaId, tipo, referencia) : ReferenciaBibliografica
+
+ReferenciaBibliograficaController --> ReferenciaBibliograficaRepository: <font size=8>crear(guiaId, tipo, referencia) : ReferenciaBibliografica
+
+ReferenciaBibliograficaRepository -- ReferenciaBibliografica
+
+CrearReferenciaBibliograficaView ..> EditarReferenciaBibliografica:<font size=8> <<include>> editarReferenciaBibliografica()
+
+@enduml

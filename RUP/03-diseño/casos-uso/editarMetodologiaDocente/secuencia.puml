@@ -1,0 +1,47 @@
+@startuml editarMetodologiaDocente-diseño
+title Diagrama de Secuencia - Editar Metodología Docente
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaDocenteRepository" as MetodologiaRepo
+participant "MetodologiaDocente" as Metodologia
+database "Base de Datos" as DB
+
+Admin -> Vista: abre la MetodologiaDocente a editar
+activate Vista
+Vista -> API: GET /api/v1/metodologias-docentes/{metodologia_docente_id}
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> MetodologiaRepo: obtener(metodologia_docente_id)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: SELECT ... FROM metodologias_docentes WHERE id = :metodologia_docente_id
+activate DB
+DB --> MetodologiaRepo: fila MetodologiaDocente
+deactivate DB
+MetodologiaRepo --> API: MetodologiaDocente (404 si None)
+deactivate MetodologiaRepo
+API --> Vista: 200 OK (MetodologiaDocenteResponse JSON)
+deactivate API
+Vista --> Admin: muestra formulario con datos actuales (código de solo lectura)
+
+Admin -> Vista: modifica descripción, confirma
+Vista -> API: PUT /api/v1/metodologias-docentes/{metodologia_docente_id} (MetodologiaDocenteUpdate JSON)
+activate API
+API -> MetodologiaRepo: editar(metodologia, codigo, descripcion)
+activate MetodologiaRepo
+MetodologiaRepo -> Metodologia: actualizar(codigo, descripcion)
+activate Metodologia
+deactivate Metodologia
+MetodologiaRepo -> DB: UPDATE metodologias_docentes SET codigo = ..., descripcion = ...
+activate DB
+DB --> MetodologiaRepo: ok
+deactivate DB
+MetodologiaRepo --> API: MetodologiaDocente
+deactivate MetodologiaRepo
+API --> Vista: 200 OK (MetodologiaDocenteResponse JSON)
+deactivate API
+Vista --> Admin: datos actualizados
+deactivate Vista
+
+@enduml

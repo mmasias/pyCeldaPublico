@@ -1,0 +1,43 @@
+@startuml asociarMetodologiaDocenteAMateria-diseño
+title Diagrama de Secuencia - Asociar Metodología Docente a Materia
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaDocenteRepository" as MetodologiaRepo
+participant "MetodologiaMateriaRepository" as MetodologiaMateriaRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita asociar una MetodologiaDocente a la Materia
+activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}/metodologias-docentes/disponibles
+activate API
+API -> MetodologiaRepo: listar_disponibles_para_materia(materia_id)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: SELECT md.* FROM metodologias_docentes md\nLEFT JOIN metodologias_materia mm ON mm.metodologia_docente_id = md.id\nAND mm.materia_id = :materia_id\nWHERE mm.id IS NULL
+activate DB
+DB --> MetodologiaRepo: filas MetodologiaDocente
+deactivate DB
+MetodologiaRepo --> API: List[MetodologiaDocente]
+deactivate MetodologiaRepo
+API --> Vista: 200 OK (List[MetodologiaDocenteResponse] JSON)
+deactivate API
+Vista --> DirectorGrado: muestra las MetodologiaDocente aún no asociadas
+
+DirectorGrado -> Vista: elige una MetodologiaDocente y confirma
+Vista -> API: POST /api/v1/materias/{materia_id}/metodologias-docentes (MetodologiaMateriaCreate JSON)
+activate API
+API -> MetodologiaMateriaRepo: crear(materia_id, metodologia_docente_id)
+activate MetodologiaMateriaRepo
+MetodologiaMateriaRepo -> DB: INSERT INTO metodologias_materia\n(materia_id, metodologia_docente_id, descripcion_propia = '')
+activate DB
+DB --> MetodologiaMateriaRepo: id nueva fila
+deactivate DB
+MetodologiaMateriaRepo --> API: MetodologiaMateria
+deactivate MetodologiaMateriaRepo
+API --> Vista: 201 Created (MetodologiaMateriaResponse JSON)
+deactivate API
+Vista --> DirectorGrado: MetodologiaDocente asociada (descripcion_propia vacía)
+deactivate Vista
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml editarAsociacionMetodologiaDocenteMateria-diseño
+title Diagrama de Secuencia - Editar Asociación Metodología Docente-Materia
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaMateriaRepository" as MetodologiaMateriaRepo
+participant "MetodologiaMateria" as MetodologiaMateria
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita editar la asociación (codigo/descripcion en solo lectura)
+activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}/metodologias-docentes/{metodologia_docente_id}
+activate API
+API -> MetodologiaMateriaRepo: obtener(materia_id, metodologia_docente_id)
+activate MetodologiaMateriaRepo
+MetodologiaMateriaRepo -> DB: SELECT ... FROM metodologias_materia WHERE materia_id = :materia_id\nAND metodologia_docente_id = :metodologia_docente_id
+activate DB
+DB --> MetodologiaMateriaRepo: fila MetodologiaMateria
+deactivate DB
+MetodologiaMateriaRepo --> API: MetodologiaMateria
+deactivate MetodologiaMateriaRepo
+API --> Vista: 200 OK (MetodologiaMateriaResponse JSON)
+deactivate API
+Vista --> DirectorGrado: presenta descripcion_propia precargada
+
+DirectorGrado -> Vista: modifica descripcion_propia y guarda
+Vista -> API: PUT /api/v1/materias/{materia_id}/metodologias-docentes/{metodologia_docente_id} (MetodologiaMateriaUpdate JSON)
+activate API
+API -> MetodologiaMateria: actualizar(descripcion_propia)
+activate MetodologiaMateria
+note right of MetodologiaMateria: único campo editable de la asociación,\npatrón catálogo+override
+deactivate MetodologiaMateria
+
+API -> MetodologiaMateriaRepo: actualizar(metodologia_materia)
+activate MetodologiaMateriaRepo
+MetodologiaMateriaRepo -> DB: UPDATE metodologias_materia SET descripcion_propia = ...
+activate DB
+DB --> MetodologiaMateriaRepo: ok
+deactivate DB
+MetodologiaMateriaRepo --> API: MetodologiaMateria
+deactivate MetodologiaMateriaRepo
+
+API --> Vista: 200 OK (MetodologiaMateriaResponse JSON)
+deactivate API
+Vista --> DirectorGrado: descripcion_propia actualizada
+deactivate Vista
+
+@enduml

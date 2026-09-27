@@ -1,0 +1,46 @@
+@startuml editarSistemaEvaluacion-diseño
+title Diagrama de Secuencia - Editar Sistema de Evaluación
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "SistemaEvaluacionRepository" as SistemaRepo
+participant "SistemaEvaluacion" as SistemaEvaluacion
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita editar el SistemaEvaluacion (precargado)
+activate Vista
+Admin -> Vista: modifica tipo, descripción o ponderaciones y guarda
+note right of Vista: 0 <= mínima <= máxima <= 100 se valida\naquí, antes de enviar -- validación\nde forma, el backend no la exige
+Vista -> API: PUT /api/v1/sistemas-evaluacion/{sistema_evaluacion_id} (SistemaEvaluacionUpdate JSON)
+activate API
+note right of API: Depends(require_admin)
+API -> SistemaRepo: obtener(sistema_evaluacion_id)
+activate SistemaRepo
+SistemaRepo -> DB: SELECT ... FROM sistemas_evaluacion WHERE id = :sistema_evaluacion_id
+activate DB
+DB --> SistemaRepo: fila SistemaEvaluacion
+deactivate DB
+SistemaRepo --> API: SistemaEvaluacion (404 si None)
+deactivate SistemaRepo
+
+API -> SistemaEvaluacion: actualizar(tipo, descripcion, ponderacion_minima, ponderacion_maxima)
+activate SistemaEvaluacion
+note right of SistemaEvaluacion: validar_maximo() queda intacto --\nlo usa el hilo PonderacionEvaluacion
+deactivate SistemaEvaluacion
+
+API -> SistemaRepo: editar(sistema_evaluacion, tipo, descripcion, ponderacion_minima, ponderacion_maxima)
+activate SistemaRepo
+SistemaRepo -> DB: UPDATE sistemas_evaluacion SET ...
+activate DB
+DB --> SistemaRepo: ok
+deactivate DB
+SistemaRepo --> API: SistemaEvaluacion
+deactivate SistemaRepo
+
+API --> Vista: 200 OK (SistemaEvaluacionResponse JSON)
+deactivate API
+Vista --> Admin: datos actualizados
+deactivate Vista
+
+@enduml

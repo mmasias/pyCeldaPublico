@@ -1,0 +1,28 @@
+@startuml crearUniversidad-diseño
+title Diagrama de Secuencia - Crear Universidad
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "UniversidadRepository" as UniversidadRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa el nombre, confirma
+activate Vista
+Vista -> API: POST /api/v1/universidades (UniversidadCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento
+API -> UniversidadRepo: crear(nombre)
+activate UniversidadRepo
+UniversidadRepo -> DB: INSERT INTO universidades ...
+activate DB
+DB --> UniversidadRepo: id nueva fila
+deactivate DB
+UniversidadRepo --> API: Universidad (con id)
+deactivate UniversidadRepo
+API --> Vista: 201 Created (UniversidadResponse JSON)
+deactivate API
+Vista --> Admin: navega a editarUniversidad() (<<include>>)
+deactivate Vista
+
+@enduml

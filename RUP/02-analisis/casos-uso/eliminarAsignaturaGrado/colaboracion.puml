@@ -1,0 +1,29 @@
+@startuml eliminarAsignaturaGrado-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbiertoSalida
+
+package eliminarAsignaturaGrado as "eliminarAsignaturaGrado()" {
+    rectangle #629EF9 EliminarAsignaturaGradoView
+    rectangle #b5bd68 AsignaturaGradoController
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+}
+
+GradoAbierto --> EliminarAsignaturaGradoView: <font size=8>eliminarAsignaturaGrado(asignaturaGradoId)
+
+EliminarAsignaturaGradoView --> AsignaturaGradoController: <font size=8>eliminar(asignaturaGradoId)
+
+AsignaturaGradoController --> AsignaturaGrado: <font size=8>extinguir()
+
+AsignaturaGradoController --> AsignaturaGradoRepository: <font size=8>actualizar(asignaturaGrado)
+
+AsignaturaGradoRepository -- AsignaturaGrado
+
+EliminarAsignaturaGradoView ..[#green]> GradoAbiertoSalida: <font size=8>tabla actualizada -- estado pasa a Extinguido
+EliminarAsignaturaGradoView ..[#blue]> GradoAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

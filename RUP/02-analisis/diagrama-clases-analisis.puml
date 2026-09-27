@@ -1,0 +1,842 @@
+@startuml diagrama-clases-analisis
+
+'left to right direction
+'skinparam linetype polyline
+
+' Vista estática consolidada (unión incremental B/C/E) de las 61 colaboraciones
+' cerradas en casos-uso/*/colaboracion.puml. No introduce ningún método ni
+' relación que no esté ya en alguna de ellas -- ver discussion #59.
+
+package Vista {
+  class AbrirGuiaView #629EF9 {
+    +abrirGuia(guiaId)
+  }
+  class CrearPonderacionEvaluacionView #629EF9 {
+    +crearPonderacionEvaluacion(guiaId, materiaId)
+  }
+  class EditarPonderacionEvaluacionView #629EF9 {
+    +editarPonderacionEvaluacion(ponderacionId)
+  }
+  class EliminarPonderacionEvaluacionView #629EF9 {
+    +eliminarPonderacionEvaluacion(ponderacionId)
+  }
+  class AbrirPonderacionesEvaluacionView #629EF9 {
+    +abrirPonderacionesEvaluacion(guiaId)
+  }
+  class AbrirPonderacionEvaluacionView #629EF9 {
+    +abrirPonderacionEvaluacion(ponderacionId)
+  }
+  class CrearReferenciaBibliograficaView #629EF9 {
+    +crearReferenciaBibliografica(guiaId)
+  }
+  class EditarReferenciaBibliograficaView #629EF9 {
+    +editarReferenciaBibliografica(referenciaId)
+  }
+  class EliminarReferenciaBibliograficaView #629EF9 {
+    +eliminarReferenciaBibliografica(referenciaId)
+  }
+  class AbrirReferenciasBibliograficasView #629EF9 {
+    +abrirReferenciasBibliograficas(guiaId)
+  }
+  class AbrirReferenciaBibliograficaView #629EF9 {
+    +abrirReferenciaBibliografica(referenciaId)
+  }
+  class GuardarBorradorGuiaView #629EF9 {
+    +guardarBorradorGuia(idsPonderacionesFinal, idsReferenciasFinal, contenido)
+  }
+  class EnviarGuiaARevisionView #629EF9 {
+    +enviarGuiaARevision()
+  }
+  class AprobarGuiaView #629EF9 {
+    +aprobarGuia()
+  }
+  class RechazarGuiaView #629EF9 {
+    +rechazarGuia(guiaId, comentario)
+  }
+  class EscalarGuiaAAprobadaView #629EF9 {
+    +escalarGuiaAAprobada(guiaId)
+  }
+  class RevocarAprobacionGuiaView #629EF9 {
+    +revocarAprobacionGuia(guiaId, comentario)
+  }
+  class EditarSemestreGuiaView #629EF9 {
+    +editarSemestreGuia(guiaId, semestre)
+  }
+  class ConsultarEstadoGuiasView #629EF9 {
+    +consultarEstadoGuias(gradoId)
+  }
+  class NotificarGuiasActualizadasView #629EF9 {
+    +notificarGuiasActualizadas(gradoId)
+  }
+  class DescargarGuiaPDFView #629EF9 {
+    +descargarGuiaPDF(guiaId)
+  }
+  class PrevisualizarGuiaView #629EF9 {
+    +previsualizarGuia(guiaId)
+  }
+  class AbrirGradosView #629EF9 {
+    +abrirGrados(directorGradoId)
+  }
+  class AbrirGradoView #629EF9 {
+    +abrirGrado(gradoId)
+  }
+  class CrearGradoView #629EF9 {
+    +crearGrado()
+  }
+  class EditarGradoView #629EF9 {
+    +editarGrado(gradoId)
+  }
+  class EliminarGradoView #629EF9 {
+    +eliminarGrado(gradoId)
+  }
+  class AbrirMateriasView #629EF9 {
+    +abrirMaterias(gradoId)
+  }
+  class AbrirMateriaView #629EF9 {
+    +abrirMateria(materiaId)
+  }
+  class AsociarMetodologiaDocenteAMateriaView #629EF9 {
+    +asociarMetodologiaDocenteAMateria(materiaId)
+  }
+  class DesasociarMetodologiaDocenteMateriaView #629EF9 {
+    +desasociarMetodologiaDocenteMateria(materiaId, metodologiaDocenteId)
+  }
+  class EditarAsociacionMetodologiaDocenteMateriaView #629EF9 {
+    +editarAsociacionMetodologiaDocenteMateria(materiaId, metodologiaDocenteId)
+  }
+  class AsociarResultadoAprendizajeAMateriaView #629EF9 {
+    +asociarResultadoAprendizajeAMateria(materiaId)
+  }
+  class DesasociarResultadoAprendizajeAMateriaView #629EF9 {
+    +desasociarResultadoAprendizajeAMateria(materiaId, resultadoAprendizajeId)
+  }
+  class AbrirAsignaturaGradoView #629EF9 {
+    +abrirAsignaturaGrado(asignaturaGradoId)
+  }
+  class AbrirAsignaturasGradoView #629EF9 {
+    +abrirAsignaturasGrado(gradoId)
+  }
+  class EditarAsignaturaGradoView #629EF9 {
+    +editarAsignaturaGrado(asignaturaGradoId)
+  }
+  class AsociarMetodologiaDocenteAAsignaturaGradoView #629EF9 {
+    +asociarMetodologiaDocenteAAsignaturaGrado(asignaturaGradoId)
+  }
+  class DesasociarMetodologiaDocenteAsignaturaGradoView #629EF9 {
+    +desasociarMetodologiaDocenteAsignaturaGrado(asignaturaGradoId, metodologiaDocenteId)
+  }
+  class AsociarResultadoAprendizajeAAsignaturaGradoView #629EF9 {
+    +asociarResultadoAprendizajeAAsignaturaGrado(asignaturaGradoId)
+  }
+  class DesasociarResultadoAprendizajeAsignaturaGradoView #629EF9 {
+    +desasociarResultadoAprendizajeAsignaturaGrado(asignaturaGradoId, resultadoAprendizajeId)
+  }
+  class AbrirAsignaturaGradoAdminView #629EF9 {
+    +abrirAsignaturaGradoAdmin(asignaturaGradoId)
+  }
+  class AsignarProfesorAAsignaturaGradoView #629EF9 {
+    +asignarProfesorAAsignaturaGrado(asignaturaGradoId)
+  }
+  class DesasignarProfesorAsignaturaGradoView #629EF9 {
+    +desasignarProfesorAsignaturaGrado(asignaturaGradoId, profesorId)
+  }
+  class AbrirResultadosAprendizajeView #629EF9 {
+    +abrirResultadosAprendizaje(gradoId)
+  }
+  class AbrirResultadoAprendizajeView #629EF9 {
+    +abrirResultadoAprendizaje(resultadoAprendizajeId)
+  }
+  class CrearResultadoAprendizajeView #629EF9 {
+    +crearResultadoAprendizaje(gradoId)
+  }
+  class EditarResultadoAprendizajeView #629EF9 {
+    +editarResultadoAprendizaje(resultadoAprendizajeId)
+  }
+  class EliminarResultadoAprendizajeView #629EF9 {
+    +eliminarResultadoAprendizaje(resultadoAprendizajeId)
+  }
+  class AbrirUniversidadesView #629EF9 {
+    +abrirUniversidades()
+  }
+  class AbrirUniversidadView #629EF9 {
+    +abrirUniversidad(universidadId)
+  }
+  class CrearUniversidadView #629EF9 {
+    +crearUniversidad()
+  }
+  class EditarUniversidadView #629EF9 {
+    +editarUniversidad(universidadId)
+  }
+  class AbrirFacultadesView #629EF9 {
+    +abrirFacultades(universidadId)
+  }
+  class AbrirFacultadView #629EF9 {
+    +abrirFacultad(facultadId)
+  }
+  class CrearFacultadView #629EF9 {
+    +crearFacultad(universidadId)
+  }
+  class EditarFacultadView #629EF9 {
+    +editarFacultad(facultadId)
+  }
+  class EliminarFacultadView #629EF9 {
+    +eliminarFacultad(facultadId)
+  }
+  class AbrirAsignaturasView #629EF9 {
+    +abrirAsignaturas()
+  }
+  class AbrirAsignaturaView #629EF9 {
+    +abrirAsignatura(asignaturaId)
+  }
+  class CrearAsignaturaView #629EF9 {
+    +crearAsignatura()
+  }
+  class EditarAsignaturaView #629EF9 {
+    +editarAsignatura(asignaturaId)
+  }
+  class EliminarAsignaturaView #629EF9 {
+    +eliminarAsignatura(asignaturaId)
+  }
+  class AbrirMetodologiasDocentesView #629EF9 {
+    +abrirMetodologiasDocentes()
+  }
+  class AbrirMetodologiaDocenteView #629EF9 {
+    +abrirMetodologiaDocente(metodologiaDocenteId)
+  }
+  class CrearMetodologiaDocenteView #629EF9 {
+    +crearMetodologiaDocente()
+  }
+  class EditarMetodologiaDocenteView #629EF9 {
+    +editarMetodologiaDocente(metodologiaDocenteId)
+  }
+  class EliminarMetodologiaDocenteView #629EF9 {
+    +eliminarMetodologiaDocente(metodologiaDocenteId)
+  }
+  class AbrirSistemasEvaluacionView #629EF9 {
+    +abrirSistemasEvaluacion(materiaId)
+  }
+  class AbrirSistemaEvaluacionView #629EF9 {
+    +abrirSistemaEvaluacion(sistemaEvaluacionId)
+  }
+  class CrearSistemaEvaluacionView #629EF9 {
+    +crearSistemaEvaluacion(materiaId)
+  }
+  class EditarSistemaEvaluacionView #629EF9 {
+    +editarSistemaEvaluacion(sistemaEvaluacionId)
+  }
+  class EliminarSistemaEvaluacionView #629EF9 {
+    +eliminarSistemaEvaluacion(sistemaEvaluacionId)
+  }
+  class AbrirProfesoresView #629EF9 {
+    +abrirProfesores()
+  }
+  class AbrirProfesorView #629EF9 {
+    +abrirProfesor(profesorId)
+  }
+  class CrearProfesorView #629EF9 {
+    +crearProfesor()
+  }
+  class EditarProfesorView #629EF9 {
+    +editarProfesor(profesorId)
+  }
+  class EliminarProfesorView #629EF9 {
+    +eliminarProfesor(profesorId)
+  }
+  class DefinirDirectorGradoView #629EF9 {
+    +definirDirectorGrado(profesorId)
+  }
+  class QuitarDirectorGradoView #629EF9 {
+    +quitarDirectorGrado(profesorId, gradoId)
+  }
+  class IniciarSesionView #629EF9 {
+    +iniciarSesion()
+  }
+  class AbrirPanelAdministracionView #629EF9 {
+    +abrirPanelAdministracion()
+  }
+  class AbrirPlanificacionDocenteView #629EF9 {
+    +abrirPlanificacionDocente(guiaId)
+  }
+  class CrearSesionView #629EF9 {
+    +crearSesion(guiaId)
+  }
+  class EditarSesionView #629EF9 {
+    +editarSesion(sesionId)
+  }
+  class EliminarSesionView #629EF9 {
+    +eliminarSesion(sesionId)
+  }
+}
+
+package Controlador {
+  class GuiaController #b5bd68 {
+    +cargarGuia(guiaId) : Guia
+    +aprobarGuia() : Guia
+    +enviarARevision(guiaId) : boolean
+    +guardarBorrador(guiaId, idsPonderacionesFinal, idsReferenciasFinal, contenido) : Guia
+    +rechazarGuia(guiaId, comentario) : Guia
+    +escalarAAprobada(guiaId) : Guia
+    +revocarAprobacion(guiaId, comentario) : Guia
+    +editarSemestre(guiaId, semestre) : Guia
+    +listarGuiasDelGrado(gradoId) : List<Guia>
+    +notificarGuiasActualizadas(gradoId) : boolean
+    +descargarPDF(guiaId) : boolean
+    +previsualizarGuia(guiaId) : documento
+  }
+  class PonderacionEvaluacionController #b5bd68 {
+    +cargarSistemasEvaluacion(materiaId) : List<SistemaEvaluacion>
+    +listarSistemasEvaluacionDeGuia(guiaId) : List<SistemaEvaluacion>
+    +validarDatosObligatorios(sistemaEvaluacion, descripcion, ponderacion) : boolean
+    +crearPonderacionEvaluacion(guiaId, sistemaEvaluacion, descripcion, ponderacion) : boolean
+    +cargarPonderacionEvaluacion(ponderacionId) : PonderacionEvaluacion
+    +guardarCambios(sistemaEvaluacion, descripcion, ponderacion) : boolean
+    +confirmarEliminacion(ponderacionId) : boolean
+    +listarPonderacionesEvaluacion(guiaId) : List<PonderacionEvaluacion>
+  }
+  class ReferenciaBibliograficaController #b5bd68 {
+    +validarDatosObligatorios(tipo, referencia) : boolean
+    +crearReferenciaBibliografica(guiaId, tipo, referencia) : ReferenciaBibliografica
+    +confirmarEliminacion(referenciaId) : boolean
+    +listarReferenciasBibliograficas(guiaId) : List<ReferenciaBibliografica>
+    +cargarReferenciaBibliografica(referenciaId) : ReferenciaBibliografica
+    +guardarCambios(tipo, referencia) : boolean
+  }
+  class GradoController #b5bd68 {
+    +listarPropios(directorGradoId) : List<Grado>
+    +cargarGrado(gradoId) : Grado
+    +listarAsignaturasGrado(gradoId) : List<AsignaturaGrado>
+    +validarDatosObligatorios(codigo, nombre) : boolean
+    +crearGrado(codigo, nombre) : Grado
+    +guardarCambios(gradoId, nombre) : boolean
+    +eliminar(gradoId)
+  }
+  class MateriaController #b5bd68 {
+    +listarMateriasDelGrado(gradoId) : List<Materia>
+    +cargarMateria(materiaId) : Materia
+    +listarMetodologiasDocentesAsociadas(materiaId) : List<MetodologiaMateria>
+    +listarResultadosAprendizajeAsociados(materiaId) : List<ResultadoAprendizaje>
+    +listarAsignaturasGrado(materiaId) : List<AsignaturaGrado>
+    +cargarMetodologiasDocentesDisponibles(materiaId) : List<MetodologiaDocente>
+    +asociarMetodologiaDocente(materiaId, metodologiaDocenteId) : MetodologiaMateria
+    +puedeDesasociarMetodologiaDocente(materiaId, metodologiaDocenteId) : boolean
+    +desasociarMetodologiaDocente(materiaId, metodologiaDocenteId)
+    +cargarAsociacion(materiaId, metodologiaDocenteId) : MetodologiaMateria
+    +guardarDescripcionPropia(materiaId, metodologiaDocenteId, descripcionPropia) : MetodologiaMateria
+    +cargarResultadosAprendizajeDisponibles(materiaId) : List<ResultadoAprendizaje>
+    +asociarResultadoAprendizaje(materiaId, resultadoAprendizajeId)
+    +puedeDesasociarResultadoAprendizaje(materiaId, resultadoAprendizajeId) : boolean
+    +desasociarResultadoAprendizaje(materiaId, resultadoAprendizajeId)
+  }
+  class AsignaturaGradoController #b5bd68 {
+    +cargarAsignaturaGrado(asignaturaGradoId) : AsignaturaGrado
+    +listarMetodologiasDocentesAsociadas(asignaturaGradoId) : List<MetodologiaDocente>
+    +listarResultadosAprendizajeAsociados(asignaturaGradoId) : List<ResultadoAprendizaje>
+    +listarProfesoradoAsignado(asignaturaGradoId) : List<Profesor>
+    +listarAsignaturasGradoDelGrado(gradoId) : List<AsignaturaGrado>
+    +obtenerParaEditar(asignaturaGradoId) : (AsignaturaGrado, boolean)
+    +guardarCambios(asignaturaGradoId, curso, caracter, idioma, semestreDefault, nombre, ects, contenido) : AsignaturaGrado
+    +cargarMetodologiasDocentesDisponibles(asignaturaGradoId) : List<MetodologiaDocente>
+    +asociarMetodologiaDocente(asignaturaGradoId, metodologiaDocenteId)
+    +quedaSinMetodologiasDocentesTrasDesasociar(asignaturaGradoId, metodologiaDocenteId) : boolean
+    +desasociarMetodologiaDocente(asignaturaGradoId, metodologiaDocenteId)
+    +cargarResultadosAprendizajeDisponibles(asignaturaGradoId) : List<ResultadoAprendizaje>
+    +asociarResultadoAprendizaje(asignaturaGradoId, resultadoAprendizajeId)
+    +quedaSinResultadosAprendizajeTrasDesasociar(asignaturaGradoId, resultadoAprendizajeId) : boolean
+    +desasociarResultadoAprendizaje(asignaturaGradoId, resultadoAprendizajeId)
+    +cargarProfesoresDisponibles(asignaturaGradoId) : List<Profesor>
+    +asignarProfesor(asignaturaGradoId, profesorId)
+    +desasignarProfesor(asignaturaGradoId, profesorId)
+  }
+  class ResultadoAprendizajeController #b5bd68 {
+    +listarResultadosAprendizajeDelGrado(gradoId) : List<ResultadoAprendizaje>
+    +cargarResultadoAprendizaje(resultadoAprendizajeId) : ResultadoAprendizaje
+    +crearResultadoAprendizaje(gradoId, codigo, tipo, descripcion) : ResultadoAprendizaje
+    +guardarCambios(resultadoAprendizajeId, codigo, tipo, descripcion) : ResultadoAprendizaje
+    +puedeEliminar(resultadoAprendizajeId) : boolean
+    +eliminar(resultadoAprendizajeId)
+  }
+  class UniversidadController #b5bd68 {
+    +listarUniversidades() : List<Universidad>
+    +cargarUniversidad(universidadId) : Universidad
+    +validarDatosObligatorios(nombre) : boolean
+    +crearUniversidad(nombre) : Universidad
+    +guardarCambios(universidadId, nombre) : boolean
+  }
+  class FacultadController #b5bd68 {
+    +listarFacultadesDeLaUniversidad(universidadId) : List<Facultad>
+    +cargarFacultad(facultadId) : Facultad
+    +validarDatosObligatorios(nombre) : boolean
+    +crearFacultad(universidadId, nombre) : Facultad
+    +guardarCambios(facultadId, nombre) : boolean
+    +puedeEliminar(facultadId) : boolean
+    +eliminar(facultadId)
+  }
+  class AsignaturaController #b5bd68 {
+    +listarAsignaturas() : List<Asignatura>
+    +cargarAsignatura(asignaturaId) : Asignatura
+    +validarDatosObligatorios(nombre) : boolean
+    +crearAsignatura(nombre) : Asignatura
+    +guardarCambios(asignaturaId, nombre, ects, contenido) : boolean
+    +eliminar(asignaturaId)
+  }
+  class MetodologiaDocenteController #b5bd68 {
+    +listarMetodologiasDocentes() : List<MetodologiaDocente>
+    +cargarMetodologiaDocente(metodologiaDocenteId) : MetodologiaDocente
+    +validarDatosObligatorios(codigo, descripcion) : boolean
+    +crearMetodologiaDocente(codigo, descripcion) : MetodologiaDocente
+    +guardarCambios(metodologiaDocenteId, codigo, descripcion) : boolean
+    +puedeEliminar(metodologiaDocenteId) : boolean
+    +eliminar(metodologiaDocenteId)
+  }
+  class SistemaEvaluacionController #b5bd68 {
+    +listarSistemasEvaluacionDeMateria(materiaId) : List<SistemaEvaluacion>
+    +cargarSistemaEvaluacion(sistemaEvaluacionId) : SistemaEvaluacion
+    +validarDatosObligatorios(tipo, ponderacionMinima, ponderacionMaxima) : boolean
+    +crearSistemaEvaluacion(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
+    +guardarCambios(sistemaEvaluacionId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : boolean
+    +puedeEliminar(sistemaEvaluacionId) : boolean
+    +eliminar(sistemaEvaluacionId)
+  }
+  class ProfesorController #b5bd68 {
+    +listarProfesores() : List<Profesor>
+    +cargarProfesor(profesorId) : Profesor
+    +validarDatosObligatorios(nombre, email) : boolean
+    +crearProfesor(nombre, email) : Profesor
+    +guardarCambios(profesorId, nombre, email) : boolean
+    +motivosBloqueoEliminacion(profesorId) : List<String>
+    +eliminar(profesorId)
+    +listarGradosDisponiblesParaDirigir(profesorId) : List<Grado>
+    +definirDirectorGrado(profesorId, gradoId)
+    +quitarDirectorGrado(profesorId, gradoId)
+  }
+  class SesionController #b5bd68 {
+    +autenticarConGoogle()
+    +resolverRol(email) : String
+    +crearSesion(email) : String
+  }
+  class PlanificacionDocenteController #b5bd68 {
+    +listarSesiones(guiaId) : List<Sesion>
+    +validarDatosObligatorios(tipo, descripcion) : boolean
+    +crearSesion(guiaId, tipo, descripcion) : Sesion
+    +cargarSesion(sesionId) : Sesion
+    +guardarCambios(tipo, descripcion) : boolean
+    +confirmarEliminacion(sesionId) : boolean
+  }
+}
+
+package Modelo {
+  class Guia #F2AC4E {
+    +aprobar() : boolean
+    +rechazar() : boolean
+    +escalarAAprobada() : boolean
+    +revocarAprobacion() : boolean
+    +bloqueoPonderaciones() : String
+    +puedeEnviarseARevision() : boolean
+    +planificacionDocenteCompleta() : boolean
+    +sesionesVinculadasCount() : int
+    +enviarARevision()
+    +sincronizarPonderaciones(idsPonderacionesFinal) : (aVincular, aDesvincular)
+    +sincronizarReferencias(idsReferenciasFinal) : (aVincular, aDesvincular)
+    +sincronizarSesiones(idsSesionesFinal) : (aVincular, aDesvincular)
+    +actualizarContenido(contenido) : valorAnterior
+    +confirmarGuardado()
+    +actualizarSemestre(semestre)
+    +regenerarPDF()
+    +tienePDFGenerado() : boolean
+  }
+  class GuiaRepository #F2AC4E {
+    +obtener(guiaId) : Guia
+    +actualizar(guia) : Guia
+    +listarDelGrado(gradoId) : List<Guia>
+    +existeAlgunaDe(asignaturaGradoId) : boolean
+    +obtenerPorAsignaturaGrado(asignaturaGradoId) : Guia
+  }
+  class RenderizadorGuiaDocente #F2AC4E {
+    +renderizarPDF(guia) : documento
+    +renderizarHTML(guia, noOficial) : documento
+  }
+  class PonderacionEvaluacion #F2AC4E {
+    +actualizar(sistemaEvaluacion, descripcion, ponderacion)
+  }
+  class PonderacionEvaluacionRepository #F2AC4E {
+    +crear(guiaId, sistemaEvaluacion, descripcion, ponderacion) : PonderacionEvaluacion
+    +obtener(ponderacionId) : PonderacionEvaluacion
+    +actualizar(ponderacion)
+    +listarVinculadasDe(guia) : List<PonderacionEvaluacion>
+    +listarPendientesDe(guiaId) : List<PonderacionEvaluacion>
+    +existePendienteDe(guiaId) : boolean
+    +vincular(id, guia)
+    +desvincular(id)
+  }
+  class ReferenciaBibliografica #F2AC4E {
+    +actualizar(tipo, referencia)
+  }
+  class ReferenciaBibliograficaRepository #F2AC4E {
+    +crear(guiaId, tipo, referencia) : ReferenciaBibliografica
+    +obtener(referenciaId) : ReferenciaBibliografica
+    +actualizar(referencia)
+    +listarVinculadasDe(guia) : List<ReferenciaBibliografica>
+    +listarPendientesDe(guiaId) : List<ReferenciaBibliografica>
+    +existePendienteDe(guiaId) : boolean
+    +vincular(id, guia)
+    +desvincular(id)
+  }
+  class SistemaEvaluacion #F2AC4E {
+    +actualizar(tipo, descripcion, ponderacionMinima, ponderacionMaxima)
+    +validarMaximo(ponderacion) : boolean
+  }
+  class SistemaEvaluacionRepository #F2AC4E {
+    +listarDeMateria(materiaId) : List<SistemaEvaluacion>
+    +obtener(sistemaEvaluacionId) : SistemaEvaluacion
+    +crear(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
+    +editar(sistemaEvaluacion)
+    +contarPonderacionesAsociadas(sistemaEvaluacionId) : int
+    +eliminar(sistemaEvaluacionId)
+  }
+  class Materia #F2AC4E {
+    +listarSistemasEvaluacion() : List<SistemaEvaluacion>
+    +tieneMetodologiaDocenteEnUso(metodologiaDocenteId) : boolean
+    +tieneResultadoAprendizajeEnUso(resultadoAprendizajeId) : boolean
+  }
+  class HistorialCambio #F2AC4E {
+    +registrar(campo, valorAnterior, valorNuevo, comentario) : HistorialCambio
+  }
+  class Grado #F2AC4E {
+    +actualizar(nombre)
+    +extinguir()
+  }
+  class GradoRepository #F2AC4E {
+    +obtener(gradoId) : Grado
+    +listarDirigidosPor(directorGradoId) : List<Grado>
+    +crear(codigo, nombre) : Grado
+    +actualizar(grado)
+    +contarDirectores(gradoId) : int
+    +listarDisponiblesParaDirigir(directorGradoId) : List<Grado>
+  }
+  class MateriaRepository #F2AC4E {
+    +obtener(materiaId) : Materia
+    +listarDelGrado(gradoId) : List<Materia>
+    +listarResultadosAprendizajeDe(materiaId) : List<ResultadoAprendizaje>
+    +listarResultadosAprendizajeDisponibles(materiaId) : List<ResultadoAprendizaje>
+    +asociarResultadoAprendizaje(materiaId, resultadoAprendizajeId)
+    +desasociarResultadoAprendizaje(materiaId, resultadoAprendizajeId)
+  }
+  class MetodologiaDocente #F2AC4E {
+    +actualizar(codigo, descripcion)
+  }
+  class MetodologiaDocenteRepository #F2AC4E {
+    +listar() : List<MetodologiaDocente>
+    +obtener(metodologiaDocenteId) : MetodologiaDocente
+    +crear(codigo, descripcion) : MetodologiaDocente
+    +editar(metodologiaDocente)
+    +nombresMateriasAsociadas(metodologiaDocenteId) : List<String>
+    +eliminar(metodologiaDocenteId)
+    +listarDisponiblesParaMateria(materiaId) : List<MetodologiaDocente>
+    +listarDisponiblesParaAsignaturaGrado(asignaturaGradoId) : List<MetodologiaDocente>
+  }
+  class MetodologiaMateria #F2AC4E {
+    +actualizar(descripcionPropia)
+  }
+  class MetodologiaMateriaRepository #F2AC4E {
+    +crear(materiaId, metodologiaDocenteId) : MetodologiaMateria
+    +obtener(materiaId, metodologiaDocenteId) : MetodologiaMateria
+    +actualizar(metodologiaMateria)
+    +eliminar(materiaId, metodologiaDocenteId)
+    +listarDe(materiaId) : List<MetodologiaMateria>
+  }
+  class ResultadoAprendizaje #F2AC4E {
+    +actualizar(codigo, tipo, descripcion)
+  }
+  class ResultadoAprendizajeRepository #F2AC4E {
+    +obtener(resultadoAprendizajeId) : ResultadoAprendizaje
+    +listarDelGrado(gradoId) : List<ResultadoAprendizaje>
+    +crear(gradoId, codigo, tipo, descripcion) : ResultadoAprendizaje
+    +actualizar(resultadoAprendizaje)
+    +eliminar(resultadoAprendizajeId)
+    +estaAsignado(resultadoAprendizajeId) : boolean
+    +listarDisponiblesParaAsignaturaGrado(asignaturaGradoId) : List<ResultadoAprendizaje>
+  }
+  class AsignaturaGrado #F2AC4E {
+    +actualizar(curso, caracter, idioma, semestreDefault, nombre, ects, contenido)
+    +actualizarAdmin(materiaId, curso, caracter, sesionesMinimas)
+    +sesionesMinimasEnCota(valor) : boolean
+  }
+  class AsignaturaGradoRepository #F2AC4E {
+    +obtener(asignaturaGradoId) : AsignaturaGrado
+    +listarDelGrado(gradoId) : List<AsignaturaGrado>
+    +listarDeLaMateria(materiaId) : List<AsignaturaGrado>
+    +actualizar(asignaturaGrado)
+    +listarMetodologiasDocentesDe(asignaturaGradoId) : List<MetodologiaDocente>
+    +asociarMetodologiaDocente(asignaturaGradoId, metodologiaDocenteId)
+    +desasociarMetodologiaDocente(asignaturaGradoId, metodologiaDocenteId)
+    +quedaSinMetodologiasDocentesTrasDesasociar(asignaturaGradoId, metodologiaDocenteId) : boolean
+    +listarResultadosAprendizajeDe(asignaturaGradoId) : List<ResultadoAprendizaje>
+    +asociarResultadoAprendizaje(asignaturaGradoId, resultadoAprendizajeId)
+    +desasociarResultadoAprendizaje(asignaturaGradoId, resultadoAprendizajeId)
+    +quedaSinResultadosAprendizajeTrasDesasociar(asignaturaGradoId, resultadoAprendizajeId) : boolean
+    +listarProfesoradoDe(asignaturaGradoId) : List<Profesor>
+    +listarImpartidasPor(profesorId) : List<AsignaturaGrado>
+    +imparte(asignaturaGradoId, profesorId) : boolean
+    +asignarProfesor(asignaturaGradoId, profesorId)
+    +desasignarProfesor(asignaturaGradoId, profesorId)
+  }
+  class Profesor #F2AC4E {
+    nombre
+    +actualizar(nombre, email)
+  }
+  class Universidad #F2AC4E {
+    +actualizar(nombre)
+  }
+  class UniversidadRepository #F2AC4E {
+    +listar() : List<Universidad>
+    +obtener(universidadId) : Universidad
+    +crear(nombre) : Universidad
+    +actualizar(universidad)
+  }
+  class Facultad #F2AC4E {
+    +actualizar(nombre)
+  }
+  class FacultadRepository #F2AC4E {
+    +listarDeLaUniversidad(universidadId) : List<Facultad>
+    +obtener(facultadId) : Facultad
+    +crear(universidadId, nombre) : Facultad
+    +actualizar(facultad)
+    +eliminar(facultadId)
+    +tieneGradosAsociados(facultadId) : boolean
+  }
+  class Asignatura #F2AC4E {
+    +actualizar(nombre, ects, contenido)
+    +extinguir()
+  }
+  class AsignaturaRepository #F2AC4E {
+    +listar() : List<Asignatura>
+    +obtener(asignaturaId) : Asignatura
+    +crear(nombre) : Asignatura
+    +actualizar(asignatura)
+  }
+  class ProfesorRepository #F2AC4E {
+    +obtenerPorEmail(email) : Profesor
+    +listar() : List<Profesor>
+    +obtener(profesorId) : Profesor
+    +obtenerPorEmailDeOtro(email, excluirId) : Profesor
+    +crear(nombre, email) : Profesor
+    +editar(profesor)
+    +motivosBloqueoEliminacion(profesorId) : List<String>
+    +eliminar(profesorId)
+    +listarDisponiblesParaAsignaturaGrado(asignaturaGradoId) : List<Profesor>
+  }
+  class DirectorGrado #F2AC4E {
+  }
+  class DirectorGradoRepository #F2AC4E {
+    +crear(email) : DirectorGrado
+    +obtenerPorEmail(email) : DirectorGrado
+  }
+  class Admin #F2AC4E {
+  }
+  class AdminRepository #F2AC4E {
+    +obtenerPorEmail(email) : Admin
+  }
+  class Sesion #F2AC4E {
+    +actualizar(tipo, descripcion)
+  }
+  class SesionRepository #F2AC4E {
+    +listarVinculadasDe(guia) : List<Sesion>
+    +listarPendientesDe(guiaId) : List<Sesion>
+    +existePendienteDe(guiaId) : boolean
+    +siguienteNumero(guiaId) : int
+    +crear(guiaId, numero, tipo, descripcion) : Sesion
+    +obtener(sesionId) : Sesion
+    +actualizar(sesion)
+    +vincular(id, guia)
+    +desvincular(id)
+  }
+}
+
+' -- Relaciones Vista -> Controlador --
+AbrirGuiaView --> GuiaController
+GuardarBorradorGuiaView --> GuiaController
+EnviarGuiaARevisionView --> GuiaController
+AprobarGuiaView --> GuiaController
+RechazarGuiaView --> GuiaController
+EscalarGuiaAAprobadaView --> GuiaController
+RevocarAprobacionGuiaView --> GuiaController
+EditarSemestreGuiaView --> GuiaController
+ConsultarEstadoGuiasView --> GuiaController
+NotificarGuiasActualizadasView --> GuiaController
+DescargarGuiaPDFView --> GuiaController
+PrevisualizarGuiaView --> GuiaController
+CrearPonderacionEvaluacionView --> PonderacionEvaluacionController
+EditarPonderacionEvaluacionView --> PonderacionEvaluacionController
+EliminarPonderacionEvaluacionView --> PonderacionEvaluacionController
+AbrirPonderacionesEvaluacionView --> PonderacionEvaluacionController
+AbrirPonderacionEvaluacionView --> PonderacionEvaluacionController
+CrearReferenciaBibliograficaView --> ReferenciaBibliograficaController
+EditarReferenciaBibliograficaView --> ReferenciaBibliograficaController
+EliminarReferenciaBibliograficaView --> ReferenciaBibliograficaController
+AbrirReferenciasBibliograficasView --> ReferenciaBibliograficaController
+AbrirReferenciaBibliograficaView --> ReferenciaBibliograficaController
+AbrirGradosView --> GradoController
+AbrirGradoView --> GradoController
+CrearGradoView --> GradoController
+EditarGradoView --> GradoController
+EliminarGradoView --> GradoController
+AbrirMateriasView --> MateriaController
+AbrirMateriaView --> MateriaController
+AsociarMetodologiaDocenteAMateriaView --> MateriaController
+DesasociarMetodologiaDocenteMateriaView --> MateriaController
+EditarAsociacionMetodologiaDocenteMateriaView --> MateriaController
+AsociarResultadoAprendizajeAMateriaView --> MateriaController
+DesasociarResultadoAprendizajeAMateriaView --> MateriaController
+AbrirAsignaturaGradoView --> AsignaturaGradoController
+AbrirAsignaturasGradoView --> AsignaturaGradoController
+EditarAsignaturaGradoView --> AsignaturaGradoController
+AsociarMetodologiaDocenteAAsignaturaGradoView --> AsignaturaGradoController
+DesasociarMetodologiaDocenteAsignaturaGradoView --> AsignaturaGradoController
+AsociarResultadoAprendizajeAAsignaturaGradoView --> AsignaturaGradoController
+DesasociarResultadoAprendizajeAsignaturaGradoView --> AsignaturaGradoController
+AbrirAsignaturaGradoAdminView --> AsignaturaGradoController
+AsignarProfesorAAsignaturaGradoView --> AsignaturaGradoController
+DesasignarProfesorAsignaturaGradoView --> AsignaturaGradoController
+AbrirResultadosAprendizajeView --> ResultadoAprendizajeController
+AbrirResultadoAprendizajeView --> ResultadoAprendizajeController
+CrearResultadoAprendizajeView --> ResultadoAprendizajeController
+EditarResultadoAprendizajeView --> ResultadoAprendizajeController
+EliminarResultadoAprendizajeView --> ResultadoAprendizajeController
+AbrirUniversidadesView --> UniversidadController
+AbrirUniversidadView --> UniversidadController
+CrearUniversidadView --> UniversidadController
+EditarUniversidadView --> UniversidadController
+AbrirFacultadesView --> FacultadController
+AbrirFacultadView --> FacultadController
+CrearFacultadView --> FacultadController
+EditarFacultadView --> FacultadController
+EliminarFacultadView --> FacultadController
+AbrirAsignaturasView --> AsignaturaController
+AbrirAsignaturaView --> AsignaturaController
+CrearAsignaturaView --> AsignaturaController
+EditarAsignaturaView --> AsignaturaController
+EliminarAsignaturaView --> AsignaturaController
+AbrirMetodologiasDocentesView --> MetodologiaDocenteController
+AbrirMetodologiaDocenteView --> MetodologiaDocenteController
+CrearMetodologiaDocenteView --> MetodologiaDocenteController
+EditarMetodologiaDocenteView --> MetodologiaDocenteController
+EliminarMetodologiaDocenteView --> MetodologiaDocenteController
+AbrirSistemasEvaluacionView --> SistemaEvaluacionController
+AbrirSistemaEvaluacionView --> SistemaEvaluacionController
+CrearSistemaEvaluacionView --> SistemaEvaluacionController
+EditarSistemaEvaluacionView --> SistemaEvaluacionController
+EliminarSistemaEvaluacionView --> SistemaEvaluacionController
+AbrirProfesoresView --> ProfesorController
+AbrirProfesorView --> ProfesorController
+CrearProfesorView --> ProfesorController
+EditarProfesorView --> ProfesorController
+EliminarProfesorView --> ProfesorController
+DefinirDirectorGradoView --> ProfesorController
+QuitarDirectorGradoView --> ProfesorController
+IniciarSesionView --> SesionController
+AbrirPlanificacionDocenteView --> PlanificacionDocenteController
+CrearSesionView --> PlanificacionDocenteController
+EditarSesionView --> PlanificacionDocenteController
+EliminarSesionView --> PlanificacionDocenteController
+
+' -- <<include>> entre vistas (navegación C->U, ya presente en las colaboraciones origen) --
+CrearPonderacionEvaluacionView ..> EditarPonderacionEvaluacionView : <<include>>
+CrearReferenciaBibliograficaView ..> EditarReferenciaBibliograficaView : <<include>>
+CrearResultadoAprendizajeView ..> EditarResultadoAprendizajeView : <<include>>
+CrearUniversidadView ..> EditarUniversidadView : <<include>>
+CrearFacultadView ..> EditarFacultadView : <<include>>
+CrearAsignaturaView ..> EditarAsignaturaView : <<include>>
+CrearGradoView ..> EditarGradoView : <<include>>
+
+' -- Relaciones Controlador -> Modelo --
+GuiaController --> Guia
+GuiaController --> GuiaRepository
+GuiaController --> PonderacionEvaluacionRepository
+GuiaController --> ReferenciaBibliograficaRepository
+GuiaController --> HistorialCambio
+GuiaController --> RenderizadorGuiaDocente
+RenderizadorGuiaDocente --> Guia
+PonderacionEvaluacionController --> PonderacionEvaluacion
+PonderacionEvaluacionController --> PonderacionEvaluacionRepository
+PonderacionEvaluacionController --> SistemaEvaluacion
+PonderacionEvaluacionController --> Materia
+PonderacionEvaluacionController --> Guia
+PonderacionEvaluacionController --> GuiaRepository
+PonderacionEvaluacionController --> AsignaturaGrado
+PonderacionEvaluacionController --> AsignaturaGradoRepository
+ReferenciaBibliograficaController --> ReferenciaBibliografica
+ReferenciaBibliograficaController --> ReferenciaBibliograficaRepository
+GradoController --> Grado
+GradoController --> GradoRepository
+GradoController --> AsignaturaGradoRepository
+MateriaController --> Materia
+MateriaController --> MateriaRepository
+MateriaController --> MetodologiaMateriaRepository
+MateriaController --> MetodologiaDocenteRepository
+MateriaController --> AsignaturaGradoRepository
+AsignaturaGradoController --> AsignaturaGrado
+AsignaturaGradoController --> AsignaturaGradoRepository
+AsignaturaGradoController --> MetodologiaDocenteRepository
+AsignaturaGradoController --> ResultadoAprendizajeRepository
+AsignaturaGradoController --> GuiaRepository
+AsignaturaGradoController --> ProfesorRepository
+ResultadoAprendizajeController --> ResultadoAprendizaje
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository
+UniversidadController --> Universidad
+UniversidadController --> UniversidadRepository
+FacultadController --> Facultad
+FacultadController --> FacultadRepository
+AsignaturaController --> Asignatura
+AsignaturaController --> AsignaturaRepository
+MetodologiaDocenteController --> MetodologiaDocente
+MetodologiaDocenteController --> MetodologiaDocenteRepository
+SistemaEvaluacionController --> SistemaEvaluacion
+SistemaEvaluacionController --> SistemaEvaluacionRepository
+ProfesorController --> Profesor
+ProfesorController --> ProfesorRepository
+ProfesorController --> DirectorGradoRepository
+ProfesorController --> GradoRepository
+SesionController --> ProfesorRepository
+SesionController --> DirectorGradoRepository
+SesionController --> AdminRepository
+PlanificacionDocenteController --> Sesion
+PlanificacionDocenteController --> SesionRepository
+
+' -- Relaciones Modelo <-> Modelo --
+Guia -- PonderacionEvaluacion
+Guia -- ReferenciaBibliografica
+Guia -- HistorialCambio
+Guia -- AsignaturaGrado
+Guia -- Profesor
+GuiaRepository -- Guia
+PonderacionEvaluacionRepository -- PonderacionEvaluacion
+ReferenciaBibliograficaRepository -- ReferenciaBibliografica
+PonderacionEvaluacion -- SistemaEvaluacion
+Materia -- SistemaEvaluacion
+SistemaEvaluacionRepository -- SistemaEvaluacion
+GradoRepository -- Grado
+Grado -- Materia
+MateriaRepository -- Materia
+Materia -- MetodologiaMateria
+Materia -- ResultadoAprendizaje
+Materia -- AsignaturaGrado
+MetodologiaMateriaRepository -- MetodologiaMateria
+MetodologiaMateria -- MetodologiaDocente
+MetodologiaDocenteRepository -- MetodologiaDocente
+ResultadoAprendizajeRepository -- ResultadoAprendizaje
+AsignaturaGradoRepository -- AsignaturaGrado
+AsignaturaGrado -- MetodologiaDocente
+AsignaturaGrado -- ResultadoAprendizaje
+AsignaturaGrado -- Profesor
+UniversidadRepository -- Universidad
+FacultadRepository -- Facultad
+AsignaturaRepository -- Asignatura
+Universidad -- Facultad
+Facultad -- Grado
+ProfesorRepository -- Profesor
+DirectorGradoRepository -- DirectorGrado
+AdminRepository -- Admin
+SesionRepository -- Sesion
+Guia -- Sesion
+
+@enduml

@@ -1,0 +1,52 @@
+@startuml importarBibliografiaDeGuiaHermana-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":REFERENCIAS_BIBLIOGRAFICAS_ABIERTO" as ReferenciasBibliograficasAbierto
+rectangle #CDEBA5 ":Collaboration AbrirReferenciasBibliograficas" as AbrirReferenciasBibliograficas
+
+package importarBibliografiaDeGuiaHermana as "importarBibliografiaDeGuiaHermana()" {
+    rectangle #629EF9 ImportarBibliografiaDeGuiaHermanaView
+    rectangle #b5bd68 ImportarBibliografiaDeGuiaHermanaController
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E ReferenciaBibliografica
+    rectangle #F2AC4E ReferenciaBibliograficaRepository
+    rectangle #F2AC4E HistorialCambio
+}
+
+ReferenciasBibliograficasAbierto --> ImportarBibliografiaDeGuiaHermanaView: <font size=8>importarBibliografiaDeGuiaHermana(guiaDestinoId)
+
+ImportarBibliografiaDeGuiaHermanaView --> ImportarBibliografiaDeGuiaHermanaController: <font size=8>listarOrigenesImportables(guiaDestinoId) : lista de Guia
+
+ImportarBibliografiaDeGuiaHermanaView --> ImportarBibliografiaDeGuiaHermanaController: <font size=8>importarBibliografia(guiaDestinoId, guiaOrigenId) : Guia
+
+ImportarBibliografiaDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaDestinoId) : Guia
+
+ImportarBibliografiaDeGuiaHermanaController --> AsignaturaGradoRepository: <font size=8>listarHermanas(asignaturaGradoId) : lista de AsignaturaGrado
+
+ImportarBibliografiaDeGuiaHermanaController --> GuiaRepository: <font size=8>listarAprobadasDe(hermanas) : lista de Guia
+
+ImportarBibliografiaDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaOrigenId) : Guia [revalidacion server-side del origen]
+
+ImportarBibliografiaDeGuiaHermanaController --> ImportarBibliografiaDeGuiaHermanaController: <font size=8>validarHermandad(guiaDestino, guiaOrigen) : boolean
+
+ImportarBibliografiaDeGuiaHermanaController --> ReferenciaBibliograficaRepository: <font size=8>reemplazarDesde(guiaDestinoId, referenciasOrigen) [borra todas; copia tipo, referencia y vinculada]
+
+ImportarBibliografiaDeGuiaHermanaController --> Guia: <font size=8>confirmarGuardado() [Aprobada -> Borrador]
+
+ImportarBibliografiaDeGuiaHermanaController --> HistorialCambio: <font size=8>registrar(campo="bibliografia", ...) [origen en comentario]
+
+ImportarBibliografiaDeGuiaHermanaController --> GuiaRepository: <font size=8>actualizar(guia)
+
+AsignaturaGradoRepository -- AsignaturaGrado
+GuiaRepository -- Guia
+ReferenciaBibliograficaRepository -- ReferenciaBibliografica
+Guia *-- HistorialCambio
+
+ImportarBibliografiaDeGuiaHermanaView ..> AbrirReferenciasBibliograficas:<font size=8> <<include>> abrirReferenciasBibliograficas()
+
+@enduml

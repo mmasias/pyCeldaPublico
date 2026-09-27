@@ -1,0 +1,26 @@
+@startuml abrirUniversidad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":UNIVERSIDADES_ABIERTO" as UniversidadesAbierto
+rectangle #CDEBA5 ":UNIVERSIDAD_ABIERTO" as UniversidadAbiertoSalida
+
+package abrirUniversidad as "abrirUniversidad()" {
+    rectangle #629EF9 AbrirUniversidadView
+    rectangle #b5bd68 UniversidadController
+    rectangle #F2AC4E Universidad
+    rectangle #F2AC4E UniversidadRepository
+}
+
+UniversidadesAbierto --> AbrirUniversidadView: <font size=8>abrirUniversidad(universidadId)
+
+AbrirUniversidadView --> UniversidadController: <font size=8>cargarUniversidad(universidadId) : Universidad
+
+UniversidadController --> UniversidadRepository: <font size=8>obtener(universidadId) : Universidad
+
+UniversidadRepository -- Universidad
+
+AbrirUniversidadView --> UniversidadAbiertoSalida: <font size=8>muestra datos de la Universidad
+
+@enduml

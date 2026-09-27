@@ -1,0 +1,45 @@
+@startuml editarPonderacionEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PONDERACION_EVALUACION_ABIERTO" as PonderacionEvaluacionAbierto
+rectangle #CDEBA5 ":PONDERACION_EVALUACION_ABIERTO" as PonderacionEvaluacionSalida
+
+package editarPonderacionEvaluacion as "editarPonderacionEvaluacion()" {
+    rectangle #629EF9 EditarPonderacionEvaluacionView
+    rectangle #b5bd68 PonderacionEvaluacionController
+    rectangle #F2AC4E PonderacionEvaluacion
+    rectangle #F2AC4E PonderacionEvaluacionRepository
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E Materia
+}
+
+PonderacionEvaluacionAbierto --> EditarPonderacionEvaluacionView: <font size=8>editarPonderacionEvaluacion(ponderacionId)
+
+EditarPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>cargarPonderacionEvaluacion(ponderacionId) : PonderacionEvaluacion
+
+PonderacionEvaluacionController --> PonderacionEvaluacionRepository: <font size=8>obtener(ponderacionId) : PonderacionEvaluacion
+
+EditarPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>cargarSistemasEvaluacion(materiaId) : List<SistemaEvaluacion>
+
+PonderacionEvaluacionController --> Materia: <font size=8>listarSistemasEvaluacion() : List<SistemaEvaluacion>
+
+EditarPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>validarDatosObligatorios(sistemaEvaluacion, descripcion, ponderacion) : boolean
+
+EditarPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>guardarCambios(sistemaEvaluacion, descripcion, ponderacion) : boolean
+
+PonderacionEvaluacionController --> SistemaEvaluacion: <font size=8>validarMaximo(ponderacion) : boolean
+
+PonderacionEvaluacionController --> PonderacionEvaluacion: <font size=8>actualizar(sistemaEvaluacion, descripcion, ponderacion)
+
+PonderacionEvaluacionController --> PonderacionEvaluacionRepository: <font size=8>actualizar(ponderacion)
+
+PonderacionEvaluacionRepository -- PonderacionEvaluacion
+PonderacionEvaluacion -- SistemaEvaluacion
+Materia -- SistemaEvaluacion
+
+EditarPonderacionEvaluacionView ..[#green]> PonderacionEvaluacionSalida: <font size=8>datos actualizados
+EditarPonderacionEvaluacionView ..[#red]> PonderacionEvaluacionSalida: <font size=8>ponderación supera el máximo del SistemaEvaluacion, sin cambios
+
+@enduml

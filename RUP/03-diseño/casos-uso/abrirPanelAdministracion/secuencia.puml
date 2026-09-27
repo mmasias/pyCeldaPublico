@@ -1,0 +1,13 @@
+@startuml abrirPanelAdministracion-diseño
+title Diagrama de Secuencia - Abrir Panel de Administración
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+
+Admin -> Vista: solicita volver al panel de administración
+activate Vista
+note right of Vista: contenido estático (6 enlaces fijos) --\nsin llamada a la API, sin Modelo ni Repositorio\nque consultar (ver Análisis)
+Vista --> Admin: presenta el menú (Universidades, Asignaturas,\nMetodologías docentes, Profesores, Cursos académicos,\nGenerar guías PDF)
+deactivate Vista
+
+@enduml

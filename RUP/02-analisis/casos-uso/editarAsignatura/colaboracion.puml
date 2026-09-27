@@ -1,0 +1,34 @@
+@startuml editarAsignatura-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_ABIERTO" as AsignaturaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_ABIERTO" as AsignaturaAbiertoSalida
+
+package editarAsignatura as "editarAsignatura()" {
+    rectangle #629EF9 EditarAsignaturaView
+    rectangle #b5bd68 AsignaturaController
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E AsignaturaRepository
+}
+
+AsignaturaAbierto --> EditarAsignaturaView: <font size=8>editarAsignatura(asignaturaId)
+
+EditarAsignaturaView --> AsignaturaController: <font size=8>cargarAsignatura(asignaturaId) : Asignatura
+
+AsignaturaController --> AsignaturaRepository: <font size=8>obtener(asignaturaId) : Asignatura
+
+EditarAsignaturaView --> AsignaturaController: <font size=8>validarDatosObligatorios(nombre, ects) : boolean
+
+EditarAsignaturaView --> AsignaturaController: <font size=8>guardarCambios(asignaturaId, nombre, ects, contenido) : boolean
+
+AsignaturaController --> Asignatura: <font size=8>actualizar(nombre, ects, contenido)
+
+AsignaturaController --> AsignaturaRepository: <font size=8>actualizar(asignatura)
+
+AsignaturaRepository -- Asignatura
+
+EditarAsignaturaView --> AsignaturaAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

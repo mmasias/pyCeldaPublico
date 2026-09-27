@@ -1,0 +1,34 @@
+@startuml asociarMetodologiaDocenteAMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()" {
+    rectangle #629EF9 AsociarMetodologiaDocenteAMateriaView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E MetodologiaDocenteRepository
+    rectangle #F2AC4E MetodologiaMateria
+    rectangle #F2AC4E MetodologiaMateriaRepository
+}
+
+MateriaAbierto --> AsociarMetodologiaDocenteAMateriaView: <font size=8>asociarMetodologiaDocenteAMateria(materiaId)
+
+AsociarMetodologiaDocenteAMateriaView --> MateriaController: <font size=8>cargarMetodologiasDocentesDisponibles(materiaId) : List<MetodologiaDocente>
+
+MateriaController --> MetodologiaDocenteRepository: <font size=8>listarDisponiblesParaMateria(materiaId) : List<MetodologiaDocente>
+
+AsociarMetodologiaDocenteAMateriaView --> MateriaController: <font size=8>asociarMetodologiaDocente(materiaId, metodologiaDocenteId) : MetodologiaMateria
+
+MateriaController --> MetodologiaMateriaRepository: <font size=8>crear(materiaId, metodologiaDocenteId) : MetodologiaMateria
+
+MetodologiaDocenteRepository -- MetodologiaDocente
+MetodologiaMateriaRepository -- MetodologiaMateria
+MetodologiaMateria -- MetodologiaDocente
+
+AsociarMetodologiaDocenteAMateriaView --> MateriaAbiertoSalida: <font size=8>MetodologiaDocente asociada
+
+@enduml

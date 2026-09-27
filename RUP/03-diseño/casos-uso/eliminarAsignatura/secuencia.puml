@@ -1,0 +1,48 @@
+@startuml eliminarAsignatura-diseño
+title Diagrama de Secuencia - Eliminar Asignatura
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaRepository" as AsignaturaRepo
+participant "Asignatura" as Asignatura
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita eliminar una Asignatura del listado
+activate Vista
+Vista --> Admin: presenta la información y pide confirmar/cancelar\n(sin comprobación previa de bloqueo -- no hay <<choice>>)
+
+alt el Admin confirma
+  Admin -> Vista: confirma
+  Vista -> API: DELETE /api/v1/asignaturas/{asignatura_id}
+  activate API
+  note right of API: Depends(require_admin) -- ya disponible en\nbackend/app/core/auth.py (bloque anterior, ya mergeado)
+  API -> AsignaturaRepo: obtener(asignatura_id)
+  activate AsignaturaRepo
+  AsignaturaRepo -> DB: SELECT ... FROM asignaturas WHERE id = :asignatura_id
+  activate DB
+  DB --> AsignaturaRepo: fila Asignatura
+  deactivate DB
+  AsignaturaRepo --> API: Asignatura (404 si None)
+  deactivate AsignaturaRepo
+  API -> Asignatura: extinguir()
+  activate Asignatura
+  deactivate Asignatura
+  API -> AsignaturaRepo: actualizar(asignatura)
+  activate AsignaturaRepo
+  AsignaturaRepo -> DB: UPDATE asignaturas SET estado = 'Extinguido' WHERE id = :asignatura_id
+  activate DB
+  DB --> AsignaturaRepo: ok
+  deactivate DB
+  AsignaturaRepo --> API: Asignatura
+  deactivate AsignaturaRepo
+  API --> Vista: 200 OK (AsignaturaResponse JSON, estado: "Extinguido")
+  deactivate API
+  Vista --> Admin: presenta la lista actualizada (Asignatura extinguida)
+else el Admin cancela
+  Admin -> Vista: cancela
+  Vista --> Admin: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml crearReferenciaBibliografica-diseño
+title Diagrama de Secuencia - Crear Referencia Bibliográfica
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: completa tipo y referencia, confirma
+activate Vista
+Vista -> API: POST /api/v1/guias/{guia_id}/referencias-bibliograficas (ReferenciaBibliograficaCreate JSON)
+activate API
+API -> ReferenciaRepo: crear(guia_id, tipo, referencia)
+activate ReferenciaRepo
+ReferenciaRepo -> DB: INSERT INTO referencias_bibliograficas ...
+activate DB
+DB --> ReferenciaRepo: id nueva fila
+deactivate DB
+ReferenciaRepo --> API: ReferenciaBibliografica (con id)
+deactivate ReferenciaRepo
+API --> Vista: 201 Created (ReferenciaBibliograficaResponse JSON)
+deactivate API
+Vista --> Profesor: navega a editarReferenciaBibliografica() (<<include>>)
+deactivate Vista
+
+@enduml

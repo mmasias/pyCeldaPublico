@@ -1,0 +1,59 @@
+@startuml abrirMaterias-diseño
+title Diagrama de Secuencia - Abrir Materias
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita abrir las Materias del Grado
+activate Vista
+Vista -> API: GET /api/v1/grados/{grado_id}/materias
+activate API
+
+API -> MateriaRepo: listar_del_grado(grado_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE grado_id = :grado_id
+activate DB
+DB --> MateriaRepo: filas Materia
+deactivate DB
+MateriaRepo --> API: List[Materia]
+deactivate MateriaRepo
+
+API --> Vista: 200 OK (List[MateriaResponse] JSON)
+deactivate API
+Vista --> DirectorGrado: presenta el listado de Materias del Grado
+deactivate Vista
+
+@enduml
+
+@startuml abrirMaterias-admin-diseño
+title Diagrama de Secuencia - Abrir Materias (variante Admin)
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: desde la ficha del Grado (enlace "Ver Materias"),\nsolicita ver sus Materias
+activate Vista
+Vista -> API: GET /api/v1/admin/grados/{grado_id}/materias
+activate API
+note right of API: Depends(require_admin) -- mismo repositorio que\nGET /api/v1/grados/{grado_id}/materias de DirectorGrado,\nsolo cambia el namespace de autorización
+API -> MateriaRepo: listar_del_grado(grado_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE grado_id = :grado_id
+activate DB
+DB --> MateriaRepo: filas Materia
+deactivate DB
+MateriaRepo --> API: List[Materia]
+deactivate MateriaRepo
+
+API --> Vista: 200 OK (List[MateriaResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado con [Abrir], [Eliminar]\n(deshabilitado en esta rebanada) y + Crear Materia
+deactivate Vista
+
+@enduml

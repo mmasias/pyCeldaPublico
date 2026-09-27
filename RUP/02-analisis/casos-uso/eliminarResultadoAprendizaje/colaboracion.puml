@@ -1,0 +1,32 @@
+@startuml eliminarResultadoAprendizaje-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":RESULTADOS_APRENDIZAJE_ABIERTO" as ResultadosAprendizajeAbierto
+rectangle #CDEBA5 ":RESULTADOS_APRENDIZAJE_ABIERTO" as ResultadosAprendizajeAbiertoSalida
+
+package eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()" {
+    rectangle #629EF9 EliminarResultadoAprendizajeView
+    rectangle #b5bd68 ResultadoAprendizajeController
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E ResultadoAprendizajeRepository
+}
+
+ResultadosAprendizajeAbierto --> EliminarResultadoAprendizajeView: <font size=8>eliminarResultadoAprendizaje(resultadoAprendizajeId)
+
+EliminarResultadoAprendizajeView --> ResultadoAprendizajeController: <font size=8>puedeEliminar(resultadoAprendizajeId) : boolean
+
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>estaAsignado(resultadoAprendizajeId) : boolean
+
+EliminarResultadoAprendizajeView --> ResultadoAprendizajeController: <font size=8>eliminar(resultadoAprendizajeId)
+
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>eliminar(resultadoAprendizajeId)
+
+ResultadoAprendizajeRepository -- ResultadoAprendizaje
+
+EliminarResultadoAprendizajeView ..[#green]> ResultadosAprendizajeAbiertoSalida: <font size=8>lista actualizada
+EliminarResultadoAprendizajeView ..[#red]> ResultadosAprendizajeAbiertoSalida: <font size=8>bloqueada, sin cambios -- asignado a Materia o AsignaturaGrado
+EliminarResultadoAprendizajeView ..[#blue]> ResultadosAprendizajeAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

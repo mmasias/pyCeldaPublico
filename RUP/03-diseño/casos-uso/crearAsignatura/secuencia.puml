@@ -1,0 +1,43 @@
+@startuml crearAsignatura-diseño
+title Diagrama de Secuencia - Crear Asignatura
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaRepository" as AsignaturaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa código y nombre, confirma
+activate Vista
+Vista -> API: POST /api/v1/asignaturas (AsignaturaCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- ya disponible en\nbackend/app/core/auth.py (bloque anterior, ya mergeado)
+
+API -> AsignaturaRepo: obtener_por_codigo(codigo)
+activate AsignaturaRepo
+AsignaturaRepo -> DB: SELECT ... FROM asignaturas WHERE codigo = :codigo
+activate DB
+DB --> AsignaturaRepo: fila Asignatura o None
+deactivate DB
+AsignaturaRepo --> API: Asignatura | None
+deactivate AsignaturaRepo
+
+alt codigo ya existe (issue #181)
+API --> Vista: 409 Conflict ({"detail": "Ya existe una Asignatura con código ..."})
+Vista --> Admin: presenta mensaje de código ya existente, sin crear
+else codigo libre
+API -> AsignaturaRepo: crear(codigo, nombre)
+activate AsignaturaRepo
+AsignaturaRepo -> DB: INSERT INTO asignaturas (codigo, nombre, estado)\nVALUES (:codigo, :nombre, 'Vigente')
+activate DB
+DB --> AsignaturaRepo: id nueva fila
+deactivate DB
+AsignaturaRepo --> API: Asignatura (con id, estado Vigente por defecto)
+deactivate AsignaturaRepo
+API --> Vista: 201 Created (AsignaturaResponse JSON)
+Vista --> Admin: navega a editarAsignatura() (<<include>>)
+end
+deactivate API
+deactivate Vista
+
+@enduml

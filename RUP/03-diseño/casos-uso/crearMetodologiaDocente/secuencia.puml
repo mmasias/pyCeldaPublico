@@ -1,0 +1,28 @@
+@startuml crearMetodologiaDocente-diseño
+title Diagrama de Secuencia - Crear Metodología Docente
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaDocenteRepository" as MetodologiaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa código y descripción, confirma
+activate Vista
+Vista -> API: POST /api/v1/metodologias-docentes (MetodologiaDocenteCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> MetodologiaRepo: crear(codigo, descripcion)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: INSERT INTO metodologias_docentes (codigo, descripcion) VALUES (:codigo, :descripcion)
+activate DB
+DB --> MetodologiaRepo: id nueva fila
+deactivate DB
+MetodologiaRepo --> API: MetodologiaDocente (con id)
+deactivate MetodologiaRepo
+API --> Vista: 201 Created (MetodologiaDocenteResponse JSON)
+deactivate API
+Vista --> Admin: navega al detalle de la MetodologiaDocente creada (sin <<include>> C->U)
+deactivate Vista
+
+@enduml

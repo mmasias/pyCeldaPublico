@@ -1,0 +1,50 @@
+@startuml rechazarGuia-diseño
+title Diagrama de Secuencia - Rechazar Guía
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "Guia" as Guia
+participant "HistorialCambio" as HistorialCambio
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: introduce comentario (opcional), solicita rechazar
+activate Vista
+Vista -> API: POST /api/v1/guias/{guia_id}/rechazar (comentario)
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> Guia: rechazar()
+activate Guia
+note right of Guia: transición EnRevision -> Rechazada,\nsegún su propia máquina de estados
+deactivate Guia
+
+API -> HistorialCambio: registrar("estado", "EnRevision", "Rechazada", comentario)
+activate HistorialCambio
+HistorialCambio --> API: HistorialCambio
+deactivate HistorialCambio
+
+API -> GuiaRepo: actualizar(guia)
+activate GuiaRepo
+GuiaRepo -> DB: UPDATE guias SET estado = 'Rechazada' ...
+activate DB
+DB --> GuiaRepo: ok
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API --> Vista: 200 OK (GuiaResponse JSON, con historial)
+deactivate API
+Vista --> DirectorGrado: "GUÍA RECHAZADA" -- EnRevision -> Rechazada
+deactivate Vista
+
+@enduml

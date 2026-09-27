@@ -1,0 +1,98 @@
+@startuml abrirMateria-diseño
+title Diagrama de Secuencia - Abrir Materia
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+participant "MetodologiaMateriaRepository" as MetodologiaMateriaRepo
+participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita abrir una Materia del listado
+activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}
+activate API
+
+API -> MateriaRepo: obtener(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
+activate DB
+DB --> MateriaRepo: fila Materia
+deactivate DB
+MateriaRepo --> API: Materia
+deactivate MateriaRepo
+
+API -> MetodologiaMateriaRepo: listar_de(materia_id)
+activate MetodologiaMateriaRepo
+MetodologiaMateriaRepo -> DB: SELECT ... FROM metodologias_materia WHERE materia_id = :materia_id\n(con MetodologiaDocente de cada una)
+activate DB
+DB --> MetodologiaMateriaRepo: filas MetodologiaMateria
+deactivate DB
+MetodologiaMateriaRepo --> API: List[MetodologiaMateria]
+deactivate MetodologiaMateriaRepo
+
+API -> MateriaRepo: listar_resultados_aprendizaje_de(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ra.* FROM resultados_aprendizaje ra\nJOIN materias_resultados_aprendizaje mra\nON mra.resultado_aprendizaje_id = ra.id\nWHERE mra.materia_id = :materia_id
+activate DB
+DB --> MateriaRepo: filas ResultadoAprendizaje
+deactivate DB
+MateriaRepo --> API: List[ResultadoAprendizaje]
+deactivate MateriaRepo
+
+API -> AsignaturaGradoRepo: listar_de_la_materia(materia_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT ... FROM asignaturas_grado WHERE materia_id = :materia_id
+activate DB
+DB --> AsignaturaGradoRepo: filas AsignaturaGrado
+deactivate DB
+AsignaturaGradoRepo --> API: List[AsignaturaGrado]
+deactivate AsignaturaGradoRepo
+
+API --> Vista: 200 OK (MateriaDetalleResponse JSON, con las tres colecciones)
+deactivate API
+Vista --> DirectorGrado: muestra MetodologiaDocente/ResultadoAprendizaje asociados y AsignaturaGrado
+deactivate Vista
+
+@enduml
+
+@startuml abrirMateria-admin-diseño
+title Diagrama de Secuencia - Abrir Materia (variante Admin, reducida)
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir una Materia del listado
+activate Vista
+Vista -> API: GET /api/v1/admin/materias/{materia_id}
+activate API
+note right of API: Depends(require_admin) -- variante REDUCIDA frente a\nGET /api/v1/materias/{materia_id} de DirectorGrado: solo\nnombre + asignaturas_grado, sin las colecciones de\nasociación (MetodologiaDocente/ResultadoAprendizaje)\nque Admin no usa
+API -> MateriaRepo: obtener(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
+activate DB
+DB --> MateriaRepo: fila Materia
+deactivate DB
+MateriaRepo --> API: Materia (404 si None)
+deactivate MateriaRepo
+
+API -> AsignaturaGradoRepo: listar_de_la_materia(materia_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT ... FROM asignaturas_grado WHERE materia_id = :materia_id
+activate DB
+DB --> AsignaturaGradoRepo: filas AsignaturaGrado
+deactivate DB
+AsignaturaGradoRepo --> API: List[AsignaturaGrado]
+deactivate AsignaturaGradoRepo
+
+API --> Vista: 200 OK (MateriaAdminDetalleResponse JSON, con asignaturas_grado)
+deactivate API
+Vista --> Admin: muestra datos de la Materia y la tabla "Asignaturas de esta materia"
+deactivate Vista
+
+@enduml

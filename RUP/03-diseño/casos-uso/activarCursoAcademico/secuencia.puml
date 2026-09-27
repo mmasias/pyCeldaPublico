@@ -1,0 +1,61 @@
+@startuml activarCursoAcademico-diseño
+title Diagrama de Secuencia - Activar Curso Académico
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CursoAcademicoRepository" as CursoAcademicoRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita activar (botón [Activar] de un curso Inactivo)
+activate Vista
+Vista -> API: POST /api/v1/admin/cursos-academicos/{id}/activar
+activate API
+note right of API: Depends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento
+
+API -> CursoAcademicoRepo: obtener(id)
+activate CursoAcademicoRepo
+CursoAcademicoRepo -> DB: SELECT
+CursoAcademicoRepo --> API: CursoAcademico | None
+deactivate CursoAcademicoRepo
+
+alt no existe
+    API --> Vista: 404
+else existe
+    API -> CursoAcademicoRepo: esElegibleParaActivar(id)
+    activate CursoAcademicoRepo
+    CursoAcademicoRepo -> DB: ultimo() / penultimo() / tieneActividadRegistrada(ultimoId)
+    CursoAcademicoRepo --> API: boolean
+    deactivate CursoAcademicoRepo
+
+    alt no elegible
+        API --> Vista: 409 (mensaje de bloqueo)
+    else elegible
+        API -> CursoAcademicoRepo: activar(id)
+        activate CursoAcademicoRepo
+        CursoAcademicoRepo -> DB: UPDATE cursos_academicos SET estado='Inactivo' (el que lo estaba)
+        CursoAcademicoRepo -> DB: UPDATE cursos_academicos SET estado='Activo' (el elegido)
+        CursoAcademicoRepo -> DB: SELECT asignaturas_grado WHERE estado='Activo'
+        loop por cada AsignaturaGrado
+            CursoAcademicoRepo -> DB: SELECT Guia del curso que queda desactivado, si existe
+            alt hay Guia anterior
+                CursoAcademicoRepo -> DB: INSERT guias (clona semestre/contenido/sesiones_minimas)
+                CursoAcademicoRepo -> DB: INSERT ponderaciones_evaluacion (copias de la anterior)
+                CursoAcademicoRepo -> DB: INSERT referencias_bibliograficas (copias de la anterior)
+            else sin Guia anterior
+                CursoAcademicoRepo -> DB: INSERT guias (deriva de AsignaturaGrado)
+            end
+        end
+        CursoAcademicoRepo -> DB: COMMIT (transacción única)
+        CursoAcademicoRepo --> API: (nada -- efecto aplicado)
+        deactivate CursoAcademicoRepo
+        API -> CursoAcademicoRepo: obtener(id)
+        CursoAcademicoRepo --> API: CursoAcademico actualizado
+        API --> Vista: 200 OK (CursoAcademicoResponse JSON)
+    end
+end
+deactivate API
+Vista --> Admin: lista de CursoAcademico actualizada, o mensaje de bloqueo
+deactivate Vista
+
+@enduml

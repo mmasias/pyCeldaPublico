@@ -1,0 +1,32 @@
+@startuml asociarResultadoAprendizajeAMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()" {
+    rectangle #629EF9 AsociarResultadoAprendizajeAMateriaView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+    rectangle #F2AC4E ResultadoAprendizaje
+}
+
+MateriaAbierto --> AsociarResultadoAprendizajeAMateriaView: <font size=8>asociarResultadoAprendizajeAMateria(materiaId)
+
+AsociarResultadoAprendizajeAMateriaView --> MateriaController: <font size=8>cargarResultadosAprendizajeDisponibles(materiaId) : List<ResultadoAprendizaje>
+
+MateriaController --> MateriaRepository: <font size=8>listarResultadosAprendizajeDisponibles(materiaId) : List<ResultadoAprendizaje>
+
+AsociarResultadoAprendizajeAMateriaView --> MateriaController: <font size=8>asociarResultadoAprendizaje(materiaId, resultadoAprendizajeId)
+
+MateriaController --> MateriaRepository: <font size=8>asociarResultadoAprendizaje(materiaId, resultadoAprendizajeId)
+
+MateriaRepository -- Materia
+Materia -- ResultadoAprendizaje
+
+AsociarResultadoAprendizajeAMateriaView --> MateriaAbiertoSalida: <font size=8>ResultadoAprendizaje asociado
+
+@enduml

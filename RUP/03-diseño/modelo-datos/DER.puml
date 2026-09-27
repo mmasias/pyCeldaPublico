@@ -1,0 +1,314 @@
+@startuml DER
+
+' GENERADO por backend/app/scripts/generar_modelo_datos.py -- no editar a mano.
+' El 'por qué' (packages, etiquetas, notas) son constantes curadas de ese script.
+
+hide circle
+hide empty members
+skinparam linetype ortho
+
+package "Estructura curricular" {
+  class universidades {
+    id : Integer <<PK>>
+    nombre : String(200)
+  }
+  class facultades {
+    id : Integer <<PK>>
+    nombre : String(200)
+    universidad_id : Integer <<FK>>
+  }
+  class grados {
+    id : Integer <<PK>>
+    codigo : String(20)
+    nombre : String(200)
+    estado : String(20)
+    facultad_id : Integer <<FK>>
+  }
+  class materias {
+    id : Integer <<PK>>
+    nombre : String(200)
+    grado_id : Integer <<FK>>
+  }
+  class asignaturas {
+    id : Integer <<PK>>
+    codigo : String(20)
+    nombre : String(200)
+    ects : Integer
+    contenido : String
+    estado : String(20)
+  }
+  class asignaturas_grado {
+    id : Integer <<PK>>
+    materia_id : Integer <<FK>>
+    asignatura_id : Integer <<FK>>
+    nombre : String(200)
+    curso : Integer
+    caracter : String(50)
+    idioma : String(50)
+    ects : Numeric(4, 1)
+    semestre_default : Integer
+    contenido : Text
+    requisitos_previos : Text
+    sesiones_minimas : Integer
+    estado : String(20)
+  }
+  class sistemas_evaluacion {
+    id : Integer <<PK>>
+    materia_id : Integer <<FK>>
+    tipo : String(50)
+    descripcion : String(200)
+    ponderacion_minima : Numeric(5, 2)
+    ponderacion_maxima : Numeric(5, 2)
+  }
+  class metodologias_docentes {
+    id : Integer <<PK>>
+    codigo : String(20)
+    descripcion : String(500)
+  }
+  class metodologias_materia {
+    materia_id : Integer <<PK,FK>>
+    metodologia_docente_id : Integer <<PK,FK>>
+    descripcion_propia : Text
+  }
+  class resultados_aprendizaje {
+    id : Integer <<PK>>
+    grado_id : Integer <<FK>>
+    codigo : String(20)
+    tipo : String(50)
+    descripcion : String(500)
+  }
+  class materias_resultados_aprendizaje {
+    materia_id : Integer <<PK,FK>>
+    resultado_aprendizaje_id : Integer <<PK,FK>>
+  }
+  class asignaturas_grado_metodologias_docentes {
+    asignatura_grado_id : Integer <<PK,FK>>
+    metodologia_docente_id : Integer <<PK,FK>>
+  }
+  class asignaturas_grado_resultados_aprendizaje {
+    asignatura_grado_id : Integer <<PK,FK>>
+    resultado_aprendizaje_id : Integer <<PK,FK>>
+  }
+  class asignaturas_grado_profesores {
+    asignatura_grado_id : Integer <<PK,FK>>
+    profesor_id : Integer <<PK,FK>>
+  }
+  class actividades_formativas {
+    id : Integer <<PK>>
+    codigo : String(10)
+    nombre : String(200)
+  }
+  class actividades_formativas_materia {
+    materia_id : Integer <<PK,FK>>
+    actividad_formativa_id : Integer <<PK,FK>>
+    horas : Numeric(6, 2)
+  }
+  class actividades_formativas_asignatura_grado {
+    asignatura_grado_id : Integer <<PK,FK>>
+    actividad_formativa_id : Integer <<PK,FK>>
+    horas : Numeric(6, 2)
+    porcentaje_presencialidad : Numeric(5, 2)
+  }
+  class cursos_academicos {
+    id : Integer <<PK>>
+    inicio : Date
+    fin : Date
+    estado : String(20)
+    universidad_id : Integer <<FK>>
+    semestre_activo : Integer
+  }
+}
+
+package "Guía docente" {
+  class guias {
+    id : Integer <<PK>>
+    estado : String(20)
+    semestre : Integer
+    contenido : Text
+    sesiones_minimas : Integer
+    grado_id : Integer
+    asignatura_grado_id : Integer <<FK>>
+    curso_academico_id : Integer <<FK>>
+    fecha_creacion : DateTimeUTC
+    fecha_ultima_modificacion : DateTimeUTC
+    fecha_generacion_pdf : DateTimeUTC
+  }
+  class ponderaciones_evaluacion {
+    id : Integer <<PK>>
+    guia_id : Integer <<FK>>
+    sistema_evaluacion_id : Integer <<FK>>
+    descripcion : String(200)
+    ponderacion : Numeric(5, 2)
+    vinculada : Boolean
+  }
+  class referencias_bibliograficas {
+    id : Integer <<PK>>
+    guia_id : Integer <<FK>>
+    tipo : String(30)
+    referencia : String(500)
+    vinculada : Boolean
+  }
+  class sesiones {
+    id : Integer <<PK>>
+    guia_id : Integer <<FK>>
+    numero : Integer
+    tipo : String(30)
+    descripcion : String(500)
+    vinculada : Boolean
+  }
+  class historial_cambios {
+    id : Integer <<PK>>
+    guia_id : Integer <<FK>>
+    autor_id : Integer
+    campo : String(50)
+    valor_anterior : String(50)
+    valor_nuevo : String(50)
+    comentario : String(200)
+    fecha : DateTimeUTC
+  }
+  class guias_profesores {
+    guia_id : Integer <<PK,FK>>
+    profesor_id : Integer <<PK,FK>>
+  }
+}
+
+package "Personas y roles" {
+  class profesores {
+    id : Integer <<PK>>
+    email : String(200)
+    nombre : String(200)
+    universidad_id : Integer <<FK>>
+  }
+  class directores_grado {
+    id : Integer <<PK>>
+    email : String(200)
+  }
+  class grados_directores_grado {
+    grado_id : Integer <<PK,FK>>
+    director_grado_id : Integer <<PK,FK>>
+  }
+  class perfiles_profesor_curso {
+    id : Integer <<PK>>
+    profesor_id : Integer <<FK>>
+    curso_academico_id : Integer <<FK>>
+    validado : Boolean
+    orcid : String(19)
+    enlace_cvn : String(300)
+    enlace_foto : String(300)
+    enlace_scholar : String(300)
+    es_doctor : Boolean
+    universidad_doctorado : String(200)
+    anio_doctorado : Integer
+    programa_doctorado : String(200)
+    mencion_internacional : Boolean
+    nivel_acreditacion_siiu : Integer
+    organismo_acreditador : String(10)
+    organismo_acreditador_otro : String(200)
+    num_sexenios : Integer
+    anio_ultimo_sexenio : Integer
+    tramitando_sexenio : Boolean
+    num_quinquenios : Integer
+    anio_ultimo_quinquenio : Integer
+    biografia : String(2000)
+    anios_experiencia_docente : Integer
+    anios_experiencia_docente_virtual : Integer
+    anios_experiencia_profesional : Integer
+    anios_experiencia_investigadora : Integer
+  }
+}
+
+' --- Relaciones (crow's foot) ---
+actividades_formativas_asignatura_grado }--|| asignaturas_grado : reparte en
+actividades_formativas_asignatura_grado }--|| actividades_formativas : instancia de
+actividades_formativas_materia }--|| materias : reparte en
+actividades_formativas_materia }--|| actividades_formativas : instancia de
+asignaturas_grado ||--{ asignaturas_grado_metodologias_docentes
+metodologias_docentes ||--{ asignaturas_grado_metodologias_docentes
+asignaturas_grado ||--{ asignaturas_grado_resultados_aprendizaje
+resultados_aprendizaje ||--{ asignaturas_grado_resultados_aprendizaje
+asignaturas_grado ||--{ asignaturas_grado_profesores
+profesores ||--{ asignaturas_grado_profesores
+asignaturas_grado }--|| materias : concreta
+asignaturas_grado }--o| asignaturas
+cursos_academicos }--o| universidades
+facultades }--|| universidades : pertenece a
+grados ||--{ grados_directores_grado
+directores_grado ||--{ grados_directores_grado
+grados }--o| facultades : adscrito a
+guias ||--{ guias_profesores
+profesores ||--{ guias_profesores
+guias }--o| asignaturas_grado : materializa
+guias }--|| cursos_academicos : cursada en
+historial_cambios }--|| guias : audita
+materias ||--{ materias_resultados_aprendizaje
+resultados_aprendizaje ||--{ materias_resultados_aprendizaje
+materias }--o| grados : del plan de
+metodologias_materia }--|| materias
+metodologias_materia }--|| metodologias_docentes
+perfiles_profesor_curso }--|| profesores : perfil de
+perfiles_profesor_curso }--|| cursos_academicos : del curso
+ponderaciones_evaluacion }--|| guias : pesa en
+ponderaciones_evaluacion }--|| sistemas_evaluacion : cuenta como
+profesores }--o| universidades
+referencias_bibliograficas }--|| guias : bibliografía de
+resultados_aprendizaje }--|| grados : del plan de
+sesiones }--|| guias : planificación docente de
+sistemas_evaluacion }--|| materias : define
+
+note bottom of guias
+  guias.grado_id: FK LÓGICA, sin restricción física en el esquema.
+  Denormalizado -- derivable vía asignatura_grado.materia.grado.
+  guias.asignatura_grado_id es nullable: hay guías sin AsignaturaGrado
+  (huérfanas históricas / del grado dirigido).
+  --
+  Dominios de los enum (estado, tipo, campo) y reglas de consistencia
+  no representadas en el esquema (suma de ponderaciones = 100%, rangos
+  por SistemaEvaluacion, (Grado, Asignatura) único, un Grado no puede
+  quedarse sin DirectorGrado): ver diccionario-datos.md, capa de intención.
+end note
+
+note bottom of historial_cambios
+  historial_cambios.autor_id: FK LÓGICA POLIMÓRFICA
+  (Profesor | DirectorGrado | Admin), sin restricción física.
+  El modelo de dominio la resuelve por Actor -> HistorialCambio.
+end note
+
+note bottom of asignaturas_grado
+  Borrado lógico por `estado` en grados / asignaturas / asignaturas_grado
+  (Vigente|Extinguido, salvo asignaturas_grado que usa Activo|Extinguido).
+  Nada del catálogo se borra físicamente -- README del modelo de dominio.
+  asignaturas_grado.asignatura_id: FK real hacia `asignaturas` (issue #181,
+  PR #250), pero NULLABLE -- es trazabilidad hacia el catálogo, no vínculo
+  vivo: nombre/contenido/ects siguen siendo copias que pueden divergir a
+  propósito del catálogo (patrón catálogo -> override -> materialización,
+  discussion #191). Queda NULL en las filas cuyo backfill (PR #250,
+  migrar_asignatura_catalogo_y_fk.py) no encontró placeholder legado que
+  reconciliar con el catálogo (discussion #113).
+end note
+
+note bottom of metodologias_materia
+  Entidad asociativa: `descripcion_propia` pertenece a la relación
+  (Materia, MetodologiaDocente), no a ninguna de las dos entidades.
+  PK compuesta (materia_id, metodologia_docente_id).
+end note
+
+note bottom of actividades_formativas
+  Catálogo institucional seed-estático (AF1..AF10, discussion #227).
+  Sin CRUD -- no hay eliminarActividadFormativa().
+end note
+
+note bottom of actividades_formativas_materia
+  Entidad asociativa (Materia, ActividadFormativa) -- horas de la materia.
+  PK compuesta (materia_id, actividad_formativa_id). Las 10 filas por
+  Materia se autopueblan a 0 al crearla -- invariante estructural, no
+  hay asociar/desasociar.
+end note
+
+note bottom of actividades_formativas_asignatura_grado
+  Entidad asociativa (AsignaturaGrado, ActividadFormativa) -- horas y
+  porcentaje_presencialidad. PK compuesta (asignatura_grado_id,
+  actividad_formativa_id). Mismo autopoblado que actividades_formativas_materia.
+  Nivel que consume el render de la Guia.
+end note
+
+@enduml

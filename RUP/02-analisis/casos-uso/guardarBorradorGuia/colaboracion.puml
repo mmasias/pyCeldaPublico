@@ -1,0 +1,46 @@
+@startuml guardarBorradorGuia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbiertoSalida
+
+package guardarBorradorGuia as "guardarBorradorGuia()" {
+    rectangle #629EF9 GuardarBorradorGuiaView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E PonderacionEvaluacionRepository
+    rectangle #F2AC4E ReferenciaBibliograficaRepository
+    rectangle #F2AC4E SesionRepository
+    rectangle #F2AC4E HistorialCambio
+}
+
+GuiaAbierto --> GuardarBorradorGuiaView: <font size=8>guardarBorradorGuia(idsPonderacionesFinal, idsReferenciasFinal, idsSesionesFinal, contenido)
+
+GuardarBorradorGuiaView --> GuiaController: <font size=8>guardarBorrador(guiaId, idsPonderacionesFinal, idsReferenciasFinal, idsSesionesFinal, contenido) : Guia
+
+GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
+
+GuiaController --> Guia: <font size=8>sincronizarPonderaciones(idsPonderacionesFinal) : (aVincular, aDesvincular)
+GuiaController --> Guia: <font size=8>sincronizarReferencias(idsReferenciasFinal) : (aVincular, aDesvincular)
+GuiaController --> Guia: <font size=8>sincronizarSesiones(idsSesionesFinal) : (aVincular, aDesvincular)
+
+GuiaController --> PonderacionEvaluacionRepository: <font size=8>vincular(id, guia) / desvincular(id) [borra; por cada una del diff]
+GuiaController --> ReferenciaBibliograficaRepository: <font size=8>vincular(id, guia) / desvincular(id) [borra; por cada una del diff]
+GuiaController --> SesionRepository: <font size=8>vincular(id, guia) / desvincular(id) [borra; por cada una del diff]
+
+GuiaController --> Guia: <font size=8>actualizarContenido(contenido) : valorAnterior o nada
+GuiaController --> HistorialCambio: <font size=8>registrar(campo="contenido", ...) [solo si el texto cambió]
+
+GuiaController --> Guia: <font size=8>confirmarGuardado()
+
+GuiaController --> GuiaRepository: <font size=8>actualizar(guia)
+
+GuiaRepository -- Guia
+Guia *-- HistorialCambio
+
+GuardarBorradorGuiaView --> GuiaAbiertoSalida: <font size=8>guarda cambios (incluido el temario); si estaba Aprobada, pasa a Borrador
+
+@enduml

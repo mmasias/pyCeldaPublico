@@ -1,0 +1,26 @@
+@startuml abrirGrados-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":GRADOS_ABIERTO" as GradosAbiertoSalida
+
+package abrirGrados as "abrirGrados()" {
+    rectangle #629EF9 AbrirGradosView
+    rectangle #b5bd68 GradoController
+    rectangle #F2AC4E Grado
+    rectangle #F2AC4E GradoRepository
+}
+
+GradoAbierto --> AbrirGradosView: <font size=8>abrirGrados(directorGradoId)
+
+AbrirGradosView --> GradoController: <font size=8>listarPropios(directorGradoId) : List<Grado>
+
+GradoController --> GradoRepository: <font size=8>listarDirigidosPor(directorGradoId) : List<Grado>
+
+GradoRepository -- Grado
+
+AbrirGradosView --> GradosAbiertoSalida: <font size=8>presenta listado de Grados dirigidos por el DirectorGrado
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml abrirFacultad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":FACULTADES_ABIERTO" as FacultadesAbierto
+rectangle #CDEBA5 ":FACULTAD_ABIERTO" as FacultadAbiertoSalida
+
+package abrirFacultad as "abrirFacultad()" {
+    rectangle #629EF9 AbrirFacultadView
+    rectangle #b5bd68 FacultadController
+    rectangle #F2AC4E Facultad
+    rectangle #F2AC4E FacultadRepository
+}
+
+FacultadesAbierto --> AbrirFacultadView: <font size=8>abrirFacultad(facultadId)
+
+AbrirFacultadView --> FacultadController: <font size=8>cargarFacultad(facultadId) : Facultad
+
+FacultadController --> FacultadRepository: <font size=8>obtener(facultadId) : Facultad
+
+FacultadRepository -- Facultad
+
+AbrirFacultadView --> FacultadAbiertoSalida: <font size=8>muestra datos de la Facultad
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml eliminarSistemaEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMAS_EVALUACION_ABIERTO" as SistemasEvaluacionAbierto
+rectangle #CDEBA5 ":SISTEMAS_EVALUACION_ABIERTO" as SistemasEvaluacionAbiertoSalida
+
+package eliminarSistemaEvaluacion as "eliminarSistemaEvaluacion()" {
+    rectangle #629EF9 EliminarSistemaEvaluacionView
+    rectangle #b5bd68 SistemaEvaluacionController
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E SistemaEvaluacionRepository
+}
+
+SistemasEvaluacionAbierto --> EliminarSistemaEvaluacionView: <font size=8>eliminarSistemaEvaluacion(sistemaEvaluacionId)
+
+EliminarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>puedeEliminar(sistemaEvaluacionId) : boolean
+
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>contarPonderacionesAsociadas(sistemaEvaluacionId) : int
+
+EliminarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>eliminar(sistemaEvaluacionId)
+
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>eliminar(sistemaEvaluacionId)
+
+SistemaEvaluacionRepository -- SistemaEvaluacion
+
+EliminarSistemaEvaluacionView ..[#green]> SistemasEvaluacionAbiertoSalida: <font size=8>lista actualizada
+EliminarSistemaEvaluacionView ..[#red]> SistemasEvaluacionAbiertoSalida: <font size=8>bloqueada, sin cambios -- PonderacionEvaluacion asociadas
+EliminarSistemaEvaluacionView ..[#blue]> SistemasEvaluacionAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

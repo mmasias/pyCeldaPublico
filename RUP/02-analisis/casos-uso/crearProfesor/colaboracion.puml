@@ -1,0 +1,28 @@
+@startuml crearProfesor-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROFESORES_ABIERTO" as ProfesoresAbierto
+rectangle #CDEBA5 ":PROFESOR_ABIERTO" as ProfesorAbierto
+
+package crearProfesor as "crearProfesor()" {
+    rectangle #629EF9 CrearProfesorView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+}
+
+ProfesoresAbierto --> CrearProfesorView: <font size=8>crearProfesor()
+
+CrearProfesorView --> ProfesorController: <font size=8>validarDatosObligatorios(nombre, email) : boolean
+
+CrearProfesorView --> ProfesorController: <font size=8>crearProfesor(nombre, email) : Profesor
+
+ProfesorController --> ProfesorRepository: <font size=8>crear(nombre, email) : Profesor
+
+ProfesorRepository -- Profesor
+
+CrearProfesorView --> ProfesorAbierto: <font size=8>detalle del Profesor creado
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml crearAsignatura-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURAS_ABIERTO" as AsignaturasAbierto
+rectangle #CDEBA5 ":ASIGNATURAS_ABIERTO" as AsignaturasAbiertoSalida
+rectangle #CDEBA5 ":Collaboration EditarAsignatura" as EditarAsignatura
+
+package crearAsignatura as "crearAsignatura()" {
+    rectangle #629EF9 CrearAsignaturaView
+    rectangle #b5bd68 AsignaturaController
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E AsignaturaRepository
+}
+
+AsignaturasAbierto --> CrearAsignaturaView: <font size=8>crearAsignatura()
+
+CrearAsignaturaView --> AsignaturaController: <font size=8>validarDatosObligatorios(codigo, nombre) : boolean
+
+CrearAsignaturaView --> AsignaturaController: <font size=8>crearAsignatura(codigo, nombre) : Asignatura
+
+AsignaturaController --> AsignaturaRepository: <font size=8>existeCodigo(codigo) : boolean
+
+AsignaturaController --> AsignaturaRepository: <font size=8>crear(codigo, nombre) : Asignatura
+
+AsignaturaRepository -- Asignatura
+
+CrearAsignaturaView ..[#green]> EditarAsignatura:<font size=8> <<include>> editarAsignatura()
+CrearAsignaturaView ..[#red]> AsignaturasAbiertoSalida:<font size=8> código ya existente (issue #181), sin crear
+
+@enduml

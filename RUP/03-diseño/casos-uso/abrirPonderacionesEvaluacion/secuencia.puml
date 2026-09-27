@@ -1,0 +1,86 @@
+@startuml abrirPonderacionesEvaluacion-diseño
+title Diagrama de Secuencia - Abrir Ponderaciones de Evaluación
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "PonderacionEvaluacionRepository" as PonderacionRepo
+participant "AsignaturaGradoRepository" as AsignaturaRepo
+participant "MateriaRepository" as MateriaRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: solicita abrir el listado de ponderaciones desde la Guía
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/ponderaciones-evaluacion
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> PonderacionRepo: listar_vinculadas_de(guia)
+activate PonderacionRepo
+PonderacionRepo -> DB: SELECT ... WHERE guia_id = :guia_id AND vinculada = true
+activate DB
+DB --> PonderacionRepo: filas vinculadas
+deactivate DB
+PonderacionRepo --> API: List[PonderacionEvaluacion]
+
+API -> PonderacionRepo: listar_pendientes_de(guia_id)
+PonderacionRepo -> DB: SELECT ... WHERE guia_id = :guia_id AND vinculada = false
+activate DB
+DB --> PonderacionRepo: filas pendientes
+deactivate DB
+PonderacionRepo --> API: List[PonderacionEvaluacion]
+deactivate PonderacionRepo
+
+API -> API: fusiona vinculadas + pendientes
+API --> Vista: 200 OK (List[PonderacionEvaluacionResponse] JSON)
+deactivate API
+
+note over Vista: en paralelo (Promise.all), issue #212:\nla Vista pide también el catálogo de SistemaEvaluacion de la materia
+
+Vista -> API: GET /api/v1/guias/{guia_id}/sistemas-evaluacion
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> AsignaturaRepo: obtener(guia.asignatura_grado_id)
+activate AsignaturaRepo
+AsignaturaRepo -> DB: SELECT ... FROM asignaturas_grado WHERE id = :asignatura_grado_id
+activate DB
+DB --> AsignaturaRepo: fila AsignaturaGrado
+deactivate DB
+AsignaturaRepo --> API: AsignaturaGrado
+deactivate AsignaturaRepo
+
+API -> MateriaRepo: obtener(asignatura_grado.materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
+activate DB
+DB --> MateriaRepo: fila Materia
+deactivate DB
+MateriaRepo --> API: Materia
+deactivate MateriaRepo
+
+API -> API: materia.listar_sistemas_evaluacion()
+API --> Vista: 200 OK (List[SistemaEvaluacionResponse] JSON)
+deactivate API
+
+Vista --> Profesor: muestra listado agrupado por SistemaEvaluacion con suma total,\ny la tabla de rangos de la materia con el medidor de completitud (#206/#208)
+deactivate Vista
+
+@enduml

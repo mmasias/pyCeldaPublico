@@ -1,0 +1,24 @@
+@startuml abrirInicio-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SESION_CERRADA" as SesionCerrada
+rectangle #CDEBA5 ":Collaboration AbrirAsignaturasGrado" as AbrirAsignaturasGrado
+rectangle #CDEBA5 ":Collaboration AbrirGrados" as AbrirGrados
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+
+package abrirInicio as "abrirInicio()" {
+    rectangle #629EF9 AbrirInicioView
+}
+
+SesionCerrada --> AbrirInicioView: <font size=8>abrirInicio() -- <<extend>> de iniciarSesion() (rol in {Profesor, DirectorGrado})
+
+AbrirInicioView ..[#green]> AbrirAsignaturasGrado: <font size=8> <<include>> seccion "Mis guias" (si rol == Profesor)
+AbrirInicioView ..[#green]> AbrirGrados: <font size=8> <<include>> seccion "Mis grados" (si dirige >= 1 Grado)
+
+AbrirInicioView --> GuiaAbierto: <font size=8>abrirGuia()
+AbrirInicioView --> GradoAbierto: <font size=8>abrirGrado()
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml abrirPonderacionEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PONDERACIONES_EVALUACION_ABIERTO" as PonderacionesEvaluacionAbierto
+rectangle #CDEBA5 ":PONDERACION_EVALUACION_ABIERTO" as PonderacionEvaluacionSalida
+
+package abrirPonderacionEvaluacion as "abrirPonderacionEvaluacion()" {
+    rectangle #629EF9 AbrirPonderacionEvaluacionView
+    rectangle #b5bd68 PonderacionEvaluacionController
+    rectangle #F2AC4E PonderacionEvaluacion
+    rectangle #F2AC4E PonderacionEvaluacionRepository
+    rectangle #F2AC4E SistemaEvaluacion
+}
+
+PonderacionesEvaluacionAbierto --> AbrirPonderacionEvaluacionView: <font size=8>abrirPonderacionEvaluacion(ponderacionId)
+
+AbrirPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>cargarPonderacionEvaluacion(ponderacionId) : PonderacionEvaluacion
+
+PonderacionEvaluacionController --> PonderacionEvaluacionRepository: <font size=8>obtener(ponderacionId) : PonderacionEvaluacion
+
+PonderacionEvaluacionRepository -- PonderacionEvaluacion
+PonderacionEvaluacion -- SistemaEvaluacion
+
+AbrirPonderacionEvaluacionView --> PonderacionEvaluacionSalida: <font size=8>muestra datos de la PonderacionEvaluacion
+
+@enduml

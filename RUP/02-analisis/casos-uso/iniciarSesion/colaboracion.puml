@@ -1,0 +1,46 @@
+@startuml iniciarSesion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SESION_CERRADA" as SesionCerrada
+rectangle #CDEBA5 ":Collaboration AbrirInicio" as AbrirInicio
+rectangle #CDEBA5 ":Collaboration AbrirPanelAdministracion" as AbrirPanelAdministracion
+rectangle #CDEBA5 ":SESION_CERRADA" as SesionCerradaSalida
+
+package iniciarSesion as "iniciarSesion()" {
+    rectangle #629EF9 IniciarSesionView
+    rectangle #b5bd68 SesionController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E DirectorGrado
+    rectangle #F2AC4E DirectorGradoRepository
+    rectangle #F2AC4E Admin
+    rectangle #F2AC4E AdminRepository
+}
+
+SesionCerrada --> IniciarSesionView: <font size=8>iniciarSesion()
+
+IniciarSesionView --> SesionController: <font size=8>autenticarConGoogle()
+
+SesionController --> IniciarSesionView: <font size=8>resolverRol(email) : String
+
+SesionController --> DirectorGradoRepository: <font size=8>obtenerPorEmail(email) : DirectorGrado
+
+SesionController --> DirectorGradoRepository: <font size=8>dirigeAlgunGrado(email) : boolean
+
+SesionController --> ProfesorRepository: <font size=8>obtenerPorEmail(email) : Profesor
+
+SesionController --> AdminRepository: <font size=8>obtenerPorEmail(email) : Admin
+
+SesionController --> IniciarSesionView: <font size=8>crearSesion(email) : String
+
+DirectorGradoRepository -- DirectorGrado
+ProfesorRepository -- Profesor
+AdminRepository -- Admin
+
+IniciarSesionView ..[#green]> AbrirInicio: <font size=8> <<extend>> (condicion: rol in {Profesor, DirectorGrado})
+IniciarSesionView ..[#green]> AbrirPanelAdministracion: <font size=8> <<extend>> (condicion: rol == Admin)
+IniciarSesionView ..[#red]> SesionCerradaSalida: <font size=8>credenciales invalidas / cuenta no autorizada
+
+@enduml

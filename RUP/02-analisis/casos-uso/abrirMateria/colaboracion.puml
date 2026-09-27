@@ -1,0 +1,82 @@
+@startuml abrirMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIAS_ABIERTO" as MateriasAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package abrirMateria as "abrirMateria()" {
+    rectangle #629EF9 AbrirMateriaView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+    rectangle #F2AC4E MetodologiaMateria
+    rectangle #F2AC4E MetodologiaMateriaRepository
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+}
+
+MateriasAbierto --> AbrirMateriaView: <font size=8>abrirMateria(materiaId)
+
+AbrirMateriaView --> MateriaController: <font size=8>cargarMateria(materiaId) : Materia
+
+MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
+
+AbrirMateriaView --> MateriaController: <font size=8>listarMetodologiasDocentesAsociadas(materiaId) : List<MetodologiaMateria>
+
+MateriaController --> MetodologiaMateriaRepository: <font size=8>listarDe(materiaId) : List<MetodologiaMateria>
+
+AbrirMateriaView --> MateriaController: <font size=8>listarResultadosAprendizajeAsociados(materiaId) : List<ResultadoAprendizaje>
+
+MateriaController --> MateriaRepository: <font size=8>listarResultadosAprendizajeDe(materiaId) : List<ResultadoAprendizaje>
+
+AbrirMateriaView --> MateriaController: <font size=8>listarAsignaturasGrado(materiaId) : List<AsignaturaGrado>
+
+MateriaController --> AsignaturaGradoRepository: <font size=8>listarDeLaMateria(materiaId) : List<AsignaturaGrado>
+
+MateriaRepository -- Materia
+MetodologiaMateriaRepository -- MetodologiaMateria
+AsignaturaGradoRepository -- AsignaturaGrado
+Materia -- MetodologiaMateria
+Materia -- ResultadoAprendizaje
+Materia -- AsignaturaGrado
+
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra Metodologias Docentes/Resultados de Aprendizaje asociados y AsignaturaGrado de la Materia
+
+@enduml
+
+@startuml abrirMateria-admin-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIAS_ABIERTO" as MateriasAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package abrirMateriaAdmin as "abrirMateria() -- Admin" {
+    rectangle #629EF9 AbrirMateriaView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+}
+
+MateriasAbierto --> AbrirMateriaView: <font size=8>abrirMateria(materiaId)
+
+AbrirMateriaView --> MateriaController: <font size=8>cargarMateria(materiaId) : Materia
+
+MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
+
+AbrirMateriaView --> MateriaController: <font size=8>listarAsignaturasGrado(materiaId) : List<AsignaturaGrado>
+
+MateriaController --> AsignaturaGradoRepository: <font size=8>listarDeLaMateria(materiaId) : List<AsignaturaGrado>
+
+MateriaRepository -- Materia
+AsignaturaGradoRepository -- AsignaturaGrado
+
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra datos de la Materia y su tabla de AsignaturasGrado, con [Editar]
+
+@enduml

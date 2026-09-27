@@ -1,0 +1,32 @@
+@startuml escalarGuiaAAprobada-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GUIAS_DEL_GRADO_ABIERTO" as GuiasDelGradoSalida
+
+package escalarGuiaAAprobada as "escalarGuiaAAprobada()" {
+    rectangle #629EF9 EscalarGuiaAAprobadaView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E HistorialCambio
+    rectangle #F2AC4E GuiaRepository
+}
+
+GuiaAbierto --> EscalarGuiaAAprobadaView: <font size=8>escalarGuiaAAprobada(guiaId)
+
+EscalarGuiaAAprobadaView --> GuiaController: <font size=8>escalarAAprobada(guiaId) : Guia
+
+GuiaController --> Guia: <font size=8>escalarAAprobada() : boolean
+
+GuiaController --> HistorialCambio: <font size=8>registrar("estado", estadoAnterior, "Aprobada", "escalada a aprobada sin incidencia") : HistorialCambio
+
+GuiaController --> GuiaRepository: <font size=8>actualizar(guia) : Guia
+
+Guia -- HistorialCambio
+GuiaRepository -- Guia
+
+EscalarGuiaAAprobadaView ..[#green]> GuiasDelGradoSalida: <font size=8>Guia escalada a aprobada
+
+@enduml

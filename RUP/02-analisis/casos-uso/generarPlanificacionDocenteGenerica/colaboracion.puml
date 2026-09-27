@@ -1,0 +1,42 @@
+@startuml generarPlanificacionDocenteGenerica-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteAbierto
+rectangle #CDEBA5 ":Collaboration AbrirPlanificacionDocente" as AbrirPlanificacionDocente
+
+package generarPlanificacionDocenteGenerica as "generarPlanificacionDocenteGenerica()" {
+    rectangle #629EF9 GenerarPlanificacionDocenteGenericaView
+    rectangle #b5bd68 GenerarPlanificacionDocenteGenericaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E SesionRepository
+    rectangle #F2AC4E HistorialCambio
+}
+
+PlanificacionDocenteAbierto --> GenerarPlanificacionDocenteGenericaView: <font size=8>generarPlanificacionDocenteGenerica(guiaId)
+
+GenerarPlanificacionDocenteGenericaView --> GenerarPlanificacionDocenteGenericaController: <font size=8>generarGenerica(guiaId) : Guia
+
+GenerarPlanificacionDocenteGenericaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
+
+GenerarPlanificacionDocenteGenericaController --> Guia: <font size=8>planificacionDocenteVacia() : boolean [404 uniforme si no imparte; 409 si no vacía]
+
+GenerarPlanificacionDocenteGenericaController --> SesionRepository: <font size=8>generarGenericas(guia, guia.sesionesMinimas) [N filas CLASE_TEORICA, descripcion vacía, vinculada=True, numero 1..N]
+
+GenerarPlanificacionDocenteGenericaController --> HistorialCambio: <font size=8>registrar(campo="planificacion_docente", ...) [una fila por la operación]
+
+GenerarPlanificacionDocenteGenericaController --> Guia: <font size=8>confirmarGuardado() [solo fecha_ultima_modificacion; la guía vacía nunca está Aprobada]
+
+GenerarPlanificacionDocenteGenericaController --> GuiaRepository: <font size=8>actualizar(guia)
+
+GuiaRepository -- Guia
+SesionRepository -- Sesion
+Guia *-- HistorialCambio
+Guia *-- Sesion
+
+GenerarPlanificacionDocenteGenericaView ..> AbrirPlanificacionDocente:<font size=8> <<include>> abrirPlanificacionDocente()
+
+@enduml

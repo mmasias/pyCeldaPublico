@@ -1,0 +1,29 @@
+@startuml eliminarAsignatura-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURAS_ABIERTO" as AsignaturasAbierto
+rectangle #CDEBA5 ":ASIGNATURAS_ABIERTO" as AsignaturasAbiertoSalida
+
+package eliminarAsignatura as "eliminarAsignatura()" {
+    rectangle #629EF9 EliminarAsignaturaView
+    rectangle #b5bd68 AsignaturaController
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E AsignaturaRepository
+}
+
+AsignaturasAbierto --> EliminarAsignaturaView: <font size=8>eliminarAsignatura(asignaturaId)
+
+EliminarAsignaturaView --> AsignaturaController: <font size=8>eliminar(asignaturaId)
+
+AsignaturaController --> Asignatura: <font size=8>extinguir()
+
+AsignaturaController --> AsignaturaRepository: <font size=8>actualizar(asignatura)
+
+AsignaturaRepository -- Asignatura
+
+EliminarAsignaturaView ..[#green]> AsignaturasAbiertoSalida: <font size=8>lista actualizada -- estado pasa a Extinguido
+EliminarAsignaturaView ..[#blue]> AsignaturasAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

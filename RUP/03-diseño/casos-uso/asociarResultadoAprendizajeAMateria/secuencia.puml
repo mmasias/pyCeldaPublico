@@ -1,0 +1,43 @@
+@startuml asociarResultadoAprendizajeAMateria-diseño
+title Diagrama de Secuencia - Asociar Resultado de Aprendizaje a Materia
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita asociar un ResultadoAprendizaje a la Materia
+activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}/resultados-aprendizaje/disponibles
+activate API
+API -> MateriaRepo: listar_resultados_aprendizaje_disponibles(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ra.* FROM resultados_aprendizaje ra\nJOIN materias m ON m.grado_id = ra.grado_id\nLEFT JOIN materias_resultados_aprendizaje mra\nON mra.resultado_aprendizaje_id = ra.id\nAND mra.materia_id = :materia_id\nWHERE m.id = :materia_id AND mra.id IS NULL
+activate DB
+DB --> MateriaRepo: filas ResultadoAprendizaje
+deactivate DB
+MateriaRepo --> API: List[ResultadoAprendizaje]
+deactivate MateriaRepo
+API --> Vista: 200 OK (List[ResultadoAprendizajeResponse] JSON)
+deactivate API
+Vista --> DirectorGrado: muestra los ResultadoAprendizaje del Grado aún no asociados
+
+DirectorGrado -> Vista: elige un ResultadoAprendizaje y confirma
+Vista -> API: POST /api/v1/materias/{materia_id}/resultados-aprendizaje (AsociarResultadoAprendizajeCreate JSON)
+activate API
+API -> MateriaRepo: asociar_resultado_aprendizaje(materia_id, resultado_aprendizaje_id)
+activate MateriaRepo
+MateriaRepo -> DB: INSERT INTO materias_resultados_aprendizaje ...
+activate DB
+DB --> MateriaRepo: ok
+deactivate DB
+MateriaRepo --> API: void
+deactivate MateriaRepo
+note right of API: agregación simple -- sin clase de asociación\nni campos propios que persistir
+API --> Vista: 204 No Content
+deactivate API
+Vista --> DirectorGrado: ResultadoAprendizaje asociado
+deactivate Vista
+
+@enduml

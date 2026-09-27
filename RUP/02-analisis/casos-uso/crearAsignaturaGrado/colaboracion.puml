@@ -1,0 +1,53 @@
+@startuml crearAsignaturaGrado-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbiertoSalida
+
+package crearAsignaturaGrado as "crearAsignaturaGrado()" {
+    rectangle #629EF9 CrearAsignaturaGradoView
+    rectangle #b5bd68 AsignaturaGradoController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+GradoAbierto --> CrearAsignaturaGradoView: <font size=8>crearAsignaturaGrado(gradoId)
+
+CrearAsignaturaGradoView --> AsignaturaGradoController: <font size=8>listarMateriasDelGrado(gradoId) : List<Materia>
+
+AsignaturaGradoController --> MateriaRepository: <font size=8>listarDelGrado(gradoId) : List<Materia>
+
+CrearAsignaturaGradoView --> AsignaturaGradoController: <font size=8>listarAsignaturasDelCatalogo() : List<Asignatura>
+
+AsignaturaGradoController --> AsignaturaRepository: <font size=8>listar() : List<Asignatura>
+
+CrearAsignaturaGradoView --> AsignaturaGradoController: <font size=8>validarDatosObligatorios(materiaId, asignaturaId, curso, caracter, idioma, semestreDefault) : boolean
+
+CrearAsignaturaGradoView --> AsignaturaGradoController: <font size=8>crearAsignaturaGrado(materiaId, asignaturaId, curso, caracter, idioma, semestreDefault, nombre?, ects?, contenido?) : AsignaturaGrado
+
+AsignaturaGradoController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
+
+AsignaturaGradoController --> AsignaturaRepository: <font size=8>obtener(asignaturaId) : Asignatura
+
+AsignaturaGradoController --> Asignatura: <font size=8>heredar nombre/ects/contenido si no hay override
+
+AsignaturaGradoController --> AsignaturaGradoRepository: <font size=8>crear(materiaId, nombre, curso, caracter, idioma, ects, semestreDefault, contenido) : AsignaturaGrado
+
+AsignaturaGradoController --> GuiaRepository: <font size=8>crear(gradoId, asignaturaGradoId, semestreDefault) : Guia
+
+MateriaRepository -- Materia
+AsignaturaRepository -- Asignatura
+AsignaturaGradoRepository -- AsignaturaGrado
+GuiaRepository -- Guia
+
+CrearAsignaturaGradoView --> GradoAbiertoSalida: <font size=8>tabla de AsignaturaGrado del Grado actualizada
+
+@enduml

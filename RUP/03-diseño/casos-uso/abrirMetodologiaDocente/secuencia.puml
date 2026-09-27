@@ -1,0 +1,28 @@
+@startuml abrirMetodologiaDocente-diseño
+title Diagrama de Secuencia - Abrir Metodología Docente
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaDocenteRepository" as MetodologiaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir una MetodologiaDocente del listado
+activate Vista
+Vista -> API: GET /api/v1/metodologias-docentes/{metodologia_docente_id}
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> MetodologiaRepo: obtener(metodologia_docente_id)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: SELECT ... FROM metodologias_docentes WHERE id = :metodologia_docente_id
+activate DB
+DB --> MetodologiaRepo: fila MetodologiaDocente
+deactivate DB
+MetodologiaRepo --> API: MetodologiaDocente (404 si None)
+deactivate MetodologiaRepo
+API --> Vista: 200 OK (MetodologiaDocenteResponse JSON)
+deactivate API
+Vista --> Admin: muestra datos de la MetodologiaDocente y la navegación a su edición
+deactivate Vista
+
+@enduml

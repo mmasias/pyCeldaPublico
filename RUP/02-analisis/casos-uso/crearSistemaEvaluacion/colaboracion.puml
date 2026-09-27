@@ -1,0 +1,28 @@
+@startuml crearSistemaEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMAS_EVALUACION_ABIERTO" as SistemasEvaluacionAbierto
+rectangle #CDEBA5 ":SISTEMA_EVALUACION_ABIERTO" as SistemaEvaluacionAbierto
+
+package crearSistemaEvaluacion as "crearSistemaEvaluacion()" {
+    rectangle #629EF9 CrearSistemaEvaluacionView
+    rectangle #b5bd68 SistemaEvaluacionController
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E SistemaEvaluacionRepository
+}
+
+SistemasEvaluacionAbierto --> CrearSistemaEvaluacionView: <font size=8>crearSistemaEvaluacion(materiaId)
+
+CrearSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>validarDatosObligatorios(tipo, ponderacionMinima, ponderacionMaxima) : boolean
+
+CrearSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>crearSistemaEvaluacion(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
+
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>crear(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
+
+SistemaEvaluacionRepository -- SistemaEvaluacion
+
+CrearSistemaEvaluacionView --> SistemaEvaluacionAbierto: <font size=8>detalle del SistemaEvaluacion creado
+
+@enduml

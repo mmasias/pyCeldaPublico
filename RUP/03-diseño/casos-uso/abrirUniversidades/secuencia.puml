@@ -1,0 +1,28 @@
+@startuml abrirUniversidades-diseño
+title Diagrama de Secuencia - Abrir Universidades
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "UniversidadRepository" as UniversidadRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir Universidades
+activate Vista
+Vista -> API: GET /api/v1/universidades
+activate API
+note right of API: listado completo, sin filtro por quien llama\n(ninguna Universidad es "propia" del Admin).\nDepends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento
+API -> UniversidadRepo: listar()
+activate UniversidadRepo
+UniversidadRepo -> DB: SELECT * FROM universidades
+activate DB
+DB --> UniversidadRepo: filas Universidad
+deactivate DB
+UniversidadRepo --> API: List[Universidad]
+deactivate UniversidadRepo
+API --> Vista: 200 OK (List[UniversidadResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado de Universidades
+deactivate Vista
+
+@enduml

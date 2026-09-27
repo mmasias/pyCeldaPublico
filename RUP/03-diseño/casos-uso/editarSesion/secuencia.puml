@@ -1,0 +1,54 @@
+@startuml editarSesion-diseño
+title Diagrama de Secuencia - Editar Sesión
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "SesionRepository" as SesionRepo
+participant "Sesion" as Sesion
+database "Base de Datos" as DB
+
+Profesor -> Vista: abre la sesión a editar desde su fila en el listado
+activate Vista
+Vista -> API: GET /api/v1/sesiones/{sesion_id}
+activate API
+API -> SesionRepo: obtener(sesion_id)
+activate SesionRepo
+SesionRepo -> DB: SELECT ... FROM sesiones WHERE id = :sesion_id
+activate DB
+DB --> SesionRepo: fila Sesion
+deactivate DB
+SesionRepo --> API: Sesion
+deactivate SesionRepo
+API --> Vista: 200 OK (SesionResponse JSON)
+deactivate API
+Vista --> Profesor: muestra formulario con datos actuales (numero visible, no editable)
+
+Profesor -> Vista: modifica tipo y/o descripcion, confirma
+Vista -> API: PUT /api/v1/sesiones/{sesion_id} (SesionUpdate JSON)
+activate API
+API -> SesionRepo: obtener(sesion_id)
+activate SesionRepo
+SesionRepo -> DB: SELECT ... FROM sesiones WHERE id = :sesion_id
+activate DB
+DB --> SesionRepo: fila Sesion
+deactivate DB
+SesionRepo --> API: Sesion
+deactivate SesionRepo
+API -> Sesion: actualizar(tipo, descripcion)
+activate Sesion
+deactivate Sesion
+API -> SesionRepo: actualizar(sesion)
+activate SesionRepo
+SesionRepo -> DB: UPDATE sesiones SET tipo = ..., descripcion = ...
+activate DB
+DB --> SesionRepo: ok
+deactivate DB
+SesionRepo --> API: Sesion
+deactivate SesionRepo
+API --> Vista: 200 OK (SesionResponse JSON)
+deactivate API
+Vista --> Profesor: vuelve al listado de abrirPlanificacionDocente(), datos actualizados, numero sin cambios
+deactivate Vista
+
+@enduml

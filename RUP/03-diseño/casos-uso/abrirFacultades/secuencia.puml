@@ -1,0 +1,28 @@
+@startuml abrirFacultades-diseño
+title Diagrama de Secuencia - Abrir Facultades
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "FacultadRepository" as FacultadRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir las Facultades de una Universidad
+activate Vista
+Vista -> API: GET /api/v1/universidades/{universidad_id}/facultades
+activate API
+note right of API: Depends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento
+API -> FacultadRepo: listar_de_la_universidad(universidad_id)
+activate FacultadRepo
+FacultadRepo -> DB: SELECT * FROM facultades WHERE universidad_id = :universidad_id
+activate DB
+DB --> FacultadRepo: filas Facultad
+deactivate DB
+FacultadRepo --> API: List[Facultad]
+deactivate FacultadRepo
+API --> Vista: 200 OK (List[FacultadResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado de Facultades de la Universidad
+deactivate Vista
+
+@enduml

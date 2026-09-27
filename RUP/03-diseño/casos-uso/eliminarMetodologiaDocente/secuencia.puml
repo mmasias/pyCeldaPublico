@@ -1,0 +1,62 @@
+@startuml eliminarMetodologiaDocente-diseño
+title Diagrama de Secuencia - Eliminar Metodología Docente
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaDocenteRepository" as MetodologiaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita eliminar una MetodologiaDocente del listado
+activate Vista
+Vista -> API: GET /api/v1/metodologias-docentes/{metodologia_docente_id}
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> MetodologiaRepo: obtener(metodologia_docente_id)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: SELECT ... FROM metodologias_docentes WHERE id = :metodologia_docente_id
+activate DB
+DB --> MetodologiaRepo: fila MetodologiaDocente
+deactivate DB
+MetodologiaRepo --> API: MetodologiaDocente (404 si None)
+deactivate MetodologiaRepo
+API --> Vista: 200 OK (MetodologiaDocenteResponse JSON)
+deactivate API
+Vista --> Admin: presenta la información y pide confirmar/cancelar
+
+alt el Admin confirma
+  Admin -> Vista: confirma
+  Vista -> API: DELETE /api/v1/metodologias-docentes/{metodologia_docente_id}
+  activate API
+  API -> MetodologiaRepo: nombres_materias_asociadas(metodologia_docente_id)
+  activate MetodologiaRepo
+  MetodologiaRepo -> DB: SELECT m.nombre FROM materias m\nJOIN metodologias_materia mm ON mm.materia_id = m.id\nWHERE mm.metodologia_docente_id = :id
+  activate DB
+  DB --> MetodologiaRepo: nombres de Materia
+  deactivate DB
+  MetodologiaRepo --> API: List[String]
+  deactivate MetodologiaRepo
+  alt asociada a alguna Materia
+    API --> Vista: 409 Conflict (detail: "MetodologiaDocente asignada a: ...")
+    deactivate API
+    Vista --> Admin: presenta el bloqueo con el detail del 409 tal cual, sin cambios
+  else sin materias asociadas
+    API -> MetodologiaRepo: eliminar(metodologia_docente_id)
+    activate MetodologiaRepo
+    MetodologiaRepo -> DB: DELETE FROM metodologias_docentes WHERE id = :metodologia_docente_id
+    activate DB
+    DB --> MetodologiaRepo: ok
+    deactivate DB
+    MetodologiaRepo --> API: void
+    deactivate MetodologiaRepo
+    API --> Vista: 204 No Content
+    deactivate API
+    Vista --> Admin: presenta la lista actualizada
+  end
+else el Admin cancela
+  Admin -> Vista: cancela
+  Vista --> Admin: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

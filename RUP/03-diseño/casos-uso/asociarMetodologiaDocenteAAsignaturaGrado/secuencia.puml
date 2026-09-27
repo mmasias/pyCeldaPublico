@@ -1,0 +1,44 @@
+@startuml asociarMetodologiaDocenteAAsignaturaGrado-diseño
+title Diagrama de Secuencia - Asociar Metodología Docente a AsignaturaGrado
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaDocenteRepository" as MetodologiaRepo
+participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita asociar una MetodologiaDocente a la AsignaturaGrado
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-grado/{asignatura_grado_id}/metodologias-docentes/disponibles
+activate API
+API -> MetodologiaRepo: listar_disponibles_para_asignatura_grado(asignatura_grado_id)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: SELECT md.* FROM metodologias_docentes md\nJOIN metodologias_materia mm ON mm.metodologia_docente_id = md.id\nJOIN asignaturas_grado ag ON ag.materia_id = mm.materia_id\nLEFT JOIN asignaturas_grado_metodologias_docentes agmd\nON agmd.metodologia_docente_id = md.id\nAND agmd.asignatura_grado_id = :asignatura_grado_id\nWHERE ag.id = :asignatura_grado_id AND agmd.id IS NULL
+activate DB
+DB --> MetodologiaRepo: filas MetodologiaDocente
+deactivate DB
+MetodologiaRepo --> API: List[MetodologiaDocente]
+deactivate MetodologiaRepo
+note right of API: la consulta aplica la regla de consistencia:\nsolo MetodologiaDocente ya asociadas a la Materia
+API --> Vista: 200 OK (List[MetodologiaDocenteResponse] JSON)
+deactivate API
+Vista --> DirectorGrado: muestra la selección disponible
+
+DirectorGrado -> Vista: elige una MetodologiaDocente y confirma
+Vista -> API: POST /api/v1/asignaturas-grado/{asignatura_grado_id}/metodologias-docentes (AsociarMetodologiaDocenteCreate JSON)
+activate API
+API -> AsignaturaGradoRepo: asociar_metodologia_docente(asignatura_grado_id, metodologia_docente_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: INSERT INTO asignaturas_grado_metodologias_docentes ...
+activate DB
+DB --> AsignaturaGradoRepo: ok
+deactivate DB
+AsignaturaGradoRepo --> API: void
+deactivate AsignaturaGradoRepo
+API --> Vista: 204 No Content
+deactivate API
+Vista --> DirectorGrado: MetodologiaDocente asociada
+deactivate Vista
+
+@enduml

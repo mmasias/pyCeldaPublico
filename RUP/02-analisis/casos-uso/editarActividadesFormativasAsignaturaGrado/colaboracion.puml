@@ -1,0 +1,32 @@
+@startuml editarActividadesFormativasAsignaturaGrado-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_GRADO_ABIERTO" as AsignaturaGradoAbierto
+rectangle #CDEBA5 ":ASIGNATURA_GRADO_ABIERTO" as AsignaturaGradoAbiertoSalida
+
+package editarActividadesFormativasAsignaturaGrado as "editarActividadesFormativasAsignaturaGrado()" {
+    rectangle #629EF9 EditarActividadesFormativasAsignaturaGradoView
+    rectangle #b5bd68 AsignaturaGradoController
+    rectangle #F2AC4E ActividadFormativaAsignaturaGrado
+    rectangle #F2AC4E ActividadFormativaAsignaturaGradoRepository
+}
+
+AsignaturaGradoAbierto --> EditarActividadesFormativasAsignaturaGradoView: <font size=8>editarActividadesFormativasAsignaturaGrado(asignaturaGradoId)
+
+EditarActividadesFormativasAsignaturaGradoView --> AsignaturaGradoController: <font size=8>cargarActividadesFormativas(asignaturaGradoId) : lista de ActividadFormativaAsignaturaGrado
+
+AsignaturaGradoController --> ActividadFormativaAsignaturaGradoRepository: <font size=8>listarDe(asignaturaGradoId) : lista de ActividadFormativaAsignaturaGrado
+
+EditarActividadesFormativasAsignaturaGradoView --> AsignaturaGradoController: <font size=8>guardarActividadesFormativas(asignaturaGradoId, reparto)
+
+AsignaturaGradoController --> ActividadFormativaAsignaturaGrado: <font size=8>actualizar(horas, porcentajePresencialidad)
+
+AsignaturaGradoController --> ActividadFormativaAsignaturaGradoRepository: <font size=8>actualizarLote(actividadesFormativasAsignaturaGrado)
+
+ActividadFormativaAsignaturaGradoRepository -- ActividadFormativaAsignaturaGrado
+
+EditarActividadesFormativasAsignaturaGradoView --> AsignaturaGradoAbiertoSalida: <font size=8>reparto guardado (o valor no válido: horas negativas / presencialidad fuera de 0-100, no se guarda nada)
+
+@enduml

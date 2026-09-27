@@ -1,0 +1,46 @@
+@startuml definirDirectorGrado-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROFESOR_ABIERTO" as ProfesorAbierto
+rectangle #CDEBA5 ":PROFESOR_ABIERTO" as ProfesorAbiertoSalida
+
+package definirDirectorGrado as "definirDirectorGrado()" {
+    rectangle #629EF9 DefinirDirectorGradoView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Grado
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E DirectorGrado
+    rectangle #F2AC4E DirectorGradoRepository
+}
+
+ProfesorAbierto --> DefinirDirectorGradoView: <font size=8>definirDirectorGrado(profesorId)
+
+DefinirDirectorGradoView --> ProfesorController: <font size=8>cargarGradosDisponibles(profesorId) : List<Grado>
+
+ProfesorController --> DirectorGradoRepository: <font size=8>obtenerPorEmail(email) : DirectorGrado
+
+ProfesorController --> GradoRepository: <font size=8>listarDisponiblesParaDirigir(directorGradoId) : List<Grado>
+
+DefinirDirectorGradoView --> ProfesorController: <font size=8>definirDirectorGrado(profesorId, gradoId) : Profesor
+
+ProfesorController --> ProfesorRepository: <font size=8>obtener(profesorId) : Profesor
+
+ProfesorController --> GradoRepository: <font size=8>obtener(gradoId) : Grado
+
+ProfesorController --> DirectorGradoRepository: <font size=8>crear(email) : DirectorGrado
+
+ProfesorController --> Grado: <font size=8>directores.add(director)
+
+ProfesorRepository -- Profesor
+DirectorGradoRepository -- DirectorGrado
+GradoRepository -- Grado
+DirectorGrado -- Grado
+DirectorGrado -- Profesor: <font size=8>rol resuelto por email
+
+DefinirDirectorGradoView --> ProfesorAbiertoSalida: <font size=8>Grado añadido a los que dirige
+
+@enduml

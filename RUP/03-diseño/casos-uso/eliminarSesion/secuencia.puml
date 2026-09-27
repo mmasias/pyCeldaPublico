@@ -1,0 +1,22 @@
+@startuml eliminarSesion-diseño
+title Diagrama de Secuencia - Eliminar Sesión (lista de trabajo)
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+
+Profesor -> Vista: solicita eliminar una Sesion de su fila en el listado
+activate Vista
+Vista --> Profesor: presenta la información de la sesión y el aviso de que las siguientes se renumerarán, con la pregunta de confirmación
+
+alt Profesor confirma
+  Profesor -> Vista: confirma
+  Vista -> Vista: quita el id de la lista de trabajo en memoria (estado local de React)
+  Vista -> Vista: renumera localmente las filas siguientes para la presentación
+  Vista --> Profesor: presenta la lista actualizada, con las sesiones siguientes renumeradas
+else Profesor cancela
+  Profesor -> Vista: cancela
+  Vista --> Profesor: cierra la confirmación, sin cambios
+end
+deactivate Vista
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml crearPonderacionEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PONDERACIONES_EVALUACION_ABIERTO" as PonderacionesEvaluacionAbierto
+rectangle #CDEBA5 ":Collaboration EditarPonderacionEvaluacion" as EditarPonderacionEvaluacion
+rectangle #CDEBA5 ":PONDERACIONES_EVALUACION_ABIERTO" as PonderacionesEvaluacionSalida
+
+package crearPonderacionEvaluacion as "crearPonderacionEvaluacion()" {
+    rectangle #629EF9 CrearPonderacionEvaluacionView
+    rectangle #b5bd68 PonderacionEvaluacionController
+    rectangle #F2AC4E PonderacionEvaluacion
+    rectangle #F2AC4E PonderacionEvaluacionRepository
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E Materia
+}
+
+PonderacionesEvaluacionAbierto --> CrearPonderacionEvaluacionView: <font size=8>crearPonderacionEvaluacion(guiaId, materiaId)
+
+CrearPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>cargarSistemasEvaluacion(materiaId) : List<SistemaEvaluacion>
+
+PonderacionEvaluacionController --> Materia: <font size=8>listarSistemasEvaluacion() : List<SistemaEvaluacion>
+
+CrearPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>validarDatosObligatorios(sistemaEvaluacion, descripcion, ponderacion) : boolean
+
+CrearPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>crearPonderacionEvaluacion(guiaId, sistemaEvaluacion, descripcion, ponderacion) : boolean
+
+PonderacionEvaluacionController --> SistemaEvaluacion: <font size=8>validarMaximo(ponderacion) : boolean
+
+PonderacionEvaluacionController --> PonderacionEvaluacionRepository: <font size=8>crear(guiaId, sistemaEvaluacion, descripcion, ponderacion) : PonderacionEvaluacion
+
+PonderacionEvaluacionRepository -- PonderacionEvaluacion
+PonderacionEvaluacion -- SistemaEvaluacion
+Materia -- SistemaEvaluacion
+
+CrearPonderacionEvaluacionView ..> EditarPonderacionEvaluacion:<font size=8> <<include>> editarPonderacionEvaluacion()
+CrearPonderacionEvaluacionView ..[#red]> PonderacionesEvaluacionSalida: <font size=8>ponderación supera el máximo del SistemaEvaluacion, no se crea
+
+@enduml

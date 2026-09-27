@@ -1,0 +1,34 @@
+@startuml editarReferenciaBibliografica-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":REFERENCIA_BIBLIOGRAFICA_ABIERTO" as ReferenciaBibliograficaAbierto
+rectangle #CDEBA5 ":REFERENCIA_BIBLIOGRAFICA_ABIERTO" as ReferenciaBibliograficaSalida
+
+package editarReferenciaBibliografica as "editarReferenciaBibliografica()" {
+    rectangle #629EF9 EditarReferenciaBibliograficaView
+    rectangle #b5bd68 ReferenciaBibliograficaController
+    rectangle #F2AC4E ReferenciaBibliografica
+    rectangle #F2AC4E ReferenciaBibliograficaRepository
+}
+
+ReferenciaBibliograficaAbierto --> EditarReferenciaBibliograficaView: <font size=8>editarReferenciaBibliografica(referenciaId)
+
+EditarReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>cargarReferenciaBibliografica(referenciaId) : ReferenciaBibliografica
+
+ReferenciaBibliograficaController --> ReferenciaBibliograficaRepository: <font size=8>obtener(referenciaId) : ReferenciaBibliografica
+
+EditarReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>validarDatosObligatorios(tipo, referencia) : boolean
+
+EditarReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>guardarCambios(tipo, referencia) : boolean
+
+ReferenciaBibliograficaController --> ReferenciaBibliografica: <font size=8>actualizar(tipo, referencia)
+
+ReferenciaBibliograficaController --> ReferenciaBibliograficaRepository: <font size=8>actualizar(referencia)
+
+ReferenciaBibliograficaRepository -- ReferenciaBibliografica
+
+EditarReferenciaBibliograficaView --> ReferenciaBibliograficaSalida: <font size=8>datos actualizados
+
+@enduml

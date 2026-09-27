@@ -1,0 +1,48 @@
+@startuml abrirPlanificacionDocente-diseño
+title Diagrama de Secuencia - Abrir Planificación Docente
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "SesionRepository" as SesionRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: solicita abrir la Planificación docente desde la Guía
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/sesiones
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> SesionRepo: listar_vinculadas_de(guia)
+activate SesionRepo
+SesionRepo -> DB: SELECT ... FROM sesiones WHERE guia_id = :guia_id AND vinculada = true
+activate DB
+DB --> SesionRepo: filas vinculadas
+deactivate DB
+SesionRepo --> API: List[Sesion]
+
+API -> SesionRepo: listar_pendientes_de(guia_id)
+SesionRepo -> DB: SELECT ... FROM sesiones WHERE guia_id = :guia_id AND vinculada = false
+activate DB
+DB --> SesionRepo: filas pendientes
+deactivate DB
+SesionRepo --> API: List[Sesion]
+deactivate SesionRepo
+
+API -> API: fusiona vinculadas + pendientes, ordena por numero
+API --> Vista: 200 OK (AbrirPlanificacionDocenteResponse: { sesiones, sesiones_minimas = guia.sesiones_minimas })
+deactivate API
+note right of Vista: la Vista calcula el medidor "N / M sesiones"\n(N = visibles, M = sesiones_minimas) -- discussion #206
+Vista --> Profesor: muestra listado ordenado por numero y el medidor
+deactivate Vista
+
+@enduml

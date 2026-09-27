@@ -1,0 +1,48 @@
+@startuml editarSemestreGuia-diseño
+title Diagrama de Secuencia - Editar Semestre de Guía
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "Guia" as Guia
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: introduce semestre, solicita guardar
+activate Vista
+Vista -> API: PUT /api/v1/guias/{guia_id}/semestre (semestre)
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> Guia: actualizar_semestre(semestre)
+activate Guia
+deactivate Guia
+
+API -> Guia: regenerar_pdf()
+activate Guia
+note right of Guia: solo si estado == Aprobada;\nactualiza fecha_generacion_pdf, sin cambiar estado.\nGeneración real del archivo fuera de alcance\n(pertenece a generarGuiasPDF(), CU no construido)
+deactivate Guia
+
+API -> GuiaRepo: actualizar(guia)
+activate GuiaRepo
+GuiaRepo -> DB: UPDATE guias SET semestre = ..., fecha_generacion_pdf = ...
+activate DB
+DB --> GuiaRepo: ok
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API --> Vista: 200 OK (GuiaResponse JSON)
+deactivate API
+Vista --> DirectorGrado: semestre actualizado
+deactivate Vista
+
+@enduml

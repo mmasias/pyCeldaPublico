@@ -1,0 +1,32 @@
+@startuml rechazarGuia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GUIAS_DEL_GRADO_ABIERTO" as GuiasDelGradoSalida
+
+package rechazarGuia as "rechazarGuia()" {
+    rectangle #629EF9 RechazarGuiaView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E HistorialCambio
+    rectangle #F2AC4E GuiaRepository
+}
+
+GuiaAbierto --> RechazarGuiaView: <font size=8>rechazarGuia(guiaId, comentario)
+
+RechazarGuiaView --> GuiaController: <font size=8>rechazarGuia(guiaId, comentario) : Guia
+
+GuiaController --> Guia: <font size=8>rechazar() : boolean
+
+GuiaController --> HistorialCambio: <font size=8>registrar("estado", "EnRevision", "Rechazada", comentario) : HistorialCambio
+
+GuiaController --> GuiaRepository: <font size=8>actualizar(guia) : Guia
+
+Guia -- HistorialCambio
+GuiaRepository -- Guia
+
+RechazarGuiaView ..[#green]> GuiasDelGradoSalida: <font size=8>Guia rechazada
+
+@enduml

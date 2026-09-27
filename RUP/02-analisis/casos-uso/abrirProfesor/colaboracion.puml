@@ -1,0 +1,36 @@
+@startuml abrirProfesor-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROFESORES_ABIERTO" as ProfesoresAbierto
+rectangle #CDEBA5 ":PROFESOR_ABIERTO" as ProfesorAbiertoSalida
+
+package abrirProfesor as "abrirProfesor()" {
+    rectangle #629EF9 AbrirProfesorView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Grado
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E DirectorGradoRepository
+}
+
+ProfesoresAbierto --> AbrirProfesorView: <font size=8>abrirProfesor(profesorId)
+
+AbrirProfesorView --> ProfesorController: <font size=8>cargarProfesor(profesorId) : Profesor
+
+ProfesorController --> ProfesorRepository: <font size=8>obtener(profesorId) : Profesor
+
+AbrirProfesorView --> ProfesorController: <font size=8>cargarGradosDirigidos(profesorId) : List<Grado>
+
+ProfesorController --> DirectorGradoRepository: <font size=8>obtenerPorEmail(email) : DirectorGrado
+
+ProfesorController --> GradoRepository: <font size=8>listarDirigidosPor(directorGradoId) : List<Grado>
+
+ProfesorRepository -- Profesor
+GradoRepository -- Grado
+
+AbrirProfesorView --> ProfesorAbiertoSalida: <font size=8>muestra datos del Profesor y los Grados que dirige
+
+@enduml

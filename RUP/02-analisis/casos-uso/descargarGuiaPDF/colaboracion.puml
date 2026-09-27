@@ -1,0 +1,35 @@
+@startuml descargarGuiaPDF-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbiertoSalida
+
+package descargarGuiaPDF as "descargarGuiaPDF()" {
+    rectangle #629EF9 DescargarGuiaPDFView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E RenderizadorGuiaDocente
+}
+
+GuiaAbierto --> DescargarGuiaPDFView: <font size=8>descargarGuiaPDF(guiaId)
+
+DescargarGuiaPDFView --> GuiaController: <font size=8>descargarPDF(guiaId) : boolean
+
+GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
+
+GuiaController --> Guia: <font size=8>tienePDFGenerado() : boolean
+
+GuiaController --> RenderizadorGuiaDocente: <font size=8>renderizarPDF(guia) : documento [rama verde]
+
+RenderizadorGuiaDocente --> Guia: <font size=8>datos de la Guia y su cascada (AsignaturaGrado, Materia, Grado, Facultad, ResultadoAprendizaje en vivo)
+
+GuiaRepository -- Guia
+
+DescargarGuiaPDFView ..[#green]> GuiaAbiertoSalida: <font size=8>presenta el PDF
+
+DescargarGuiaPDFView ..[#red]> GuiaAbiertoSalida: <font size=8>PDF no generado todavía
+
+@enduml

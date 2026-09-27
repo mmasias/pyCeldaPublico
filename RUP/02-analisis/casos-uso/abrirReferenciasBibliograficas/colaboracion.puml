@@ -1,0 +1,31 @@
+@startuml abrirReferenciasBibliograficas-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":REFERENCIA_BIBLIOGRAFICA_ABIERTO" as ReferenciaBibliograficaAbierto
+rectangle #CDEBA5 ":REFERENCIAS_BIBLIOGRAFICAS_ABIERTO" as ReferenciasBibliograficasSalida
+
+package abrirReferenciasBibliograficas as "abrirReferenciasBibliograficas()" {
+    rectangle #629EF9 AbrirReferenciasBibliograficasView
+    rectangle #b5bd68 ReferenciaBibliograficaController
+    rectangle #F2AC4E ReferenciaBibliografica
+    rectangle #F2AC4E ReferenciaBibliograficaRepository
+}
+
+GuiaAbierto --> AbrirReferenciasBibliograficasView: <font size=8>abrirReferenciasBibliograficas(guiaId)
+ReferenciaBibliograficaAbierto --> AbrirReferenciasBibliograficasView: <font size=8>abrirReferenciasBibliograficas(guiaId)
+
+AbrirReferenciasBibliograficasView --> ReferenciaBibliograficaController: <font size=8>listarReferenciasBibliograficas(guiaId) : List<ReferenciaBibliografica>
+
+ReferenciaBibliograficaController --> ReferenciaBibliograficaRepository: <font size=8>listarVinculadasDe(guia) : List<ReferenciaBibliografica>
+ReferenciaBibliograficaController --> ReferenciaBibliograficaRepository: <font size=8>listarPendientesDe(guiaId) : List<ReferenciaBibliografica>
+
+ReferenciaBibliograficaController --> AbrirReferenciasBibliograficasView: <font size=8>fusiona vinculadas + pendientes
+
+ReferenciaBibliograficaRepository -- ReferenciaBibliografica
+
+AbrirReferenciasBibliograficasView --> ReferenciasBibliograficasSalida: <font size=8>presenta listado agrupado por tipo
+
+@enduml

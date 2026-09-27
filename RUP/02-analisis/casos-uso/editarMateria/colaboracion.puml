@@ -1,0 +1,34 @@
+@startuml editarMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package editarMateria as "editarMateria()" {
+    rectangle #629EF9 EditarMateriaView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+}
+
+MateriaAbierto --> EditarMateriaView: <font size=8>editarMateria(materiaId)
+
+EditarMateriaView --> MateriaController: <font size=8>cargarMateria(materiaId) : Materia
+
+MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
+
+EditarMateriaView --> MateriaController: <font size=8>validarDatosObligatorios(nombre) : boolean
+
+EditarMateriaView --> MateriaController: <font size=8>guardarCambios(materiaId, nombre) : boolean
+
+MateriaController --> Materia: <font size=8>actualizar(nombre)
+
+MateriaController --> MateriaRepository: <font size=8>actualizar(materia)
+
+MateriaRepository -- Materia
+
+EditarMateriaView --> MateriaAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml crearFacultad-diseño
+title Diagrama de Secuencia - Crear Facultad
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "FacultadRepository" as FacultadRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa el nombre, confirma
+activate Vista
+Vista -> API: POST /api/v1/universidades/{universidad_id}/facultades (FacultadCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento
+API -> FacultadRepo: crear(universidad_id, nombre)
+activate FacultadRepo
+FacultadRepo -> DB: INSERT INTO facultades (universidad_id, nombre) VALUES (...)
+activate DB
+DB --> FacultadRepo: id nueva fila
+deactivate DB
+FacultadRepo --> API: Facultad (con id)
+deactivate FacultadRepo
+API --> Vista: 201 Created (FacultadResponse JSON)
+deactivate API
+Vista --> Admin: navega a editarFacultad() (<<include>>)
+deactivate Vista
+
+@enduml

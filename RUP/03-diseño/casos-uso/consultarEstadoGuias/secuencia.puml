@@ -1,0 +1,34 @@
+@startuml consultarEstadoGuias-diseño
+title Diagrama de Secuencia - Consultar Estado de Guías
+
+actor "DirectorGrado / Admin" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita consultar el estado de las Guías del Grado
+activate Vista
+Vista -> API: GET /api/v1/grados/{grado_id}/guias
+activate API
+note right of API: gate: admin_email is not None\nor GradoRepository.dirige(grado_id, director_grado_id)\n-- 404 uniforme si no (issue #262)
+
+API -> GuiaRepo: listar_del_grado(grado_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT g.* FROM guias g\nJOIN asignaturas_grado ag ON ag.id = g.asignatura_grado_id\nJOIN materias m ON m.id = ag.materia_id\nWHERE m.grado_id = :grado_id\nAND g.curso_academico_id = (curso académico activo)
+activate DB
+DB --> GuiaRepo: filas Guia (con AsignaturaGrado y Profesorado)
+deactivate DB
+GuiaRepo --> API: List[Guia]
+deactivate GuiaRepo
+
+API --> Vista: 200 OK (List[GuiaResumenResponse] JSON, con tiene_pdf por fila)
+deactivate API
+alt actor DirectorGrado (ListaGuiasDelGrado modo="director")
+  Vista --> Actor: listado con [Abrir] por fila + [Notificar guías actualizadas]
+else actor Admin (modo="admin")
+  Vista --> Actor: listado con [Previsualizar] + [Descargar PDF] (deshabilitado si !tiene_pdf), sin [Abrir] ni [Notificar]
+end
+deactivate Vista
+
+@enduml

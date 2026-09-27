@@ -1,0 +1,28 @@
+@startuml abrirProfesores-diseño
+title Diagrama de Secuencia - Abrir Profesores
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProfesorRepository" as ProfesorRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir Profesores
+activate Vista
+Vista -> API: GET /api/v1/profesores
+activate API
+note right of API: listado completo, sin filtro por quien llama\n(ningún Profesor es "propio" del Admin).\nDepends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> ProfesorRepo: listar()
+activate ProfesorRepo
+ProfesorRepo -> DB: SELECT * FROM profesores
+activate DB
+DB --> ProfesorRepo: filas Profesor
+deactivate DB
+ProfesorRepo --> API: List[Profesor]
+deactivate ProfesorRepo
+API --> Vista: 200 OK (List[ProfesorResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado de Profesores (nombre, email)
+deactivate Vista
+
+@enduml

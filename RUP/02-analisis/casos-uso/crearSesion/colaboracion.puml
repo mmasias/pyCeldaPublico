@@ -1,0 +1,30 @@
+@startuml crearSesion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteAbierto
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteSalida
+
+package crearSesion as "crearSesion()" {
+    rectangle #629EF9 CrearSesionView
+    rectangle #b5bd68 PlanificacionDocenteController
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E SesionRepository
+}
+
+PlanificacionDocenteAbierto --> CrearSesionView: <font size=8>crearSesion(guiaId)
+
+CrearSesionView --> PlanificacionDocenteController: <font size=8>validarDatosObligatorios(tipo, descripcion) : boolean
+
+CrearSesionView --> PlanificacionDocenteController: <font size=8>crearSesion(guiaId, tipo, descripcion) : Sesion
+
+PlanificacionDocenteController --> SesionRepository: <font size=8>siguienteNumero(guiaId) : int
+
+PlanificacionDocenteController --> SesionRepository: <font size=8>crear(guiaId, numero, tipo, descripcion) : Sesion
+
+SesionRepository -- Sesion
+
+CrearSesionView --> PlanificacionDocenteSalida: <font size=8>sesión creada con el siguiente número correlativo, pendiente de vincular
+
+@enduml

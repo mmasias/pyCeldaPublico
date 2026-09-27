@@ -1,0 +1,96 @@
+@startuml guardarBorradorGuia-diseño
+title Diagrama de Secuencia - Guardar Borrador de Guía
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "Guia" as Guia
+participant "PonderacionEvaluacionRepository" as PonderacionRepo
+participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
+participant "SesionRepository" as SesionRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: solicita guardar borrador
+activate Vista
+Vista -> API: PUT /api/v1/guias/{guia_id}/borrador (ids_ponderaciones_final, ids_referencias_final, ids_sesiones_final, contenido)
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia (con vinculadas)
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> Guia: sincronizar_ponderaciones(ids_ponderaciones_final)
+activate Guia
+Guia --> API: (a_vincular, a_desvincular)
+API -> Guia: sincronizar_referencias(ids_referencias_final)
+Guia --> API: (a_vincular, a_desvincular)
+API -> Guia: sincronizar_sesiones(ids_sesiones_final)
+Guia --> API: (a_vincular, a_desvincular)
+deactivate Guia
+
+loop por cada id en a_vincular/a_desvincular de PonderacionEvaluacion
+  API -> PonderacionRepo: vincular(id, guia) / desvincular(id)
+  activate PonderacionRepo
+  PonderacionRepo -> DB: vincular -> UPDATE ponderaciones_evaluacion SET vinculada = true;\ndesvincular -> DELETE FROM ponderaciones_evaluacion WHERE id = :id
+  activate DB
+  DB --> PonderacionRepo: ok
+  deactivate DB
+  deactivate PonderacionRepo
+end
+
+loop por cada id en a_vincular/a_desvincular de ReferenciaBibliografica
+  API -> ReferenciaRepo: vincular(id, guia) / desvincular(id)
+  activate ReferenciaRepo
+  ReferenciaRepo -> DB: vincular -> UPDATE referencias_bibliograficas SET vinculada = true;\ndesvincular -> DELETE FROM referencias_bibliograficas WHERE id = :id
+  activate DB
+  DB --> ReferenciaRepo: ok
+  deactivate DB
+  deactivate ReferenciaRepo
+end
+
+loop por cada id en a_vincular/a_desvincular de Sesion
+  API -> SesionRepo: vincular(id, guia) / desvincular(id)
+  activate SesionRepo
+  SesionRepo -> DB: vincular -> UPDATE sesiones SET vinculada = true;\ndesvincular -> DELETE FROM sesiones WHERE id = :id
+  activate DB
+  DB --> SesionRepo: ok
+  deactivate DB
+  deactivate SesionRepo
+end
+
+alt datos.contenido no es None
+  API -> Guia: actualizar_contenido(datos.contenido)
+  activate Guia
+  Guia --> API: valor_anterior (o None si no cambió)
+  deactivate Guia
+  opt el texto cambió
+    API -> DB: INSERT historial_cambios (campo="contenido", autor=profesor_id, ...)
+  end
+end
+
+API -> Guia: confirmar_guardado()
+activate Guia
+note right of Guia: actualiza fechaUltimaModificacion;\nsi estado era Aprobada, aplica Aprobada -> Borrador
+deactivate Guia
+
+API -> GuiaRepo: actualizar(guia)
+activate GuiaRepo
+GuiaRepo -> DB: UPDATE guias SET ...
+activate DB
+DB --> GuiaRepo: ok
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API --> Vista: 200 OK (GuiaResponse JSON)
+deactivate API
+Vista --> Profesor: "BORRADOR GUARDADO", estado y fecha actualizados
+deactivate Vista
+
+@enduml

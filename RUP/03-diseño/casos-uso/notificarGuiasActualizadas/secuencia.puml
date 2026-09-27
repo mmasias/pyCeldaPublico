@@ -1,0 +1,18 @@
+@startuml notificarGuiasActualizadas-diseño
+title Diagrama de Secuencia - Notificar Guías Actualizadas
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+
+DirectorGrado -> Vista: solicita notificar guías actualizadas
+activate Vista
+Vista -> API: POST /api/v1/grados/{grado_id}/notificar-guias-actualizadas
+activate API
+API -> API: dispara aviso al Admin (mecanismo de envío fuera\nde alcance de este diagrama, sin Modelo ni Repository)
+API --> Vista: 200 OK (confirmación de envío)
+deactivate API
+Vista --> DirectorGrado: "Notificación enviada al Admin"
+deactivate Vista
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml abrirReferenciasBibliograficas-diseño
+title Diagrama de Secuencia - Abrir Referencias Bibliográficas
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
+database "Base de Datos" as DB
+
+Profesor -> Vista: solicita abrir el listado de referencias desde la Guía
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/referencias-bibliograficas
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> ReferenciaRepo: listar_vinculadas_de(guia)
+activate ReferenciaRepo
+ReferenciaRepo -> DB: SELECT ... WHERE guia_id = :guia_id AND vinculada = true
+activate DB
+DB --> ReferenciaRepo: filas vinculadas
+deactivate DB
+ReferenciaRepo --> API: List[ReferenciaBibliografica]
+
+API -> ReferenciaRepo: listar_pendientes_de(guia_id)
+ReferenciaRepo -> DB: SELECT ... WHERE guia_id = :guia_id AND vinculada = false
+activate DB
+DB --> ReferenciaRepo: filas pendientes
+deactivate DB
+ReferenciaRepo --> API: List[ReferenciaBibliografica]
+deactivate ReferenciaRepo
+
+API -> API: fusiona vinculadas + pendientes
+API --> Vista: 200 OK (List[ReferenciaBibliograficaResponse] JSON)
+deactivate API
+Vista --> Profesor: muestra listado agrupado por tipo
+deactivate Vista
+
+@enduml

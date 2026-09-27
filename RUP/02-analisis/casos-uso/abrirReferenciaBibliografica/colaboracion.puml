@@ -1,0 +1,26 @@
+@startuml abrirReferenciaBibliografica-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":REFERENCIAS_BIBLIOGRAFICAS_ABIERTO" as ReferenciasBibliograficasAbierto
+rectangle #CDEBA5 ":REFERENCIA_BIBLIOGRAFICA_ABIERTO" as ReferenciaBibliograficaSalida
+
+package abrirReferenciaBibliografica as "abrirReferenciaBibliografica()" {
+    rectangle #629EF9 AbrirReferenciaBibliograficaView
+    rectangle #b5bd68 ReferenciaBibliograficaController
+    rectangle #F2AC4E ReferenciaBibliografica
+    rectangle #F2AC4E ReferenciaBibliograficaRepository
+}
+
+ReferenciasBibliograficasAbierto --> AbrirReferenciaBibliograficaView: <font size=8>abrirReferenciaBibliografica(referenciaId)
+
+AbrirReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>cargarReferenciaBibliografica(referenciaId) : ReferenciaBibliografica
+
+ReferenciaBibliograficaController --> ReferenciaBibliograficaRepository: <font size=8>obtener(referenciaId) : ReferenciaBibliografica
+
+ReferenciaBibliograficaRepository -- ReferenciaBibliografica
+
+AbrirReferenciaBibliograficaView --> ReferenciaBibliograficaSalida: <font size=8>muestra datos de la ReferenciaBibliografica
+
+@enduml

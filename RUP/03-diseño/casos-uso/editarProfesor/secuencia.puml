@@ -1,0 +1,61 @@
+@startuml editarProfesor-diseño
+title Diagrama de Secuencia - Editar Profesor
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProfesorRepository" as ProfesorRepo
+participant "Profesor" as Profesor
+database "Base de Datos" as DB
+
+Admin -> Vista: abre el Profesor a editar
+activate Vista
+Vista -> API: GET /api/v1/profesores/{profesor_id}
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> ProfesorRepo: obtener(profesor_id)
+activate ProfesorRepo
+ProfesorRepo -> DB: SELECT ... FROM profesores WHERE id = :profesor_id
+activate DB
+DB --> ProfesorRepo: fila Profesor
+deactivate DB
+ProfesorRepo --> API: Profesor (404 si None)
+deactivate ProfesorRepo
+API --> Vista: 200 OK (ProfesorDetalleResponse JSON)
+deactivate API
+Vista --> Admin: muestra formulario con datos actuales (ambos campos editables)
+
+Admin -> Vista: modifica nombre y/o email, confirma
+Vista -> API: PUT /api/v1/profesores/{profesor_id} (ProfesorUpdate JSON)
+activate API
+API -> ProfesorRepo: obtener_por_email_de_otro(email, profesor_id)
+activate ProfesorRepo
+ProfesorRepo -> DB: SELECT ... FROM profesores WHERE email = :email AND id != :profesor_id
+activate DB
+DB --> ProfesorRepo: None / fila Profesor
+deactivate DB
+ProfesorRepo --> API: Profesor | None
+deactivate ProfesorRepo
+alt el nuevo email lo usa otro Profesor
+  API --> Vista: 409 Conflict (detail: "Ya existe otro Profesor con el email ...")
+  deactivate API
+  Vista --> Admin: presenta el error, sin cambios
+else email libre (o es el propio)
+  API -> ProfesorRepo: editar(profesor, nombre, email)
+  activate ProfesorRepo
+  ProfesorRepo -> Profesor: actualizar(nombre, email)
+  activate Profesor
+  deactivate Profesor
+  ProfesorRepo -> DB: UPDATE profesores SET nombre = ..., email = ...
+  activate DB
+  DB --> ProfesorRepo: ok
+  deactivate DB
+  ProfesorRepo --> API: Profesor
+  deactivate ProfesorRepo
+  API --> Vista: 200 OK (ProfesorResponse JSON)
+  deactivate API
+  Vista --> Admin: vuelve al detalle con los datos actualizados
+end
+deactivate Vista
+
+@enduml

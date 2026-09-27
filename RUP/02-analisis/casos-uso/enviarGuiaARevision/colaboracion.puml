@@ -1,0 +1,43 @@
+@startuml enviarGuiaARevision-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":ASIGNATURAS_GRADO_ABIERTO" as AsignaturasGradoAbiertoSalida
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbiertoSalida
+
+package enviarGuiaARevision as "enviarGuiaARevision()" {
+    rectangle #629EF9 EnviarGuiaARevisionView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E PonderacionEvaluacionRepository
+    rectangle #F2AC4E ReferenciaBibliograficaRepository
+    rectangle #F2AC4E SesionRepository
+}
+
+GuiaAbierto --> EnviarGuiaARevisionView: <font size=8>enviarGuiaARevision()
+
+EnviarGuiaARevisionView --> GuiaController: <font size=8>enviarARevision(guiaId) : boolean
+
+GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
+
+GuiaController --> PonderacionEvaluacionRepository: <font size=8>existePendienteDe(guiaId) : boolean
+GuiaController --> ReferenciaBibliograficaRepository: <font size=8>existePendienteDe(guiaId) : boolean
+GuiaController --> SesionRepository: <font size=8>existePendienteDe(guiaId) : boolean
+
+GuiaController --> Guia: <font size=8>bloqueoPonderaciones() : String
+GuiaController --> Guia: <font size=8>planificacionDocenteCompleta() : boolean
+
+GuiaRepository -- Guia
+
+GuiaController --> Guia: <font size=8>enviarARevision()
+GuiaController --> GuiaRepository: <font size=8>actualizar(guia)
+
+EnviarGuiaARevisionView --> AsignaturasGradoAbiertoSalida: <font size=8>enviada a revisión
+EnviarGuiaARevisionView ..[#red]> GuiaAbiertoSalida: <font size=8>hay ítems sin guardar -- guarda el borrador primero
+EnviarGuiaARevisionView ..[#red]> GuiaAbiertoSalida: <font size=8>rango por SistemaEvaluacion o suma total incorrectos
+EnviarGuiaARevisionView ..[#red]> GuiaAbiertoSalida: <font size=8>planificación docente incompleta
+
+@enduml

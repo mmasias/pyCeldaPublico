@@ -1,0 +1,32 @@
+@startuml desasociarMetodologiaDocenteMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package desasociarMetodologiaDocenteMateria as "desasociarMetodologiaDocenteMateria()" {
+    rectangle #629EF9 DesasociarMetodologiaDocenteMateriaView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MetodologiaMateriaRepository
+}
+
+MateriaAbierto --> DesasociarMetodologiaDocenteMateriaView: <font size=8>desasociarMetodologiaDocenteMateria(materiaId, metodologiaDocenteId)
+
+DesasociarMetodologiaDocenteMateriaView --> MateriaController: <font size=8>asignaturasGradoConMetodologiaDocente(materiaId, metodologiaDocenteId) : List<String>
+
+MateriaController --> Materia: <font size=8>asignaturasGradoConMetodologiaDocente(metodologiaDocenteId) : List<String>
+
+DesasociarMetodologiaDocenteMateriaView --> MateriaController: <font size=8>desasociarMetodologiaDocente(materiaId, metodologiaDocenteId)
+
+MateriaController --> MetodologiaMateriaRepository: <font size=8>eliminar(materiaId, metodologiaDocenteId)
+
+MetodologiaMateriaRepository -- Materia
+
+DesasociarMetodologiaDocenteMateriaView ..[#green]> MateriaAbiertoSalida: <font size=8>lista actualizada
+DesasociarMetodologiaDocenteMateriaView ..[#red]> MateriaAbiertoSalida: <font size=8>bloqueada, sin cambios -- en uso en AsignaturaGrado de la Materia
+DesasociarMetodologiaDocenteMateriaView ..[#blue]> MateriaAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

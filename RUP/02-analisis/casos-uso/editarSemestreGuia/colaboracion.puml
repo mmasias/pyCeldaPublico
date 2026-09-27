@@ -1,0 +1,30 @@
+@startuml editarSemestreGuia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbiertoSalida
+
+package editarSemestreGuia as "editarSemestreGuia()" {
+    rectangle #629EF9 EditarSemestreGuiaView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+GuiaAbierto --> EditarSemestreGuiaView: <font size=8>editarSemestreGuia(guiaId, semestre)
+
+EditarSemestreGuiaView --> GuiaController: <font size=8>editarSemestre(guiaId, semestre) : Guia
+
+GuiaController --> Guia: <font size=8>actualizarSemestre(semestre)
+
+GuiaController --> Guia: <font size=8>regenerarPDF() [si estaba Aprobada]
+
+GuiaController --> GuiaRepository: <font size=8>actualizar(guia)
+
+GuiaRepository -- Guia
+
+EditarSemestreGuiaView --> GuiaAbiertoSalida: <font size=8>guarda cambios; si estaba Aprobada, regenera el PDF
+
+@enduml

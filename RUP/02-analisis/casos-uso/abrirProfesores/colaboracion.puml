@@ -1,0 +1,26 @@
+@startuml abrirProfesores-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":PROFESORES_ABIERTO" as ProfesoresAbiertoSalida
+
+package abrirProfesores as "abrirProfesores()" {
+    rectangle #629EF9 AbrirProfesoresView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+}
+
+SistemaDisponible --> AbrirProfesoresView: <font size=8>abrirProfesores()
+
+AbrirProfesoresView --> ProfesorController: <font size=8>listarProfesores() : List<Profesor>
+
+ProfesorController --> ProfesorRepository: <font size=8>listar() : List<Profesor>
+
+ProfesorRepository -- Profesor
+
+AbrirProfesoresView --> ProfesoresAbiertoSalida: <font size=8>presenta listado de Profesor
+
+@enduml

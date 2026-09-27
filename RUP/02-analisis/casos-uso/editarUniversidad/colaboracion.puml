@@ -1,0 +1,34 @@
+@startuml editarUniversidad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":UNIVERSIDAD_ABIERTO" as UniversidadAbierto
+rectangle #CDEBA5 ":UNIVERSIDAD_ABIERTO" as UniversidadAbiertoSalida
+
+package editarUniversidad as "editarUniversidad()" {
+    rectangle #629EF9 EditarUniversidadView
+    rectangle #b5bd68 UniversidadController
+    rectangle #F2AC4E Universidad
+    rectangle #F2AC4E UniversidadRepository
+}
+
+UniversidadAbierto --> EditarUniversidadView: <font size=8>editarUniversidad(universidadId)
+
+EditarUniversidadView --> UniversidadController: <font size=8>cargarUniversidad(universidadId) : Universidad
+
+UniversidadController --> UniversidadRepository: <font size=8>obtener(universidadId) : Universidad
+
+EditarUniversidadView --> UniversidadController: <font size=8>validarDatosObligatorios(nombre) : boolean
+
+EditarUniversidadView --> UniversidadController: <font size=8>guardarCambios(universidadId, nombre) : boolean
+
+UniversidadController --> Universidad: <font size=8>actualizar(nombre)
+
+UniversidadController --> UniversidadRepository: <font size=8>actualizar(universidad)
+
+UniversidadRepository -- Universidad
+
+EditarUniversidadView --> UniversidadAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

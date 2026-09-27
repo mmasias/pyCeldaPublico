@@ -1,0 +1,29 @@
+@startuml abrirPlanificacionDocente-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteSalida
+
+package abrirPlanificacionDocente as "abrirPlanificacionDocente()" {
+    rectangle #629EF9 AbrirPlanificacionDocenteView
+    rectangle #b5bd68 PlanificacionDocenteController
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E SesionRepository
+}
+
+GuiaAbierto --> AbrirPlanificacionDocenteView: <font size=8>abrirPlanificacionDocente(guiaId)
+
+AbrirPlanificacionDocenteView --> PlanificacionDocenteController: <font size=8>listarSesiones(guiaId) : List<Sesion>
+
+PlanificacionDocenteController --> SesionRepository: <font size=8>listarVinculadasDe(guia) : List<Sesion>
+PlanificacionDocenteController --> SesionRepository: <font size=8>listarPendientesDe(guiaId) : List<Sesion>
+
+PlanificacionDocenteController --> AbrirPlanificacionDocenteView: <font size=8>fusiona vinculadas + pendientes
+
+SesionRepository -- Sesion
+
+AbrirPlanificacionDocenteView --> PlanificacionDocenteSalida: <font size=8>presenta listado de Sesion ordenado por numero
+
+@enduml

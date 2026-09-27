@@ -1,0 +1,32 @@
+@startuml editarActividadesFormativasMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package editarActividadesFormativasMateria as "editarActividadesFormativasMateria()" {
+    rectangle #629EF9 EditarActividadesFormativasMateriaView
+    rectangle #b5bd68 MateriaController
+    rectangle #F2AC4E ActividadFormativaMateria
+    rectangle #F2AC4E ActividadFormativaMateriaRepository
+}
+
+MateriaAbierto --> EditarActividadesFormativasMateriaView: <font size=8>editarActividadesFormativasMateria(materiaId)
+
+EditarActividadesFormativasMateriaView --> MateriaController: <font size=8>cargarActividadesFormativas(materiaId) : lista de ActividadFormativaMateria
+
+MateriaController --> ActividadFormativaMateriaRepository: <font size=8>listarDe(materiaId) : lista de ActividadFormativaMateria
+
+EditarActividadesFormativasMateriaView --> MateriaController: <font size=8>guardarActividadesFormativas(materiaId, repartoHoras)
+
+MateriaController --> ActividadFormativaMateria: <font size=8>actualizar(horas)
+
+MateriaController --> ActividadFormativaMateriaRepository: <font size=8>actualizarLote(actividadesFormativasMateria)
+
+ActividadFormativaMateriaRepository -- ActividadFormativaMateria
+
+EditarActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>reparto guardado (o valor de horas no válido, no se guarda nada)
+
+@enduml

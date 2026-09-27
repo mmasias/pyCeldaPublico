@@ -1,0 +1,93 @@
+@startuml definirDirectorGrado-diseño
+title Diagrama de Secuencia - Definir Director de Grado
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "DirectorGradoRepository" as DirectorRepo
+participant "GradoRepository" as GradoRepo
+participant "ProfesorRepository" as ProfesorRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita nombrar director de Grado desde el detalle
+activate Vista
+Vista -> API: GET /api/v1/profesores/{profesor_id}/grados-disponibles-para-dirigir
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> ProfesorRepo: obtener(profesor_id)
+activate ProfesorRepo
+ProfesorRepo -> DB: SELECT ... FROM profesores WHERE id = :profesor_id
+activate DB
+DB --> ProfesorRepo: fila Profesor (404 si None)
+deactivate DB
+ProfesorRepo --> API: Profesor
+deactivate ProfesorRepo
+API -> DirectorRepo: obtener_por_email(profesor.email)
+activate DirectorRepo
+DirectorRepo -> DB: SELECT ... FROM directores_grado WHERE email = :email
+activate DB
+DB --> DirectorRepo: None / fila DirectorGrado
+deactivate DB
+DirectorRepo --> API: DirectorGrado | None
+deactivate DirectorRepo
+API -> GradoRepo: listar_disponibles_para_dirigir(director.id | None)
+activate GradoRepo
+GradoRepo -> DB: SELECT grados.* FROM grados\nLEFT JOIN grados_directores_grado gdg ON (gdg.grado_id = grados.id\nAND gdg.director_grado_id = :director_id)\nWHERE gdg.director_grado_id IS NULL
+activate DB
+DB --> GradoRepo: filas Grado (todas si aún no hay DirectorGrado)
+deactivate DB
+GradoRepo --> API: List[Grado]
+deactivate GradoRepo
+API --> Vista: 200 OK (List[GradoResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el selector -- solo Grados que el Profesor no dirige
+
+Admin -> Vista: elige Grado, confirma
+Vista -> API: POST /api/v1/profesores/{profesor_id}/directores-grado ({"grado_id": ...})
+activate API
+API -> ProfesorRepo: obtener(profesor_id)
+activate ProfesorRepo
+ProfesorRepo -> DB: SELECT ... FROM profesores WHERE id = :profesor_id
+activate DB
+DB --> ProfesorRepo: fila Profesor (404 si None)
+deactivate DB
+ProfesorRepo --> API: Profesor
+deactivate ProfesorRepo
+API -> GradoRepo: obtener(grado_id)
+activate GradoRepo
+GradoRepo -> DB: SELECT ... FROM grados WHERE id = :grado_id
+activate DB
+DB --> GradoRepo: fila Grado (404 si None)
+deactivate DB
+GradoRepo --> API: Grado
+deactivate GradoRepo
+API -> DirectorRepo: obtener_por_email(profesor.email)
+activate DirectorRepo
+DirectorRepo -> DB: SELECT ... FROM directores_grado WHERE email = :email
+activate DB
+DB --> DirectorRepo: None / fila DirectorGrado
+deactivate DB
+alt sin DirectorGrado para ese email
+  DirectorRepo -> DB: INSERT INTO directores_grado (email) VALUES (:email)
+  activate DB
+  DB --> DirectorRepo: id nueva fila
+  deactivate DB
+end
+DirectorRepo --> API: DirectorGrado (resuelto o recién creado)
+deactivate DirectorRepo
+opt el director aún no estaba en grado.directores
+  API -> GradoRepo: grado.directores.append(director) + commit
+  activate GradoRepo
+  GradoRepo -> DB: INSERT INTO grados_directores_grado (grado_id, director_grado_id)
+  activate DB
+  DB --> GradoRepo: ok
+  deactivate DB
+  GradoRepo --> API: void
+  deactivate GradoRepo
+end
+API --> Vista: 200 OK (ProfesorDetalleResponse JSON -- Grado añadido a los que dirige)
+deactivate API
+Vista --> Admin: vuelve al detalle del Profesor
+deactivate Vista
+
+@enduml

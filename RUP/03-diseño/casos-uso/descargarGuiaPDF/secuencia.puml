@@ -1,0 +1,46 @@
+@startuml descargarGuiaPDF-diseño
+title Diagrama de Secuencia - Descargar PDF de Guía
+
+actor "Admin/Profesor" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "Guia" as Guia
+participant "render/guia_docente.py" as Render
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita descargar el PDF de la Guía abierta
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/pdf
+activate API
+
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id\n(+ cascada AsignaturaGrado/Materia/Grado/Facultad, requisitos_previos y RA en vivo, MD, ponderaciones, referencias)
+activate DB
+DB --> GuiaRepo: fila Guia + relaciones
+deactivate DB
+GuiaRepo --> API: Guia
+deactivate GuiaRepo
+
+API -> Guia: tiene_pdf_generado()
+activate Guia
+Guia --> API: boolean
+deactivate Guia
+
+alt PDF generado
+  API -> Render: render_pdf(guia)
+  activate Render
+  note right of Render: Jinja2 (templates/guia_docente.html) -> WeasyPrint -> bytes PDF.\nMisma plantilla que la vista HTML de previsualizarGuia().\nRA leídos en vivo de guia.asignatura_grado.
+  Render --> API: bytes PDF
+  deactivate Render
+  API --> Vista: 200 OK (Response, application/pdf)
+  Vista --> Actor: presenta el PDF
+else PDF no generado
+  API --> Vista: 409 Conflict (PDF no generado todavía)
+  Vista --> Actor: presenta mensaje de bloqueo
+end
+deactivate API
+deactivate Vista
+
+@enduml

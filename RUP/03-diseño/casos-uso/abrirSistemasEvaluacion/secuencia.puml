@@ -1,0 +1,39 @@
+@startuml abrirSistemasEvaluacion-diseño
+title Diagrama de Secuencia - Abrir Sistemas de Evaluación
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+participant "SistemaEvaluacionRepository" as SistemaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir los sistemas de evaluación de la Materia
+activate Vista
+Vista -> API: GET /api/v1/admin/materias/{materia_id}/sistemas-evaluacion
+activate API
+note right of API: Depends(require_admin) -- composición de Admin.\nNamespace /admin/: el path sin /admin/ ya existe\ncomo selector de Profesor (crearPonderacionEvaluacion),\ncontrato cerrado con otra guarda
+API -> MateriaRepo: obtener(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
+activate DB
+DB --> MateriaRepo: fila Materia (404 si None)
+deactivate DB
+MateriaRepo --> API: Materia
+deactivate MateriaRepo
+
+API -> SistemaRepo: listar_de_materia(materia_id)
+activate SistemaRepo
+SistemaRepo -> DB: SELECT ... FROM sistemas_evaluacion WHERE materia_id = :materia_id
+activate DB
+DB --> SistemaRepo: filas SistemaEvaluacion
+deactivate DB
+SistemaRepo --> API: List[SistemaEvaluacion]
+deactivate SistemaRepo
+
+API --> Vista: 200 OK (List[SistemaEvaluacionResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado de sistemas de evaluación de la Materia
+deactivate Vista
+
+@enduml

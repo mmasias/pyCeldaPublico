@@ -1,0 +1,42 @@
+@startuml crearProfesor-diseño
+title Diagrama de Secuencia - Crear Profesor
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProfesorRepository" as ProfesorRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa nombre y email, confirma
+activate Vista
+Vista -> API: POST /api/v1/profesores (ProfesorCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> ProfesorRepo: obtener_por_email(email)
+activate ProfesorRepo
+ProfesorRepo -> DB: SELECT ... FROM profesores WHERE email = :email
+activate DB
+DB --> ProfesorRepo: None / fila Profesor
+deactivate DB
+ProfesorRepo --> API: Profesor | None
+deactivate ProfesorRepo
+alt el email ya existe
+  API --> Vista: 409 Conflict (detail: "Ya existe un Profesor con el email ...")
+  deactivate API
+  Vista --> Admin: presenta el error, sin crear
+else email libre
+  API -> ProfesorRepo: crear(nombre, email)
+  activate ProfesorRepo
+  ProfesorRepo -> DB: INSERT INTO profesores (nombre, email) VALUES (:nombre, :email)
+  activate DB
+  DB --> ProfesorRepo: id nueva fila
+  deactivate DB
+  ProfesorRepo --> API: Profesor (con id)
+  deactivate ProfesorRepo
+  API --> Vista: 201 Created (ProfesorResponse JSON)
+  deactivate API
+  Vista --> Admin: navega al detalle del Profesor creado (sin <<include>> C->U)
+end
+deactivate Vista
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml crearMetodologiaDocente-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_ABIERTO" as MetodologiasDocentesAbierto
+rectangle #CDEBA5 ":METODOLOGIA_DOCENTE_ABIERTO" as MetodologiaDocenteAbierto
+
+package crearMetodologiaDocente as "crearMetodologiaDocente()" {
+    rectangle #629EF9 CrearMetodologiaDocenteView
+    rectangle #b5bd68 MetodologiaDocenteController
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E MetodologiaDocenteRepository
+}
+
+MetodologiasDocentesAbierto --> CrearMetodologiaDocenteView: <font size=8>crearMetodologiaDocente()
+
+CrearMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>validarDatosObligatorios(codigo, descripcion) : boolean
+
+CrearMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>crearMetodologiaDocente(codigo, descripcion) : MetodologiaDocente
+
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>crear(codigo, descripcion) : MetodologiaDocente
+
+MetodologiaDocenteRepository -- MetodologiaDocente
+
+CrearMetodologiaDocenteView --> MetodologiaDocenteAbierto: <font size=8>detalle de la MetodologiaDocente creada
+
+@enduml

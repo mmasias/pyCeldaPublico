@@ -1,0 +1,46 @@
+@startuml editarReferenciaBibliografica-diseño
+title Diagrama de Secuencia - Editar Referencia Bibliográfica
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
+participant "ReferenciaBibliografica" as ReferenciaBibliografica
+database "Base de Datos" as DB
+
+Profesor -> Vista: abre la referencia a editar
+activate Vista
+Vista -> API: GET /api/v1/referencias-bibliograficas/{referencia_id}
+activate API
+API -> ReferenciaRepo: obtener(referencia_id)
+activate ReferenciaRepo
+ReferenciaRepo -> DB: SELECT ... FROM referencias_bibliograficas WHERE id = :referencia_id
+activate DB
+DB --> ReferenciaRepo: fila ReferenciaBibliografica
+deactivate DB
+ReferenciaRepo --> API: ReferenciaBibliografica
+deactivate ReferenciaRepo
+API --> Vista: 200 OK (ReferenciaBibliograficaResponse JSON)
+deactivate API
+Vista --> Profesor: muestra formulario con datos actuales
+
+Profesor -> Vista: modifica tipo y/o referencia, confirma
+Vista -> API: PUT /api/v1/referencias-bibliograficas/{referencia_id} (ReferenciaBibliograficaUpdate JSON)
+activate API
+API -> ReferenciaBibliografica: actualizar(tipo, referencia)
+activate ReferenciaBibliografica
+deactivate ReferenciaBibliografica
+API -> ReferenciaRepo: actualizar(referencia)
+activate ReferenciaRepo
+ReferenciaRepo -> DB: UPDATE referencias_bibliograficas SET ...
+activate DB
+DB --> ReferenciaRepo: ok
+deactivate DB
+ReferenciaRepo --> API: ReferenciaBibliografica
+deactivate ReferenciaRepo
+API --> Vista: 200 OK (ReferenciaBibliograficaResponse JSON)
+deactivate API
+Vista --> Profesor: datos actualizados
+deactivate Vista
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml abrirAsignatura-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURAS_ABIERTO" as AsignaturasAbierto
+rectangle #CDEBA5 ":ASIGNATURA_ABIERTO" as AsignaturaAbiertoSalida
+
+package abrirAsignatura as "abrirAsignatura()" {
+    rectangle #629EF9 AbrirAsignaturaView
+    rectangle #b5bd68 AsignaturaController
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E AsignaturaRepository
+}
+
+AsignaturasAbierto --> AbrirAsignaturaView: <font size=8>abrirAsignatura(asignaturaId)
+
+AbrirAsignaturaView --> AsignaturaController: <font size=8>cargarAsignatura(asignaturaId) : Asignatura
+
+AsignaturaController --> AsignaturaRepository: <font size=8>obtener(asignaturaId) : Asignatura
+
+AsignaturaRepository -- Asignatura
+
+AbrirAsignaturaView --> AsignaturaAbiertoSalida: <font size=8>muestra datos de la Asignatura
+
+@enduml

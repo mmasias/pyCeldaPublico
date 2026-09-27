@@ -1,0 +1,54 @@
+@startuml editarActividadesFormativasMateria-diseño
+title Diagrama de Secuencia - Editar Actividades Formativas (Materia)
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ActividadFormativaMateriaRepository" as Repo
+participant "ActividadFormativaMateria" as AFM
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita editar las actividades formativas de la Materia
+activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}/actividades-formativas
+activate API
+API -> Repo: listar_de(materia_id)
+activate Repo
+Repo -> DB: SELECT afm.*, af.codigo, af.nombre FROM actividades_formativas_materia afm\nJOIN actividades_formativas af ON af.id = afm.actividad_formativa_id\nWHERE afm.materia_id = :materia_id ORDER BY af.codigo
+activate DB
+DB --> Repo: 10 filas (codigo/nombre + horas)
+deactivate DB
+Repo --> API: lista de ActividadFormativaMateria
+deactivate Repo
+API --> Vista: 200 OK (lista de ActividadFormativaMateriaResponse)
+deactivate API
+Vista --> DirectorGrado: presenta la rejilla de 10 filas (codigo/nombre solo lectura, horas editable)
+
+DirectorGrado -> Vista: teclea las horas y guarda
+Vista -> API: PUT /api/v1/materias/{materia_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas})
+activate API
+alt algún horas < 0 o actividad_formativa_id fuera de catálogo
+    API --> Vista: 422 Unprocessable Entity (no se persiste nada)
+    Vista --> DirectorGrado: presenta mensaje de horas no válidas
+else todas las horas válidas
+    loop por cada fila del body
+        API -> AFM: actualizar(horas)
+        activate AFM
+        note right of AFM: única columna editable\n(las 10 filas ya existen, autopobladas a 0)
+        deactivate AFM
+    end
+    API -> Repo: actualizar_lote(actividades_formativas_materia)
+    activate Repo
+    Repo -> DB: UPDATE actividades_formativas_materia SET horas = ...\n(una sentencia por fila, misma transacción)
+    activate DB
+    DB --> Repo: ok
+    deactivate DB
+    Repo --> API: lista de ActividadFormativaMateria
+    deactivate Repo
+    API --> Vista: 200 OK (lista actualizada)
+    Vista --> DirectorGrado: reparto guardado
+end
+deactivate API
+deactivate Vista
+
+@enduml

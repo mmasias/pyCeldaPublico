@@ -1,0 +1,42 @@
+@startuml crearSistemaEvaluacion-diseño
+title Diagrama de Secuencia - Crear Sistema de Evaluación
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MateriaRepository" as MateriaRepo
+participant "SistemaEvaluacionRepository" as SistemaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita crear un SistemaEvaluacion de la Materia
+activate Vista
+Vista --> Admin: presenta formulario (tipo, descripción, ponderación mín/máx)
+Admin -> Vista: completa los campos y confirma
+note right of Vista: 0 <= mínima <= máxima <= 100 se valida\naquí, antes de enviar -- validación\nde forma, el backend no la exige
+Vista -> API: POST /api/v1/materias/{materia_id}/sistemas-evaluacion (SistemaEvaluacionCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- tipo, ponderacion_minima\ny ponderacion_maxima obligatorios vía\nSistemaEvaluacionCreate (Pydantic)
+API -> MateriaRepo: obtener(materia_id)
+activate MateriaRepo
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
+activate DB
+DB --> MateriaRepo: fila Materia (404 si None)
+deactivate DB
+MateriaRepo --> API: Materia
+deactivate MateriaRepo
+
+API -> SistemaRepo: crear(materia_id, tipo, descripcion, ponderacion_minima, ponderacion_maxima)
+activate SistemaRepo
+SistemaRepo -> DB: INSERT INTO sistemas_evaluacion (materia_id, ...) ...
+activate DB
+DB --> SistemaRepo: id nueva fila
+deactivate DB
+SistemaRepo --> API: SistemaEvaluacion (con id)
+deactivate SistemaRepo
+
+API --> Vista: 201 Created (SistemaEvaluacionResponse JSON)
+deactivate API
+Vista --> Admin: navega al detalle del SistemaEvaluacion creado
+deactivate Vista
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml eliminarFacultad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":FACULTADES_ABIERTO" as FacultadesAbierto
+rectangle #CDEBA5 ":FACULTADES_ABIERTO" as FacultadesAbiertoSalida
+
+package eliminarFacultad as "eliminarFacultad()" {
+    rectangle #629EF9 EliminarFacultadView
+    rectangle #b5bd68 FacultadController
+    rectangle #F2AC4E Facultad
+    rectangle #F2AC4E FacultadRepository
+}
+
+FacultadesAbierto --> EliminarFacultadView: <font size=8>eliminarFacultad(facultadId)
+
+EliminarFacultadView --> FacultadController: <font size=8>puedeEliminar(facultadId) : boolean
+
+FacultadController --> FacultadRepository: <font size=8>tieneGradosAsociados(facultadId) : boolean
+
+EliminarFacultadView --> FacultadController: <font size=8>eliminar(facultadId)
+
+FacultadController --> FacultadRepository: <font size=8>eliminar(facultadId)
+
+FacultadRepository -- Facultad
+
+EliminarFacultadView ..[#green]> FacultadesAbiertoSalida: <font size=8>lista actualizada
+EliminarFacultadView ..[#red]> FacultadesAbiertoSalida: <font size=8>bloqueada, sin cambios -- tiene Grados asociados
+EliminarFacultadView ..[#blue]> FacultadesAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml asignarProfesorAAsignaturaGrado-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_GRADO_ABIERTO" as AsignaturaGradoAbierto
+rectangle #CDEBA5 ":ASIGNATURA_GRADO_ABIERTO" as AsignaturaGradoAbiertoSalida
+
+package asignarProfesorAAsignaturaGrado as "asignarProfesorAAsignaturaGrado()" {
+    rectangle #629EF9 AsignarProfesorAAsignaturaGradoView
+    rectangle #b5bd68 AsignaturaGradoController
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+AsignaturaGradoAbierto --> AsignarProfesorAAsignaturaGradoView: <font size=8>asignarProfesorAAsignaturaGrado(asignaturaGradoId)
+
+AsignarProfesorAAsignaturaGradoView --> AsignaturaGradoController: <font size=8>cargarProfesoresDisponibles(asignaturaGradoId) : List<Profesor>
+
+AsignaturaGradoController --> ProfesorRepository: <font size=8>listarDisponiblesParaAsignaturaGrado(asignaturaGradoId) : List<Profesor>
+
+AsignarProfesorAAsignaturaGradoView --> AsignaturaGradoController: <font size=8>asignarProfesor(asignaturaGradoId, profesorId)
+
+AsignaturaGradoController --> AsignaturaGradoRepository: <font size=8>asignarProfesor(asignaturaGradoId, profesorId)
+
+AsignaturaGradoController --> GuiaRepository: <font size=8>obtenerPorAsignaturaGrado(asignaturaGradoId) : Guia
+
+AsignaturaGradoController --> Guia: <font size=8>enviarARevision() [solo si la plantilla cambio y la Guia esta Aprobada]
+
+note on link
+issue #254: no se toca Guia -- Profesor aqui. Si la Guia activa
+estaba Aprobada, pasa a EnRevision (+ fila de HistorialCambio,
+autor centinela) para que el director re-apruebe -- al aprobar,
+Guia.aprobar() re-deriva Guia -- Profesor de la plantilla
+end note
+
+ProfesorRepository -- Profesor
+AsignaturaGradoRepository -- AsignaturaGrado
+GuiaRepository -- Guia
+AsignaturaGrado -- Profesor
+Guia -- Profesor
+
+AsignarProfesorAAsignaturaGradoView --> AsignaturaGradoAbiertoSalida: <font size=8>Profesor asignado
+
+@enduml

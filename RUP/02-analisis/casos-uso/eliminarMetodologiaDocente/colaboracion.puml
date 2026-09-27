@@ -1,0 +1,32 @@
+@startuml eliminarMetodologiaDocente-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_ABIERTO" as MetodologiasDocentesAbierto
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_ABIERTO" as MetodologiasDocentesAbiertoSalida
+
+package eliminarMetodologiaDocente as "eliminarMetodologiaDocente()" {
+    rectangle #629EF9 EliminarMetodologiaDocenteView
+    rectangle #b5bd68 MetodologiaDocenteController
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E MetodologiaDocenteRepository
+}
+
+MetodologiasDocentesAbierto --> EliminarMetodologiaDocenteView: <font size=8>eliminarMetodologiaDocente(metodologiaDocenteId)
+
+EliminarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>puedeEliminar(metodologiaDocenteId) : boolean
+
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>nombresMateriasAsociadas(metodologiaDocenteId) : List<String>
+
+EliminarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>eliminar(metodologiaDocenteId)
+
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>eliminar(metodologiaDocenteId)
+
+MetodologiaDocenteRepository -- MetodologiaDocente
+
+EliminarMetodologiaDocenteView ..[#green]> MetodologiasDocentesAbiertoSalida: <font size=8>lista actualizada
+EliminarMetodologiaDocenteView ..[#red]> MetodologiasDocentesAbiertoSalida: <font size=8>bloqueada, sin cambios -- asociada a Materia
+EliminarMetodologiaDocenteView ..[#blue]> MetodologiasDocentesAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

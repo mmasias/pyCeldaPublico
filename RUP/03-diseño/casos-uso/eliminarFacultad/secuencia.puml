@@ -1,0 +1,49 @@
+@startuml eliminarFacultad-diseño
+title Diagrama de Secuencia - Eliminar Facultad
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "FacultadRepository" as FacultadRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita eliminar una Facultad del listado
+activate Vista
+Vista -> API: GET /api/v1/facultades/{facultad_id}/tiene-grados-asociados
+activate API
+note right of API: Depends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento;\naplica también al DELETE de más abajo
+API -> FacultadRepo: tiene_grados_asociados(facultad_id)
+activate FacultadRepo
+FacultadRepo -> DB: SELECT EXISTS (SELECT 1 FROM grados WHERE facultad_id = :facultad_id)
+activate DB
+DB --> FacultadRepo: boolean
+deactivate DB
+FacultadRepo --> API: boolean
+deactivate FacultadRepo
+API --> Vista: 200 OK (boolean JSON)
+deactivate API
+
+alt tiene Grados asociados
+  Vista --> Admin: presenta el bloqueo ("tiene Grados asociados"), sin diálogo de confirmación
+else sin Grados asociados -- el Admin confirma
+  Admin -> Vista: confirma
+  Vista -> API: DELETE /api/v1/facultades/{facultad_id}
+  activate API
+  API -> FacultadRepo: eliminar(facultad_id)
+  activate FacultadRepo
+  FacultadRepo -> DB: DELETE FROM facultades WHERE id = :facultad_id
+  activate DB
+  DB --> FacultadRepo: ok
+  deactivate DB
+  FacultadRepo --> API: void
+  deactivate FacultadRepo
+  API --> Vista: 204 No Content
+  deactivate API
+  Vista --> Admin: presenta la lista actualizada
+else el Admin cancela
+  Admin -> Vista: cancela
+  Vista --> Admin: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

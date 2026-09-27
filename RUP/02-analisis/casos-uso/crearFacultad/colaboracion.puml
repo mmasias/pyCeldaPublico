@@ -1,0 +1,28 @@
+@startuml crearFacultad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":FACULTADES_ABIERTO" as FacultadesAbierto
+rectangle #CDEBA5 ":Collaboration EditarFacultad" as EditarFacultad
+
+package crearFacultad as "crearFacultad()" {
+    rectangle #629EF9 CrearFacultadView
+    rectangle #b5bd68 FacultadController
+    rectangle #F2AC4E Facultad
+    rectangle #F2AC4E FacultadRepository
+}
+
+FacultadesAbierto --> CrearFacultadView: <font size=8>crearFacultad(universidadId)
+
+CrearFacultadView --> FacultadController: <font size=8>validarDatosObligatorios(nombre) : boolean
+
+CrearFacultadView --> FacultadController: <font size=8>crearFacultad(universidadId, nombre) : Facultad
+
+FacultadController --> FacultadRepository: <font size=8>crear(universidadId, nombre) : Facultad
+
+FacultadRepository -- Facultad
+
+CrearFacultadView ..> EditarFacultad:<font size=8> <<include>> editarFacultad()
+
+@enduml

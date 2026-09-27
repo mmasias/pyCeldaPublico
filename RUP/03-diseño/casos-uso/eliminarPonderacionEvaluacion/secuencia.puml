@@ -1,0 +1,21 @@
+@startuml eliminarPonderacionEvaluacion-diseño
+title Diagrama de Secuencia - Eliminar Ponderación de Evaluación (lista de trabajo)
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+
+Profesor -> Vista: solicita eliminar una PonderacionEvaluacion de su fila en el listado
+activate Vista
+Vista --> Profesor: presenta la pregunta de confirmación
+
+alt Profesor confirma
+  Profesor -> Vista: confirma
+  Vista -> Vista: quita el id de la lista de trabajo en memoria (estado local de React)
+  Vista --> Profesor: presenta la lista actualizada
+else Profesor cancela
+  Profesor -> Vista: cancela
+  Vista --> Profesor: cierra la confirmación, sin cambios
+end
+deactivate Vista
+
+@enduml

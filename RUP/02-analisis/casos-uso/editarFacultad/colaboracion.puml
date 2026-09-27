@@ -1,0 +1,34 @@
+@startuml editarFacultad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":FACULTAD_ABIERTO" as FacultadAbierto
+rectangle #CDEBA5 ":FACULTAD_ABIERTO" as FacultadAbiertoSalida
+
+package editarFacultad as "editarFacultad()" {
+    rectangle #629EF9 EditarFacultadView
+    rectangle #b5bd68 FacultadController
+    rectangle #F2AC4E Facultad
+    rectangle #F2AC4E FacultadRepository
+}
+
+FacultadAbierto --> EditarFacultadView: <font size=8>editarFacultad(facultadId)
+
+EditarFacultadView --> FacultadController: <font size=8>cargarFacultad(facultadId) : Facultad
+
+FacultadController --> FacultadRepository: <font size=8>obtener(facultadId) : Facultad
+
+EditarFacultadView --> FacultadController: <font size=8>validarDatosObligatorios(nombre) : boolean
+
+EditarFacultadView --> FacultadController: <font size=8>guardarCambios(facultadId, nombre) : boolean
+
+FacultadController --> Facultad: <font size=8>actualizar(nombre)
+
+FacultadController --> FacultadRepository: <font size=8>actualizar(facultad)
+
+FacultadRepository -- Facultad
+
+EditarFacultadView --> FacultadAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

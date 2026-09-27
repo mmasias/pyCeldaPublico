@@ -1,0 +1,21 @@
+@startuml eliminarReferenciaBibliografica-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":REFERENCIAS_BIBLIOGRAFICAS_ABIERTO" as ReferenciasBibliograficasAbierto
+rectangle #CDEBA5 ":REFERENCIAS_BIBLIOGRAFICAS_ABIERTO" as ReferenciasBibliograficasSalida
+
+package eliminarReferenciaBibliografica as "eliminarReferenciaBibliografica()" {
+    rectangle #629EF9 EliminarReferenciaBibliograficaView
+    rectangle #b5bd68 ReferenciaBibliograficaController
+}
+
+ReferenciasBibliograficasAbierto --> EliminarReferenciaBibliograficaView: <font size=8>eliminarReferenciaBibliografica(referenciaId)
+
+EliminarReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>confirmarEliminacion(referenciaId) : boolean
+
+EliminarReferenciaBibliograficaView ..[#green]> ReferenciasBibliograficasSalida: <font size=8>quitada de la lista de trabajo de la sesión
+EliminarReferenciaBibliograficaView ..[#blue]> ReferenciasBibliograficasSalida: <font size=8>cancelada, sin cambios
+
+@enduml

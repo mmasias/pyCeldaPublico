@@ -1,0 +1,31 @@
+@startuml previsualizarGuia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbiertoSalida
+
+package previsualizarGuia as "previsualizarGuia()" {
+    rectangle #629EF9 PrevisualizarGuiaView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E RenderizadorGuiaDocente
+}
+
+GuiaAbierto --> PrevisualizarGuiaView: <font size=8>previsualizarGuia(guiaId)
+
+PrevisualizarGuiaView --> GuiaController: <font size=8>previsualizarGuia(guiaId) : documento
+
+GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
+
+GuiaController --> RenderizadorGuiaDocente: <font size=8>renderizarHTML(guia, noOficial) : documento
+
+RenderizadorGuiaDocente --> Guia: <font size=8>datos de la Guia y su cascada (AsignaturaGrado, Materia, Grado, Facultad, ResultadoAprendizaje en vivo)
+
+GuiaRepository -- Guia
+
+PrevisualizarGuiaView ..[#green]> GuiaAbiertoSalida: <font size=8>presenta la Guia con el formato oficial (aviso de borrador no oficial si no esta Aprobada)
+
+@enduml

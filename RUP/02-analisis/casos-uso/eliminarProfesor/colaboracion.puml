@@ -1,0 +1,32 @@
+@startuml eliminarProfesor-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROFESORES_ABIERTO" as ProfesoresAbierto
+rectangle #CDEBA5 ":PROFESORES_ABIERTO" as ProfesoresAbiertoSalida
+
+package eliminarProfesor as "eliminarProfesor()" {
+    rectangle #629EF9 EliminarProfesorView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+}
+
+ProfesoresAbierto --> EliminarProfesorView: <font size=8>eliminarProfesor(profesorId)
+
+EliminarProfesorView --> ProfesorController: <font size=8>puedeEliminar(profesorId) : boolean
+
+ProfesorController --> ProfesorRepository: <font size=8>motivosBloqueoEliminacion(profesorId) : List<String>
+
+EliminarProfesorView --> ProfesorController: <font size=8>eliminar(profesorId)
+
+ProfesorController --> ProfesorRepository: <font size=8>eliminar(profesorId)
+
+ProfesorRepository -- Profesor
+
+EliminarProfesorView ..[#green]> ProfesoresAbiertoSalida: <font size=8>lista actualizada
+EliminarProfesorView ..[#red]> ProfesoresAbiertoSalida: <font size=8>bloqueada, sin cambios -- AsignaturaGrado asignadas, Guia impartida, o rol de DirectorGrado activo
+EliminarProfesorView ..[#blue]> ProfesoresAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

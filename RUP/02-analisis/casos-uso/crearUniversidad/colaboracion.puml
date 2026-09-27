@@ -1,0 +1,28 @@
+@startuml crearUniversidad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":UNIVERSIDADES_ABIERTO" as UniversidadesAbierto
+rectangle #CDEBA5 ":Collaboration EditarUniversidad" as EditarUniversidad
+
+package crearUniversidad as "crearUniversidad()" {
+    rectangle #629EF9 CrearUniversidadView
+    rectangle #b5bd68 UniversidadController
+    rectangle #F2AC4E Universidad
+    rectangle #F2AC4E UniversidadRepository
+}
+
+UniversidadesAbierto --> CrearUniversidadView: <font size=8>crearUniversidad()
+
+CrearUniversidadView --> UniversidadController: <font size=8>validarDatosObligatorios(nombre) : boolean
+
+CrearUniversidadView --> UniversidadController: <font size=8>crearUniversidad(nombre) : Universidad
+
+UniversidadController --> UniversidadRepository: <font size=8>crear(nombre) : Universidad
+
+UniversidadRepository -- Universidad
+
+CrearUniversidadView ..> EditarUniversidad:<font size=8> <<include>> editarUniversidad()
+
+@enduml

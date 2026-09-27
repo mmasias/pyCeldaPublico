@@ -1,0 +1,21 @@
+@startuml eliminarPonderacionEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PONDERACIONES_EVALUACION_ABIERTO" as PonderacionesEvaluacionAbierto
+rectangle #CDEBA5 ":PONDERACIONES_EVALUACION_ABIERTO" as PonderacionesEvaluacionSalida
+
+package eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()" {
+    rectangle #629EF9 EliminarPonderacionEvaluacionView
+    rectangle #b5bd68 PonderacionEvaluacionController
+}
+
+PonderacionesEvaluacionAbierto --> EliminarPonderacionEvaluacionView: <font size=8>eliminarPonderacionEvaluacion(ponderacionId)
+
+EliminarPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>confirmarEliminacion(ponderacionId) : boolean
+
+EliminarPonderacionEvaluacionView ..[#green]> PonderacionesEvaluacionSalida: <font size=8>quitada de la lista de trabajo de la sesión
+EliminarPonderacionEvaluacionView ..[#blue]> PonderacionesEvaluacionSalida: <font size=8>cancelada, sin cambios
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml abrirResultadosAprendizaje-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":RESULTADOS_APRENDIZAJE_ABIERTO" as ResultadosAprendizajeAbiertoSalida
+
+package abrirResultadosAprendizaje as "abrirResultadosAprendizaje()" {
+    rectangle #629EF9 AbrirResultadosAprendizajeView
+    rectangle #b5bd68 ResultadoAprendizajeController
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E ResultadoAprendizajeRepository
+}
+
+GradoAbierto --> AbrirResultadosAprendizajeView: <font size=8>abrirResultadosAprendizaje(gradoId)
+
+AbrirResultadosAprendizajeView --> ResultadoAprendizajeController: <font size=8>listarResultadosAprendizajeDelGrado(gradoId) : List<ResultadoAprendizaje>
+
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>listarDelGrado(gradoId) : List<ResultadoAprendizaje>
+
+ResultadoAprendizajeRepository -- ResultadoAprendizaje
+
+AbrirResultadosAprendizajeView --> ResultadosAprendizajeAbiertoSalida: <font size=8>presenta catálogo de ResultadoAprendizaje del Grado
+
+@enduml

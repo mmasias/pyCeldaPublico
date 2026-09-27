@@ -1,0 +1,40 @@
+@startuml abrirAsignaturasGrado-diseño
+title Diagrama de Secuencia - Abrir AsignaturasGrado
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+participant "GuiaRepository" as GuiaRepo
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita abrir las AsignaturaGrado del Grado
+activate Vista
+Vista -> API: GET /api/v1/grados/{grado_id}/asignaturas-grado
+activate API
+
+API -> AsignaturaGradoRepo: listar_del_grado(grado_id)
+activate AsignaturaGradoRepo
+AsignaturaGradoRepo -> DB: SELECT ag.* FROM asignaturas_grado ag\nJOIN materias m ON m.id = ag.materia_id\nWHERE m.grado_id = :grado_id\n(con profesorado asignado)
+activate DB
+DB --> AsignaturaGradoRepo: filas AsignaturaGrado (con Profesorado)
+deactivate DB
+AsignaturaGradoRepo --> API: List[AsignaturaGrado]
+deactivate AsignaturaGradoRepo
+
+API -> GuiaRepo: listar_del_grado(grado_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias ...\nWHERE grado = :grado_id AND curso_academico activo
+activate DB
+DB --> GuiaRepo: filas Guia
+deactivate DB
+GuiaRepo --> API: List[Guia]
+deactivate GuiaRepo
+
+API -> API: fusiona cada AsignaturaGrado con el estado de su Guia del CursoAcademico activo
+API --> Vista: 200 OK (List[AsignaturaGradoConEstadoGuiaResponse] JSON)
+deactivate API
+Vista --> DirectorGrado: presenta listado con profesorado y estado de cada Guia
+deactivate Vista
+
+@enduml

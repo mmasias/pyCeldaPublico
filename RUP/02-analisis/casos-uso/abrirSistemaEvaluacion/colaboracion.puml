@@ -1,0 +1,26 @@
+@startuml abrirSistemaEvaluacion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMAS_EVALUACION_ABIERTO" as SistemasEvaluacionAbierto
+rectangle #CDEBA5 ":SISTEMA_EVALUACION_ABIERTO" as SistemaEvaluacionAbiertoSalida
+
+package abrirSistemaEvaluacion as "abrirSistemaEvaluacion()" {
+    rectangle #629EF9 AbrirSistemaEvaluacionView
+    rectangle #b5bd68 SistemaEvaluacionController
+    rectangle #F2AC4E SistemaEvaluacion
+    rectangle #F2AC4E SistemaEvaluacionRepository
+}
+
+SistemasEvaluacionAbierto --> AbrirSistemaEvaluacionView: <font size=8>abrirSistemaEvaluacion(sistemaEvaluacionId)
+
+AbrirSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>cargarSistemaEvaluacion(sistemaEvaluacionId) : SistemaEvaluacion
+
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>obtener(sistemaEvaluacionId) : SistemaEvaluacion
+
+SistemaEvaluacionRepository -- SistemaEvaluacion
+
+AbrirSistemaEvaluacionView --> SistemaEvaluacionAbiertoSalida: <font size=8>muestra tipo, descripción y ponderaciones
+
+@enduml

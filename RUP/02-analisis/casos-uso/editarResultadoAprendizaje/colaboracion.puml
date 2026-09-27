@@ -1,0 +1,30 @@
+@startuml editarResultadoAprendizaje-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":RESULTADO_APRENDIZAJE_ABIERTO" as ResultadoAprendizajeAbierto
+rectangle #CDEBA5 ":RESULTADO_APRENDIZAJE_ABIERTO" as ResultadoAprendizajeAbiertoSalida
+
+package editarResultadoAprendizaje as "editarResultadoAprendizaje()" {
+    rectangle #629EF9 EditarResultadoAprendizajeView
+    rectangle #b5bd68 ResultadoAprendizajeController
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E ResultadoAprendizajeRepository
+}
+
+ResultadoAprendizajeAbierto --> EditarResultadoAprendizajeView: <font size=8>editarResultadoAprendizaje(resultadoAprendizajeId)
+
+EditarResultadoAprendizajeView --> ResultadoAprendizajeController: <font size=8>guardarCambios(resultadoAprendizajeId, codigo, tipo, descripcion) : ResultadoAprendizaje
+
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>obtener(resultadoAprendizajeId) : ResultadoAprendizaje
+
+ResultadoAprendizajeController --> ResultadoAprendizaje: <font size=8>actualizar(codigo, tipo, descripcion)
+
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>actualizar(resultadoAprendizaje) : ResultadoAprendizaje
+
+ResultadoAprendizajeRepository -- ResultadoAprendizaje
+
+EditarResultadoAprendizajeView --> ResultadoAprendizajeAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

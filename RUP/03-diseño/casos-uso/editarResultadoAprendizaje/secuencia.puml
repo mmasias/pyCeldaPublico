@@ -1,0 +1,45 @@
+@startuml editarResultadoAprendizaje-diseño
+title Diagrama de Secuencia - Editar Resultado de Aprendizaje
+
+actor "DirectorGrado" as DirectorGrado
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ResultadoAprendizajeRepository" as ResultadoRepo
+participant "ResultadoAprendizaje" as ResultadoAprendizaje
+database "Base de Datos" as DB
+
+DirectorGrado -> Vista: solicita editar el ResultadoAprendizaje (precargado)
+activate Vista
+DirectorGrado -> Vista: modifica código, tipo o descripción y guarda
+Vista -> API: PUT /api/v1/resultados-aprendizaje/{resultado_aprendizaje_id} (ResultadoAprendizajeUpdate JSON)
+activate API
+
+API -> ResultadoRepo: obtener(resultado_aprendizaje_id)
+activate ResultadoRepo
+ResultadoRepo -> DB: SELECT ... FROM resultados_aprendizaje WHERE id = :resultado_aprendizaje_id
+activate DB
+DB --> ResultadoRepo: fila ResultadoAprendizaje
+deactivate DB
+ResultadoRepo --> API: ResultadoAprendizaje
+deactivate ResultadoRepo
+
+API -> ResultadoAprendizaje: actualizar(codigo, tipo, descripcion)
+activate ResultadoAprendizaje
+note right of ResultadoAprendizaje: código editable aquí, a diferencia\nde editarMetodologiaDocente()
+deactivate ResultadoAprendizaje
+
+API -> ResultadoRepo: actualizar(resultado_aprendizaje)
+activate ResultadoRepo
+ResultadoRepo -> DB: UPDATE resultados_aprendizaje SET ...
+activate DB
+DB --> ResultadoRepo: ok
+deactivate DB
+ResultadoRepo --> API: ResultadoAprendizaje
+deactivate ResultadoRepo
+
+API --> Vista: 200 OK (ResultadoAprendizajeResponse JSON)
+deactivate API
+Vista --> DirectorGrado: datos actualizados
+deactivate Vista
+
+@enduml

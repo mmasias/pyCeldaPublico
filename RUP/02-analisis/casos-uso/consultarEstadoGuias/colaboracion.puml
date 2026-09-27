@@ -1,0 +1,29 @@
+@startuml consultarEstadoGuias-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":GUIAS_DEL_GRADO_ABIERTO" as GuiasDelGradoSalida
+
+package consultarEstadoGuias as "consultarEstadoGuias()" {
+    rectangle #629EF9 ConsultarEstadoGuiasView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+GradoAbierto --> ConsultarEstadoGuiasView: <font size=8>consultarEstadoGuias(gradoId) [DirectorGrado o Admin]
+
+ConsultarEstadoGuiasView --> GuiaController: <font size=8>listarGuiasDelGrado(gradoId) : List<Guia>
+
+GuiaController --> GuiaRepository: <font size=8>listarDelGrado(gradoId) : List<Guia>
+note right: gate previo: admin o dirige el grado (404 uniforme)
+
+GuiaController --> Guia: <font size=8>tienePdfGenerado() : boolean [por fila, para la variante Admin]
+
+GuiaRepository -- Guia
+
+ConsultarEstadoGuiasView --> GuiasDelGradoSalida: <font size=8>presenta listado (fila DirectorGrado: [Abrir]; fila Admin: [Previsualizar] + [Descargar PDF])
+
+@enduml

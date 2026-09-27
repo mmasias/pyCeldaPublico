@@ -1,0 +1,52 @@
+@startuml importarPlanificacionDocenteDeGuiaHermana-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteAbierto
+rectangle #CDEBA5 ":Collaboration AbrirPlanificacionDocente" as AbrirPlanificacionDocente
+
+package importarPlanificacionDocenteDeGuiaHermana as "importarPlanificacionDocenteDeGuiaHermana()" {
+    rectangle #629EF9 ImportarPlanificacionDocenteDeGuiaHermanaView
+    rectangle #b5bd68 ImportarPlanificacionDocenteDeGuiaHermanaController
+    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E SesionRepository
+    rectangle #F2AC4E HistorialCambio
+}
+
+PlanificacionDocenteAbierto --> ImportarPlanificacionDocenteDeGuiaHermanaView: <font size=8>importarPlanificacionDocenteDeGuiaHermana(guiaDestinoId)
+
+ImportarPlanificacionDocenteDeGuiaHermanaView --> ImportarPlanificacionDocenteDeGuiaHermanaController: <font size=8>listarOrigenesImportables(guiaDestinoId) : lista de Guia
+
+ImportarPlanificacionDocenteDeGuiaHermanaView --> ImportarPlanificacionDocenteDeGuiaHermanaController: <font size=8>importarPlanificacionDocente(guiaDestinoId, guiaOrigenId) : Guia
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaDestinoId) : Guia
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> AsignaturaGradoRepository: <font size=8>listarHermanas(asignaturaGradoId) : lista de AsignaturaGrado
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>listarAprobadasDe(hermanas) : lista de Guia
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaOrigenId) : Guia [revalidacion server-side del origen]
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> ImportarPlanificacionDocenteDeGuiaHermanaController: <font size=8>validarHermandad(guiaDestino, guiaOrigen) : boolean
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> SesionRepository: <font size=8>reemplazarDesde(guiaDestinoId, sesionesOrigen) [borra todas; copia tipo, descripcion y vinculada; renumera 1..N]
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> Guia: <font size=8>confirmarGuardado() [Aprobada -> Borrador]
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> HistorialCambio: <font size=8>registrar(campo="planificacion_docente", ...) [origen en comentario]
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>actualizar(guia)
+
+AsignaturaGradoRepository -- AsignaturaGrado
+GuiaRepository -- Guia
+SesionRepository -- Sesion
+Guia *-- HistorialCambio
+
+ImportarPlanificacionDocenteDeGuiaHermanaView ..> AbrirPlanificacionDocente:<font size=8> <<include>> abrirPlanificacionDocente()
+
+@enduml
