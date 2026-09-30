@@ -1,5 +1,11 @@
 # pyCelda
 
+<div align=right>
+
+***[#2think...](docs/2Think/2Think.md)***
+
+</div>
+
 **pyCelda** (**C**ompendio **EL**ectrónico **D**e **A**signaturas): gestión de guías docentes.
 
 ## Manual de usuario
