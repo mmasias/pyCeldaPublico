@@ -31,10 +31,10 @@ Igual que con los instrumentos de evaluación: pulsar **Abrir** y luego **Editar
 
 ## Importar de una asignatura hermana
 
-Si la asignatura se imparte también en otro grado y esa otra guía ya está aprobada, la bibliografía puede copiarse directamente en lugar de escribirla de cero.
+Si la asignatura se imparte también en otro programa y esa otra guía ya está aprobada, la bibliografía puede copiarse directamente en lugar de escribirla de cero.
 
 1. Pulsar **Importar de asignatura hermana** (solo aparece si hay alguna guía de la que importar).
-2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el grado, el código de la asignatura, la fecha en que se aprobó y cuántas referencias tiene.
+2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, la fecha en que se aprobó y cuántas referencias tiene.
 3. Aparece un aviso: la importación reemplaza por completo la bibliografía actual de la guía, incluida cualquier referencia añadida a mano. Si la guía de origen no tiene ninguna referencia, el aviso lo indica explícitamente.
 4. Pulsar **Importar bibliografía** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
 

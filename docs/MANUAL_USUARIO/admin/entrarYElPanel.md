@@ -8,7 +8,7 @@
 
 ## Entrar
 
-El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de grado. Pulsar **Iniciar sesión con Google** y autenticarse con una cuenta con permisos de Admin.
+El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de programa. Pulsar **Iniciar sesión con Google** y autenticarse con una cuenta con permisos de Admin.
 
 ## El panel de administración
 
@@ -20,7 +20,7 @@ Tras entrar aparece el panel de administración, con un botón por cada bloque d
 - **Profesores**
 - **Copias de seguridad**
 
-Cada uno lleva al capítulo correspondiente de este manual. Los grados y sus materias no tienen botón propio en el panel: se llega a ellos entrando primero en una universidad y su facultad (capítulo [Estructura académica](estructuraAcademica.md)).
+Cada uno lleva al capítulo correspondiente de este manual. Los programas y sus materias no tienen botón propio en el panel: se llega a ellos entrando primero en una universidad y su facultad (capítulo [Estructura académica](estructuraAcademica.md)).
 
 Dos botones más, **Cursos académicos** y **Generar guías PDF**, aparecen desactivados: no están disponibles en esta versión.
 

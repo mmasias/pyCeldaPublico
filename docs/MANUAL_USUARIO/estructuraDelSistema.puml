@@ -14,7 +14,7 @@ legend {
 
 legend top
     **Responsable de cada bloque**
-    |<#A9CCE3>     | Admin |<#A9DFBF>     | Director de grado |<#F9E79F>     | Profesor |<#D2B4DE>     | Mixto -- Admin crea, Director gestiona el contenido |<#F5CBA7>     | Compartida -- redacta Profesor, decide Director, supervisa Admin |<#D5D8DC>     | Sin gestión -- catálogo fijo |
+    |<#A9CCE3>     | Admin |<#A9DFBF>     | Director de programa |<#F9E79F>     | Profesor |<#D2B4DE>     | Mixto -- Admin crea, Director gestiona el contenido |<#F5CBA7>     | Compartida -- redacta Profesor, decide Director, supervisa Admin |<#D5D8DC>     | Sin gestión -- catálogo fijo |
     --
     Borde discontinuo = especificado en el catálogo de requisitos, todavía sin construir en la aplicación.
 end legend
@@ -22,18 +22,18 @@ end legend
 ' Categoría 1 -- contención estricta: nace y muere con su padre.
 class "Universidad" as Universidad #A9CCE3;line:gray;line.dashed
 class "Facultad" as Facultad #A9CCE3;line:gray;line.dashed
-class "Grado" as Grado #A9CCE3
+class "Programa" as Programa #A9CCE3
 class "Materia" as Materia #D2B4DE
 class "Sistema de evaluación" as SistemaEvaluacion #A9CCE3
-class "Asignatura de grado" as AsignaturaGrado #D2B4DE
+class "Asignatura de programa" as AsignaturaPrograma #D2B4DE
 class "Guía docente" as Guia #F5CBA7
 
 Universidad --> Facultad
-Facultad --> Grado
-Grado --> Materia
+Facultad --> Programa
+Programa --> Materia
 Materia --> SistemaEvaluacion
-Materia --> AsignaturaGrado
-AsignaturaGrado --> Guia
+Materia --> AsignaturaPrograma
+AsignaturaPrograma --> Guia
 
 ' Categoría 2 -- catálogos asignados en cascada: existen con independencia de
 ' dónde se usan: la misma entrada puede asignarse en varios sitios.
@@ -42,12 +42,12 @@ class "Metodología docente" as MetodologiaDocente #A9CCE3
 class "Resultado de aprendizaje" as ResultadoAprendizaje #A9DFBF
 class "Actividad formativa" as ActividadFormativa #D5D8DC
 
-Asignatura ..> AsignaturaGrado
+Asignatura ..> AsignaturaPrograma
 MetodologiaDocente ..> Materia
-MetodologiaDocente ..> AsignaturaGrado
+MetodologiaDocente ..> AsignaturaPrograma
 ResultadoAprendizaje ..> Materia
-ResultadoAprendizaje ..> AsignaturaGrado
+ResultadoAprendizaje ..> AsignaturaPrograma
 ActividadFormativa ..> Materia
-ActividadFormativa ..> AsignaturaGrado
+ActividadFormativa ..> AsignaturaPrograma
 
 @enduml

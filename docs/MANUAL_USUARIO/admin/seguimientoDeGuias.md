@@ -8,11 +8,11 @@
 
 ## Qué es
 
-El estado de las guías docentes de un grado, desde el punto de vista de Admin: consulta, previsualización y descarga del PDF ya generado. Aprobar, rechazar o revocar una guía es tarea del director de grado, no de Admin.
+El estado de las guías docentes de un programa, desde el punto de vista de Admin: consulta, previsualización y descarga del PDF ya generado. Aprobar, rechazar o revocar una guía es tarea del director de programa, no de Admin.
 
 ## Cómo llegar
 
-Pulsar **Estado del curso actual** en el detalle de un grado.
+Pulsar **Estado del curso actual** en el detalle de un programa.
 
 ## Qué muestra
 

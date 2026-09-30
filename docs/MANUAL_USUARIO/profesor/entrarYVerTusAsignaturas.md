@@ -21,7 +21,9 @@ En **Inicio** aparece la sección **Mis guías**: una tabla con una fila por cad
 Columnas de la tabla:
 
 - **Asignatura**.
-- **Grado** (si la misma asignatura se imparte en varios grados, aparece una fila por grado).
+- **Código**: el código de la asignatura.
+- **Programa** (si la misma asignatura se imparte en varios programas, aparece una fila por programa).
+- **Curso**: el curso en números romanos y el semestre por defecto combinados (p. ej. **II-s1**). La tabla se ordena por semestre, luego curso y nombre.
 - **Carácter**: Básica, Obligatoria, Optativa, etc.
 - **Estado guía**: el estado actual de la guía docente de esa asignatura -- Borrador, En revisión, Aprobada o Rechazada. Debajo de la tabla hay una leyenda de colores para distinguirlos de un vistazo. El significado de cada estado se explica en el capítulo [Redactar la guía](redactarLaGuia.md).
 - Última columna, sin título: el botón **Abrir guía**, que lleva a la guía correspondiente. Si el botón no aparece en una fila, es que esa asignatura todavía no tiene una guía creada -- corresponde avisar a Admin.

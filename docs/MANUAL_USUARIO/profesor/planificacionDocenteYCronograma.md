@@ -53,14 +53,41 @@ Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de 
 
 ## Importar de una asignatura hermana
 
-Igual que con la bibliografía: si la asignatura se imparte también en otro grado y esa guía ya está aprobada, la planificación docente completa puede copiarse directamente.
+Igual que con la bibliografía: si la asignatura se imparte también en otro programa y esa guía ya está aprobada, la planificación docente completa puede copiarse directamente.
 
 1. Pulsar **Importar de asignatura hermana** (solo aparece si hay alguna guía de la que importar).
-2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el grado, el código de la asignatura, la fecha en que se aprobó y cuántas sesiones tiene.
+2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, la fecha en que se aprobó y cuántas sesiones tiene.
 3. Aparece un aviso: la importación reemplaza por completo la planificación actual de la guía, incluida cualquier sesión añadida a mano, y las sesiones importadas se renumeran de 1 en adelante. Si la guía de origen no tiene ninguna sesión, el aviso lo indica explícitamente.
 4. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
 
 Como con la bibliografía, importar sustituye la planificación de inmediato -- no hace falta guardar el borrador después.
+
+## Importar desde texto
+
+Alternativa a la importación de una asignatura hermana cuando la planificación ya existe como texto (un documento, un correo): se pega y pyCelda crea las sesiones.
+
+1. Pulsar **Importar desde texto**.
+2. Pegar en el cuadro de texto una sesión por línea, con el formato `CODIGO - Descripción`. El separador es el primer ` - ` (espacio, guion, espacio) de la línea; los ` - ` posteriores forman parte de la descripción.
+3. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
+
+El código (mayúsculas o minúsculas, da igual) fija el tipo de la sesión:
+
+| Código | Tipo de sesión |
+|---|---|
+| `CT` | Clase teórica |
+| `CP` | Clase práctica |
+| `CTP` | Clase teórico-práctica |
+| `CL` | Clase laboratorio |
+| `EC` | Evaluación continua |
+| `EP` | Evaluación parcial |
+
+Reglas de lectura del texto -- no se rechaza ninguna línea:
+
+- Las líneas vacías se ignoran.
+- Una línea cuyo código no se reconoce se importa como clase teórica, con la línea completa como descripción.
+- Una línea con un código reconocido pero sin contenido (`CTP -`, `CTP-` o `CTP` sola) se importa con ese tipo y la descripción vacía.
+
+La pantalla avisa de que la importación reemplaza por completo la planificación actual de la guía, incluida cualquier sesión añadida a mano, e indica cuántas sesiones se sustituyen; las sesiones importadas se renumeran de 1 en adelante. Si el texto está vacío, la planificación queda vacía y la pantalla lo advierte. Como en la importación de una hermana, el cambio es inmediato -- no hace falta guardar el borrador después -- y el mínimo de sesiones exigido para la asignatura no se modifica. Si la guía estaba **Aprobada**, pasa a **Borrador**.
 
 ## Volver
 

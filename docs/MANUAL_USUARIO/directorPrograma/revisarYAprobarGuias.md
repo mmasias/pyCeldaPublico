@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Manual de Director de Grado](README.md)</sub>
+<sub>[Manual de Director de Programa](README.md)</sub>
 
 </div>
 
@@ -8,11 +8,11 @@
 
 ## Qué es
 
-El ciclo de decisión sobre las guías docentes que redacta el profesorado del grado: aprobar, rechazar, escalar directamente a aprobada, revocar una aprobación ya concedida, ajustar el semestre y avisar a Admin de que hay guías actualizadas. La redacción del contenido, la evaluación, la bibliografía y la planificación docente es tarea del profesorado -- se explica en el [manual de Profesor](../profesor/README.md), no aquí.
+El ciclo de decisión sobre las guías docentes que redacta el profesorado del programa: aprobar, rechazar, escalar directamente a aprobada, revocar una aprobación ya concedida, ajustar el semestre y avisar a Admin de que hay guías actualizadas. La redacción del contenido, la evaluación, la bibliografía y la planificación docente es tarea del profesorado -- se explica en el [manual de Profesor](../profesor/README.md), no aquí.
 
 ## Cómo llegar
 
-Desde la barra de navegación del grado, pulsar **Guías**.
+Desde la barra de navegación del programa, pulsar **Guías**.
 
 ## Qué muestra
 

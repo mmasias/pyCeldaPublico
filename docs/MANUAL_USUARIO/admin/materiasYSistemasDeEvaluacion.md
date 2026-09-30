@@ -8,15 +8,15 @@
 
 ## Qué es
 
-Cada materia agrupa una o más asignaturas de un grado. Desde Admin se crea la materia y se gestionan sus sistemas de evaluación; el resto de su contenido (metodologías docentes, resultados de aprendizaje, actividades formativas) lo gestiona el director de grado y aquí se muestra solo como consulta.
+Cada materia agrupa una o más asignaturas de un programa. Desde Admin se crea la materia y se gestionan sus sistemas de evaluación; el resto de su contenido (metodologías docentes, resultados de aprendizaje, actividades formativas) lo gestiona el director de programa y aquí se muestra solo como consulta.
 
 ## Cómo llegar
 
-Pulsar **Ver Materias** en el detalle de un grado.
+Pulsar **Ver Materias** en el detalle de un programa.
 
 ## Qué muestra
 
-Una tabla con el **Nombre** de cada materia y el botón **Abrir**. El botón **Eliminar** aparece desactivado: no está disponible en esta versión.
+Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que tiene y el botón **Abrir**. El botón **Eliminar** aparece desactivado: no está disponible en esta versión.
 
 ### Crear una materia
 
@@ -28,7 +28,7 @@ Tras crearla, la pantalla pasa directamente a editarla.
 
 ## Detalle de una materia
 
-Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso, Carácter, con acceso a cada una -- capítulo [Asignaturas de grado y profesorado](asignaturasDeGradoYProfesorado.md)), sus **Resultados de aprendizaje** y sus **Metodologías docentes** asociadas (ambas de solo consulta: las gestiona el director de grado), sus **Sistemas de evaluación** y las **Actividades formativas de la materia** (también de solo consulta). Pulsar **Editar** cambia únicamente el **Nombre** de la materia.
+Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Resultados de aprendizaje** y sus **Metodologías docentes** asociadas (ambas de solo consulta: las gestiona el director de programa), sus **Sistemas de evaluación** y las **Actividades formativas de la materia** (también de solo consulta). Pulsar **Editar** cambia únicamente el **Nombre** de la materia.
 
 ## Sistemas de evaluación
 
@@ -56,7 +56,7 @@ Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el sistema est
 
 <div align=center>
 
-| [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) | [Índice](README.md) | [Asignaturas de grado y profesorado](asignaturasDeGradoYProfesorado.md) |
+| [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) | [Índice](README.md) | [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md) |
 |---|:-:|---|
 
 </div>

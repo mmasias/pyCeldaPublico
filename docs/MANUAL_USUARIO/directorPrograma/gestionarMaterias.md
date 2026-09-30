@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Manual de Director de Grado](README.md)</sub>
+<sub>[Manual de Director de Programa](README.md)</sub>
 
 </div>
 
@@ -8,11 +8,11 @@
 
 ## Qué es
 
-Cada materia agrupa una o más asignaturas del grado. Sobre una materia se asocian o desasocian sus metodologías docentes y sus resultados de aprendizaje, y se reparte su carga de actividades formativas.
+Cada materia agrupa una o más asignaturas del programa. Sobre una materia se asocian o desasocian sus metodologías docentes y sus resultados de aprendizaje, y se reparte su carga de actividades formativas.
 
 ## Cómo llegar
 
-Desde la barra de navegación del grado, pulsar **Materias**.
+Desde la barra de navegación del programa, pulsar **Materias**.
 
 ## Qué muestra
 
@@ -20,7 +20,7 @@ Una tabla con **Nombre** y el botón **Abrir** de cada materia. Los botones **El
 
 ## Detalle de una materia
 
-Al abrir una materia aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con acceso a cada una -- ver el capítulo [Gestionar asignaturas de grado](gestionarAsignaturasDeGrado.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, los **Sistemas de evaluación** (catálogo de solo lectura) y las **Actividades formativas de la materia**. El botón **Editar** de la cabecera está desactivado -- los datos propios de la materia (nombre) no son editables todavía; lo que sí se gestiona desde aquí son las cuatro secciones siguientes.
+Al abrir una materia aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con acceso a cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, los **Sistemas de evaluación** (catálogo de solo lectura) y las **Actividades formativas de la materia**. El botón **Editar** de la cabecera está desactivado -- los datos propios de la materia (nombre) no son editables todavía; lo que sí se gestiona desde aquí son las cuatro secciones siguientes.
 
 ## Metodologías docentes
 
@@ -56,7 +56,7 @@ Si las horas de la materia no coinciden con la suma de las horas de sus asignatu
 
 <div align=center>
 
-| [Entrar y ver los grados](entrarYVerLosGrados.md) | [Índice](README.md) | [Gestionar asignaturas de grado](gestionarAsignaturasDeGrado.md) |
+| [Entrar y ver los programas](entrarYVerLosProgramas.md) | [Índice](README.md) | [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md) |
 |---|:-:|---|
 
 </div>

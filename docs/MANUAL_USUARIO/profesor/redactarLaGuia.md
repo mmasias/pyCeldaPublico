@@ -34,7 +34,7 @@ Si el texto del temario supera los 10.000 caracteres, al guardar aparece el erro
 ## Los cuatro estados de la guía
 
 - **Borrador**: la guía está en preparación. El contenido, la evaluación, la bibliografía y la planificación docente son editables libremente.
-- **En revisión**: la guía se ha enviado y está pendiente de que el director de grado la revise. Sigue siendo editable mientras tanto.
+- **En revisión**: la guía se ha enviado y está pendiente de que el director de programa la revise. Sigue siendo editable mientras tanto.
 - **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se pulsa **Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar.
 - **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva, justo debajo del estado, tanto en el listado de asignaturas como al abrir la guía. Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
@@ -44,7 +44,7 @@ Si el director revoca una aprobación ya concedida, la guía vuelve a **Borrador
 
 ## Qué no es editable aquí
 
-El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona el director de grado -- no el profesorado. Se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.
+El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona el director de programa -- no el profesorado. Se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.
 
 ---
 
