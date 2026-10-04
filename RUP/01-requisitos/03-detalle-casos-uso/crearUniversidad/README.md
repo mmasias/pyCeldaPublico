@@ -38,6 +38,12 @@
 
 </div>
 
+## Notas de diseño y trazabilidad
+
+- El botón "Crear Universidad" está activo en el listado de Universidades (issue [#625](https://github.com/mmasias/pyCelda/issues/625), activado en [#626](https://github.com/mmasias/pyCelda/issues/626)).
+- La salida `<<include>> editarUniversidad()` no se materializa: tras crear se navega al detalle de la Universidad, donde "Editar" sigue deshabilitado.
+- El formulario de la pantalla incluye también un botón "Cancelar" que vuelve al listado. No se dibuja en el wireframe ni se narra en la especificación, misma convención que [`crearPrograma()`](../crearPrograma/README.md) y [`crearMateria()`](../crearMateria/README.md).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `UNIVERSIDADES_ABIERTO --> UNIVERSIDAD_ABIERTO : crearUniversidad()`

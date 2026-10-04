@@ -12,9 +12,17 @@ end note
 
 state abrirActividadesFormativas as "abrirActividadesFormativas()" {
 
-    [*] -[#green]-> [*]
+    state " " as ListandoCatalogo
+
+    [*] -[#green]-> ListandoCatalogo
     note on link
-    <b>Sistema</b> presenta listado de ActividadFormativa
+    <b>Sistema</b> presenta selector de Universidad
+    <b>Sistema</b> presenta listado de ActividadFormativa de la Universidad seleccionada
+    end note
+
+    ListandoCatalogo -[#green]-> [*]
+    note on link
+    <b>Admin</b> elige Universidad
     end note
 }
 

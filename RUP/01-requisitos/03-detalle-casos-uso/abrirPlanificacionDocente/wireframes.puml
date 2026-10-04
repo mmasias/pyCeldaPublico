@@ -12,7 +12,6 @@
         4 | CLASE_TEORICO_PRACTICA <&caret-right> amarillo | Temas ddd | [Editar] | [Eliminar]
         5 | EVALUACION_CONTINUA <&caret-right> sin fondo | Temas aaa bbb ccc | [Editar] | [Eliminar]
     }
-    <i>El fondo de cada fila deriva de Sesion.tipo (leyenda del SigHor original); PlantUML/salt no pinta fondos de celda, se anota el color aquí.</i>
     ~~
     <color:red><b>Planificación docente: 5 sesiones (mínimo 25) (faltan 20)</b></color>
     ====

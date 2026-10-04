@@ -39,7 +39,7 @@ else existe
         loop por cada AsignaturaPrograma
             CursoAcademicoRepo -> DB: SELECT Guia del curso que queda desactivado, si existe
             alt hay Guia anterior
-                CursoAcademicoRepo -> DB: INSERT guias (clona semestre/contenido/sesiones_minimas)
+                CursoAcademicoRepo -> DB: INSERT guias (clona semestre/contenido/texto_sistema_evaluacion/sesiones_minimas)
                 CursoAcademicoRepo -> DB: INSERT ponderaciones_evaluacion (copias de la anterior)
                 CursoAcademicoRepo -> DB: INSERT referencias_bibliograficas (copias de la anterior)
             else sin Guia anterior

@@ -71,6 +71,12 @@ Cierre de diseño en la [discussion #274](https://github.com/mmasias/pyCelda/dis
 
 - "Manual del profesor" (issue [#321](https://github.com/mmasias/pyCelda/issues/321)) y "Manual del director de programa" (issue [#333](https://github.com/mmasias/pyCelda/issues/333)) son enlaces reales a una página externa (el manual de usuario publicado, fuera de la aplicación) y se abren en una pestaña nueva. Salt no distingue un enlace de texto plano; en la pantalla real son hipervínculos subrayados.
 
+- Modelado: primitiva de navegación; no cuenta en el catálogo de 102 casos de uso (misma categoría que `iniciarSesion()`/`cerrarSesion()`/`abrirPanelAdministracion()`). Compone dos listados ya catalogados sin lógica de dominio propia -- `abrirAsignaturasPrograma()` (variante Profesor, "Mis guías") y `abrirProgramas()` (variante DirectorPrograma, "Mis programas") -- vía `<<include>>` (ver `actoresCasosUso{Profesor,DirectorPrograma}.puml`). Sin `<<choice>>` y sin postcondición sobre ninguna entidad nueva.
+
+- Extendido por `iniciarSesion()` (`<<extend>>`, condición: rol in {Profesor, DirectorPrograma}, punto: tras validación exitosa). Sustituye las dos ramas `<<extend>>` por rol que `iniciarSesion()` tenía hacia `abrirAsignaturasPrograma()` y `abrirProgramas()` (discussion [#274](https://github.com/mmasias/pyCelda/discussions/274)); la rama de Admin (`abrirPanelAdministracion()`) no cambia.
+
+- Una capacidad ausente se presenta como sección vacía, nunca como error: un Profesor que no dirige ningún Programa ve "Mis programas" vacío; un ex-director que ya no dirige nada entra igual (rol resuelto como Profesor, ver `iniciarSesion/README.md`). Nunca se expulsa a una cuenta autenticada y conocida.
+
 ## Referencias
 
 - [Especificación de Requisitos](especificacion.puml) y [wireframes](wireframes.puml) -- fuente de verdad de la composición de dos secciones.

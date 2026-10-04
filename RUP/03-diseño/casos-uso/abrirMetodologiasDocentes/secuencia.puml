@@ -9,10 +9,10 @@ database "Base de Datos" as DB
 
 Admin -> Vista: solicita abrir Metodologías Docentes
 activate Vista
-Vista -> API: GET /api/v1/metodologias-docentes
+Vista -> API: GET /api/v1/universidades/{universidad_id}/metodologias-docentes
 activate API
 note right of API: listado completo, sin filtro por quien llama\n(ninguna MetodologiaDocente es "propia" del Admin).\nDepends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> MetodologiaRepo: listar()
+API -> MetodologiaRepo: listar_de_la_universidad(universidad_id)
 activate MetodologiaRepo
 MetodologiaRepo -> DB: SELECT * FROM metodologias_docentes
 activate DB

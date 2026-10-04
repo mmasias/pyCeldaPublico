@@ -1,7 +1,7 @@
 @startuml guardarBorradorGuia-diseño
 title Diagrama de Secuencia - Guardar Borrador de Guía
 
-actor "Profesor" as Profesor
+actor "Profesor\n(o DirectorPrograma)" as Profesor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
@@ -24,6 +24,12 @@ DB --> GuiaRepo: fila Guia (con vinculadas)
 deactivate DB
 GuiaRepo --> API: Guia
 deactivate GuiaRepo
+
+opt escribe el DirectorPrograma (corrección excepcional)
+  note right of API: autorizar_escritura_guia() reconoce al DirectorPrograma que dirige el Programa\nde la Guia (404 si no lo dirige; si el Profesor imparte la asignatura, gana la rama Profesor)
+  API -> API: aplicar_transicion_por_correccion_del_director(guia)\nAprobada -> Borrador / EnRevision -> Rechazada
+  API -> DB: INSERT INTO historial_cambios (campo = "estado", autor = Director,\ncomentario = "corrección directa del Director") -- solo si hubo transición
+end
 
 API -> Guia: sincronizar_ponderaciones(ids_ponderaciones_final)
 activate Guia
@@ -70,7 +76,7 @@ alt datos.contenido no es None
   Guia --> API: valor_anterior (o None si no cambió)
   deactivate Guia
   opt el texto cambió
-    API -> DB: INSERT historial_cambios (campo="contenido", autor=profesor_id, ...)
+    API -> DB: INSERT historial_cambios (campo="contenido", autor=quien escribe, ...)
   end
 end
 

@@ -1,0 +1,68 @@
+@startuml restaurarCopiaSeguridad
+
+skinparam linetype polyline
+
+state COPIAS_SEGURIDAD_ABIERTO
+state COPIAS_SEGURIDAD_ABIERTO_SALIDA as "COPIAS_SEGURIDAD_ABIERTO"
+
+COPIAS_SEGURIDAD_ABIERTO -[#green]-> restaurarCopiaSeguridad
+note on link
+<b>Admin</b> solicita restaurar una copia de seguridad
+end note
+
+state restaurarCopiaSeguridad as "restaurarCopiaSeguridad()" {
+
+    state " " as SolicitandoConfirmacion
+    state c <<choice>>
+
+    [*] -[#green]-> SolicitandoConfirmacion
+    note on link
+    <b>Sistema</b> presenta solicitud de confirmación con el nombre de la copia elegida
+    <b>Sistema</b> advierte que la base de datos actual se sobrescribe y que es irreversible
+    <b>Sistema</b> exige escribir el nombre exacto del archivo para permitir confirmar
+    end note
+
+    SolicitandoConfirmacion -[#green]-> c
+    note on link
+    <b>Admin</b> escribe el nombre exacto del archivo
+    <b>Admin</b> confirma la restauración
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [la copia figura en el listado, existe en el volumen, se puede abrir y su comprobación de integridad es correcta, y su versión de esquema coincide con la de la base de datos actual]
+    <b>Sistema</b> guarda una copia de seguridad previa de la base de datos actual
+    <b>Sistema</b> presenta mensaje: restauración en curso, recargar en 30 segundos
+    <b>Sistema</b> sobrescribe la base de datos con la copia elegida y se reinicia
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [la copia no figura en el listado o no existe en el volumen]
+    <b>Sistema</b> presenta mensaje de rechazo: copia de seguridad no encontrada
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [la copia no se puede abrir o no pasa la comprobación de integridad]
+    <b>Sistema</b> presenta mensaje de rechazo: la copia está dañada y no se puede restaurar
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [la versión de esquema de la copia no coincide con la de la base de datos actual, o la copia no tiene versión de esquema]
+    <b>Sistema</b> presenta mensaje de rechazo: esquema incompatible, con la versión de la copia y la actual
+    end note
+}
+
+restaurarCopiaSeguridad -[#green]-> COPIAS_SEGURIDAD_ABIERTO_SALIDA
+note on link
+el sistema se reinicia con la base de datos restaurada; al recargar, el Admin vuelve a la pantalla de copias de seguridad
+end note
+
+restaurarCopiaSeguridad -[#red]-> COPIAS_SEGURIDAD_ABIERTO_SALIDA
+note on link
+copia no encontrada, dañada o con esquema incompatible, no se restaura nada
+end note
+
+@enduml

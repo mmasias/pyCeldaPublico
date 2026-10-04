@@ -42,6 +42,7 @@ Bajada a diseño del caso de análisis [`asociarMetodologiaDocenteAAsignaturaPro
 ## Decisiones de diseño
 
 - **La regla de consistencia (subconjunto de la `Materia`) vive en la consulta de disponibles**, donde Análisis la puso (`MetodologiaDocenteRepository.listarDisponiblesParaAsignaturaPrograma()`): un solo `SELECT` con tres joins resuelve "asociadas a la `Materia` Y no asociadas aún a esta `AsignaturaPrograma`". El `POST` no revalida: el selector solo ofrece opciones válidas y no hay invariante de estado que proteger (la desasociación del nivel inferior es libre).
+- **Filtro por `Universidad` en disponibles y 409 en el `POST`** (issue [#655](https://github.com/mmasias/pyCelda/issues/655)): además de la regla de subconjunto de la `Materia`, `disponibles` se limita a la `Universidad` de la `AsignaturaPrograma`. A diferencia de lo anterior, el `POST` **sí** revalida la `Universidad` con `exigir_metodologia_de_la_universidad()` (409 `La MetodologiaDocente pertenece a otra Universidad -- no se puede asociar`), tanto en el endpoint del Director como en el espejo de `Admin`; la pertenencia a la `Materia` sigue sin revalidarse.
 - **`AsignaturaProgramaRepository` persiste su tabla intermedia** (`asignaturas_programa_metodologias_docentes`), igual que `MateriaRepository` persistía la suya en el par de `ResultadoAprendizaje` -- sin clase de asociación no hay repositorio propio de la tabla.
 - **204 No Content**: agregación simple, sin entidad nueva que devolver.
 

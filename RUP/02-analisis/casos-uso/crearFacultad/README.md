@@ -65,6 +65,10 @@ Traducción a clases de análisis del caso de uso [`crearFacultad()`](/RUP/01-re
 - **Entrada:** `FacultadController`.
 - **Salida:** gestiona `Facultad`.
 
+## Nota de implementación
+
+El botón de entrada vive en la pantalla `Universidad` (Universidad más lista de sus Facultades), no en `FACULTADES_ABIERTO` como sitúa el diagrama de contexto. El `<<include>> editarFacultad()` de salida no se materializa: tras crear se abre el detalle de la Facultad, con "Editar" deshabilitado.
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearFacultad/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/crearFacultad/wireframes.puml) -- fuente de verdad del formulario, salida única sin rama de rechazo.

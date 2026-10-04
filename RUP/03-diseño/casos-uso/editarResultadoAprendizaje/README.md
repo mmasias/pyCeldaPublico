@@ -43,6 +43,7 @@ Bajada a diseño del caso de análisis [`editarResultadoAprendizaje()`](/RUP/02-
 
 - **Sin rama de fallo**: Análisis cierra el caso sin `<<choice>>` ni validación de negocio -- los tres campos son obligatorios de forma (Pydantic, `ResultadoAprendizajeUpdate`) y no hay invariante de estado que proteger; el `PUT` es un camino único.
 - **Sin pantalla previa de carga propia**: el formulario llega precargado desde el estado del listado o del `<<include>>` -- el `GET` de carga es el de `abrirResultadoAprendizaje()`, no se duplica endpoint.
+- **Autorización: Director del Programa o Admin**: el endpoint es el mismo para ambos actores (sin espejo `/api/v1/admin/...`). El router resuelve la identidad con `get_current_director_programa_id_opcional` y `get_current_admin_email_opcional` y autoriza con `_verificar_resultado_del_director` (que delega en `_verificar_programa_del_director_o_admin`): con sesión Admin no exige dirigir el `Programa`; sin Admin, un `Programa` que no se dirige (o inexistente) responde 404 uniforme, sin distinguir "no existe" de "no es tuyo" (en los endpoints por resultado, el 404 es el de `ResultadoAprendizaje no encontrado`). La Vista de Admin es una pantalla propia (`*Admin.tsx`) sobre la misma llamada.
 
 ## Referencias
 

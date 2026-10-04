@@ -36,7 +36,7 @@ CursoAcademicoRepository --> CursoAcademico: <font size=8>desactiva el que estab
 
 CursoAcademicoRepository --> AsignaturaPrograma: <font size=8>lista las Activo de la institución
 
-CursoAcademicoRepository --> Guia: <font size=8>por cada AsignaturaPrograma -- clona de la Guia\ndel curso anterior si existe, si no deriva de AsignaturaPrograma
+CursoAcademicoRepository --> Guia: <font size=8>por cada AsignaturaPrograma -- clona de la Guia\ndel curso anterior si existe (incl. texto del sistema de evaluación), si no deriva de AsignaturaPrograma\n(el texto del sistema de evaluación nace vacío)
 
 Guia --> PonderacionEvaluacion: <font size=8>clona las de la Guia anterior (filas nuevas)
 

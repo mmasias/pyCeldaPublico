@@ -2,10 +2,6 @@
 
 skinparam linetype polyline
 
-' Lectura pura, sin precondición que pueda rechazarla (issue #308): el
-' manifiesto ausente o vacío es un estado válido del listado (lista vacía),
-' no un error -- sin <<choice>>, mismo criterio que consultarEstadoGuias().
-
 state SISTEMA_DISPONIBLE
 state SISTEMA_DISPONIBLE_SALIDA as "SISTEMA_DISPONIBLE"
 

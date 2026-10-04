@@ -44,6 +44,10 @@
 
 **Efecto colateral sobre el ciclo de vida de `Guia` (issue [#254](https://github.com/mmasias/pyCelda/issues/254), cierre de diseño en la discussion [#255](https://github.com/mmasias/pyCelda/discussions/255))**: este caso de uso **ya no toca `Guia -- Profesor` directamente**. Si la asignación cambia de verdad la plantilla (asignar un `Profesor` ya asignado es no-op y no dispara nada) y la `Guia` activa de esa `AsignaturaPrograma` está `Aprobada`, el sistema la pasa a `EnRevision` -- transición administrativa nueva, sin re-ejecutar las reglas `c1`/`c2`/`c3` de `enviarGuiaARevision()` -- y registra una fila de `HistorialCambio` (`campo="estado"`, `valorAnterior="Aprobada"`, `valorNuevo="EnRevision"`, `autor` centinela `0`, `comentario="En revisión por cambio en los profesores que la imparten"`). En cualquier otro estado de la `Guia` no se hace nada más: la gestión de profesores es transparente para el `DirectorPrograma` y la próxima aprobación sincroniza `Guia -- Profesor` con la plantilla sola (`Guia.aprobar()` re-deriva la copia, ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)). La re-aprobación del director es un clic (`aprobarGuia()` aprueba desde el estado que sea). Un banner en la guía -- mismo patrón que `comentario_rechazo` -- explica al director por qué volvió a revisión.
 
+## Notas de diseño y trazabilidad
+
+- Retirado de la nota de la especificación (detalle técnico): si la plantilla cambia de verdad y la `Guia` activa está `Aprobada`, pasa a `EnRevision` con una fila de `HistorialCambio` (autor centinela); al aprobar, `Guia--Profesor` se re-deriva de la plantilla (issue [#254](https://github.com/mmasias/pyCelda/issues/254)). En cualquier otro estado, nada más. Detalle completo en la sección de efecto colateral anterior.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asignarProfesorAAsignaturaPrograma()`

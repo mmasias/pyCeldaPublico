@@ -40,6 +40,11 @@
 
 **Mismo patrón que `eliminarAsignatura()`, no el de `eliminarFacultad()`**: el modelo de dominio cierra que `Programa` (junto con `Asignatura` y `AsignaturaPrograma`) **nunca se borra físicamente** -- usa `estado` (Vigente/Extinguido); Extinguido bloquea altas nuevas pero preserva lo existente para no romper Guías históricas. Por eso no hay rama roja de bloqueo por "tiene hijos": confirmar aquí siempre tiene éxito, el único fallo posible es la cancelación del propio actor.
 
+## Notas de diseño y trazabilidad
+
+- Dos entradas: el botón "Eliminar" de la fila del `Programa` en el listado de la `Facultad` (`PROGRAMAS_ABIERTO`, `Facultad.tsx`) y el botón "Eliminar" de la "Zona de riesgo" de la pantalla de edición (`EditarProgramaAdmin.tsx`), alcanzable desde `PROGRAMA_ABIERTO` (issue [#645](https://github.com/mmasias/pyCelda/issues/645)). Ambas llevan a la misma pantalla de confirmación.
+- La salida es única, también desde la segunda entrada: tanto al confirmar como al cancelar se vuelve al listado de Programas de la `Facultad` (`PROGRAMAS_ABIERTO`); si el `Programa` es legado y no tiene `Facultad`, se cae al panel de administración.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMAS_ABIERTO --> PROGRAMAS_ABIERTO : eliminarPrograma()`

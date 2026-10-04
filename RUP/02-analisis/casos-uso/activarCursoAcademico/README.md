@@ -71,7 +71,7 @@ Traducción a clases de análisis del caso de uso [`activarCursoAcademico()`](/R
 ### `Guia`
 
 **Responsabilidades:**
-- nace siempre `estado="Borrador"`, con `cursoAcademicoId` del curso recién activado. Si existe una `Guia` de la misma `AsignaturaPrograma` en el curso que queda desactivado, clona `semestre`/`contenido`/`sesionesMinimas` de ella; si no, los toma de `AsignaturaPrograma`. `fechaCreacion`/`fechaUltimaModificacion`/`fechaGeneracionPdf`/`historial` nacen siempre frescos -- nunca clonados (ninguna columna nacida después del cierre original del contrato en discussion [#47](https://github.com/mmasias/pyCelda/discussions/47) lo cambia, reverificado en discussion [#430](https://github.com/mmasias/pyCelda/discussions/430)).
+- nace siempre `estado="Borrador"`, con `cursoAcademicoId` del curso recién activado. Si existe una `Guia` de la misma `AsignaturaPrograma` en el curso que queda desactivado, clona `semestre`/`contenido`/`textoSistemaEvaluacion`/`sesionesMinimas` de ella; si no, `semestre`/`contenido`/`sesionesMinimas` los toma de `AsignaturaPrograma` y `textoSistemaEvaluacion` nace vacío (`""`, sin semilla). `fechaCreacion`/`fechaUltimaModificacion`/`fechaGeneracionPdf`/`historial` nacen siempre frescos -- nunca clonados (ninguna columna nacida después del cierre original del contrato en discussion [#47](https://github.com/mmasias/pyCelda/discussions/47) lo cambia, reverificado en discussion [#430](https://github.com/mmasias/pyCelda/discussions/430)).
 
 ### `PonderacionEvaluacion` / `ReferenciaBibliografica`
 

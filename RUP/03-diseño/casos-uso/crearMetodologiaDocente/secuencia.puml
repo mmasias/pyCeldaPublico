@@ -9,10 +9,10 @@ database "Base de Datos" as DB
 
 Admin -> Vista: completa código y descripción, confirma
 activate Vista
-Vista -> API: POST /api/v1/metodologias-docentes (MetodologiaDocenteCreate JSON)
+Vista -> API: POST /api/v1/universidades/{universidad_id}/metodologias-docentes (MetodologiaDocenteCreate JSON)
 activate API
 note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> MetodologiaRepo: crear(codigo, descripcion)
+API -> MetodologiaRepo: crear(universidad_id, codigo, descripcion)
 activate MetodologiaRepo
 MetodologiaRepo -> DB: INSERT INTO metodologias_docentes (codigo, descripcion) VALUES (:codigo, :descripcion)
 activate DB

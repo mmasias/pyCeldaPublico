@@ -2,13 +2,14 @@
 {
     <b>COPIAS DE SEGURIDAD</b>
     ====
-    [ Volver al panel de administración ]
+    [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] | [ Volver al panel de administración ]
     ====
+    [ ] Mostrar todos (incluye no restaurables)
+    Mostrando 2 de 3 copias.
     {#
-        <b>Familia | <b>Fecha | <b>Tamaño | <b>Motivo
-        Puntual | 11/09/2026, 2:00:00 | 928.0 KB | deploy #307
-        Diario  | 11/09/2026, 4:30:00 | 1.1 MB   | --
-        Diario  | 10/09/2026, 4:30:00 | 921.7 KB | --
+        <b>Familia | <b>Fecha | <b>Tamaño | <b>Esquema | <b>Motivo | <b>Salud | <b>Restaurar
+        Puntual | 11/09/2026, 2:00:00 | 928.0 KB | 3 | deploy 307 | . | [ Restaurar ]
+        Diario  | 11/09/2026, 4:30:00 | 1.1 MB   | 3 | --         | . | [ Restaurar ]
     }
 }
 @endsalt
@@ -17,7 +18,7 @@
 {
     <b>COPIAS DE SEGURIDAD</b>
     ====
-    [ Volver al panel de administración ]
+    [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] | [ Volver al panel de administración ]
     ====
     <i>No hay copias de seguridad registradas todavía.</i>
 }

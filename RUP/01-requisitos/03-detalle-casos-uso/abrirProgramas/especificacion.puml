@@ -2,16 +2,6 @@
 
 skinparam linetype polyline
 
-' Parametrizado: invocación directa de Admin (este diagrama, sin filtro, con
-' Crear/Eliminar) vs. la variante del actor DirectorPrograma (filtrada a los
-' programas que dirige, sin Crear/Eliminar), que abrirInicio() incluye como
-' sección "Mis programas" (<<include>>) y que también es alcanzable como pantalla
-' completa por deep link -- ver actoresCasosUsoDirectorPrograma.puml y
-' wireframe-porDirector.svg. Mismo patrón que abrirAsignaturasPrograma()
-' (issue #48): el filtro es el parámetro, no una rama nueva del statechart.
-' El endpoint devuelve [] (no 403) para una cuenta que no dirige nada --
-' discussion #274.
-
 state FACULTAD_ABIERTO
 state PROGRAMAS_ABIERTO
 

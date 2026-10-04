@@ -34,10 +34,10 @@ Bajada a diseño del caso de análisis [`crearMetodologiaDocente()`](/RUP/02-ana
 
 ## Participantes
 
-- **Vista**: `CrearMetodologiaDocenteView` (React) -- formulario de dos campos (`codigo`, `descripcion`); al confirmar, `POST /api/v1/metodologias-docentes`.
-- **API**: `routers/metodologia_docente.py::crear_metodologia_docente(datos)` -- función suelta, sin capa Service; delega directo en el repositorio.
+- **Vista**: `CrearMetodologiaDocenteView` (React) -- formulario con selector de `Universidad` y dos campos (`codigo`, `descripcion`); al confirmar, `POST /api/v1/universidades/{universidad_id}/metodologias-docentes`.
+- **API**: `routers/metodologia_docente.py::crear_metodologia_docente(universidad_id, datos)` -- función suelta, sin capa Service; responde 404 si la `Universidad` no existe y delega en el repositorio.
 - **Modelo**: `MetodologiaDocente` (SQLAlchemy) -- sin lógica propia invocada: el Repository construye la fila directamente, no hay método de dominio que llamar.
-- **Repositorio**: `MetodologiaDocenteRepository.crear(codigo, descripcion)` -- persistencia real e inmediata, no una mutación de sesión.
+- **Repositorio**: `MetodologiaDocenteRepository.crear(universidad_id, codigo, descripcion)` -- persistencia real e inmediata, no una mutación de sesión.
 
 ## Decisiones de diseño
 

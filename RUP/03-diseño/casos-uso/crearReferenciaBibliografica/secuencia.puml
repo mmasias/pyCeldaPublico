@@ -1,7 +1,7 @@
 @startuml crearReferenciaBibliografica-diseño
 title Diagrama de Secuencia - Crear Referencia Bibliográfica
 
-actor "Profesor" as Profesor
+actor "Profesor\n(o DirectorPrograma)" as Profesor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
@@ -11,6 +11,12 @@ Profesor -> Vista: completa tipo y referencia, confirma
 activate Vista
 Vista -> API: POST /api/v1/guias/{guia_id}/referencias-bibliograficas (ReferenciaBibliograficaCreate JSON)
 activate API
+opt escribe el DirectorPrograma (corrección excepcional)
+  note right of API: autorizar_escritura_guia() reconoce al DirectorPrograma que dirige el Programa\nde la Guia (404 si no lo dirige; si el Profesor imparte la asignatura, gana la rama Profesor)
+  API -> API: aplicar_transicion_por_correccion_del_director(guia)\nAprobada -> Borrador / EnRevision -> Rechazada
+  API -> DB: INSERT INTO historial_cambios (campo = "estado", autor = Director,\ncomentario = "corrección directa del Director") -- solo si hubo transición
+end
+
 API -> ReferenciaRepo: crear(guia_id, tipo, referencia)
 activate ReferenciaRepo
 ReferenciaRepo -> DB: INSERT INTO referencias_bibliograficas ...

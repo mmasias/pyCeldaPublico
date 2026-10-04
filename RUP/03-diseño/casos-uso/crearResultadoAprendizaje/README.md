@@ -44,6 +44,7 @@ Bajada a diseño del caso de análisis [`crearResultadoAprendizaje()`](/RUP/02-a
 - **Sin método de Modelo**: Análisis no introduce ningún `ResultadoAprendizaje.crear()` ni validación de negocio -- el Repository construye la fila directamente. Diseño traduce eso tal cual: Router -> Repository, sin paso por el Modelo.
 - **La obligatoriedad de los tres campos la resuelve Pydantic**: `ResultadoAprendizajeCreate` (schemas/) rechaza el request antes de ejecutar la función del router -- mismo mecanismo ya documentado para `crearPonderacionEvaluacion()`/`crearReferenciaBibliografica()`, validación de forma resuelta por el framework.
 - **201 Created**, siguiendo el código ya usado por `crearPonderacionEvaluacion()` para las creaciones inmediatas.
+- **Autorización: Director del Programa o Admin**: el endpoint es el mismo para ambos actores (sin espejo `/api/v1/admin/...`). El router resuelve la identidad con `get_current_director_programa_id_opcional` y `get_current_admin_email_opcional` y autoriza con ``_verificar_programa_del_director_o_admin``: con sesión Admin no exige dirigir el `Programa`; sin Admin, un `Programa` que no se dirige (o inexistente) responde 404 uniforme, sin distinguir "no existe" de "no es tuyo". La Vista de Admin es una pantalla propia (`*Admin.tsx`) sobre la misma llamada.
 
 ## Referencias
 

@@ -92,9 +92,11 @@
     {#
         <b>Contenido aportado por el profesor</b> | <b>Contenido aprobado en memoria</b>
          | La guía debe ser coherente con este.
-        Tema 1. Fundamentos de la programación
-        Tema 2. Estructuras de control
-        Tema 3. Estructuras de datos | Tema 1. Fundamentos de la programación
+        {+
+            "Tema 1. Fundamentos de la programación"
+            "Tema 2. Estructuras de control"
+            "Tema 3. Estructuras de datos"
+        } | Tema 1. Fundamentos de la programación
         Tema 2. Estructuras de control
         Tema 3. Estructuras de datos
     }
@@ -130,6 +132,7 @@
     Examen final teoría (Evaluación final): 35% / [25%, 80%]
     Examen final prácticas (Evaluación final): 20% / [10%, 40%]
     <b>Total asignado: 100% / 100%</b>
+    [ <b>Gestionar evaluación</b> ]
     ====
     Bibliografía:
     {#
@@ -145,7 +148,9 @@
         Webs de referencia | http://introcs.cs.princeton.edu/java/home/
         Otras fuentes de consulta | https://github.com/mmasias/prg1
     }
+    [ <b>Gestionar bibliografía</b> ]
     ====
-    {[Aprobar] | [Rechazar] | [Editar semestre] | [Volver al listado de guías]}
+    {[Aprobar] | [Rechazar] | [Editar semestre] | [Guardar borrador] | [Volver al listado de guías]}
+    <i>Corrección excepcional del director: guardar una edición de contenido, evaluación, bibliografía o planificación docente sobre una guía aprobada la devuelve a borrador, y sobre una guía en revisión la rechaza. El envío a revisión sigue siendo del profesorado.</i>
 }
 @endsalt

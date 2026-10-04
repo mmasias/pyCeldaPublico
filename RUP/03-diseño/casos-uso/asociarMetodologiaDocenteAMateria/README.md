@@ -45,6 +45,7 @@ Bajada a diseño del caso de análisis [`asociarMetodologiaDocenteAMateria()`](/
 - **Dos Repository, uno por tabla**: el listado consulta `metodologias_docentes` (dominio de `MetodologiaDocenteRepository`), la asociación inserta en `metodologias_materia` (dominio de `MetodologiaMateriaRepository`) -- cada repositorio persiste una sola tabla, sin cruzar responsabilidades.
 - **`MetodologiaMateriaCreate` solo transporta `metodologia_docente_id`**: `materia_id` va en la URL y `descripcion_propia` nace vacía por defecto -- quien la completa después es `editarAsociacionMetodologiaDocenteMateria()`.
 - **201 Created**: devuelve la asociación creada con su contenido (útil para que la Vista la pinte sin recargar).
+- **Filtro por `Universidad` en disponibles y 409 en el `POST`** (issue [#655](https://github.com/mmasias/pyCelda/issues/655)): el catálogo es por `Universidad`, así que `disponibles` ofrece solo las `MetodologiaDocente` de la `Universidad` del `Programa` de la `Materia` (una `Materia` sin `Programa` conserva el comportamiento sin filtro). El `POST` revalida con `exigir_metodologia_de_la_universidad()`: una `MetodologiaDocente` de otra `Universidad` devuelve 409 (`La MetodologiaDocente pertenece a otra Universidad -- no se puede asociar`) -- el endpoint no confía en que el cliente solo ofrezca opciones válidas.
 
 ## Referencias
 

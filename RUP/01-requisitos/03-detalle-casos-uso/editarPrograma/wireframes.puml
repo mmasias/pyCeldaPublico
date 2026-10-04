@@ -12,5 +12,8 @@
     }
     ~~
     {[Guardar]}
+    ==
+    <b>Zona de riesgo</b>
+    {[Eliminar]}
 }
 @endsalt

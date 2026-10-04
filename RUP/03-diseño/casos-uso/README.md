@@ -141,6 +141,8 @@ Existían como carpeta con ficha pero no figuraban en este índice (sincronizado
 |[`editarPerfilPropio()`](editarPerfilPropio/README.md)|Hecho|
 |[`consultarCopiasSeguridad()`](consultarCopiasSeguridad/README.md)|Hecho|
 |[`comprobarCopiasSeguridad()`](comprobarCopiasSeguridad/README.md)|Hecho|
+|[`crearCopiaSeguridad()`](crearCopiaSeguridad/README.md)|Hecho|
+|[`restaurarCopiaSeguridad()`](restaurarCopiaSeguridad/README.md)|Hecho|
 |[`consultarHistorialCambios()`](consultarHistorialCambios/README.md)|Hecho|
 |[`importarContenidoDeGuiaHermana()`](importarContenidoDeGuiaHermana/README.md)|Hecho|
 |[`asociarMetodologiaDocenteAPrograma()`](asociarMetodologiaDocenteAPrograma/README.md)|Hecho|

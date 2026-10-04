@@ -31,14 +31,14 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor`; `DirectorPrograma` como corrección excepcional de la `Guia`|
 |**Objetivo**|Eliminar una `ReferenciaBibliografica` de una `Guia`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
+**`DirectorPrograma` como corrección excepcional.** Este caso de uso no tiene endpoint propio: la eliminación queda excluida de la lista de trabajo y se persiste al guardar con [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md), que desvincula (borra) la fila. Como `guardarBorradorGuia()` admite al `DirectorPrograma` sobre las `Guia` de los `Programa` que dirige, el Director también puede eliminar desde las pantallas de gestión, y es ese guardado el que dispara la transición. Regla de transición: `Aprobada -> Borrador` (`revocarAprobacion()`) y `EnRevision -> Rechazada` (`rechazar()`); `Borrador` y `Rechazada` se mantienen. Cada transición real registra un `HistorialCambio` con `campo="estado"`, autor el Director y comentario "corrección directa del Director". Un `DirectorPrograma` que no dirige el `Programa` de la `Guia` recibe `404`. El Director no gana `enviarGuiaARevision()`: el envío a revisión sigue siendo del `Profesor`. Si el mismo email resuelve a `Profesor` que imparte la asignatura y a `DirectorPrograma`, gana la rama `Profesor` (sin transición de estado).
 
 **Sin `<<choice>>` bloqueante**, mismo criterio que [`eliminarPonderacionEvaluacion()`](../eliminarPonderacionEvaluacion/README.md): nada depende estructuralmente de una `ReferenciaBibliografica`. Solicitada desde el listado ([`abrirReferenciasBibliograficas()`](../abrirReferenciasBibliograficas/README.md)), no desde el detalle.
 

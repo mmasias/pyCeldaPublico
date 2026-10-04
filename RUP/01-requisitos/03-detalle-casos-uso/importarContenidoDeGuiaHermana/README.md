@@ -64,6 +64,8 @@
 
 - Control ligero, sin pantalla ni ruta propia, sin previsualización de origen ni recuento (a diferencia de [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md)). Solo es visible para el Profesor autor, nunca en modo revisor. Planteamiento acordado con Manuel: un botón y nada más.
 
+- Modelado: a diferencia de `importarBibliografiaDeGuiaHermana()`/`importarPlanificacionDocenteDeGuiaHermana()` (self-loop de su propio listado, `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`/`PLANIFICACION_DOCENTE_ABIERTO`), `contenido` es un campo escalar de la propia `Guia`: self-loop directo de `GUIA_ABIERTO`, sin pantalla propia (issue [#409](https://github.com/mmasias/pyCelda/issues/409)).
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> GUIA_ABIERTO : importarContenidoDeGuiaHermana()`

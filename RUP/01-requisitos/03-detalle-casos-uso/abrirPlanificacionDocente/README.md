@@ -51,6 +51,10 @@ Una única entrada, desde `GUIA_ABIERTO` -- a diferencia de `abrirPonderacionesE
 
 **Retocado al construir `generarPlanificacionDocenteGenerica()` (familia del issue [#184](https://github.com/mmasias/pyCelda/issues/184))**: la variante de estado vacío del wireframe gana el botón `[Crear N sesiones genéricas]` (N = `Guia.sesiones_minimas`) junto a `[+ Crear Sesión]` -- dispara [`generarPlanificacionDocenteGenerica()`](../generarPlanificacionDocenteGenerica/README.md), self-loop sobre `PLANIFICACION_DOCENTE_ABIERTO` (crea de golpe N `Sesion` planas `CLASE_TEORICA` vinculadas, numeradas `1..N`, para arrancar). **Solo en el estado vacío**: en cuanto hay una `Sesion`, el botón desaparece (el caso de uso responde `409` si se fuerza). Sin tocar la especificación de `abrirPlanificacionDocente()`.
 
+## Notas de diseño y trazabilidad
+
+- Regla de presentación: el fondo de cada fila deriva del tipo de `Sesion` (leyenda del SigHor original): celeste para clase teórica, verde para clase práctica y de laboratorio, amarillo para clase teórico/práctica, sin fondo para el resto (por ejemplo, evaluación continua). PlantUML/Salt no pinta fondos de celda, por eso en el wireframe el color se anota como texto junto al tipo y se documenta aquí.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : abrirPlanificacionDocente()`

@@ -60,6 +60,8 @@ Reutilizado por `DirectorPrograma`, misma ficha (`DirectorPrograma --|> Profesor
 
 **Guía canónica**: `GII__IYA003` como destino, `GIOI__IYA003` (`Aprobada`) como origen -- par hermano real del piloto.
 
+**Tope de longitud de la descripción** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): la copia es literal, así que si alguna `Sesion` de la guía origen tiene una descripción de más de 500 caracteres (el tope de [`crearSesion()`](../crearSesion/README.md), no aplicado a datos anteriores), la importación entera se rechaza con `422` (`Sesión N: la descripción supera el límite de 500 caracteres`, siendo `N` el `numero` de la sesión origen) y el destino queda intacto: no se recorta en silencio. Barrera de entrada, sin rama en la especificación.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : importarPlanificacionDocenteDeGuiaHermana()`

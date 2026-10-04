@@ -2,31 +2,6 @@
 
 skinparam linetype polyline
 
-' Invocado por UsuarioNoLogueado, no por Profesor/DirectorPrograma/Admin -- error
-' sistemático de la literatura RUP corregido aquí: el rol específico (Profesor,
-' etc.) solo existe DESPUÉS de que iniciarSesion() tenga éxito, no antes. Quien
-' invoca no puede ser el resultado de la propia invocación. Los actores ya
-' identificados invocan cerrarSesion(), nunca iniciarSesion() -- ver
-' actoresCasosUso{Profesor,DirectorPrograma,AdminCatalogos}.puml.
-'
-' Punto de extensión: "tras validación exitosa" (la rama verde de <<choice>>
-' c, abajo). DOS ramas mutuamente excluyentes según el rol resuelto
-' (discussion #274, antes eran tres):
-'   - rol in {Profesor, DirectorPrograma} -> abrirInicio()  (pantalla que compone
-'     "Mis guías" y "Mis programas"; primitiva de navegación, <<include>> de
-'     abrirAsignaturasPrograma() + abrirProgramas())
-'   - rol == Admin -> abrirPanelAdministracion()
-' Ambas EXTIENDEN a iniciarSesion() -- no lo incluyen. <<include>> es
-' incondicional por definición UML; aquí solo se dispara UNA de dos ramas
-' según el rol, y iniciarSesion() es completo sin ninguna extensión --
-' semántica de <<extend>>, no de <<include>>.
-'
-' Guard de resolución de rol (#274): el rol es "director_programa" solo si el
-' email dirige >= 1 Programa; una fila huérfana en directores_programa (ex-director
-' sin programas) cae a "profesor" y NUNCA a un fallo -- una cuenta autenticada y
-' reconocida por el catálogo nunca se expulsa, la capacidad ausente se
-' presenta como sección vacía de abrirInicio().
-
 state SESION_CERRADA
 state INICIO_ABIERTO_SALIDA as "INICIO_ABIERTO"
 state SESION_CERRADA_SALIDA as "SESION_CERRADA"

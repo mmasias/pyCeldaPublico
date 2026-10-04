@@ -41,6 +41,10 @@ Redirige a Google (mismo cliente `Authlib` que `/auth/login`), `redirect_uri` pr
 
 Valida `hd` (dominio institucional) igual que `/auth/callback`. Comprueba el email contra `settings.admin_emails` -- **no** consulta `AdminRepository` ni ninguna tabla (introducida en Análisis para la simetría de Requisitos, sin uso real aquí, ver nota en el consolidado de Diseño). Si coincide, emite cookie de sesión vía `create_admin_session_token(email)` (claim `rol=admin` explícito) y redirige a `/panel-administracion`; si no, `403`.
 
+### GET `/api/v1/version`
+
+Sin autenticación (se consulta desde las pantallas de login, antes de tener sesión). Devuelve `{"esquema_version": int}`, leído de `PRAGMA user_version` de la base de datos. Código: [`routers/version.py`](/backend/app/routers/version.py), [`schemas/version.py`](/backend/app/schemas/version.py), `obtener_version_esquema()` en [`core/backups.py`](/backend/app/core/backups.py). Consumo en frontend: `obtenerVersion()` de [`api.ts`](/frontend/src/api.ts), en `Login.tsx` y `AdminLogin.tsx`, que lo muestran como sufijo "· esquema N" tras la versión de la app y lo omiten sin error si la llamada falla (issues #628, #630). El script de baseline [`scripts/fijar_version_esquema_inicial.py`](/backend/app/scripts/fijar_version_esquema_inicial.py) fija `user_version = 1` solo si vale 0.
+
 ## `require_admin` -- autorización real, verificada bloqueando
 
 No reutiliza `get_current_rol()`. Decodifica la cookie, exige claim `rol == "admin"`. Aplicado a los 9 endpoints de `routers/universidad.py`/`routers/facultad.py`. (Hasta la corrección issue [#314](https://github.com/mmasias/pyCelda/issues/314) de abajo, `get_current_rol()` solo resolvía `Profesor`/`DirectorPrograma` -- ya no es el caso, pero `require_admin` sigue sin reutilizarlo por diseño, ver Diseño.)

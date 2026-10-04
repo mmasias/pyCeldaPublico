@@ -16,10 +16,11 @@
 ## Código
 
 - **Router**: [`routers/ponderacion_evaluacion.py`](/backend/app/routers/ponderacion_evaluacion.py) -- `listar_sistemas_evaluacion(materia_id)`, `crear_ponderacion_evaluacion(guia_id, datos)`
+- **Autorización**: [`routers/guia.py`](/backend/app/routers/guia.py) -- `autorizar_escritura_guia()` y `aplicar_transicion_por_correccion_del_director()` (regla del Director, usada también por los routers de este caso)
 - **Repositorio**: [`repositories/materia.py`](/backend/app/repositories/materia.py), [`repositories/sistema_evaluacion.py`](/backend/app/repositories/sistema_evaluacion.py), [`repositories/ponderacion_evaluacion.py`](/backend/app/repositories/ponderacion_evaluacion.py)
 - **Modelo**: [`models/materia.py`](/backend/app/models/materia.py), [`models/sistema_evaluacion.py`](/backend/app/models/sistema_evaluacion.py)
 - **Schema**: [`schemas/ponderacion_evaluacion.py`](/backend/app/schemas/ponderacion_evaluacion.py), [`schemas/sistema_evaluacion.py`](/backend/app/schemas/sistema_evaluacion.py)
-- **Tests**: [`tests/test_crear_ponderacion_evaluacion.py`](/backend/tests/test_crear_ponderacion_evaluacion.py)
+- **Tests**: [`tests/test_crear_ponderacion_evaluacion.py`](/backend/tests/test_crear_ponderacion_evaluacion.py), [`tests/test_correccion_director_guia.py`](/backend/tests/test_correccion_director_guia.py)
 
 ## Contrato de endpoint
 
@@ -39,6 +40,8 @@
 ```
 
 ### POST `/api/v1/guias/{guia_id}/ponderaciones-evaluacion`
+
+**Autorización (corrección excepcional del Director, issue [#612](https://github.com/mmasias/pyCelda/issues/612)):** requiere rol (`get_current_rol`) y resuelve las identidades con `get_current_profesor_id_opcional`/`get_current_director_programa_id_opcional`; `autorizar_escritura_guia()` (`routers/guia.py`) admite al `Profesor` que imparte la `AsignaturaPrograma` o al `DirectorPrograma` que dirige el `Programa` de la `Guia`, y responde `404` uniforme en otro caso. Si escribe el Director, `aplicar_transicion_por_correccion_del_director()` aplica `Aprobada -> Borrador` / `EnRevision -> Rechazada` antes de escribir y solo si las validaciones de ponderación pasan (un `422` no cambia el estado), con fila de `HistorialCambio` `campo="estado"`, autor el Director y comentario "corrección directa del Director" (`Borrador` y `Rechazada` se mantienen, sin fila). La respuesta de éxito no cambia de forma; el nuevo `estado` se ve al reabrir la `Guia`.
 
 **Request:**
 ```json

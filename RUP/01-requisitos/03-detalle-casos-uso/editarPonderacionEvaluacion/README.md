@@ -32,14 +32,14 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor`; `DirectorPrograma` como corrección excepcional de la `Guia`|
 |**Objetivo**|Editar un `PonderacionEvaluacion` de una `Guia`, con la misma validación de rango que `crearPonderacionEvaluacion()`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
+**`DirectorPrograma` como corrección excepcional.** Además del `Profesor`, el `DirectorPrograma` del `Programa` de la `Guia` puede ejecutar este caso de uso sobre ella, como corrección directa. Regla de transición: `Aprobada -> Borrador` (`revocarAprobacion()`) y `EnRevision -> Rechazada` (`rechazar()`); `Borrador` y `Rechazada` se mantienen. Cada transición real registra un `HistorialCambio` con `campo="estado"`, autor el Director y comentario "corrección directa del Director". Un `DirectorPrograma` que no dirige el `Programa` de la `Guia` recibe `404`. El Director no gana `enviarGuiaARevision()`: el envío a revisión sigue siendo del `Profesor`. Si el mismo email resuelve a `Profesor` que imparte la asignatura y a `DirectorPrograma`, gana la rama `Profesor` (sin transición de estado). La transición se aplica solo tras superar las validaciones (ponderación mayor que cero y `<<choice>>` del máximo): un `422` no cambia el estado de la `Guia`.
 
 Misma mecánica de `<<choice>>` que [`crearPonderacionEvaluacion()`](../crearPonderacionEvaluacion/README.md) -- **corregida tras la fase de Análisis** (rebanada vertical del hilo `Guia`, 2026-08-18): valida el **máximo puntual** (el valor introducido, por sí solo, contra `ponderacionMaxima` del `SistemaEvaluacion`), no la suma de hermanas. Sin exclusión del valor anterior -- ya no hace falta, no hay suma de la que excluirlo. Diferencia de destino respecto a `crearPonderacionEvaluacion()`: aquí la rama roja no saca al actor de la `PonderacionEvaluacion` -- vuelve al mismo `PONDERACION_EVALUACION_ABIERTO` ("sin cambios"), mismo mecanismo que usa [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) al devolver su rama roja al mismo estado de origen.
 

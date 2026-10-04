@@ -58,6 +58,8 @@ Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del d
 
 **Guía canónica**: `GII__IYA003` (Programación I) como destino y `GIOI__IYA003` ("Informática", `Aprobada`) como origen -- par hermano real del piloto, no la guía canónica sola, por ser un caso de uso que necesita mostrar dos guías de programas distintos.
 
+**Tope de longitud de la referencia** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): la copia es literal, así que si alguna `ReferenciaBibliografica` de la guía origen supera los 500 caracteres (tope de [`crearReferenciaBibliografica()`](../crearReferenciaBibliografica/README.md), no aplicado a datos anteriores), la importación entera se rechaza con `422` (`Referencia P: el texto supera el límite de 500 caracteres`, siendo `P` la posición, desde 1, en la bibliografía origen) y el destino queda intacto: no se recorta en silencio. Barrera de entrada, sin rama en la especificación.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : importarBibliografiaDeGuiaHermana()`

@@ -9,6 +9,6 @@
         <i>(*) Campo obligatorio</i>
     }
     ~~
-    {[Crear] | [Cancelar]}
+    {[Crear]}
 }
 @endsalt

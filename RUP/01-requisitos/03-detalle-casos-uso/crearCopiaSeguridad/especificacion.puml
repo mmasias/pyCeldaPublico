@@ -1,0 +1,23 @@
+@startuml crearCopiaSeguridad
+
+skinparam linetype polyline
+
+state COPIAS_SEGURIDAD_ABIERTO
+state COPIAS_SEGURIDAD_ABIERTO_SALIDA as "COPIAS_SEGURIDAD_ABIERTO"
+
+COPIAS_SEGURIDAD_ABIERTO -[#green]-> crearCopiaSeguridad
+note on link
+<b>Admin</b> solicita hacer una copia de seguridad ahora e indica, si quiere, un motivo
+end note
+
+state crearCopiaSeguridad as "crearCopiaSeguridad()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> guarda una copia de la base de datos actual, la anota en el listado y presenta el listado actualizado
+    end note
+}
+
+crearCopiaSeguridad -[#green]-> COPIAS_SEGURIDAD_ABIERTO_SALIDA
+
+@enduml

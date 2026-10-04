@@ -48,6 +48,7 @@ Bajada a diseño del caso de análisis [`editarReferenciaBibliografica()`](/RUP/
 - **Sin capa Service**: Router delgado -> Modelo/Repository.
 - **Reutiliza el GET de `abrirReferenciaBibliografica()`**: mismo endpoint de carga, sin duplicar lógica de lectura.
 - **Mismo mapeo valor-enum <-> etiqueta que `crearReferenciaBibliografica()`**: el `<select>` precarga la etiqueta correspondiente al valor-enum actual (`GET` devuelve el valor-enum crudo), y el `PUT` envía de vuelta el valor-enum seleccionado.
+- **Corrección excepcional del `DirectorPrograma`** (issue [#612](https://github.com/mmasias/pyCelda/issues/612), Parte 2 de [#601](https://github.com/mmasias/pyCelda/issues/601)): `autorizar_escritura_guia()` (`routers/guia.py`) resuelve quién escribe -- `Profesor` que imparte (False, sin transición) o `DirectorPrograma` que dirige el `Programa` de la `Guia` (True); ninguno de los dos, `404` uniforme. Si escribe el Director, `aplicar_transicion_por_correccion_del_director()` mueve la `Guia` (`Aprobada -> Borrador` con `revocar_aprobacion()`, `EnRevision -> Rechazada` con `rechazar()`; `Borrador`/`Rechazada` se mantienen) y añade el `HistorialCambio` `campo="estado"` con comentario "corrección directa del Director"; sin `commit` propio: se confirma en la misma transacción que la escritura. Se invoca justo antes de mutar la fila; la autorización parte de `ReferenciaBibliografica -> Guia`.
 
 ## Referencias
 

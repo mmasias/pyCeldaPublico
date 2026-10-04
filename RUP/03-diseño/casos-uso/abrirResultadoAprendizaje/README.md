@@ -43,6 +43,7 @@ Bajada a diseño del caso de análisis [`abrirResultadoAprendizaje()`](/RUP/02-a
 
 - **Endpoint propio, no reutilizado**: a diferencia de `abrirPonderacionEvaluacion()` (que reutilizaba el de `editarPonderacionEvaluacion()` porque el PUT ya devolvía la entidad), aquí no existe un endpoint previo de `ResultadoAprendizaje` del que colgarse -- `obtener_resultado_aprendizaje()` es función nueva del módulo abierto por [`abrirResultadosAprendizaje()`](../abrirResultadosAprendizaje/README.md).
 - **Sin capa Service**: Router delgado -> Repository.
+- **Autorización: Director del Programa o Admin**: el endpoint es el mismo para ambos actores (sin espejo `/api/v1/admin/...`). El router resuelve la identidad con `get_current_director_programa_id_opcional` y `get_current_admin_email_opcional` y autoriza con `_verificar_resultado_del_director` (que delega en `_verificar_programa_del_director_o_admin`): con sesión Admin no exige dirigir el `Programa`; sin Admin, un `Programa` que no se dirige (o inexistente) responde 404 uniforme, sin distinguir "no existe" de "no es tuyo" (en los endpoints por resultado, el 404 es el de `ResultadoAprendizaje no encontrado`). La Vista de Admin es una pantalla propia (`*Admin.tsx`) sobre la misma llamada.
 
 ## Referencias
 

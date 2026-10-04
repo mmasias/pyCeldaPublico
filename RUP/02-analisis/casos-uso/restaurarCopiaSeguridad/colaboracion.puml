@@ -1,0 +1,34 @@
+@startuml restaurarCopiaSeguridad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":COPIAS_SEGURIDAD_ABIERTO" as CopiasSeguridadAbierto
+rectangle #CDEBA5 ":COPIAS_SEGURIDAD_ABIERTO" as CopiasSeguridadAbiertoSalida
+
+package restaurarCopiaSeguridad as "restaurarCopiaSeguridad()" {
+    rectangle #629EF9 RestaurarCopiaSeguridadView
+    rectangle #b5bd68 CopiaSeguridadController
+    rectangle #F2AC4E ManifiestoCopiasSeguridad
+    rectangle #F2AC4E BaseDatosViva
+}
+
+CopiasSeguridadAbierto --> RestaurarCopiaSeguridadView: <font size=8>restaurarCopiaSeguridad()
+
+RestaurarCopiaSeguridadView --> CopiaSeguridadController: <font size=8>restaurarCopia(archivo)
+
+CopiaSeguridadController --> ManifiestoCopiasSeguridad: <font size=8>leerCopias() : List<CopiaSeguridad>
+note right: la copia debe figurar en el manifiesto
+
+CopiaSeguridadController --> BaseDatosViva: <font size=8>versionEsquema() : int
+note right: se compara con la versión de la copia
+
+CopiaSeguridadController --> ManifiestoCopiasSeguridad: <font size=8>registrarCopiaPrevia(motivo)
+note right: solo si la copia es restaurable
+
+CopiaSeguridadController --> BaseDatosViva: <font size=8>sobrescribir(copia)
+note right: tras responder; el sistema se reinicia
+
+RestaurarCopiaSeguridadView --> CopiasSeguridadAbiertoSalida: <font size=8>presenta restauración en curso o el rechazo
+
+@enduml

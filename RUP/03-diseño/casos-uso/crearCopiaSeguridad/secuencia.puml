@@ -1,0 +1,40 @@
+@startuml crearCopiaSeguridad-diseño
+title Diagrama de Secuencia - Crear Copia de Seguridad
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "core/backups.py" as Backups
+database "BD viva (SQLite)" as BD
+database "Volumen (manifiesto y copias .db)" as Volumen
+
+Admin -> Vista: pulsa "Hacer copia de seguridad ahora"
+activate Vista
+Vista --> Admin: panel con motivo opcional, Crear y Cancelar
+alt Cancelar
+    Admin -> Vista: Cancelar
+    Vista --> Admin: cierra el panel
+else Crear
+    Admin -> Vista: motivo (opcional) y Crear
+    Vista -> API: POST /api/v1/copias-seguridad {motivo}
+    activate API
+    note right of API: Depends(require_admin)
+    API -> Backups: crear_backup_puntual(db, motivo)
+    activate Backups
+    Backups -> BD: obtener_version_esquema() (PRAGMA user_version)
+    Backups -> Volumen: elige nombre pyCelda-puntual-YYYYMMDD-HHMMSS[-N].db
+    Backups -> BD: backup (API de sqlite3, solo lectura)
+    BD --> Volumen: copia consistente
+    Backups -> Volumen: anexa línea al manifiesto (familia "puntual")
+    Backups --> API: CopiaSeguridadResponse
+    deactivate Backups
+    API -> API: logger.info(admin, archivo)
+    API --> Vista: 201 Created
+    deactivate API
+    Vista -> API: GET /api/v1/copias-seguridad
+    API --> Vista: listado actualizado
+    Vista --> Admin: listado con la copia nueva
+end
+deactivate Vista
+
+@enduml

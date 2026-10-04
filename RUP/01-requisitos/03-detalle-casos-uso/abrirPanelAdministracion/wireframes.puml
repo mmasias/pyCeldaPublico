@@ -5,8 +5,12 @@
     [ <b>Universidades</b> ]
     [ <b>Asignaturas</b> ]
     [ <b>Metodologías docentes</b> ]
+    [ <b>Actividades formativas</b> ]
     [ <b>Profesores</b> ]
     [ <b>Cursos académicos</b> ]
+    --
+    [ <b>Copias de seguridad</b> ]
+    [ <b>Auditoría</b> ]
     [ <b>Generar guías PDF</b> ]
 }
 @endsalt

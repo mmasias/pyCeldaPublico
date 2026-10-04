@@ -34,10 +34,10 @@ Bajada a diseño del caso de análisis [`abrirMetodologiasDocentes()`](/RUP/02-a
 
 ## Participantes
 
-- **Vista**: `AbrirMetodologiasDocentesView` (React) -- pide `GET /api/v1/metodologias-docentes`; presenta `codigo` y `descripcion` por fila.
-- **API**: `routers/metodologia_docente.py::listar_metodologias_docentes()` -- función suelta, primera del módulo nuevo.
+- **Vista**: `AbrirMetodologiasDocentesView` (React) -- ofrece un selector de `Universidad` y pide `GET /api/v1/universidades/{universidad_id}/metodologias-docentes` de la elegida; presenta `codigo` y `descripcion` por fila.
+- **API**: `routers/metodologia_docente.py::listar_metodologias_docentes(universidad_id)` -- función suelta, primera del módulo nuevo.
 - **Modelo**: ninguno con lógica propia invocada -- `MetodologiaDocente` solo porta los datos de cada fila.
-- **Repositorio**: `MetodologiaDocenteRepository.listar()` -- `SELECT` sin filtro: el listado es la totalidad del catálogo de `MetodologiaDocente`, no una selección propia de quien llama. El repositorio ya existía con las queries de disponibilidad para asociación; gana aquí su primer método de catálogo propio.
+- **Repositorio**: `MetodologiaDocenteRepository.listar_de_la_universidad(universidad_id)` -- `SELECT` filtrado por `universidad_id`: el listado es el catálogo de `MetodologiaDocente` de la `Universidad` elegida, no una selección propia de quien llama. El repositorio ya existía con las queries de disponibilidad para asociación; gana aquí su primer método de catálogo propio.
 
 ## Decisiones de diseño
 

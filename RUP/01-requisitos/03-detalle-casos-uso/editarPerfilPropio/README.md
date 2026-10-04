@@ -61,6 +61,8 @@
 
 - Todos los campos son opcionales salvo Nombre. El email es de solo lectura (clave de sesión). Universidad y Año de doctorado solo aparecen si "Soy doctor/a"; Organismo acreditador, solo si hay Figura elegida (con un campo "¿Cuál?" adicional si Organismo = Otro); Año del último sexenio/quinquenio, solo si el número reconocido es mayor que 0 (issue [#423](https://github.com/mmasias/pyCelda/issues/423)).
 
+- Modelado: un solo caso de uso para ver y editar, no el split `abrirX()`/`editarX()` de Guia/Ponderacion/Referencia (issue [#423](https://github.com/mmasias/pyCelda/issues/423)): no hay navegación de lista a detalle que preceda, se llega directo desde `INICIO_ABIERTO` a un registro único (el propio Profesor), igual que `consultarCopiasSeguridad()`/`consultarHistorialCambios()` combinan lectura y acción en un solo caso de uso sin `abrir()` separado.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `INICIO_ABIERTO --> editarPerfilPropio --> INICIO_ABIERTO`

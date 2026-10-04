@@ -31,12 +31,14 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor`; `DirectorPrograma` como corrección excepcional de la `Guia`|
 |**Objetivo**|Editar `tipo` y `descripcion` de una `Sesion` de la `PlanificacionDocente`; el `numero` no es editable (correlativo automático)|
 |**Tipo**|Secundario|
 |**Nivel**|Subfunción|
 
 </div>
+
+**`DirectorPrograma` como corrección excepcional.** Además del `Profesor`, el `DirectorPrograma` del `Programa` de la `Guia` puede ejecutar este caso de uso sobre ella, como corrección directa. Regla de transición: `Aprobada -> Borrador` (`revocarAprobacion()`) y `EnRevision -> Rechazada` (`rechazar()`); `Borrador` y `Rechazada` se mantienen. Cada transición real registra un `HistorialCambio` con `campo="estado"`, autor el Director y comentario "corrección directa del Director". Un `DirectorPrograma` que no dirige el `Programa` de la `Guia` recibe `404`. El Director no gana `enviarGuiaARevision()`: el envío a revisión sigue siendo del `Profesor`. Si el mismo email resuelve a `Profesor` que imparte la asignatura y a `DirectorPrograma`, gana la rama `Profesor` (sin transición de estado). La fila de `HistorialCambio` de `planificacion_docente` de esta edición lleva como autor al Director.
 
 **Sin `<<choice>>`, mismo motivo que [`crearSesion()`](../crearSesion/README.md)**: sin enlace estructural a `SistemaEvaluacion`/`PonderacionEvaluacion` (decisión 4 de discussion [#140](https://github.com/mmasias/pyCelda/discussions/140)), no hay regla de negocio que pueda rechazar la edición.
 
@@ -45,6 +47,8 @@
 **Datos en memoria**: los cambios no se persisten hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) o [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) -- ver [catálogo de actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md).
 
 **Desarrollo** (Bloque 2 de la discussion [#206](https://github.com/mmasias/pyCelda/discussions/206)): igual que [`crearSesion()`](../crearSesion/README.md), la `Sesion` sigue el patrón `vinculada`. `editarSesion()` escribe el cambio al instante; [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) es quien confirma la vinculación o retira la `Sesion` que el profesor haya quitado de la lista de trabajo. La sincronización de sesiones en `guardarBorradorGuia` y su inclusión en el `409` de `enviarGuiaARevision` se añadieron en #206.
+
+**Tope de longitud de la `descripcion`** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): la descripción de la `Sesion` admite como máximo 500 caracteres (`LIMITE_DESCRIPCION_SESION`). Si se supera, el backend responde `422` con `La descripción de la sesión supera el límite de 500 caracteres`, antes de tocar nada. Es una barrera de entrada, no una precondición del dominio: no abre rama en el diagrama de estados ni un `<<choice>>` en la especificación (misma naturaleza que el tope de `Guia.contenido` en [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)). El campo de texto del cliente lleva `maxlength` 500, sin contador visible.
 
 ## Referencias
 

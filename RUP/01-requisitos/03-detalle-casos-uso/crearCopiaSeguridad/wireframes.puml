@@ -1,0 +1,16 @@
+@startsalt crearCopiaSeguridad-wireframe
+{
+    <b>COPIAS DE SEGURIDAD</b>
+    ====
+    [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] | [ Volver al panel de administración ]
+    ====
+    Crear una copia de seguridad de la base de datos actual (no la modifica).
+    "Motivo (opcional)  " | [ Crear ] | [ Cancelar ]
+    ====
+    {#
+        <b>Familia | <b>Fecha | <b>Tamaño | <b>Esquema | <b>Motivo | <b>Restaurar
+        Puntual | 11/09/2026, 2:00:00 | 928.0 KB | 3 | antes del deploy | [ Restaurar ]
+        Diario  | 10/09/2026, 4:30:00 | 921.7 KB | 3 | --              | [ Restaurar ]
+    }
+}
+@endsalt

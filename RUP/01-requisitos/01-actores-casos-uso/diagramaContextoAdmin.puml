@@ -30,6 +30,8 @@ state CURSOS_ACADEMICOS_ABIERTO
 state CURSO_ACADEMICO_ABIERTO
 state GUIAS_DEL_PROGRAMA_ABIERTO
 state GUIA_ABIERTO
+state ACTIVIDADES_FORMATIVAS_ABIERTO
+state ACTIVIDAD_FORMATIVA_ABIERTO
 state COPIAS_SEGURIDAD_ABIERTO
 state HISTORIAL_CAMBIOS_ABIERTO
 
@@ -123,6 +125,8 @@ RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultad
 RESULTADOS_APRENDIZAJE_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 
 PROGRAMA_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()
+' eliminarPrograma() tambien desde la edicion del Programa (issue #645): vuelve al listado.
+PROGRAMA_ABIERTO --> PROGRAMAS_ABIERTO : eliminarPrograma()
 PROGRAMAS_ABIERTO --> FACULTAD_ABIERTO : abrirFacultad()
 
 ' Materia tampoco es catálogo: composición real de Programa (Programa *-- Materia),
@@ -271,6 +275,16 @@ COPIAS_SEGURIDAD_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 ' lectura y sin estado, de la integridad de cada copia del volumen. Autotransición
 ' de la pantalla de copias; el resultado vive en pantalla, no cambia de estado.
 COPIAS_SEGURIDAD_ABIERTO --> COPIAS_SEGURIDAD_ABIERTO : comprobarCopiasSeguridad()
+
+' crearCopiaSeguridad() (issues #632/#633): copia puntual a demanda de la BD
+' viva, sin <<choice>> (ninguna precondicion de negocio puede rechazarla).
+' Autotransicion de la pantalla de copias; el listado se recarga.
+COPIAS_SEGURIDAD_ABIERTO --> COPIAS_SEGURIDAD_ABIERTO : crearCopiaSeguridad()
+
+' restaurarCopiaSeguridad() (issues #629/#631, #677/#679, #681/#682): sobrescribe
+' la BD viva con una copia; rechazos 404/409 (<<choice>> en su especificacion).
+' Autotransicion: tras el reinicio del proceso el Admin vuelve a abrir la pantalla.
+COPIAS_SEGURIDAD_ABIERTO --> COPIAS_SEGURIDAD_ABIERTO : restaurarCopiaSeguridad()
 
 ' consultarHistorialCambios() (issue #392): auditoría de solo lectura sobre
 ' HistorialCambio -- feed de últimas 50 acciones + índice de autores

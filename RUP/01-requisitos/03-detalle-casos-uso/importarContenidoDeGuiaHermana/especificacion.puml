@@ -2,11 +2,6 @@
 
 skinparam linetype polyline
 
-' A diferencia de importarBibliografiaDeGuiaHermana()/importarPlanificacionDocenteDeGuiaHermana()
-' (self-loop de su propio listado, REFERENCIAS_BIBLIOGRAFICAS_ABIERTO/
-' PLANIFICACION_DOCENTE_ABIERTO), contenido es un campo escalar de la propia
-' Guia -- self-loop directo de GUIA_ABIERTO, sin pantalla propia (issue #409).
-
 state GUIA_ABIERTO
 state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
 

@@ -5,10 +5,13 @@ actor "Admin" as Admin
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "core/backups.py" as Backups
+database "Ficheros de copia (volumen)" as Ficheros
 database "backups_manifest.jsonl (sistema de ficheros)" as Manifiesto
 
 Admin -> Vista: solicita consultar las copias de seguridad
 activate Vista
+Vista -> API: GET /api/v1/version
+API --> Vista: esquema_version vivo
 Vista -> API: GET /api/v1/copias-seguridad
 activate API
 note right of API: Depends(require_admin) -- el listado revela\nnombres y momentos de backup de la infraestructura
@@ -23,7 +26,9 @@ else el manifiesto existe
     Manifiesto --> Backups: líneas JSON
     loop por cada línea no vacía
         alt línea válida
-            Backups -> Backups: CopiaSeguridadResponse(timestamp, familia, archivo, tamano_bytes, motivo, esquema_version)
+            Backups -> Ficheros: _estado_fichero_copia(archivo): existe? PRAGMA user_version
+            Ficheros --> Backups: disponible, esquema_version
+            Backups -> Backups: CopiaSeguridadResponse(timestamp, familia, archivo, tamano_bytes, motivo, esquema_version, disponible)
         else JSON inválido, campo faltante o de tipo equivocado
             Backups -> Backups: logger.warning(...) y se salta la línea
         end
@@ -36,7 +41,7 @@ deactivate Backups
 API --> Vista: 200 OK (List[CopiaSeguridadResponse] JSON)
 deactivate API
 alt hay copias
-    Vista --> Admin: listado con fecha exacta, familia, archivo, tamaño y motivo
+    Vista --> Admin: listado de restaurables (disponible y esquema igual al vivo) o de todas con "Mostrar todos"
 else lista vacía
     Vista --> Admin: estado vacío
 end

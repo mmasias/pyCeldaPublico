@@ -81,6 +81,8 @@ package "Documento de la guía" {
 package "Copias de seguridad" {
   usecase consultarCopiasSeguridad as "consultarCopiasSeguridad()"
   usecase comprobarCopiasSeguridad as "comprobarCopiasSeguridad()"
+  usecase crearCopiaSeguridad as "crearCopiaSeguridad()"
+  usecase restaurarCopiaSeguridad as "restaurarCopiaSeguridad()"
 }
 
 package "Auditoría" {
@@ -132,6 +134,8 @@ Admin -- reabrirGuiaPorIncidencia
 
 Admin -- consultarCopiasSeguridad
 Admin -- comprobarCopiasSeguridad
+Admin -- crearCopiaSeguridad
+Admin -- restaurarCopiaSeguridad
 Admin -- consultarHistorialCambios
 
 @enduml

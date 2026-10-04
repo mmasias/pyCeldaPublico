@@ -1,0 +1,57 @@
+@startuml restaurarCopiaSeguridad-diseño
+title Diagrama de Secuencia - Restaurar Copia de Seguridad
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "core/backups.py" as Backups
+participant "BackgroundTasks" as Tareas
+database "Volumen (manifiesto, copias .db y BD viva)" as Volumen
+
+Admin -> Vista: pulsa Restaurar en una fila
+Admin -> Vista: escribe el nombre exacto del archivo y confirma
+activate Vista
+Vista -> API: POST /api/v1/copias-seguridad/restaurar {archivo}
+activate API
+note right of API: Depends(require_admin)
+API -> Backups: resolver_archivo_backup(archivo)
+activate Backups
+alt nombre con separadores o no figura en el manifiesto
+    Backups --> API: HTTPException 404 "Copia de seguridad no encontrada"
+    API --> Vista: 404
+    Vista --> Admin: mensaje de rechazo
+else figura en el manifiesto
+    Backups --> API: ruta del backup
+end
+API -> Backups: preparar_restauracion(ruta, db)
+alt fichero ausente
+    Backups --> API: HTTPException 404 "Copia de seguridad no encontrada"
+    API --> Vista: 404
+    Vista --> Admin: mensaje de rechazo
+else no abre como SQLite o integrity_check != ok
+    Backups --> API: HTTPException 409 "La copia está dañada (integrity_check): no se puede restaurar"
+    API --> Vista: 409
+    Vista --> Admin: mensaje de rechazo
+else user_version de la copia != user_version de la BD viva
+    Backups --> API: HTTPException 409 "Esquema incompatible: la copia tiene versión X y la base de datos actual Y"
+    API --> Vista: 409
+    Vista --> Admin: mensaje de rechazo
+else restaurable
+    Backups -> Volumen: crear_backup_puntual(familia pre_restauracion, motivo "antes de restaurar X")
+    Backups --> API: ruta de la copia previa
+end
+deactivate Backups
+API -> API: logger.warning(admin, archivo)
+API -> Tareas: add_task(ejecutar_restauracion_y_reiniciar, ruta, ruta_bd_viva)
+API --> Vista: 200 {detalle: "Restauración en curso. El sistema se reiniciará en unos segundos."}
+deactivate API
+Vista --> Admin: restauración en curso, recargar en 30 segundos
+deactivate Vista
+
+Tareas -> Volumen: copia a .restaurando + fsync
+Tareas -> Volumen: os.replace(.restaurando, BD viva)
+Tareas -> Volumen: borra -wal y -shm
+Tareas -> Tareas: os._exit(0)
+note right of Tareas: Docker (restart: unless-stopped) reinicia el proceso contra el fichero nuevo
+
+@enduml

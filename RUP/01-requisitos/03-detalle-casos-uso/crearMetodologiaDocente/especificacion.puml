@@ -17,6 +17,7 @@ state crearMetodologiaDocente as "crearMetodologiaDocente()" {
     [*] -[#green]-> SolicitandoDatos
     note on link
     <b>Sistema</b> presenta solicitud de datos de la MetodologiaDocente
+    <b>Sistema</b> muestra selector de Universidad
     <b>Sistema</b> muestra código
     <b>Sistema</b> muestra descripción
     <b>Sistema</b> permite solicitar crear
@@ -24,6 +25,7 @@ state crearMetodologiaDocente as "crearMetodologiaDocente()" {
 
     SolicitandoDatos -[#green]-> [*]
     note on link
+    <b>Admin</b> elige Universidad
     <b>Admin</b> introduce código
     <b>Admin</b> introduce descripción
     <b>Admin</b> solicita crear

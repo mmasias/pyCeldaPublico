@@ -2,12 +2,6 @@
 
 skinparam linetype polyline
 
-' Un solo CU para ver+editar, no split abrirX()/editarX() como Guia/Ponderacion/
-' Referencia (issue #423): no hay navegación de lista a detalle que preceda --
-' se llega directo desde INICIO_ABIERTO a un registro único (el propio Profesor),
-' igual que consultarCopiasSeguridad()/consultarHistorialCambios() combinan
-' lectura+acción en un solo CU sin abrir() separado.
-
 state INICIO_ABIERTO
 state INICIO_ABIERTO_SALIDA as "INICIO_ABIERTO"
 

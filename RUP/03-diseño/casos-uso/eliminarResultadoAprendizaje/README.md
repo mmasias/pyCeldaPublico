@@ -45,6 +45,7 @@ Bajada a diseño del caso de análisis [`eliminarResultadoAprendizaje()`](/RUP/0
 - **Ruta de chequeo `/esta-asignado`**: pregunta literal de negocio, misma familia que `existe_pendiente_de()`/`existe_alguna_de()` ya usadas en el hilo `Guia` -- nombre de método en el Repository, subrecurso en la URL.
 - **204 No Content para el `DELETE`**: no hay entidad que devolver -- la Vista refresca el listado (el estado bloqueado de otras filas no cambia con esta eliminación).
 - **La rama "cancelada" no genera llamada HTTP**: la cancelación cierra el diálogo en el cliente -- se modela como tercera rama del `alt` para reflejar las tres salidas de Análisis (verde/roja/azul), pero sin tocar el backend.
+- **Autorización: Director del Programa o Admin**: el endpoint es el mismo para ambos actores (sin espejo `/api/v1/admin/...`). El router resuelve la identidad con `get_current_director_programa_id_opcional` y `get_current_admin_email_opcional` y autoriza con `_verificar_resultado_del_director` (que delega en `_verificar_programa_del_director_o_admin`): con sesión Admin no exige dirigir el `Programa`; sin Admin, un `Programa` que no se dirige (o inexistente) responde 404 uniforme, sin distinguir "no existe" de "no es tuyo" (en los endpoints por resultado, el 404 es el de `ResultadoAprendizaje no encontrado`). La Vista de Admin es una pantalla propia (`*Admin.tsx`) sobre la misma llamada.
 
 ## Referencias
 

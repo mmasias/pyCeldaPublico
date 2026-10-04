@@ -50,7 +50,7 @@ No se documenta como ampliación de [`editarPonderacionEvaluacion()`](../editarP
 
 **Datos legados**: la migración `migrar_texto_sistema_evaluacion.py` hace backfill de las guías ya existentes con el texto que antes estaba hardcodeado (plantilla "asignatura normal"), para que no rendericen la sección en blanco. El render tolera un dato legado sin exactamente un marcador (lo trata entero como "antes de la tabla") en vez de fallar.
 
-**Fuera de alcance**: edición por `Admin`/`DirectorPrograma` -- pendiente de la discussion [#601](https://github.com/mmasias/pyCelda/issues/601) (Director editando contenido de `Guia`, con su propia tabla de transiciones de estado).
+**Limitación real del código: el `DirectorPrograma` no puede editarlo todavía.** La pantalla "Gestionar evaluación" ofrece el área de texto y el botón de guardado también al `DirectorPrograma` (la ruta del frontend es compartida y no distingue el rol), pero `PUT /api/v1/guias/{guia_id}/texto-sistema-evaluacion` exige identidad de `Profesor` que imparte la asignatura (`get_current_profesor_id`): sin identidad de `Profesor` responde `403` (`Cuenta sin Profesor asociado`) y, con ella pero sin impartir la asignatura, `404` uniforme -- en ningún caso la guarda. Esto no es la corrección excepcional del resto de la `Guia` (ver [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)): ese guardado propio no se amplió al Director en el issue [#612](https://github.com/mmasias/pyCelda/issues/612) y queda como brecha conocida (nota (c) de [#610](https://github.com/mmasias/pyCelda/issues/610)); `Admin` sigue fuera de alcance.
 
 ## Referencias
 

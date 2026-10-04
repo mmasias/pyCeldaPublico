@@ -31,18 +31,20 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor`; `DirectorPrograma` como corrección excepcional de la `Guia`|
 |**Objetivo**|Editar una `ReferenciaBibliografica` de una `Guia`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
+**`DirectorPrograma` como corrección excepcional.** Además del `Profesor`, el `DirectorPrograma` del `Programa` de la `Guia` puede ejecutar este caso de uso sobre ella, como corrección directa. Regla de transición: `Aprobada -> Borrador` (`revocarAprobacion()`) y `EnRevision -> Rechazada` (`rechazar()`); `Borrador` y `Rechazada` se mantienen. Cada transición real registra un `HistorialCambio` con `campo="estado"`, autor el Director y comentario "corrección directa del Director". Un `DirectorPrograma` que no dirige el `Programa` de la `Guia` recibe `404`. El Director no gana `enviarGuiaARevision()`: el envío a revisión sigue siendo del `Profesor`. Si el mismo email resuelve a `Profesor` que imparte la asignatura y a `DirectorPrograma`, gana la rama `Profesor` (sin transición de estado). Sin validación de negocio que pueda impedirla, la transición se aplica siempre que el Director escribe.
 
 Sin `<<choice>>`, mismo criterio que [`crearReferenciaBibliografica()`](../crearReferenciaBibliografica/README.md) -- ninguna validación cruzada que aplicar. `tipo` es editable igual que `referencia`, mismo criterio de "todo editable" que [`editarResultadoAprendizaje()`](../editarResultadoAprendizaje/README.md).
 
 **Datos en memoria**: los cambios no se persisten hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) o [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) -- ver [catálogo de actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md).
+
+**Tope de longitud de la `referencia`** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): el texto de la `ReferenciaBibliografica` admite como máximo 500 caracteres (`LIMITE_REFERENCIA_BIBLIOGRAFICA`). Si se supera, el backend responde `422` con `La referencia bibliográfica supera el límite de 500 caracteres`. Barrera de entrada, no precondición del dominio: sin `<<choice>>` en la especificación. El campo del cliente lleva `maxlength` 500, sin contador visible.
 
 ## Referencias
 

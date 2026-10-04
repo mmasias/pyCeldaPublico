@@ -46,6 +46,10 @@ Caso de uso reutilizado por `DirectorPrograma` (`DirectorPrograma --|> Profesor`
 
 **Tres páginas del mockup reutilizan esta carpeta, las tres necesitan override manual**: sin él, el multi-wireframe del script combina ambas variantes en cualquier página no protegida -- regresión real detectada al regenerar tras un cambio no relacionado (las etiquetas de `abrirPonderacionesEvaluacion()`), no en el momento de crear la segunda variante. `admin/abrirProgramas.md` y `directorPrograma/abrirProgramas.md` muestran solo `wireframe.svg` (sin filtro) y `wireframe-porDirector.svg` (filtrada) respectivamente; `directorPrograma/iniciarSesion.md` también apunta a la filtrada.
 
+## Notas de diseño y trazabilidad
+
+- Modelado: parametrizado. La invocación directa de `Admin` (sin filtro, con Crear/Eliminar) y la variante de `DirectorPrograma` (filtrada a los programas que dirige, sin Crear/Eliminar) son el mismo caso de uso; la segunda la incluye `abrirInicio()` como "Mis programas" (`<<include>>`) y también es alcanzable por deep link (ver `actoresCasosUsoDirectorPrograma.puml`, `wireframe-porDirector.svg`). Mismo patrón que `abrirAsignaturasPrograma()` (issue [#48](https://github.com/mmasias/pyCelda/issues/48)): el filtro es el parámetro, no una rama nueva. El endpoint devuelve `[]` (no 403) para una cuenta que no dirige nada (discussion [#274](https://github.com/mmasias/pyCelda/discussions/274)).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `FACULTAD_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()`

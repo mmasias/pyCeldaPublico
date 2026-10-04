@@ -31,12 +31,14 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor`; `DirectorPrograma` como corrección excepcional de la `Guia`|
 |**Objetivo**|Eliminar una `Sesion` de la `PlanificacionDocente`; el listado se renumera visualmente para no dejar huecos|
 |**Tipo**|Primario|
 |**Nivel**|Usuario|
 
 </div>
+
+**`DirectorPrograma` como corrección excepcional.** Este caso de uso no tiene endpoint propio: la eliminación queda excluida de la lista de trabajo y se persiste al guardar con [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md), que desvincula (borra) la fila. Como `guardarBorradorGuia()` admite al `DirectorPrograma` sobre las `Guia` de los `Programa` que dirige, el Director también puede eliminar desde las pantallas de gestión, y es ese guardado el que dispara la transición. Regla de transición: `Aprobada -> Borrador` (`revocarAprobacion()`) y `EnRevision -> Rechazada` (`rechazar()`); `Borrador` y `Rechazada` se mantienen. Cada transición real registra un `HistorialCambio` con `campo="estado"`, autor el Director y comentario "corrección directa del Director". Un `DirectorPrograma` que no dirige el `Programa` de la `Guia` recibe `404`. El Director no gana `enviarGuiaARevision()`: el envío a revisión sigue siendo del `Profesor`. Si el mismo email resuelve a `Profesor` que imparte la asignatura y a `DirectorPrograma`, gana la rama `Profesor` (sin transición de estado).
 
 **Renumeración visual, sin tocar `numero` persistido** (alineado con lo construido, Bloque 2 de la discussion [#206](https://github.com/mmasias/pyCelda/discussions/206); la decisión de Manuel sobre "renumerar para no dejar huecos" se materializó en presentación): al eliminar una `Sesion` intermedia, el listado no deja huecos porque la numeración que ve el profesor es **posicional** (el orden de la lista, no `Sesion.numero`). `Sesion.numero` persistido conserva el valor de alta y puede quedar con huecos, sin efecto observable -- el orden se mantiene y `siguiente_numero` es `max + 1`. No hay caso de uso de reordenar (decisión 6 de discussion [#140](https://github.com/mmasias/pyCelda/discussions/140)). El wireframe de confirmación avisa de que las siguientes se renumeran antes de que el profesor confirme.
 

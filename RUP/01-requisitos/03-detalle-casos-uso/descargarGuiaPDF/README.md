@@ -58,6 +58,10 @@ Wireframe con `GII__IYA003` mostrada hipotéticamente con PDF ya generado (`fech
 
 **El profesorado de la sección 1 lee la copia congelada, no la plantilla en vivo (issue [#254](https://github.com/mmasias/pyCelda/issues/254))**: la fila `DOCENTE` y el correo del formulario oficial renderizan `Guia -- Profesor` (la copia materializada en la última aprobación), **no** `AsignaturaPrograma -- Profesor`. Es una divergencia deliberada con las vistas de la app (`abrirGuia()`, listado de guías), que sí leen la plantilla en vivo: el PDF es el registro oficial de lo que el `DirectorPrograma` firmó, y no debe cambiar bajo los pies por un cambio de plantilla del `Admin` que aún no ha pasado por re-aprobación. Cuando el director re-aprueba, la copia se sincroniza y el siguiente PDF ya nombra al profesorado nuevo. Sin ramas por estado: `descargarGuiaPDF()` solo sirve guías `Aprobada`, así que la copia siempre está al día con la última firma.
 
+## Notas de diseño y trazabilidad
+
+- Apartado 5, sistema de evaluación (issue [#610](https://github.com/mmasias/pyCelda/issues/610)): se compone del texto de convocatorias propio de la Guía (`Guia.texto_sistema_evaluacion`), partido por el marcador `[TABLA]` -- la parte anterior se pinta antes de la tabla de ponderaciones y la posterior después --, y termina siempre con un párrafo fijo "RÉGIMEN DE USO DE INTELIGENCIA ARTIFICIAL EN LAS ACTIVIDADES DE EVALUACIÓN", idéntico para toda Guía, sin dato por-guía. Si el texto no contiene exactamente un marcador (dato legado), todo el texto se pinta antes de la tabla, sin error. Se edita en [`editarTextoSistemaEvaluacion()`](../editarTextoSistemaEvaluacion/README.md); lo hereda cada curso al activarse ([`activarCursoAcademico()`](../activarCursoAcademico/README.md)).
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()`

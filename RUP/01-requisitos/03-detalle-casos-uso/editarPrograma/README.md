@@ -40,6 +40,12 @@
 
 Mismo criterio que `editarMetodologiaDocente()`: `codigo` se muestra pero no se ofrece como campo editable.
 
+## Notas de diseño y trazabilidad
+
+- La pantalla incluye una "Zona de riesgo" con el botón "Eliminar", que lleva a [`eliminarPrograma()`](../eliminarPrograma/README.md) (issue [#645](https://github.com/mmasias/pyCelda/issues/645), `EditarProgramaAdmin.tsx`). El botón queda deshabilitado, con el texto "Eliminar (Ya Extinguido)", cuando el `Programa` ya está en estado `Extinguido`; el wireframe muestra el caso de un `Programa` vigente.
+- La pantalla incluye además un botón "Cancelar" que vuelve al `Programa`; no se dibuja en el wireframe, misma convención que [`crearPrograma()`](../crearPrograma/README.md).
+- Eliminar desde aquí es una segunda entrada a `eliminarPrograma()`: el diagrama de contexto no modela la pantalla de edición como estado propio (`editarPrograma()` es un bucle sobre `PROGRAMA_ABIERTO`), de ahí que la entrada se modele desde `PROGRAMA_ABIERTO`.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : editarPrograma()`

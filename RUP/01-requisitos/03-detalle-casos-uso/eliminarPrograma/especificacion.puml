@@ -3,9 +3,15 @@
 skinparam linetype polyline
 
 state PROGRAMAS_ABIERTO
+state PROGRAMA_ABIERTO
 state PROGRAMAS_ABIERTOS_SALIDA as "PROGRAMAS_ABIERTO"
 
 PROGRAMAS_ABIERTO -[#green]-> eliminarPrograma
+note on link
+<b>Admin</b> solicita eliminar Programa
+end note
+
+PROGRAMA_ABIERTO -[#green]-> eliminarPrograma
 note on link
 <b>Admin</b> solicita eliminar Programa
 end note

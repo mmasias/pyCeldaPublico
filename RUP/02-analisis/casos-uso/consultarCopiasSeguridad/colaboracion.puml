@@ -17,8 +17,8 @@ SistemaDisponible --> ConsultarCopiasSeguridadView: <font size=8>consultarCopias
 ConsultarCopiasSeguridadView --> CopiaSeguridadController: <font size=8>listarCopiasSeguridad() : List<CopiaSeguridad>
 
 CopiaSeguridadController --> ManifiestoCopiasSeguridad: <font size=8>leerCopias() : List<CopiaSeguridad>
-note right: fichero plano, no entidad del dominio:\nausente o vacio = lista vacia; linea mal formada = se salta
+note right: fichero plano, no entidad del dominio:\nausente o vacio = lista vacia; linea mal formada = se salta;\nlee del fichero real: disponible y esquemaVersion
 
-ConsultarCopiasSeguridadView --> CopiasSeguridadAbiertoSalida: <font size=8>presenta listado (mas reciente primero) o estado vacio
+ConsultarCopiasSeguridadView --> CopiasSeguridadAbiertoSalida: <font size=8>presenta listado (mas reciente primero), restaurables por defecto, o estado vacio
 
 @enduml

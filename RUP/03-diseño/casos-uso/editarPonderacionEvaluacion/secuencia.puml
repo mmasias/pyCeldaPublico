@@ -1,7 +1,7 @@
 @startuml editarPonderacionEvaluacion-diseño
 title Diagrama de Secuencia - Editar Ponderación de Evaluación
 
-actor "Profesor" as Profesor
+actor "Profesor\n(o DirectorPrograma)" as Profesor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "PonderacionEvaluacionRepository" as PonderacionRepo
@@ -63,6 +63,11 @@ SistemaEvaluacion --> API: boolean
 deactivate SistemaEvaluacion
 
 alt dentro del máximo
+  opt escribe el DirectorPrograma (corrección excepcional)
+    note right of API: autorizar_escritura_guia() reconoce al DirectorPrograma que dirige el Programa\nde la Guia (404 si no lo dirige; si el Profesor imparte la asignatura, gana la rama Profesor)
+    API -> API: aplicar_transicion_por_correccion_del_director(guia)\nAprobada -> Borrador / EnRevision -> Rechazada
+    API -> DB: INSERT INTO historial_cambios (campo = "estado", autor = Director,\ncomentario = "corrección directa del Director") -- solo si hubo transición
+  end
   API -> PonderacionEvaluacion: actualizar(sistema_evaluacion_id, descripcion, ponderacion)
   activate PonderacionEvaluacion
   deactivate PonderacionEvaluacion

@@ -31,18 +31,18 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor`; `DirectorPrograma` como corrección excepcional de la `Guia`|
 |**Objetivo**|Persistir como `Borrador` los cambios en memoria de la `Guia` abierta|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Caso de uso heredado por `DirectorPrograma` sin cambios (`DirectorPrograma --|> Profesor`) -- ver [diagramaContextoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml), no redeclarado.
+**`DirectorPrograma` como corrección excepcional.** Además del `Profesor`, el `DirectorPrograma` del `Programa` de la `Guia` puede guardar su contenido desde la pantalla de revisión de [`abrirGuia()`](../abrirGuia/README.md). Regla de transición: `Aprobada -> Borrador` (`revocarAprobacion()`) y `EnRevision -> Rechazada` (`rechazar()`); `Borrador` y `Rechazada` se mantienen. Cada transición real registra un `HistorialCambio` con `campo="estado"`, autor el Director y comentario "corrección directa del Director". Un `DirectorPrograma` que no dirige el `Programa` de la `Guia` recibe `404`. El Director no gana `enviarGuiaARevision()`: el envío a revisión sigue siendo del `Profesor`. Si el mismo email resuelve a `Profesor` que imparte la asignatura y a `DirectorPrograma`, gana la rama `Profesor` (sin transición de estado). Aplica a las tres colecciones y al `contenido` (temario): el Director guarda con el mismo `PUT` que el `Profesor`, y las filas de `HistorialCambio` de `ponderaciones_evaluacion`, `referencias_bibliograficas` y `contenido` llevan como autor al Director. La transición se aplica antes de escribir, de modo que sobre una `Guia` `Aprobada` la fila de estado la registra la regla del Director (el degradado propio del `Profesor` por `confirmar_guardado()` no genera fila de estado).
 
 **Self-loop sobre `GUIA_ABIERTO`, no un `<<choice>>`**: a diferencia de `enviarGuiaARevision()` (que sí valida la suma de `PonderacionEvaluacion` antes de aceptar), guardar como borrador no tiene ninguna precondición de dominio que pueda rechazarlo -- salvo el tope de longitud del `contenido` (ver abajo), que es una barrera de entrada, no una regla del statechart; la especificación sigue sin rama roja.
 
-**Persiste también el `contenido` (temario) de la `Guia`** (discussion [#191](https://github.com/mmasias/pyCelda/discussions/191), retroceso a Modelo/Requisitos): `contenido` pasa a ser un campo editable más del formulario de [`abrirGuia()`](../abrirGuia/README.md) (`textarea` en lugar de `(heredado de AsignaturaPrograma)`), sin caso de uso nuevo -- el objetivo de `guardarBorradorGuia()` ya es genérico ("persistir los cambios en memoria de la `Guia` abierta"). Cada edición real del texto genera una fila de `HistorialCambio` (`campo="contenido"`, autor el profesor). El `contenido` viaja con la guía al enviarla a revisión (`enviarGuiaARevision()`) y el `DirectorPrograma` lo ve en solo lectura en su pantalla de revisión.
+**Persiste también el `contenido` (temario) de la `Guia`** (discussion [#191](https://github.com/mmasias/pyCelda/discussions/191), retroceso a Modelo/Requisitos): `contenido` pasa a ser un campo editable más del formulario de [`abrirGuia()`](../abrirGuia/README.md) (`textarea` en lugar de `(heredado de AsignaturaPrograma)`), sin caso de uso nuevo -- el objetivo de `guardarBorradorGuia()` ya es genérico ("persistir los cambios en memoria de la `Guia` abierta"). Cada edición real del texto genera una fila de `HistorialCambio` (`campo="contenido"`, autor quien guarda: el profesor o, como corrección excepcional, el Director). El `contenido` viaja con la guía al enviarla a revisión (`enviarGuiaARevision()`); en la pantalla de revisión el `DirectorPrograma` lo ve en un `textarea` editable y lo guarda con este mismo caso de uso.
 
 **Tope de longitud del `contenido`** (issue [#303](https://github.com/mmasias/pyCelda/issues/303), hallazgo H-12 del informe de pruebas del rol `Profesor`): el temario se rechaza con un `422` (`El contenido supera el límite de 10.000 caracteres`) si pasa de `LIMITE_CONTENIDO_GUIA` = 10.000 caracteres -- ~2x el máximo real medido en producción (4.801, sobre 108 guías). Es una barrera de entrada contra un pegado accidental (un profesor pegó ~210 KB durante la beta, que se guardó íntegro y habría llegado al PDF oficial), no una precondición del dominio: no abre rama en el diagrama de estados ni un `<<choice>>` en la especificación -- misma naturaleza que un tope de tamaño de cuerpo de petición. Se comprueba en el router antes de sincronizar nada, así que el rechazo es atómico: un intento con el temario demasiado largo no vincula ni desvincula `PonderacionEvaluacion`/`ReferenciaBibliografica`/`Sesion`. El `textarea` de [`abrirGuia()`](../abrirGuia/README.md) lleva `maxlength` y un contador de caracteres visible (`1.322 / 10.000`) que se pone en rojo al alcanzar el tope. Sin migración: ninguna guía viva supera el límite.
 
@@ -51,7 +51,7 @@ Caso de uso heredado por `DirectorPrograma` sin cambios (`DirectorPrograma --|> 
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()`
-- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- misma transición heredada
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- misma transición, con la regla de corrección excepcional descrita arriba
 - [actoresCasosUsoProfesor.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoProfesor.puml) -- catálogo de casos de uso de `Profesor` sobre `Guia`
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `Borrador -> EnRevision`/`Rechazada -> EnRevision` no afectan a este caso; `Aprobada -> Borrador` sí, cuando el disparador es este caso de uso
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) -- entrada "Reapertura desde `Aprobada`", origen del matiz `Aprobada -> Borrador`

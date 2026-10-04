@@ -32,14 +32,14 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor`; `DirectorPrograma` como corrección excepcional de la `Guia`|
 |**Objetivo**|Crear un `PonderacionEvaluacion` de una `Guia`, exigiendo que la suma de las `PonderacionEvaluacion` de su mismo `SistemaEvaluacion` caiga en el rango `[ponderacionMinima, ponderacionMaxima]`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
+**`DirectorPrograma` como corrección excepcional.** Además del `Profesor`, el `DirectorPrograma` del `Programa` de la `Guia` puede ejecutar este caso de uso sobre ella, como corrección directa. Regla de transición: `Aprobada -> Borrador` (`revocarAprobacion()`) y `EnRevision -> Rechazada` (`rechazar()`); `Borrador` y `Rechazada` se mantienen. Cada transición real registra un `HistorialCambio` con `campo="estado"`, autor el Director y comentario "corrección directa del Director". Un `DirectorPrograma` que no dirige el `Programa` de la `Guia` recibe `404`. El Director no gana `enviarGuiaARevision()`: el envío a revisión sigue siendo del `Profesor`. Si el mismo email resuelve a `Profesor` que imparte la asignatura y a `DirectorPrograma`, gana la rama `Profesor` (sin transición de estado). La transición se aplica solo tras superar las validaciones (ponderación mayor que cero y `<<choice>>` del máximo): un `422` no cambia el estado de la `Guia`.
 
 **Primer `crearX()` del catálogo con `<<choice>>`**, cerrado originalmente en la discussion [#38](https://github.com/mmasias/pyCelda/discussions/38) -- **corregido tras la fase de Análisis** (rebanada vertical del hilo `Guia`, 2026-08-18): el `<<choice>>` valida el **máximo puntual**, el valor introducido, por sí solo, contra `ponderacionMaxima` del `SistemaEvaluacion` elegido -- no la suma de todas las `PonderacionEvaluacion` de la Guía que apuntan al mismo sistema, como se había cerrado antes. La validación agregada (rango `[ponderacionMinima, ponderacionMaxima]` sobre la suma completa) se desplazó a [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md), que ya validaba ahí la suma total = 100% -- mantenerla también aquí exigía sumar contra hermanas en cada petición, y la fase de Análisis reveló que ese coste no aportaba nada que la validación agregada de `enviarGuiaARevision()` no cubriera ya. El formulario muestra, junto al selector, el máximo permitido del `SistemaEvaluacion` elegido -- sin referencia a lo ya asignado en la Guía, que ya no se calcula en este caso de uso.
 

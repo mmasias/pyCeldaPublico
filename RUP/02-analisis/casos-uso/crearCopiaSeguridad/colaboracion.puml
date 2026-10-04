@@ -1,0 +1,24 @@
+@startuml crearCopiaSeguridad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":COPIAS_SEGURIDAD_ABIERTO" as CopiasSeguridadAbierto
+rectangle #CDEBA5 ":COPIAS_SEGURIDAD_ABIERTO" as CopiasSeguridadAbiertoSalida
+
+package crearCopiaSeguridad as "crearCopiaSeguridad()" {
+    rectangle #629EF9 CrearCopiaSeguridadView
+    rectangle #b5bd68 CopiaSeguridadController
+    rectangle #F2AC4E ManifiestoCopiasSeguridad
+}
+
+CopiasSeguridadAbierto --> CrearCopiaSeguridadView: <font size=8>crearCopiaSeguridad()
+
+CrearCopiaSeguridadView --> CopiaSeguridadController: <font size=8>crearCopia(motivo) : CopiaSeguridad
+
+CopiaSeguridadController --> ManifiestoCopiasSeguridad: <font size=8>anotarCopia(copia)
+note right: solo lee la base de datos viva
+
+CrearCopiaSeguridadView --> CopiasSeguridadAbiertoSalida: <font size=8>presenta el listado actualizado
+
+@enduml

@@ -53,6 +53,8 @@
 
 Datos del wireframe: `Programación I` (Materia `Programación`, `GII`, curso 1) -- único ejemplo real de `AsignaturaPrograma` confirmado hasta la fecha.
 
+**Tope de longitud del `contenido`** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): si el `Admin` envía un `contenido` explícito (override), no puede pasar de 10.000 caracteres, el mismo tope que `Guia.contenido` (`LIMITE_CONTENIDO_GUIA`, [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)). Si se supera, el backend responde `422` con `El contenido supera el límite de 10.000 caracteres`. Barrera de entrada, no precondición del dominio: sin `<<choice>>`. El `contenido` heredado del catálogo no se valida. El campo del cliente lleva `maxlength` 10.000, sin contador visible.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : crearAsignaturaPrograma()`

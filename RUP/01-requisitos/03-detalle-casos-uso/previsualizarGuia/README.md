@@ -59,6 +59,14 @@ Wireframe con `GII__IYA003` (Programación I, Dr. Manuel Masías -- `manuel.masi
 
 **Maquetación al formulario oficial (v2, discussion [#224](https://github.com/mmasias/pyCelda/discussions/224))**: la plantilla compartida con [`descargarGuiaPDF()`](../descargarGuiaPDF/README.md) se alinea al formulario oficial en blanco `docs/PROPUESTA_PLANTILLA/Plantilla-GuiaDocente.pdf`. La vista HTML de este caso de uso **no es paginada**: no lleva cabecera repetida, ni numeración de página, ni la marca de agua diagonal (todo eso es paged media, solo del PDF de `descargarGuiaPDF()`). Cuando la `Guia` no está `Aprobada`, el HTML **conserva la banda de aviso roja** al principio del documento -- es el equivalente no paginado de la marca de agua diagonal del PDF. Que un `Ctrl+P` del navegador sobre esta vista se parezca o no al PDF de WeasyPrint es mejor esfuerzo, no un objetivo de v2 (cerrado con Manuel en #224).
 
+## Notas de diseño y trazabilidad
+
+- Procedencia de los datos del documento: el temario sale de `Guia.contenido` (propio de la Guía); los resultados de aprendizaje, un bloque único leído en vivo de `AsignaturaPrograma.resultados_aprendizaje`; las metodologías docentes, de `AsignaturaPrograma.metodologias_docentes`; la bibliografía, de las `Guia.referencias` vinculadas, agrupadas por tipo.
+
+- Apartado 5, sistema de evaluación (issue [#610](https://github.com/mmasias/pyCelda/issues/610)): se compone del texto de convocatorias propio de la Guía (`Guia.texto_sistema_evaluacion`), partido por el marcador `[TABLA]` -- la parte anterior se pinta antes de la tabla de ponderaciones y la posterior después --, y termina siempre con un párrafo fijo "RÉGIMEN DE USO DE INTELIGENCIA ARTIFICIAL EN LAS ACTIVIDADES DE EVALUACIÓN", idéntico para toda Guía, sin dato por-guía. Si el texto no contiene exactamente un marcador (dato legado), todo el texto se pinta antes de la tabla, sin error. Se edita en [`editarTextoSistemaEvaluacion()`](../editarTextoSistemaEvaluacion/README.md); lo hereda cada curso al activarse ([`activarCursoAcademico()`](../activarCursoAcademico/README.md)).
+
+- Regla de presentación: "[ logo Universidad Europea del Atlántico ]" es un placeholder de dibujo (Salt no inserta imágenes); en la pantalla real es el logotipo de la Universidad. En la variante Aprobada el documento es el mismo que en la no oficial, sin la banda de aviso (la Guía está Aprobada).
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> GUIA_ABIERTO : previsualizarGuia()`

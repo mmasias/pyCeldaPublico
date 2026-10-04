@@ -17,6 +17,7 @@ state crearActividadFormativa as "crearActividadFormativa()" {
     [*] -[#green]-> SolicitandoDatos
     note on link
     <b>Sistema</b> presenta solicitud de datos de la ActividadFormativa
+    <b>Sistema</b> muestra selector de Universidad
     <b>Sistema</b> muestra código
     <b>Sistema</b> muestra nombre
     <b>Sistema</b> permite solicitar crear
@@ -24,6 +25,7 @@ state crearActividadFormativa as "crearActividadFormativa()" {
 
     SolicitandoDatos -[#green]-> [*]
     note on link
+    <b>Admin</b> elige Universidad
     <b>Admin</b> introduce código
     <b>Admin</b> introduce nombre
     <b>Admin</b> solicita crear

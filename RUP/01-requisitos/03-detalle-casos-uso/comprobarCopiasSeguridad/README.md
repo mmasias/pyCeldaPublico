@@ -44,6 +44,14 @@
 
 **Sin `<<choice>>`**: ninguna precondición puede rechazar la comprobación; el fallo de una copia es un resultado, no un error, y no interrumpe la comprobación de las demás. Autotransición de `COPIAS_SEGURIDAD_ABIERTO`, no de `SISTEMA_DISPONIBLE`: la acción se pide desde la pantalla de copias.
 
+## Notas de diseño y trazabilidad
+
+- Presentación (issue [#683](https://github.com/mmasias/pyCelda/issues/683)): la columna Salud está vacía hasta pulsar el botón; el resultado es solo lectura (no borra, no marca, no persiste) y comprueba todas las copias, también las ocultas por el filtro (#634). El texto de resumen del wireframe ("28 correctas, 1 dañadas, ...") es el resumen de una línea.
+
+- Modelado: autotransición de `COPIAS_SEGURIDAD_ABIERTO` (issue #683), bajo demanda, solo lectura y sin estado. Ninguna precondición puede rechazarla: un fallo en una copia es un resultado (dañada, ilegible, no disponible), no un error, por eso no hay `<<choice>>`.
+
+- El "deploy 307" del motivo en el wireframe (y en el de [`consultarCopiasSeguridad()`](../consultarCopiasSeguridad/README.md)) es un ejemplo de motivo de copia; referencia a issue #307 solo como origen del ejemplo.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `COPIAS_SEGURIDAD_ABIERTO --> COPIAS_SEGURIDAD_ABIERTO : comprobarCopiasSeguridad()`

@@ -59,6 +59,8 @@
 
 - La vista de actividad de un autor no tiene el límite de 50 filas: muestra toda la actividad de esa persona. La columna Rol distingue bajo qué identidad actuó en cada fila.
 
+- Modelado: lectura pura, sin precondición que pueda rechazarla (issue [#392](https://github.com/mmasias/pyCelda/issues/392)): un historial vacío es un estado válido (listas vacías), no un error -- sin `<<choice>>`, mismo criterio que `consultarCopiasSeguridad()`/`consultarEstadoGuias()`.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> HISTORIAL_CAMBIOS_ABIERTO : consultarHistorialCambios()`, vuelta con `abrirPanelAdministracion()`
