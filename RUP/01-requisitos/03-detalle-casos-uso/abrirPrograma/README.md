@@ -55,6 +55,10 @@ Sin botones hacia `Materias`/`ResultadosAprendizaje`/`AsignaturasPrograma` (plur
 - **Columna "Curso" (issue [#486](https://github.com/mmasias/pyCelda/issues/486))**: la tabla de `AsignaturaPrograma` combina ahora `curso` + `semestre_default` en un único valor (`I-s1` en vez de `1`), con el curso en números romanos (`formatearCursoSemestre()`, frontend). Mismo cambio aplicado a la tabla equivalente de [`abrirMateria()`](../abrirMateria/README.md); sin cambio de dato ni de endpoint, puro formato de presentación.
 - **Sección "Directores" (issue [#492](https://github.com/mmasias/pyCelda/issues/492))**: el detalle del Programa gana una lista de los `DirectorPrograma` actuales (nombre + email, botón `[Quitar]` por fila) y un selector + botón `[Nombrar]` para darlo de alta -- **flujo alternativo** de los casos de uso ya catalogados [`definirDirectorPrograma()`](../definirDirectorPrograma/README.md)/[`quitarDirectorPrograma()`](../quitarDirectorPrograma/README.md) (hasta ahora solo invocables desde `PROFESOR_ABIERTO`), no un caso de uso nuevo: mismo objetivo de actor, misma postcondición, mismo POST/DELETE de backend, segunda vía de entrada. `PROGRAMA_ABIERTO` gana por tanto dos self-loops nuevos en el diagrama de contexto (ver Referencias).
 
+## Notas de diseño y trazabilidad
+
+- La sección "Directores" permite nombrar y quitar director de Programa desde aquí (issue [#492](https://github.com/mmasias/pyCelda/issues/492)), con los mismos POST/DELETE que [`definirDirectorPrograma()`](../definirDirectorPrograma/README.md) y [`quitarDirectorPrograma()`](../quitarDirectorPrograma/README.md).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()`, y ahora también `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : definirDirectorPrograma()` / `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : quitarDirectorPrograma()` (issue #492)

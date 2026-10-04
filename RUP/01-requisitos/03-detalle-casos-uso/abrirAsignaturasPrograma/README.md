@@ -54,6 +54,14 @@ Sin botón "Crear": `crearAsignaturaPrograma()` es exclusivo de `Admin`, no de `
 
 **Badge de color de estado (issue [#280](https://github.com/mmasias/pyCelda/issues/280))**: la columna `Estado` pasa a badge de color con caja "Leyenda" -- verde `Aprobada`, ámbar `EnRevision`, rojo `Rechazada`, neutro `Borrador`, etiqueta legible, color aditivo. Misma pieza (`estadoGuia.ts` + `EstadoGuiaBadge` + `LeyendaEstadosGuia`) que [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md). Aplica en **las dos variantes**: la de `Profesor` (`TablaMisGuias.tsx`, la que compone [`abrirInicio()`](../abrirInicio/README.md) y `/mis-asignaturas-programa`) y la de `DirectorPrograma` (`AsignaturasPrograma.tsx`, listado por-programa con Profesorado, que el director escanea igual que `consultarEstadoGuias()` -- dejarla en texto plano mientras su pantalla hermana tiene badges sería justo la inconsistencia que el feature elimina).
 
+## Notas de diseño y trazabilidad
+
+- El estado de la guía se muestra como badge de color (issue [#280](https://github.com/mmasias/pyCelda/issues/280)): etiqueta legible ("En revisión", no `EnRevision`) y color aditivo, sin sustituir al texto. Borrador, neutro; En revisión, ámbar; Aprobada, verde; Rechazada, rojo. El wireframe (Salt) no pinta fondos, por eso el color se documenta aquí y en la leyenda. La variante `DirectorPrograma` (`AsignaturasPrograma.tsx`) es un listado por Programa que el director escanea igual que [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md).
+
+- Orden de la variante `DirectorPrograma`: curso, cuatrimestre y nombre, dentro de un Programa (issue [#290](https://github.com/mmasias/pyCelda/issues/290)).
+
+- La variante `Profesor` es la que compone [`abrirInicio()`](../abrirInicio/README.md) y la pantalla `/mis-asignaturas-programa`. Sus filas se ordenan por cuatrimestre, curso, nombre y programa (planificación del profesor). La columna Curso combina curso y semestre en números romanos (`formatearCursoSemestre()`, issue [#508](https://github.com/mmasias/pyCelda/issues/508)): el issue [#292](https://github.com/mmasias/pyCelda/issues/292) había retirado esas columnas y el [#508](https://github.com/mmasias/pyCelda/issues/508) las reintroduce así. La columna Código (catálogo, 2026-09-30) sale de `Asignatura.codigo` vía `AsignaturaPrograma.asignatura_codigo` y puede mostrar "--" si `asignatura_id` no está resuelto.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : abrirAsignaturasPrograma()` (variante por-programa, con Profesorado); `INICIO_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : abrirAsignaturasPrograma()` (variante por-profesor, deep link)

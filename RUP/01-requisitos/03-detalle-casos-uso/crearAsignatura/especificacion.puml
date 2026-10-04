@@ -50,7 +50,7 @@ end note
 
 crearAsignatura -[#red]-> ASIGNATURAS_ABIERTO
 note on link
-código ya existente (issue #181), sin crear
+código ya existente, sin crear
 end note
 
 @enduml

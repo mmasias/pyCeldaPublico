@@ -19,13 +19,13 @@ Tras entrar aparece el panel de administración, con un botón por cada bloque d
 - **🧩 Metodologías docentes**
 - **🏋️ Actividades formativas**
 - **🧑‍🏫 Profesores**
-- **🗓️ Cursos académicos**
+- **🗓️ Cursos académicos** ([capítulo](cursosAcademicos.md))
 - **💾 Copias de seguridad**
-- **🔍 Auditoría**
+- **🔍 Auditoría** ([capítulo](auditoria.md))
 
 Los bloques de gestión llevan al capítulo correspondiente de este manual. Los programas y sus materias no tienen botón propio en el panel: se llega a ellos entrando primero en una universidad y su facultad (capítulo [Estructura académica](estructuraAcademica.md)).
 
-**📄 Generar guías PDF** aparece desactivado: no está disponible en esta versión. **Cursos académicos** y **Auditoría** no se describen todavía en este manual.
+**📄 Generar guías PDF** aparece desactivado: no está disponible en esta versión.
 
 Todas las pantallas de Admin llevan una **barra azul** fija en el borde superior de la ventana: es la señal de que se está en modo Admin y no en el modo académico del profesorado y los directores.
 

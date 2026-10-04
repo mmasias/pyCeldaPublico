@@ -22,7 +22,7 @@ end note
 
 PROGRAMA_ABIERTO -[#green]-> SeleccionandoProfesor
 note on link
-<b>Admin</b> (desde el Programa, issue #492) solicita nombrar director de Programa
+<b>Admin</b> (desde el Programa) solicita nombrar director de Programa
 <b>Sistema</b> presenta selector de Profesores que no dirigen el Programa
 <b>Sistema</b> permite solicitar nombrar
 end note

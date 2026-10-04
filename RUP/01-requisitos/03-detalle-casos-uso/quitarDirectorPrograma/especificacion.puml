@@ -21,7 +21,7 @@ end note
 
 PROGRAMA_ABIERTO -[#green]-> cPrograma
 note on link
-<b>Admin</b> (desde el Programa, issue #492) solicita quitar rol de director de Programa
+<b>Admin</b> (desde el Programa) solicita quitar rol de director de Programa
 end note
 
 cProfesor -[#green]-> ConfirmandoQuitarRolDesdeProfesor
@@ -40,7 +40,7 @@ end note
 cPrograma -[#green]-> PROGRAMA_ABIERTO_SALIDA
 note on link
 [Programa con más de un DirectorPrograma activo]
-<b>Admin</b> solicita quitar, sin pantalla de confirmación (issue #492: acción directa por fila, sin el paso "¿seguro?" que sí tiene la entrada desde el Profesor)
+<b>Admin</b> solicita quitar, sin pantalla de confirmación
 rol quitado, lista actualizada
 end note
 

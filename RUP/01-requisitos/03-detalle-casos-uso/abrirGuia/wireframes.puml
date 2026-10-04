@@ -2,7 +2,6 @@
 {
     <b>GUÍA DOCENTE</b>
     <b>Programación I (GII)</b>
-    <i>Título en dos líneas (PR [#569](https://github.com/mmasias/pyCelda/pull/569)): "GUÍA DOCENTE" / nombre de la AsignaturaPrograma, en vez de "GUÍA DOCENTE -- {nombre}" en una sola línea -- CabeceraPagina.titulo amplía su tipo de string a ReactNode para admitir el salto, cambio retrocompatible (63 páginas ya lo consumían como string).</i>
     ====
     {#
         <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ] neutro
@@ -10,7 +9,6 @@
         <b>Profesores:</b> profesor1@uneatlantico.es | <b>Última modificación:</b> 01/09/2026
          | <b>Generación del PDF:</b> --
     }
-    <i>Rejilla de dos columnas (PR [#572](https://github.com/mmasias/pyCelda/pull/572)): izquierda Programa/Semestre/Profesores, derecha Estado/fechas -- antes una sola lista vertical. Etiquetas de fecha sin el prefijo "Fecha de" ("Creación", "Última modificación", "Generación del PDF"). Cuerpo a un punto menos (0.775rem) en ambas columnas. Badge de color en "Estado" igual que antes (issue 280): neutro Borrador, ámbar En revisión, verde Aprobada, rojo Rechazada. Profesorado en vivo desde AsignaturaPrograma (issue 254). Salt no pinta fondos ni tamaños, se anota aquí.</i>
     ====
     {#
         <b>Contenido aportado por el profesor</b> | <b>Contenido aprobado en memoria</b>
@@ -23,7 +21,6 @@
         Tema 2. Estructuras de control
         Tema 3. Estructuras de datos
     }
-    <i>Dos columnas, 3fr/2fr (PR [#569](https://github.com/mmasias/pyCelda/pull/569)/[#573](https://github.com/mmasias/pyCelda/pull/573)): a la izquierda el textarea editable de "contenido" (como antes); a la derecha, panel de solo lectura con el "contenido" ya aprobado en AsignaturaPrograma -- referencia para que el profesor redacte su versión de forma coherente, sin copiarlo literalmente. El panel lleva fondo gris claro tipo postit y texto un punto más pequeño que el resto (0.75rem) (PR [#571](https://github.com/mmasias/pyCelda/pull/571)/[#577](https://github.com/mmasias/pyCelda/pull/577)); textarea y panel quedan alineados verticalmente entre sí (PR #573). Salt no pinta fondos, se anota el color. Se guarda con [Guardar borrador]; semilla del curso anterior o de AsignaturaPrograma. Contador "1.322 / 10.000" bajo el textarea, en rojo al llegar al tope (issue 303).</i>
     ====
     <b>Información adicional</b>
     Resultados de aprendizaje:
@@ -43,7 +40,6 @@
         Clases prácticas | 15 | 100
         ... (las 10, solo lectura) | |
     }
-    <i>Las tres tablas de solo lectura pasan a agruparse bajo un encabezado común "Información adicional" (PR [#572](https://github.com/mmasias/pyCelda/pull/572)) -- antes cada una llevaba su propio separador "====" al mismo nivel que "Contenido"/"Evaluación"/"Bibliografía". Sin cambio de dato ni de contenido de tabla.</i>
     ====
     Evaluación:
     {#
@@ -53,12 +49,10 @@
         Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35%
         Entrega de proyecto | Examen final prácticas (Evaluación final) | 20%
     }
-    <i>Col "Sistema de evaluación": "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo con rangos distintos; solo "Tipo" si la descripción está vacía o coincide (issue 285).</i>
     Evaluación continua: 45% / [30%, 60%]
     Examen final teoría (Evaluación final): 35% / [25%, 80%]
     Examen final prácticas (Evaluación final): 20% / [10%, 40%]
     <b>Total asignado: 100% / 100%</b>
-    <i>Caja del medidor (subtotales + Total asignado) en cuerpo 0.875rem; el rojo de "(fuera de rango)" se conserva (issue 285).</i>
     [ <b>Gestionar evaluación</b> ]
     ====
     Bibliografía:
@@ -85,10 +79,8 @@
 {
     <b>GUÍA DOCENTE</b>
     <b>Programación I (GII)</b>
-    <i>Título en dos líneas, mismo cambio que en la variante de Profesor (PR [#569](https://github.com/mmasias/pyCelda/pull/569)).</i>
     ====
     <color:orange>En revisión por cambio en los profesores que la imparten</color>
-    <i>(banner solo si volvió a EnRevision por acción del Admin -- issue 254; re-aprobar sincroniza el profesorado)</i>
     ====
     {#
         <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ En revisión ] ámbar
@@ -96,7 +88,6 @@
         <b>Profesores:</b> profesor1@uneatlantico.es, profesor2@uneatlantico.es | <b>Última modificación:</b> 05/09/2026
          | <b>Generación del PDF:</b> --
     }
-    <i>Misma rejilla de dos columnas que la variante de Profesor (PR [#572](https://github.com/mmasias/pyCelda/pull/572)): izquierda Programa/Semestre/Profesores, derecha Estado/fechas sin el prefijo "Fecha de". Profesorado en vivo desde AsignaturaPrograma; se fija en la copia de la guía al aprobar (issue 254).</i>
     ====
     {#
         <b>Contenido aportado por el profesor</b> | <b>Contenido aprobado en memoria</b>
@@ -107,7 +98,6 @@
         Tema 2. Estructuras de control
         Tema 3. Estructuras de datos
     }
-    <i>Misma rejilla de dos columnas que la variante de Profesor (PR [#569](https://github.com/mmasias/pyCelda/pull/569)/[#571](https://github.com/mmasias/pyCelda/pull/571)/[#573](https://github.com/mmasias/pyCelda/pull/573)): a la izquierda "contenido" de la Guia en solo lectura (el director contrasta contra el temario oficial de AsignaturaPrograma, no edita -- sin cambio respecto de antes), a la derecha el mismo panel de referencia tipo postit que ve el profesor, también de solo lectura.</i>
     ====
     <b>Información adicional</b>
     Resultados de aprendizaje:
@@ -127,7 +117,6 @@
         Clases prácticas | 15 | 100
         ... (las 10, solo lectura) | |
     }
-    <i>Mismo agrupamiento bajo "Información adicional" que la variante de Profesor (PR [#572](https://github.com/mmasias/pyCelda/pull/572)).</i>
     ====
     Evaluación:
     {#
@@ -137,12 +126,10 @@
         Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35%
         Entrega de proyecto | Examen final prácticas (Evaluación final) | 20%
     }
-    <i>Col "Sistema de evaluación": "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo con rangos distintos; solo "Tipo" si la descripción está vacía o coincide (issue 285).</i>
     Evaluación continua: 45% / [30%, 60%]
     Examen final teoría (Evaluación final): 35% / [25%, 80%]
     Examen final prácticas (Evaluación final): 20% / [10%, 40%]
     <b>Total asignado: 100% / 100%</b>
-    <i>Caja del medidor (subtotales + Total asignado) en cuerpo 0.875rem; el rojo de "(fuera de rango)" se conserva (issue 285).</i>
     ====
     Bibliografía:
     {#

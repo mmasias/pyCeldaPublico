@@ -11,9 +11,7 @@
         Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Abrir] | [Eliminar]
         Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Abrir] | [Eliminar]
     }
-    <i>Col "Sistema": "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo; solo "Tipo" si la descripción está vacía o coincide (issue 285).</i>
     <b>Total asignado: 100% / 100%</b>
-    <i>"Total asignado" en cuerpo 0.875rem (issue 285). La 2.ª tabla ya distingue por su columna Descripción propia (issue 279), no lleva el paréntesis.</i>
     ====
     <b>Sistemas de evaluación de la materia</b>
     {#

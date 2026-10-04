@@ -56,7 +56,7 @@ Si todo es correcto, aparece "Restauración en curso" y el sistema se reinicia e
 
 <div align=center>
 
-| [Seguimiento de guías](seguimientoDeGuias.md) | [Índice](README.md) |  |
+| [Seguimiento de guías](seguimientoDeGuias.md) | [Índice](README.md) | [Cursos académicos](cursosAcademicos.md) |
 |---|:-:|---|
 
 </div>

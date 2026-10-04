@@ -48,7 +48,7 @@ end note
 
 crearPrograma -[#red]-> PROGRAMAS_ABIERTO
 note on link
-código ya existente (issue #148), sin crear
+código ya existente, sin crear
 end note
 
 @enduml

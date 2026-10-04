@@ -53,6 +53,12 @@
 
 **Sin `<<choice>>`, self-loop de `SISTEMA_DISPONIBLE`**: igual que `consultarCopiasSeguridad()`, ninguna precondición puede rechazar esta lectura -- un historial vacío es un estado válido (listas vacías), no un error.
 
+## Notas de diseño y trazabilidad
+
+- El feed principal no tiene filtros y mezcla todos los autores. En el índice de la derecha, Profesor y DirectorPrograma de la misma persona se fusionan por email en una sola entrada (issue [#401](https://github.com/mmasias/pyCelda/issues/401)). La columna Guía usa el formato `Asignatura@SiglaPrograma` (issue [#403](https://github.com/mmasias/pyCelda/issues/403)) y no enlaza a la guía, porque la pantalla es de solo consulta (issue [#398](https://github.com/mmasias/pyCelda/issues/398)).
+
+- La vista de actividad de un autor no tiene el límite de 50 filas: muestra toda la actividad de esa persona. La columna Rol distingue bajo qué identidad actuó en cada fila.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> HISTORIAL_CAMBIOS_ABIERTO : consultarHistorialCambios()`, vuelta con `abrirPanelAdministracion()`

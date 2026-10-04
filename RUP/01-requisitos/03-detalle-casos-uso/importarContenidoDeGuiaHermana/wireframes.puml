@@ -12,5 +12,4 @@
     ^GIOI / IYA003 -- Informática^  [Importar contenido]
     <color:red>Esto reemplazará el contenido actual del textarea, incluidos cambios sin guardar.</color>
 }
-<i>Control ligero, "botón y a tomar por saco" (Manuel) -- sin pantalla ni ruta propia, sin previsualización de origen ni recuento (a diferencia de importarBibliografiaDeGuiaHermana()). Solo visible al Profesor autor, nunca en modo revisor.</i>
 @endsalt

@@ -28,5 +28,4 @@
     ..
     [ Guardar ]
 }
-<i>Todos los campos opcionales salvo Nombre. Email de solo lectura (clave de sesión). Universidad/Año de doctorado solo si "Soy doctor/a"; Organismo acreditador solo si hay Figura elegida (y un campo "¿Cuál?" adicional si Organismo = Otro); Año del último sexenio/quinquenio solo si el número reconocido es mayor que 0 -- issue #423.</i>
 @endsalt

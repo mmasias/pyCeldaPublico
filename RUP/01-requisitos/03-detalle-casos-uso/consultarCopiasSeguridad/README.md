@@ -51,6 +51,12 @@
 
 Alcanzable desde [`abrirPanelAdministracion()`](../abrirPanelAdministracion/README.md) (el panel de `Admin`), como el resto de áreas de catálogo -- pero sin gemelo de listado en el sentido `abrirXs()`/`abrirX()`: no hay detalle al que navegar desde una fila, es un listado plano de un solo nivel.
 
+## Notas de diseño y trazabilidad
+
+- Fecha y hora exactas, sin `fechaImprecisa()` (issue [#306](https://github.com/mmasias/pyCelda/issues/306)): la precisión importa en un diagnóstico de incidente. El tamaño se muestra legible (KB/MB), no en bytes crudos. El motivo muestra "--" si es `null`. Las filas no tienen acciones: pantalla de solo lectura, sin descarga.
+
+- Un manifiesto ausente o vacío es un estado válido, no un error (por ejemplo, Prometeus todavía no hizo el backfill); la pantalla muestra "No hay copias de seguridad registradas todavía."
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> COPIAS_SEGURIDAD_ABIERTO : consultarCopiasSeguridad()`, vuelta con `abrirPanelAdministracion()`

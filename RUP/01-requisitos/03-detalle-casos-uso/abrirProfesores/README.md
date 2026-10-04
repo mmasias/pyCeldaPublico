@@ -44,6 +44,12 @@
 
 **Nota no bloqueante -- `CursoAcademico` (issue [#222](https://github.com/mmasias/pyCelda/issues/222), sin construir aún)**: `asignaturas_programa_profesores` es la asociación *en vivo actual*, sin noción de curso académico -- hoy el recuento es correcto porque no existe otra cosa que contar (una `AsignaturaPrograma` no tiene historial por curso, solo el estado presente). Cuando `CursoAcademico` se modele de verdad, este recuento debería acotarse al curso vigente, no sumar todo el histórico de asignación -- de lo contrario un profesor que dejó de impartir una asignatura hace dos cursos seguiría contando aquí. Dejado por escrito para cuando llegue #222; no se toca nada de esto ahora.
 
+## Notas de diseño y trazabilidad
+
+- Columna "Profesor" (issue [#312](https://github.com/mmasias/pyCelda/issues/312)): Salt no apila dos líneas dentro de una celda, así que el "/" del wireframe es una aproximación. En la pantalla real, la celda muestra el nombre en la línea principal y el email debajo con `className="nota"` (0.875rem, gris). Un Profesor sin nombre (`null`, fila del seed sin backfillear) muestra el email como línea principal y no lo repite debajo.
+
+- Columna "Asignaturas" (issue [#310](https://github.com/mmasias/pyCelda/issues/310)): número de `AsignaturaPrograma` que el Profesor imparte hoy, recuento en vivo vía `asignaturas_programa_profesores`; no es columna propia ni requiere migración. La tabla sigue la jerarquía de texto del patrón #283: "Profesor" a tamaño base (con el email en su `.nota` interno); "Asignaturas" y los botones, un punto menos.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()`

@@ -65,6 +65,12 @@ Los dos casos de uso embebidos ya extendían directamente a `iniciarSesion()` --
 
 Cierre de diseño en la [discussion #274](https://github.com/mmasias/pyCelda/discussions/274) (Opción C). El hecho que lo motiva: `get_current_rol()` resolvía `director_programa` para cualquier email con fila en `directores_programa`, con o sin programas a su cargo, y ese rol enrutaba a `/programas`; un `Profesor` que además fuese (ex-)director quedaba enrutado de forma permanente a un listado de programas vacío, con un clic extra para llegar a sus guías. Afecta a todo ex-director docente, no solo a la beta de profesores. La Opción C sustituye la elección de una sola pantalla por rol por una pantalla de inicio única que compone ambos listados.
 
+## Notas de diseño y trazabilidad
+
+- Las filas de "Mis asignaturas" se ordenan por cuatrimestre, curso, nombre y programa (planificación del profesor), aunque esas columnas no se muestren: Curso y Cuatrimestre adyacentes cargaban la tabla (issue [#292](https://github.com/mmasias/pyCelda/issues/292)).
+
+- "Manual del profesor" (issue [#321](https://github.com/mmasias/pyCelda/issues/321)) y "Manual del director de programa" (issue [#333](https://github.com/mmasias/pyCelda/issues/333)) son enlaces reales a una página externa (el manual de usuario publicado, fuera de la aplicación) y se abren en una pestaña nueva. Salt no distingue un enlace de texto plano; en la pantalla real son hipervínculos subrayados.
+
 ## Referencias
 
 - [Especificación de Requisitos](especificacion.puml) y [wireframes](wireframes.puml) -- fuente de verdad de la composición de dos secciones.

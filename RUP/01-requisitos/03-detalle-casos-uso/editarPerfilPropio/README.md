@@ -57,6 +57,10 @@
 - Visibilidad pública del perfil (Guía docente, listados de `Admin`/`DirectorPrograma`) -- explícitamente fuera de esta tanda, a petición.
 - Separar `nombre` en `nombre`/`apellidos` -- descartado en el diseño previo, `nombre` se queda como campo único de texto libre.
 
+## Notas de diseño y trazabilidad
+
+- Todos los campos son opcionales salvo Nombre. El email es de solo lectura (clave de sesión). Universidad y Año de doctorado solo aparecen si "Soy doctor/a"; Organismo acreditador, solo si hay Figura elegida (con un campo "¿Cuál?" adicional si Organismo = Otro); Año del último sexenio/quinquenio, solo si el número reconocido es mayor que 0 (issue [#423](https://github.com/mmasias/pyCelda/issues/423)).
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `INICIO_ABIERTO --> editarPerfilPropio --> INICIO_ABIERTO`

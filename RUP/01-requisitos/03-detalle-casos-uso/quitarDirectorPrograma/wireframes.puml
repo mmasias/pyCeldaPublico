@@ -39,6 +39,5 @@
     }
     <color:red>Error: El Profesor es el único DirectorPrograma de este Programa</color>
     ====
-    <i>Sin pantalla de confirmación propia (issue #492): "Quitar" actúa directamente por fila.</i>
 }
 @endsalt

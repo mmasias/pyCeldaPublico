@@ -11,8 +11,10 @@ pyCelda gestiona el catálogo académico de la institución (universidades, facu
 - Gestionar el profesorado: crear, editar, dar de baja, y nombrar o quitar director de programa.
 - Consultar el estado de las guías docentes de un programa, previsualizarlas y descargar su PDF.
 - Gestionar las copias de seguridad de la base de datos: hacer una copia a demanda, comprobar su salud y restaurar una.
+- Gestionar los cursos académicos: crear, corregir sus fechas, activar un curso y fijar el semestre activo.
+- Consultar la auditoría: el historial de cambios de las guías, con filtro por curso académico y por autor.
 
-La generación masiva de guías en PDF no está disponible en esta versión. Los cursos académicos y la auditoría de cambios tienen pantalla propia en el panel, pero este manual todavía no las describe en detalle.
+La generación masiva de guías en PDF no está disponible en esta versión.
 
 Todas las pantallas de Admin se reconocen por una **barra azul** fija en el borde superior de la ventana.
 
@@ -28,3 +30,5 @@ Para el mapa completo de qué depende de qué y quién gestiona cada bloque del 
 6. [Profesores](profesores.md)
 7. [Seguimiento de guías](seguimientoDeGuias.md)
 8. [Copias de seguridad](copiasDeSeguridad.md)
+9. [Cursos académicos](cursosAcademicos.md)
+10. [Auditoría](auditoria.md)

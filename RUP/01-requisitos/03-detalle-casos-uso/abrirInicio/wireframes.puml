@@ -10,8 +10,6 @@
     Ingeniería de Software I               | Grado en Ingeniería Informática    | Obligatoria    |Aprobada     | [Abrir guía]
     Estructuras de datos y algoritmos I    | Grado en Ingeniería Informática    | Obligatoria    |En revisión  | [Abrir guía]
     }
-    <i>Filas ordenadas por cuatrimestre -> curso -> nombre -> programa (planificación del profesor), aunque esas columnas no se muestran (issue 292 -- Curso+Cuatrimestre adyacentes cargaban la tabla).</i>
-    <i>"Manual del profesor" (issue 321): enlace real a una página externa (el manual de usuario publicado, fuera de la aplicación), se abre en una pestaña nueva -- salt no distingue un enlace de texto plano, en la pantalla real es un hipervínculo subrayado.</i>
     ====
     <b>Mis programas</b>
     Manual del director de programa
@@ -19,7 +17,6 @@
     <b>Nombre                          | <b>Código | <b>Estado | .
     Grado en Ingeniería Informática    | GII      | Vigente   | [Abrir]
     }
-    <i>"Manual del director de programa" (issue 333): mismo mecanismo que "Manual del profesor" arriba, enlace externo real a la página publicada, pestaña nueva.</i>
     ====
     [ Cerrar sesión ]
 }

@@ -46,6 +46,10 @@ Primer listado del catálogo con columna de `SistemaEvaluacion` -- necesaria por
 
 **Medidor de completitud** (discussion [#206](https://github.com/mmasias/pyCelda/discussions/206), ajuste B). El listado hace visibles, mientras el `Profesor` edita, las dos condiciones de ponderación que hoy solo se descubren al recibir el rechazo de [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) (`Guia.puede_enviarse_a_revision()`): "Total asignado: X% / 100%" bajo el listado (resaltado si no suma 100), y una columna "Asignado" en la tabla de sistemas de evaluación de la materia, con cada subtotal contra su `[ponderaciónMínima, ponderaciónMáxima]` (resaltado si cae fuera). Se cuentan todas las filas visibles -- vinculadas y pendientes de vincular, las que se enviarán en `ids_ponderaciones_final` -- descontando las excluidas de la lista de trabajo local. Es presentación: no cambia el flujo ni la especificación, solo el `wireframe`. El mismo medidor se replica en la sección "Evaluación" de [`abrirGuia()`](../abrirGuia/README.md). El equivalente para la planificación docente ("N / M sesiones") se aborda en el ajuste A de la misma discussion.
 
+## Notas de diseño y trazabilidad
+
+- Columna "Sistema": muestra "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo, y solo "Tipo" si la descripción está vacía o coincide (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). "Total asignado" va en cuerpo 0.875rem (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). La segunda tabla ya distingue por su columna Descripción propia (issue [#279](https://github.com/mmasias/pyCelda/issues/279)) y no lleva el paréntesis.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()`, `PONDERACION_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()`

@@ -43,6 +43,10 @@
 
 **Segunda entrada desde `PROGRAMA_ABIERTO`, issue [#492](https://github.com/mmasias/pyCelda/issues/492)**: **flujo alternativo del mismo caso de uso**, no uno nuevo -- mismo objetivo de actor, misma regla de negocio del 409 (único director), mismo endpoint `DELETE /profesores/{profesor_id}/directores-programa/{programa_id}` (resolviendo antes `DirectorPrograma.email -> Profesor.email` para obtener el `profesor_id` que la ruta exige, nunca `DirectorPrograma.id`). **Asimetría real frente a la entrada desde el Profesor, documentada tal cual está implementada**: `ProgramaAdmin.tsx` no tiene pantalla de confirmación propia -- el botón `[Quitar]` actúa directamente por fila, y el bloqueo por único director llega como mensaje de error tras el intento (mismo patrón que ya usa `DefinirDirectorPrograma.tsx` para sus propios errores de envío), no como una pantalla de aviso previa. La especificación refleja esta asimetría con dos ramas internas distintas por entrada en vez de forzar una simetría que el código no tiene.
 
+## Notas de diseño y trazabilidad
+
+- La segunda entrada ("Quitar" por fila desde `abrirPrograma()`) no tiene pantalla de confirmación propia: actúa directamente por fila (issue [#492](https://github.com/mmasias/pyCelda/issues/492)). La entrada desde el Profesor sí pide el paso "¿seguro?"; de ahí la asimetría reflejada en la especificación.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROFESOR_ABIERTO --> PROFESOR_ABIERTO : quitarDirectorPrograma()`, y ahora también `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : quitarDirectorPrograma()` (issue #492)
