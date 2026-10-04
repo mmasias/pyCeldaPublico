@@ -6,7 +6,7 @@
 
 </div>
 
-**pyCelda** (**C**atálogo **EL**ectrónico **D**e **A**signaturas): gestión de guías docentes.
+**pyCelda** (**C**atálogo **EL**ectrónico **D**e **A**signaturas): [resumen...](RESUMEN.md)
 
 ## Manual de usuario
 
