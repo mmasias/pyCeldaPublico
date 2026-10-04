@@ -1,0 +1,4 @@
+# Barra de lenguajes de GitHub (Linguist): este repo es sobre todo documentación.
+# Markdown y PlantUML cuentan; los SVG (diagramas generados) quedan fuera.
+*.md   linguist-detectable=true
+*.puml linguist-detectable=true linguist-language=PlantUML
