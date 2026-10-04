@@ -1,3 +1,5 @@
+<div align=right><sub>Volver: [Al inicio](/README.md) / [#2think](2Think.md) · [Análisis](/RUP/02-analisis/README.md)</sub></div>
+
 # Dónde vive cada regla: Modelo, Controlador y Repositorio en pyCelda
 
 > Nota de referencia para la fase de Análisis. Escrito al cierre de Requisitos, cuando `modeloDominio.puml` y las 91 especificaciones de casos de uso ya dejaban claro *qué* reglas existen y *quién* las dispara — lo que faltaba resolver era *dónde viven* una vez eso se convierta en código.

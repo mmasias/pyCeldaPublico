@@ -6,9 +6,22 @@
 
 </div>
 
-**pyCelda** (**C**atálogo **EL**ectrónico **D**e **A**signaturas): [resumen...](RESUMEN.md)
+**pyCelda** (**C**atálogo **EL**ectrónico de **D**ocumentación **A**cadémica) gestiona el ciclo de vida de las guías docentes universitarias: el profesorado las redacta, la dirección de cada programa las revisa y aprueba, y la administración mantiene el catálogo académico sobre el que se apoyan.
+
+## Por dónde empezar
+
+| Si quieres... | Empieza por |
+|-|-|
+| Entender el proyecto y cómo se ha construido | [Resumen del experimento](RESUMEN.md) |
+| Ver de un vistazo qué bloques tiene el sistema y quién gestiona cada uno | [Estructura del sistema](docs/MANUAL_USUARIO/estructuraDelSistema.md) |
+| Saber qué puede hacer cada rol | [Manual de usuario](#manual-de-usuario), por rol |
+| Recorrer las pantallas sin instalar nada | [Prototipo navegable](#prototipo-navegable), por rol |
+| Estudiar la ingeniería: modelo, requisitos, análisis, diseño y código | [Página general de RUP](RUP/README.md) y la sección [Cómo está pensado por dentro](#cómo-está-pensado-por-dentro) |
+| Leer el argumentario: qué resuelve, qué garantiza y qué vendría después | [#2think](docs/2Think/2Think.md) y la nota [Dónde vive cada regla (MVC)](docs/2Think/MVCHowTo.md) |
 
 ## Manual de usuario
+
+Antes de entrar por rol, la [estructura del sistema](docs/MANUAL_USUARIO/estructuraDelSistema.md) muestra todos los bloques y quién gestiona cada uno.
 
 - **[Profesor](docs/MANUAL_USUARIO/profesor/README.md)**
 
@@ -41,7 +54,7 @@ Entra, ve sus asignaturas, abre la guía de una de ellas, la edita, la envía a 
 
 ## Cómo está pensado por dentro
 
-Tres piezas, de la más conceptual a la más concreta:
+Tres piezas, de la más conceptual a la más concreta. La [página general de RUP](RUP/README.md) reúne todas las fases y la trazabilidad completa de cada caso de uso.
 
 <div align=center>
 
