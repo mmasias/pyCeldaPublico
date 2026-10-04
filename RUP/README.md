@@ -26,9 +26,9 @@ Página concentradora de los artefactos RUP de pyCelda: desde aquí se llega a c
 
 |Fase|Índice|Casos de uso con ficha|
 |-|-|:-:|
-|Requisitos|[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)|121|
-|Análisis|[Análisis](/RUP/02-analisis/README.md) / [casos de uso](/RUP/02-analisis/casos-uso/README.md)|102|
-|Diseño|[Diseño](/RUP/03-diseño/README.md) / [casos de uso](/RUP/03-diseño/casos-uso/README.md)|100|
+|Requisitos|[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)|124|
+|Análisis|[Análisis](/RUP/02-analisis/README.md) / [casos de uso](/RUP/02-analisis/casos-uso/README.md)|121|
+|Diseño|[Diseño](/RUP/03-diseño/README.md) / [casos de uso](/RUP/03-diseño/casos-uso/README.md)|121|
 |Desarrollo|[Desarrollo](/RUP/04-desarrollo/README.md)|5 (muestra)|
 
 </div>

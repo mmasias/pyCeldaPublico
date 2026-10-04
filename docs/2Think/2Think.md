@@ -6,7 +6,7 @@ Cada curso académico, cada asignatura de cada programa necesita una guía docen
 
 ## ¿Qué?
 
-CELDA formaliza ese proceso en un modelo de datos, construido disciplina a disciplina siguiendo el Proceso Unificado de Desarrollo: 122 casos de uso especificados de extremo a extremo (Requisitos, Análisis, Diseño, Desarrollo, Pruebas, Despliegue), 119 implementados con un test real detrás de cada uno.
+CELDA formaliza ese proceso en un modelo de datos, construido disciplina a disciplina siguiendo el Proceso Unificado de Desarrollo: 124 casos de uso especificados de extremo a extremo (Requisitos, Análisis, Diseño, Desarrollo, Pruebas, Despliegue), 121 implementados con un test real detrás de cada uno.
 
 | Qué | Cantidad real |
 | --- | --- |
@@ -41,7 +41,7 @@ No es solo velocidad. Cada guía que entra en pyCelda pasa, sin que nadie tenga 
 | Copia de seguridad diaria automatizada | Pérdida de datos entre backups manuales |
 | Auditoría externa independiente (dos modelos de IA sin coordinarse) | Redundancias, contradicciones o huecos de trazabilidad sin detectar -- cero encontrados sobre el catálogo completo de casos de uso |
 
-Auditoría del 2026-08-08, sobre el catálogo de 91 casos de uso vigente entonces -- no repetida sobre los 122 actuales.
+Auditoría del 2026-08-08, sobre el catálogo de 91 casos de uso vigente entonces -- no repetida sobre los 124 actuales.
 
 ## ¿Y ahora qué?
 

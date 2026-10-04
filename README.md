@@ -51,15 +51,15 @@ Tres piezas, de la más conceptual a la más concreta:
 
 - **[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md)** -- las entidades del sistema (`Guia`, `AsignaturaPrograma`, `Profesor`...) y sus relaciones. Incluye el diagrama de estados de la `Guia`: Borrador, En revisión, Aprobada, Rechazada, y quién puede moverla de un estado a otro.
 - **[Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md)** -- los tres actores (Profesor, DirectorPrograma, Admin) y el catálogo de acciones que cada uno puede invocar, con el diagrama de contexto que fija cuándo está disponible cada una.
-- **[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)** -- las 122 acciones del catálogo, una por una: especificación del comportamiento y wireframe de la pantalla. De aquí sale el prototipo de la sección anterior.
+- **[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)** -- las 124 acciones del catálogo, una por una: especificación del comportamiento y wireframe de la pantalla. De aquí sale el prototipo de la sección anterior.
 
 El catálogo está enlazado entre sí: el modelo de dominio justifica una regla, el diagrama de contexto fija cuándo se invoca, el detalle especifica el cómo, el prototipo lo muestra en pantalla. Se puede entrar por cualquier pieza y llegar a las demás.
 
 ## El recorrido completo: de Requisitos a código real
 
-119 de los 122 casos de uso tienen también **[Análisis](/RUP/02-analisis/README.md)** y **[Diseño](/RUP/03-diseño/README.md)** completos -- la traducción a clases y la secuencia de colaboración de objetos. Desde el `README.md` de cualquiera de esos 119, la cabecera de navegación lleva directo a su ficha de Análisis y de Diseño.
+121 de los 124 casos de uso tienen también **[Análisis](/RUP/02-analisis/README.md)** y **[Diseño](/RUP/03-diseño/README.md)** completos -- la traducción a clases y la secuencia de colaboración de objetos. Desde el `README.md` de cualquiera de esos 121, la cabecera de navegación lleva directo a su ficha de Análisis y de Diseño.
 
-Y 5 de esos 119 llegan hasta **[Desarrollo](/RUP/04-desarrollo/casos-uso/README.md)**: código real de backend y frontend, elegidos como muestra representativa de patrones distintos del proyecto (creación simple, borrado protegido, autenticación, regla de negocio en el modelo, flujo con varias condiciones encadenadas) -- no los 5 más fáciles de entender.
+Y 5 de esos 121 llegan hasta **[Desarrollo](/RUP/04-desarrollo/casos-uso/README.md)**: código real de backend y frontend, elegidos como muestra representativa de patrones distintos del proyecto (creación simple, borrado protegido, autenticación, regla de negocio en el modelo, flujo con varias condiciones encadenadas) -- no los 5 más fáciles de entender.
 
 ---
 
