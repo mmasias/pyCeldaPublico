@@ -14,14 +14,13 @@ legend {
 
 legend top
     **Responsable de cada bloque**
-    |<#A9CCE3>     | Admin |<#A9DFBF>     | Director de programa |<#F9E79F>     | Profesor |<#D2B4DE>     | Mixto -- Admin crea, Director gestiona el contenido |<#F5CBA7>     | Compartida -- redacta Profesor, decide Director, supervisa Admin |<#D5D8DC>     | Sin gestión -- catálogo fijo |
+    |<#A9CCE3>     | Admin |<#A9DFBF>     | Director de programa |<#F9E79F>     | Profesor |<#D2B4DE>     | Mixto -- Admin crea, Director gestiona el contenido |<#F5CBA7>     | Compartida -- redacta Profesor, decide Director, supervisa Admin |
     --
-    Borde discontinuo = especificado en el catálogo de requisitos, todavía sin construir en la aplicación.
 end legend
 
 ' Categoría 1 -- contención estricta: nace y muere con su padre.
-class "Universidad" as Universidad #A9CCE3;line:gray;line.dashed
-class "Facultad" as Facultad #A9CCE3;line:gray;line.dashed
+class "Universidad" as Universidad #A9CCE3
+class "Facultad" as Facultad #A9CCE3
 class "Programa" as Programa #A9CCE3
 class "Materia" as Materia #D2B4DE
 class "Sistema de evaluación" as SistemaEvaluacion #A9CCE3
@@ -40,9 +39,10 @@ AsignaturaPrograma --> Guia
 class "Asignatura" as Asignatura #A9CCE3
 class "Metodología docente" as MetodologiaDocente #A9CCE3
 class "Resultado de aprendizaje" as ResultadoAprendizaje #A9DFBF
-class "Actividad formativa" as ActividadFormativa #D5D8DC
+class "Actividad formativa" as ActividadFormativa #A9CCE3
 
 Asignatura ..> AsignaturaPrograma
+MetodologiaDocente ..> Programa
 MetodologiaDocente ..> Materia
 MetodologiaDocente ..> AsignaturaPrograma
 ResultadoAprendizaje ..> Materia

@@ -16,7 +16,7 @@ Pulsar **Profesores** en el panel de administración. Aparece una tabla con cada
 
 ## Crear un profesor
 
-1. Pulsar **+ Crear Profesor**.
+1. Pulsar **➕ Crear Profesor**.
 2. Rellenar **Nombre** y **Email**.
 3. Pulsar **Crear**.
 
@@ -30,7 +30,7 @@ Muestra las **Asignaturas que imparte** (asignatura y programa de cada una) y lo
 
 ### Nombrar director de programa
 
-1. Pulsar **+ Nombrar director de Programa**.
+1. Pulsar **➕ Nombrar director de Programa**.
 2. Elegir el programa en la lista -- solo aparecen los que el profesor todavía no dirige.
 3. Pulsar **Nombrar**.
 

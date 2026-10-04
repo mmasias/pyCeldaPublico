@@ -8,9 +8,9 @@
 
 ## Cómo entrar
 
-1. Abrir pyCelda en el navegador. Aparece el botón **Iniciar sesión con Google**.
+1. Abrir pyCelda en el navegador. Aparece la pantalla **Módulo académico** con el botón **🔑 Iniciar sesión** (la autenticación es con Google). Junto al nombre CELDA se ve la versión de la aplicación y la de esquema (p. ej. `v0.11.0 · esquema N`).
 2. Pulsar el botón e iniciar sesión con la cuenta de correo de la universidad dada de alta por Admin. Con otra cuenta, el acceso no se completa.
-3. Tras iniciar sesión, la pantalla de destino es **Inicio**.
+3. Tras iniciar sesión, la pantalla de destino es **Inicio**. Todas las pantallas del modo académico llevan una **barra naranja** fija en el borde superior de la ventana: es la señal de que se está en el modo del profesorado y los directores (el modo Admin tiene una barra azul).
 
 Si la cuenta no está dada de alta como profesor, corresponde contactar con Admin: pyCelda no permite crear una cuenta propia desde la pantalla de entrada.
 

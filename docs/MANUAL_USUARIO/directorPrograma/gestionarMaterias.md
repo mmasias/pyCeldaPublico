@@ -12,15 +12,15 @@ Cada materia agrupa una o más asignaturas del programa. Sobre una materia se as
 
 ## Cómo llegar
 
-Desde la barra de navegación del programa, pulsar **Materias**.
+Desde la barra de navegación del programa, pulsar **📚 Materias**.
 
 ## Qué muestra
 
-Una tabla con **Nombre** y el botón **Abrir** de cada materia. Los botones **Eliminar** (junto a cada fila) y **+ Crear Materia** aparecen desactivados: crear y eliminar materias no está disponible todavía en pyCelda.
+Una tabla con **Nombre** y el botón **Abrir** de cada materia. Los botones **Eliminar** (junto a cada fila) y **➕ Crear Materia** aparecen desactivados: crear y eliminar materias no está disponible todavía en pyCelda.
 
 ## Detalle de una materia
 
-Al abrir una materia aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con acceso a cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, los **Sistemas de evaluación** (catálogo de solo lectura) y las **Actividades formativas de la materia**. El botón **Editar** de la cabecera está desactivado -- los datos propios de la materia (nombre) no son editables todavía; lo que sí se gestiona desde aquí son las cuatro secciones siguientes.
+Al abrir una materia aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con acceso a cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación** (catálogo de solo lectura). El botón **Editar** de la cabecera está desactivado -- los datos propios de la materia (nombre) no son editables todavía; lo que sí se gestiona desde aquí son las cuatro secciones siguientes.
 
 ## Metodologías docentes
 
@@ -28,7 +28,7 @@ Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz espec
 
 ### Asociar una metodología docente
 
-1. Pulsar **+ Asociar Metodología Docente**.
+1. Pulsar **➕ Asociar Metodología Docente**.
 2. Elegir la metodología de la lista desplegable -- solo aparecen las que la materia todavía no tiene.
 3. Pulsar **Asociar**.
 
@@ -44,7 +44,7 @@ Pulsar **Quitar** en la fila de la metodología. Si ninguna asignatura de la mat
 
 ## Resultados de aprendizaje
 
-Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción** y el botón **Quitar** de cada fila; **+ Asociar Resultado de Aprendizaje** para añadir uno de los disponibles. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
+Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado) y el botón **Quitar** de cada fila; **➕ Asociar Resultado de Aprendizaje** para añadir uno de los disponibles. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
 
 ## Actividades formativas de la materia
 

@@ -24,11 +24,15 @@ Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las fil
 
 ## Crear una sesión
 
-1. Pulsar **+ Añadir fila**. Se añade una fila vacía al final de la tabla.
+1. Pulsar **➕ Añadir fila**. Se añade una fila vacía al final de la tabla.
 2. Elegir el **Tipo**: Clase Teórica, Clase Práctica, Clase Teórico/Práctica, Clase Laboratorio, Evaluación Continua o Evaluación Parcial.
 3. Escribir una **Descripción** breve de lo que se trabaja en esa sesión.
 
-La fila se guarda sola en cuanto la descripción deja de estar vacía y se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". **+ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **Quitar** antes de completarla.
+La fila se guarda sola en cuanto la descripción deja de estar vacía y se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". **➕ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **Quitar** antes de completarla.
+
+## Límite de la descripción
+
+La descripción de cada sesión admite un máximo de **500 caracteres**. Si se supera, se rechaza con el mensaje "La descripción de la sesión supera el límite de 500 caracteres" y la sesión no se guarda.
 
 ## Editar o eliminar una sesión
 
@@ -81,13 +85,13 @@ El código (mayúsculas o minúsculas, da igual) fija el tipo de la sesión:
 | `EC` | Evaluación continua |
 | `EP` | Evaluación parcial |
 
-Reglas de lectura del texto -- no se rechaza ninguna línea:
+Reglas de lectura del texto -- ninguna línea se rechaza por su código ni por estar vacía:
 
 - Las líneas vacías se ignoran.
 - Una línea cuyo código no se reconoce se importa como clase teórica, con la línea completa como descripción.
 - Una línea con un código reconocido pero sin contenido (`CTP -`, `CTP-` o `CTP` sola) se importa con ese tipo y la descripción vacía.
 
-La pantalla avisa de que la importación reemplaza por completo la planificación actual de la guía, incluida cualquier sesión añadida a mano, e indica cuántas sesiones se sustituyen; las sesiones importadas se renumeran de 1 en adelante. Si el texto está vacío, la planificación queda vacía y la pantalla lo advierte. Como en la importación de una hermana, el cambio es inmediato -- no hace falta guardar el borrador después -- y el mínimo de sesiones exigido para la asignatura no se modifica. Si la guía estaba **Aprobada**, pasa a **Borrador**.
+La pantalla avisa de que la importación reemplaza por completo la planificación actual de la guía, incluida cualquier sesión añadida a mano, e indica cuántas sesiones se sustituyen; las sesiones importadas se renumeran de 1 en adelante. Una línea cuya descripción supera los 500 caracteres sí rechaza la importación entera: aparece "Línea N: la descripción supera el límite de 500 caracteres" (N cuenta también las líneas vacías del texto pegado), no se borra nada y no se recorta en silencio. Lo mismo ocurre al importar de una asignatura hermana si alguna sesión de origen supera el límite ("Sesión N: ..."). Si el texto está vacío, la planificación queda vacía y la pantalla lo advierte. Como en la importación de una hermana, el cambio es inmediato -- no hace falta guardar el borrador después -- y el mínimo de sesiones exigido para la asignatura no se modifica. Si la guía estaba **Aprobada**, pasa a **Borrador**.
 
 ## Volver
 

@@ -8,20 +8,19 @@ pyCelda organiza sus datos en dos tipos de relación distintos: una jerarquía d
 
 - Flecha continua: el bloque de destino nace y muere con el de origen.
 - Flecha discontinua: el bloque de origen es un catálogo independiente, asignado al de destino -- la misma entrada del catálogo puede usarse en varios sitios a la vez.
-- Borde discontinuo: previsto en el diseño de la institución, todavía sin construir en esta versión.
 - Color de cada bloque: quién lo gestiona -- leyenda completa en el propio diagrama.
 
 ## Responsables
 
 | Bloque | Quién lo gestiona |
 |---|---|
-| Universidades y facultades | Admin -- previsto, todavía sin construir en esta versión |
-| Programas | Admin: crear, editar el nombre, dar de baja, y nombrar o quitar director de programa |
+| Universidades y facultades | Admin: crear universidades y facultades y consultarlas; editarlas o eliminarlas todavía no está disponible |
+| Programas | Admin: crear, editar el nombre, dar de baja, nombrar o quitar director de programa, y gestionar sus metodologías docentes y sus resultados de aprendizaje; el director de programa gestiona también las de su programa |
 | Materias | Admin crea la materia; el director de programa gestiona su contenido -- metodologías docentes, resultados de aprendizaje y actividades formativas asociadas |
 | Sistemas de evaluación | Admin |
-| Asignaturas de programa | Admin crea, da de baja, asigna el profesorado y edita los datos administrativos (materia, sesiones mínimas); el director de programa edita el contenido académico -- curso, carácter, idioma, temario, requisitos previos, semestre -- y sus asociaciones de metodologías docentes, resultados de aprendizaje y actividades formativas |
-| Guías docentes | El profesorado redacta (temario, evaluación, bibliografía, planificación docente); el director de programa decide (aprobar, rechazar, revocar una aprobación, ajustar el semestre); Admin supervisa (consulta el estado, previsualiza y descarga el PDF) |
+| Asignaturas de programa | Admin crea, da de baja, asigna el profesorado y edita todos sus campos igual que el director de programa; el director de programa edita el contenido académico -- curso, carácter, idioma, temario, requisitos previos, semestre -- y sus asociaciones de metodologías docentes, resultados de aprendizaje y actividades formativas. Admin tiene la misma paridad de edición y de asociaciones |
+| Guías docentes | El profesorado redacta (temario, evaluación, bibliografía, planificación docente); el director de programa decide (aprobar, rechazar, revocar una aprobación, ajustar el semestre) y, como corrección excepcional, puede editar su contenido; Admin supervisa (consulta el estado, previsualiza y descarga el PDF) |
 | Catálogo de asignaturas | Admin |
-| Catálogo de metodologías docentes | Admin gestiona el catálogo institucional; el director de programa elige cuáles se asocian a cada materia y, dentro de ella, a cada asignatura de programa |
-| Catálogo de resultados de aprendizaje | Íntegramente el director de programa -- creación y reparto en materias y asignaturas de programa |
-| Catálogo de actividades formativas | Fijo, sin gestión -- el director de programa solo reparte las horas por materia y por asignatura de programa |
+| Catálogo de metodologías docentes | Admin gestiona el catálogo institucional (por universidad); el director de programa elige cuáles se asocian a su programa, a cada materia y, dentro de ella, a cada asignatura de programa |
+| Catálogo de resultados de aprendizaje | El director de programa -- creación y reparto en materias y asignaturas de programa; Admin también puede crearlos, editarlos y eliminarlos por programa y asociarlos a asignaturas de programa |
+| Catálogo de actividades formativas | Admin gestiona el catálogo (por universidad): crear, editar, eliminar; el director de programa reparte las horas por materia y por asignatura de programa |

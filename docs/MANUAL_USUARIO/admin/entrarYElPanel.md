@@ -8,23 +8,28 @@
 
 ## Entrar
 
-El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de programa. Pulsar **Iniciar sesión con Google** y autenticarse con una cuenta con permisos de Admin.
+El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de programa. Pulsar **🔑 Iniciar sesión** y autenticarse con Google con una cuenta con permisos de Admin. Junto al nombre CELDA se ve la versión de la aplicación y la versión de esquema de la base de datos (p. ej. `v0.11.0 · esquema N`).
 
 ## El panel de administración
 
 Tras entrar aparece el panel de administración, con un botón por cada bloque de gestión:
 
-- **Universidades**
-- **Asignaturas**
-- **Metodologías docentes**
-- **Profesores**
-- **Copias de seguridad**
+- **🏛️ Universidades**
+- **📘 Asignaturas**
+- **🧩 Metodologías docentes**
+- **🏋️ Actividades formativas**
+- **🧑‍🏫 Profesores**
+- **🗓️ Cursos académicos**
+- **💾 Copias de seguridad**
+- **🔍 Auditoría**
 
-Cada uno lleva al capítulo correspondiente de este manual. Los programas y sus materias no tienen botón propio en el panel: se llega a ellos entrando primero en una universidad y su facultad (capítulo [Estructura académica](estructuraAcademica.md)).
+Los bloques de gestión llevan al capítulo correspondiente de este manual. Los programas y sus materias no tienen botón propio en el panel: se llega a ellos entrando primero en una universidad y su facultad (capítulo [Estructura académica](estructuraAcademica.md)).
 
-Dos botones más, **Cursos académicos** y **Generar guías PDF**, aparecen desactivados: no están disponibles en esta versión.
+**📄 Generar guías PDF** aparece desactivado: no está disponible en esta versión. **Cursos académicos** y **Auditoría** no se describen todavía en este manual.
 
-**Cerrar sesión** vuelve a la pantalla de entrada.
+Todas las pantallas de Admin llevan una **barra azul** fija en el borde superior de la ventana: es la señal de que se está en modo Admin y no en el modo académico del profesorado y los directores.
+
+**🚪 Cerrar sesión** vuelve a la pantalla de entrada.
 
 ---
 

@@ -51,6 +51,16 @@ Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado
 
 Un instrumento recién creado o editado aparece como **Vinculada: No** hasta confirmar los cambios con **Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar: el borrador pendiente de guardar es lo que deja esos cambios sin confirmar.
 
+## Texto de convocatorias
+
+Al final de la pantalla, la sección **Texto de convocatorias** contiene el texto del apartado 5 de la guía (convocatoria ordinaria y extraordinaria), que antes era fijo y ahora es editable por guía.
+
+- El texto debe contener el marcador `[TABLA]` **exactamente una vez**: en ese punto se inserta la tabla de instrumentos de evaluación al generar el documento. Si el marcador falta o aparece más de una vez, la pantalla avisa ("El texto debe contener [TABLA] exactamente una vez (ahora: N)") y **💾 Guardar texto** queda desactivado.
+- Tres botones cargan una plantilla de partida, que **sustituye** el texto del cuadro: **Plantilla: Asignatura normal**, **Plantilla: Prácticas externas** y **Plantilla: Prácticas de laboratorio**. Los cambios no se guardan hasta pulsar **💾 Guardar texto**; mientras hay cambios sin guardar aparece "(cambios sin guardar)", y al guardar, "Texto guardado.".
+- Este guardado es independiente de **Guardar borrador**: se confirma en el momento.
+
+Tras el texto editable, el documento oficial incluye siempre un párrafo fijo, **Régimen de uso de inteligencia artificial en las actividades de evaluación**, que remite al Protocolo de Medidas para Garantizar la Calidad y la Integridad Académicas de UNEATLANTICO. Ese párrafo no es editable y aparece en toda guía.
+
 ## Volver
 
 **Volver a la guía** lleva de vuelta a la guía docente. **Mis asignaturas** lleva al listado completo de asignaturas.

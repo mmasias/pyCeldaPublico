@@ -8,15 +8,15 @@
 
 ## Qué es
 
-Dos catálogos institucionales, independientes de cualquier programa concreto: las **asignaturas** (nombre, ECTS y contenido de referencia, del que parte cada asignatura de programa al crearse) y las **metodologías docentes** (código y descripción, asociables luego a las materias).
+Tres catálogos institucionales, independientes de cualquier programa concreto: las **asignaturas** (nombre, ECTS y contenido de referencia, del que parte cada asignatura de programa al crearse) las **metodologías docentes** (código y descripción, asociables luego a materias, programas y asignaturas de programa) y las **actividades formativas** (código y nombre, con horas repartidas en materias y asignaturas de programa). Las metodologías y las actividades formativas pertenecen a una universidad.
 
 ## Asignaturas
 
-Pulsar **Asignaturas** en el panel de administración. Aparece una tabla con **Nombre**, **Código** (o "--" si todavía no la tiene), **ECTS**, **Estado** (**Vigente** o **Extinguido**) y los botones **Abrir** y **Eliminar** de cada una.
+Pulsar **📘 Asignaturas** en el panel de administración. Aparece una tabla con **Nombre**, **Código** (o "--" si todavía no la tiene), **ECTS**, **Estado** (**Vigente** o **Extinguido**) y los botones **Abrir** y **Eliminar** de cada una.
 
 ### Crear una asignatura
 
-1. Pulsar **+ Crear Asignatura**.
+1. Pulsar **➕ Crear Asignatura**.
 2. Rellenar **Código** y **Nombre**.
 3. Pulsar **Crear**.
 
@@ -36,11 +36,11 @@ Al abrir una asignatura del catálogo, debajo de su detalle aparece la sección 
 
 ## Metodologías docentes
 
-Pulsar **Metodologías docentes** en el panel de administración. Aparece una tabla con **Código**, **Descripción** y los botones **Abrir** y **Eliminar** de cada una.
+Pulsar **🧩 Metodologías docentes** en el panel de administración. Arriba aparece el selector **Universidad:** (las metodologías listadas son las de la universidad elegida). Aparece una tabla con **Código**, **Descripción** y los botones **Abrir** y **Eliminar** de cada una.
 
 ### Crear una metodología docente
 
-1. Pulsar **+ Crear Metodología Docente**.
+1. Pulsar **➕ Crear Metodología Docente** (se crea en la universidad elegida en el selector).
 2. Rellenar **Código** y **Descripción**.
 3. Pulsar **Crear**.
 
@@ -50,7 +50,25 @@ Pulsar **Editar** en el detalle. El **Código** no es editable una vez creada; l
 
 ### Eliminar una metodología docente
 
-Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si ninguna materia la tiene asociada, la baja se aplica. Si alguna materia la está usando, la eliminación queda bloqueada y la pantalla lo indica -- esa asociación se retira desde la materia, en la gestión del director de programa, no desde el panel de Admin.
+Pulsar **🗑️ Eliminar** y confirmar en **Confirmar eliminación**. Si ninguna materia, programa ni asignatura de programa la tiene asociada, la baja se aplica. Si está en uso, la eliminación queda bloqueada con el aviso **NO SE PUEDE ELIMINAR** y la lista de dónde está asignada -- hay que retirarla primero de esos sitios (desde el programa o la materia, o desde la asignatura de programa).
+
+## Actividades formativas
+
+Pulsar **🏋️ Actividades formativas** en el panel de administración. Igual que en las metodologías, el selector **Universidad:** elige cuál se lista. Aparece una tabla con **Código**, **Nombre** y los botones **📂 Abrir** y **🗑️ Eliminar** de cada una.
+
+### Crear una actividad formativa
+
+1. Pulsar **➕ Crear Actividad Formativa** (el formulario ofrece **Universidad (*)**, que parte de la elegida en el selector).
+2. Rellenar **Código (*)** y **Nombre (*)**.
+3. Pulsar **Crear**.
+
+### Editar una actividad formativa
+
+Pulsar **✏️ Editar** en el detalle. El **Código** no es editable una vez creada; el **Nombre** sí.
+
+### Eliminar una actividad formativa
+
+Pulsar **🗑️ Eliminar** y confirmar. Si alguna materia o asignatura de programa tiene horas repartidas en ella, la eliminación queda bloqueada con el aviso **NO SE PUEDE ELIMINAR** y la lista de dónde está asignada; si no, la baja se aplica y no se puede deshacer.
 
 ---
 

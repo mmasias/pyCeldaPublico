@@ -20,7 +20,7 @@ Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que t
 
 ### Crear una materia
 
-1. Pulsar **+ Crear Materia**.
+1. Pulsar **➕ Crear Materia**.
 2. Rellenar **Nombre**.
 3. Pulsar **Crear**.
 
@@ -28,7 +28,7 @@ Tras crearla, la pantalla pasa directamente a editarla.
 
 ## Detalle de una materia
 
-Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Resultados de aprendizaje** y sus **Metodologías docentes** asociadas (ambas de solo consulta: las gestiona el director de programa), sus **Sistemas de evaluación** y las **Actividades formativas de la materia** (también de solo consulta). Pulsar **Editar** cambia únicamente el **Nombre** de la materia.
+Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Sistemas de evaluación**, sus **Resultados de aprendizaje** (tabla con **Código**, **Tipo**, **Descripción** y **Asignaturas**, el número de asignaturas de la materia en que está asociado cada uno), sus **Metodologías docentes** asociadas y las **Actividades formativas de la materia**. Resultados, metodologías y actividades formativas son de solo consulta aquí: las gestiona el director de programa. Pulsar **Editar** cambia únicamente el **Nombre** de la materia.
 
 ## Sistemas de evaluación
 
@@ -36,7 +36,7 @@ Pulsar **Abrir sistemas de evaluación** en el detalle de la materia. Aparece un
 
 ### Crear un sistema de evaluación
 
-1. Pulsar **+ Crear Sistema de Evaluación**.
+1. Pulsar **➕ Crear Sistema de Evaluación**.
 2. Elegir el **Tipo**: **Evaluación continua** o **Evaluación final**.
 3. Rellenar, opcionalmente, la **Descripción**.
 4. Rellenar **Ponderación mínima** y **Ponderación máxima**, en porcentaje.
@@ -50,7 +50,7 @@ Pulsar **Editar** en el detalle. Los mismos campos que en el alta quedan editabl
 
 ### Eliminar un sistema de evaluación
 
-Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el sistema está en uso en la evaluación de alguna guía docente, la eliminación queda bloqueada y la pantalla lo indica -- hace falta retirarlo primero de esas guías.
+Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el sistema está en uso en la evaluación de alguna guía docente, la eliminación queda bloqueada y la pantalla muestra el aviso "SistemaEvaluacion en uso en:" seguido de los nombres de las asignaturas que lo bloquean -- hace falta retirarlo primero de esas guías.
 
 ---
 

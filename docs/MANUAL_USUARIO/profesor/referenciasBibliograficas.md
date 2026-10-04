@@ -22,8 +22,10 @@ Una tabla con todas las referencias ya creadas: **Tipo**, **Referencia** y **Vin
 
 1. Pulsar **Crear Referencia**.
 2. Elegir el **Tipo**: Básica, Complementaria, Webs de referencia u Otras fuentes de consulta.
-3. Escribir el texto completo de la **Referencia**.
+3. Escribir el texto completo de la **Referencia**, con un máximo de 500 caracteres.
 4. Pulsar **Guardar**.
+
+Si la referencia supera los 500 caracteres se rechaza con el mensaje "La referencia bibliográfica supera el límite de 500 caracteres" y no se guarda. Lo mismo ocurre al importar de una asignatura hermana: si alguna referencia de la guía de origen supera el límite, la importación entera se rechaza y no se cambia nada.
 
 ## Editar o eliminar una referencia
 

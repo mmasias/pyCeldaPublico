@@ -12,15 +12,15 @@ El catálogo de resultados de aprendizaje del programa -- las competencias que l
 
 ## Cómo llegar
 
-Desde la barra de navegación del programa, pulsar **Resultados de aprendizaje**.
+Desde la barra de navegación del programa, pulsar **🎯 Resultados de aprendizaje**.
 
 ## Qué muestra
 
-Una tabla con **Código**, **Tipo**, **Descripción** y los botones **Abrir** y **Eliminar** de cada fila.
+Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta), con los botones **📂 Abrir** y **🗑️ Eliminar** de cada fila.
 
 ## Crear un resultado de aprendizaje
 
-1. Pulsar **+ Crear Resultado de Aprendizaje**.
+1. Pulsar **➕ Crear Resultado de Aprendizaje**.
 2. Escribir el **Código**.
 3. Elegir el **Tipo**: Conocimientos o contenidos, Competencias o capacidades, o Habilidades o destrezas.
 4. Escribir la **Descripción**.
@@ -42,7 +42,7 @@ Pulsar **Eliminar** en la fila del resultado. Si está asociado a alguna materia
 
 <div align=center>
 
-| [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md) | [Índice](README.md) | [Revisar y aprobar guías](revisarYAprobarGuias.md) |
+| [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md) | [Índice](README.md) | [Metodologías docentes del programa](metodologiasDelPrograma.md) |
 |---|:-:|---|
 
 </div>
