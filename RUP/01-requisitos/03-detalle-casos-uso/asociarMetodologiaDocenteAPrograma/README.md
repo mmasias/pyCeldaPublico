@@ -11,7 +11,7 @@
 
 <div align=center>
 
-|*(SVG pendiente de renderizar en pyCelda)*|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAPrograma/especificacion.svg)|
 |-|
 |<div align=right><sup>Código fuente: [especificacion.puml](especificacion.puml)</sup></div>|
 
@@ -19,7 +19,7 @@
 
 <div align=center>
 
-|*(SVG pendiente de renderizar en pyCelda)*|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAPrograma/wireframe.svg)|
 |-|
 |<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
 

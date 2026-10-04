@@ -11,7 +11,7 @@
 
 <div align=center>
 
-|*(SVG pendiente de renderizar en pyCelda)*|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocentePrograma/especificacion.svg)|
 |-|
 |<div align=right><sup>Código fuente: [especificacion.puml](especificacion.puml)</sup></div>|
 
@@ -21,7 +21,7 @@
 
 |Bloqueada (en uso)|Confirmación (sin uso)|
 |:-:|:-:|
-|*(SVG pendiente de renderizar en pyCelda)*|*(SVG pendiente de renderizar en pyCelda)*|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocentePrograma/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocentePrograma/wireframe-confirmacion.svg)|
 ||<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
 
 </div>
