@@ -1,0 +1,45 @@
+@startuml consultarHistorialCambios-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":HISTORIAL_CAMBIOS_ABIERTO" as HistorialCambiosAbiertoSalida
+
+package consultarHistorialCambios as "consultarHistorialCambios()" {
+    rectangle #629EF9 ConsultarHistorialCambiosView
+    rectangle #b5bd68 HistorialCambioController
+    rectangle #F2AC4E HistorialCambio
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E DirectorPrograma
+    rectangle #F2AC4E CursoAcademicoRepository
+    rectangle #F2AC4E ProgramaRepository
+    rectangle #F2AC4E ProfesorRepository
+}
+
+SistemaDisponible --> ConsultarHistorialCambiosView: <font size=8>consultarHistorialCambios()
+
+ConsultarHistorialCambiosView --> HistorialCambioController: <font size=8>consultarHistorial(cursoAcademicoId) : ultimas 50 + autores
+note right: sin curso = historico completo\n(default opuesto a consultarEstadoGuias)
+
+HistorialCambioController --> CursoAcademicoRepository: <font size=8>obtener(cursoAcademicoId) : CursoAcademico [si hay filtro; inexistente = rechazo]
+
+HistorialCambioController --> HistorialCambio: <font size=8>ultimas(cursoAcademicoId, 50) : List<HistorialCambio>
+
+HistorialCambioController --> HistorialCambio: <font size=8>todas(cursoAcademicoId) : List<HistorialCambio> [para el indice de autores]
+
+HistorialCambioController --> ProgramaRepository: <font size=8>obtener(programaId) : Programa [codigo para Asignatura@Sigla]
+
+HistorialCambioController --> HistorialCambioController: <font size=8>resolverAutor(campo, autorId) / claveAgrupacion(...) [fusion por email]
+
+HistorialCambioController --> Profesor: <font size=8>nombre, email del autor
+HistorialCambioController --> DirectorPrograma: <font size=8>email del autor
+HistorialCambioController --> ProfesorRepository: <font size=8>obtenerPorEmail(email) : Profesor [nombre del DirectorPrograma]
+
+ConsultarHistorialCambiosView --> HistorialCambioController: <font size=8>consultarHistorialDeAutor(clave) : List<HistorialCambio>
+
+HistorialCambioController --> HistorialCambio: <font size=8>todas() filtradas por clave de autor [sin limite ni curso]
+
+ConsultarHistorialCambiosView --> HistorialCambiosAbiertoSalida: <font size=8>presenta feed + indice de autores (o historial del autor elegido)
+
+@enduml

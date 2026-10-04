@@ -6,14 +6,14 @@
     ====
     <b>Facultad de Ciencias de la Salud</b>
 
-    Esta facultad tiene 5 grados asociados:
+    Esta facultad tiene 5 programas asociados:
     • Grado en Gastronomía
     • Grado en Ciencias de la Actividad Física y del Deporte
     • Grado en Ciencia y Tecnología de los Alimentos
     • Grado en Nutrición Humana y Dietética
     • Grado en Psicología
 
-    <i>Elimina o reubica los grados antes de eliminar la facultad.</i>
+    <i>Elimina o reubica los programas antes de eliminar la facultad.</i>
     ====
     [ <b>Volver al listado</b> ]
 }
@@ -26,7 +26,7 @@
     <b>Facultad de Ingeniería y Ciencias Aplicadas</b>
 
     <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin grados asociados.
+    Sin programas asociados.
     ====
     {[Confirmar eliminación] | [Cancelar]}
 }

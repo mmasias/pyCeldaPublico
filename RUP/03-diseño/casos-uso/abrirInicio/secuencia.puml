@@ -1,28 +1,28 @@
 @startuml abrirInicio-diseño
-title Diagrama de Secuencia - abrirInicio() (hub Profesor / DirectorGrado)
+title Diagrama de Secuencia - abrirInicio() (hub Profesor / DirectorPrograma)
 
-actor "Profesor / DirectorGrado" as Usuario
+actor "Profesor / DirectorPrograma" as Usuario
 participant "Inicio.tsx (React)" as Vista
 participant "API (FastAPI)" as API
 
 Usuario -> Vista: (tras el login) navega a /inicio
 activate Vista
 Vista -> API: GET /auth/me (cookie de sesion)
-API --> Vista: 200 OK {rol, es_profesor, dirige_grados, ...}
+API --> Vista: 200 OK {rol, es_profesor, dirige_programas, ...}
 
 opt es_profesor
-  Vista -> API: GET /api/v1/mis-asignaturas-grado
+  Vista -> API: GET /api/v1/mis-asignaturas-programa
   note right of API: get_current_profesor_id_opcional -> [] si no hay fila\n(nunca 403); listar_impartidas_por + fusion con Guia
-  API --> Vista: 200 OK [AsignaturaGradoParaProfesorResponse]
+  API --> Vista: 200 OK [AsignaturaProgramaParaProfesorResponse]
 end
 
-opt dirige_grados
-  Vista -> API: GET /api/v1/grados
-  note right of API: get_current_director_grado_id_opcional -> [] si no dirige nada\n(nunca 403); listar_dirigidos_por
-  API --> Vista: 200 OK [GradoResponse]
+opt dirige_programas
+  Vista -> API: GET /api/v1/programas
+  note right of API: get_current_director_programa_id_opcional -> [] si no dirige nada\n(nunca 403); listar_dirigidos_por
+  API --> Vista: 200 OK [ProgramaResponse]
 end
 
-note right of Vista: compone <TablaMisGuias> (seccion "Mis guias") y\n<TablaMisGrados> (seccion "Mis grados") -- una capacidad\nausente se presenta como seccion ausente, nunca como error
+note right of Vista: compone <TablaMisGuias> (seccion "Mis guias") y\n<TablaMisProgramas> (seccion "Mis programas") -- una capacidad\nausente se presenta como seccion ausente, nunca como error
 Vista --> Usuario: presenta la pantalla de inicio
 deactivate Vista
 

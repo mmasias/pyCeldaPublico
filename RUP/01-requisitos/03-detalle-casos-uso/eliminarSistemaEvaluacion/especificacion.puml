@@ -19,12 +19,14 @@ state eliminarSistemaEvaluacion as "eliminarSistemaEvaluacion()" {
 
     c -[#green]-> ConfirmandoEliminacion
     note on link
+    [SistemaEvaluacion sin PonderacionEvaluacion asociadas]
     <b>Sistema</b> presenta información del sistema de evaluación y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
     c -[#red]-> [*]
     note on link
+    [SistemaEvaluacion con PonderacionEvaluacion asociadas]
     <b>Sistema</b> presenta mensaje de bloqueo por PonderacionEvaluacion asociadas
     end note
 

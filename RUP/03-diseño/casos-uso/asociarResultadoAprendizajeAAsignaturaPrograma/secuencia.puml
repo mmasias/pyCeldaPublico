@@ -1,0 +1,44 @@
+@startuml asociarResultadoAprendizajeAAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Asociar Resultado de Aprendizaje a AsignaturaPrograma
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ResultadoAprendizajeRepository" as ResultadoRepo
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita asociar un ResultadoAprendizaje a la AsignaturaPrograma
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-programa/{asignatura_programa_id}/resultados-aprendizaje/disponibles
+activate API
+API -> ResultadoRepo: listar_disponibles_para_asignatura_programa(asignatura_programa_id)
+activate ResultadoRepo
+ResultadoRepo -> DB: SELECT ra.* FROM resultados_aprendizaje ra\nJOIN materias_resultados_aprendizaje mra ON mra.resultado_aprendizaje_id = ra.id\nJOIN asignaturas_programa ag ON ag.materia_id = mra.materia_id\nLEFT JOIN asignaturas_programa_resultados_aprendizaje agra\nON agra.resultado_aprendizaje_id = ra.id\nAND agra.asignatura_programa_id = :asignatura_programa_id\nWHERE ag.id = :asignatura_programa_id AND agra.id IS NULL
+activate DB
+DB --> ResultadoRepo: filas ResultadoAprendizaje
+deactivate DB
+ResultadoRepo --> API: List[ResultadoAprendizaje]
+deactivate ResultadoRepo
+note right of API: la consulta aplica la regla de consistencia:\nsolo ResultadoAprendizaje ya asignados a la Materia
+API --> Vista: 200 OK (List[ResultadoAprendizajeResponse] JSON)
+deactivate API
+Vista --> DirectorPrograma: muestra la selección disponible
+
+DirectorPrograma -> Vista: elige un ResultadoAprendizaje y confirma
+Vista -> API: POST /api/v1/asignaturas-programa/{asignatura_programa_id}/resultados-aprendizaje (AsociarResultadoAprendizajeCreate JSON)
+activate API
+API -> AsignaturaProgramaRepo: asociar_resultado_aprendizaje(asignatura_programa_id, resultado_aprendizaje_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: INSERT INTO asignaturas_programa_resultados_aprendizaje ...
+activate DB
+DB --> AsignaturaProgramaRepo: ok
+deactivate DB
+AsignaturaProgramaRepo --> API: void
+deactivate AsignaturaProgramaRepo
+API --> Vista: 204 No Content
+deactivate API
+Vista --> DirectorPrograma: ResultadoAprendizaje asociado
+deactivate Vista
+
+@enduml

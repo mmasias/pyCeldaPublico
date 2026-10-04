@@ -7,7 +7,7 @@ state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
 
 MATERIA_ABIERTO -[#green]-> asociarMetodologiaDocenteAMateria
 note on link
-<b>DirectorGrado</b> solicita asociar MetodologiaDocente a Materia
+<b>DirectorPrograma</b> solicita asociar MetodologiaDocente a Materia
 end note
 
 state asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()" {
@@ -22,8 +22,8 @@ state asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()"
 
     SolicitandoDatos -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> selecciona MetodologiaDocente
-    <b>DirectorGrado</b> solicita asociar
+    <b>DirectorPrograma</b> selecciona MetodologiaDocente
+    <b>DirectorPrograma</b> solicita asociar
     end note
 }
 

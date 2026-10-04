@@ -1,0 +1,43 @@
+@startuml abrirCursosAcademicos-diseño
+title Diagrama de Secuencia - Abrir Cursos Académicos
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CursoAcademicoRepository" as CursoAcademicoRepo
+participant "CursoAcademico" as CursoAcademico
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir los Cursos académicos de una Universidad
+activate Vista
+Vista -> API: GET /api/v1/universidades/{universidad_id}/cursos-academicos
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> CursoAcademicoRepo: listar(universidad_id)
+activate CursoAcademicoRepo
+CursoAcademicoRepo -> DB: SELECT * FROM cursos_academicos WHERE universidad_id = :universidad_id ORDER BY id ASC
+activate DB
+DB --> CursoAcademicoRepo: filas CursoAcademico
+deactivate DB
+CursoAcademicoRepo --> API: List[CursoAcademico]
+deactivate CursoAcademicoRepo
+
+loop por cada CursoAcademico (_fila_admin)
+    API -> CursoAcademicoRepo: es_elegible_para_activar(curso.id)
+    activate CursoAcademicoRepo
+    CursoAcademicoRepo -> DB: ultimo() / penultimo() / tiene_actividad_registrada(ultimoId)
+    CursoAcademicoRepo --> API: boolean
+    deactivate CursoAcademicoRepo
+    API -> CursoAcademico: tiene_guia_asociada()
+    activate CursoAcademico
+    CursoAcademico -> DB: SELECT guias del curso (relación perezosa)
+    CursoAcademico --> API: boolean
+    deactivate CursoAcademico
+end
+
+API --> Vista: 200 OK (List[CursoAcademicoAdminResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado -- [Abrir] por fila, [Activar] solo si elegible_para_activar
+deactivate Vista
+
+@enduml

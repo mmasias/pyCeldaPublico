@@ -1,0 +1,54 @@
+@startuml crearPrograma
+
+skinparam linetype polyline
+
+state PROGRAMAS_ABIERTO
+state PROGRAMA_ABIERTO
+
+PROGRAMAS_ABIERTO -[#green]-> crearPrograma
+note on link
+<b>Admin</b> solicita crear Programa
+end note
+
+state crearPrograma as "crearPrograma()" {
+
+    state " " as SolicitandoDatos
+    state c <<choice>>
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos mínimos del Programa
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> c
+    note on link
+    <b>Admin</b> introduce código
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita crear
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [código introducido sin Programa previo con el mismo código]
+    <b>Sistema</b> presenta Programa creado
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [código introducido con Programa previo con el mismo código]
+    <b>Sistema</b> presenta mensaje de código ya existente
+    end note
+}
+
+crearPrograma -[#green]-> PROGRAMA_ABIERTO
+note on link
+editarPrograma()
+end note
+
+crearPrograma -[#red]-> PROGRAMAS_ABIERTO
+note on link
+código ya existente (issue #148), sin crear
+end note
+
+@enduml

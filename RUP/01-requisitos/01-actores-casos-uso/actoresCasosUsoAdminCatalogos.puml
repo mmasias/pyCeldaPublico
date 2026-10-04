@@ -7,20 +7,20 @@ left to right direction
 ' se retiró -- el reparto por actor es la fuente de verdad.
 '
 ' Solo "Catálogos institucionales" -- el resto de Admin (Profesorado de
-' asignaturas, Curso académico, Configuración del grado, Guía docente) vive
+' asignaturas, Curso académico, Configuración del programa, Guía docente) vive
 ' en actoresCasosUsoAdminOperativa.puml.
 
 actor Admin
 
 ' Acceso: abrirPanelAdministracion() EXTIENDE a iniciarSesion() -- mismo
-' mecanismo que Profesor/abrirAsignaturasGrado() y DirectorGrado/abrirGrados()
+' mecanismo que Profesor/abrirAsignaturasPrograma() y DirectorPrograma/abrirProgramas()
 ' (issues #48/#49/#50). Corrección sobre la versión anterior (issue #51): se
 ' había modelado como contenido propio de iniciarSesion(), sin CU propio --
 ' error, detectado al cerrar el patrón completo de completarGestion() en los
 ' tres diagramas de contexto (discussion #47): SISTEMA_DISPONIBLE es también
 ' destino de las vueltas desde cada área de catálogo (antes completarGestion()
 ' genérico, ver diagramaContextoAdmin.puml), y ese destino necesita nombre
-' propio igual que ASIGNATURAS_GRADO_ABIERTO/GRADOS_ABIERTO ya lo tenían.
+' propio igual que ASIGNATURAS_PROGRAMA_ABIERTO/PROGRAMAS_ABIERTO ya lo tenían.
 ' Entrada a todo Admin, no solo a los catálogos de este fichero (también a
 ' actoresCasosUsoAdminOperativa.puml).
 '
@@ -55,12 +55,20 @@ abrirPanelAdministracion ..> iniciarSesion : <<extend>>\n(condición: rol == Adm
     usecase eliminarFacultad as "eliminarFacultad()"
   }
 
-  package Grado {
-    usecase abrirGrados as "abrirGrados()"
-    usecase crearGrado as "crearGrado()"
-    usecase abrirGrado as "abrirGrado()"
-    usecase editarGrado as "editarGrado()"
-    usecase eliminarGrado as "eliminarGrado()"
+  package Programa {
+    usecase abrirProgramas as "abrirProgramas()"
+    usecase crearPrograma as "crearPrograma()"
+    usecase abrirPrograma as "abrirPrograma()"
+    usecase editarPrograma as "editarPrograma()"
+    usecase eliminarPrograma as "eliminarPrograma()"
+    usecase abrirResultadosAprendizaje as "abrirResultadosAprendizaje()"
+    usecase crearResultadoAprendizaje as "crearResultadoAprendizaje()"
+    usecase abrirResultadoAprendizaje as "abrirResultadoAprendizaje()"
+    usecase editarResultadoAprendizaje as "editarResultadoAprendizaje()"
+    usecase eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()"
+    usecase abrirMetodologiasDocentesPrograma as "abrirMetodologiasDocentesPrograma()"
+    usecase asociarMetodologiaDocenteAPrograma as "asociarMetodologiaDocenteAPrograma()"
+    usecase desasociarMetodologiaDocentePrograma as "desasociarMetodologiaDocentePrograma()"
   }
 
   package Asignatura {
@@ -79,14 +87,22 @@ abrirPanelAdministracion ..> iniciarSesion : <<extend>>\n(condición: rol == Adm
     usecase eliminarMetodologiaDocente as "eliminarMetodologiaDocente()"
   }
 
+  package ActividadFormativa {
+    usecase abrirActividadesFormativas as "abrirActividadesFormativas()"
+    usecase crearActividadFormativa as "crearActividadFormativa()"
+    usecase abrirActividadFormativa as "abrirActividadFormativa()"
+    usecase editarActividadFormativa as "editarActividadFormativa()"
+    usecase eliminarActividadFormativa as "eliminarActividadFormativa()"
+  }
+
   package Academico {
     usecase abrirProfesores as "abrirProfesores()"
     usecase crearProfesor as "crearProfesor()"
     usecase abrirProfesor as "abrirProfesor()"
     usecase editarProfesor as "editarProfesor()"
     usecase eliminarProfesor as "eliminarProfesor()"
-    usecase definirDirectorGrado as "definirDirectorGrado()"
-    usecase quitarDirectorGrado as "quitarDirectorGrado()"
+    usecase definirDirectorPrograma as "definirDirectorPrograma()"
+    usecase quitarDirectorPrograma as "quitarDirectorPrograma()"
   }
 
 
@@ -101,11 +117,19 @@ abrirFacultad --- Admin
 editarFacultad --- Admin
 eliminarFacultad --- Admin
 
-Admin -- abrirGrados
-Admin -- crearGrado
-Admin -- abrirGrado
-Admin -- editarGrado
-Admin -- eliminarGrado
+Admin -- abrirProgramas
+Admin -- crearPrograma
+Admin -- abrirPrograma
+Admin -- editarPrograma
+Admin -- eliminarPrograma
+Admin -- abrirResultadosAprendizaje
+Admin -- crearResultadoAprendizaje
+Admin -- abrirResultadoAprendizaje
+Admin -- editarResultadoAprendizaje
+Admin -- eliminarResultadoAprendizaje
+Admin -- abrirMetodologiasDocentesPrograma
+Admin -- asociarMetodologiaDocenteAPrograma
+Admin -- desasociarMetodologiaDocentePrograma
 
 Admin ---- abrirAsignaturas
 Admin ---- crearAsignatura
@@ -119,12 +143,18 @@ abrirMetodologiaDocente -- Admin
 editarMetodologiaDocente -- Admin
 eliminarMetodologiaDocente -- Admin
 
+abrirActividadesFormativas -- Admin
+crearActividadFormativa -- Admin
+abrirActividadFormativa -- Admin
+editarActividadFormativa -- Admin
+eliminarActividadFormativa -- Admin
+
 Admin -- abrirProfesores
 Admin -- crearProfesor
 Admin -- abrirProfesor
 Admin -- editarProfesor
 Admin -- eliminarProfesor
-Admin -- definirDirectorGrado
-Admin -- quitarDirectorGrado
+Admin -- definirDirectorPrograma
+Admin -- quitarDirectorPrograma
 
 @enduml

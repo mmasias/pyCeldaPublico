@@ -4,6 +4,13 @@
     ====
     <b>Nombre:</b> Universidad Europea del Atlántico (UNEATLANTICO)
     ====
-    {[Editar] | [Ver Facultades] | [Volver al listado]}
+    <b>Facultades:</b>
+    {#
+        <b>Nombre | <b>Programas | . | .
+        Facultad de Ciencias e Ingeniería | 4 | [Abrir] | [Eliminar]
+    }
+    [ <b>+ Crear Facultad</b> ]
+    ====
+    {[Editar] | [Volver al listado]}
 }
 @endsalt

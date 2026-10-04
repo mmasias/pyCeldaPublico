@@ -3,18 +3,18 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":GUIAS_DEL_GRADO_ABIERTO" as GuiasDelGradoAbierto
-rectangle #CDEBA5 ":GUIAS_DEL_GRADO_ABIERTO" as GuiasDelGradoSalida
+rectangle #CDEBA5 ":GUIAS_DEL_PROGRAMA_ABIERTO" as GuiasDelProgramaAbierto
+rectangle #CDEBA5 ":GUIAS_DEL_PROGRAMA_ABIERTO" as GuiasDelProgramaSalida
 
 package notificarGuiasActualizadas as "notificarGuiasActualizadas()" {
     rectangle #629EF9 NotificarGuiasActualizadasView
     rectangle #b5bd68 GuiaController
 }
 
-GuiasDelGradoAbierto --> NotificarGuiasActualizadasView: <font size=8>notificarGuiasActualizadas(gradoId)
+GuiasDelProgramaAbierto --> NotificarGuiasActualizadasView: <font size=8>notificarGuiasActualizadas(programaId)
 
-NotificarGuiasActualizadasView --> GuiaController: <font size=8>notificarGuiasActualizadas(gradoId) : boolean
+NotificarGuiasActualizadasView --> GuiaController: <font size=8>notificarGuiasActualizadas(programaId) : boolean
 
-NotificarGuiasActualizadasView --> GuiasDelGradoSalida: <font size=8>presenta notificación enviada al Admin
+NotificarGuiasActualizadasView --> GuiasDelProgramaSalida: <font size=8>presenta notificación enviada al Admin
 
 @enduml

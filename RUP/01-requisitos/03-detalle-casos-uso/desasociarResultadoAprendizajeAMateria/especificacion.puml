@@ -7,7 +7,7 @@ state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
 
 MATERIA_ABIERTO -[#green]-> desasociarResultadoAprendizajeAMateria
 note on link
-<b>DirectorGrado</b> solicita desasociar ResultadoAprendizaje de Materia
+<b>DirectorPrograma</b> solicita desasociar ResultadoAprendizaje de Materia
 end note
 
 state desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()" {
@@ -19,23 +19,25 @@ state desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeA
 
     c -[#green]-> ConfirmandoDesasociacion
     note on link
+    [ResultadoAprendizaje sin AsignaturaPrograma de la Materia que lo use]
     <b>Sistema</b> presenta información de la asociación y advertencia de desasociación
     <b>Sistema</b> permite solicitar confirmar/cancelar desasociación
     end note
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de bloqueo por uso en AsignaturaGrado de la Materia
+    [ResultadoAprendizaje con alguna AsignaturaPrograma de la Materia que lo use]
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en AsignaturaPrograma de la Materia
     end note
 
     ConfirmandoDesasociacion -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> solicita confirmar desasociación
+    <b>DirectorPrograma</b> solicita confirmar desasociación
     end note
 
     ConfirmandoDesasociacion -[#blue]-> [*]
     note on link
-    <b>DirectorGrado</b> solicita cancelar desasociación
+    <b>DirectorPrograma</b> solicita cancelar desasociación
     end note
 }
 

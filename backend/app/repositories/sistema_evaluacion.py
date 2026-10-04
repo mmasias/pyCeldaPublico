@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
 
+from app.models.asignatura_programa import AsignaturaPrograma
+from app.models.guia import Guia
 from app.models.ponderacion_evaluacion import PonderacionEvaluacion
 from app.models.sistema_evaluacion import SistemaEvaluacion
 
@@ -55,14 +57,20 @@ class SistemaEvaluacionRepository:
         self.db.refresh(sistema_evaluacion)
         return sistema_evaluacion
 
-    def contar_ponderaciones_asociadas(
-        self, sistema_evaluacion_id: int
-    ) -> int:
-        return (
-            self.db.query(PonderacionEvaluacion)
-            .filter_by(sistema_evaluacion_id=sistema_evaluacion_id)
-            .count()
+    def nombres_asignaciones(self, sistema_evaluacion_id: int) -> list[str]:
+        nombres = (
+            self.db.query(AsignaturaPrograma.nombre)
+            .join(Guia, Guia.asignatura_programa_id == AsignaturaPrograma.id)
+            .join(PonderacionEvaluacion, PonderacionEvaluacion.guia_id == Guia.id)
+            .filter(
+                PonderacionEvaluacion.sistema_evaluacion_id
+                == sistema_evaluacion_id
+            )
+            .distinct()
+            .order_by(AsignaturaPrograma.nombre)
+            .all()
         )
+        return [f"AsignaturaPrograma '{nombre}'" for (nombre,) in nombres]
 
     def eliminar(self, sistema_evaluacion_id: int) -> None:
         sistema_evaluacion = self.db.get(

@@ -3,11 +3,11 @@
     <b>MATERIAS</b>
     ====
     {#
-        <b>Nombre | . | .
-        Programación | [Abrir] | [Eliminar]
-        Matemáticas | [Abrir] | [Eliminar]
-        Bases de Datos | [Abrir] | [Eliminar]
-        Ingeniería del Software | [Abrir] | [Eliminar]
+        <b>Nombre | <b>Asignaturas | . | .
+        Programación | 2 | [Abrir] | [Eliminar]
+        Matemáticas | 3 | [Abrir] | [Eliminar]
+        Bases de Datos | 2 | [Abrir] | [Eliminar]
+        Ingeniería del Software | 1 | [Abrir] | [Eliminar]
     }
     ====
     [ <b>+ Crear Materia</b> ]

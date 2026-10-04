@@ -12,7 +12,7 @@
 
 - **[Profesor](docs/MANUAL_USUARIO/profesor/README.md)**
 
-- **[Director de Grado](docs/MANUAL_USUARIO/directorGrado/README.md)**
+- **[Director de Programa](docs/MANUAL_USUARIO/directorPrograma/README.md)**
 
 - **[Administrador](docs/MANUAL_USUARIO/admin/README.md)**
 
@@ -22,10 +22,10 @@ Organizado por actor.
 
 <div align=center>
 
-|[Profesor](/docs/PROPUESTA_WIREFRAME/profesor/iniciarSesion.md)|[Director de grado](/docs/PROPUESTA_WIREFRAME/directorGrado/iniciarSesion.md)|[Administrador](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)|
+|[Profesor](/docs/PROPUESTA_WIREFRAME/profesor/iniciarSesion.md)|[Director de programa](/docs/PROPUESTA_WIREFRAME/directorPrograma/iniciarSesion.md)|[Administrador](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)|
 |-|-|-|
-Entra, ve sus asignaturas, abre la guía de una de ellas, la edita, la envía a revisión|Revisa las guías de su grado, las aprueba o las rechaza|Da de alta grados, asignaturas y profesorado
-||Adicionalmente gestiona su grado: las asignaturas y resultados de aprendizaje|Genera el PDF de las guías ya aprobadas.
+Entra, ve sus asignaturas, abre la guía de una de ellas, la edita, la envía a revisión|Revisa las guías de su programa, las aprueba o las rechaza|Da de alta programas, asignaturas y profesorado
+||Adicionalmente gestiona su programa: las asignaturas y resultados de aprendizaje|Genera el PDF de las guías ya aprobadas.
 
 </div>
 <div align=right><sub>NOTA: Se navega a través de la tabla de la parte inferior. Si un botón no tiene enlace es porque, en ese papel, no hay permiso para pulsarlo -- restricción intencionada, no un enlace roto.</sub></div>
@@ -49,17 +49,17 @@ Tres piezas, de la más conceptual a la más concreta:
 
 </div>
 
-- **[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md)** -- las entidades del sistema (`Guia`, `AsignaturaGrado`, `Profesor`...) y sus relaciones. Incluye el diagrama de estados de la `Guia`: Borrador, En revisión, Aprobada, Rechazada, y quién puede moverla de un estado a otro.
-- **[Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md)** -- los tres actores (Profesor, DirectorGrado, Admin) y el catálogo de acciones que cada uno puede invocar, con el diagrama de contexto que fija cuándo está disponible cada una.
-- **[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)** -- las 109 acciones del catálogo, una por una: especificación del comportamiento y wireframe de la pantalla. De aquí sale el prototipo de la sección anterior.
+- **[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md)** -- las entidades del sistema (`Guia`, `AsignaturaPrograma`, `Profesor`...) y sus relaciones. Incluye el diagrama de estados de la `Guia`: Borrador, En revisión, Aprobada, Rechazada, y quién puede moverla de un estado a otro.
+- **[Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md)** -- los tres actores (Profesor, DirectorPrograma, Admin) y el catálogo de acciones que cada uno puede invocar, con el diagrama de contexto que fija cuándo está disponible cada una.
+- **[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)** -- las 122 acciones del catálogo, una por una: especificación del comportamiento y wireframe de la pantalla. De aquí sale el prototipo de la sección anterior.
 
 El catálogo está enlazado entre sí: el modelo de dominio justifica una regla, el diagrama de contexto fija cuándo se invoca, el detalle especifica el cómo, el prototipo lo muestra en pantalla. Se puede entrar por cualquier pieza y llegar a las demás.
 
 ## El recorrido completo: de Requisitos a código real
 
-98 de los 109 casos de uso tienen también **[Análisis](/RUP/02-analisis/README.md)** y **[Diseño](/RUP/03-diseño/README.md)** completos -- la traducción a clases y la secuencia de colaboración de objetos. Desde el `README.md` de cualquiera de esos 98, la cabecera de navegación lleva directo a su ficha de Análisis y de Diseño.
+119 de los 122 casos de uso tienen también **[Análisis](/RUP/02-analisis/README.md)** y **[Diseño](/RUP/03-diseño/README.md)** completos -- la traducción a clases y la secuencia de colaboración de objetos. Desde el `README.md` de cualquiera de esos 119, la cabecera de navegación lleva directo a su ficha de Análisis y de Diseño.
 
-Y 5 de esos 98 llegan hasta **[Desarrollo](/RUP/04-desarrollo/casos-uso/README.md)**: código real de backend y frontend, elegidos como muestra representativa de patrones distintos del proyecto (creación simple, borrado protegido, autenticación, regla de negocio en el modelo, flujo con varias condiciones encadenadas) -- no los 5 más fáciles de entender.
+Y 5 de esos 119 llegan hasta **[Desarrollo](/RUP/04-desarrollo/casos-uso/README.md)**: código real de backend y frontend, elegidos como muestra representativa de patrones distintos del proyecto (creación simple, borrado protegido, autenticación, regla de negocio en el modelo, flujo con varias condiciones encadenadas) -- no los 5 más fáciles de entender.
 
 ---
 

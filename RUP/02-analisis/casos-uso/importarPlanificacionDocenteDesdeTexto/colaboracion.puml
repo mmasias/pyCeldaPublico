@@ -1,0 +1,45 @@
+@startuml importarPlanificacionDocenteDesdeTexto-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteAbierto
+rectangle #CDEBA5 ":Collaboration AbrirPlanificacionDocente" as AbrirPlanificacionDocente
+
+package importarPlanificacionDocenteDesdeTexto as "importarPlanificacionDocenteDesdeTexto()" {
+    rectangle #629EF9 ImportarPlanificacionDocenteDesdeTextoView
+    rectangle #b5bd68 ImportarPlanificacionDocenteDesdeTextoController
+    rectangle #F2AC4E ParserPlanificacionTexto
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E SesionRepository
+    rectangle #F2AC4E HistorialCambio
+}
+
+PlanificacionDocenteAbierto --> ImportarPlanificacionDocenteDesdeTextoView: <font size=8>importarPlanificacionDocenteDesdeTexto(guiaDestinoId)
+
+ImportarPlanificacionDocenteDesdeTextoView --> ImportarPlanificacionDocenteDesdeTextoController: <font size=8>importarPlanificacionDocenteDesdeTexto(guiaDestinoId, texto) : Guia
+
+ImportarPlanificacionDocenteDesdeTextoController --> GuiaRepository: <font size=8>obtener(guiaDestinoId) : Guia
+
+ImportarPlanificacionDocenteDesdeTextoController --> AsignaturaProgramaRepository: <font size=8>imparte(asignaturaProgramaId, profesorId) : boolean
+
+ImportarPlanificacionDocenteDesdeTextoController --> ParserPlanificacionTexto: <font size=8>parsear(texto) : lista de (tipo, descripcion)
+
+ImportarPlanificacionDocenteDesdeTextoController --> SesionRepository: <font size=8>reemplazarDesde(guiaDestino, sesiones) [borra todas; vinculada=False; renumera 1..N]
+
+ImportarPlanificacionDocenteDesdeTextoController --> Guia: <font size=8>confirmarGuardado() [Aprobada -> Borrador]
+
+ImportarPlanificacionDocenteDesdeTextoController --> HistorialCambio: <font size=8>registrar(campo="planificacion_docente", ...) [texto pegado]
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+GuiaRepository -- Guia
+SesionRepository -- Sesion
+Guia *-- HistorialCambio
+
+ImportarPlanificacionDocenteDesdeTextoView ..> AbrirPlanificacionDocente:<font size=8> <<include>> abrirPlanificacionDocente()
+
+@enduml

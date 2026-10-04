@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -41,7 +41,7 @@ Bajada a diseño del caso de análisis [`crearCursoAcademico()`](/RUP/02-analisi
 
 ## Decisiones de diseño
 
-- **Esquema nuevo: `cursos_academicos`**, tabla enteramente nueva y sin relación de composición con ninguna otra tabla todavía -- `Base.metadata.create_all()` la crea al arrancar el backend sin tocar tablas existentes (SQLite solo crea tablas ausentes, nunca altera una ya existente), mismo mecanismo que [`historial_cambios`](/backend/app/models/historial_cambio.py) (issue #392, tabla nueva sin script `migrar_*.py` dedicado): no hace falta uno para dar de alta una tabla nueva sin columnas que añadir a tablas ya existentes -- a diferencia de `facultades`/`Grado.facultad_id`, donde sí hizo falta uno.
+- **Esquema nuevo: `cursos_academicos`**, tabla enteramente nueva y sin relación de composición con ninguna otra tabla todavía -- `Base.metadata.create_all()` la crea al arrancar el backend sin tocar tablas existentes (SQLite solo crea tablas ausentes, nunca altera una ya existente), mismo mecanismo que `historial_cambios` (issue #392, tabla nueva sin script `migrar_*.py` dedicado): no hace falta uno para dar de alta una tabla nueva sin columnas que añadir a tablas ya existentes -- a diferencia de `facultades`/`Programa.facultad_id`, donde sí hizo falta uno.
 - **Sin capa Service**: la función del Router llama al repositorio directamente -- decisión ya cerrada en la discussion [#58](https://github.com/mmasias/pyCelda/discussions/58).
 - **Validación de obligatoriedad por esquema de entrada**, no por paso explícito de la secuencia: `CursoAcademicoCreate` (Pydantic, `inicio: date`/`fin: date`) exige ambos campos y el formato ISO-8601 antes de que la función del Router se ejecute -- mismo mecanismo que `FacultadCreate`.
 - **Sin validación de `inicio < fin` ni de solapamiento entre cursos**: no está especificada en la ficha de Requisitos -- no se inventa una restricción que no pidió Manuel. Si se necesita, es un issue aparte.

@@ -14,11 +14,11 @@ package crearResultadoAprendizaje as "crearResultadoAprendizaje()" {
     rectangle #F2AC4E ResultadoAprendizajeRepository
 }
 
-ResultadosAprendizajeAbierto --> CrearResultadoAprendizajeView: <font size=8>crearResultadoAprendizaje(gradoId)
+ResultadosAprendizajeAbierto --> CrearResultadoAprendizajeView: <font size=8>crearResultadoAprendizaje(programaId)
 
-CrearResultadoAprendizajeView --> ResultadoAprendizajeController: <font size=8>crearResultadoAprendizaje(gradoId, codigo, tipo, descripcion) : ResultadoAprendizaje
+CrearResultadoAprendizajeView --> ResultadoAprendizajeController: <font size=8>crearResultadoAprendizaje(programaId, codigo, tipo, descripcion) : ResultadoAprendizaje
 
-ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>crear(gradoId, codigo, tipo, descripcion) : ResultadoAprendizaje
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>crear(programaId, codigo, tipo, descripcion) : ResultadoAprendizaje
 
 ResultadoAprendizajeRepository -- ResultadoAprendizaje
 

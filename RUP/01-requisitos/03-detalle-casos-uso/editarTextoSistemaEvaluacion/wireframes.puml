@@ -1,0 +1,18 @@
+@startsalt editarTextoSistemaEvaluacion-wireframe
+{
+    <b>SISTEMA DE EVALUACIÓN -- Programación I (GII)</b>
+    ====
+    <b>Texto de convocatorias:</b>
+    {
+        "CONVOCATORIA ORDINARIA
+
+        En la convocatoria ordinaria de esta asignatura...
+
+        [TABLA]
+        ..."
+    }
+    {[Plantilla: Asignatura normal] | [Plantilla: Prácticas externas] | [Plantilla: Prácticas de laboratorio]}
+    ====
+    {[Guardar]}
+}
+@endsalt

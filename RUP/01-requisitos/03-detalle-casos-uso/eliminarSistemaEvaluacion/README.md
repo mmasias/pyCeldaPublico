@@ -39,7 +39,9 @@
 
 </div>
 
-Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()`/`eliminarMetodologiaDocente()`/`eliminarMateria()`: `SistemaEvaluacion` no tiene `estado` propio -- vive y muere con la `Materia` que lo contiene, así que su borrado es siempre físico. El bloqueo usa `PonderacionEvaluacion` (`PonderacionEvaluacion --> SistemaEvaluacion`), no `AsignaturaGrado` como `eliminarMateria()`: es la relación real que referencia a `SistemaEvaluacion`, desde la Guía. "Evaluación continua"/"Evaluación final" para bloqueada/confirmación son los dos valores reales de `tipo`; qué `PonderacionEvaluacion` concretas lo usan no está en el seed (`Guia`/`PonderacionEvaluacion` son L7/L8, todavía sin construir).
+Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()`/`eliminarMetodologiaDocente()`/`eliminarMateria()`: `SistemaEvaluacion` no tiene `estado` propio -- vive y muere con la `Materia` que lo contiene, así que su borrado es siempre físico. El bloqueo usa `PonderacionEvaluacion` (`PonderacionEvaluacion --> SistemaEvaluacion`), no `AsignaturaPrograma` como `eliminarMateria()`: es la relación real que referencia a `SistemaEvaluacion`, desde la Guía. "Evaluación continua"/"Evaluación final" para bloqueada/confirmación son los dos valores reales de `tipo`; qué `PonderacionEvaluacion` concretas lo usan no está en el seed (`Guia`/`PonderacionEvaluacion` son L7/L8, todavía sin construir).
+
+El mensaje de bloqueo nombra las `AsignaturaPrograma` donde el `SistemaEvaluacion` está en uso (`En uso en: AsignaturaPrograma 'Programación I', ...`), no cuenta ponderaciones: mismo patrón que `desasociarResultadoAprendizaje()` (issue #581).
 
 ## Referencias
 

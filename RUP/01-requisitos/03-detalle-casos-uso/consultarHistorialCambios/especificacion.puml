@@ -1,0 +1,35 @@
+@startuml consultarHistorialCambios
+
+skinparam linetype polyline
+
+' Lectura pura, sin precondición que pueda rechazarla (issue #392): un
+' historial vacío es un estado válido (listas vacías), no un error -- sin
+' <<choice>>, mismo criterio que consultarCopiasSeguridad()/consultarEstadoGuias().
+
+state SISTEMA_DISPONIBLE
+state SISTEMA_DISPONIBLE_SALIDA as "SISTEMA_DISPONIBLE"
+
+SISTEMA_DISPONIBLE -[#green]-> consultarHistorialCambios
+note on link
+<b>Admin</b> solicita consultar la Auditoría
+end note
+
+state consultarHistorialCambios as "consultarHistorialCambios()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta feed de las últimas 50 acciones (todos los autores) e índice de autores distintos (Profesor/DirectorPrograma fusionados por email, Admin aparte)
+    end note
+
+    [*] -[#blue]-> [*]
+    note on link
+    <b>Admin</b> selecciona un autor del índice -- <b>Sistema</b> presenta toda su actividad, sin límite de 50
+    end note
+}
+
+consultarHistorialCambios -[#green]-> SISTEMA_DISPONIBLE_SALIDA
+note on link
+abrirPanelAdministracion()
+end note
+
+@enduml

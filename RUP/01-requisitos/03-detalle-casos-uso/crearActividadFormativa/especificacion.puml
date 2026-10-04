@@ -1,0 +1,38 @@
+@startuml crearActividadFormativa
+
+skinparam linetype polyline
+
+state ACTIVIDADES_FORMATIVAS_ABIERTO
+state ACTIVIDAD_FORMATIVA_ABIERTO
+
+ACTIVIDADES_FORMATIVAS_ABIERTO -[#green]-> crearActividadFormativa
+note on link
+<b>Admin</b> solicita crear ActividadFormativa
+end note
+
+state crearActividadFormativa as "crearActividadFormativa()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos de la ActividadFormativa
+    <b>Sistema</b> muestra código
+    <b>Sistema</b> muestra nombre
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce código
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita crear
+    end note
+}
+
+crearActividadFormativa -[#green]-> ACTIVIDAD_FORMATIVA_ABIERTO
+note on link
+editarActividadFormativa()
+end note
+
+@enduml

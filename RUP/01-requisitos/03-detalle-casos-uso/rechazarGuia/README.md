@@ -6,7 +6,7 @@
 
 # pyCelda > rechazarGuia()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/rechazarGuia/README.md)|[Diseño](/RUP/03-diseño/casos-uso/rechazarGuia/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/rechazarGuia/README.md)|[Diseño](/RUP/03-diseño/casos-uso/rechazarGuia/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,7 +31,7 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorGrado`|
+|**Actor**|`DirectorPrograma`|
 |**Objetivo**|Rechazar una `Guia` que está `EnRevision`, con un comentario opcional para el `Profesor`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
@@ -40,16 +40,16 @@
 
 Segunda decisión de la familia -- ver [`aprobarGuia()`](../aprobarGuia/README.md) para el contexto completo, cerrado en la discussion [#44](https://github.com/mmasias/pyCelda/discussions/44).
 
-**`comentario` opcional, pedido explícitamente**: a diferencia de `aprobarGuia()`/`escalarGuiaAAprobada()` (sin incidencia, sin campo), `rechazarGuia()` sí narra una incidencia -- el formulario pide `comentario` para que el `DirectorGrado` deje al `Profesor` una pista de qué corregir. Sigue siendo opcional (`HistorialCambio.comentario` no es obligatorio en el modelo de dominio); si se deja vacío, la fila de `HistorialCambio` queda sin texto, sin valor por defecto (a diferencia de `aprobarGuia()`, que sí rellena uno). Decisión cerrada en el punto 1 de la discussion #44.
+**`comentario` opcional, pedido explícitamente**: a diferencia de `aprobarGuia()`/`escalarGuiaAAprobada()` (sin incidencia, sin campo), `rechazarGuia()` sí narra una incidencia -- el formulario pide `comentario` para que el `DirectorPrograma` deje al `Profesor` una pista de qué corregir. Sigue siendo opcional (`HistorialCambio.comentario` no es obligatorio en el modelo de dominio); si se deja vacío, la fila de `HistorialCambio` queda sin texto, sin valor por defecto (a diferencia de `aprobarGuia()`, que sí rellena uno). Decisión cerrada en el punto 1 de la discussion #44.
 
 **Sin pantalla de confirmación** ni sub-estado `ConfirmandoX`: el propio formulario de `comentario` ya actúa como el paso de pausa antes de decidir -- mismo criterio que el resto de la familia (punto 4 de la discussion #44). `rechazarGuia()` se deshace con el reenvío del `Profesor` (`enviarGuiaARevision()`, ya construido), así que la decisión no es irreversible en el sentido de `eliminarX()`.
 
-Sin pantalla de éxito distinta: al no haber rama de fallo, el wireframe muestra solo el formulario -- la llegada a `GUIAS_DEL_GRADO_ABIERTO` ya está ilustrada en [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md), mismo criterio que `crearPonderacionEvaluacion()`/`editarAsociacionMetodologiaDocenteMateria()` (formulario sin pantalla de éxito aparte).
+Sin pantalla de éxito distinta: al no haber rama de fallo, el wireframe muestra solo el formulario -- la llegada a `GUIAS_DEL_PROGRAMA_ABIERTO` ya está ilustrada en [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md), mismo criterio que `crearPonderacionEvaluacion()`/`editarAsociacionMetodologiaDocenteMateria()` (formulario sin pantalla de éxito aparte).
 
 ## Referencias
 
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : rechazarGuia()`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `Guia`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : rechazarGuia()`
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `Guia`
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `EnRevision -> Rechazada`
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`
 - [`aprobarGuia()`](../aprobarGuia/README.md) -- contraparte de la misma decisión, sin campo de comentario

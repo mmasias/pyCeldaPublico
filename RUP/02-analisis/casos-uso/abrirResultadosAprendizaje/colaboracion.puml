@@ -3,7 +3,7 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
 rectangle #CDEBA5 ":RESULTADOS_APRENDIZAJE_ABIERTO" as ResultadosAprendizajeAbiertoSalida
 
 package abrirResultadosAprendizaje as "abrirResultadosAprendizaje()" {
@@ -13,14 +13,14 @@ package abrirResultadosAprendizaje as "abrirResultadosAprendizaje()" {
     rectangle #F2AC4E ResultadoAprendizajeRepository
 }
 
-GradoAbierto --> AbrirResultadosAprendizajeView: <font size=8>abrirResultadosAprendizaje(gradoId)
+ProgramaAbierto --> AbrirResultadosAprendizajeView: <font size=8>abrirResultadosAprendizaje(programaId)
 
-AbrirResultadosAprendizajeView --> ResultadoAprendizajeController: <font size=8>listarResultadosAprendizajeDelGrado(gradoId) : List<ResultadoAprendizaje>
+AbrirResultadosAprendizajeView --> ResultadoAprendizajeController: <font size=8>listarResultadosAprendizajeDelPrograma(programaId) : List<ResultadoAprendizaje>
 
-ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>listarDelGrado(gradoId) : List<ResultadoAprendizaje>
+ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>listarDelPrograma(programaId) : List<ResultadoAprendizaje>
 
 ResultadoAprendizajeRepository -- ResultadoAprendizaje
 
-AbrirResultadosAprendizajeView --> ResultadosAprendizajeAbiertoSalida: <font size=8>presenta catálogo de ResultadoAprendizaje del Grado
+AbrirResultadosAprendizajeView --> ResultadosAprendizajeAbiertoSalida: <font size=8>presenta catálogo de ResultadoAprendizaje del Programa
 
 @enduml

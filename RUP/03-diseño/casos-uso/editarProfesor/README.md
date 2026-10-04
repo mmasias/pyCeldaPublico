@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -42,9 +42,9 @@ Bajada a diseño del caso de análisis [`editarProfesor()`](/RUP/02-analisis/cas
 ## Decisiones de diseño
 
 - **`obtener_por_email_de_otro(email, excluir_id)`**, no `obtener_por_email()`: la misma dirección de email reenviada sin cambios es el caso normal de edición, no un conflicto -- excluir el propio id en la query lo expresa directamente.
-- **Implicación conocida y aceptada de la edición del email**: la resolución `Profesor`-`DirectorGrado` es por email (ver [`abrirProfesor()`](/RUP/03-diseño/casos-uso/abrirProfesor/README.md)); cambiar el email de un `Profesor` que dirige `Grado` desvincula su rol hasta que el `DirectorGrado` se alinee -- Requisitos no fija bloqueo para este caso y no se añade uno; el desajuste es visible (la sección "Grados que dirige" queda vacía en el detalle) y reversible reeditando.
+- **Implicación conocida y aceptada de la edición del email**: la resolución `Profesor`-`DirectorPrograma` es por email (ver [`abrirProfesor()`](/RUP/03-diseño/casos-uso/abrirProfesor/README.md)); cambiar el email de un `Profesor` que dirige `Programa` desvincula su rol hasta que el `DirectorPrograma` se alinee -- Requisitos no fija bloqueo para este caso y no se añade uno; el desajuste es visible (la sección "Programas que dirige" queda vacía en el detalle) y reversible reeditando.
 - **Validación de obligatoriedad por esquema de entrada**: `ProfesorUpdate` (Pydantic) exige ambos campos -- el formulario reenvía siempre los dos, no hay parches parciales.
-- **`200 OK` con `ProfesorResponse`** -- el detalle al que se vuelve se recarga con su propio `GET`; el `PUT` no necesita ensamblar la sección de grados.
+- **`200 OK` con `ProfesorResponse`** -- el detalle al que se vuelve se recarga con su propio `GET`; el `PUT` no necesita ensamblar la sección de programas.
 - **Autorización de `Admin`: `Depends(require_admin)`** -- endpoint de escritura, explícito.
 - **Sin capa Service**: Router delgado -> Repository.
 

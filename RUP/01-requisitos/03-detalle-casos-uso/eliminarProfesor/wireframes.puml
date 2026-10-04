@@ -7,8 +7,8 @@
     <b>Dr. Manuel Masías Vergara</b>
 
     Este profesor no se puede eliminar:
-    • Tiene 3 AsignaturaGrado asignadas
-    • Es DirectorGrado del Grado en Ingeniería Informática
+    • Tiene 3 AsignaturaPrograma asignadas
+    • Es DirectorPrograma del Grado en Ingeniería Informática
     • Ha impartido Guías en cursos anteriores
 
     <i>Desasigna sus asignaturas y quítale el rol de director antes de eliminarlo.
@@ -25,7 +25,7 @@
     <b>Dr. Jorge Crespo Álvarez</b>
 
     <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin AsignaturaGrado asignadas, sin rol de DirectorGrado y sin Guías impartidas.
+    Sin AsignaturaPrograma asignadas, sin rol de DirectorPrograma y sin Guías impartidas.
     ====
     {[Confirmar eliminación] | [Cancelar]}
 }

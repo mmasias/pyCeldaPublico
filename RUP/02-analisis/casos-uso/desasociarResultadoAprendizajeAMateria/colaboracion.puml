@@ -15,9 +15,9 @@ package desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizaj
 
 MateriaAbierto --> DesasociarResultadoAprendizajeAMateriaView: <font size=8>desasociarResultadoAprendizajeAMateria(materiaId, resultadoAprendizajeId)
 
-DesasociarResultadoAprendizajeAMateriaView --> MateriaController: <font size=8>asignaturasGradoConResultadoAprendizaje(materiaId, resultadoAprendizajeId) : List<String>
+DesasociarResultadoAprendizajeAMateriaView --> MateriaController: <font size=8>asignaturasProgramaConResultadoAprendizaje(materiaId, resultadoAprendizajeId) : List<String>
 
-MateriaController --> Materia: <font size=8>asignaturasGradoConResultadoAprendizaje(resultadoAprendizajeId) : List<String>
+MateriaController --> Materia: <font size=8>asignaturasProgramaConResultadoAprendizaje(resultadoAprendizajeId) : List<String>
 
 DesasociarResultadoAprendizajeAMateriaView --> MateriaController: <font size=8>desasociarResultadoAprendizaje(materiaId, resultadoAprendizajeId)
 
@@ -26,7 +26,7 @@ MateriaController --> MateriaRepository: <font size=8>desasociarResultadoAprendi
 MateriaRepository -- Materia
 
 DesasociarResultadoAprendizajeAMateriaView ..[#green]> MateriaAbiertoSalida: <font size=8>lista actualizada
-DesasociarResultadoAprendizajeAMateriaView ..[#red]> MateriaAbiertoSalida: <font size=8>bloqueada, sin cambios -- en uso en AsignaturaGrado de la Materia
+DesasociarResultadoAprendizajeAMateriaView ..[#red]> MateriaAbiertoSalida: <font size=8>bloqueada, sin cambios -- en uso en AsignaturaPrograma de la Materia
 DesasociarResultadoAprendizajeAMateriaView ..[#blue]> MateriaAbiertoSalida: <font size=8>cancelada, sin cambios
 
 @enduml

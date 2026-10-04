@@ -1,0 +1,16 @@
+@startsalt comprobarCopiasSeguridad-wireframe
+{
+    <b>COPIAS DE SEGURIDAD</b>
+    ====
+    [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] | [ Volver al panel de administración ]
+    ====
+    <i>28 correctas, 1 dañadas, 0 ilegibles, 1 no disponibles</i>
+    {#
+        <b>Familia | <b>Fecha | <b>Tamaño | <b>Esquema | <b>Motivo | <b>Salud | <b>Restaurar
+        Puntual | 11/09/2026, 2:00:00 | 928.0 KB | 3 | deploy #307 | Correcta | [ Restaurar ]
+        Diario  | 11/09/2026, 4:30:00 | 1.1 MB   | 3 | --          | Dañada   | [ Restaurar ]
+        Diario  | 10/09/2026, 4:30:00 | 921.7 KB | 3 | --          | No disponible | [ Restaurar ]
+    }
+    <i>Columna "Salud" vacía hasta pulsar el botón. Solo lectura: no borra, no marca, no persiste. Comprueba todas las copias, también las ocultas por el filtro.</i>
+}
+@endsalt

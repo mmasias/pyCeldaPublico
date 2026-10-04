@@ -39,7 +39,7 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
 
 Misma mecánica de `<<choice>>` que [`crearPonderacionEvaluacion()`](../crearPonderacionEvaluacion/README.md) -- **corregida tras la fase de Análisis** (rebanada vertical del hilo `Guia`, 2026-08-18): valida el **máximo puntual** (el valor introducido, por sí solo, contra `ponderacionMaxima` del `SistemaEvaluacion`), no la suma de hermanas. Sin exclusión del valor anterior -- ya no hace falta, no hay suma de la que excluirlo. Diferencia de destino respecto a `crearPonderacionEvaluacion()`: aquí la rama roja no saca al actor de la `PonderacionEvaluacion` -- vuelve al mismo `PONDERACION_EVALUACION_ABIERTO` ("sin cambios"), mismo mecanismo que usa [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) al devolver su rama roja al mismo estado de origen.
 

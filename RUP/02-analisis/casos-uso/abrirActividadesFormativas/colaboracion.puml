@@ -1,0 +1,26 @@
+@startuml abrirActividadesFormativas-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":ACTIVIDADES_FORMATIVAS_ABIERTO" as ActividadesFormativasAbiertoSalida
+
+package abrirActividadesFormativas as "abrirActividadesFormativas()" {
+    rectangle #629EF9 AbrirActividadesFormativasView
+    rectangle #b5bd68 ActividadFormativaController
+    rectangle #F2AC4E ActividadFormativa
+    rectangle #F2AC4E ActividadFormativaRepository
+}
+
+SistemaDisponible --> AbrirActividadesFormativasView: <font size=8>abrirActividadesFormativas()
+
+AbrirActividadesFormativasView --> ActividadFormativaController: <font size=8>listarActividadesFormativas(universidadId) : List<ActividadFormativa>
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>listarDeLaUniversidad(universidadId) : List<ActividadFormativa>
+
+ActividadFormativaRepository -- ActividadFormativa
+
+AbrirActividadesFormativasView --> ActividadesFormativasAbiertoSalida: <font size=8>presenta listado de ActividadFormativa
+
+@enduml

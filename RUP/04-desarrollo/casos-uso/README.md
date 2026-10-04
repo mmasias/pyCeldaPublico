@@ -10,7 +10,7 @@ Elegidos para cubrir patrones distintos del proyecto, no los 5 más simples:
 
 |Caso de uso|Por qué se eligió|
 |-|-|
-|[`crearGrado()`](crearGrado/README.md)|El patrón más básico: creación con validación de unicidad.|
+|[`crearPrograma()`](crearPrograma/README.md)|El patrón más básico: creación con validación de unicidad.|
 |[`eliminarResultadoAprendizaje()`](eliminarResultadoAprendizaje/README.md)|Borrado protegido relacionalmente, con confirmación en dos pasos -- patrón muy común en sistemas reales.|
 |[`iniciarSesion()`](iniciarSesion/README.md)|Autenticación real vía OAuth2 (Google), con varias ramas de resultado. Corrige de forma explícita en sus propios comentarios un error clásico de la literatura RUP: quién invoca el caso de uso antes de que exista el rol.|
 |[`crearPonderacionEvaluacion()`](crearPonderacionEvaluacion/README.md)|Regla de negocio (validación de rango) resuelta en el propio modelo -- ilustra la decisión arquitectónica central del proyecto: Fat Model, sin capa Service.|

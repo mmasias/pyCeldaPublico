@@ -1,0 +1,28 @@
+@startuml comprobarCopiasSeguridad
+
+skinparam linetype polyline
+
+' Autotransición de COPIAS_SEGURIDAD_ABIERTO (issue #683): bajo demanda, solo
+' lectura, sin estado. Ninguna precondición puede rechazarla -- un fallo en una
+' copia es un resultado (dañada, ilegible, no disponible), no un error: sin
+' <<choice>>.
+
+state COPIAS_SEGURIDAD_ABIERTO
+state COPIAS_SEGURIDAD_ABIERTO_SALIDA as "COPIAS_SEGURIDAD_ABIERTO"
+
+COPIAS_SEGURIDAD_ABIERTO -[#green]-> comprobarCopiasSeguridad
+note on link
+<b>Admin</b> solicita comprobar las copias de seguridad
+end note
+
+state comprobarCopiasSeguridad as "comprobarCopiasSeguridad()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta la salud de cada copia (correcta, dañada, ilegible o no disponible) y un resumen
+    end note
+}
+
+comprobarCopiasSeguridad -[#green]-> COPIAS_SEGURIDAD_ABIERTO_SALIDA
+
+@enduml

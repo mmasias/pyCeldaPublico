@@ -12,7 +12,7 @@ Admin -> Vista: abre la Materia a editar
 activate Vista
 Vista -> API: GET /api/v1/admin/materias/{materia_id}
 activate API
-note right of API: Depends(require_admin) -- guard de Admin.\nEndpoint propio de la variante Admin de abrirMateria(),\nno el GET /api/v1/materias/{materia_id} de DirectorGrado\n(que agrega las colecciones de asociación)
+note right of API: Depends(require_admin) -- guard de Admin.\nEndpoint propio de la variante Admin de abrirMateria(),\nno el GET /api/v1/materias/{materia_id} de DirectorPrograma\n(que agrega las colecciones de asociación)
 API -> MateriaRepo: obtener(materia_id)
 activate MateriaRepo
 MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id

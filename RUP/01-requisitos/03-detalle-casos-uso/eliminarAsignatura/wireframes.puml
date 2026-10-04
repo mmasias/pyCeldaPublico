@@ -6,7 +6,7 @@
 
     <color:orange><b>Esta acción no se puede deshacer.</b></color>
     La asignatura pasará a estado <b>Extinguido</b>: no se podrá usar en
-    nuevas AsignaturaGrado, pero las ya existentes seguirán intactas.
+    nuevas AsignaturaPrograma, pero las ya existentes seguirán intactas.
     ====
     {[Confirmar eliminación] | [Cancelar]}
 }

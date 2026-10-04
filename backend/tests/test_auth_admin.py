@@ -41,7 +41,7 @@ def test_universidades_cookie_invalida_401(client_real_auth):
 
 def test_universidades_con_sesion_de_profesor_403(client_real_auth):
     """El <<choice>> real: un token válido pero sin claim rol=admin (el
-    mismo tipo de token que emite /auth/callback para Profesor/DirectorGrado)
+    mismo tipo de token que emite /auth/callback para Profesor/DirectorPrograma)
     tiene que ser rechazado -- no basta con "hay cookie", tiene que ser
     específicamente una sesión de Admin. Ejercita el guard bloqueando a un
     no-Admin de verdad, no solo comprobando que la dependencia existe."""
@@ -94,10 +94,10 @@ def test_eliminar_asignatura_con_sesion_de_profesor_403(client_real_auth):
     assert resp.status_code == 403
 
 
-def test_crear_grado_con_sesion_de_profesor_403(client_real_auth):
-    """Mismo bloqueo real en crearGrado() -- endpoint de escritura del
-    namespace /api/v1/admin/facultades/{facultad_id}/grados, separado del
-    /api/v1/grados de DirectorGrado precisamente para no mezclar los dos
+def test_crear_programa_con_sesion_de_profesor_403(client_real_auth):
+    """Mismo bloqueo real en crearPrograma() -- endpoint de escritura del
+    namespace /api/v1/admin/facultades/{facultad_id}/programas, separado del
+    /api/v1/programas de DirectorPrograma precisamente para no mezclar los dos
     guards. La Facultad 1 no necesita existir: require_admin resuelve
     antes de que el handler toque la BD."""
     client_real_auth.cookies.set(
@@ -105,36 +105,36 @@ def test_crear_grado_con_sesion_de_profesor_403(client_real_auth):
         create_session_token("profesor@uneatlantico.es"),
     )
     resp = client_real_auth.post(
-        "/api/v1/admin/facultades/1/grados", json={"codigo": "GII", "nombre": "x"}
+        "/api/v1/admin/facultades/1/programas", json={"codigo": "GII", "nombre": "x"}
     )
     assert resp.status_code == 403
 
 
-def test_eliminar_grado_con_sesion_de_profesor_403(client_real_auth):
-    """Mismo bloqueo real en eliminarGrado() -- endpoint de borrado
+def test_eliminar_programa_con_sesion_de_profesor_403(client_real_auth):
+    """Mismo bloqueo real en eliminarPrograma() -- endpoint de borrado
     (lógico, Extinguido), mismo guard que el resto de escritura."""
     client_real_auth.cookies.set(
         get_settings().session_cookie_name,
         create_session_token("profesor@uneatlantico.es"),
     )
-    resp = client_real_auth.delete("/api/v1/admin/grados/1")
+    resp = client_real_auth.delete("/api/v1/admin/programas/1")
     assert resp.status_code == 403
 
 
-# --- lote Materia/AsignaturaGrado: 401 sin cookie y 403 con sesión de
+# --- lote Materia/AsignaturaPrograma: 401 sin cookie y 403 con sesión de
 # profesor para cada uno de los 7 endpoints Admin nuevos. Los identificadores
 # no necesitan existir: require_admin resuelve antes de que el handler toque
-# la BD (mismo criterio que los tests de Grado de arriba).
+# la BD (mismo criterio que los tests de Programa de arriba).
 
 _ENDPOINTS_LOTE_MATERIA = [
-    ("GET", "/api/v1/admin/grados/1/materias", None),
-    ("POST", "/api/v1/admin/grados/1/materias", {"nombre": "x"}),
+    ("GET", "/api/v1/admin/programas/1/materias", None),
+    ("POST", "/api/v1/admin/programas/1/materias", {"nombre": "x"}),
     ("GET", "/api/v1/admin/materias/1", None),
     ("PUT", "/api/v1/admin/materias/1", {"nombre": "x"}),
-    ("GET", "/api/v1/admin/grados/1/asignaturas-grado", None),
+    ("GET", "/api/v1/admin/programas/1/asignaturas-programa", None),
     (
         "POST",
-        "/api/v1/admin/grados/1/asignaturas-grado",
+        "/api/v1/admin/programas/1/asignaturas-programa",
         {
             "materia_id": 1,
             "asignatura_id": 1,
@@ -144,7 +144,7 @@ _ENDPOINTS_LOTE_MATERIA = [
             "semestre_default": 1,
         },
     ),
-    ("DELETE", "/api/v1/admin/asignaturas-grado/1", None),
+    ("DELETE", "/api/v1/admin/asignaturas-programa/1", None),
 ]
 
 
@@ -233,7 +233,7 @@ def test_callback_normal_no_emite_sesion_valida_para_endpoints_de_admin(
     client_real_auth, db_session, monkeypatch
 ):
     """Aislamiento entre los dos flujos: la cookie que emite /auth/callback
-    (Profesor/DirectorGrado) no sirve para require_admin, ni siquiera si el
+    (Profesor/DirectorPrograma) no sirve para require_admin, ni siquiera si el
     email también está en ADMIN_EMAILS -- son dos caminos de código
     físicamente separados, la cookie de uno no autoriza en el otro."""
     from app.models.profesor import Profesor

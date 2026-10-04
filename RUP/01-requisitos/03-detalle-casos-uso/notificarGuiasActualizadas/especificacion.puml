@@ -2,12 +2,12 @@
 
 skinparam linetype polyline
 
-state GUIAS_DEL_GRADO_ABIERTO
-state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+state GUIAS_DEL_PROGRAMA_ABIERTO
+state GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA as "GUIAS_DEL_PROGRAMA_ABIERTO"
 
-GUIAS_DEL_GRADO_ABIERTO -[#green]-> notificarGuiasActualizadas
+GUIAS_DEL_PROGRAMA_ABIERTO -[#green]-> notificarGuiasActualizadas
 note on link
-<b>DirectorGrado</b> solicita notificar guías actualizadas
+<b>DirectorPrograma</b> solicita notificar guías actualizadas
 end note
 
 state notificarGuiasActualizadas as "notificarGuiasActualizadas()" {
@@ -18,9 +18,9 @@ state notificarGuiasActualizadas as "notificarGuiasActualizadas()" {
     end note
 }
 
-notificarGuiasActualizadas -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+notificarGuiasActualizadas -[#green]-> GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA
 note on link
-notifica al Admin que las Guias del Grado están listas
+notifica al Admin que las Guias del Programa están listas
 end note
 
 @enduml

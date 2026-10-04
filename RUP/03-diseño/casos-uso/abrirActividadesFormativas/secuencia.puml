@@ -1,0 +1,28 @@
+@startuml abrirActividadesFormativas-diseño
+title Diagrama de Secuencia - Abrir Actividades Formativas
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ActividadFormativaRepository" as AFRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir Actividades Formativas
+activate Vista
+Vista -> API: GET /api/v1/universidades/{universidad_id}/actividades-formativas
+activate API
+note right of API: listado de la Universidad indicada, orden de alta.\nDepends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> AFRepo: listar_de_la_universidad(universidad_id)
+activate AFRepo
+AFRepo -> DB: SELECT * FROM actividades_formativas WHERE universidad_id = :universidad_id ORDER BY id
+activate DB
+DB --> AFRepo: filas ActividadFormativa
+deactivate DB
+AFRepo --> API: List[ActividadFormativa]
+deactivate AFRepo
+API --> Vista: 200 OK (List[ActividadFormativaResponse] JSON)
+deactivate API
+Vista --> Admin: presenta el listado de Actividades Formativas
+deactivate Vista
+
+@enduml

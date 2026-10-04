@@ -10,39 +10,44 @@ note on link
 <b>Admin</b> solicita generar PDFs de Guias
 end note
 
+' No implementado en código -- caso de uso solo de la fase de Requisitos.
+' Mismo régimen que Requisito/CursoAcademico en el modelo del dominio:
+' representación correcta, pendiente de construir.
 state generarGuiasPDF as "generarGuiasPDF()" {
 
-    state " " as SeleccionandoGrado
+    state " " as SeleccionandoPrograma
     state c <<choice>>
 
-    [*] -[#green]-> SeleccionandoGrado
+    [*] -[#green]-> SeleccionandoPrograma
     note on link
-    <b>Sistema</b> presenta selección de Grado
+    <b>Sistema</b> presenta selección de Programa
     <b>Sistema</b> presenta selección de CursoAcademico
     <b>Sistema</b> permite solicitar generar
     end note
 
-    SeleccionandoGrado -[#green]-> c
+    SeleccionandoPrograma -[#green]-> c
     note on link
-    <b>Admin</b> selecciona Grado
+    <b>Admin</b> selecciona Programa
     <b>Admin</b> selecciona CursoAcademico
     <b>Admin</b> solicita generar
     end note
 
     c -[#green]-> [*]
     note on link
+    [todas las Guia de (Programa, CursoAcademico) están Aprobada]
     <b>Sistema</b> presenta PDFs generados
     end note
 
     c -[#red]-> [*]
     note on link
+    [alguna Guia de (Programa, CursoAcademico) no está Aprobada]
     <b>Sistema</b> presenta mensaje de bloqueo: Guias pendientes de Aprobada
     end note
 }
 
 generarGuiasPDF -[#green]-> SISTEMA_DISPONIBLE_SALIDA
 note on link
-generados; fechaGeneracionPDF actualizada en cada Guia del Grado
+generados; fechaGeneracionPDF actualizada en cada Guia del Programa
 end note
 
 generarGuiasPDF -[#red]-> SISTEMA_DISPONIBLE_SALIDA

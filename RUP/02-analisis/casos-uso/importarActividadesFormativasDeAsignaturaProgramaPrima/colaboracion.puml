@@ -1,0 +1,39 @@
+@startuml importarActividadesFormativasDeAsignaturaProgramaPrima-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package importarActividadesFormativasDeAsignaturaProgramaPrima as "importarActividadesFormativasDeAsignaturaProgramaPrima()" {
+    rectangle #629EF9 ImportarActividadesFormativasDeAsignaturaProgramaPrimaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E ActividadFormativaAsignaturaPrograma
+    rectangle #F2AC4E ActividadFormativaAsignaturaProgramaRepository
+}
+
+AsignaturaProgramaAbierto --> ImportarActividadesFormativasDeAsignaturaProgramaPrimaView: <font size=8>importarActividadesFormativasDeAsignaturaProgramaPrima(asignaturaProgramaId)
+
+ImportarActividadesFormativasDeAsignaturaProgramaPrimaView --> AsignaturaProgramaController: <font size=8>listarPrimasImportables(asignaturaProgramaId) : lista de AsignaturaPrograma
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>listarPrimas(asignaturaProgramaId) : lista de AsignaturaPrograma
+
+AsignaturaProgramaController --> ActividadFormativaAsignaturaProgramaRepository: <font size=8>listarDe(primaId) : lista de ActividadFormativaAsignaturaPrograma [excluye primas con todas las horas a 0]
+
+ImportarActividadesFormativasDeAsignaturaProgramaPrimaView --> AsignaturaProgramaController: <font size=8>importarActividadesFormativas(asignaturaProgramaId, origenAsignaturaProgramaId)
+
+AsignaturaProgramaController --> AsignaturaProgramaController: <font size=8>validarPrima(destino, origen) : boolean [revalidacion server-side del origen]
+
+AsignaturaProgramaController --> ActividadFormativaAsignaturaPrograma: <font size=8>actualizar(horas, porcentajePresencialidad) [in place, 10 filas]
+
+AsignaturaProgramaController --> ActividadFormativaAsignaturaProgramaRepository: <font size=8>actualizarLote(actividadesFormativasAsignaturaPrograma)
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+ActividadFormativaAsignaturaProgramaRepository -- ActividadFormativaAsignaturaPrograma
+
+ImportarActividadesFormativasDeAsignaturaProgramaPrimaView --> AsignaturaProgramaAbiertoSalida: <font size=8>reparto importado (o sin primas configuradas: estado vacio, sin boton activo)
+
+@enduml

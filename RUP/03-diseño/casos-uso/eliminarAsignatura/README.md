@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -20,7 +20,7 @@
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`eliminarAsignatura()`](/RUP/02-analisis/casos-uso/eliminarAsignatura/README.md): borrado lógico, sin `<<choice>>` bloqueante. El modelo de dominio cierra que `Asignatura` nunca se borra físicamente -- usa `estado` (Vigente/Extinguido), que bloquea altas nuevas en `AsignaturaGrado` pero preserva lo existente para no romper `Guia` históricas. Un único endpoint `DELETE` que siempre tiene éxito si el recurso existe, con `alt` de dos ramas (verde/azul) para las dos salidas de Análisis.
+Bajada a diseño del caso de análisis [`eliminarAsignatura()`](/RUP/02-analisis/casos-uso/eliminarAsignatura/README.md): borrado lógico, sin `<<choice>>` bloqueante. El modelo de dominio cierra que `Asignatura` nunca se borra físicamente -- usa `estado` (Vigente/Extinguido), que bloquea altas nuevas en `AsignaturaPrograma` pero preserva lo existente para no romper `Guia` históricas. Un único endpoint `DELETE` que siempre tiene éxito si el recurso existe, con `alt` de dos ramas (verde/azul) para las dos salidas de Análisis.
 
 ## Diagrama de secuencia de diseño
 
@@ -34,7 +34,7 @@ Bajada a diseño del caso de análisis [`eliminarAsignatura()`](/RUP/02-analisis
 
 ## Participantes
 
-- **Vista**: `EliminarAsignaturaView` (React) -- presenta la información y pide confirmar/cancelar directamente, sin consulta previa de bloqueo (a diferencia de `EliminarFacultadView`, que primero pregunta si hay `Grado` asociados).
+- **Vista**: `EliminarAsignaturaView` (React) -- presenta la información y pide confirmar/cancelar directamente, sin consulta previa de bloqueo (a diferencia de `EliminarFacultadView`, que primero pregunta si hay `Programa` asociados).
 - **API**: `routers/asignatura.py::eliminar_asignatura(asignatura_id)` -- función suelta, un único endpoint.
 - **Modelo**: `Asignatura.extinguir()` -- método nuevo: pasa `estado` a `Extinguido`; invocado solo desde aquí, nunca desde la edición.
 - **Repositorio**: `AsignaturaRepository.obtener(asignatura_id)` (reutilizado) / `.actualizar(asignatura)` (reutilizado de `editarAsignatura()`) -- la entidad sigue existiendo, ningún borrado físico.
@@ -42,7 +42,7 @@ Bajada a diseño del caso de análisis [`eliminarAsignatura()`](/RUP/02-analisis
 ## Decisiones de diseño
 
 - **`200 OK` con `AsignaturaResponse` (estado: `"Extinguido"`), no `204 No Content`** -- decisión explícita: a diferencia de `eliminarFacultad()`/`eliminarResultadoAprendizaje()` (borrado físico, `204 No Content`, nada que devolver), aquí el recurso sigue existiendo con un campo mutado -- devolver el objeto actualizado es más útil para que la Vista refresque sin una segunda petición, y es semánticamente más preciso que un `204` que sugeriría que el recurso desapareció.
-- **Sin rama de bloqueo/`409` ni endpoint de chequeo**: a diferencia de `eliminarFacultad()` (dos endpoints: `GET /tiene-grados-asociados` + `DELETE`), aquí no hay `<<choice>>` que aplicar -- el `DELETE` siempre tiene éxito si el recurso existe; el único fallo posible es la cancelación del propio actor. Sin `AsignaturaController.puedeEliminar()` y sin `AsignaturaRepository.eliminar()`: no existen.
+- **Sin rama de bloqueo/`409` ni endpoint de chequeo**: a diferencia de `eliminarFacultad()` (dos endpoints: `GET /tiene-programas-asociados` + `DELETE`), aquí no hay `<<choice>>` que aplicar -- el `DELETE` siempre tiene éxito si el recurso existe; el único fallo posible es la cancelación del propio actor. Sin `AsignaturaController.puedeEliminar()` y sin `AsignaturaRepository.eliminar()`: no existen.
 - **La rama "cancelada" no genera llamada HTTP**: la cancelación cierra el diálogo en el cliente -- se modela como segunda rama del `alt` para reflejar las dos salidas de Análisis (verde/azul), pero sin tocar el backend.
 - **`404` si el identificador no existe** -- guardia de Router sobre el `None` del repositorio, no se modela como rama del diagrama porque desde el listado solo se alcanzan identificadores existentes.
 - **Autorización de `Admin`: `Depends(require_admin)`** -- ya disponible en `backend/app/core/auth.py` (bloque anterior, ya mergeado), sin nota de pendiente. Especialmente relevante aquí por ser endpoint de escritura: el historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real.

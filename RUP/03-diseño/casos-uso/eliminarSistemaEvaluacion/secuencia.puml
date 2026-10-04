@@ -28,19 +28,19 @@ alt el Admin confirma
   Admin -> Vista: confirma
   Vista -> API: DELETE /api/v1/sistemas-evaluacion/{sistema_evaluacion_id}
   activate API
-  API -> SistemaRepo: contar_ponderaciones_asociadas(sistema_evaluacion_id)
+  API -> SistemaRepo: nombres_asignaciones(sistema_evaluacion_id)
   activate SistemaRepo
-  SistemaRepo -> DB: SELECT COUNT(*) FROM ponderaciones_evaluacion\nWHERE sistema_evaluacion_id = :sistema_evaluacion_id
+  SistemaRepo -> DB: SELECT DISTINCT asignaturas_programa.nombre\nFROM ponderaciones_evaluacion JOIN guias JOIN asignaturas_programa\nWHERE sistema_evaluacion_id = :sistema_evaluacion_id
   activate DB
-  DB --> SistemaRepo: numero de PonderacionEvaluacion
+  DB --> SistemaRepo: nombres de AsignaturaPrograma
   deactivate DB
-  SistemaRepo --> API: int
+  SistemaRepo --> API: list[str]
   deactivate SistemaRepo
-  alt tiene PonderacionEvaluacion asociadas
-    API --> Vista: 409 Conflict (detail: "SistemaEvaluacion tiene {n} ponderación(es) de evaluación asociada(s)")
+  alt en uso en alguna AsignaturaPrograma
+    API --> Vista: 409 Conflict (detail: "SistemaEvaluacion en uso en: AsignaturaPrograma '{nombre}', ...")
     deactivate API
     Vista --> Admin: presenta el bloqueo con el detail del 409 tal cual, sin cambios
-  else sin ponderaciones asociadas
+  else sin uso
     API -> SistemaRepo: eliminar(sistema_evaluacion_id)
     activate SistemaRepo
     SistemaRepo -> DB: DELETE FROM sistemas_evaluacion WHERE id = :sistema_evaluacion_id

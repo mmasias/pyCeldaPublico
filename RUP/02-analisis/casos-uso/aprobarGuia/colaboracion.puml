@@ -4,7 +4,7 @@ skinparam linetype polyline
 left to right direction
 
 rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
-rectangle #CDEBA5 ":GUIAS_DEL_GRADO_ABIERTO" as GuiasDelGradoAbierto
+rectangle #CDEBA5 ":GUIAS_DEL_PROGRAMA_ABIERTO" as GuiasDelProgramaAbierto
 
 package aprobarGuia as "aprobarGuia()" {
     rectangle #629EF9 AprobarGuiaView
@@ -27,6 +27,6 @@ GuiaController --> GuiaRepository: <font size=8>actualizar(guia) : Guia
 Guia -- HistorialCambio
 GuiaRepository -- Guia
 
-AprobarGuiaView ..[#green]> GuiasDelGradoAbierto: <font size=8>Guia aprobada
+AprobarGuiaView ..[#green]> GuiasDelProgramaAbierto: <font size=8>Guia aprobada
 
 @enduml

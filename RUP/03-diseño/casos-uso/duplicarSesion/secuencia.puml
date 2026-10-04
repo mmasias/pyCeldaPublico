@@ -1,0 +1,47 @@
+@startuml duplicarSesion-diseño
+title Diagrama de Secuencia - Duplicar Sesión
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "SesionRepository" as SesionRepo
+participant "HistorialCambio" as HistorialCambio
+database "Base de Datos" as DB
+
+Profesor -> Vista: pulsa "Duplicar" en una fila ya guardada del listado de la Planificación docente
+activate Vista
+Vista -> API: POST /api/v1/sesiones/{sesion_id}/duplicar
+activate API
+API -> SesionRepo: obtener(sesion_id)
+activate SesionRepo
+SesionRepo -> DB: SELECT ... FROM sesiones WHERE id = :sesion_id
+activate DB
+DB --> SesionRepo: fila Sesion (o nada)
+deactivate DB
+SesionRepo --> API: Sesion | None
+deactivate SesionRepo
+note right of API: 404 "Sesion no encontrada" si no existe, o si\nautorizar_escritura_guia() no reconoce al Profesor como quien\nimparte la AsignaturaPrograma (ni como DirectorPrograma de la Guia)
+
+API -> SesionRepo: duplicar(sesion_id)
+activate SesionRepo
+SesionRepo -> DB: SELECT ... FROM sesiones WHERE guia_id = :guia_id AND numero > :numero_origen
+activate DB
+DB --> SesionRepo: sesiones posteriores
+deactivate DB
+SesionRepo -> DB: UPDATE sesiones SET numero = numero + 1 (posteriores)\nINSERT INTO sesiones (guia_id, numero = origen + 1, tipo, descripcion) -- una transacción
+activate DB
+DB --> SesionRepo: id nueva fila
+deactivate DB
+SesionRepo --> API: Sesion (copia)
+deactivate SesionRepo
+
+API -> HistorialCambio: registrar(guia_id, autor_id, "planificacion_docente", "n sesiones", "n+1 sesiones", "sesión duplicada desde la sesión {sesion_id}")
+API -> DB: INSERT INTO historial_cambios ... ; COMMIT
+API -> SesionRepo: listar_vinculadas_de(guia) + listar_pendientes_de(guia_id)
+SesionRepo --> API: List[Sesion] (ordenadas por numero)
+API --> Vista: 200 OK (AbrirPlanificacionDocenteResponse JSON: sesiones renumeradas, sesiones_minimas)
+deactivate API
+Vista --> Profesor: reemplaza el listado con la respuesta, la copia aparece justo tras la original
+deactivate Vista
+
+@enduml

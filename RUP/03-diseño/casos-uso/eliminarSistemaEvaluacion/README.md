@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -37,12 +37,12 @@ Bajada a diseño del caso de análisis [`eliminarSistemaEvaluacion()`](/RUP/02-a
 - **Vista**: `EliminarSistemaEvaluacion` (React, ruta `/admin/sistemas-evaluacion/:id/eliminar`) -- fases cargando/confirmando/bloqueada; carga la información con `GET /api/v1/sistemas-evaluacion/{id}` y pide confirmar/cancelar; si la confirmación recibe `409`, presenta la rama bloqueada con el `detail` tal cual.
 - **API**: `routers/sistema_evaluacion.py::eliminar_sistema_evaluacion(sistema_evaluacion_id)` -- función suelta, un único endpoint que resuelve el `<<choice>>` y el borrado.
 - **Modelo**: ninguno con lógica propia invocada -- sin `estado` propio que mutar, el borrado es físico (a diferencia de `Asignatura.extinguir()`).
-- **Repositorio**: `SistemaEvaluacionRepository.contar_ponderaciones_asociadas(sistema_evaluacion_id)` (`COUNT` sobre `ponderaciones_evaluacion` filtrado por `sistema_evaluacion_id`) / `.eliminar(sistema_evaluacion_id)`.
+- **Repositorio**: `SistemaEvaluacionRepository.nombres_asignaciones(sistema_evaluacion_id)` (`PonderacionEvaluacion` -> `Guia` -> `AsignaturaPrograma`, `DISTINCT` de nombres ordenados, formateados `AsignaturaPrograma '{nombre}'`) / `.eliminar(sistema_evaluacion_id)`.
 
 ## Decisiones de diseño
 
-- **Un solo endpoint, sin `GET` de chequeo previo** (patrón `eliminarMetodologiaDocente()`, no `eliminarResultadoAprendizaje()`): el `<<choice>>` se resuelve dentro del propio `DELETE` -- conteo cero procede al borrado (`204`), conteo positivo devuelve `409` con el `detail` `SistemaEvaluacion tiene {n} ponderación(es) de evaluación asociada(s)`. La Vista presenta la confirmación con la información del `GET` de detalle y la rama bloqueada aparece al confirmar. La invariante queda protegida en el servidor aunque un cliente dispare el `DELETE` a ciegas: el endpoint reconsulta antes de borrar.
-- **Conteo, no listado de nombres -- decisión cerrada**: a diferencia de `eliminarMetodologiaDocente()` (`nombres_materias_asociadas()`) o `eliminarResultadoAprendizaje()` (`nombres_asignaciones()`), aquí el `detail` lleva solo el número de `PonderacionEvaluacion` asociadas. Una `PonderacionEvaluacion` no tiene un nombre distintivo tipo `Materia.nombre`: puede haber muchas repartidas en varias `Guia`, y listar sus descripciones alargaría el mensaje sin aportar claridad -- un conteo simple dice lo que hay que saber.
+- **Un solo endpoint, sin `GET` de chequeo previo** (patrón `eliminarMetodologiaDocente()`, no `eliminarResultadoAprendizaje()`): el `<<choice>>` se resuelve dentro del propio `DELETE` -- lista vacía procede al borrado (`204`), lista no vacía devuelve `409` con el `detail` `SistemaEvaluacion en uso en: AsignaturaPrograma '{nombre}', ...`. La Vista presenta la confirmación con la información del `GET` de detalle y la rama bloqueada aparece al confirmar. La invariante queda protegida en el servidor aunque un cliente dispare el `DELETE` a ciegas: el endpoint reconsulta antes de borrar.
+- **Nombres de `AsignaturaPrograma`, no conteo (issue #581)**: como `desasociarResultadoAprendizaje()` (`nombres_asignaciones()`), el `detail` nombra las `AsignaturaPrograma` que bloquean, sin repetidas (`DISTINCT`) y ordenadas por nombre. Una `Guia` sin `AsignaturaPrograma` queda fuera por el `INNER JOIN`.
 - **`204 No Content` para el `DELETE`**: borrado físico, no hay entidad que devolver -- la Vista refresca el listado.
 - **La rama "cancelada" no genera llamada HTTP**: la cancelación cierra el diálogo en el cliente -- se modela como rama del `alt` para reflejar las tres salidas de Análisis (verde/roja/azul), pero sin tocar el backend.
 - **`404` si el identificador no existe** -- guardia de Router sobre el `None` del repositorio.

@@ -1,28 +1,36 @@
 @startuml modeloDominioSimple
 
+!theme plain
 hide empty members
 hide circle
+skinparam linetype polyline
+left to right direction
+
 
 package "Estructura curricular" {
   class Universidad
   class Facultad
-  class Grado
+  class ProgramaPadre
+  class Programa
   class Materia
   class SistemaEvaluacion
   class MetodologiaDocente
   class MetodologiaMateria
   class ActividadFormativa
   class ActividadFormativaMateria
-  class ActividadFormativaAsignaturaGrado
+  class ActividadFormativaAsignaturaPrograma
   class Asignatura
-  class AsignaturaGrado
+  class AsignaturaPrograma
   class ResultadoAprendizaje
   class Requisito
   class CursoAcademico
-  Universidad *-d- Facultad
-  Facultad *-d- Grado
-  Grado *-- Materia
-  Materia *-- AsignaturaGrado
+
+  Universidad *-- Facultad
+  Facultad *-- Programa
+  ProgramaPadre o-- Programa
+  Programa *-- Materia
+  Programa o-- MetodologiaDocente
+  Materia *-- AsignaturaPrograma
   Materia *-- SistemaEvaluacion
   Materia o-- MetodologiaDocente
   (Materia, MetodologiaDocente) .. MetodologiaMateria
@@ -30,25 +38,44 @@ package "Estructura curricular" {
   Universidad *-- ActividadFormativa
   Materia o-- ActividadFormativa
   (Materia, ActividadFormativa) .. ActividadFormativaMateria
-  AsignaturaGrado o-- ActividadFormativa
-  (AsignaturaGrado, ActividadFormativa) .. ActividadFormativaAsignaturaGrado
-  (Grado, Asignatura) .. AsignaturaGrado
-  Grado *-d- ResultadoAprendizaje
+  AsignaturaPrograma o-- ActividadFormativa
+  (AsignaturaPrograma, ActividadFormativa) .. ActividadFormativaAsignaturaPrograma
+  (Programa, Asignatura) .. AsignaturaPrograma
+  Programa *-d- ResultadoAprendizaje
   Materia o-u- ResultadoAprendizaje
-  AsignaturaGrado o- ResultadoAprendizaje
-  AsignaturaGrado --> AsignaturaGrado : <sub>requiere</sub>
-  AsignaturaGrado -[hidden]r- Requisito
-  (AsignaturaGrado, AsignaturaGrado) .. Requisito
+  AsignaturaPrograma o- ResultadoAprendizaje
+  AsignaturaPrograma o-r- MetodologiaDocente
+  AsignaturaPrograma -> AsignaturaPrograma : <sub>requiere</sub>
+  'AsignaturaPrograma -[hidden]r- Requisito
+  (AsignaturaPrograma, AsignaturaPrograma) .. Requisito
   Universidad -- CursoAcademico
 }
+
+package "Personas y roles" {
+  class Actor
+  class Profesor
+  class Admin
+  class DirectorPrograma
+  class PerfilProfesorCurso
+
+  Profesor -u-|> Actor
+  Admin -u-|> Actor
+  DirectorPrograma -u-|> Profesor
+  Actor -r-> HistorialCambio
+  Universidad -- Profesor
+  AsignaturaPrograma - Profesor
+  Programa o- DirectorPrograma
+  (Profesor, CursoAcademico) .. PerfilProfesorCurso
+}
+
 
 package "Guía docente" {
   class Guia
   class HistorialCambio
   class PonderacionEvaluacion
-  (AsignaturaGrado, CursoAcademico) .. Guia
+  (AsignaturaPrograma, CursoAcademico) .. Guia
   Guia *- HistorialCambio
-  Guia *-d- PonderacionEvaluacion
+  Guia *- PonderacionEvaluacion
   PonderacionEvaluacion -> SistemaEvaluacion
   class ReferenciaBibliografica
   Guia *-- ReferenciaBibliografica
@@ -58,22 +85,6 @@ package "Guía docente" {
   PlanificacionDocente *-- Sesion
 }
 
-package "Personas y roles" {
-  class Actor
-  class Profesor
-  class Admin
-  class DirectorGrado
-  class PerfilProfesorCurso
-
-  Profesor -u-|> Actor
-  Admin -u-|> Actor
-  DirectorGrado -u-|> Profesor
-  Actor -> HistorialCambio
-  Universidad -- Profesor
-  AsignaturaGrado - Profesor
-  Grado o- DirectorGrado
-  (Profesor, CursoAcademico) .. PerfilProfesorCurso
-}
 
 Guia -- Profesor
 

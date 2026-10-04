@@ -19,12 +19,14 @@ state eliminarMetodologiaDocente as "eliminarMetodologiaDocente()" {
 
     c -[#green]-> ConfirmandoEliminacion
     note on link
+    [MetodologiaDocente sin Materias asociadas]
     <b>Sistema</b> presenta información de la MetodologiaDocente y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
     c -[#red]-> [*]
     note on link
+    [MetodologiaDocente con Materias asociadas]
     <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias
     end note
 

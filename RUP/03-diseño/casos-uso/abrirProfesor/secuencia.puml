@@ -5,8 +5,8 @@ actor "Admin" as Admin
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "ProfesorRepository" as ProfesorRepo
-participant "DirectorGradoRepository" as DirectorRepo
-participant "GradoRepository" as GradoRepo
+participant "DirectorProgramaRepository" as DirectorRepo
+participant "ProgramaRepository" as ProgramaRepo
 database "Base de Datos" as DB
 
 Admin -> Vista: solicita abrir un Profesor del listado
@@ -24,27 +24,27 @@ ProfesorRepo --> API: Profesor (404 si None)
 deactivate ProfesorRepo
 API -> DirectorRepo: obtener_por_email(profesor.email)
 activate DirectorRepo
-DirectorRepo -> DB: SELECT ... FROM directores_grado WHERE email = :email
+DirectorRepo -> DB: SELECT ... FROM directores_programa WHERE email = :email
 activate DB
-DB --> DirectorRepo: None / fila DirectorGrado
+DB --> DirectorRepo: None / fila DirectorPrograma
 deactivate DB
-DirectorRepo --> API: DirectorGrado | None
+DirectorRepo --> API: DirectorPrograma | None
 deactivate DirectorRepo
-alt existe DirectorGrado con ese email
-  API -> GradoRepo: listar_dirigidos_por(director.id)
-  activate GradoRepo
-  GradoRepo -> DB: SELECT grados.* FROM grados\nJOIN grados_directores_grado gdg ON gdg.grado_id = grados.id\nWHERE gdg.director_grado_id = :director_id
+alt existe DirectorPrograma con ese email
+  API -> ProgramaRepo: listar_dirigidos_por(director.id)
+  activate ProgramaRepo
+  ProgramaRepo -> DB: SELECT programas.* FROM programas\nJOIN programas_directores_programa gdg ON gdg.programa_id = programas.id\nWHERE gdg.director_programa_id = :director_id
   activate DB
-  DB --> GradoRepo: filas Grado
+  DB --> ProgramaRepo: filas Programa
   deactivate DB
-  GradoRepo --> API: List[Grado]
-  deactivate GradoRepo
+  ProgramaRepo --> API: List[Programa]
+  deactivate ProgramaRepo
 else sin rol
-  note right of API: la sección "Grados que dirige" queda vacía
+  note right of API: la sección "Programas que dirige" queda vacía
 end
-API --> Vista: 200 OK (ProfesorDetalleResponse JSON, con grados)
+API --> Vista: 200 OK (ProfesorDetalleResponse JSON, con programas)
 deactivate API
-Vista --> Admin: muestra nombre, email, "Grados que dirige" con [Quitar] por fila
+Vista --> Admin: muestra nombre, email, "Programas que dirige" con [Quitar] por fila
 deactivate Vista
 
 @enduml

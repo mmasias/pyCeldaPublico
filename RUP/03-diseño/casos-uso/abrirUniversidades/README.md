@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -42,7 +42,7 @@ Bajada a diseño del caso de análisis [`abrirUniversidades()`](/RUP/02-analisis
 ## Decisiones de diseño
 
 - **Módulo `routers/universidad.py` nuevo**: primera función de `Universidad` en Diseño; el módulo crecerá con `obtener_universidad()` (de `abrirUniversidad()`), `crear_universidad()` y `editar_universidad()` de los CU hermanos.
-- **Listado completo, sin filtro por sesión**: a diferencia de `abrirGrados()` (variante `DirectorGrado`, filtrado por cookie JWT de la discussion [#62](https://github.com/mmasias/pyCelda/discussions/62)), aquí el `Admin` ve todas las filas -- ninguna `Universidad` es "propia" de quien llama.
+- **Listado completo, sin filtro por sesión**: a diferencia de `abrirProgramas()` (variante `DirectorPrograma`, filtrado por cookie JWT de la discussion [#62](https://github.com/mmasias/pyCelda/discussions/62)), aquí el `Admin` ve todas las filas -- ninguna `Universidad` es "propia" de quien llama.
 - **Autorización de `Admin`: `Depends(require_admin)`** (dependencia fijada en el diseño de [`iniciarSesion()`](/RUP/03-diseño/casos-uso/iniciarSesion/README.md), no implementada en este documento) -- toda función de `routers/universidad.py` debe declararla explícitamente en Desarrollo. El historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real, no un detalle menor -- se deja constancia explícita en cada CU de este lote, no solo en uno.
 - **Sin capa Service**: Router delgado -> Repository (discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)).
 
@@ -51,4 +51,4 @@ Bajada a diseño del caso de análisis [`abrirUniversidades()`](/RUP/02-analisis
 - [`abrirUniversidades()` en Análisis](/RUP/02-analisis/casos-uso/abrirUniversidades/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirUniversidades/README.md).
 - [`abrirUniversidad()` en Diseño](/RUP/03-diseño/casos-uso/abrirUniversidad/README.md) / [`crearUniversidad()` en Diseño](/RUP/03-diseño/casos-uso/crearUniversidad/README.md) -- destinos de navegación del listado.
-- [`abrirGrados()` en Diseño](/RUP/03-diseño/casos-uso/abrirGrados/README.md) -- contraste: listado filtrado por sesión (variante `DirectorGrado`).
+- [`abrirProgramas()` en Diseño](/RUP/03-diseño/casos-uso/abrirProgramas/README.md) -- contraste: listado filtrado por sesión (variante `DirectorPrograma`).

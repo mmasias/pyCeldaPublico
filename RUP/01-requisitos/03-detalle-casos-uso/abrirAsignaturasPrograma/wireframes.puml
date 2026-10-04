@@ -1,0 +1,34 @@
+@startsalt abrirAsignaturasPrograma-wireframe
+{
+    <b>ASIGNATURAS -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+    <b>Asignatura                          | <b>Materia    | <b>Curso  | <b>Carácter | <b>Profesorado      |<b>Estado| .
+    Programación I                         | Programación  | 1         | Básica | Dr. Manuel Masías        |[ Borrador ] neutro| [Abrir]
+    Estructuras de datos y algoritmos I    | Programación  | 2         | Obligatoria | Dr. Manuel Masías   |[ En revisión ] ámbar| [Abrir]
+    Redes de Ordenadores                   | Redes         | 2         | Obligatoria | Dr. Mariano Benito Hoz |[ Rechazada ] rojo| [Abrir]
+    Ingeniería de Software I               | IdSw          | 3         | Obligatoria | Dr. Manuel Masías   |[ Aprobada ] verde| [Abrir]
+
+    }
+    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
+    <i>Estado como badge de color (issue 280): 4 estados de guia.puml, etiqueta legible, color aditivo -- el texto se queda. Salt no pinta fondos, se anota el color. Variante DirectorPrograma (AsignaturasPrograma.tsx), listado por-programa que el director escanea igual que consultarEstadoGuias().</i>
+    <i>Orden curso -> cuatrimestre -> nombre: vista del director dentro de un programa (issue 290).</i>
+}
+@endsalt
+
+@startsalt abrirAsignaturasPrograma-wireframe-porProfesor
+{
+    <b>MIS ASIGNATURAS -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+    <b>Asignatura                          | <b>Código | <b>Programa                          | <b>Curso |<b>Carácter |<b>Estado| .
+    Programación I                         | IYA003 | Grado en Ingeniería Informática    | I-s1 | Básica |[ Borrador ] neutro| [Abrir]
+    Ingeniería de Software I               | IYA038 | Grado en Ingeniería Informática    | III-s1 | Obligatoria |[ Aprobada ] verde| [Abrir]
+    Estructuras de datos y algoritmos I    | IYA025 | Grado en Ingeniería Informática    | II-s1 | Obligatoria |[ En revisión ] ámbar| [Abrir]
+
+    }
+    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
+    <i>Estado como badge de color (issue 280): 4 estados de guia.puml, etiqueta legible, color aditivo -- el texto se queda. Salt no pinta fondos, se anota el color. Variante Profesor de abrirAsignaturasPrograma(), la que compone abrirInicio() y la pantalla /mis-asignaturas-programa.</i>
+    <i>Filas ordenadas por cuatrimestre -> curso -> nombre -> programa (planificación del profesor). Columna Curso combinada curso-semestre en números romanos, formatearCursoSemestre() (issue 508) -- issue 292 las había retirado, 508 las reintroduce así. Columna Código añadida en el issue de la columna de código de catálogo (2026-09-30): Asignatura.codigo vía AsignaturaPrograma.asignatura_codigo, puede salir "--" si asignatura_id no está resuelto.</i>
+}
+@endsalt

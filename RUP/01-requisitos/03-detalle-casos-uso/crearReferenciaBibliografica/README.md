@@ -38,7 +38,7 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
 
 **CRUD estándar sin `<<choice>>`**, a diferencia de [`crearPonderacionEvaluacion()`](../crearPonderacionEvaluacion/README.md): `ReferenciaBibliografica` no tiene ninguna regla de validación cruzada documentada en el modelo de dominio -- confirmado sin hueco de diseño en la discussion [#38](https://github.com/mmasias/pyCelda/discussions/38), se construyó sin esperar a su cierre. `tipo` es el enum cerrado de 4 valores (`Basica`, `Complementaria`, `WebsReferencia`, `OtrasFuentes` en el modelo de dominio; mostrados en el wireframe con su forma legible real -- "Básica", "Complementaria", "Webs de referencia", "Otras fuentes de consulta", corregido tras detectar que el dropdown mostraba el literal del enum en vez del texto real -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)), `referencia` texto libre -- mismo tratamiento de `tipo` que [`crearSistemaEvaluacion()`](../crearSistemaEvaluacion/README.md).
 

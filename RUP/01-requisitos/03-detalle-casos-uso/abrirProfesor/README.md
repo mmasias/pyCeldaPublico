@@ -38,10 +38,10 @@
 
 </div>
 
-`PROFESOR_ABIERTO` también aloja `definirDirectorGrado()`/`quitarDirectorGrado()` (self-loop, ver diagrama de contexto) -- casos de uso de una capa posterior (L2), sin especificación propia todavía. Este wireframe no anticipa esos botones; se añadirán a esta misma pantalla cuando se detallen.
+`PROFESOR_ABIERTO` también aloja `definirDirectorPrograma()`/`quitarDirectorPrograma()` (self-loop, ver diagrama de contexto) -- casos de uso de una capa posterior (L2), sin especificación propia todavía. Este wireframe no anticipa esos botones; se añadirán a esta misma pantalla cuando se detallen.
 
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROFESORES_ABIERTO --> PROFESOR_ABIERTO : abrirProfesor()`
 - [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `Profesor`
-- Datos reales: [`backend/app/data/seed/profesores.json`](/backend/app/data/seed/profesores.json) (repo privado)
+- Datos reales: `backend/app/data/seed/profesores.json` (repo privado)

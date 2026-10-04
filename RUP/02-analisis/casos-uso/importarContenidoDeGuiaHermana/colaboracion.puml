@@ -1,0 +1,52 @@
+@startuml importarContenidoDeGuiaHermana-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
+rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbiertoSalida
+
+package importarContenidoDeGuiaHermana as "importarContenidoDeGuiaHermana()" {
+    rectangle #629EF9 ImportarContenidoDeGuiaHermanaView
+    rectangle #b5bd68 ImportarContenidoDeGuiaHermanaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E CursoAcademicoRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E HistorialCambio
+}
+
+GuiaAbierto --> ImportarContenidoDeGuiaHermanaView: <font size=8>importarContenidoDeGuiaHermana(guiaDestinoId)
+
+ImportarContenidoDeGuiaHermanaView --> ImportarContenidoDeGuiaHermanaController: <font size=8>listarOrigenesImportables(guiaDestinoId) : lista de Guia
+
+ImportarContenidoDeGuiaHermanaView --> ImportarContenidoDeGuiaHermanaController: <font size=8>importarContenido(guiaDestinoId, guiaOrigenId) : Guia
+
+ImportarContenidoDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaDestinoId) : Guia
+
+ImportarContenidoDeGuiaHermanaController --> AsignaturaProgramaRepository: <font size=8>listarHermanas(asignaturaProgramaId) : lista de AsignaturaPrograma
+
+ImportarContenidoDeGuiaHermanaController --> CursoAcademicoRepository: <font size=8>activo(universidadId) : CursoAcademico
+
+ImportarContenidoDeGuiaHermanaController --> GuiaRepository: <font size=8>listarAprobadasDe(hermanas, cursoAcademicoId) : lista de Guia
+
+ImportarContenidoDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaOrigenId) : Guia [revalidacion server-side del origen]
+
+ImportarContenidoDeGuiaHermanaController --> ImportarContenidoDeGuiaHermanaController: <font size=8>validarHermandad(guiaDestino, guiaOrigen) : boolean
+
+ImportarContenidoDeGuiaHermanaController --> Guia: <font size=8>actualizarContenido(contenidoOrigen) : contenido anterior, o nada si es identico
+
+ImportarContenidoDeGuiaHermanaController --> HistorialCambio: <font size=8>registrar(campo="contenido", ...) [solo si el contenido cambio; origen en comentario]
+
+ImportarContenidoDeGuiaHermanaController --> Guia: <font size=8>confirmarGuardado() [Aprobada -> Borrador]
+
+ImportarContenidoDeGuiaHermanaController --> GuiaRepository: <font size=8>actualizar(guia)
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+GuiaRepository -- Guia
+Guia *-- HistorialCambio
+
+ImportarContenidoDeGuiaHermanaView --> GuiaAbiertoSalida: <font size=8>contenido reemplazado (mismo GUIA_ABIERTO, sin navegar)
+
+@enduml

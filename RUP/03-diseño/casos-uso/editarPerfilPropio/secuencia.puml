@@ -1,0 +1,83 @@
+@startuml editarPerfilPropio-diseño
+title Diagrama de Secuencia - Editar Perfil Propio
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProfesorRepository" as ProfesorRepo
+participant "CursoAcademicoRepository" as CursoRepo
+participant "PerfilProfesorCursoRepository" as PerfilRepo
+participant "Profesor (modelo)" as ProfesorModelo
+participant "PerfilProfesorCurso" as Perfil
+database "Base de Datos" as DB
+
+== Cargar el perfil (GET, tres ramas) ==
+
+Profesor -> Vista: abre su perfil
+activate Vista
+Vista -> API: GET /api/v1/mi-perfil
+activate API
+note right of API: Depends(get_current_profesor_id) -- el recurso\nes siempre el del Profesor de la sesión
+API -> ProfesorRepo: obtener(profesor_id)
+ProfesorRepo --> API: Profesor
+API -> CursoRepo: activo(profesor.universidad_id)
+activate CursoRepo
+CursoRepo -> DB: SELECT ... FROM cursos_academicos WHERE estado = 'Activo' AND universidad_id = :universidad_id
+CursoRepo --> API: CursoAcademico activo (RuntimeError si None -- invariante rota)
+deactivate CursoRepo
+API -> PerfilRepo: obtener(profesor_id, curso_activo.id)
+activate PerfilRepo
+PerfilRepo -> DB: SELECT ... FROM perfiles_profesor_curso WHERE profesor_id = :p AND curso_academico_id = :c
+PerfilRepo --> API: PerfilProfesorCurso | None
+deactivate PerfilRepo
+
+alt rama 1: existe fila del curso activo
+    API --> Vista: 200 OK (MiPerfilResponse, validado real, sugerido_de_curso_anterior = false)
+else no existe fila del curso activo
+    API -> PerfilRepo: obtener_mas_reciente(profesor_id)
+    activate PerfilRepo
+    PerfilRepo -> DB: SELECT ... ORDER BY curso_academico_id DESC LIMIT 1
+    PerfilRepo --> API: PerfilProfesorCurso | None
+    deactivate PerfilRepo
+    alt rama 2: existe fila de un curso anterior
+        API --> Vista: 200 OK (MiPerfilResponse, sugerido_de_curso_anterior = true, validado forzado a false)
+    else rama 3: nunca tuvo ninguna fila
+        API --> Vista: 200 OK (MiPerfilResponse en blanco, validado = false, sugerido_de_curso_anterior = false)
+    end
+end
+deactivate API
+Vista --> Profesor: formulario con los datos y el aviso de la rama (sugerencia / primer curso)
+
+== Guardar el perfil (PUT, upsert del curso activo) ==
+
+Profesor -> Vista: edita y confirma
+Vista -> API: PUT /api/v1/mi-perfil (MiPerfilUpdate JSON)
+activate API
+note right of API: MiPerfilUpdate valida la forma (ORCID, CVN, Scholar,\nSIIU 0-5, organismo "Otro") y limpia los campos\ncondicionales -- fallo -> 422 (Pydantic)
+API -> ProfesorRepo: obtener(profesor_id)
+ProfesorRepo --> API: Profesor
+API -> ProfesorModelo: actualizar_nombre(nombre)
+activate ProfesorModelo
+deactivate ProfesorModelo
+API -> CursoRepo: activo(profesor.universidad_id)
+CursoRepo --> API: CursoAcademico activo
+API -> PerfilRepo: upsert(profesor_id, curso_activo.id, **campos sin nombre)
+activate PerfilRepo
+PerfilRepo -> DB: SELECT fila (profesor_id, curso_academico_id)
+alt no existe fila del curso activo
+    PerfilRepo -> DB: INSERT INTO perfiles_profesor_curso (profesor_id, curso_academico_id)
+end
+PerfilRepo -> Perfil: actualizar(**campos)
+activate Perfil
+note right of Perfil: asigna los campos y marca\nvalidado = True siempre
+deactivate Perfil
+PerfilRepo -> PerfilRepo: flush() -- sin commit
+PerfilRepo --> API: PerfilProfesorCurso
+deactivate PerfilRepo
+API -> DB: COMMIT (nombre del Profesor + fila del perfil)
+API --> Vista: 200 OK (MiPerfilResponse, sugerido_de_curso_anterior = false)
+deactivate API
+Vista --> Profesor: formulario recargado, "Perfil actualizado"
+deactivate Vista
+
+@enduml

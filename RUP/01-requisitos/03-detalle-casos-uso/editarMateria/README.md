@@ -42,4 +42,4 @@
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : editarMateria()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `Materia`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia{nombre}`; sin `estado` propio (cambiar el reparto de una `Materia` de un `Grado` implica un `Grado` nuevo, no una edición del existente)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia{nombre}`; sin `estado` propio (cambiar el reparto de una `Materia` de un `Programa` implica un `Programa` nuevo, no una edición del existente)

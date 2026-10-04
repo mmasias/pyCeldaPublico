@@ -6,7 +6,7 @@ participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
 participant "PonderacionEvaluacionRepository" as PonderacionRepo
-participant "AsignaturaGradoRepository" as AsignaturaRepo
+participant "AsignaturaProgramaRepository" as AsignaturaRepo
 participant "MateriaRepository" as MateriaRepo
 database "Base de Datos" as DB
 
@@ -58,16 +58,16 @@ deactivate DB
 GuiaRepo --> API: Guia
 deactivate GuiaRepo
 
-API -> AsignaturaRepo: obtener(guia.asignatura_grado_id)
+API -> AsignaturaRepo: obtener(guia.asignatura_programa_id)
 activate AsignaturaRepo
-AsignaturaRepo -> DB: SELECT ... FROM asignaturas_grado WHERE id = :asignatura_grado_id
+AsignaturaRepo -> DB: SELECT ... FROM asignaturas_programa WHERE id = :asignatura_programa_id
 activate DB
-DB --> AsignaturaRepo: fila AsignaturaGrado
+DB --> AsignaturaRepo: fila AsignaturaPrograma
 deactivate DB
-AsignaturaRepo --> API: AsignaturaGrado
+AsignaturaRepo --> API: AsignaturaPrograma
 deactivate AsignaturaRepo
 
-API -> MateriaRepo: obtener(asignatura_grado.materia_id)
+API -> MateriaRepo: obtener(asignatura_programa.materia_id)
 activate MateriaRepo
 MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
 activate DB

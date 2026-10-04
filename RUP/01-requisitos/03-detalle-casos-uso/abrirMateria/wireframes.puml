@@ -14,16 +14,16 @@
     ====
     <b>Resultados de aprendizaje asociados:</b>
     {#
-        <b>Código | <b>Tipo | .
-        RAK1 | Conocimientos o contenidos | [Quitar]
-        RAH1 | Habilidades o destrezas | [Quitar]
+        <b>Código | <b>Tipo | <b>Asignaturas | .
+        RAK1 | Conocimientos o contenidos | 2 | [Quitar]
+        RAH1 | Habilidades o destrezas | 0 | [Quitar]
     }
     [ <b>+ Asociar Resultado de Aprendizaje</b> ]
     ====
     <b>Asignaturas de esta materia:</b>
     {#
         <b>Asignatura | <b>Curso | <b>Carácter | .
-        Programación I | 1 | Básica | [Abrir]
+        Programación I | I-s1 | Básica | [Abrir]
     }
     ====
     <b>Actividades formativas de la materia:</b>

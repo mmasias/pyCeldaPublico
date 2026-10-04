@@ -35,11 +35,13 @@ state crearPonderacionEvaluacion as "crearPonderacionEvaluacion()" {
 
     c -[#green]-> [*]
     note on link
+    [ponderación mayor que cero y no superior al máximo del SistemaEvaluacion seleccionado]
     <b>Sistema</b> presenta PonderacionEvaluacion creada
     end note
 
     c -[#red]-> [*]
     note on link
+    [ponderación no positiva o por encima del máximo del SistemaEvaluacion seleccionado]
     <b>Sistema</b> presenta mensaje de rechazo: ponderación no positiva, o por encima del máximo del SistemaEvaluacion seleccionado
     end note
 }

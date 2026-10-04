@@ -1,17 +1,17 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > editarActividadesFormativasMateria()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`editarActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md): el `DirectorGrado` edita las `horas` de las 10 filas `ActividadFormativaMateria` de una `Materia` en una sola operación (rejilla). `codigo`/`nombre` de cada `ActividadFormativa` se muestran de solo lectura -- catálogo institucional de `Universidad`, no se editan desde aquí. `<<choice>>` de validación de entrada: si alguna `horas` es negativa no se guarda nada. La regla `AfM = Σ AfAdM` **no** se comprueba aquí (blanda, vive en [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md)).
+Traducción a clases de análisis del caso de uso [`editarActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md): el `DirectorPrograma` edita las `horas` de las 10 filas `ActividadFormativaMateria` de una `Materia` en una sola operación (rejilla). `codigo`/`nombre` de cada `ActividadFormativa` se muestran de solo lectura -- catálogo institucional de `Universidad`, no se editan desde aquí. `<<choice>>` de validación de entrada: si alguna `horas` es negativa no se guarda nada. La regla `AfM = Σ AfAdM` **no** se comprueba aquí (blanda, vive en [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md)).
 
 <div align=center>
 
@@ -30,7 +30,7 @@ Traducción a clases de análisis del caso de uso [`editarActividadesFormativasM
 - ofrece la navegación a solicitar guardar el reparto completo.
 
 **Colaboraciones:**
-- **Entrada:** `:MATERIA_ABIERTO` -- el `DirectorGrado` solicita editar las actividades formativas de la `Materia`.
+- **Entrada:** `:MATERIA_ABIERTO` -- el `DirectorPrograma` solicita editar las actividades formativas de la `Materia`.
 - **Control:** `MateriaController`.
 - **Salida:** `:MATERIA_ABIERTO` (reparto guardado, o algún valor de `horas` no válido -- no se guarda nada).
 
@@ -70,6 +70,6 @@ Traducción a clases de análisis del caso de uso [`editarActividadesFormativasM
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/wireframes.puml) -- fuente de verdad del formulario.
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()`.
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativaMateria{horas}`, `(Materia, ActividadFormativa) .. ActividadFormativaMateria`.
-- [`editarActividadesFormativasAsignaturaGrado()`](../editarActividadesFormativasAsignaturaGrado/README.md) -- el mismo patrón un nivel más abajo, con `porcentajePresencialidad` además de `horas`.
+- [`editarActividadesFormativasAsignaturaPrograma()`](../editarActividadesFormativasAsignaturaPrograma/README.md) -- el mismo patrón un nivel más abajo, con `porcentajePresencialidad` además de `horas`.

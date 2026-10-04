@@ -14,8 +14,8 @@ package abrirMateria as "abrirMateria()" {
     rectangle #F2AC4E MetodologiaMateria
     rectangle #F2AC4E MetodologiaMateriaRepository
     rectangle #F2AC4E ResultadoAprendizaje
-    rectangle #F2AC4E AsignaturaGrado
-    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
 }
 
 MateriasAbierto --> AbrirMateriaView: <font size=8>abrirMateria(materiaId)
@@ -32,18 +32,18 @@ AbrirMateriaView --> MateriaController: <font size=8>listarResultadosAprendizaje
 
 MateriaController --> MateriaRepository: <font size=8>listarResultadosAprendizajeDe(materiaId) : List<ResultadoAprendizaje>
 
-AbrirMateriaView --> MateriaController: <font size=8>listarAsignaturasGrado(materiaId) : List<AsignaturaGrado>
+AbrirMateriaView --> MateriaController: <font size=8>listarAsignaturasPrograma(materiaId) : List<AsignaturaPrograma>
 
-MateriaController --> AsignaturaGradoRepository: <font size=8>listarDeLaMateria(materiaId) : List<AsignaturaGrado>
+MateriaController --> AsignaturaProgramaRepository: <font size=8>listarDeLaMateria(materiaId) : List<AsignaturaPrograma>
 
 MateriaRepository -- Materia
 MetodologiaMateriaRepository -- MetodologiaMateria
-AsignaturaGradoRepository -- AsignaturaGrado
+AsignaturaProgramaRepository -- AsignaturaPrograma
 Materia -- MetodologiaMateria
 Materia -- ResultadoAprendizaje
-Materia -- AsignaturaGrado
+Materia -- AsignaturaPrograma
 
-AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra Metodologias Docentes/Resultados de Aprendizaje asociados y AsignaturaGrado de la Materia
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra Metodologias Docentes/Resultados de Aprendizaje asociados y AsignaturaPrograma de la Materia
 
 @enduml
 
@@ -60,8 +60,8 @@ package abrirMateriaAdmin as "abrirMateria() -- Admin" {
     rectangle #b5bd68 MateriaController
     rectangle #F2AC4E Materia
     rectangle #F2AC4E MateriaRepository
-    rectangle #F2AC4E AsignaturaGrado
-    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
 }
 
 MateriasAbierto --> AbrirMateriaView: <font size=8>abrirMateria(materiaId)
@@ -70,13 +70,13 @@ AbrirMateriaView --> MateriaController: <font size=8>cargarMateria(materiaId) : 
 
 MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
 
-AbrirMateriaView --> MateriaController: <font size=8>listarAsignaturasGrado(materiaId) : List<AsignaturaGrado>
+AbrirMateriaView --> MateriaController: <font size=8>listarAsignaturasPrograma(materiaId) : List<AsignaturaPrograma>
 
-MateriaController --> AsignaturaGradoRepository: <font size=8>listarDeLaMateria(materiaId) : List<AsignaturaGrado>
+MateriaController --> AsignaturaProgramaRepository: <font size=8>listarDeLaMateria(materiaId) : List<AsignaturaPrograma>
 
 MateriaRepository -- Materia
-AsignaturaGradoRepository -- AsignaturaGrado
+AsignaturaProgramaRepository -- AsignaturaPrograma
 
-AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra datos de la Materia y su tabla de AsignaturasGrado, con [Editar]
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra datos de la Materia y su tabla de AsignaturasPrograma, con [Editar]
 
 @enduml

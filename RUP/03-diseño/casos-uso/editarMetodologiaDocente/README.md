@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -42,7 +42,7 @@ Bajada a diseño del caso de análisis [`editarMetodologiaDocente()`](/RUP/02-an
 ## Decisiones de diseño
 
 - **Sin `alt` de negocio**: la única validación es de forma, resuelta por `MetodologiaDocenteUpdate` (Pydantic: `codigo` y `descripcion` obligatorios), mismo mecanismo ya documentado en el diagrama de clases de Diseño para `validarDatosObligatorios()`.
-- **El `codigo` viaja en `MetodologiaDocenteUpdate` aunque el formulario no lo edita**: regla de Requisitos ("el código no es editable una vez creada la metodología") resuelta en la Vista -- el campo se muestra de solo lectura y se reenvía sin cambios; el esquema de entrada no distingue campos por caso de uso, mismo criterio que `GradoAdminUpdate` frente al `codigo` de `Grado`.
+- **El `codigo` viaja en `MetodologiaDocenteUpdate` aunque el formulario no lo edita**: regla de Requisitos ("el código no es editable una vez creada la metodología") resuelta en la Vista -- el campo se muestra de solo lectura y se reenvía sin cambios; el esquema de entrada no distingue campos por caso de uso, mismo criterio que `ProgramaAdminUpdate` frente al `codigo` de `Programa`.
 - **`MetodologiaDocenteRepository.editar(metodologia_docente, codigo, descripcion)` es método nuevo**: el repositorio ya existía con las queries de disponibilidad; gana aquí su método de persistencia de edición (invoca `MetodologiaDocente.actualizar(codigo, descripcion)` y persiste), mismo reparto Modelo-muta/Repository-persiste que `Asignatura.actualizar()` + `AsignaturaRepository.actualizar()`.
 - **Sin capa Service**: Router delgado -> Modelo/Repository.
 - **Reutiliza el `GET` de `abrirMetodologiaDocente()`**: mismo endpoint de carga, sin duplicar lógica de lectura.

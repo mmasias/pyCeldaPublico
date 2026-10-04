@@ -1,24 +1,24 @@
 @startsalt consultarEstadoGuias-wireframe
 {
-    <b>GUÍAS DEL GRADO -- GII</b>
+    <b>GUÍAS DEL PROGRAMA -- GII</b>
     ====
     [ <b>Notificar guías actualizadas</b> ]
     ====
     {#
-        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | <b>Última actualización | .
+        <b>AsignaturaPrograma | <b>Profesorado | <b>Estado | <b>Última actualización | .
         Programación I | Dr. Manuel Masías, Dr. Pablo Herrero | [ En revisión ] ámbar | Administración, hace dos días | [Abrir]
     }
     <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
-    <i>Estado como badge de color (issue 280): 4 estados de guia.puml, etiqueta legible ("En revisión", no "EnRevision"), color aditivo -- el texto se queda. Salt no pinta fondos, se anota el color. Profesorado en vivo desde AsignaturaGrado; "Administración" en Última actualización = volvió a EnRevision por cambio de profesorado del Admin (issue 254)</i>
+    <i>Estado como badge de color (issue 280): 4 estados de guia.puml, etiqueta legible ("En revisión", no "EnRevision"), color aditivo -- el texto se queda. Salt no pinta fondos, se anota el color. Profesorado en vivo desde AsignaturaPrograma; "Administración" en Última actualización = volvió a EnRevision por cambio de profesorado del Admin (issue 254)</i>
 }
 @endsalt
 
 @startsalt consultarEstadoGuias-wireframe-admin
 {
-    <b>GUÍAS DEL GRADO -- GII (curso actual)</b>
+    <b>GUÍAS DEL PROGRAMA -- GII (curso actual)</b>
     ====
     {#
-        <b>AsignaturaGrado | <b>Profesorado | <b>Estado | <b>Última actualización | . | .
+        <b>AsignaturaPrograma | <b>Profesorado | <b>Estado | <b>Última actualización | . | .
         Programación I | Dr. Manuel Masías | [ Aprobada ] verde | Administración, hace dos días | [Previsualizar] | [Descargar PDF]
         Cálculo I | Dra. Paz Gutiérrez | [ Borrador ] neutro | Profesor, hace cinco días | [Previsualizar] | [Descargar PDF] !!disabled
     }

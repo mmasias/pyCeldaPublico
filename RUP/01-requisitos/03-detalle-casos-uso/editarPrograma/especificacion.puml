@@ -1,0 +1,33 @@
+@startuml editarPrograma
+
+skinparam linetype polyline
+
+state PROGRAMA_ABIERTO
+state PROGRAMA_ABIERTO_SALIDA as "PROGRAMA_ABIERTO"
+
+PROGRAMA_ABIERTO -[#green]-> editarPrograma
+note on link
+<b>Admin</b> solicita editar Programa
+end note
+
+state editarPrograma as "editarPrograma()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales del Programa
+    <b>Sistema</b> muestra código
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarPrograma -[#green]-> PROGRAMA_ABIERTO_SALIDA
+
+@enduml

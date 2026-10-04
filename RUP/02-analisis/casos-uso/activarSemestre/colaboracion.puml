@@ -1,0 +1,32 @@
+@startuml activarSemestre-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":CURSO_ACADEMICO_ABIERTO" as CursoAcademicoAbierto
+rectangle #CDEBA5 ":CURSO_ACADEMICO_ABIERTO" as CursoAcademicoAbiertoSalida
+
+package activarSemestre as "activarSemestre()" {
+    rectangle #629EF9 ActivarSemestreView
+    rectangle #b5bd68 CursoAcademicoController
+    rectangle #F2AC4E CursoAcademico
+    rectangle #F2AC4E CursoAcademicoRepository
+}
+
+CursoAcademicoAbierto --> ActivarSemestreView: <font size=8>activarSemestre(cursoAcademicoId)
+
+ActivarSemestreView --> CursoAcademicoController: <font size=8>cargarCursoAcademico(cursoAcademicoId) : CursoAcademico
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>obtener(cursoAcademicoId) : CursoAcademico
+
+ActivarSemestreView --> CursoAcademicoController: <font size=8>guardarSemestre(cursoAcademicoId, semestre) : CursoAcademico
+
+CursoAcademicoController --> CursoAcademico: <font size=8>activarSemestre(semestre)
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>actualizar(cursoAcademico) : CursoAcademico
+
+CursoAcademicoRepository -- CursoAcademico
+
+ActivarSemestreView --> CursoAcademicoAbiertoSalida: <font size=8>semestre activo actualizado (sin precondición: Activo o Inactivo)
+
+@enduml

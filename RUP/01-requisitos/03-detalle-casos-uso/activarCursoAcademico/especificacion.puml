@@ -10,6 +10,9 @@ note on link
 <b>Admin</b> solicita activar CursoAcademico
 end note
 
+' No implementado en código -- caso de uso solo de la fase de Requisitos.
+' Mismo régimen que Requisito/CursoAcademico en el modelo del dominio:
+' representación correcta, pendiente de construir.
 state activarCursoAcademico as "activarCursoAcademico()" {
 
     state c <<choice>>
@@ -18,11 +21,13 @@ state activarCursoAcademico as "activarCursoAcademico()" {
 
     c -[#green]-> [*]
     note on link
+    [CursoAcademico es el último creado, o es el penúltimo y el último no tiene actividad registrada en HistorialCambio]
     <b>Sistema</b> presenta CursoAcademico activado
     end note
 
     c -[#red]-> [*]
     note on link
+    [CursoAcademico no es ni el último ni ese penúltimo elegible]
     <b>Sistema</b> presenta mensaje de bloqueo: solo el último CursoAcademico, o el penúltimo si el último no tiene actividad registrada, son elegibles
     end note
 }
@@ -30,10 +35,10 @@ state activarCursoAcademico as "activarCursoAcademico()" {
 activarCursoAcademico -[#green]-> CURSOS_ACADEMICOS_ABIERTOS_SALIDA
 note on link
 activado; el otro CursoAcademico Activo pasa a Inactivo automáticamente, lista actualizada
-efecto colateral: nace una Guia por cada AsignaturaGrado de la institución (con o sin
+efecto colateral: nace una Guia por cada AsignaturaPrograma de la institución (con o sin
 Profesor asignado), clonando PonderacionEvaluacion/ReferenciaBibliografica/semestre/contenido
 de la Guia del curso anterior si existe; si no, contenido se siembra de
-AsignaturaGrado.contenido -- ver modelo del dominio
+AsignaturaPrograma.contenido -- ver modelo del dominio
 end note
 
 activarCursoAcademico -[#red]-> CURSOS_ACADEMICOS_ABIERTOS_SALIDA

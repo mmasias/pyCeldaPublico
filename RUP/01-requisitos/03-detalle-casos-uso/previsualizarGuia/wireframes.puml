@@ -21,10 +21,10 @@
     ..(temario propio de la Guía, Guia.contenido)
     ====
     <b>RESULTADOS DE APRENDIZAJE</b>
-    ..(bloque único, leído en vivo de AsignaturaGrado.resultados_aprendizaje)
+    ..(bloque único, leído en vivo de AsignaturaPrograma.resultados_aprendizaje)
     ====
     <b>METODOLOGÍAS DOCENTES</b>
-    ..(AsignaturaGrado.metodologias_docentes)
+    ..(AsignaturaPrograma.metodologias_docentes)
     ====
     ACTIVIDADES_FORMATIVAS_AQUI
     ====

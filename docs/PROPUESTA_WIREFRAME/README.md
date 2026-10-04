@@ -9,8 +9,8 @@ El artefacto hace de **puente entre requisitos y análisis**: su valor no es sol
 ## Navegadores por actor
 
 - [Admin](admin/iniciarSesion.md) — 59 páginas (56 con SVG, 3 override manual). Incluye [`abrirPanelAdministracion.md`](admin/abrirPanelAdministracion.md), nueva al planificar Análisis (discussion [#47](https://github.com/mmasias/pyCelda/discussions/47)) -- ver [README de fase](/RUP/01-requisitos/03-detalle-casos-uso/README.md).
-- [Director de grado](directorGrado/iniciarSesion.md) — 43 páginas (39 con SVG, 4 override manual).
-- [Profesor](profesor/iniciarSesion.md) — 16 páginas (14 con SVG, 2 override manual). Resuelve [issue #42](https://github.com/mmasias/pyCelda/issues/42): `iniciarSesion()` no tiene ficha de detalle propia en el catálogo (el listado de AsignaturaGrado es efecto lateral del login, no un CU independiente), así que su página reutiliza como override manual el wireframe de `abrirAsignaturasGrado` -- CU cuya ficha pertenece a DirectorGrado, con la salvedad de que el botón "Abrir" de ese wireframe se reasigna a `abrirGuia()` (Profesor edita la Guía, no configura la AsignaturaGrado como haría DirectorGrado con `abrirAsignaturaGrado()`). Gana también [`abrirAsignaturasGrado.md`](profesor/abrirAsignaturasGrado.md) (override manual, misma variante filtrada): destino real de `GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO`, antes `completarGestion()` genérico sin página propia.
+- [Director de programa](directorPrograma/iniciarSesion.md) — 43 páginas (39 con SVG, 4 override manual).
+- [Profesor](profesor/iniciarSesion.md) — 16 páginas (14 con SVG, 2 override manual). Resuelve [issue #42](https://github.com/mmasias/pyCelda/issues/42): `iniciarSesion()` no tiene ficha de detalle propia en el catálogo (el listado de AsignaturaPrograma es efecto lateral del login, no un CU independiente), así que su página reutiliza como override manual el wireframe de `abrirAsignaturasPrograma` -- CU cuya ficha pertenece a DirectorPrograma, con la salvedad de que el botón "Abrir" de ese wireframe se reasigna a `abrirGuia()` (Profesor edita la Guía, no configura la AsignaturaPrograma como haría DirectorPrograma con `abrirAsignaturaPrograma()`). Gana también [`abrirAsignaturasPrograma.md`](profesor/abrirAsignaturasPrograma.md) (override manual, misma variante filtrada): destino real de `GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO`, antes `completarGestion()` genérico sin página propia.
 
 ## Cómo se genera
 
@@ -19,12 +19,12 @@ El artefacto hace de **puente entre requisitos y análisis**: su valor no es sol
 ```bash
 python3 docs/scripts/generar_mockup_navegable.py Admin
 python3 docs/scripts/generar_mockup_navegable.py Profesor
-python3 docs/scripts/generar_mockup_navegable.py DirectorGrado
+python3 docs/scripts/generar_mockup_navegable.py DirectorPrograma
 ```
 
 ### Verificación tras retocar un wireframe ya mockeado
 
-`CONTEXTUAL_LABELS` (diccionario en `generar_mockup_navegable.py`) transcribe a mano el texto literal de los botones de cada `wireframes.puml` -- es una segunda fuente de verdad, no derivada del propio `.puml`. El riesgo real no es tocar el diccionario (eso ya se corre a mano), es tocar el wireframe de un CU que un lote posterior retoca sin que nadie recuerde actualizar la entrada correspondiente -- ya ha ocurrido cinco veces en el catálogo (`abrirProfesor`, `abrirMateria`, `abrirGrado`, `abrirAsignaturaGrado`, `abrirGuia`, todos retocados desde un lote posterior al que los cerró).
+`CONTEXTUAL_LABELS` (diccionario en `generar_mockup_navegable.py`) transcribe a mano el texto literal de los botones de cada `wireframes.puml` -- es una segunda fuente de verdad, no derivada del propio `.puml`. El riesgo real no es tocar el diccionario (eso ya se corre a mano), es tocar el wireframe de un CU que un lote posterior retoca sin que nadie recuerde actualizar la entrada correspondiente -- ya ha ocurrido cinco veces en el catálogo (`abrirProfesor`, `abrirMateria`, `abrirPrograma`, `abrirAsignaturaPrograma`, `abrirGuia`, todos retocados desde un lote posterior al que los cerró).
 
 **Regla**: si un lote retoca un `wireframes.puml` de un CU que ya tiene página en el mockup, correr antes de comitear:
 
@@ -71,18 +71,18 @@ Tres opciones se consideraron:
 El primer uso del artefacto (sobre el actor Admin) reveló:
 
 - **3 CU del diagrama sin detallar**: `cerrarSesion()`, `generarGuiasPDF()`, `reabrirGuiaPorIncidencia()`. Aparecen como `(pendiente)` en las tablas.
-- **2 placeholders**: `iniciarSesion.md` (hub del Admin) y `consultarEstadoGuias.md` (entrada a `GUIAS_DEL_GRADO_ABIERTO`). Páginas con marca *Pendiente de detallar* pero con tabla de navegación completa — la navegación se deriva del diagrama aunque el CU no tenga wireframe.
+- **2 placeholders**: `iniciarSesion.md` (hub del Admin) y `consultarEstadoGuias.md` (entrada a `GUIAS_DEL_PROGRAMA_ABIERTO`). Páginas con marca *Pendiente de detallar* pero con tabla de navegación completa — la navegación se deriva del diagrama aunque el CU no tenga wireframe.
 - **17 CU con múltiples wireframes** (`wireframe-X.svg`) mostrados ambos en la misma página con etiqueta legible. La mayoría corresponden a condiciones de bloqueo (`bloqueada`/`confirmacion` para `eliminar/desasignar`, `bloqueada`/`activado` para `activarCursoAcademico`) o de resultado (`error`/`exito`, `formulario`/`error`). El script los detecta automáticamente y los muestra juntos para evitar páginas huérfanas.
 
 Estos hallazgos se revisarán visualmente sobre el artefacto publicado antes de decidir cuáles son deuda real a reportar como issues.
 
 ## Detecciones anteriores
 
-- **[Issue #42](https://github.com/mmasias/pyCelda/issues/42)**: al intentar generar la primera página del mockup del Profesor, se detectó que `iniciarSesion()` no tiene ficha de detalle, ni existe un CU `abrirMisAsignaturasGrado()` separado del login. El mockup actuó como detector de un defecto de catálogo que el diagrama de contexto por sí solo no revelaba.
+- **[Issue #42](https://github.com/mmasias/pyCelda/issues/42)**: al intentar generar la primera página del mockup del Profesor, se detectó que `iniciarSesion()` no tiene ficha de detalle, ni existe un CU `abrirMisAsignaturasPrograma()` separado del login. El mockup actuó como detector de un defecto de catálogo que el diagrama de contexto por sí solo no revelaba.
 
 ## Pendiente
 
 - [x] Profesor: resuelto (ver issue #42 y sección "Detecciones anteriores").
-- [x] Director de grado: generado (43 páginas, ver "Navegadores por actor" arriba) -- desfasado desde antes de esta sesión, corregido tras auditoría externa 2026-08-17.
+- [x] Director de programa: generado (43 páginas, ver "Navegadores por actor" arriba) -- desfasado desde antes de esta sesión, corregido tras auditoría externa 2026-08-17.
 - [ ] Revisar visualmente los multi-wireframes para validar etiquetas y orden.
 - [ ] Revisar páginas con desajuste wireframe-vs-diagrama (convención C, aplicada a mano según aparezca).

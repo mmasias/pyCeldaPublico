@@ -1,0 +1,43 @@
+@startuml crearPrograma-diseño
+title Diagrama de Secuencia - Crear Programa
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as ProgramaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa codigo y nombre de la Facultad abierta, confirma
+activate Vista
+Vista -> API: POST /api/v1/admin/facultades/{facultad_id}/programas (ProgramaCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- ya disponible en\nbackend/app/core/auth.py (bloque anterior, ya mergeado).\nfacultad_id viaja en la URL, no en el body\n(mismo patrón que POST /universidades/{universidad_id}/facultades)
+
+API -> ProgramaRepo: obtener_por_codigo(codigo)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT ... FROM programas WHERE codigo = :codigo
+activate DB
+DB --> ProgramaRepo: fila Programa o None
+deactivate DB
+ProgramaRepo --> API: Programa | None
+deactivate ProgramaRepo
+
+alt codigo ya existe (issue #148)
+API --> Vista: 409 Conflict ({"detail": "Ya existe un Programa con código ..."})
+Vista --> Admin: presenta mensaje de código ya existente, sin crear
+else codigo libre
+API -> ProgramaRepo: crear(codigo, nombre, facultad_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: INSERT INTO programas (codigo, nombre, estado, facultad_id)\nVALUES (:codigo, :nombre, 'Vigente', :facultad_id)
+activate DB
+DB --> ProgramaRepo: id nueva fila
+deactivate DB
+ProgramaRepo --> API: Programa (con id, estado Vigente por defecto)
+deactivate ProgramaRepo
+API --> Vista: 201 Created (ProgramaResponse JSON)
+Vista --> Admin: navega a editarPrograma() (<<include>>)
+end
+deactivate API
+deactivate Vista
+
+@enduml

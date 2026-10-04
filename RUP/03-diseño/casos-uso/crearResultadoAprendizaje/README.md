@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > crearResultadoAprendizaje() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearResultadoAprendizaje/README.md)|[Análisis](/RUP/02-analisis/casos-uso/crearResultadoAprendizaje/README.md)|**Diseño**|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearResultadoAprendizaje/README.md)|[Análisis](/RUP/02-analisis/casos-uso/crearResultadoAprendizaje/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -34,10 +34,10 @@ Bajada a diseño del caso de análisis [`crearResultadoAprendizaje()`](/RUP/02-a
 
 ## Participantes
 
-- **Vista**: `CrearResultadoAprendizajeView` (React) -- formulario con `codigo`, `tipo`, `descripcion`; pide `POST /api/v1/grados/{grado_id}/resultados-aprendizaje` y navega a `editarResultadoAprendizaje()` (`<<include>>`).
-- **API**: `routers/resultado_aprendizaje.py::crear_resultado_aprendizaje(grado_id, datos)` -- función suelta, sin capa Service.
+- **Vista**: `CrearResultadoAprendizajeView` (React) -- formulario con `codigo`, `tipo`, `descripcion`; pide `POST /api/v1/programas/{programa_id}/resultados-aprendizaje` y navega a `editarResultadoAprendizaje()` (`<<include>>`).
+- **API**: `routers/resultado_aprendizaje.py::crear_resultado_aprendizaje(programa_id, datos)` -- función suelta, sin capa Service.
 - **Modelo**: ninguno con lógica propia invocada -- el `ResultadoAprendizaje` nace con los tres datos ya fijados; no hay invariante que proteger.
-- **Repositorio**: `ResultadoAprendizajeRepository.crear(grado_id, codigo, tipo, descripcion)` -- `INSERT` inmediato.
+- **Repositorio**: `ResultadoAprendizajeRepository.crear(programa_id, codigo, tipo, descripcion)` -- `INSERT` inmediato.
 
 ## Decisiones de diseño
 

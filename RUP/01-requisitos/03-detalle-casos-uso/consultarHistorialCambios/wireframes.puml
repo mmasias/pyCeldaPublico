@@ -1,0 +1,33 @@
+@startsalt consultarHistorialCambios-wireframe
+{
+    { <b>AUDITORÍA                                    [ Volver al panel de administración ] }
+    ====
+    {
+    <b>Últimas 50 acciones | <b>Autores
+    {#
+        <b>Fecha | <b>Guía | <b>Campo | <b>Cambio | <b>Autor | <b>Comentario
+        15/9/2026, 14:48 | Programación II@GII | Contenido | Repaso... -> Repaso... | Dr. Manuel Masías Vergara | temario editado
+        8/9/2026, 11:22 | Programación I@GII | Estado | EnRevision -> Aprobada | Dr. Manuel Masías Vergara | aprobada sin incidencia
+    } | {
+        [ Dr. Manuel Masías Vergara ]
+        [ Dr. Jorge Crespo Álvarez ]
+        [ Admin ]
+        [ Juan Luis Vidal ]
+    }
+    }
+    <i>Feed sin filtros, todos los autores mezclados. Índice de la derecha: Profesor+DirectorPrograma de la misma persona fusionan por email (issue #401) en una sola entrada. Guía en formato Asignatura@SiglaPrograma (issue #403), sin enlace de navegación (issue #398 -- pantalla de solo consulta).</i>
+}
+@endsalt
+
+@startsalt consultarHistorialCambios-wireframe-autor
+{
+    { <b>Actividad de Dr. Manuel Masías Vergara     [ Volver a Auditoría ] }
+    ====
+    {#
+        <b>Fecha | <b>Guía | <b>Campo | <b>Cambio | <b>Rol | <b>Comentario
+        15/9/2026, 14:48 | Programación II@GII | Contenido | Repaso... -> Repaso... | Profesor | temario editado
+        8/9/2026, 11:22 | Programación I@GII | Estado | EnRevision -> Aprobada | Director | aprobada sin incidencia
+    }
+    <i>Sin límite de 50, toda la actividad de esta persona. Columna Rol distingue bajo qué identidad actuó en cada fila.</i>
+}
+@endsalt

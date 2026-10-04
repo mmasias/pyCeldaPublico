@@ -1,0 +1,31 @@
+@startuml desasociarResultadoAprendizajeAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package desasociarResultadoAprendizajeAsignaturaPrograma as "desasociarResultadoAprendizajeAsignaturaPrograma()" {
+    rectangle #629EF9 DesasociarResultadoAprendizajeAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+}
+
+AsignaturaProgramaAbierto --> DesasociarResultadoAprendizajeAsignaturaProgramaView: <font size=8>desasociarResultadoAprendizajeAsignaturaPrograma(asignaturaProgramaId, resultadoAprendizajeId)
+
+DesasociarResultadoAprendizajeAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>quedaSinResultadosAprendizajeTrasDesasociar(asignaturaProgramaId, resultadoAprendizajeId) : boolean
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>quedaSinResultadosAprendizajeTrasDesasociar(asignaturaProgramaId, resultadoAprendizajeId) : boolean
+
+DesasociarResultadoAprendizajeAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>desasociarResultadoAprendizaje(asignaturaProgramaId, resultadoAprendizajeId)
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>desasociarResultadoAprendizaje(asignaturaProgramaId, resultadoAprendizajeId)
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+
+DesasociarResultadoAprendizajeAsignaturaProgramaView ..[#green]> AsignaturaProgramaAbiertoSalida: <font size=8>confirmada, lista actualizada (con advertencia si quedaba sin ninguno)
+DesasociarResultadoAprendizajeAsignaturaProgramaView ..[#blue]> AsignaturaProgramaAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

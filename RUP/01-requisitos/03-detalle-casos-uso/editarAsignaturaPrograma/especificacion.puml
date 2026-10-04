@@ -1,0 +1,67 @@
+@startuml editarAsignaturaPrograma
+
+skinparam linetype polyline
+
+state ASIGNATURA_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO_SALIDA as "ASIGNATURA_PROGRAMA_ABIERTO"
+
+ASIGNATURA_PROGRAMA_ABIERTO -[#green]-> editarAsignaturaPrograma
+note on link
+<b>DirectorPrograma</b> solicita editar la AsignaturaPrograma
+end note
+
+state editarAsignaturaPrograma as "editarAsignaturaPrograma()" {
+
+    state c <<choice>>
+    state " " as EditandoDatosCompleto
+    state " " as EditandoDatosSemestreBloqueado
+
+    [*] -[#green]-> c
+
+    c -[#green]-> EditandoDatosCompleto
+    note on link
+    [AsignaturaPrograma sin ninguna Guia asociada]
+    <b>Sistema</b> presenta los 8 campos editables, semestre por defecto incluido
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    c -[#green]-> EditandoDatosSemestreBloqueado
+    note on link
+    [AsignaturaPrograma con alguna Guia asociada]
+    <b>Sistema</b> presenta los 7 campos editables
+    <b>Sistema</b> muestra el semestre por defecto bloqueado, con el motivo
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatosCompleto -[#green]-> [*]
+    note on link
+    <b>DirectorPrograma</b> introduce curso
+    <b>DirectorPrograma</b> introduce carácter
+    <b>DirectorPrograma</b> introduce idioma
+    <b>DirectorPrograma</b> introduce semestre por defecto
+    <b>DirectorPrograma</b> introduce nombre
+    <b>DirectorPrograma</b> introduce ects
+    <b>DirectorPrograma</b> introduce contenido
+    <b>DirectorPrograma</b> introduce requisitos previos
+    <b>DirectorPrograma</b> solicita guardar
+    end note
+
+    EditandoDatosSemestreBloqueado -[#green]-> [*]
+    note on link
+    <b>DirectorPrograma</b> introduce curso
+    <b>DirectorPrograma</b> introduce carácter
+    <b>DirectorPrograma</b> introduce idioma
+    <b>DirectorPrograma</b> introduce nombre
+    <b>DirectorPrograma</b> introduce ects
+    <b>DirectorPrograma</b> introduce contenido
+    <b>DirectorPrograma</b> introduce requisitos previos
+    <b>DirectorPrograma</b> solicita guardar
+    end note
+}
+
+editarAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+datos actualizados
+end note
+
+@enduml

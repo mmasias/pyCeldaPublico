@@ -1,15 +1,15 @@
 @startuml abrirMateria-diseño
 title Diagrama de Secuencia - Abrir Materia
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "MateriaRepository" as MateriaRepo
 participant "MetodologiaMateriaRepository" as MetodologiaMateriaRepo
-participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita abrir una Materia del listado
+DirectorPrograma -> Vista: solicita abrir una Materia del listado
 activate Vista
 Vista -> API: GET /api/v1/materias/{materia_id}
 activate API
@@ -41,18 +41,18 @@ deactivate DB
 MateriaRepo --> API: List[ResultadoAprendizaje]
 deactivate MateriaRepo
 
-API -> AsignaturaGradoRepo: listar_de_la_materia(materia_id)
-activate AsignaturaGradoRepo
-AsignaturaGradoRepo -> DB: SELECT ... FROM asignaturas_grado WHERE materia_id = :materia_id
+API -> AsignaturaProgramaRepo: listar_de_la_materia(materia_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ... FROM asignaturas_programa WHERE materia_id = :materia_id
 activate DB
-DB --> AsignaturaGradoRepo: filas AsignaturaGrado
+DB --> AsignaturaProgramaRepo: filas AsignaturaPrograma
 deactivate DB
-AsignaturaGradoRepo --> API: List[AsignaturaGrado]
-deactivate AsignaturaGradoRepo
+AsignaturaProgramaRepo --> API: List[AsignaturaPrograma]
+deactivate AsignaturaProgramaRepo
 
 API --> Vista: 200 OK (MateriaDetalleResponse JSON, con las tres colecciones)
 deactivate API
-Vista --> DirectorGrado: muestra MetodologiaDocente/ResultadoAprendizaje asociados y AsignaturaGrado
+Vista --> DirectorPrograma: muestra MetodologiaDocente/ResultadoAprendizaje asociados y AsignaturaPrograma
 deactivate Vista
 
 @enduml
@@ -64,14 +64,14 @@ actor "Admin" as Admin
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "MateriaRepository" as MateriaRepo
-participant "AsignaturaGradoRepository" as AsignaturaGradoRepo
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
 database "Base de Datos" as DB
 
 Admin -> Vista: solicita abrir una Materia del listado
 activate Vista
 Vista -> API: GET /api/v1/admin/materias/{materia_id}
 activate API
-note right of API: Depends(require_admin) -- variante REDUCIDA frente a\nGET /api/v1/materias/{materia_id} de DirectorGrado: solo\nnombre + asignaturas_grado, sin las colecciones de\nasociación (MetodologiaDocente/ResultadoAprendizaje)\nque Admin no usa
+note right of API: Depends(require_admin) -- variante REDUCIDA frente a\nGET /api/v1/materias/{materia_id} de DirectorPrograma: solo\nnombre + asignaturas_programa, sin las colecciones de\nasociación (MetodologiaDocente/ResultadoAprendizaje)\nque Admin no usa
 API -> MateriaRepo: obtener(materia_id)
 activate MateriaRepo
 MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id
@@ -81,16 +81,16 @@ deactivate DB
 MateriaRepo --> API: Materia (404 si None)
 deactivate MateriaRepo
 
-API -> AsignaturaGradoRepo: listar_de_la_materia(materia_id)
-activate AsignaturaGradoRepo
-AsignaturaGradoRepo -> DB: SELECT ... FROM asignaturas_grado WHERE materia_id = :materia_id
+API -> AsignaturaProgramaRepo: listar_de_la_materia(materia_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ... FROM asignaturas_programa WHERE materia_id = :materia_id
 activate DB
-DB --> AsignaturaGradoRepo: filas AsignaturaGrado
+DB --> AsignaturaProgramaRepo: filas AsignaturaPrograma
 deactivate DB
-AsignaturaGradoRepo --> API: List[AsignaturaGrado]
-deactivate AsignaturaGradoRepo
+AsignaturaProgramaRepo --> API: List[AsignaturaPrograma]
+deactivate AsignaturaProgramaRepo
 
-API --> Vista: 200 OK (MateriaAdminDetalleResponse JSON, con asignaturas_grado)
+API --> Vista: 200 OK (MateriaAdminDetalleResponse JSON, con asignaturas_programa)
 deactivate API
 Vista --> Admin: muestra datos de la Materia y la tabla "Asignaturas de esta materia"
 deactivate Vista

@@ -38,13 +38,13 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
 
 **Dos entradas, un solo retorno**, mismo patrón que [`abrirPonderacionesEvaluacion()`](../abrirPonderacionesEvaluacion/README.md): desde `GUIA_ABIERTO` y desde `REFERENCIA_BIBLIOGRAFICA_ABIERTO` (vuelta desde el detalle, mismo verbo plural reutilizado). La salida hacia `GUIA_ABIERTO` reutiliza [`abrirGuia()`](../abrirGuia/README.md).
 
 Diez referencias reales de `GII__IYA003`, aportadas por el usuario en la discussion [#39](https://github.com/mmasias/pyCelda/discussions/39) (no estaban en el seed, a diferencia de `PonderacionEvaluacion`): dos `Basica`, tres `Complementaria`, cuatro `WebsReferencia`, una `OtrasFuentes` -- confirma que el enum de cuatro categorías del modelo de dominio cierra bien con el corpus real, incluida la nomenclatura exacta de la cuarta sección ("OTRAS FUENTES DE CONSULTA" en la guía real). El wireframe muestra el `tipo` con su forma legible ("Básica", "Complementaria", "Webs de referencia", "Otras fuentes de consulta"), no el literal del enum -- corregido, mismas cuatro secciones que el corpus real. `referencia` se muestra tal cual la aportó el usuario, sin normalizar (ISBN ausente, año dentro o fuera de la referencia, URL directa según el caso) -- mismo criterio documentado en el [modelo del dominio](/RUP/00-modelo-del-dominio/README.md).
 
-**Retocado al construir el issue [#184](https://github.com/mmasias/pyCelda/issues/184)**: el wireframe gana el botón `[Importar de asignatura hermana]` junto a `[+ Crear Referencia]` -- dispara [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md), self-loop sobre `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO` (reemplaza al completo la bibliografía con la de una `Guia` `Aprobada` de una `AsignaturaGrado` hermana). El botón se ofrece condicionalmente: ausente si ninguna hermana tiene guía aprobada. El aviso del recuento a reemplazar tiene aquí las N referencias a la vista -- por eso el caso de uso vive en esta pantalla y no en [`abrirGuia()`](../abrirGuia/README.md).
+**Retocado al construir el issue [#184](https://github.com/mmasias/pyCelda/issues/184)**: el wireframe gana el botón `[Importar de asignatura hermana]` junto a `[+ Crear Referencia]` -- dispara [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md), self-loop sobre `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO` (reemplaza al completo la bibliografía con la de una `Guia` `Aprobada` de una `AsignaturaPrograma` hermana). El botón se ofrece condicionalmente: ausente si ninguna hermana tiene guía aprobada. El aviso del recuento a reemplazar tiene aquí las N referencias a la vista -- por eso el caso de uso vive en esta pantalla y no en [`abrirGuia()`](../abrirGuia/README.md).
 
 ## Referencias
 

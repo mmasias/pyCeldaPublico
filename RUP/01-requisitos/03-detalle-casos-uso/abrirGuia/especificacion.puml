@@ -2,10 +2,10 @@
 
 skinparam linetype polyline
 
-state ASIGNATURAS_GRADO_ABIERTO
+state ASIGNATURAS_PROGRAMA_ABIERTO
 state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
 
-ASIGNATURAS_GRADO_ABIERTO -[#green]-> abrirGuia
+ASIGNATURAS_PROGRAMA_ABIERTO -[#green]-> abrirGuia
 note on link
 <b>Profesor</b> solicita abrir Guia
 end note

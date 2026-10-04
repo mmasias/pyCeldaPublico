@@ -6,7 +6,7 @@
 
 # pyCelda > editarResultadoAprendizaje()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/editarResultadoAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/editarResultadoAprendizaje/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/editarResultadoAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/editarResultadoAprendizaje/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,7 +31,7 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorGrado`|
+|**Actor**|`Admin`, `DirectorPrograma`|
 |**Objetivo**|Editar `codigo`, `tipo` y `descripcion` de un `ResultadoAprendizaje`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
@@ -42,7 +42,9 @@ A diferencia de `editarMetodologiaDocente()` (`codigo` fijo desde el alta, catá
 
 ## Referencias
 
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `ResultadoAprendizaje`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()` (compartido con `Admin` desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642); pantalla propia en `/admin/...`, `*Admin.tsx`)
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `ResultadoAprendizaje`
+- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` (incluye este caso de uso desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642))
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ResultadoAprendizaje{codigo, tipo, descripcion}`, `tipo` enum cerrado de 4 valores (Conocimientos/Habilidades/Competencias/General)
 - [crearResultadoAprendizaje()](/RUP/01-requisitos/03-detalle-casos-uso/crearResultadoAprendizaje/README.md) -- caso de uso que abre el patrón C→U que este cierra

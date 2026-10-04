@@ -1,0 +1,26 @@
+@startuml abrirCursoAcademico-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":CURSOS_ACADEMICOS_ABIERTO" as CursosAcademicosAbierto
+rectangle #CDEBA5 ":CURSO_ACADEMICO_ABIERTO" as CursoAcademicoAbiertoSalida
+
+package abrirCursoAcademico as "abrirCursoAcademico()" {
+    rectangle #629EF9 AbrirCursoAcademicoView
+    rectangle #b5bd68 CursoAcademicoController
+    rectangle #F2AC4E CursoAcademico
+    rectangle #F2AC4E CursoAcademicoRepository
+}
+
+CursosAcademicosAbierto --> AbrirCursoAcademicoView: <font size=8>abrirCursoAcademico(cursoAcademicoId)
+
+AbrirCursoAcademicoView --> CursoAcademicoController: <font size=8>cargarCursoAcademico(cursoAcademicoId) : CursoAcademico
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>obtener(cursoAcademicoId) : CursoAcademico
+
+CursoAcademicoRepository -- CursoAcademico
+
+AbrirCursoAcademicoView --> CursoAcademicoAbiertoSalida: <font size=8>muestra datos del CursoAcademico ([Editar] y [Activar semestre] siempre presentes)
+
+@enduml

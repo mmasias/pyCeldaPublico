@@ -1,14 +1,12 @@
-# pyCelda
+# Proyecto CELDA
 
 ## ¿Por qué?
 
 Cada curso académico, cada asignatura de cada programa necesita una guía docente: temario, sistema de evaluación, bibliografía, planificación de sesiones, resultados de aprendizaje, metodologías. Documentos sujetos a baremos de ANECA, que deben ser coherentes entre sí dentro del mismo programa, y que hasta ahora vivían dispersos en Word -- un fichero por asignatura, por profesor, por curso académico, sin trazabilidad de quién cambió qué ni cuándo, sin ninguna garantía estructural de que la suma de ponderaciones diera 100%, ni de que el mismo código de metodología docente significara lo mismo en dos programas distintos.
 
-Este último punto no es hipotético: durante el desarrollo del proyecto se encontró que las metodologías docentes presentaban casos de divergencia en codificación según el programa en el que se usara: no un caso aislado, sino la firma de un sistema sin control real de catálogo.
-
 ## ¿Qué?
 
-pyCelda formaliza ese proceso en un modelo de datos, construido disciplina a disciplina siguiendo RUP: 109 casos de uso especificados de extremo a extremo (Requisitos, Análisis, Diseño, Desarrollo, Pruebas, Despliegue), 106 implementados con un test real detrás de cada uno.
+CELDA formaliza ese proceso en un modelo de datos, construido disciplina a disciplina siguiendo el Proceso Unificado de Desarrollo: 109 casos de uso especificados de extremo a extremo (Requisitos, Análisis, Diseño, Desarrollo, Pruebas, Despliegue), 106 implementados con un test real detrás de cada uno.
 
 | Qué | Cantidad real |
 | --- | --- |
@@ -20,15 +18,15 @@ pyCelda formaliza ese proceso en un modelo de datos, construido disciplina a dis
 | Metodologías docentes institucionales | 10 |
 | Resultados de aprendizaje repartidos | 5.048 |
 
-Ese corpus reconciliado (16 programas oficiales) parte de un corpus histórico mayor: 834 guías docentes reales en Word, extraídas y parseadas en 2 días (`extractor.py`, ver `docs/scripts/README.md`) -- 9 facultades, 36 grados detectados en la nomenclatura real, 375 asignaturas de catálogo, 803 asignaturas-en-grado, 216 profesores. La reconciliación posterior contra las memorias verificadas de ANECA es la que redujo esos 36 grados detectados a los 16 programas oficiales de la tabla anterior.
+Ese corpus reconciliado (16 programas oficiales) parte de un corpus histórico mayor: 834 guías docentes reales en Word, extraídas y parseadas (`extractor.py`, ver `docs/scripts/README.md`) -- 9 facultades, 36 grados detectados en la nomenclatura real, 375 asignaturas de catálogo, 803 asignaturas-en-grado, 216 profesores. La reconciliación posterior contra las memorias verificadas de ANECA es la que redujo esos 36 grados detectados a los 16 programas oficiales de la tabla anterior.
 
 ## ¿Para qué?
 
-Importar el corpus completo -- los 16 programas reales, con todas sus materias, asignaturas, resultados de aprendizaje repartidos en cascada, ponderaciones de evaluación y bibliografía de cada guía, validado contra las reglas estructurales del sistema -- tarda 23,5 segundos, sin errores. Medido hoy mismo, contra una base SQLite en memoria, con el script real de importación (`cargar_programa()`).
+|Para el profesor|Para el gabinete de calidad|Para ordenación académica|
+|-|-|-|
+Le permite redactar y mantener la guía sin retipear temario ni bibliografía cada curso -- puede importarlos de una asignatura hermana ya aprobada, y sabe en todo momento en qué estado exacto está su guía|Le permite consultar un catálogo con las ponderaciones ya verificadas contra rango y un historial completo de quién aprobó qué, en vez de pedir y revisar guía a guía|Le provee de un catálogo único de facultades, programas y profesorado, con garantía de que un código de asignatura o de metodología significa lo mismo en cualquier programa. 
 
-No hay una cifra medida de lo que costaba el proceso manual anterior -- no se llevó registro. Como estimación, no medición, ajustable: a una hora por guía entre redacción, formateo y revisión cruzada contra los baremos ANECA, las 775 guías del corpus equivaldrían a unas 96 jornadas de 8 horas. Es una suposición razonable, no un dato verificado.
-
-Ese import de segundos no es el único valor. A quien lo usa cada día le resuelve tres cosas distintas: al profesor, redactar y mantener la guía sin retipear temario ni bibliografía cada curso -- puede importarlos de una asignatura hermana ya aprobada, y sabe en todo momento en qué estado exacto está su guía; a la auditoría de calidad (ANECA), consultar un catálogo con las ponderaciones ya verificadas contra rango y un historial completo de quién aprobó qué, en vez de pedir y revisar guía a guía; y a la ordenación académica, un catálogo único de facultades, programas y profesorado, con garantía de que un código de asignatura o de metodología significa lo mismo en cualquier programa. Resolver esto para los tres a la vez es la base de la que parten las aplicaciones satélite descritas en "¿Y ahora qué?" -- ninguna sería viable sin este catálogo ya validado.
+Resolver esto para los tres a la vez es la base de la que parten las aplicaciones satélite descritas en "¿Y ahora qué?" -- ninguna sería viable sin este catálogo ya validado.
 
 ## ¿Cómo?
 

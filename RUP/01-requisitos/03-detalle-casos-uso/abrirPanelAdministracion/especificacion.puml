@@ -2,13 +2,13 @@
 
 skinparam linetype polyline
 
-' Sin parámetro (a diferencia de abrirAsignaturasGrado()/abrirGrados()): Admin
+' Sin parámetro (a diferencia de abrirAsignaturasPrograma()/abrirProgramas()): Admin
 ' ve siempre el mismo panel, sin filtrado por identidad -- un solo actor.
 ' Extendido por iniciarSesion() (<<extend>>, condición rol == Admin, ver
 ' iniciarSesion/README.md) y target de las vueltas desde cada área de catálogo
 ' -- ver diagramaContextoAdmin.puml, antes modeladas como completarGestion()
 ' genérico, ahora que el destino tiene nombre propio (mismo patrón que
-' abrirAsignaturasGrado()/abrirGrado() en Profesor/DirectorGrado).
+' abrirAsignaturasPrograma()/abrirPrograma() en Profesor/DirectorPrograma).
 
 state SISTEMA_DISPONIBLE
 

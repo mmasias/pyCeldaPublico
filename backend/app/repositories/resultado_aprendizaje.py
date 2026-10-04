@@ -1,9 +1,9 @@
-from sqlalchemy import and_
+from sqlalchemy import and_, func
 from sqlalchemy.orm import Session
 
-from app.models.asignatura_grado import (
-    AsignaturaGrado,
-    asignaturas_grado_resultados_aprendizaje,
+from app.models.asignatura_programa import (
+    AsignaturaPrograma,
+    asignaturas_programa_resultados_aprendizaje,
 )
 from app.models.materia import Materia, materias_resultados_aprendizaje
 from app.models.resultado_aprendizaje import ResultadoAprendizaje
@@ -13,12 +13,30 @@ class ResultadoAprendizajeRepository:
     def __init__(self, db: Session) -> None:
         self.db = db
 
-    def listar_del_grado(self, grado_id: int) -> list[ResultadoAprendizaje]:
+    def listar_del_programa(self, programa_id: int) -> list[ResultadoAprendizaje]:
         return (
             self.db.query(ResultadoAprendizaje)
-            .filter_by(grado_id=grado_id)
+            .filter_by(programa_id=programa_id)
             .all()
         )
+
+    def conteo_asignaturas_por_resultado_aprendizaje_del_programa(self, programa_id: int) -> dict[int, int]:
+        filas = (
+            self.db.query(
+                asignaturas_programa_resultados_aprendizaje.c.resultado_aprendizaje_id,
+                func.count(asignaturas_programa_resultados_aprendizaje.c.asignatura_programa_id),
+            )
+            .join(
+                AsignaturaPrograma,
+                AsignaturaPrograma.id
+                == asignaturas_programa_resultados_aprendizaje.c.asignatura_programa_id,
+            )
+            .join(Materia, Materia.id == AsignaturaPrograma.materia_id)
+            .filter(Materia.programa_id == programa_id)
+            .group_by(asignaturas_programa_resultados_aprendizaje.c.resultado_aprendizaje_id)
+            .all()
+        )
+        return dict(filas)
 
     def obtener(
         self, resultado_aprendizaje_id: int
@@ -33,10 +51,10 @@ class ResultadoAprendizajeRepository:
         return resultado_aprendizaje
 
     def crear(
-        self, grado_id: int, codigo: str, tipo: str, descripcion: str
+        self, programa_id: int, codigo: str, tipo: str, descripcion: str
     ) -> ResultadoAprendizaje:
         resultado_aprendizaje = ResultadoAprendizaje(
-            grado_id=grado_id,
+            programa_id=programa_id,
             codigo=codigo,
             tipo=tipo,
             descripcion=descripcion,
@@ -62,28 +80,28 @@ class ResultadoAprendizajeRepository:
             )
             .all()
         ]
-        nombres_asignaturas_grado = [
+        nombres_asignaturas_programa = [
             nombre
-            for (nombre,) in self.db.query(AsignaturaGrado.nombre)
+            for (nombre,) in self.db.query(AsignaturaPrograma.nombre)
             .join(
-                asignaturas_grado_resultados_aprendizaje,
-                asignaturas_grado_resultados_aprendizaje.c.asignatura_grado_id
-                == AsignaturaGrado.id,
+                asignaturas_programa_resultados_aprendizaje,
+                asignaturas_programa_resultados_aprendizaje.c.asignatura_programa_id
+                == AsignaturaPrograma.id,
             )
             .filter(
-                asignaturas_grado_resultados_aprendizaje.c.resultado_aprendizaje_id
+                asignaturas_programa_resultados_aprendizaje.c.resultado_aprendizaje_id
                 == resultado_aprendizaje_id
             )
             .all()
         ]
-        return nombres_materias, nombres_asignaturas_grado
+        return nombres_materias, nombres_asignaturas_programa
 
     def nombres_asignaciones(self, resultado_aprendizaje_id: int) -> list[str]:
-        nombres_materias, nombres_asignaturas_grado = self.asignaciones(
+        nombres_materias, nombres_asignaturas_programa = self.asignaciones(
             resultado_aprendizaje_id
         )
         return [f"Materia '{nombre}'" for nombre in nombres_materias] + [
-            f"AsignaturaGrado '{nombre}'" for nombre in nombres_asignaturas_grado
+            f"AsignaturaPrograma '{nombre}'" for nombre in nombres_asignaturas_programa
         ]
 
     def eliminar(self, resultado_aprendizaje_id: int) -> None:
@@ -93,8 +111,8 @@ class ResultadoAprendizajeRepository:
         self.db.delete(resultado_aprendizaje)
         self.db.commit()
 
-    def listar_disponibles_para_asignatura_grado(
-        self, asignatura_grado_id: int
+    def listar_disponibles_para_asignatura_programa(
+        self, asignatura_programa_id: int
     ) -> list[ResultadoAprendizaje]:
         return (
             self.db.query(ResultadoAprendizaje)
@@ -104,22 +122,22 @@ class ResultadoAprendizajeRepository:
                 == ResultadoAprendizaje.id,
             )
             .join(
-                AsignaturaGrado,
-                AsignaturaGrado.materia_id
+                AsignaturaPrograma,
+                AsignaturaPrograma.materia_id
                 == materias_resultados_aprendizaje.c.materia_id,
             )
             .outerjoin(
-                asignaturas_grado_resultados_aprendizaje,
+                asignaturas_programa_resultados_aprendizaje,
                 and_(
-                    asignaturas_grado_resultados_aprendizaje.c.resultado_aprendizaje_id
+                    asignaturas_programa_resultados_aprendizaje.c.resultado_aprendizaje_id
                     == ResultadoAprendizaje.id,
-                    asignaturas_grado_resultados_aprendizaje.c.asignatura_grado_id
-                    == asignatura_grado_id,
+                    asignaturas_programa_resultados_aprendizaje.c.asignatura_programa_id
+                    == asignatura_programa_id,
                 ),
             )
             .filter(
-                AsignaturaGrado.id == asignatura_grado_id,
-                asignaturas_grado_resultados_aprendizaje.c.asignatura_grado_id.is_(
+                AsignaturaPrograma.id == asignatura_programa_id,
+                asignaturas_programa_resultados_aprendizaje.c.asignatura_programa_id.is_(
                     None
                 ),
             )

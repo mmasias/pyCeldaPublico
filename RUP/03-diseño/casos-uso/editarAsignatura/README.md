@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -22,7 +22,7 @@
 
 Bajada a diseño del caso de análisis [`editarAsignatura()`](/RUP/02-analisis/casos-uso/editarAsignatura/README.md): CRUD real e inmediato, `PUT /api/v1/asignaturas/{asignatura_id}`, sin ninguna llamada a otra entidad. Sin `alt` de negocio -- `Asignatura` no tiene ninguna regla de validación cruzada en el modelo de dominio; la única validación es de forma (`nombre` y `ects` obligatorios, `contenido` opcional), resuelta por Pydantic. `estado` queda fuera del formulario: se gestiona en exclusiva desde [`eliminarAsignatura()`](/RUP/03-diseño/casos-uso/eliminarAsignatura/README.md). `Asignatura` gana aquí su método `actualizar(nombre, ects, contenido)`. Es también el destino del `<<include>>` de `crearAsignatura()`: tras crear, el `Admin` queda editando la `Asignatura` recién creada, completando `ects` y `contenido`.
 
-**Retocado (issue #181, 2026-09-05)**: `codigo` (obligatorio y único desde `crearAsignatura()`) no viaja en `AsignaturaUpdate` -- el formulario lo muestra como texto plano de solo lectura, mismo patrón que `editarGrado()` (issue #148).
+**Retocado (issue #181, 2026-09-05)**: `codigo` (obligatorio y único desde `crearAsignatura()`) no viaja en `AsignaturaUpdate` -- el formulario lo muestra como texto plano de solo lectura, mismo patrón que `editarPrograma()` (issue #148).
 
 ## Diagrama de secuencia de diseño
 
@@ -44,7 +44,7 @@ Bajada a diseño del caso de análisis [`editarAsignatura()`](/RUP/02-analisis/c
 ## Decisiones de diseño
 
 - **Sin `alt` de negocio**: `Asignatura` no tiene ninguna regla de validación cruzada en el modelo de dominio -- la única validación es de forma, resuelta por `AsignaturaUpdate` (Pydantic: `nombre` y `ects` obligatorios, `contenido` opcional), mismo mecanismo ya documentado en el diagrama de clases de Diseño para `validarDatosObligatorios()`. `estado` no viaja en el esquema: la edición no puede mutarlo.
-- **`codigo` no viaja en `AsignaturaUpdate` -- se muestra en el formulario pero como solo lectura**: su inmutabilidad se garantiza por ausencia del esquema, no por confiar en que la Vista lo envíe intacto -- mismo criterio que `GradoUpdate` (#148).
+- **`codigo` no viaja en `AsignaturaUpdate` -- se muestra en el formulario pero como solo lectura**: su inmutabilidad se garantiza por ausencia del esquema, no por confiar en que la Vista lo envíe intacto -- mismo criterio que `ProgramaUpdate` (#148).
 - **`AsignaturaRepository.actualizar(asignatura)` es método nuevo**: el repositorio nace en esta rebanada con `listar`/`obtener`/`crear`/`actualizar`, reutilizado también por `eliminarAsignatura()` para persistir el `Extinguido`.
 - **Sin capa Service**: Router delgado -> Modelo/Repository.
 - **Reutiliza el `GET` de `abrirAsignatura()`**: mismo endpoint de carga, sin duplicar lógica de lectura.
@@ -59,4 +59,4 @@ Bajada a diseño del caso de análisis [`editarAsignatura()`](/RUP/02-analisis/c
 - [`crearAsignatura()` en Diseño](/RUP/03-diseño/casos-uso/crearAsignatura/README.md) -- `<<include>>` de origen.
 - [`eliminarAsignatura()` en Diseño](/RUP/03-diseño/casos-uso/eliminarAsignatura/README.md) -- único gestor del `estado`, fuera de este formulario.
 - [`editarUniversidad()` en Diseño](/RUP/03-diseño/casos-uso/editarUniversidad/README.md) -- mismo patrón de `GET` previo + `PUT` sin `alt` de negocio.
-- [`editarGrado()` en Diseño](/RUP/03-diseño/casos-uso/editarGrado/README.md) -- mismo criterio de `codigo` fijo, mostrado solo lectura (issue #148).
+- [`editarPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarPrograma/README.md) -- mismo criterio de `codigo` fijo, mostrado solo lectura (issue #148).

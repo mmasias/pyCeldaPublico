@@ -38,7 +38,7 @@
 
 </div>
 
-Composición real de `Materia` (`Materia *-- SistemaEvaluacion`), mismo patrón que `AsignaturaGrado`: se navega desde dentro de una `Materia` concreta ya abierta, sin reutilización cruzada. "Evaluación continua"/"Evaluación final" son los dos valores reales de `tipo` (issue [#14](https://github.com/mmasias/pyCelda/issues/14)); descripción y rangos de ponderación son ilustrativos -- no hay datos reales de `SistemaEvaluacion` por `Materia` en el seed extraído.
+Composición real de `Materia` (`Materia *-- SistemaEvaluacion`), mismo patrón que `AsignaturaPrograma`: se navega desde dentro de una `Materia` concreta ya abierta, sin reutilización cruzada. "Evaluación continua"/"Evaluación final" son los dos valores reales de `tipo` (issue [#14](https://github.com/mmasias/pyCelda/issues/14)); descripción y rangos de ponderación son ilustrativos -- no hay datos reales de `SistemaEvaluacion` por `Materia` en el seed extraído.
 
 ## Referencias
 

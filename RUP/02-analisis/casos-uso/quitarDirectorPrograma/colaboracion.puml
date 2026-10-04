@@ -1,0 +1,46 @@
+@startuml quitarDirectorPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROFESOR_ABIERTO" as ProfesorAbierto
+rectangle #CDEBA5 ":PROFESOR_ABIERTO" as ProfesorAbiertoSalida
+
+package quitarDirectorPrograma as "quitarDirectorPrograma()" {
+    rectangle #629EF9 QuitarDirectorProgramaView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+    rectangle #F2AC4E DirectorPrograma
+    rectangle #F2AC4E DirectorProgramaRepository
+}
+
+ProfesorAbierto --> QuitarDirectorProgramaView: <font size=8>quitarDirectorPrograma(profesorId, programaId)
+
+QuitarDirectorProgramaView --> ProfesorController: <font size=8>esUnicoDirectorDelPrograma(profesorId, programaId) : boolean
+
+ProfesorController --> ProfesorRepository: <font size=8>obtener(profesorId) : Profesor
+
+ProfesorController --> DirectorProgramaRepository: <font size=8>obtenerPorEmail(email) : DirectorPrograma
+
+ProfesorController --> ProgramaRepository: <font size=8>dirige(programaId, directorProgramaId) : boolean
+
+ProfesorController --> ProgramaRepository: <font size=8>contarDirectores(programaId) : int
+
+QuitarDirectorProgramaView --> ProfesorController: <font size=8>quitarDirectorPrograma(profesorId, programaId)
+
+ProfesorController --> Programa: <font size=8>directores.remove(director)
+
+ProfesorRepository -- Profesor
+DirectorProgramaRepository -- DirectorPrograma
+ProgramaRepository -- Programa
+DirectorPrograma -- Programa
+DirectorPrograma -- Profesor: <font size=8>rol resuelto por email
+
+QuitarDirectorProgramaView ..[#green]> ProfesorAbiertoSalida: <font size=8>rol quitado, lista actualizada
+QuitarDirectorProgramaView ..[#red]> ProfesorAbiertoSalida: <font size=8>bloqueado, sin cambios -- único DirectorPrograma del Programa
+QuitarDirectorProgramaView ..[#blue]> ProfesorAbiertoSalida: <font size=8>cancelado, sin cambios
+
+@enduml

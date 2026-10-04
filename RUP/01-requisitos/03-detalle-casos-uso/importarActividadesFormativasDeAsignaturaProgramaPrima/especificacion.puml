@@ -1,0 +1,48 @@
+@startuml importarActividadesFormativasDeAsignaturaProgramaPrima
+
+skinparam linetype polyline
+
+state ASIGNATURA_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO_SALIDA as "ASIGNATURA_PROGRAMA_ABIERTO"
+
+ASIGNATURA_PROGRAMA_ABIERTO -[#green]-> importarActividadesFormativasDeAsignaturaProgramaPrima
+note on link
+<b>DirectorPrograma</b> solicita importar las actividades formativas de una asignatura prima
+end note
+
+state importarActividadesFormativasDeAsignaturaProgramaPrima as "importarActividadesFormativasDeAsignaturaProgramaPrima()" {
+
+    state c <<choice>>
+    state " " as SolicitandoOrigen
+
+    [*] -[#green]-> c
+
+    c -[#red]-> [*]
+    note on link
+    [ninguna AsignaturaPrograma prima tiene actividades formativas configuradas (o no hay primas)]
+    <b>Sistema</b> presenta estado vacío: no hay asignaturas de la misma materia con actividades formativas configuradas
+    end note
+
+    c -[#green]-> SolicitandoOrigen
+    note on link
+    [al menos una AsignaturaPrograma prima tiene alguna hora configurada]
+    <b>Sistema</b> presenta las primas configuradas con sus créditos, junto a los de la AsignaturaPrograma destino
+    <b>Sistema</b> presenta el total de horas de cada prima
+    end note
+
+    SolicitandoOrigen -[#green]-> [*]
+    note on link
+    <b>DirectorPrograma</b> selecciona la prima origen
+    <b>DirectorPrograma</b> solicita importar
+    <b>DirectorPrograma</b> confirma el reemplazo total
+    end note
+}
+
+importarActividadesFormativasDeAsignaturaProgramaPrima -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+reemplaza las horas y el porcentaje de presencialidad de las 10 actividades formativas
+end note
+
+importarActividadesFormativasDeAsignaturaProgramaPrima -[#red]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+
+@enduml

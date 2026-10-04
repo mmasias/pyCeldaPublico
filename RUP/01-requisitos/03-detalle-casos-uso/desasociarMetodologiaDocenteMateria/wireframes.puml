@@ -6,9 +6,9 @@
     ====
     <b>MD1 -- Método expositivo</b> (Programación)
 
-    En uso en: AsignaturaGrado "Programación I", AsignaturaGrado "Programación II".
+    En uso en: AsignaturaPrograma "Programación I", AsignaturaPrograma "Programación II".
 
-    <i>Quítala primero de esas AsignaturaGrado.</i>
+    <i>Quítala primero de esas AsignaturaPrograma.</i>
     ====
     [ <b>Volver a Programación</b> ]
 }
@@ -20,7 +20,7 @@
     ====
     <b>MD5 -- Aprendizaje orientado a proyectos</b> (Programación)
 
-    Sin asignaturas-en-grado de esta materia usándola.
+    Sin asignaturas-en-programa de esta materia usándola.
     ====
     {[Confirmar desasociación] | [Cancelar]}
 }

@@ -39,7 +39,7 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
 
 **Primer `crearX()` del catálogo con `<<choice>>`**, cerrado originalmente en la discussion [#38](https://github.com/mmasias/pyCelda/discussions/38) -- **corregido tras la fase de Análisis** (rebanada vertical del hilo `Guia`, 2026-08-18): el `<<choice>>` valida el **máximo puntual**, el valor introducido, por sí solo, contra `ponderacionMaxima` del `SistemaEvaluacion` elegido -- no la suma de todas las `PonderacionEvaluacion` de la Guía que apuntan al mismo sistema, como se había cerrado antes. La validación agregada (rango `[ponderacionMinima, ponderacionMaxima]` sobre la suma completa) se desplazó a [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md), que ya validaba ahí la suma total = 100% -- mantenerla también aquí exigía sumar contra hermanas en cada petición, y la fase de Análisis reveló que ese coste no aportaba nada que la validación agregada de `enviarGuiaARevision()` no cubriera ya. El formulario muestra, junto al selector, el máximo permitido del `SistemaEvaluacion` elegido -- sin referencia a lo ya asignado en la Guía, que ya no se calcula en este caso de uso.
 

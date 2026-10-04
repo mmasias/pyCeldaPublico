@@ -1,7 +1,7 @@
 @startuml rechazarGuia-diseño
 title Diagrama de Secuencia - Rechazar Guía
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
@@ -9,7 +9,7 @@ participant "Guia" as Guia
 participant "HistorialCambio" as HistorialCambio
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: introduce comentario (opcional), solicita rechazar
+DirectorPrograma -> Vista: introduce comentario (opcional), solicita rechazar
 activate Vista
 Vista -> API: POST /api/v1/guias/{guia_id}/rechazar (comentario)
 activate API
@@ -44,7 +44,7 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON, con historial)
 deactivate API
-Vista --> DirectorGrado: "GUÍA RECHAZADA" -- EnRevision -> Rechazada
+Vista --> DirectorPrograma: "GUÍA RECHAZADA" -- EnRevision -> Rechazada
 deactivate Vista
 
 @enduml

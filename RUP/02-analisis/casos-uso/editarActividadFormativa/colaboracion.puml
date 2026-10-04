@@ -1,0 +1,34 @@
+@startuml editarActividadFormativa-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ACTIVIDAD_FORMATIVA_ABIERTO" as ActividadFormativaAbierto
+rectangle #CDEBA5 ":ACTIVIDAD_FORMATIVA_ABIERTO" as ActividadFormativaAbiertoSalida
+
+package editarActividadFormativa as "editarActividadFormativa()" {
+    rectangle #629EF9 EditarActividadFormativaView
+    rectangle #b5bd68 ActividadFormativaController
+    rectangle #F2AC4E ActividadFormativa
+    rectangle #F2AC4E ActividadFormativaRepository
+}
+
+ActividadFormativaAbierto --> EditarActividadFormativaView: <font size=8>editarActividadFormativa(actividadFormativaId)
+
+EditarActividadFormativaView --> ActividadFormativaController: <font size=8>cargarActividadFormativa(actividadFormativaId) : ActividadFormativa
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>obtener(actividadFormativaId) : ActividadFormativa
+
+EditarActividadFormativaView --> ActividadFormativaController: <font size=8>validarDatosObligatorios(codigo, nombre) : boolean
+
+EditarActividadFormativaView --> ActividadFormativaController: <font size=8>guardarCambios(actividadFormativaId, codigo, nombre) : boolean
+
+ActividadFormativaController --> ActividadFormativa: <font size=8>actualizar(codigo, nombre)
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>editar(actividadFormativa)
+
+ActividadFormativaRepository -- ActividadFormativa
+
+EditarActividadFormativaView --> ActividadFormativaAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

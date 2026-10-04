@@ -1,7 +1,19 @@
-import { API_BASE } from "../api";
+import { useEffect, useState } from "react";
+import { API_BASE, obtenerVersion } from "../api";
 import { URL_MANUAL_ADMIN } from "../manualUsuario";
+import { useFondoModoAdmin } from "../useFondoModoAdmin";
 
 export default function AdminLogin() {
+  useFondoModoAdmin();
+  const [esquemaVersion, setEsquemaVersion] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Dato informativo, no crítico: si falla, se omite el sufijo sin error visible.
+    obtenerVersion()
+      .then((r) => setEsquemaVersion(r.esquema_version))
+      .catch(() => {});
+  }, []);
+
   function iniciarSesionConGoogle() {
     window.location.href = `${API_BASE}/auth/admin/login`;
   }
@@ -22,21 +34,23 @@ export default function AdminLogin() {
         <div style={{ display: "flex", alignItems: "flex-end", gap: "1rem" }}>
           <img
             src="/logo-hexagono.png"
-            alt="Celda"
+            alt="CELDA"
             style={{ width: "112px", height: "112px", border: "1px solid #d0d5dd" }}
           />
-          <h1 style={{ fontSize: "2.5rem", margin: 0, lineHeight: 1 }}>Celda</h1>
+          <h1 style={{ fontSize: "2.5rem", margin: 0, lineHeight: 1 }}>CELDA</h1>
         </div>
         <p style={{ margin: 0 }}>
-          <sub><i>Compendio Electrónico Ligero de Datos Académicos</i></sub>
+          <sub><i>Catálogo ELectrónico de Datos Académicos - v{__APP_VERSION__}{esquemaVersion !== null ? ` · esquema ${esquemaVersion}` : ""}</i></sub>
         </p>
       </div>
       <p style={{ margin: 0 }}>
         <b>Módulo de Administración</b>
-      </p>      
+      </p>
       <button onClick={iniciarSesionConGoogle}>
-        Iniciar sesión con Google
+        🔑 Iniciar sesión
       </button>
+      <p></p>
+      <hr />
       <p style={{ textAlign: "right" }}>
         <sub>
           <a href={URL_MANUAL_ADMIN} target="_blank" rel="noreferrer">

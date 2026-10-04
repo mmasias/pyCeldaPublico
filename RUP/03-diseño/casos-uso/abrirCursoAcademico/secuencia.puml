@@ -1,0 +1,40 @@
+@startuml abrirCursoAcademico-diseño
+title Diagrama de Secuencia - Abrir Curso Académico
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CursoAcademicoRepository" as CursoAcademicoRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir un CursoAcademico del listado
+activate Vista
+Vista -> API: GET /api/v1/universidades (listarUniversidades)
+activate API
+API --> Vista: 200 OK (List[UniversidadResponse] JSON)
+deactivate API
+
+loop por cada Universidad, hasta encontrar el curso (búsqueda en el cliente)
+    Vista -> API: GET /api/v1/universidades/{universidad_id}/cursos-academicos
+    activate API
+    note right of API: Depends(require_admin) -- mismo endpoint que\nabrirCursosAcademicos(); no hay GET por id
+    API -> CursoAcademicoRepo: listar(universidad_id)
+    activate CursoAcademicoRepo
+    CursoAcademicoRepo -> DB: SELECT * FROM cursos_academicos WHERE universidad_id = :universidad_id ORDER BY id ASC
+    activate DB
+    DB --> CursoAcademicoRepo: filas CursoAcademico
+    deactivate DB
+    CursoAcademicoRepo --> API: List[CursoAcademico]
+    deactivate CursoAcademicoRepo
+    API --> Vista: 200 OK (List[CursoAcademicoAdminResponse] JSON)
+    deactivate API
+end
+
+alt el id aparece en alguna Universidad
+    Vista --> Admin: muestra datos del CursoAcademico, con [Editar] y [Activar semestre] siempre presentes
+else el id no aparece (o no es un entero positivo)
+    Vista --> Admin: "Curso académico no encontrado" (sin 404 de servidor)
+end
+deactivate Vista
+
+@enduml

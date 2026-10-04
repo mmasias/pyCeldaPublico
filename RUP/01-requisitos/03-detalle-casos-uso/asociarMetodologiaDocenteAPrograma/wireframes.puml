@@ -1,0 +1,16 @@
+@startsalt asociarMetodologiaDocenteAPrograma-wireframe
+{
+    <b>ASOCIAR METODOLOGÍA DOCENTE AL PROGRAMA</b>
+    ====
+    <b>Grado en Ingeniería Informática</b>
+    --
+    {
+        <b>Metodología docente (*):</b>
+        ^MD3 -- Resolución de ejercicios^
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Asociar]}
+}
+@endsalt

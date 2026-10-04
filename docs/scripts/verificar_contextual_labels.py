@@ -28,9 +28,9 @@ from generar_mockup_navegable import CONTEXTUAL_LABELS  # noqa: E402
 # literalmente en ningún wireframe estático del dueño -- no son bugs, son
 # huecos conocidos ya evaluados y aceptados (ver auditoría 11 ago 2026).
 KNOWN_EXCEPTIONS = {
-    # desasignarProfesorAsignaturaGrado() no tiene wireframe propio (pendiente
+    # desasignarProfesorAsignaturaPrograma() no tiene wireframe propio (pendiente
     # wireframe); texto fijado a mano en el override, no derivable del dibujo.
-    ("abrirAsignaturaGrado", "desasignarProfesorAsignaturaGrado"),
+    ("abrirAsignaturaPrograma", "desasignarProfesorAsignaturaPrograma"),
     # escalarGuiaAAprobada()/revocarAprobacionGuia() son botones condicionales
     # de abrirGuia() que solo aparecen en el estado Aprobada -- las dos
     # variantes de wireframe capturadas (Borrador/EnRevision) no lo dibujan;

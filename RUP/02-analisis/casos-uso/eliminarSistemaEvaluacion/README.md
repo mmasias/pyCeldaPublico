@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -27,7 +27,7 @@ Traducción a clases de análisis del caso de uso [`eliminarSistemaEvaluacion()`
 
 **Responsabilidades:**
 - en la rama verde, presenta la información del `SistemaEvaluacion` (`tipo`, `descripcion`, rango de ponderación) y pide confirmar/cancelar.
-- en la rama roja, presenta el mensaje de bloqueo por `PonderacionEvaluacion` asociadas, con el número de usos.
+- en la rama roja, presenta el mensaje de bloqueo nombrando las `AsignaturaPrograma` donde el `SistemaEvaluacion` está en uso (issue #581).
 
 **Colaboraciones:**
 - **Entrada:** `:SISTEMAS_EVALUACION_ABIERTO` -- el `Admin` solicita eliminar un `SistemaEvaluacion`.
@@ -72,5 +72,5 @@ Traducción a clases de análisis del caso de uso [`eliminarSistemaEvaluacion()`
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/wireframes.puml) -- fuente de verdad del `<<choice>>` bloqueante por `PonderacionEvaluacion` asociadas.
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMAS_EVALUACION_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : eliminarSistemaEvaluacion()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `PonderacionEvaluacion -> SistemaEvaluacion` (origen de la regla de bloqueo).
-- [`eliminarMetodologiaDocente()`](../eliminarMetodologiaDocente/README.md) -- mismo patrón de `<<choice>>` bloqueante con borrado físico; allí el bloqueo lista nombres de `Materia`, aquí cuenta `PonderacionEvaluacion`.
+- [`eliminarMetodologiaDocente()`](../eliminarMetodologiaDocente/README.md) -- mismo patrón de `<<choice>>` bloqueante con borrado físico; allí el bloqueo lista nombres de `Materia`, aquí lista nombres de `AsignaturaPrograma` (issue #581).
 - [`eliminarAsignatura()`](../eliminarAsignatura/README.md) -- contraste: borrado lógico sin `<<choice>>`.

@@ -1,0 +1,23 @@
+@startuml abrirActividadesFormativas
+
+skinparam linetype polyline
+
+state SISTEMA_DISPONIBLE
+state ACTIVIDADES_FORMATIVAS_ABIERTO
+
+SISTEMA_DISPONIBLE -[#green]-> abrirActividadesFormativas
+note on link
+<b>Admin</b> solicita abrir Actividades Docentes
+end note
+
+state abrirActividadesFormativas as "abrirActividadesFormativas()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de ActividadFormativa
+    end note
+}
+
+abrirActividadesFormativas -[#green]-> ACTIVIDADES_FORMATIVAS_ABIERTO
+
+@enduml

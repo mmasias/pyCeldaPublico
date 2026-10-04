@@ -1,0 +1,29 @@
+@startuml abrirMetodologiasDocentesPrograma-diseño
+title Diagrama de Secuencia - Abrir Metodologías Docentes del Programa
+
+actor "Admin / DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as Repo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita abrir las metodologías docentes del Programa
+activate Vista
+Vista -> API: GET /api/v1/programas/{programa_id}/metodologias-docentes
+activate API
+
+API -> Repo: listar_metodologias_docentes_de(programa_id)
+activate Repo
+Repo -> DB: SELECT ... FROM metodologias_docentes JOIN programa_metodologia_docente WHERE programa_id = :programa_id
+activate DB
+DB --> Repo: filas MetodologiaDocente
+deactivate DB
+Repo --> API: List[MetodologiaDocente]
+deactivate Repo
+
+API --> Vista: 200 OK (List[MetodologiaDocenteResponse] JSON)
+deactivate API
+Vista --> DirectorPrograma: presenta metodologías docentes asociadas al Programa
+deactivate Vista
+
+@enduml

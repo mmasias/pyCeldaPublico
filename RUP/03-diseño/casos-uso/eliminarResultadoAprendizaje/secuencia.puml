@@ -1,19 +1,19 @@
 @startuml eliminarResultadoAprendizaje-diseño
 title Diagrama de Secuencia - Eliminar Resultado de Aprendizaje
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "ResultadoAprendizajeRepository" as ResultadoRepo
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita eliminar un ResultadoAprendizaje del catálogo
+DirectorPrograma -> Vista: solicita eliminar un ResultadoAprendizaje del catálogo
 activate Vista
 Vista -> API: GET /api/v1/resultados-aprendizaje/{resultado_aprendizaje_id}/esta-asignado
 activate API
 API -> ResultadoRepo: esta_asignado(resultado_aprendizaje_id)
 activate ResultadoRepo
-ResultadoRepo -> DB: SELECT EXISTS (... JOIN materias_resultados_aprendizaje\nJOIN asignaturas_grado_resultados_aprendizaje ...)
+ResultadoRepo -> DB: SELECT EXISTS (... JOIN materias_resultados_aprendizaje\nJOIN asignaturas_programa_resultados_aprendizaje ...)
 activate DB
 DB --> ResultadoRepo: boolean
 deactivate DB
@@ -22,10 +22,10 @@ deactivate ResultadoRepo
 API --> Vista: 200 OK (boolean JSON)
 deactivate API
 
-alt asignado a alguna Materia o AsignaturaGrado
-  Vista --> DirectorGrado: presenta el bloqueo ("asignado a Materia o AsignaturaGrado"), sin cambios
-else sin asignación -- el DirectorGrado confirma
-  DirectorGrado -> Vista: confirma
+alt asignado a alguna Materia o AsignaturaPrograma
+  Vista --> DirectorPrograma: presenta el bloqueo ("asignado a Materia o AsignaturaPrograma"), sin cambios
+else sin asignación -- el DirectorPrograma confirma
+  DirectorPrograma -> Vista: confirma
   Vista -> API: DELETE /api/v1/resultados-aprendizaje/{resultado_aprendizaje_id}
   activate API
   API -> ResultadoRepo: eliminar(resultado_aprendizaje_id)
@@ -38,10 +38,10 @@ else sin asignación -- el DirectorGrado confirma
   deactivate ResultadoRepo
   API --> Vista: 204 No Content
   deactivate API
-  Vista --> DirectorGrado: presenta la lista actualizada
-else el DirectorGrado cancela
-  DirectorGrado -> Vista: cancela
-  Vista --> DirectorGrado: cierra la confirmación, sin cambios -- sin llamada al backend
+  Vista --> DirectorPrograma: presenta la lista actualizada
+else el DirectorPrograma cancela
+  DirectorPrograma -> Vista: cancela
+  Vista --> DirectorPrograma: cierra la confirmación, sin cambios -- sin llamada al backend
 end
 deactivate Vista
 

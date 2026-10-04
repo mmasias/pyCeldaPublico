@@ -16,7 +16,7 @@ activate API
 
 API -> GuiaRepo: obtener(guia_id)
 activate GuiaRepo
-GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id\n(+ cascada AsignaturaGrado/Materia/Grado/Facultad, requisitos_previos y RA en vivo, MD, ponderaciones, referencias)
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id\n(+ cascada AsignaturaPrograma/Materia/Programa/Facultad, requisitos_previos y RA en vivo, MD, ponderaciones, referencias)
 activate DB
 DB --> GuiaRepo: fila Guia + relaciones
 deactivate DB
@@ -31,7 +31,7 @@ deactivate Guia
 alt PDF generado
   API -> Render: render_pdf(guia)
   activate Render
-  note right of Render: Jinja2 (templates/guia_docente.html) -> WeasyPrint -> bytes PDF.\nMisma plantilla que la vista HTML de previsualizarGuia().\nRA leídos en vivo de guia.asignatura_grado.
+  note right of Render: Jinja2 (templates/guia_docente.html) -> WeasyPrint -> bytes PDF.\nMisma plantilla que la vista HTML de previsualizarGuia().\nRA leídos en vivo de guia.asignatura_programa.
   Render --> API: bytes PDF
   deactivate Render
   API --> Vista: 200 OK (Response, application/pdf)

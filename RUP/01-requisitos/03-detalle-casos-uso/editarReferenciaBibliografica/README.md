@@ -38,7 +38,7 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
 
 Sin `<<choice>>`, mismo criterio que [`crearReferenciaBibliografica()`](../crearReferenciaBibliografica/README.md) -- ninguna validación cruzada que aplicar. `tipo` es editable igual que `referencia`, mismo criterio de "todo editable" que [`editarResultadoAprendizaje()`](../editarResultadoAprendizaje/README.md).
 

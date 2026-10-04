@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -20,7 +20,7 @@
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`abrirFacultad()`](/RUP/02-analisis/casos-uso/abrirFacultad/README.md): un solo paso, de solo lectura. Presenta el `nombre` de la `Facultad` y ofrece la navegación a sus `Grado` -- los datos vienen de un único `GET` propio; la pantalla de `Grado` es otro CU (`abrirGrados()`, cuya variante `Admin` de listado completo de una `Facultad` sigue fuera de alcance del diseño actual), no una segunda consulta de este.
+Bajada a diseño del caso de análisis [`abrirFacultad()`](/RUP/02-analisis/casos-uso/abrirFacultad/README.md): un solo paso, de solo lectura. Presenta el `nombre` de la `Facultad` y ofrece la navegación a sus `Programa` -- los datos vienen de un único `GET` propio; la pantalla de `Programa` es otro CU (`abrirProgramas()`, cuya variante `Admin` de listado completo de una `Facultad` sigue fuera de alcance del diseño actual), no una segunda consulta de este.
 
 ## Diagrama de secuencia de diseño
 
@@ -34,14 +34,14 @@ Bajada a diseño del caso de análisis [`abrirFacultad()`](/RUP/02-analisis/caso
 
 ## Participantes
 
-- **Vista**: `AbrirFacultadView` (React) -- pide `GET /api/v1/facultades/{facultad_id}`; presenta `nombre` y la navegación (`[Editar]`/`[Ver Grados]`/`[Volver al listado]`).
+- **Vista**: `AbrirFacultadView` (React) -- pide `GET /api/v1/facultades/{facultad_id}`; presenta `nombre` y la navegación (`[Editar]`/`[Ver Programas]`/`[Volver al listado]`).
 - **API**: `routers/facultad.py::obtener_facultad(facultad_id)` -- función suelta.
 - **Modelo**: ninguno con lógica propia invocada -- `Facultad` solo porta los datos presentados.
 - **Repositorio**: `FacultadRepository.obtener(facultad_id)` -- `SELECT` por clave primaria.
 
 ## Decisiones de diseño
 
-- **Recurso propio `facultades/{facultad_id}`, no anidado bajo la `Universidad`**: el identificador de `Facultad` es global, mismo criterio que `grados/{grado_id}` ya existente -- la anidación de `abrirFacultades()` era de colección, no de instancia.
+- **Recurso propio `facultades/{facultad_id}`, no anidado bajo la `Universidad`**: el identificador de `Facultad` es global, mismo criterio que `programas/{programa_id}` ya existente -- la anidación de `abrirFacultades()` era de colección, no de instancia.
 - **`404` si el repositorio devuelve `None`**: guardia en la función del Router, mismo mecanismo que el resto de `GET` por identificador del proyecto; no se modela como rama del diagrama porque desde el listado solo se alcanzan identificadores existentes.
 - **Reutiliza el endpoint que `editarFacultad()` usará como carga previa**: mismo `GET`, sin duplicar lógica de lectura.
 - **Sin capa Service**: Router delgado -> Repository (discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)).

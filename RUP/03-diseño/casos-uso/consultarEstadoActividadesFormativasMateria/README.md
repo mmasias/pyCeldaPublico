@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > consultarEstadoActividadesFormativasMateria() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/README.md)|[Análisis](/RUP/02-analisis/casos-uso/consultarEstadoActividadesFormativasMateria/README.md)|**Diseño**|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/README.md)|[Análisis](/RUP/02-analisis/casos-uso/consultarEstadoActividadesFormativasMateria/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -35,9 +35,9 @@ Bajada a diseño del caso de análisis [`consultarEstadoActividadesFormativasMat
 ## Participantes
 
 - **Vista**: sección "Actividades formativas de la materia" dentro de `AbrirMateriaView` (React) -- tabla de 10 filas (`horas` de la materia, `Σ` de las asignaturas, diferencia), resalta las que no cuadran, deja explícito que es informativo. `GET /api/v1/materias/{materia_id}/actividades-formativas/validacion`.
-- **API**: `routers/materia.py::validar_actividades_formativas(materia_id)` -- auth `get_current_director_grado_id` + `_verificar_materia_del_director`. Solo lectura, no muta nada.
-- **Modelo**: `Materia.discrepancias_actividades_formativas()` -- método de dominio; recorre las 10 `ActividadFormativaMateria` y, por cada una, suma las `horas` de las `ActividadFormativaAsignaturaGrado` de sus `AsignaturaGrado`.
-- **Repositorio**: `MateriaRepository.obtener(materia_id)` con carga anticipada de la cascada (`ActividadFormativaMateria`, `AsignaturaGrado` -> `ActividadFormativaAsignaturaGrado`).
+- **API**: `routers/materia.py::validar_actividades_formativas(materia_id)` -- auth `get_current_director_programa_id` + `_verificar_materia_del_director`. Solo lectura, no muta nada.
+- **Modelo**: `Materia.discrepancias_actividades_formativas()` -- método de dominio; recorre las 10 `ActividadFormativaMateria` y, por cada una, suma las `horas` de las `ActividadFormativaAsignaturaPrograma` de sus `AsignaturaPrograma`.
+- **Repositorio**: `MateriaRepository.obtener(materia_id)` con carga anticipada de la cascada (`ActividadFormativaMateria`, `AsignaturaPrograma` -> `ActividadFormativaAsignaturaPrograma`).
 
 ## Contrato de endpoint
 
@@ -56,7 +56,7 @@ Bajada a diseño del caso de análisis [`consultarEstadoActividadesFormativasMat
 ```
 `diferencia = horas_asignaturas - horas_materia`; `cuadra = (diferencia == 0)`.
 
-**Response (404 Not Found):** `Materia` inexistente o no dirigida por el `DirectorGrado`.
+**Response (404 Not Found):** `Materia` inexistente o no dirigida por el `DirectorPrograma`.
 
 ## Decisiones de diseño
 
@@ -70,5 +70,5 @@ Bajada a diseño del caso de análisis [`consultarEstadoActividadesFormativasMat
 
 - [`consultarEstadoActividadesFormativasMateria()` en Análisis](/RUP/02-analisis/casos-uso/consultarEstadoActividadesFormativasMateria/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/README.md).
-- [`editarActividadesFormativasMateria()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md) / [`editarActividadesFormativasAsignaturaGrado()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaGrado/README.md) -- los dos repartos que este medidor contrasta.
+- [`editarActividadesFormativasMateria()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md) / [`editarActividadesFormativasAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md) -- los dos repartos que este medidor contrasta.
 - [Discussion #58](https://github.com/mmasias/pyCelda/discussions/58) -- Fat Model sin capa Service.

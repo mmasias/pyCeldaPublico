@@ -11,7 +11,7 @@ package activarCursoAcademico as "activarCursoAcademico()" {
     rectangle #b5bd68 CursoAcademicoController
     rectangle #F2AC4E CursoAcademico
     rectangle #F2AC4E CursoAcademicoRepository
-    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaPrograma
     rectangle #F2AC4E HistorialCambio
     rectangle #F2AC4E Guia
     rectangle #F2AC4E PonderacionEvaluacion
@@ -34,16 +34,16 @@ CursoAcademicoController --> CursoAcademicoRepository: <font size=8>activar(curs
 
 CursoAcademicoRepository --> CursoAcademico: <font size=8>desactiva el que estaba Activo, activa el elegido
 
-CursoAcademicoRepository --> AsignaturaGrado: <font size=8>lista las Activo de la institución
+CursoAcademicoRepository --> AsignaturaPrograma: <font size=8>lista las Activo de la institución
 
-CursoAcademicoRepository --> Guia: <font size=8>por cada AsignaturaGrado -- clona de la Guia\ndel curso anterior si existe, si no deriva de AsignaturaGrado
+CursoAcademicoRepository --> Guia: <font size=8>por cada AsignaturaPrograma -- clona de la Guia\ndel curso anterior si existe, si no deriva de AsignaturaPrograma
 
 Guia --> PonderacionEvaluacion: <font size=8>clona las de la Guia anterior (filas nuevas)
 
 Guia --> ReferenciaBibliografica: <font size=8>clona las de la Guia anterior (filas nuevas)
 
 CursoAcademicoRepository -- CursoAcademico
-CursoAcademicoRepository -- AsignaturaGrado
+CursoAcademicoRepository -- AsignaturaPrograma
 CursoAcademicoRepository -- Guia
 
 ActivarCursoAcademicoView --> CursosAcademicosAbiertoSalida: <font size=8>activado (verde) -- lista actualizada,\notro CursoAcademico pasa a Inactivo automáticamente

@@ -1,0 +1,59 @@
+@startuml eliminarActividadFormativa
+
+skinparam linetype polyline
+
+state ACTIVIDADES_FORMATIVAS_ABIERTO
+state ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA as "ACTIVIDADES_FORMATIVAS_ABIERTO"
+
+ACTIVIDADES_FORMATIVAS_ABIERTO -[#green]-> eliminarActividadFormativa
+note on link
+<b>Admin</b> solicita eliminar ActividadFormativa
+end note
+
+state eliminarActividadFormativa as "eliminarActividadFormativa()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    [ActividadFormativa sin Materias asociadas]
+    <b>Sistema</b> presenta información de la ActividadFormativa y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [ActividadFormativa con Materias asociadas]
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarActividadFormativa -[#green]-> ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarActividadFormativa -[#red]-> ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarActividadFormativa -[#blue]-> ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

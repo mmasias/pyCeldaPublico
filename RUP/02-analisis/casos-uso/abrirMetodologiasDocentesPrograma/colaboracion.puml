@@ -1,0 +1,26 @@
+@startuml abrirMetodologiasDocentesPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO" as MetodologiasDocentesAbiertoSalida
+
+package abrirMetodologiasDocentesPrograma as "abrirMetodologiasDocentesPrograma()" {
+    rectangle #629EF9 AbrirMetodologiasDocentesProgramaView
+    rectangle #b5bd68 MetodologiaDocenteController
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E MetodologiaDocenteRepository
+}
+
+ProgramaAbierto --> AbrirMetodologiasDocentesProgramaView: <font size=8>abrirMetodologiasDocentesPrograma(programaId)
+
+AbrirMetodologiasDocentesProgramaView --> MetodologiaDocenteController: <font size=8>listarMetodologiasDocentesDelPrograma(programaId) : List<MetodologiaDocente>
+
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>listarDelPrograma(programaId) : List<MetodologiaDocente>
+
+MetodologiaDocenteRepository -- MetodologiaDocente
+
+AbrirMetodologiasDocentesProgramaView --> MetodologiasDocentesAbiertoSalida: <font size=8>presenta catálogo de MetodologiaDocente del Programa
+
+@enduml

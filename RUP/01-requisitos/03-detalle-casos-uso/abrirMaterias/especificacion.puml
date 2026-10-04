@@ -2,10 +2,10 @@
 
 skinparam linetype polyline
 
-state GRADO_ABIERTO
+state PROGRAMA_ABIERTO
 state MATERIAS_ABIERTO
 
-GRADO_ABIERTO -[#green]-> abrirMaterias
+PROGRAMA_ABIERTO -[#green]-> abrirMaterias
 note on link
 <b>Admin</b> solicita abrir Materias
 end note

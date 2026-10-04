@@ -1,0 +1,18 @@
+@startsalt abrirActividadesFormativas-wireframe
+{
+    <b>ACTIVIDADES FORMATIVAS</b>
+    ====
+    {#
+        <b>Código | <b>Nombre | . | .
+        AF1 | Clases expositivas | [Abrir] | [Eliminar]
+        AF2 | Clases prácticas | [Abrir] | [Eliminar]
+        AF3 | Clases prácticas (laboratorio) | [Abrir] | [Eliminar]
+        AF4 | Seminarios y talleres | [Abrir] | [Eliminar]
+        AF5 | Supervisión de actividades | [Abrir] | [Eliminar]
+        AF6 | Tutorías (individual / en grupo) | [Abrir] | [Eliminar]
+        AF7 | Preparación de clases | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Actividad Formativa</b> ]
+}
+@endsalt

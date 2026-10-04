@@ -6,9 +6,9 @@
     ====
     <b>RAK1</b> (Programación)
 
-    En uso en: AsignaturaGrado "Programación I", AsignaturaGrado "Programación II".
+    En uso en: AsignaturaPrograma "Programación I", AsignaturaPrograma "Programación II".
 
-    <i>Quítalo primero de esas AsignaturaGrado.</i>
+    <i>Quítalo primero de esas AsignaturaPrograma.</i>
     ====
     [ <b>Volver a Programación</b> ]
 }
@@ -20,7 +20,7 @@
     ====
     <b>RAH1</b> (Programación)
 
-    Sin asignaturas-en-grado de esta materia usándolo.
+    Sin asignaturas-en-programa de esta materia usándolo.
     ====
     {[Confirmar desasociación] | [Cancelar]}
 }

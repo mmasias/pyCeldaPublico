@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -43,7 +43,7 @@ Bajada a diseño del caso de análisis [`abrirFacultades()`](/RUP/02-analisis/ca
 
 - **Ruta anidada bajo la `Universidad`**: `GET /api/v1/universidades/{universidad_id}/facultades`, no un plano `/api/v1/facultades?universidad_id=...` -- la composición del modelo de dominio (`Universidad *-d- Facultad`) se expresa en la URL, mismo criterio que `guias/{guia_id}/referencias-bibliograficas` ya aplica.
 - **`listar_de_la_universidad()` es traducción directa de `listarDeLaUniversidad()` de Análisis** (camelCase -> snake_case): el filtro vive en el `WHERE`, sin filtrado post-consulta.
-- **Módulo `routers/facultad.py` nuevo**: crecerá con `obtener_facultad()` (de `abrirFacultad()`), `crear_facultad()`, `editar_facultad()`, `tiene_grados_asociados()` y `eliminar_facultad()` de los CU hermanos.
+- **Módulo `routers/facultad.py` nuevo**: crecerá con `obtener_facultad()` (de `abrirFacultad()`), `crear_facultad()`, `editar_facultad()`, `tiene_programas_asociados()` y `eliminar_facultad()` de los CU hermanos.
 - **Sin capa Service**: Router delgado -> Repository (discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)).
 - **Autorización de `Admin`: `Depends(require_admin)`** (dependencia fijada en el diseño de [`iniciarSesion()`](/RUP/03-diseño/casos-uso/iniciarSesion/README.md), no implementada en este documento) -- toda función de `routers/facultad.py` debe declararla explícitamente en Desarrollo. El historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real, no un detalle menor.
 

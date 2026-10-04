@@ -3,11 +3,11 @@
 skinparam linetype polyline
 
 state GUIA_ABIERTO
-state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+state GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA as "GUIAS_DEL_PROGRAMA_ABIERTO"
 
 GUIA_ABIERTO -[#green]-> rechazarGuia
 note on link
-<b>DirectorGrado</b> solicita rechazar Guia
+<b>DirectorPrograma</b> solicita rechazar Guia
 end note
 
 state rechazarGuia as "rechazarGuia()" {
@@ -22,12 +22,12 @@ state rechazarGuia as "rechazarGuia()" {
 
     IntroduciendoComentario -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> introduce comentario
-    <b>DirectorGrado</b> solicita rechazar
+    <b>DirectorPrograma</b> introduce comentario
+    <b>DirectorPrograma</b> solicita rechazar
     end note
 }
 
-rechazarGuia -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+rechazarGuia -[#green]-> GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA
 note on link
 EnRevision -> Rechazada; registra comentario (opcional) en HistorialCambio
 end note

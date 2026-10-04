@@ -1,0 +1,32 @@
+@startuml crearPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMAS_ABIERTO" as ProgramasAbierto
+rectangle #CDEBA5 ":PROGRAMAS_ABIERTO" as ProgramasAbiertoSalida
+rectangle #CDEBA5 ":Collaboration EditarPrograma" as EditarPrograma
+
+package crearPrograma as "crearPrograma()" {
+    rectangle #629EF9 CrearProgramaView
+    rectangle #b5bd68 ProgramaController
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+}
+
+ProgramasAbierto --> CrearProgramaView: <font size=8>crearPrograma()
+
+CrearProgramaView --> ProgramaController: <font size=8>validarDatosObligatorios(codigo, nombre) : boolean
+
+CrearProgramaView --> ProgramaController: <font size=8>crearPrograma(codigo, nombre) : Programa
+
+ProgramaController --> ProgramaRepository: <font size=8>existeCodigo(codigo) : boolean
+
+ProgramaController --> ProgramaRepository: <font size=8>crear(codigo, nombre) : Programa
+
+ProgramaRepository -- Programa
+
+CrearProgramaView ..[#green]> EditarPrograma:<font size=8> <<include>> editarPrograma()
+CrearProgramaView ..[#red]> ProgramasAbiertoSalida:<font size=8> código ya existente (issue #148), sin crear
+
+@enduml

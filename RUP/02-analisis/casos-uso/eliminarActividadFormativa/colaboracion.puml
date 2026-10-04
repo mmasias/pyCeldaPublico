@@ -1,0 +1,32 @@
+@startuml eliminarActividadFormativa-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ACTIVIDADES_FORMATIVAS_ABIERTO" as ActividadesFormativasAbierto
+rectangle #CDEBA5 ":ACTIVIDADES_FORMATIVAS_ABIERTO" as ActividadesFormativasAbiertoSalida
+
+package eliminarActividadFormativa as "eliminarActividadFormativa()" {
+    rectangle #629EF9 EliminarActividadFormativaView
+    rectangle #b5bd68 ActividadFormativaController
+    rectangle #F2AC4E ActividadFormativa
+    rectangle #F2AC4E ActividadFormativaRepository
+}
+
+ActividadesFormativasAbierto --> EliminarActividadFormativaView: <font size=8>eliminarActividadFormativa(actividadFormativaId)
+
+EliminarActividadFormativaView --> ActividadFormativaController: <font size=8>puedeEliminar(actividadFormativaId) : boolean
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>nombresMateriasAsociadas(actividadFormativaId) : List<String>
+
+EliminarActividadFormativaView --> ActividadFormativaController: <font size=8>eliminar(actividadFormativaId)
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>eliminar(actividadFormativaId)
+
+ActividadFormativaRepository -- ActividadFormativa
+
+EliminarActividadFormativaView ..[#green]> ActividadesFormativasAbiertoSalida: <font size=8>lista actualizada
+EliminarActividadFormativaView ..[#red]> ActividadesFormativasAbiertoSalida: <font size=8>bloqueada, sin cambios -- horas asignadas en Materia/AsignaturaPrograma
+EliminarActividadFormativaView ..[#blue]> ActividadesFormativasAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

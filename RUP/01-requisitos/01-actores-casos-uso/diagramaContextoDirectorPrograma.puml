@@ -1,0 +1,250 @@
+@startuml diagramaContextoDirectorPrograma
+
+left to right direction
+skinparam linetype polyline
+
+' Estados heredados literalmente de Profesor (DirectorPrograma --|> Profesor):
+' mismos nombres, mismas transiciones -- ver diagramaContextoProfesor.puml
+state SESION_CERRADA
+state ASIGNATURAS_PROGRAMA_ABIERTO
+state GUIA_ABIERTO
+state PONDERACIONES_EVALUACION_ABIERTO
+state PONDERACION_EVALUACION_ABIERTO
+state REFERENCIAS_BIBLIOGRAFICAS_ABIERTO
+state REFERENCIA_BIBLIOGRAFICA_ABIERTO
+state PERFIL_ABIERTO
+
+' Estados propios de DirectorPrograma
+state INICIO_ABIERTO
+state PROGRAMAS_ABIERTO
+state PROGRAMA_ABIERTO
+state MATERIAS_ABIERTO
+state MATERIA_ABIERTO
+state RESULTADOS_APRENDIZAJE_ABIERTO
+state RESULTADO_APRENDIZAJE_ABIERTO
+state METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO
+state GUIAS_DEL_PROGRAMA_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO
+
+[*] --> SESION_CERRADA
+
+' === Heredado de Profesor, con una diferencia: el login ya no aterriza aqui
+' directamente -- un DirectorPrograma puede dirigir varios Programas (Programa o- DirectorPrograma,
+' agregacion, sin exclusividad), asi que primero elige cual antes de ver sus propias
+' asignaturas. El resto de ASIGNATURAS_PROGRAMA_ABIERTO y todo lo que cuelga de ella
+' (GUIA_ABIERTO y anidados) se mantiene identico a diagramaContextoProfesor.puml ===
+ASIGNATURAS_PROGRAMA_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
+' previsualizarGuia(): heredado de Profesor sin cambios (DirectorPrograma --|> Profesor),
+' misma plantilla que descargarGuiaPDF(), salida HTML, cualquier estado -- discussion #218
+GUIA_ABIERTO --> GUIA_ABIERTO : previsualizarGuia()
+
+GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : crearPonderacionEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : abrirPonderacionEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : eliminarPonderacionEvaluacion()
+PONDERACION_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : editarPonderacionEvaluacion()
+PONDERACION_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
+PONDERACIONES_EVALUACION_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+GUIA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : crearReferenciaBibliografica()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : abrirReferenciaBibliografica()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()
+' importarBibliografiaDeGuiaHermana() heredado de Profesor sin cambios (issue #184)
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : importarBibliografiaDeGuiaHermana()
+REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : editarReferenciaBibliografica()
+REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
+REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()
+' importarContenidoDeGuiaHermana() heredado de Profesor sin cambios (issue #409,
+' familia del #184) -- mismo criterio que importarBibliografiaDeGuiaHermana() arriba
+GUIA_ABIERTO --> GUIA_ABIERTO : importarContenidoDeGuiaHermana()
+' abrirAsignaturasPrograma(): heredado de Profesor, misma corrección (antes
+' completarGestion() genérico, ver diagramaContextoProfesor.puml) -- discussion #47
+GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : abrirAsignaturasPrograma()
+
+' enviarGuiaARevision() heredado de Profesor sin cambios -- misma asimetria real
+' (ver especificacion.puml del caso de uso): solo el envio con exito sale de aqui,
+' si la suma de PonderacionEvaluacion no da 100% el sistema rechaza y la sesion
+' de edicion sigue abierta, de ahi el self-loop de abajo.
+GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()
+GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
+
+' === Propio de DirectorPrograma (issue #612, Parte 2 de #601): correccion excepcional ===
+' Director escribe el temario (guardarBorradorGuia()), las PonderacionEvaluacion, las
+' ReferenciaBibliografica y las Sesion de las Guias de los Programas que dirige --
+' mismas transiciones que Profesor, mismas pantallas. NO gana enviarGuiaARevision()
+' (ya decide el estado con aprobar/rechazar/escalar/revocar), ni los atajos
+' importar*()/generarPlanificacionDocenteGenerica(). Toda escritura de Director
+' sobre una Guia aplica ANTES de responder: Aprobada -> Borrador (como
+' revocarAprobacionGuia()) y EnRevision -> Rechazada (como rechazarGuia()); Borrador y
+' Rechazada se mantienen. Cada transicion real deja HistorialCambio campo="estado"
+' con autor_id real del Director. La transicion se narra aqui y en las notas de los
+' casos de uso, no abre <<choice>> nuevo (mismo criterio que guardarBorradorGuia()).
+GUIA_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : abrirPlanificacionDocente()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : crearSesion()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : editarSesion()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : eliminarSesion()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : duplicarSesion()
+PLANIFICACION_DOCENTE_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+' === Propio de DirectorPrograma: el aterrizaje tras el login es INICIO_ABIERTO ===
+' (discussion #274, antes era PROGRAMAS_ABIERTO directamente). abrirInicio()
+' compone "Mis programas" (abrirProgramas() variante DirectorPrograma) y "Mis guias"
+' (abrirAsignaturasPrograma() variante Profesor, si la cuenta ademas imparte --
+' antes era el "tercer punto de extension", issue #103, ahora subsumido: el
+' hub es las dos listas juntas por construccion). abrirInicio() es primitiva
+' de navegacion, no cuenta en el catalogo de 102. PROGRAMAS_ABIERTO se conserva
+' como pantalla completa alcanzable por deep link / al expandir "Mis programas".
+SESION_CERRADA --> INICIO_ABIERTO : iniciarSesion()
+' credenciales invalidas: no hay transicion de estado, self-loop explicito
+' -- detectado al construir la especificacion de enviarGuiaARevision()
+SESION_CERRADA --> SESION_CERRADA : iniciarSesion()
+INICIO_ABIERTO --> SESION_CERRADA : cerrarSesion()
+PROGRAMAS_ABIERTO --> SESION_CERRADA : cerrarSesion()
+
+' abrirProgramas(): <<include>> de abrirInicio() (seccion "Mis programas"); tambien
+' pantalla completa por deep link. abrirPrograma() alcanzable directamente desde
+' una fila de "Mis programas" del hub y desde la pantalla completa.
+INICIO_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()
+INICIO_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+PROGRAMAS_ABIERTO --> INICIO_ABIERTO : abrirInicio()
+
+' abrirAsignaturasPrograma() (variante Profesor, seccion "Mis guias") y abrirGuia()
+' desde una fila de esa seccion: solo si la cuenta con doble identidad ademas
+' imparte. Mismo estado heredado ASIGNATURAS_PROGRAMA_ABIERTO ya usado en
+' GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO mas abajo, no el por-programa
+' admin-like de PROGRAMA_ABIERTO. El "tercer punto de extension" de #103 queda
+' subsumido en abrirInicio() (discussion #274).
+INICIO_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : abrirAsignaturasPrograma()
+INICIO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+
+' editarPerfilPropio() (issue #423): heredado de Profesor sin cambios --
+' cualquier DirectorPrograma activo tiene fila Profesor asociada (se crea siempre
+' a partir de un Profesor existente, definirDirectorPrograma()), así que también
+' tiene perfil académico propio que editar. Ver diagramaContextoProfesor.puml.
+INICIO_ABIERTO --> PERFIL_ABIERTO : editarPerfilPropio()
+PERFIL_ABIERTO --> PERFIL_ABIERTO : editarPerfilPropio()
+PERFIL_ABIERTO --> INICIO_ABIERTO : abrirInicio()
+
+PROGRAMA_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()
+
+' abrirAsignaturasPrograma(): nuevo, propio de DirectorPrograma -- ve sus propias
+' AsignaturaPrograma (con el profesorado que imparte) dentro de ESTE programa concreto
+PROGRAMA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : abrirAsignaturasPrograma()
+' Las cuatro vueltas a PROGRAMA_ABIERTO de este fichero (aquí y en Materia,
+' ResultadoAprendizaje, revisión de guías) usan abrirPrograma(), no completarGestion():
+' son listados, no formularios -- nada en memoria que arriesgar al volver, mismo
+' criterio que ya usaba ASIGNATURA_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO más abajo.
+' Corregido al planificar Análisis (discussion #47).
+ASIGNATURAS_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' --- Configuracion del programa: Materia (CRUD es de Admin, DirectorPrograma solo asocia) ---
+' abrirMaterias()/abrirMateria() reutilizados de Admin, misma logica que abrirPrograma()
+PROGRAMA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
+MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarMetodologiaDocenteAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarMetodologiaDocenteMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarAsociacionMetodologiaDocenteMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarResultadoAprendizajeAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarResultadoAprendizajeAMateria()
+' editarActividadesFormativasMateria(): un solo self-loop -- exito y fallo (algun
+' valor de horas negativo, no se guarda nada) vuelven ambos a MATERIA_ABIERTO,
+' misma que el estado de partida. La regla AfM = ΣAfAdM NO valida aqui: es blanda,
+' vive en consultarEstadoActividadesFormativasMateria() (medidor, discussion #227).
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()
+' consultarEstadoActividadesFormativasMateria(): medidor de la regla AfM = ΣAfAdM,
+' solo lectura, compuesto desde abrirMateria() -- mismo patron que previsualizarGuia()
+' sobre GUIA_ABIERTO. Sin <<choice>>: presenta el estado, no bloquea nada.
+MATERIA_ABIERTO --> MATERIA_ABIERTO : consultarEstadoActividadesFormativasMateria()
+MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
+MATERIAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' --- AsignaturaPrograma: refinamiento de detalle, reutiliza abrirAsignaturaPrograma() de Admin.
+' Igual que en Admin: dos entradas (atajo plano desde PROGRAMA_ABIERTO, agrupado por
+' materia; y desde MATERIA_ABIERTO) y dos retornos, uno por cada entrada -- retoque
+' de Manuel usando el producto (DirectorPrograma 2026-09-04 via pySigHor, Admin issue
+' #252 2026-09-05), dos oleadas del mismo patron de reversion que #227/PR#234 ("el
+' Profesor no ve las AF" revertido tras uso real). Admin gana los mismos dos retornos
+' en diagramaContextoAdmin.puml -- pantallas de frontend distintas (AsignaturaPrograma.tsx
+' -> Materia.tsx vs AsignaturaProgramaAdmin.tsx -> MateriaAdmin.tsx), misma navegacion.
+' --- MetodologiaDocente del Programa: pantalla propia del Director (issue #638);
+' Admin tiene pantalla propia desde #640/#641 (METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO
+' en diagramaContextoAdmin; distinto del catalogo global METODOLOGIAS_DOCENTES_ABIERTO) ---
+PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : abrirMetodologiasDocentesPrograma()
+METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAPrograma()
+METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : desasociarMetodologiaDocentePrograma()
+METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()
+MATERIA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarResultadoAprendizajeAAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarResultadoAprendizajeAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarMetodologiaDocenteAsignaturaPrograma()
+' editarActividadesFormativasAsignaturaPrograma(): self-loop unico -- exito y fallo
+' (horas negativas o presencialidad fuera de 0-100, no se guarda nada) vuelven a
+' ASIGNATURA_PROGRAMA_ABIERTO. Este nivel es el que consume el render de la Guia.
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarActividadesFormativasAsignaturaPrograma()
+' importarActividadesFormativasDeAsignaturaProgramaPrima(): self-loop unico (issue #529) -- copia el reparto de una
+' AsignaturaPrograma prima (misma Materia); sin primas configuradas no se ofrece.
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : importarActividadesFormativasDeAsignaturaProgramaPrima()
+ASIGNATURA_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+' abrirMateria(): segundo retorno -- boton "Volver a la materia" ademas del
+' "Volver al Programa" ya existente. Incondicional, sin guarda de rol nueva: mismo
+' actor que ya tiene acceso a MATERIA_ABIERTO por la entrada de arriba.
+ASIGNATURA_PROGRAMA_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
+
+' --- ResultadoAprendizaje: catalogo propio de Programa (Programa *-d- ResultadoAprendizaje),
+' cascada de asociacion hacia Materia/AsignaturaPrograma ya modelada arriba ---
+PROGRAMA_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : crearResultadoAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultadoAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : eliminarResultadoAprendizaje()
+RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()
+RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' --- Revision de guias del programa: la entrada hace el mismo papel que un abrirXs()
+' plural. Reutiliza GUIA_ABIERTO (heredado de Profesor) para revisar contenido antes
+' de decidir -- aprobar/rechazar/escalar cierran hacia el listado de revision, no
+' hacia ASIGNATURAS_PROGRAMA_ABIERTO (nunca son acciones sobre "mi" guia) ---
+PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : consultarEstadoGuias()
+GUIAS_DEL_PROGRAMA_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : aprobarGuia()
+GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : rechazarGuia()
+GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : escalarGuiaAAprobada()
+
+' revocarAprobacionGuia(): cuarta decision de la misma familia que aprobar/rechazar/
+' escalar -- mismo patron, abre la guia antes de decidir, no self-loop de listado
+GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : revocarAprobacionGuia()
+
+' editarSemestreGuia(): es editarX(), sigue el mismo patron que el resto de editarX()
+' del catalogo (edita dentro del detalle ya abierto, nunca desde el listado)
+GUIA_ABIERTO --> GUIA_ABIERTO : editarSemestreGuia()
+
+' notificarGuiasActualizadas(): accion sobre el conjunto completo de guias del programa,
+' no sobre una en particular
+GUIAS_DEL_PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : notificarGuiasActualizadas()
+
+GUIAS_DEL_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' abrirGuia()/notificarGuiasActualizadas() TAMBIEN sobre PROGRAMA_ABIERTO -- retoque
+' de Manuel usando el producto (2026-09-05, relay via pySigHor): la portada del
+' programa (Programa.tsx) pasa a mostrar por defecto el listado de Guias (antes
+' Asignaturas, que era duplicado exacto de la propia pestana AsignaturasPrograma.tsx
+' y no llevaba a ninguna Guia real) -- "ver guias es ver guias", lo que mas
+' aporta al entrar al programa. Variante CONSERVADORA elegida por Manuel: NO se
+' fusiona PROGRAMA_ABIERTO con GUIAS_DEL_PROGRAMA_ABIERTO, siguen siendo dos
+' estados/CU formalmente distintos (consultarEstadoGuias() sigue existiendo tal
+' cual) -- se duplica el CONTENIDO de pantalla, redundancia documental aceptada
+' a cambio de no tocar la maquina de estados. Ver abrirPrograma()/README.md.
+PROGRAMA_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : notificarGuiasActualizadas()
+
+@enduml

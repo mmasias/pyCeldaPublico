@@ -1,0 +1,56 @@
+@startuml abrirAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Abrir AsignaturaPrograma
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita abrir una AsignaturaPrograma
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-programa/{asignatura_programa_id}
+activate API
+
+API -> AsignaturaProgramaRepo: obtener(asignatura_programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ... FROM asignaturas_programa WHERE id = :asignatura_programa_id
+activate DB
+DB --> AsignaturaProgramaRepo: fila AsignaturaPrograma
+deactivate DB
+AsignaturaProgramaRepo --> API: AsignaturaPrograma
+deactivate AsignaturaProgramaRepo
+
+API -> AsignaturaProgramaRepo: listar_metodologias_docentes_de(asignatura_programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT md.* FROM metodologias_docentes md\nJOIN asignaturas_programa_metodologias_docentes agmd\nON agmd.metodologia_docente_id = md.id\nWHERE agmd.asignatura_programa_id = :asignatura_programa_id
+activate DB
+DB --> AsignaturaProgramaRepo: filas MetodologiaDocente
+deactivate DB
+AsignaturaProgramaRepo --> API: List[MetodologiaDocente]
+deactivate AsignaturaProgramaRepo
+
+API -> AsignaturaProgramaRepo: listar_resultados_aprendizaje_de(asignatura_programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ra.* FROM resultados_aprendizaje ra\nJOIN asignaturas_programa_resultados_aprendizaje agra\nON agra.resultado_aprendizaje_id = ra.id\nWHERE agra.asignatura_programa_id = :asignatura_programa_id
+activate DB
+DB --> AsignaturaProgramaRepo: filas ResultadoAprendizaje
+deactivate DB
+AsignaturaProgramaRepo --> API: List[ResultadoAprendizaje]
+deactivate AsignaturaProgramaRepo
+
+API -> AsignaturaProgramaRepo: listar_profesorado_de(asignatura_programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT p.* FROM profesores p\nJOIN asignaturas_programa_profesores agp ON agp.profesor_id = p.id\nWHERE agp.asignatura_programa_id = :asignatura_programa_id
+activate DB
+DB --> AsignaturaProgramaRepo: filas Profesor
+deactivate DB
+AsignaturaProgramaRepo --> API: List[Profesor]
+deactivate AsignaturaProgramaRepo
+
+API --> Vista: 200 OK (AsignaturaProgramaDetalleResponse JSON, con las tres colecciones)
+deactivate API
+Vista --> DirectorPrograma: muestra datos, profesorado, MetodologiaDocente y ResultadoAprendizaje
+deactivate Vista
+
+@enduml

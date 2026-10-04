@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -67,7 +67,7 @@ Traducción a clases de análisis del caso de uso [`abrirUniversidad()`](/RUP/01
 
 ## Hallazgo: hueco en el wireframe de Requisitos (corregido)
 
-El diagrama de contexto de `Admin` declara `UNIVERSIDAD_ABIERTO --> FACULTADES_ABIERTO : abrirFacultades()`, pero el wireframe de este caso de uso solo ofrecía `[Editar]`/`[Volver al listado]` -- faltaba el punto de entrada visual a ese camino. Confirmado por Manuel: se corrigió en Requisitos antes de continuar con este Análisis, añadiendo `[Ver Facultades]` al wireframe ([wireframes.puml](/RUP/01-requisitos/03-detalle-casos-uso/abrirUniversidad/wireframes.puml)) y regenerando su SVG. Mismo hueco encontrado en paralelo en [`abrirFacultad()`](../abrirFacultad/README.md) (falta de botón hacia `abrirGrados()`), también corregido.
+El diagrama de contexto de `Admin` declara `UNIVERSIDAD_ABIERTO --> FACULTADES_ABIERTO : abrirFacultades()`, pero el wireframe de este caso de uso solo ofrecía `[Editar]`/`[Volver al listado]` -- faltaba el punto de entrada visual a ese camino. Confirmado por Manuel: se corrigió en Requisitos antes de continuar con este Análisis, añadiendo `[Ver Facultades]` al wireframe ([wireframes.puml](/RUP/01-requisitos/03-detalle-casos-uso/abrirUniversidad/wireframes.puml)) y regenerando su SVG. Mismo hueco encontrado en paralelo en [`abrirFacultad()`](../abrirFacultad/README.md) (falta de botón hacia `abrirProgramas()`), también corregido.
 
 ## Referencias
 

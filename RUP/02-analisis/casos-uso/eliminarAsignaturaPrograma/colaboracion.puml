@@ -1,0 +1,29 @@
+@startuml eliminarAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbiertoSalida
+
+package eliminarAsignaturaPrograma as "eliminarAsignaturaPrograma()" {
+    rectangle #629EF9 EliminarAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+}
+
+ProgramaAbierto --> EliminarAsignaturaProgramaView: <font size=8>eliminarAsignaturaPrograma(asignaturaProgramaId)
+
+EliminarAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>eliminar(asignaturaProgramaId)
+
+AsignaturaProgramaController --> AsignaturaPrograma: <font size=8>extinguir()
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>actualizar(asignaturaPrograma)
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+
+EliminarAsignaturaProgramaView ..[#green]> ProgramaAbiertoSalida: <font size=8>tabla actualizada -- estado pasa a Extinguido
+EliminarAsignaturaProgramaView ..[#blue]> ProgramaAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

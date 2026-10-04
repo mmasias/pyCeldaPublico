@@ -1,0 +1,44 @@
+@startsalt quitarDirectorPrograma-wireframe-bloqueada
+{
+    <b>QUITAR DIRECTOR DE PROGRAMA</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE QUITAR</b></color>
+    ====
+    <b>Dr. Manuel Masías Vergara</b> es el único DirectorPrograma de:
+
+    <b>GII -- Grado en Ingeniería Informática</b>
+
+    <i>Nombra a otro Profesor como director de este Programa antes de quitar el rol.</i>
+    ====
+    [ <b>Volver</b> ]
+}
+@endsalt
+
+@startsalt quitarDirectorPrograma-wireframe-confirmacion
+{
+    <b>QUITAR DIRECTOR DE PROGRAMA</b>
+    ====
+    <b>Dr. Jon Arambarri Basañez</b> deja de dirigir:
+
+    <b>GII -- Grado en Ingeniería Informática</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Queda otro DirectorPrograma activo en este Programa (Dr. Manuel Masías Vergara).
+    ====
+    {[Confirmar] | [Cancelar]}
+}
+@endsalt
+
+@startsalt quitarDirectorPrograma-wireframe-desdePrograma
+{
+    <b>GII -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    <b>Directores:</b>
+    {
+        Dr. Manuel Masías Vergara (manuel.masias@uneatlantico.es) | [Quitar]
+    }
+    <color:red>Error: El Profesor es el único DirectorPrograma de este Programa</color>
+    ====
+    <i>Sin pantalla de confirmación propia (issue #492): "Quitar" actúa directamente por fila.</i>
+}
+@endsalt

@@ -19,13 +19,15 @@ state eliminarProfesor as "eliminarProfesor()" {
 
     c -[#green]-> ConfirmandoEliminacion
     note on link
+    [Profesor sin AsignaturaPrograma asignadas, sin rol de DirectorPrograma activo y sin Guias que lo referencian]
     <b>Sistema</b> presenta información del Profesor y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de bloqueo por AsignaturaGrado asignadas, rol de DirectorGrado activo o Guias que lo referencian
+    [Profesor con AsignaturaPrograma asignadas, rol de DirectorPrograma activo o Guias que lo referencian]
+    <b>Sistema</b> presenta mensaje de bloqueo por AsignaturaPrograma asignadas, rol de DirectorPrograma activo o Guias que lo referencian
     end note
 
     ConfirmandoEliminacion -[#green]-> [*]

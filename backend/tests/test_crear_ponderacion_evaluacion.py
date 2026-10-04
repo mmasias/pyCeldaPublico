@@ -1,4 +1,8 @@
-from app.core.auth import get_current_profesor_id
+from app.core.auth import (
+    get_current_director_programa_id_opcional,
+    get_current_profesor_id,
+    get_current_profesor_id_opcional,
+)
 from app.main import app
 from app.models.sistema_evaluacion import SistemaEvaluacion
 
@@ -11,9 +15,9 @@ def test_listar_sistemas_evaluacion(client, materia, sistema_evaluacion):
     assert data[0]["id"] == sistema_evaluacion.id
 
 
-def test_listar_sistemas_evaluacion_de_guia(client, db_session, guia_vinculada, materia_del_grado):
+def test_listar_sistemas_evaluacion_de_guia(client, db_session, guia_vinculada, materia_del_programa):
     sistema = SistemaEvaluacion(
-        materia_id=materia_del_grado.id,
+        materia_id=materia_del_programa.id,
         tipo="Evaluación continua",
         descripcion="Prácticas",
         ponderacion_minima=20,
@@ -66,7 +70,8 @@ def test_crear_ponderacion_evaluacion_profesor_no_dueno_devuelve_404(
     client, guia_con_dueno_y_otro, sistema_evaluacion
 ):
     guia, otro = guia_con_dueno_y_otro
-    app.dependency_overrides[get_current_profesor_id] = lambda: otro.id
+    app.dependency_overrides[get_current_profesor_id_opcional] = lambda: otro.id
+    app.dependency_overrides[get_current_director_programa_id_opcional] = lambda: None
 
     resp = client.post(
         f"/api/v1/guias/{guia.id}/ponderaciones-evaluacion",

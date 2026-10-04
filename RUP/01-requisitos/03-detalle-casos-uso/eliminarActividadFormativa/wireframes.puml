@@ -1,0 +1,28 @@
+@startsalt eliminarActividadFormativa-wireframe-bloqueada
+{
+    <b>ELIMINAR ACTIVIDAD FORMATIVA</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    ====
+    <b>AF1 -- Clases expositivas</b>
+
+    Esta actividad formativa está en uso en materias del catálogo.
+
+    <i>Retira su asociación de las materias antes de eliminarla.</i>
+    ====
+    [ <b>Volver al listado</b> ]
+}
+@endsalt
+
+@startsalt eliminarActividadFormativa-wireframe-confirmacion
+{
+    <b>ELIMINAR ACTIVIDAD FORMATIVA</b>
+    ====
+    <b>AF7 -- Preparación de clases</b>
+
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Sin materias asociadas.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

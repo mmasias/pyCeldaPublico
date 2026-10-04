@@ -32,7 +32,7 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`Admin`|
-|**Objetivo**|Dar de alta una `Materia` en un `Grado`|
+|**Objetivo**|Dar de alta una `Materia` en un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
@@ -42,4 +42,4 @@
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIAS_ABIERTO --> MATERIA_ABIERTO : crearMateria()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `Materia`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Grado *-- Materia`, `Materia{nombre}`; `caracter` vive en `AsignaturaGrado`, no en `Materia` (una materia agrupa asignaturas de carácter distinto)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-- Materia`, `Materia{nombre}`; `caracter` vive en `AsignaturaPrograma`, no en `Materia` (una materia agrupa asignaturas de carácter distinto)

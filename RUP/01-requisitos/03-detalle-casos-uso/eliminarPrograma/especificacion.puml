@@ -1,0 +1,44 @@
+@startuml eliminarPrograma
+
+skinparam linetype polyline
+
+state PROGRAMAS_ABIERTO
+state PROGRAMAS_ABIERTOS_SALIDA as "PROGRAMAS_ABIERTO"
+
+PROGRAMAS_ABIERTO -[#green]-> eliminarPrograma
+note on link
+<b>Admin</b> solicita eliminar Programa
+end note
+
+state eliminarPrograma as "eliminarPrograma()" {
+
+    state " " as ConfirmandoEliminacion
+
+    [*] -[#green]-> ConfirmandoEliminacion
+    note on link
+    <b>Sistema</b> presenta información del Programa y advertencia de extinción
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarPrograma -[#green]-> PROGRAMAS_ABIERTOS_SALIDA
+note on link
+estado pasa a Extinguido, lista actualizada
+end note
+
+eliminarPrograma -[#blue]-> PROGRAMAS_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

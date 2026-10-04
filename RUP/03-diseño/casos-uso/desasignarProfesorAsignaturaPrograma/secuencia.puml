@@ -1,0 +1,48 @@
+@startuml desasignarProfesorAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Desasignar Profesor de AsignaturaPrograma
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita desasignar un Profesor de la AsignaturaPrograma
+activate Vista
+note right of Vista: la Vista ya tiene el profesorado completo\n(detalle de AsignaturaPrograma, cargado antes) --\ncalcula "quedaría sin profesorado" en el cliente,\nsin llamada nueva al backend
+Vista --> Admin: presenta confirmar/cancelar\n(con advertencia si es el único Profesor)
+
+Admin -> Vista: confirma la desasignación
+Vista -> API: DELETE /api/v1/admin/asignaturas-programa/{asignatura_programa_id}/profesorado/{profesor_id}
+activate API
+API -> AsignaturaProgramaRepo: imparte(asignatura_programa_id, profesor_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT 1 FROM asignaturas_programa_profesores WHERE ...
+activate DB
+DB --> AsignaturaProgramaRepo: fila (o ninguna)
+deactivate DB
+AsignaturaProgramaRepo --> API: boolean
+deactivate AsignaturaProgramaRepo
+
+alt no está asignado
+API --> Vista: 404 Not Found
+else está asignado
+API -> AsignaturaProgramaRepo: desasignar_profesor(asignatura_programa_id, profesor_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: DELETE FROM asignaturas_programa_profesores WHERE ...
+activate DB
+DB --> AsignaturaProgramaRepo: ok
+deactivate DB
+AsignaturaProgramaRepo --> API: void
+deactivate AsignaturaProgramaRepo
+note right of API: solo AsignaturaPrograma -- Profesor -- nunca\nGuia -- Profesor, que es copia puntual al crear
+API --> Vista: 204 No Content
+end
+deactivate API
+Vista --> Admin: lista actualizada
+deactivate Vista
+
+Admin -> Vista: (alternativa) cancela
+Vista --> Admin: sin cambios, sin llamada HTTP
+
+@enduml

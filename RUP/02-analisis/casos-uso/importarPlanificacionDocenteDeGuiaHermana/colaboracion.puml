@@ -9,8 +9,8 @@ rectangle #CDEBA5 ":Collaboration AbrirPlanificacionDocente" as AbrirPlanificaci
 package importarPlanificacionDocenteDeGuiaHermana as "importarPlanificacionDocenteDeGuiaHermana()" {
     rectangle #629EF9 ImportarPlanificacionDocenteDeGuiaHermanaView
     rectangle #b5bd68 ImportarPlanificacionDocenteDeGuiaHermanaController
-    rectangle #F2AC4E AsignaturaGrado
-    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
     rectangle #F2AC4E Guia
     rectangle #F2AC4E GuiaRepository
     rectangle #F2AC4E Sesion
@@ -26,7 +26,7 @@ ImportarPlanificacionDocenteDeGuiaHermanaView --> ImportarPlanificacionDocenteDe
 
 ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaDestinoId) : Guia
 
-ImportarPlanificacionDocenteDeGuiaHermanaController --> AsignaturaGradoRepository: <font size=8>listarHermanas(asignaturaGradoId) : lista de AsignaturaGrado
+ImportarPlanificacionDocenteDeGuiaHermanaController --> AsignaturaProgramaRepository: <font size=8>listarHermanas(asignaturaProgramaId) : lista de AsignaturaPrograma
 
 ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>listarAprobadasDe(hermanas) : lista de Guia
 
@@ -42,7 +42,7 @@ ImportarPlanificacionDocenteDeGuiaHermanaController --> HistorialCambio: <font s
 
 ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>actualizar(guia)
 
-AsignaturaGradoRepository -- AsignaturaGrado
+AsignaturaProgramaRepository -- AsignaturaPrograma
 GuiaRepository -- Guia
 SesionRepository -- Sesion
 Guia *-- HistorialCambio

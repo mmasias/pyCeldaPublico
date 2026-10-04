@@ -1,0 +1,29 @@
+@startuml duplicarSesion-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteAbierto
+rectangle #CDEBA5 ":PLANIFICACION_DOCENTE_ABIERTO" as PlanificacionDocenteSalida
+
+package duplicarSesion as "duplicarSesion()" {
+    rectangle #629EF9 DuplicarSesionView
+    rectangle #b5bd68 PlanificacionDocenteController
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E SesionRepository
+    rectangle #F2AC4E HistorialCambio
+}
+
+PlanificacionDocenteAbierto --> DuplicarSesionView: <font size=8>duplicarSesion(sesionId)
+
+DuplicarSesionView --> PlanificacionDocenteController: <font size=8>duplicarSesion(sesionId) : List<Sesion>
+
+PlanificacionDocenteController --> SesionRepository: <font size=8>duplicar(sesionId) : Sesion
+
+PlanificacionDocenteController --> HistorialCambio: <font size=8>registrar(guiaId, autorId, "planificacion_docente", antes, despues, comentario)
+
+SesionRepository -- Sesion
+
+DuplicarSesionView --> PlanificacionDocenteSalida: <font size=8>copia insertada tras la original, sesiones posteriores renumeradas
+
+@enduml

@@ -4,7 +4,7 @@ title Diagrama de Secuencia - Importar Planificación Docente de Guía Hermana
 actor "Profesor" as Profesor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "AsignaturaGradoRepository" as AGRepo
+participant "AsignaturaProgramaRepository" as AGRepo
 participant "GuiaRepository" as GuiaRepo
 participant "SesionRepository" as SesionRepo
 participant "Guia (destino)" as Guia
@@ -17,8 +17,8 @@ activate Vista
 Vista -> API: GET /api/v1/guias/{guia_id}/importables
 activate API
 API -> GuiaRepo: obtener(guia_id) + AGRepo.imparte(...)  -> destino (o 404)
-API -> AGRepo: listar_hermanas(destino.asignatura_grado_id)
-API -> GuiaRepo: listar_aprobadas_de_asignaturas_grado([ids hermanas])
+API -> AGRepo: listar_hermanas(destino.asignatura_programa_id)
+API -> GuiaRepo: listar_aprobadas_de_asignaturas_programa([ids hermanas])
 GuiaRepo --> API: [Guia aprobadas de hermanas]
 API --> Vista: 200 [{..., n_sesiones, ...}]
 Vista --> Profesor: desplegable + aviso "reemplazará N sesiones, se renumeran 1..N"

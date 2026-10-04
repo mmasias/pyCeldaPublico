@@ -1,0 +1,36 @@
+@startsalt crearPrograma-wireframe
+{
+    <b>CREAR PROGRAMA</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "          "
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt
+
+@startsalt crearPrograma-wireframe-error
+{
+    <b>CREAR PROGRAMA</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE CREAR</b></color>
+    <color:red>Ya existe un Programa con código GIOI</color>
+    --
+    {
+        <b>Código (*):</b>
+        "GIOI      "
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

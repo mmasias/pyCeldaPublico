@@ -1,0 +1,10 @@
+@startsalt duplicarSesion-wireframe
+{
+    <b>PLANIFICACIÓN DOCENTE</b>
+    ====
+    {#
+        <b>Nº</b> | <b>Tipo</b> | <b>Descripción</b> | .
+        3 | Clase Práctica | "Temas aaa bbb" | {[📑 Duplicar] | [🗑️ Eliminar]}
+    }
+}
+@endsalt

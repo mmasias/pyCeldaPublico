@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="243px" preserveAspectRatio="none" style="width:2809px;height:243px;" version="1.1" viewBox="0 0 2809 243" width="2809px" zoomAndPan="magnify"><defs><filter height="300%" id="fq3697x4e7lsx" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[4a0e7cb6f91d6f37f16bf1949ac976dc]
+cluster asociarMetodologiaDocenteAPrograma--><polygon fill="#FFFFFF" filter="url(#fq3697x4e7lsx)" points="613,24.47,902,24.47,909,49.5379,2787,49.5379,2787,177.47,613,177.47,613,24.47" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="613" x2="909" y1="49.5379" y2="49.5379"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="283" x="617" y="41.4359">asociarMetodologiaDocenteAPrograma()</text><!--MD5=[2a0e3bb478484ffc8f465190bf0fec7c]
+entity AsociarMetodologiaDocenteAProgramaView--><rect fill="#629EF9" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="314" x="629" y="106.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="294" x="639" y="131.8959">AsociarMetodologiaDocenteAProgramaView</text><!--MD5=[dc8e09859ec3293b17faea85cc68768a]
+entity ProgramaController--><rect fill="#B5BD68" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="153" x="1425" y="84.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="133" x="1435" y="109.8959">ProgramaController</text><!--MD5=[ef6cb012ea439a75c9940c0d30f7590d]
+entity Programa--><rect fill="#F2AC4E" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="86" x="2465" y="117.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="2475" y="142.8959">Programa</text><!--MD5=[c3db314acd0a822a4ec2bfbeda7688f4]
+entity ProgramaRepository--><rect fill="#F2AC4E" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="157" x="2018" y="114.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="137" x="2028" y="139.8959">ProgramaRepository</text><!--MD5=[a4bc1c1ffd9e400a93cbb06e28c22ec8]
+entity MetodologiaDocente--><rect fill="#F2AC4E" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="159" x="2612" y="89.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="139" x="2622" y="114.8959">MetodologiaDocente</text><!--MD5=[1aef2dadb92b4c7002109681bcaf9115]
+entity MetodologiaDocenteRepository--><rect fill="#F2AC4E" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="230" x="2205" y="62.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="210" x="2215" y="87.8959">MetodologiaDocenteRepository</text><!--MD5=[573e24364552e23b1067084014b4f679]
+entity MetodologiasDocentesAbierto--><rect fill="#CDEBA5" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="363" x="6" y="106.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="343" x="16" y="131.8959">:METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO</text><!--MD5=[b98de893698608cc968b49c90dc4ce3d]
+entity MetodologiasDocentesAbiertoSalida--><rect fill="#CDEBA5" filter="url(#fq3697x4e7lsx)" height="39.0679" style="stroke: #000000; stroke-width: 1.5;" width="363" x="1320" y="193.93"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="343" x="1330" y="218.8959">:METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO</text><!--MD5=[86b7efbcd51886b3b5ebf772f58b36eb]
+link MetodologiasDocentesAbierto to AsociarMetodologiaDocenteAProgramaView--><path d="M369.49,126.47 C450.19,126.47 544.5,126.47 622.85,126.47 " fill="none" id="MetodologiasDocentesAbierto-&gt;AsociarMetodologiaDocenteAProgramaView" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="627.43,126.47,618.43,122.47,622.43,126.47,618.43,130.47,627.43,126.47" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="8" lengthAdjust="spacingAndGlyphs" textLength="196" x="400" y="124.0219">asociarMetodologiaDocenteAPrograma(programaId)</text><!--MD5=[a3546e8b7eefcfc4330a7b2041dbccfe]
+link AsociarMetodologiaDocenteAProgramaView to ProgramaController--><path d="M943.12,128.14 C961.01,128.34 973,128.47 973,128.47 C973,128.47 1290,128.47 1290,128.47 C1290,128.47 1359.08,120.59 1418.1,113.86 " fill="none" id="AsociarMetodologiaDocenteAProgramaView-&gt;ProgramaController" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="1423,113.3,1413.6021,110.3539,1418.0327,113.871,1414.5156,118.3016,1423,113.3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="8" lengthAdjust="spacingAndGlyphs" textLength="315" x="974" y="126.0219">cargarMetodologiasDocentesDisponibles(programaId) : List&lt;MetodologiaDocente&gt;</text><!--MD5=[a3546e8b7eefcfc4330a7b2041dbccfe]
+link AsociarMetodologiaDocenteAProgramaView to ProgramaController--><path d="M943.12,115.55 C961.01,114.3 973,113.47 973,113.47 C973,113.47 1270.37,108.39 1418.57,105.86 " fill="none" id="AsociarMetodologiaDocenteAProgramaView-&gt;ProgramaController-1" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="1423.13,105.79,1414.0628,101.9449,1418.1307,105.8757,1414.1999,109.9437,1423.13,105.79" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="8" lengthAdjust="spacingAndGlyphs" textLength="248" x="1007.5" y="105.7119">asociarMetodologiaDocente(programaId, metodologiaDocenteId)</text><!--MD5=[d5a562af6fedf925220ac10daa78eed1]
+link ProgramaController to MetodologiaDocenteRepository--><path d="M1578.22,102.43 C1720.27,98.6 2027.77,90.31 2198.55,85.71 " fill="none" id="ProgramaController-&gt;MetodologiaDocenteRepository" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="2203.3,85.58,2194.2002,81.8127,2198.3017,85.7085,2194.4058,89.81,2203.3,85.58" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="8" lengthAdjust="spacingAndGlyphs" textLength="273" x="1714" y="89.1419">listarDisponiblesParaPrograma(programaId) : List&lt;MetodologiaDocente&gt;</text><!--MD5=[ecdf17fca52b8e29adacfc6de31dd59f]
+link ProgramaController to ProgramaRepository--><path d="M1578.5,113.13 C1638.79,120.01 1713,128.47 1713,128.47 C1713,128.47 1898.71,131.38 2011.33,133.15 " fill="none" id="ProgramaController-&gt;ProgramaRepository" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="2016.12,133.22,2007.1899,129.0663,2011.1207,133.1343,2007.0528,137.0651,2016.12,133.22" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="8" lengthAdjust="spacingAndGlyphs" textLength="248" x="1726.5" y="126.0219">asociarMetodologiaDocente(programaId, metodologiaDocenteId)</text><!--MD5=[7b2c4706fd1871128feff56cdfea14be]
+link MetodologiaDocenteRepository to MetodologiaDocente--><path d="M2435.38,90.82 C2492.61,95.01 2560.42,99.96 2611.75,103.71 " fill="none" id="MetodologiaDocenteRepository-MetodologiaDocente" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[fa911430c614ad7c34ec06534f300252]
+link ProgramaRepository to Programa--><path d="M2175.49,135.04 C2261.46,135.67 2396.6,136.66 2464.73,137.16 " fill="none" id="ProgramaRepository-Programa" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[67b9ab269d287eec3fe19d2d98580ca1]
+link Programa to MetodologiaDocente--><path d="M2551.1,130.97 C2569.11,128.19 2590.75,124.85 2611.55,121.65 " fill="none" id="Programa-MetodologiaDocente" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[b455dae8c318cdf98336d466df9e0735]
+link AsociarMetodologiaDocenteAProgramaView to MetodologiasDocentesAbiertoSalida--><path d="M943.14,145.5 C1057.47,159.45 1212.52,178.35 1330.07,192.68 " fill="none" id="AsociarMetodologiaDocenteAProgramaView-&gt;MetodologiasDocentesAbiertoSalida" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="1334.84,193.27,1326.3985,188.1965,1329.8777,192.6568,1325.4174,196.1361,1334.84,193.27" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="8" lengthAdjust="spacingAndGlyphs" textLength="115" x="1074" y="147.3519">MetodologiaDocente asociada</text><!--MD5=[c85bdab6cb8e9dc282299714169a3d6e]
+@startuml asociarMetodologiaDocenteAPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO" as MetodologiasDocentesAbierto
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO" as MetodologiasDocentesAbiertoSalida
+
+package asociarMetodologiaDocenteAPrograma as "asociarMetodologiaDocenteAPrograma()" {
+    rectangle #629EF9 AsociarMetodologiaDocenteAProgramaView
+    rectangle #b5bd68 ProgramaController
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E MetodologiaDocenteRepository
+}
+
+MetodologiasDocentesAbierto - -> AsociarMetodologiaDocenteAProgramaView: <font size=8>asociarMetodologiaDocenteAPrograma(programaId)
+
+AsociarMetodologiaDocenteAProgramaView - -> ProgramaController: <font size=8>cargarMetodologiasDocentesDisponibles(programaId) : List<MetodologiaDocente>
+
+ProgramaController - -> MetodologiaDocenteRepository: <font size=8>listarDisponiblesParaPrograma(programaId) : List<MetodologiaDocente>
+
+AsociarMetodologiaDocenteAProgramaView - -> ProgramaController: <font size=8>asociarMetodologiaDocente(programaId, metodologiaDocenteId)
+
+ProgramaController - -> ProgramaRepository: <font size=8>asociarMetodologiaDocente(programaId, metodologiaDocenteId)
+
+MetodologiaDocenteRepository - - MetodologiaDocente
+ProgramaRepository - - Programa
+Programa - - MetodologiaDocente
+
+AsociarMetodologiaDocenteAProgramaView - -> MetodologiasDocentesAbiertoSalida: <font size=8>MetodologiaDocente asociada
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 25.0.4.1+1-1-26.04.4-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg>

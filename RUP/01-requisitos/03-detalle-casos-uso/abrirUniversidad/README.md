@@ -38,8 +38,11 @@
 
 </div>
 
+**Retocado el wireframe al cerrar la tanda #486/#487/#488/#492 (issue [#496](https://github.com/mmasias/pyCelda/issues/496)), sin tocar la especificación**: el listado de `Facultad` gana la columna "Programas" -- contador derivado del número de `Programa` de cada `Facultad`, issue [#487](https://github.com/mmasias/pyCelda/issues/487). De paso se corrige una divergencia previa entre el wireframe y `Universidad.tsx`: el código real ya mostraba la tabla de Facultades en línea en esta misma pantalla (sin pasar por un botón `[Ver Facultades]` hacia otra pantalla, que el wireframe anterior sí sugería) -- se actualiza el wireframe para reflejarlo, hallazgo incidental al tocar este fichero por #487, no un caso de uso nuevo.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `UNIVERSIDADES_ABIERTO --> UNIVERSIDAD_ABIERTO : abrirUniversidad()`
 - [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `Universidad`
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Universidad`, entidad raíz del catálogo institucional
+- [Issue #487](https://github.com/mmasias/pyCelda/issues/487) -- origen de la columna "Programas"

@@ -1,0 +1,51 @@
+@startuml importarContenidoDeGuiaHermana
+
+skinparam linetype polyline
+
+' A diferencia de importarBibliografiaDeGuiaHermana()/importarPlanificacionDocenteDeGuiaHermana()
+' (self-loop de su propio listado, REFERENCIAS_BIBLIOGRAFICAS_ABIERTO/
+' PLANIFICACION_DOCENTE_ABIERTO), contenido es un campo escalar de la propia
+' Guia -- self-loop directo de GUIA_ABIERTO, sin pantalla propia (issue #409).
+
+state GUIA_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> importarContenidoDeGuiaHermana
+note on link
+<b>Profesor</b> solicita importar contenido de una asignatura hermana
+end note
+
+state importarContenidoDeGuiaHermana as "importarContenidoDeGuiaHermana()" {
+
+    state c <<choice>>
+    state " " as SolicitandoOrigen
+
+    [*] -[#green]-> c
+
+    c -[#red]-> [*]
+    note on link
+    [ninguna AsignaturaPrograma hermana tiene Guia Aprobada en el CursoAcademico activo]
+    <b>Sistema</b> no ofrece el control: ninguna asignatura hermana tiene guía aprobada en el CursoAcademico activo
+    end note
+
+    c -[#green]-> SolicitandoOrigen
+    note on link
+    [al menos una AsignaturaPrograma hermana tiene Guia Aprobada en el CursoAcademico activo]
+    <b>Sistema</b> presenta las guías Aprobada de asignaturas hermanas del CursoAcademico activo
+    end note
+
+    SolicitandoOrigen -[#green]-> [*]
+    note on link
+    <b>Profesor</b> selecciona la guía origen
+    <b>Profesor</b> solicita importar
+    end note
+}
+
+importarContenidoDeGuiaHermana -[#green]-> GUIA_ABIERTO_SALIDA
+note on link
+reemplaza el contenido en el textarea; si la guía estaba Aprobada, pasa a Borrador
+end note
+
+importarContenidoDeGuiaHermana -[#red]-> GUIA_ABIERTO_SALIDA
+
+@enduml

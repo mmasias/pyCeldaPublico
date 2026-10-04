@@ -1,0 +1,33 @@
+@startuml editarActividadFormativa
+
+skinparam linetype polyline
+
+state ACTIVIDAD_FORMATIVA_ABIERTO
+state ACTIVIDAD_FORMATIVA_ABIERTO_SALIDA as "ACTIVIDAD_FORMATIVA_ABIERTO"
+
+ACTIVIDAD_FORMATIVA_ABIERTO -[#green]-> editarActividadFormativa
+note on link
+<b>Admin</b> solicita editar ActividadFormativa
+end note
+
+state editarActividadFormativa as "editarActividadFormativa()" {
+
+    state " " as EditandoDatos
+
+    [*] -[#green]-> EditandoDatos
+    note on link
+    <b>Sistema</b> presenta datos actuales de la ActividadFormativa
+    <b>Sistema</b> muestra código
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin</b> introduce nombre
+    <b>Admin</b> solicita guardar
+    end note
+}
+
+editarActividadFormativa -[#green]-> ACTIVIDAD_FORMATIVA_ABIERTO_SALIDA
+
+@enduml

@@ -1,0 +1,59 @@
+@startuml abrirProgramas-diseño
+title Diagrama de Secuencia - Abrir Programas
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as ProgramaRepo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita volver al listado de sus Programas
+activate Vista
+Vista -> API: GET /api/v1/programas
+activate API
+note right of API: el director_programa_id llega de la sesión\n(cookie JWT), no de la URL -- variante DirectorPrograma\nde este CU compartido con Admin
+API -> ProgramaRepo: listar_dirigidos_por(director_programa_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT ... FROM programas g\nJOIN programas_directores_programa gd ON gd.programa_id = g.id\nWHERE gd.director_programa_id = :director_programa_id
+activate DB
+DB --> ProgramaRepo: filas Programa
+deactivate DB
+ProgramaRepo --> API: List[Programa]
+deactivate ProgramaRepo
+
+API --> Vista: 200 OK (List[ProgramaResponse] JSON)
+deactivate API
+Vista --> DirectorPrograma: presenta el listado de Programas que dirige
+deactivate Vista
+
+@enduml
+
+@startuml abrirProgramas-admin-diseño
+title Diagrama de Secuencia - Abrir Programas (variante Admin, anidado bajo Facultad)
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as ProgramaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: desde una Facultad abierta, solicita ver sus Programas
+activate Vista
+Vista -> API: GET /api/v1/admin/facultades/{facultad_id}/programas
+activate API
+note right of API: Depends(require_admin) -- la facultad_id llega de la\nURL (ruta anidada bajo Facultad), no de la sesión --\nvariante Admin de este CU compartido con DirectorPrograma
+API -> ProgramaRepo: listar_de_la_facultad(facultad_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT ... FROM programas WHERE facultad_id = :facultad_id
+activate DB
+DB --> ProgramaRepo: filas Programa
+deactivate DB
+ProgramaRepo --> API: List[Programa]
+deactivate ProgramaRepo
+
+API --> Vista: 200 OK (List[ProgramaResponse] JSON, con facultad_id)
+deactivate API
+Vista --> Admin: presenta "PROGRAMAS -- <FACULTAD>" con [Abrir]/[Eliminar] por fila
+deactivate Vista
+
+@enduml

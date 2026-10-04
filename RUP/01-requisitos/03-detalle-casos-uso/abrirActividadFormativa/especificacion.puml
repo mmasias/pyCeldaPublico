@@ -1,0 +1,23 @@
+@startuml abrirActividadFormativa
+
+skinparam linetype polyline
+
+state ACTIVIDADES_FORMATIVAS_ABIERTO
+state ACTIVIDAD_FORMATIVA_ABIERTO
+
+ACTIVIDADES_FORMATIVAS_ABIERTO -[#green]-> abrirActividadFormativa
+note on link
+<b>Admin</b> solicita abrir ActividadFormativa
+end note
+
+state abrirActividadFormativa as "abrirActividadFormativa()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la ActividadFormativa
+    end note
+}
+
+abrirActividadFormativa -[#green]-> ACTIVIDAD_FORMATIVA_ABIERTO
+
+@enduml

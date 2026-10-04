@@ -1,0 +1,33 @@
+@startuml abrirAsignaturasPrograma
+
+skinparam linetype polyline
+
+' Parametrizado: invocación directa de DirectorPrograma (este diagrama, sin
+' filtro, con Profesorado) vs. la variante del actor Profesor (filtrada a ese
+' profesor, sin columna Profesorado), que abrirInicio() incluye como sección
+' "Mis guías" (<<include>>) y que también es alcanzable como pantalla completa
+' por deep link -- ver actoresCasosUsoProfesor.puml y wireframe-porProfesor.svg.
+' El comportamiento interno (listar AsignaturaPrograma) es el mismo caso de uso;
+' el filtro es el parámetro, no una rama nueva de este statechart. El endpoint
+' de la variante por-profesor devuelve [] (no 403) para una cuenta sin fila en
+' Profesor -- discussion #274.
+
+state PROGRAMA_ABIERTO
+state ASIGNATURAS_PROGRAMA_ABIERTO
+
+PROGRAMA_ABIERTO -[#green]-> abrirAsignaturasPrograma
+note on link
+<b>DirectorPrograma</b> solicita abrir AsignaturasPrograma
+end note
+
+state abrirAsignaturasPrograma as "abrirAsignaturasPrograma()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de AsignaturaPrograma del Programa
+    end note
+}
+
+abrirAsignaturasPrograma -[#green]-> ASIGNATURAS_PROGRAMA_ABIERTO
+
+@enduml

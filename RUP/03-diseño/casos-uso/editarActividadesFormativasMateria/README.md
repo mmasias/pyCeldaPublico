@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > editarActividadesFormativasMateria() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md)|[Análisis](/RUP/02-analisis/casos-uso/editarActividadesFormativasMateria/README.md)|**Diseño**|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md)|[Análisis](/RUP/02-analisis/casos-uso/editarActividadesFormativasMateria/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -35,7 +35,7 @@ Bajada a diseño del caso de análisis [`editarActividadesFormativasMateria()`](
 ## Participantes
 
 - **Vista**: `EditarActividadesFormativasMateriaView` (React) -- rejilla de 10 filas, `codigo`/`nombre` de solo lectura, `horas` editable (numérico, decimales); `GET` + `PUT /api/v1/materias/{materia_id}/actividades-formativas`. Vive en la pantalla de detalle de `Materia` ([`abrirMateria()`](/RUP/03-diseño/casos-uso/abrirMateria/README.md)).
-- **API**: `routers/materia.py::listar_actividades_formativas(materia_id)` / `::editar_actividades_formativas(materia_id, datos)` -- funciones sueltas, auth `get_current_director_grado_id` + `_verificar_materia_del_director` (mismo guard que el resto de self-loops de `MATERIA_ABIERTO`).
+- **API**: `routers/materia.py::listar_actividades_formativas(materia_id)` / `::editar_actividades_formativas(materia_id, datos)` -- funciones sueltas, auth `get_current_director_programa_id` + `_verificar_materia_del_director` (mismo guard que el resto de self-loops de `MATERIA_ABIERTO`).
 - **Modelo**: `ActividadFormativaMateria.actualizar(horas)` -- única columna editable.
 - **Repositorio**: `ActividadFormativaMateriaRepository.listar_de(materia_id)` / `.actualizar_lote(filas)`.
 
@@ -45,7 +45,7 @@ Bajada a diseño del caso de análisis [`editarActividadesFormativasMateria()`](
 
 **Response (200 OK):** lista de 10 objetos `{ actividad_formativa_id, codigo, nombre, horas }`, ordenados por `codigo` (`AF1`..`AF10`).
 
-**Response (404 Not Found):** `{ "detail": "Materia no encontrada" }` -- `Materia` inexistente o no dirigida por el `DirectorGrado`.
+**Response (404 Not Found):** `{ "detail": "Materia no encontrada" }` -- `Materia` inexistente o no dirigida por el `DirectorPrograma`.
 
 ### PUT `/api/v1/materias/{materia_id}/actividades-formativas`
 
@@ -67,12 +67,12 @@ o `actividad_formativa_id` fuera del catálogo / duplicado. **Nada se persiste**
 - **`PUT` idempotente y transaccional**: aplica las 10 actualizaciones en una sola transacción; si alguna `horas` es negativa o un `actividad_formativa_id` no está en el catálogo, `422` y `rollback` -- el reparto no queda a medias.
 - **`horas` es `Numeric(6, 2)`** (mismo criterio que `ects`/`ponderacion`): admite decimales, no negativos. Sin cota superior explícita -- no hay regla de negocio que la fije (la suma vs ECTS no se valida, decisión de la discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)).
 - **La regla `AfM = Σ AfAdM` no se toca aquí**: es responsabilidad de [`consultarEstadoActividadesFormativasMateria()`](/RUP/03-diseño/casos-uso/consultarEstadoActividadesFormativasMateria/README.md), medidor blando. Guardar un reparto que aún no cuadra es válido.
-- **Sin `HistorialCambio`**: `editarMateria()`/`editarAsignaturaGrado()` tampoco lo generan -- `HistorialCambio` es del agregado `Guia`. Consistente.
-- **Tabla nueva `actividades_formativas_materia`** (`materia_id` PK/FK, `actividad_formativa_id` PK/FK, `horas`). Se crea en la migración de esquema del clúster; las 10 filas por `Materia` se autopueblan a 0 en el `crear()` del repositorio, en `seed_grado.py` y en el backfill de la migración (ver [modelo de datos](/RUP/03-diseño/modelo-datos/README.md)).
+- **Sin `HistorialCambio`**: `editarMateria()`/`editarAsignaturaPrograma()` tampoco lo generan -- `HistorialCambio` es del agregado `Guia`. Consistente.
+- **Tabla nueva `actividades_formativas_materia`** (`materia_id` PK/FK, `actividad_formativa_id` PK/FK, `horas`). Se crea en la migración de esquema del clúster; las 10 filas por `Materia` se autopueblan a 0 en el `crear()` del repositorio, en `seed_programa.py` y en el backfill de la migración (ver [modelo de datos](/RUP/03-diseño/modelo-datos/README.md)).
 
 ## Referencias
 
 - [`editarActividadesFormativasMateria()` en Análisis](/RUP/02-analisis/casos-uso/editarActividadesFormativasMateria/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md).
-- [`editarActividadesFormativasAsignaturaGrado()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaGrado/README.md) -- mismo patrón con `porcentaje_presencialidad` además de `horas`.
+- [`editarActividadesFormativasAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md) -- mismo patrón con `porcentaje_presencialidad` además de `horas`.
 - [`consultarEstadoActividadesFormativasMateria()` en Diseño](/RUP/03-diseño/casos-uso/consultarEstadoActividadesFormativasMateria/README.md) -- el medidor de la regla `AfM = Σ AfAdM`.

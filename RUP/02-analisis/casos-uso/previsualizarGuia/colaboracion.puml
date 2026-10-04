@@ -22,7 +22,7 @@ GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
 
 GuiaController --> RenderizadorGuiaDocente: <font size=8>renderizarHTML(guia, noOficial) : documento
 
-RenderizadorGuiaDocente --> Guia: <font size=8>datos de la Guia y su cascada (AsignaturaGrado, Materia, Grado, Facultad, ResultadoAprendizaje en vivo)
+RenderizadorGuiaDocente --> Guia: <font size=8>datos de la Guia y su cascada (AsignaturaPrograma, Materia, Programa, Facultad, ResultadoAprendizaje en vivo)
 
 GuiaRepository -- Guia
 

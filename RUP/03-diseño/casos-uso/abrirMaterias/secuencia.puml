@@ -1,20 +1,20 @@
 @startuml abrirMaterias-diseño
 title Diagrama de Secuencia - Abrir Materias
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "MateriaRepository" as MateriaRepo
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita abrir las Materias del Grado
+DirectorPrograma -> Vista: solicita abrir las Materias del Programa
 activate Vista
-Vista -> API: GET /api/v1/grados/{grado_id}/materias
+Vista -> API: GET /api/v1/programas/{programa_id}/materias
 activate API
 
-API -> MateriaRepo: listar_del_grado(grado_id)
+API -> MateriaRepo: listar_del_programa(programa_id)
 activate MateriaRepo
-MateriaRepo -> DB: SELECT ... FROM materias WHERE grado_id = :grado_id
+MateriaRepo -> DB: SELECT ... FROM materias WHERE programa_id = :programa_id
 activate DB
 DB --> MateriaRepo: filas Materia
 deactivate DB
@@ -23,7 +23,7 @@ deactivate MateriaRepo
 
 API --> Vista: 200 OK (List[MateriaResponse] JSON)
 deactivate API
-Vista --> DirectorGrado: presenta el listado de Materias del Grado
+Vista --> DirectorPrograma: presenta el listado de Materias del Programa
 deactivate Vista
 
 @enduml
@@ -37,14 +37,14 @@ participant "API (FastAPI)" as API
 participant "MateriaRepository" as MateriaRepo
 database "Base de Datos" as DB
 
-Admin -> Vista: desde la ficha del Grado (enlace "Ver Materias"),\nsolicita ver sus Materias
+Admin -> Vista: desde la ficha del Programa (enlace "Ver Materias"),\nsolicita ver sus Materias
 activate Vista
-Vista -> API: GET /api/v1/admin/grados/{grado_id}/materias
+Vista -> API: GET /api/v1/admin/programas/{programa_id}/materias
 activate API
-note right of API: Depends(require_admin) -- mismo repositorio que\nGET /api/v1/grados/{grado_id}/materias de DirectorGrado,\nsolo cambia el namespace de autorización
-API -> MateriaRepo: listar_del_grado(grado_id)
+note right of API: Depends(require_admin) -- mismo repositorio que\nGET /api/v1/programas/{programa_id}/materias de DirectorPrograma,\nsolo cambia el namespace de autorización
+API -> MateriaRepo: listar_del_programa(programa_id)
 activate MateriaRepo
-MateriaRepo -> DB: SELECT ... FROM materias WHERE grado_id = :grado_id
+MateriaRepo -> DB: SELECT ... FROM materias WHERE programa_id = :programa_id
 activate DB
 DB --> MateriaRepo: filas Materia
 deactivate DB

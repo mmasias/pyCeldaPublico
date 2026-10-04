@@ -1,0 +1,38 @@
+@startuml editarCursoAcademico-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":CURSO_ACADEMICO_ABIERTO" as CursoAcademicoAbierto
+rectangle #CDEBA5 ":CURSO_ACADEMICO_ABIERTO" as CursoAcademicoAbiertoSalida
+
+package editarCursoAcademico as "editarCursoAcademico()" {
+    rectangle #629EF9 EditarCursoAcademicoView
+    rectangle #b5bd68 CursoAcademicoController
+    rectangle #F2AC4E CursoAcademico
+    rectangle #F2AC4E CursoAcademicoRepository
+}
+
+CursoAcademicoAbierto --> EditarCursoAcademicoView: <font size=8>editarCursoAcademico(cursoAcademicoId)
+
+EditarCursoAcademicoView --> CursoAcademicoController: <font size=8>cargarCursoAcademico(cursoAcademicoId) : CursoAcademico
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>obtener(cursoAcademicoId) : CursoAcademico
+
+EditarCursoAcademicoView --> CursoAcademicoController: <font size=8>puedeEditar(cursoAcademicoId) : boolean <<choice>>
+
+CursoAcademicoController --> CursoAcademico: <font size=8>tieneGuiaAsociada() : boolean
+
+EditarCursoAcademicoView --> CursoAcademicoController: <font size=8>guardarCambios(cursoAcademicoId, inicio, fin) : CursoAcademico
+
+CursoAcademicoController --> CursoAcademico: <font size=8>actualizar(inicio, fin)
+
+CursoAcademicoController --> CursoAcademicoRepository: <font size=8>actualizar(cursoAcademico) : CursoAcademico
+
+CursoAcademicoRepository -- CursoAcademico
+
+EditarCursoAcademicoView ..[#green]> CursoAcademicoAbiertoSalida: <font size=8>datos actualizados
+
+EditarCursoAcademicoView ..[#red]> CursoAcademicoAbiertoSalida: <font size=8>bloqueado, sin cambios -- tiene Guias asociadas
+
+@enduml

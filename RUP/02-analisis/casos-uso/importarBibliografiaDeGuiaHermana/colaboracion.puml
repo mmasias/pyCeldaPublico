@@ -9,8 +9,8 @@ rectangle #CDEBA5 ":Collaboration AbrirReferenciasBibliograficas" as AbrirRefere
 package importarBibliografiaDeGuiaHermana as "importarBibliografiaDeGuiaHermana()" {
     rectangle #629EF9 ImportarBibliografiaDeGuiaHermanaView
     rectangle #b5bd68 ImportarBibliografiaDeGuiaHermanaController
-    rectangle #F2AC4E AsignaturaGrado
-    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
     rectangle #F2AC4E Guia
     rectangle #F2AC4E GuiaRepository
     rectangle #F2AC4E ReferenciaBibliografica
@@ -26,7 +26,7 @@ ImportarBibliografiaDeGuiaHermanaView --> ImportarBibliografiaDeGuiaHermanaContr
 
 ImportarBibliografiaDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaDestinoId) : Guia
 
-ImportarBibliografiaDeGuiaHermanaController --> AsignaturaGradoRepository: <font size=8>listarHermanas(asignaturaGradoId) : lista de AsignaturaGrado
+ImportarBibliografiaDeGuiaHermanaController --> AsignaturaProgramaRepository: <font size=8>listarHermanas(asignaturaProgramaId) : lista de AsignaturaPrograma
 
 ImportarBibliografiaDeGuiaHermanaController --> GuiaRepository: <font size=8>listarAprobadasDe(hermanas) : lista de Guia
 
@@ -42,7 +42,7 @@ ImportarBibliografiaDeGuiaHermanaController --> HistorialCambio: <font size=8>re
 
 ImportarBibliografiaDeGuiaHermanaController --> GuiaRepository: <font size=8>actualizar(guia)
 
-AsignaturaGradoRepository -- AsignaturaGrado
+AsignaturaProgramaRepository -- AsignaturaPrograma
 GuiaRepository -- Guia
 ReferenciaBibliograficaRepository -- ReferenciaBibliografica
 Guia *-- HistorialCambio

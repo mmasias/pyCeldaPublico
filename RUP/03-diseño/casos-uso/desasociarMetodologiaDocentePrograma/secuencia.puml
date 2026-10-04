@@ -1,0 +1,59 @@
+@startuml desasociarMetodologiaDocentePrograma-diseño
+title Diagrama de Secuencia - Desasociar Metodología Docente de Programa
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as ProgramaRepo
+participant "Programa" as Programa
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita desasociar una MetodologiaDocente del Programa
+activate Vista
+Vista -> API: GET /api/v1/programas/{programa_id}/metodologias-docentes/{metodologia_docente_id}/puede-desasociarse
+activate API
+API -> ProgramaRepo: obtener(programa_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT ... FROM programas WHERE id = :programa_id
+activate DB
+DB --> ProgramaRepo: fila Programa
+deactivate DB
+ProgramaRepo --> API: Programa
+deactivate ProgramaRepo
+note right of API: _verificar_programa_del_director(): 404 si el Programa no existe\no no es del DirectorPrograma (Admin pasa sin comprobación)
+API -> Programa: materias_con_metodologia_docente(metodologia_docente_id)
+activate Programa
+note right of Programa: Fat Model: recorre sus Materia (relación ORM) y devuelve\nlos nombres de las que ya tienen la MetodologiaDocente
+Programa --> API: list[str]
+deactivate Programa
+API --> Vista: 200 OK (list[str] JSON, [] = no bloqueada)
+deactivate API
+
+alt en uso en alguna Materia del Programa
+  Vista --> DirectorPrograma: presenta el bloqueo con los nombres reales\n("En uso en: Materia 'X'"), sin cambios
+else sin uso -- el DirectorPrograma confirma
+  DirectorPrograma -> Vista: confirma
+  Vista -> API: DELETE /api/v1/programas/{programa_id}/metodologias-docentes/{metodologia_docente_id}
+  activate API
+  API -> Programa: materias_con_metodologia_docente(metodologia_docente_id)
+  activate Programa
+  Programa --> API: list[str] (reverificado -- 409 con los mismos nombres si ya no está vacía)
+  deactivate Programa
+  API -> ProgramaRepo: desasociar_metodologia_docente(programa_id, metodologia_docente_id)
+  activate ProgramaRepo
+  ProgramaRepo -> DB: DELETE FROM programas_metodologias_docentes\nWHERE programa_id = :programa_id\nAND metodologia_docente_id = :metodologia_docente_id
+  activate DB
+  DB --> ProgramaRepo: ok
+  deactivate DB
+  ProgramaRepo --> API: void
+  deactivate ProgramaRepo
+  API --> Vista: 204 No Content
+  deactivate API
+  Vista --> DirectorPrograma: presenta la lista actualizada
+else el DirectorPrograma cancela
+  DirectorPrograma -> Vista: cancela
+  Vista --> DirectorPrograma: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml desasociarResultadoAprendizajeAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Desasociar Resultado de Aprendizaje de AsignaturaPrograma
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita desasociar un ResultadoAprendizaje de la AsignaturaPrograma
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-programa/{asignatura_programa_id}/resultados-aprendizaje/{resultado_aprendizaje_id}/quedaria-sin-resultados
+activate API
+API -> AsignaturaProgramaRepo: quedaria_sin_resultados_tras_desasociar(asignatura_programa_id, resultado_aprendizaje_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT EXISTS (... WHERE asignatura_programa_id = :asignatura_programa_id\nAND resultado_aprendizaje_id != :resultado_aprendizaje_id)
+activate DB
+DB --> AsignaturaProgramaRepo: boolean
+deactivate DB
+AsignaturaProgramaRepo --> API: boolean
+deactivate AsignaturaProgramaRepo
+API --> Vista: 200 OK (boolean JSON)
+deactivate API
+note right of Vista: true no bloquea -- solo añade la advertencia\nde que quedaría sin ninguno al diálogo de confirmación
+
+alt el DirectorPrograma confirma (con o sin advertencia)
+  DirectorPrograma -> Vista: confirma
+  Vista -> API: DELETE /api/v1/asignaturas-programa/{asignatura_programa_id}/resultados-aprendizaje/{resultado_aprendizaje_id}
+  activate API
+  API -> AsignaturaProgramaRepo: desasociar_resultado_aprendizaje(asignatura_programa_id, resultado_aprendizaje_id)
+  activate AsignaturaProgramaRepo
+  AsignaturaProgramaRepo -> DB: DELETE FROM asignaturas_programa_resultados_aprendizaje\nWHERE asignatura_programa_id = :asignatura_programa_id\nAND resultado_aprendizaje_id = :resultado_aprendizaje_id
+  activate DB
+  DB --> AsignaturaProgramaRepo: ok
+  deactivate DB
+  AsignaturaProgramaRepo --> API: void
+  deactivate AsignaturaProgramaRepo
+  API --> Vista: 204 No Content
+  deactivate API
+  Vista --> DirectorPrograma: presenta la lista actualizada
+else el DirectorPrograma cancela
+  DirectorPrograma -> Vista: cancela
+  Vista --> DirectorPrograma: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

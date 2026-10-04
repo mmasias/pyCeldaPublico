@@ -1,0 +1,55 @@
+@startuml editarTextoSistemaEvaluacion-diseño
+title Diagrama de Secuencia - Editar Texto del Sistema de Evaluación
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "AsignaturaProgramaRepository" as APRepo
+participant "Guia" as Guia
+database "Base de Datos" as DB
+
+Profesor -> Vista: abre "Gestionar evaluación" (texto precargado)
+activate Vista
+Profesor -> Vista: edita el texto de convocatorias (o carga una plantilla) y guarda
+note right of Vista: contarMarcadorTabla(texto) == 1 se comprueba\naquí; si no, "Guardar texto" queda deshabilitado
+Vista -> API: PUT /api/v1/guias/{guia_id}/texto-sistema-evaluacion {texto}
+activate API
+note right of API: Depends(get_current_profesor_id)
+API -> GuiaRepo: obtener(guia_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+activate DB
+DB --> GuiaRepo: fila Guia
+deactivate DB
+GuiaRepo --> API: Guia (o None)
+deactivate GuiaRepo
+API -> APRepo: imparte(guia.asignatura_programa_id, profesor_id)
+activate APRepo
+APRepo --> API: bool
+deactivate APRepo
+
+alt Guia inexistente, sin AsignaturaPrograma o Profesor que no la imparte
+    API --> Vista: 404 Not Found ("Guia no encontrada")
+    Vista --> Profesor: presenta el error
+else texto.count("[TABLA]") != 1
+    API --> Vista: 422 Unprocessable Entity (no se persiste nada)
+    Vista --> Profesor: presenta el error del marcador
+else texto con exactamente un marcador
+    API -> Guia: texto_sistema_evaluacion = texto
+    note right of Guia: asignación directa; sin HistorialCambio,\nsin confirmar_guardado(), sin regenerar_pdf()
+    API -> GuiaRepo: actualizar(guia)
+    activate GuiaRepo
+    GuiaRepo -> DB: UPDATE guias SET texto_sistema_evaluacion = ...; COMMIT
+    activate DB
+    DB --> GuiaRepo: ok
+    deactivate DB
+    GuiaRepo --> API: Guia
+    deactivate GuiaRepo
+    API --> Vista: 200 OK (GuiaResponse JSON)
+    Vista --> Profesor: "Texto guardado."
+end
+deactivate API
+deactivate Vista
+
+@enduml

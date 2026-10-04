@@ -1,0 +1,16 @@
+@startsalt crearActividadFormativa-wireframe
+{
+    <b>CREAR ACTIVIDAD FORMATIVA</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "          "
+        <b>Nombre (*):</b>
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear]}
+}
+@endsalt

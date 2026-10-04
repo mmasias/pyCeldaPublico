@@ -7,7 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.database import Base, DateTimeUTC
 
 if TYPE_CHECKING:
-    from app.models.asignatura_grado import AsignaturaGrado
+    from app.models.asignatura_programa import AsignaturaPrograma
     from app.models.curso_academico import CursoAcademico
     from app.models.historial_cambio import HistorialCambio
     from app.models.ponderacion_evaluacion import PonderacionEvaluacion
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 # issue #254: la transición Aprobada -> EnRevision que dispara el Admin al
-# cambiar el profesorado de la AsignaturaGrado se registra en HistorialCambio
+# cambiar el profesorado de la AsignaturaPrograma se registra en HistorialCambio
 # con este autor centinela (ningún Profesor/Admin real tiene id 0) y este
 # comentario fijo, que además es el texto del banner en la guía.
 AUTOR_ADMIN_CENTINELA = 0
@@ -31,6 +31,10 @@ COMENTARIO_REVISION_POR_PROFESORADO = (
 # debe llegar al PDF oficial ni a la BD. No hay migración: ninguna guía viva
 # lo supera.
 LIMITE_CONTENIDO_GUIA = 10_000
+
+
+# issue #610: marcador del texto de convocatorias donde va la tabla real.
+MARCADOR_TABLA = "[TABLA]"
 
 
 guias_profesores = Table(
@@ -48,13 +52,18 @@ class Guia(Base):
     estado: Mapped[str] = mapped_column(String(20), default="Borrador")
     semestre: Mapped[int | None] = mapped_column(nullable=True)
     contenido: Mapped[str] = mapped_column(Text, default="")
-    # Snapshot de AsignaturaGrado.sesiones_minimas al nacer la Guia (como
+    # issue #610 (Patrón B, como contenido/ponderaciones/sesiones): texto de
+    # convocatorias del apartado 5 de la guía, con el marcador MARCADOR_TABLA
+    # donde se inserta la tabla de ponderaciones. Nace vacío en una Guia sin
+    # predecesora; activar_curso_academico() lo clona de la Guia previa.
+    texto_sistema_evaluacion: Mapped[str] = mapped_column(Text, default="")
+    # Snapshot de AsignaturaPrograma.sesiones_minimas al nacer la Guia (como
     # semestre y contenido -- discussion #206). El mínimo de Sesion vinculadas
     # que exige planificacion_docente_completa() antes de enviar a revisión.
     sesiones_minimas: Mapped[int] = mapped_column(default=25)
-    grado_id: Mapped[int | None] = mapped_column(nullable=True)
-    asignatura_grado_id: Mapped[int | None] = mapped_column(
-        ForeignKey("asignaturas_grado.id"), nullable=True
+    programa_id: Mapped[int | None] = mapped_column(nullable=True)
+    asignatura_programa_id: Mapped[int | None] = mapped_column(
+        ForeignKey("asignaturas_programa.id"), nullable=True
     )
     # issue #433: el dato siempre existió implícitamente (nunca hubo más de
     # un CursoAcademico en juego), así que a diferencia de las columnas
@@ -90,7 +99,7 @@ class Guia(Base):
     )
     sesiones: Mapped[list["Sesion"]] = relationship(back_populates="guia")
     historial: Mapped[list["HistorialCambio"]] = relationship(back_populates="guia")
-    asignatura_grado: Mapped["AsignaturaGrado | None"] = relationship(
+    asignatura_programa: Mapped["AsignaturaPrograma | None"] = relationship(
         back_populates="guias"
     )
     # issue #454: back_populates hacia CursoAcademico.guias (la inversa ya
@@ -102,16 +111,16 @@ class Guia(Base):
     profesorado: Mapped[list["Profesor"]] = relationship(secondary=guias_profesores)
 
     @property
-    def asignatura_grado_nombre(self) -> str | None:
-        return self.asignatura_grado.nombre if self.asignatura_grado else None
+    def asignatura_programa_nombre(self) -> str | None:
+        return self.asignatura_programa.nombre if self.asignatura_programa else None
 
     @property
-    def asignatura_grado_curso(self) -> int | None:
-        return self.asignatura_grado.curso if self.asignatura_grado else None
+    def asignatura_programa_curso(self) -> int | None:
+        return self.asignatura_programa.curso if self.asignatura_programa else None
 
     @property
-    def asignatura_grado_semestre_default(self) -> int | None:
-        return self.asignatura_grado.semestre_default if self.asignatura_grado else None
+    def asignatura_programa_semestre_default(self) -> int | None:
+        return self.asignatura_programa.semestre_default if self.asignatura_programa else None
 
     def _ultimo_cambio_historial(self) -> "HistorialCambio | None":
         # Solo las transiciones de estado son señal de "el Director tocó esto"
@@ -150,7 +159,7 @@ class Guia(Base):
     @property
     def comentario_revision_por_profesorado(self) -> str | None:
         """Banner de la guía cuando volvió a EnRevisión porque el Admin cambió
-        el profesorado de la AsignaturaGrado (issue #254). Misma mecánica que
+        el profesorado de la AsignaturaPrograma (issue #254). Misma mecánica que
         comentario_rechazo/comentario_revocacion: lee la última transición de
         estado y expone su comentario, aquí acotado a la transición
         Aprobada -> EnRevisión con el autor centinela."""
@@ -266,7 +275,7 @@ class Guia(Base):
             por_sistema[p.sistema_evaluacion_id] = (
                 por_sistema.get(p.sistema_evaluacion_id, 0) + float(p.ponderacion)
             )
-        for sistema in self.asignatura_grado.materia.sistemas_evaluacion:
+        for sistema in self.asignatura_programa.materia.sistemas_evaluacion:
             asignado = por_sistema.get(sistema.id, 0.0)
             minima = float(sistema.ponderacion_minima)
             maxima = float(sistema.ponderacion_maxima)
@@ -306,12 +315,12 @@ class Guia(Base):
 
     def _sincronizar_profesorado(self) -> None:
         # issue #254: Guia -- Profesor es una copia que se re-deriva de la
-        # plantilla AsignaturaGrado -- Profesor en cada aprobación de la guía
+        # plantilla AsignaturaPrograma -- Profesor en cada aprobación de la guía
         # activa (misma familia que Guia.contenido: un mantenedor y un ciclo de
-        # re-aprobación). Si la Guia no tiene AsignaturaGrado (columna nullable),
+        # re-aprobación). Si la Guia no tiene AsignaturaPrograma (columna nullable),
         # no hay plantilla de la que copiar y la copia se queda como está.
-        if self.asignatura_grado is not None:
-            self.profesorado = list(self.asignatura_grado.profesorado)
+        if self.asignatura_programa is not None:
+            self.profesorado = list(self.asignatura_programa.profesorado)
 
     def aprobar(self) -> None:
         # regenerar_pdf() como parte del propio cambio de estado (discussion

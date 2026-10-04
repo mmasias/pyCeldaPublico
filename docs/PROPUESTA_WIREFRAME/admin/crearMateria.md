@@ -1,3 +1,9 @@
+<div align=right>
+
+<sub>Volver: [Al inicio](/README.md) / [inicio de Admin](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)</sub>
+
+</div>
+
 # Admin
 
 <div align=center>
@@ -8,7 +14,7 @@
 |---|---|
 |[**Editar**](editarMateria.md)|<sub>editarMateria()</sub>|
 |[**Volver al listado**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
-|[**Abrir**](abrirAsignaturaGrado.md)|<sub>abrirAsignaturaGrado()</sub>|
+|[**Abrir**](abrirAsignaturaPrograma.md)|<sub>abrirAsignaturaPrograma()</sub>|
 |[**Abrir sistemas evaluacion**](abrirSistemasEvaluacion.md)|<sub>abrirSistemasEvaluacion()</sub>|
 
 </div>

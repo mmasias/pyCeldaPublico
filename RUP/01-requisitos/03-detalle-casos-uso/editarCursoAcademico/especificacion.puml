@@ -19,12 +19,14 @@ state editarCursoAcademico as "editarCursoAcademico()" {
 
     c -[#green]-> EditandoDatos
     note on link
+    [CursoAcademico sin ninguna Guia asociada]
     <b>Sistema</b> presenta datos actuales del CursoAcademico
     <b>Sistema</b> permite solicitar guardar
     end note
 
     c -[#red]-> [*]
     note on link
+    [CursoAcademico con alguna Guia asociada]
     <b>Sistema</b> presenta mensaje de bloqueo por Guias asociadas
     end note
 

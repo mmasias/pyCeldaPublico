@@ -1,0 +1,24 @@
+@startuml comprobarCopiasSeguridad-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":COPIAS_SEGURIDAD_ABIERTO" as CopiasSeguridadAbierto
+rectangle #CDEBA5 ":COPIAS_SEGURIDAD_ABIERTO" as CopiasSeguridadAbiertoSalida
+
+package comprobarCopiasSeguridad as "comprobarCopiasSeguridad()" {
+    rectangle #629EF9 ComprobarCopiasSeguridadView
+    rectangle #b5bd68 CopiaSeguridadController
+    rectangle #F2AC4E ManifiestoCopiasSeguridad
+}
+
+CopiasSeguridadAbierto --> ComprobarCopiasSeguridadView: <font size=8>comprobarCopiasSeguridad()
+
+ComprobarCopiasSeguridadView --> CopiaSeguridadController: <font size=8>comprobarCopias() : List<SaludCopia>
+
+CopiaSeguridadController --> ManifiestoCopiasSeguridad: <font size=8>leerCopias() : List<CopiaSeguridad>
+note right: solo lectura: no escribe el manifiesto ni los ficheros
+
+ComprobarCopiasSeguridadView --> CopiasSeguridadAbiertoSalida: <font size=8>presenta la salud de cada copia y un resumen
+
+@enduml

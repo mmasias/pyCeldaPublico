@@ -1,0 +1,14 @@
+@startsalt abrirMetodologiasDocentesPrograma-wireframe
+{
+    <b>METODOLOGÍAS DOCENTES -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+        <b>Código | <b>Descripción | .
+        MD-01 | Clase magistral participativa | [Desasociar]
+        MD-02 | Aprendizaje basado en problemas | [Desasociar]
+        MD-03 | Aprendizaje basado en proyectos | [Desasociar]
+    }
+    ====
+    [ <b>+ Asociar Metodología Docente</b> ]
+}
+@endsalt

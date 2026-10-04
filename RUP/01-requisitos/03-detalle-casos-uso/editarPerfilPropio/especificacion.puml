@@ -1,0 +1,42 @@
+@startuml editarPerfilPropio
+
+skinparam linetype polyline
+
+' Un solo CU para ver+editar, no split abrirX()/editarX() como Guia/Ponderacion/
+' Referencia (issue #423): no hay navegación de lista a detalle que preceda --
+' se llega directo desde INICIO_ABIERTO a un registro único (el propio Profesor),
+' igual que consultarCopiasSeguridad()/consultarHistorialCambios() combinan
+' lectura+acción en un solo CU sin abrir() separado.
+
+state INICIO_ABIERTO
+state INICIO_ABIERTO_SALIDA as "INICIO_ABIERTO"
+
+INICIO_ABIERTO -[#green]-> editarPerfilPropio
+note on link
+<b>Profesor</b> (o <b>DirectorPrograma</b>, que siempre tiene fila Profesor asociada) abre "Mi perfil"
+end note
+
+state editarPerfilPropio as "editarPerfilPropio()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta los valores actuales del perfil (todos opcionales, sin dato = vacío/"No")
+    end note
+
+    [*] -[#blue]-> [*]
+    note on link
+    <b>Profesor</b> guarda cambios -- <b>Sistema</b> persiste y refresca la pantalla con los valores guardados
+    end note
+
+    [*] -[#red]-> [*]
+    note on link
+    ORCID con formato inválido, o "Otro" organismo acreditador sin especificar -- <b>Sistema</b> rechaza sin guardar, formulario intacto
+    end note
+}
+
+editarPerfilPropio -[#green]-> INICIO_ABIERTO_SALIDA
+note on link
+abrirInicio()
+end note
+
+@enduml

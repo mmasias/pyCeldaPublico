@@ -1,0 +1,32 @@
+@startuml asociarMetodologiaDocenteAAsignaturaPrograma
+
+skinparam linetype polyline
+
+state ASIGNATURA_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO_SALIDA as "ASIGNATURA_PROGRAMA_ABIERTO"
+
+ASIGNATURA_PROGRAMA_ABIERTO -[#green]-> asociarMetodologiaDocenteAAsignaturaPrograma
+note on link
+<b>DirectorPrograma</b> solicita asociar MetodologiaDocente a AsignaturaPrograma
+end note
+
+state asociarMetodologiaDocenteAAsignaturaPrograma as "asociarMetodologiaDocenteAAsignaturaPrograma()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta selección de MetodologiaDocente ya asociadas a la Materia y no asociadas aún a esta AsignaturaPrograma
+    <b>Sistema</b> permite solicitar asociar
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>DirectorPrograma</b> selecciona MetodologiaDocente
+    <b>DirectorPrograma</b> solicita asociar
+    end note
+}
+
+asociarMetodologiaDocenteAAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+
+@enduml

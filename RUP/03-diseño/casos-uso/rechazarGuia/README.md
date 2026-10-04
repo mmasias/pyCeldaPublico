@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > rechazarGuia() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/README.md)|[Análisis](/RUP/02-analisis/casos-uso/rechazarGuia/README.md)|**Diseño**|[Desarrollo](/RUP/04-desarrollo/casos-uso/rechazarGuia/README.md)|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/README.md)|[Análisis](/RUP/02-analisis/casos-uso/rechazarGuia/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -44,7 +44,7 @@ Bajada a diseño del caso de análisis [`rechazarGuia()`](/RUP/02-analisis/casos
 - **Mismo esqueleto que `aprobarGuia()`**: obtener, transicionar, registrar historial, persistir -- la única diferencia real es que el `comentario` viaja en el `RechazarGuiaRequest` (Pydantic) en vez de ser una cadena fija del Router.
 - **Sin `alt` de negocio**: la especificación no modela rama de fallo -- la acción solo es alcanzable sobre una `Guia` `EnRevision` (el botón condicional de la Vista ya lo garantiza).
 - **Sin capa Service**: Router delgado -> Modelo/Repository.
-- **Autenticación fuera de este diagrama**: el `director_grado_id` llega inyectado por *dependency override*, mismo criterio que el resto de la rebanada.
+- **Autenticación fuera de este diagrama**: el `director_programa_id` llega inyectado por *dependency override*, mismo criterio que el resto de la rebanada.
 
 ## Referencias
 

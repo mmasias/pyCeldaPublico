@@ -2,28 +2,28 @@
 
 skinparam linetype polyline
 
-' Invocado por UsuarioNoLogueado, no por Profesor/DirectorGrado/Admin -- error
+' Invocado por UsuarioNoLogueado, no por Profesor/DirectorPrograma/Admin -- error
 ' sistemático de la literatura RUP corregido aquí: el rol específico (Profesor,
 ' etc.) solo existe DESPUÉS de que iniciarSesion() tenga éxito, no antes. Quien
 ' invoca no puede ser el resultado de la propia invocación. Los actores ya
 ' identificados invocan cerrarSesion(), nunca iniciarSesion() -- ver
-' actoresCasosUso{Profesor,DirectorGrado,AdminCatalogos}.puml.
+' actoresCasosUso{Profesor,DirectorPrograma,AdminCatalogos}.puml.
 '
 ' Punto de extensión: "tras validación exitosa" (la rama verde de <<choice>>
 ' c, abajo). DOS ramas mutuamente excluyentes según el rol resuelto
 ' (discussion #274, antes eran tres):
-'   - rol in {Profesor, DirectorGrado} -> abrirInicio()  (pantalla que compone
-'     "Mis guías" y "Mis grados"; primitiva de navegación, <<include>> de
-'     abrirAsignaturasGrado() + abrirGrados())
+'   - rol in {Profesor, DirectorPrograma} -> abrirInicio()  (pantalla que compone
+'     "Mis guías" y "Mis programas"; primitiva de navegación, <<include>> de
+'     abrirAsignaturasPrograma() + abrirProgramas())
 '   - rol == Admin -> abrirPanelAdministracion()
 ' Ambas EXTIENDEN a iniciarSesion() -- no lo incluyen. <<include>> es
 ' incondicional por definición UML; aquí solo se dispara UNA de dos ramas
 ' según el rol, y iniciarSesion() es completo sin ninguna extensión --
 ' semántica de <<extend>>, no de <<include>>.
 '
-' Guard de resolución de rol (#274): el rol es "director_grado" solo si el
-' email dirige >= 1 Grado; una fila huérfana en directores_grado (ex-director
-' sin grados) cae a "profesor" y NUNCA a un fallo -- una cuenta autenticada y
+' Guard de resolución de rol (#274): el rol es "director_programa" solo si el
+' email dirige >= 1 Programa; una fila huérfana en directores_programa (ex-director
+' sin programas) cae a "profesor" y NUNCA a un fallo -- una cuenta autenticada y
 ' reconocida por el catálogo nunca se expulsa, la capacidad ausente se
 ' presenta como sección vacía de abrirInicio().
 
@@ -44,13 +44,21 @@ state iniciarSesion as "iniciarSesion()" {
 
     c -[#green]-> [*]
     note on link
+    [email autenticado por Google, dentro del dominio institucional, y ya registrado como Profesor o Admin]
     <b>Sistema</b> presenta el punto de partida propio del rol identificado
     <b>punto de extensión:</b> tras validación exitosa
     end note
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de credenciales inválidas
+    [email autenticado por Google fuera del dominio institucional configurado]
+    <b>Sistema</b> presenta mensaje de cuenta fuera del dominio institucional
+    end note
+
+    c -[#orange]-> [*]
+    note on link
+    [email autenticado por Google, dentro del dominio institucional, pero no registrado como Profesor ni Admin]
+    <b>Sistema</b> presenta mensaje de cuenta no autorizada -- sin auto-registro
     end note
 }
 
@@ -58,7 +66,12 @@ iniciarSesion -[#green]-> INICIO_ABIERTO_SALIDA
 
 iniciarSesion -[#red]-> SESION_CERRADA_SALIDA
 note on link
-credenciales inválidas, self-loop
+fuera de dominio institucional, self-loop
+end note
+
+iniciarSesion -[#orange]-> SESION_CERRADA_SALIDA
+note on link
+cuenta no autorizada, self-loop
 end note
 
 @enduml

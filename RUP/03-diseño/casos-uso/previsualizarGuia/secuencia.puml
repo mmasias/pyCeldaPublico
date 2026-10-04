@@ -1,7 +1,7 @@
 @startuml previsualizarGuia-diseño
 title Diagrama de Secuencia - Previsualizar Guía
 
-actor "Admin/Profesor/DirectorGrado" as Actor
+actor "Admin/Profesor/DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
@@ -16,7 +16,7 @@ activate API
 
 API -> GuiaRepo: obtener(guia_id)
 activate GuiaRepo
-GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id\n(+ cascada AsignaturaGrado/Materia/Grado/Facultad, requisitos_previos y RA en vivo, MD, ponderaciones, referencias)
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id\n(+ cascada AsignaturaPrograma/Materia/Programa/Facultad, requisitos_previos y RA en vivo, MD, ponderaciones, referencias)
 activate DB
 DB --> GuiaRepo: fila Guia + relaciones
 deactivate DB
@@ -32,7 +32,7 @@ else acceso concedido
   deactivate Guia
   API -> Render: render_html(guia, no_oficial = estado != "Aprobada")
   activate Render
-  note right of Render: Jinja2 (templates/guia_docente.html), sin pasar por WeasyPrint.\nMisma plantilla que el PDF de descargarGuiaPDF().\nRA leídos en vivo de guia.asignatura_grado.
+  note right of Render: Jinja2 (templates/guia_docente.html), sin pasar por WeasyPrint.\nMisma plantilla que el PDF de descargarGuiaPDF().\nRA leídos en vivo de guia.asignatura_programa.
   Render --> API: str HTML
   deactivate Render
   API --> Vista: 200 OK (text/html)

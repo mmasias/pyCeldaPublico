@@ -4,30 +4,31 @@ from sqlalchemy.orm import Session
 
 from app.core.auth import (
     get_current_admin_email_opcional,
-    get_current_director_grado_id,
-    get_current_director_grado_id_opcional,
+    get_current_director_programa_id,
+    get_current_director_programa_id_opcional,
     get_current_profesor_id,
     get_current_profesor_id_opcional,
     get_current_rol,
 )
 from app.core.database import get_db
-from app.models.guia import LIMITE_CONTENIDO_GUIA, Guia
+from app.models.guia import LIMITE_CONTENIDO_GUIA, MARCADOR_TABLA, Guia
 from app.models.historial_cambio import HistorialCambio
 from app.render.guia_docente import render_html, render_pdf
 from app.repositories.actividad_formativa import (
-    serializar_actividades_formativas_asignatura_grado,
+    serializar_actividades_formativas_asignatura_programa,
 )
-from app.repositories.asignatura_grado import AsignaturaGradoRepository
+from app.repositories.asignatura_programa import AsignaturaProgramaRepository
 from app.repositories.curso_academico import CursoAcademicoRepository
-from app.repositories.grado import GradoRepository
+from app.repositories.programa import ProgramaRepository
 from app.repositories.guia import GuiaRepository
 from app.repositories.ponderacion_evaluacion import PonderacionEvaluacionRepository
 from app.repositories.referencia_bibliografica import ReferenciaBibliograficaRepository
 from app.repositories.sesion import SesionRepository
 from app.schemas.guia import (
     AbrirGuiaResponse,
-    AsignaturaGradoDeGuiaResponse,
+    AsignaturaProgramaDeGuiaResponse,
     EditarSemestreGuiaRequest,
+    EditarTextoSistemaEvaluacionRequest,
     GuardarBorradorRequest,
     GuiaResponse,
     GuiaResumenResponse,
@@ -54,47 +55,102 @@ def _resumen_contenido(texto: str) -> str:
 
 
 def _es_director_de_la_guia(
-    db: Session, guia, director_grado_id: int | None
+    db: Session, guia, director_programa_id: int | None
 ) -> bool:
-    """Rama de DirectorGrado del acceso: el usuario resuelve a un
-    DirectorGrado que dirige el grado de la Guia."""
+    """Rama de DirectorPrograma del acceso: el usuario resuelve a un
+    DirectorPrograma que dirige el programa de la Guia."""
     return (
-        director_grado_id is not None
-        and guia.grado_id is not None
-        and GradoRepository(db).dirige(guia.grado_id, director_grado_id)
+        director_programa_id is not None
+        and guia.programa_id is not None
+        and ProgramaRepository(db).dirige(guia.programa_id, director_programa_id)
     )
 
 
 def _tiene_acceso_a_guia(
-    db: Session, guia, profesor_id: int | None, director_grado_id: int | None
+    db: Session, guia, profesor_id: int | None, director_programa_id: int | None
 ) -> bool:
-    """Un email puede resolver a Profesor y/o DirectorGrado a la vez
+    """Un email puede resolver a Profesor y/o DirectorPrograma a la vez
     (roles no exclusivos, ver get_current_rol) -- se concede acceso si
     cualquiera de las dos identidades reales tiene relación con la Guia."""
     if (
         profesor_id is not None
-        and guia.asignatura_grado_id is not None
-        and AsignaturaGradoRepository(db).imparte(
-            guia.asignatura_grado_id, profesor_id
+        and guia.asignatura_programa_id is not None
+        and AsignaturaProgramaRepository(db).imparte(
+            guia.asignatura_programa_id, profesor_id
         )
     ):
         return True
 
-    if _es_director_de_la_guia(db, guia, director_grado_id):
+    if _es_director_de_la_guia(db, guia, director_programa_id):
         return True
 
     return False
+
+
+def autorizar_escritura_guia(
+    db: Session,
+    guia,
+    profesor_id: int | None,
+    director_programa_id: int | None,
+    detalle: str = "Guia no encontrada",
+) -> bool:
+    """Autorización de escritura sobre el contenido de una Guia (issue #612,
+    Parte 2 de #601). Devuelve True si quien escribe lo hace como
+    DirectorPrograma (corrección excepcional), False si lo hace como Profesor.
+    Lanza 404 si ninguna de las dos identidades tiene derecho.
+
+    Si el email resuelve a ambos roles y el Profesor imparte la asignatura,
+    gana la rama Profesor (comportamiento previo, sin transición de estado):
+    criterio conservador."""
+    if (
+        profesor_id is not None
+        and guia.asignatura_programa_id is not None
+        and AsignaturaProgramaRepository(db).imparte(
+            guia.asignatura_programa_id, profesor_id
+        )
+    ):
+        return False
+    if _es_director_de_la_guia(db, guia, director_programa_id):
+        return True
+    raise HTTPException(status_code=404, detail=detalle)
+
+
+def aplicar_transicion_por_correccion_del_director(
+    db: Session, guia, director_programa_id: int
+) -> None:
+    """Regla de transición de estado de #612: Aprobada -> Borrador
+    (revocar_aprobacion) y EnRevision -> Rechazada (rechazar), con fila de
+    HistorialCambio campo="estado" y autor real del Director. Borrador y
+    Rechazada se mantienen. NO hace commit: se invoca justo antes de la
+    escritura del contenido, que commitea ambas cosas en una transacción."""
+    estado_anterior = guia.estado
+    if estado_anterior == "Aprobada":
+        guia.revocar_aprobacion()
+    elif estado_anterior == "EnRevision":
+        guia.rechazar()
+    else:
+        return
+    db.add(
+        HistorialCambio.registrar(
+            guia_id=guia.id,
+            autor_id=director_programa_id,
+            campo="estado",
+            valor_anterior=estado_anterior,
+            valor_nuevo=guia.estado,
+            comentario="corrección directa del Director",
+        )
+    )
 
 
 @router.get("/guias/{guia_id}", response_model=AbrirGuiaResponse)
 def abrir_guia(
     guia_id: int,
     db: Session = Depends(get_db),
-    # Profesor (autor) y DirectorGrado (revisor, Lote C) comparten esta
+    # Profesor (autor) y DirectorPrograma (revisor, Lote C) comparten esta
     # pantalla -- get_current_rol acepta cualquiera de los dos roles.
     _rol: dict[str, str] = Depends(get_current_rol),
     profesor_id: int | None = Depends(get_current_profesor_id_opcional),
-    director_grado_id: int | None = Depends(get_current_director_grado_id_opcional),
+    director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
 ) -> AbrirGuiaResponse:
     guia_repo = GuiaRepository(db)
     ponderacion_repo = PonderacionEvaluacionRepository(db)
@@ -103,7 +159,7 @@ def abrir_guia(
 
     guia = guia_repo.obtener(guia_id)
     if guia is None or not _tiene_acceso_a_guia(
-        db, guia, profesor_id, director_grado_id
+        db, guia, profesor_id, director_programa_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -117,21 +173,22 @@ def abrir_guia(
         guia
     ) + sesion_repo.listar_pendientes_de(guia_id)
 
-    asignatura_grado = (
-        AsignaturaGradoDeGuiaResponse(
-            nombre=guia.asignatura_grado.nombre,
-            contenido=guia.asignatura_grado.contenido,
-            resultados_aprendizaje=guia.asignatura_grado.resultados_aprendizaje,
-            metodologias_docentes=guia.asignatura_grado.metodologias_docentes,
+    asignatura_programa = (
+        AsignaturaProgramaDeGuiaResponse(
+            nombre=guia.asignatura_programa.nombre,
+            programa_nombre=guia.asignatura_programa.programa_nombre,
+            contenido=guia.asignatura_programa.contenido,
+            resultados_aprendizaje=guia.asignatura_programa.resultados_aprendizaje,
+            metodologias_docentes=guia.asignatura_programa.metodologias_docentes,
             # Solo lectura -- discussion #227. Ya viene precargado por
             # GuiaRepository.obtener() (lo necesita el render), sin consulta
             # nueva; codigo/nombre se aplanan a mano porque viven en la
             # ActividadFormativa anidada, no en la propia fila de asociación.
-            actividades_formativas=serializar_actividades_formativas_asignatura_grado(
-                guia.asignatura_grado.actividades_formativas
+            actividades_formativas=serializar_actividades_formativas_asignatura_programa(
+                guia.asignatura_programa.actividades_formativas
             ),
         )
-        if guia.asignatura_grado is not None
+        if guia.asignatura_programa is not None
         else None
     )
 
@@ -142,22 +199,23 @@ def abrir_guia(
         estado=guia.estado,
         semestre=guia.semestre,
         # El temario propio de la Guia (fase de impartición), NO
-        # guia.asignatura_grado.contenido -- ese sigue siendo la referencia
-        # estructural del DirectorGrado (discussion #191).
+        # guia.asignatura_programa.contenido -- ese sigue siendo la referencia
+        # estructural del DirectorPrograma (discussion #191).
         contenido=guia.contenido,
+        texto_sistema_evaluacion=guia.texto_sistema_evaluacion,
         sesiones_minimas=guia.sesiones_minimas,
         fecha_creacion=guia.fecha_creacion,
         fecha_ultima_modificacion=guia.fecha_ultima_modificacion,
         fecha_generacion_pdf=guia.fecha_generacion_pdf,
         ponderaciones=ponderaciones,
         referencias=referencias,
-        asignatura_grado=asignatura_grado,
-        puede_revisar=_es_director_de_la_guia(db, guia, director_grado_id),
+        asignatura_programa=asignatura_programa,
+        puede_revisar=_es_director_de_la_guia(db, guia, director_programa_id),
         # issue #254: el profesorado en vivo desde la plantilla, no la copia
         # guia.profesorado (esa solo la usa el render del PDF/previsualización).
         profesorado=(
-            guia.asignatura_grado.profesorado
-            if guia.asignatura_grado is not None
+            guia.asignatura_programa.profesorado
+            if guia.asignatura_programa is not None
             else []
         ),
         sesiones=sesiones,
@@ -183,7 +241,9 @@ def guardar_borrador_guia(
     guia_id: int,
     datos: GuardarBorradorRequest,
     db: Session = Depends(get_db),
-    profesor_id: int = Depends(get_current_profesor_id),
+    _rol: dict[str, str] = Depends(get_current_rol),
+    profesor_id: int | None = Depends(get_current_profesor_id_opcional),
+    director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
 ) -> GuiaResponse:
     guia_repo = GuiaRepository(db)
     ponderacion_repo = PonderacionEvaluacionRepository(db)
@@ -194,11 +254,10 @@ def guardar_borrador_guia(
     if guia is None:
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
-    asignatura_repo = AsignaturaGradoRepository(db)
-    if guia.asignatura_grado_id is None or not asignatura_repo.imparte(
-        guia.asignatura_grado_id, profesor_id
-    ):
-        raise HTTPException(status_code=404, detail="Guia no encontrada")
+    como_director = autorizar_escritura_guia(
+        db, guia, profesor_id, director_programa_id
+    )
+    autor_id = director_programa_id if como_director else profesor_id
 
     # Tope de longitud del temario (issue #303): se comprueba antes de tocar
     # nada -- si el contenido pegado se pasa, la petición se rechaza entera,
@@ -214,6 +273,9 @@ def guardar_borrador_guia(
             ),
         )
 
+    if como_director:
+        aplicar_transicion_por_correccion_del_director(db, guia, director_programa_id)
+
     a_vincular, a_desvincular = guia.sincronizar_ponderaciones(
         datos.ids_ponderaciones_final
     )
@@ -223,7 +285,7 @@ def guardar_borrador_guia(
         db.add(
             HistorialCambio.registrar(
                 guia_id=guia.id,
-                autor_id=profesor_id,
+                autor_id=autor_id,
                 campo="ponderaciones_evaluacion",
                 valor_anterior=f"{antes} ponderaciones",
                 valor_nuevo=f"{despues} ponderaciones",
@@ -242,7 +304,7 @@ def guardar_borrador_guia(
         db.add(
             HistorialCambio.registrar(
                 guia_id=guia.id,
-                autor_id=profesor_id,
+                autor_id=autor_id,
                 campo="referencias_bibliograficas",
                 valor_anterior=f"{antes} referencias",
                 valor_nuevo=f"{despues} referencias",
@@ -269,7 +331,7 @@ def guardar_borrador_guia(
             db.add(
                 HistorialCambio.registrar(
                     guia_id=guia.id,
-                    autor_id=profesor_id,
+                    autor_id=autor_id,
                     campo="contenido",
                     valor_anterior=_resumen_contenido(contenido_anterior),
                     valor_nuevo=_resumen_contenido(datos.contenido),
@@ -296,9 +358,9 @@ def enviar_guia_a_revision(
     if guia is None:
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
-    asignatura_repo = AsignaturaGradoRepository(db)
-    if guia.asignatura_grado_id is None or not asignatura_repo.imparte(
-        guia.asignatura_grado_id, profesor_id
+    asignatura_repo = AsignaturaProgramaRepository(db)
+    if guia.asignatura_programa_id is None or not asignatura_repo.imparte(
+        guia.asignatura_programa_id, profesor_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -332,12 +394,12 @@ def enviar_guia_a_revision(
 def aprobar_guia(
     guia_id: int,
     db: Session = Depends(get_db),
-    director_grado_id: int = Depends(get_current_director_grado_id),
+    director_programa_id: int = Depends(get_current_director_programa_id),
 ) -> GuiaResponse:
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
-    if guia is None or guia.grado_id is None or not GradoRepository(db).dirige(
-        guia.grado_id, director_grado_id
+    if guia is None or guia.programa_id is None or not ProgramaRepository(db).dirige(
+        guia.programa_id, director_programa_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -346,7 +408,7 @@ def aprobar_guia(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
-        autor_id=director_grado_id,
+        autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
         valor_nuevo=guia.estado,
@@ -362,12 +424,12 @@ def rechazar_guia(
     guia_id: int,
     datos: RechazarGuiaRequest,
     db: Session = Depends(get_db),
-    director_grado_id: int = Depends(get_current_director_grado_id),
+    director_programa_id: int = Depends(get_current_director_programa_id),
 ) -> GuiaResponse:
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
-    if guia is None or guia.grado_id is None or not GradoRepository(db).dirige(
-        guia.grado_id, director_grado_id
+    if guia is None or guia.programa_id is None or not ProgramaRepository(db).dirige(
+        guia.programa_id, director_programa_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -376,7 +438,7 @@ def rechazar_guia(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
-        autor_id=director_grado_id,
+        autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
         valor_nuevo=guia.estado,
@@ -391,12 +453,12 @@ def rechazar_guia(
 def escalar_guia_a_aprobada(
     guia_id: int,
     db: Session = Depends(get_db),
-    director_grado_id: int = Depends(get_current_director_grado_id),
+    director_programa_id: int = Depends(get_current_director_programa_id),
 ) -> GuiaResponse:
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
-    if guia is None or guia.grado_id is None or not GradoRepository(db).dirige(
-        guia.grado_id, director_grado_id
+    if guia is None or guia.programa_id is None or not ProgramaRepository(db).dirige(
+        guia.programa_id, director_programa_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -404,7 +466,7 @@ def escalar_guia_a_aprobada(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
-        autor_id=director_grado_id,
+        autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
         valor_nuevo=guia.estado,
@@ -420,12 +482,12 @@ def revocar_aprobacion_guia(
     guia_id: int,
     datos: RevocarAprobacionGuiaRequest,
     db: Session = Depends(get_db),
-    director_grado_id: int = Depends(get_current_director_grado_id),
+    director_programa_id: int = Depends(get_current_director_programa_id),
 ) -> GuiaResponse:
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
-    if guia is None or guia.grado_id is None or not GradoRepository(db).dirige(
-        guia.grado_id, director_grado_id
+    if guia is None or guia.programa_id is None or not ProgramaRepository(db).dirige(
+        guia.programa_id, director_programa_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -434,7 +496,7 @@ def revocar_aprobacion_guia(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
-        autor_id=director_grado_id,
+        autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
         valor_nuevo=guia.estado,
@@ -450,12 +512,12 @@ def editar_semestre_guia(
     guia_id: int,
     datos: EditarSemestreGuiaRequest,
     db: Session = Depends(get_db),
-    director_grado_id: int = Depends(get_current_director_grado_id),
+    director_programa_id: int = Depends(get_current_director_programa_id),
 ) -> GuiaResponse:
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
-    if guia is None or guia.grado_id is None or not GradoRepository(db).dirige(
-        guia.grado_id, director_grado_id
+    if guia is None or guia.programa_id is None or not ProgramaRepository(db).dirige(
+        guia.programa_id, director_programa_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -465,23 +527,54 @@ def editar_semestre_guia(
     return guia_repo.actualizar(guia)
 
 
+@router.put("/guias/{guia_id}/texto-sistema-evaluacion", response_model=GuiaResponse)
+def editar_texto_sistema_evaluacion(
+    guia_id: int,
+    datos: EditarTextoSistemaEvaluacionRequest,
+    db: Session = Depends(get_db),
+    profesor_id: int = Depends(get_current_profesor_id),
+) -> GuiaResponse:
+    """issue #610: guardado propio del texto de convocatorias, independiente
+    de guardar_borrador_guia. Mismo dueño que el resto de "Gestionar
+    evaluación" (Profesor que imparte); Admin/Director quedan fuera (#601)."""
+    guia_repo = GuiaRepository(db)
+    guia = guia_repo.obtener(guia_id)
+    if (
+        guia is None
+        or guia.asignatura_programa_id is None
+        or not AsignaturaProgramaRepository(db).imparte(
+            guia.asignatura_programa_id, profesor_id
+        )
+    ):
+        raise HTTPException(status_code=404, detail="Guia no encontrada")
+
+    if datos.texto.count(MARCADOR_TABLA) != 1:
+        raise HTTPException(
+            status_code=422,
+            detail=f"El texto debe contener el marcador {MARCADOR_TABLA} exactamente una vez",
+        )
+
+    guia.texto_sistema_evaluacion = datos.texto
+    return guia_repo.actualizar(guia)
+
+
 @router.get("/guias/{guia_id}/pdf")
 def descargar_guia_pdf(
     guia_id: int,
     db: Session = Depends(get_db),
-    # Actor Admin / Profesor / DirectorGrado, 404 uniforme -- el RUP de este CU
+    # Actor Admin / Profesor / DirectorPrograma, 404 uniforme -- el RUP de este CU
     # lo documenta desde el origen; la auth real se había quedado en
     # Profesor-only y se alineó al cerrar issue #220 (#238). previsualizar_guia()
     # usa este mismo gate desde #262.
     profesor_id: int | None = Depends(get_current_profesor_id_opcional),
-    director_grado_id: int | None = Depends(get_current_director_grado_id_opcional),
+    director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
     admin_email: str | None = Depends(get_current_admin_email_opcional),
 ) -> Response:
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
     if guia is None or not (
         admin_email is not None
-        or _tiene_acceso_a_guia(db, guia, profesor_id, director_grado_id)
+        or _tiene_acceso_a_guia(db, guia, profesor_id, director_programa_id)
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -490,8 +583,8 @@ def descargar_guia_pdf(
 
     # Render real de la plantilla oficial desde la fila Guia (v1, discussion
     # #218): re-render en cada descarga, sin almacenar bytes (D3). El temario
-    # es Guia.contenido, NO guia.asignatura_grado.contenido (#191); los RA se
-    # leen en vivo de guia.asignatura_grado (P1 = B, deuda en #219).
+    # es Guia.contenido, NO guia.asignatura_programa.contenido (#191); los RA se
+    # leen en vivo de guia.asignatura_programa (P1 = B, deuda en #219).
     return Response(
         content=render_pdf(guia, db), media_type="application/pdf"
     )
@@ -501,20 +594,20 @@ def descargar_guia_pdf(
 def previsualizar_guia(
     guia_id: int,
     db: Session = Depends(get_db),
-    # Actor Profesor / DirectorGrado / Admin, 404 uniforme. #218 P3 fijó el
+    # Actor Profesor / DirectorPrograma / Admin, 404 uniforme. #218 P3 fijó el
     # modelo "misma auth que descargarGuiaPDF()"; el §3 dejó a Admin diferido
     # del v1 (opción a) solo porque su auth no existía aún en guia.py. #238 la
     # construyó para /pdf (cerró #220); #262 la aplica aquí -- mismo gate que
     # descargar_guia_pdf(). El `get_current_rol` que había aquí daba 403 a la
-    # cuenta que no es Profesor ni DirectorGrado -> bloqueaba justo al Admin.
+    # cuenta que no es Profesor ni DirectorPrograma -> bloqueaba justo al Admin.
     profesor_id: int | None = Depends(get_current_profesor_id_opcional),
-    director_grado_id: int | None = Depends(get_current_director_grado_id_opcional),
+    director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
     admin_email: str | None = Depends(get_current_admin_email_opcional),
 ) -> HTMLResponse:
     guia = GuiaRepository(db).obtener(guia_id)
     if guia is None or not (
         admin_email is not None
-        or _tiene_acceso_a_guia(db, guia, profesor_id, director_grado_id)
+        or _tiene_acceso_a_guia(db, guia, profesor_id, director_programa_id)
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
@@ -525,22 +618,22 @@ def previsualizar_guia(
     )
 
 
-@router.get("/grados/{grado_id}/guias", response_model=list[GuiaResumenResponse])
-def listar_guias_del_grado(
-    grado_id: int,
+@router.get("/programas/{programa_id}/guias", response_model=list[GuiaResumenResponse])
+def listar_guias_del_programa(
+    programa_id: int,
     curso: int | None = None,
     db: Session = Depends(get_db),
-    # issue #262: actor Admin (monitoreo de la beta) además de DirectorGrado.
-    # Gate "admin o dirige el grado", 404 uniforme -- patrón de descargar_guia_pdf
+    # issue #262: actor Admin (monitoreo de la beta) además de DirectorPrograma.
+    # Gate "admin o dirige el programa", 404 uniforme -- patrón de descargar_guia_pdf
     # (#238/#220) y previsualizar_guia (#263).
-    director_grado_id: int | None = Depends(get_current_director_grado_id_opcional),
+    director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
     admin_email: str | None = Depends(get_current_admin_email_opcional),
 ) -> list[GuiaResumenResponse]:
-    dirige = director_grado_id is not None and GradoRepository(db).dirige(
-        grado_id, director_grado_id
+    dirige = director_programa_id is not None and ProgramaRepository(db).dirige(
+        programa_id, director_programa_id
     )
     if not (admin_email is not None or dirige):
-        raise HTTPException(status_code=404, detail="Grado no encontrado")
+        raise HTTPException(status_code=404, detail="Programa no encontrado")
 
     # issue #441: ?curso= opcional -- sin él, el curso ACTIVO (comportamiento
     # por defecto elegido, distinto del de #442/Auditoría). Con él, cualquier
@@ -550,7 +643,7 @@ def listar_guias_del_grado(
     curso_repo = CursoAcademicoRepository(db)
     if curso is None:
         curso_academico = curso_repo.activo(
-            GradoRepository(db).universidad_id_de(grado_id)
+            ProgramaRepository(db).universidad_id_de(programa_id)
         )
         if curso_academico is None:
             raise RuntimeError("No hay ningún CursoAcademico activo")
@@ -565,14 +658,14 @@ def listar_guias_del_grado(
             id=guia.id,
             estado=guia.estado,
             semestre=guia.semestre,
-            asignatura_grado_nombre=guia.asignatura_grado_nombre,
-            asignatura_grado_curso=guia.asignatura_grado_curso,
-            asignatura_grado_semestre_default=guia.asignatura_grado_semestre_default,
+            asignatura_programa_nombre=guia.asignatura_programa_nombre,
+            asignatura_programa_curso=guia.asignatura_programa_curso,
+            asignatura_programa_semestre_default=guia.asignatura_programa_semestre_default,
             # issue #254: profesorado de la plantilla en vivo, no la copia
             # guia.profesorado.
             profesorado=(
-                guia.asignatura_grado.profesorado
-                if guia.asignatura_grado is not None
+                guia.asignatura_programa.profesorado
+                if guia.asignatura_programa is not None
                 else []
             ),
             ultima_actualizacion=guia.ultima_actualizacion,
@@ -581,21 +674,21 @@ def listar_guias_del_grado(
             # "Descargar PDF" cuando es False.
             tiene_pdf=guia.tiene_pdf_generado(),
         )
-        for guia in guia_repo.listar_del_grado(grado_id, curso_academico.id)
+        for guia in guia_repo.listar_del_programa(programa_id, curso_academico.id)
     ]
 
 
 @router.post(
-    "/grados/{grado_id}/notificar-guias-actualizadas",
+    "/programas/{programa_id}/notificar-guias-actualizadas",
     response_model=NotificacionResponse,
 )
 def notificar_guias_actualizadas(
-    grado_id: int,
+    programa_id: int,
     db: Session = Depends(get_db),
-    director_grado_id: int = Depends(get_current_director_grado_id),
+    director_programa_id: int = Depends(get_current_director_programa_id),
 ) -> NotificacionResponse:
-    if not GradoRepository(db).dirige(grado_id, director_grado_id):
-        raise HTTPException(status_code=404, detail="Grado no encontrado")
+    if not ProgramaRepository(db).dirige(programa_id, director_programa_id):
+        raise HTTPException(status_code=404, detail="Programa no encontrado")
     # Mecanismo de envío (email, cola, lo que sea) fuera de alcance de esta
     # rebanada -- sin Modelo ni Repository, sin tocar la base de datos.
     return NotificacionResponse(detail="Notificación enviada al Admin")

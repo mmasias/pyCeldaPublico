@@ -12,8 +12,8 @@ package abrirPonderacionesEvaluacion as "abrirPonderacionesEvaluacion()" {
     rectangle #b5bd68 PonderacionEvaluacionController
     rectangle #F2AC4E Guia
     rectangle #F2AC4E GuiaRepository
-    rectangle #F2AC4E AsignaturaGrado
-    rectangle #F2AC4E AsignaturaGradoRepository
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
     rectangle #F2AC4E Materia
     rectangle #F2AC4E MateriaRepository
     rectangle #F2AC4E SistemaEvaluacion
@@ -34,14 +34,14 @@ PonderacionEvaluacionController --> AbrirPonderacionesEvaluacionView: <font size
 
 AbrirPonderacionesEvaluacionView --> PonderacionEvaluacionController: <font size=8>listarSistemasEvaluacionDeGuia(guiaId) : List<SistemaEvaluacion>
 
-PonderacionEvaluacionController --> AsignaturaGradoRepository: <font size=8>obtener(guia.asignaturaGradoId) : AsignaturaGrado
-PonderacionEvaluacionController --> MateriaRepository: <font size=8>obtener(asignaturaGrado.materiaId) : Materia
+PonderacionEvaluacionController --> AsignaturaProgramaRepository: <font size=8>obtener(guia.asignaturaProgramaId) : AsignaturaPrograma
+PonderacionEvaluacionController --> MateriaRepository: <font size=8>obtener(asignaturaPrograma.materiaId) : Materia
 PonderacionEvaluacionController --> Materia: <font size=8>listarSistemasEvaluacion() : List<SistemaEvaluacion>
 
 PonderacionEvaluacionController --> AbrirPonderacionesEvaluacionView: <font size=8>catálogo completo de SistemaEvaluacion de la materia, no solo los ya usados en esta guía (discussion #38)
 
 GuiaRepository -- Guia
-AsignaturaGradoRepository -- AsignaturaGrado
+AsignaturaProgramaRepository -- AsignaturaPrograma
 MateriaRepository -- Materia
 Materia -- SistemaEvaluacion
 PonderacionEvaluacionRepository -- PonderacionEvaluacion

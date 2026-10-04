@@ -7,7 +7,7 @@ state RESULTADO_APRENDIZAJE_ABIERTO_SALIDA as "RESULTADO_APRENDIZAJE_ABIERTO"
 
 RESULTADO_APRENDIZAJE_ABIERTO -[#green]-> editarResultadoAprendizaje
 note on link
-<b>DirectorGrado</b> solicita editar resultado de aprendizaje
+<b>Admin / DirectorPrograma</b> solicita editar resultado de aprendizaje
 end note
 
 state editarResultadoAprendizaje as "editarResultadoAprendizaje()" {
@@ -22,10 +22,10 @@ state editarResultadoAprendizaje as "editarResultadoAprendizaje()" {
 
     EditandoDatos -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> introduce código
-    <b>DirectorGrado</b> introduce tipo
-    <b>DirectorGrado</b> introduce descripción
-    <b>DirectorGrado</b> solicita guardar
+    <b>Admin / DirectorPrograma</b> introduce código
+    <b>Admin / DirectorPrograma</b> introduce tipo
+    <b>Admin / DirectorPrograma</b> introduce descripción
+    <b>Admin / DirectorPrograma</b> solicita guardar
     end note
 }
 

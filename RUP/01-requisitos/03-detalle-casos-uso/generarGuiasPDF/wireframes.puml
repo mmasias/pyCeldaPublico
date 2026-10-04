@@ -2,7 +2,7 @@
 {
     <b>GENERAR PDFs DE GUÍAS DOCENTES</b>
     ====
-    <b>Grado:</b>
+    <b>Programa:</b>
     ^GII -- Grado en Ingeniería Informática^
     <b>Curso académico:</b>
     ^2026-2027^
@@ -21,7 +21,7 @@
     --
     Guias pendientes de Aprobada:
     {#
-        <b>AsignaturaGrado | <b>Estado
+        <b>AsignaturaPrograma | <b>Estado
         Programación I | Borrador
     }
     ====
@@ -38,7 +38,7 @@
     <b>GII -- 2026-2027</b>
     --
     {#
-        <b>AsignaturaGrado | <b>Fecha de generación de PDF
+        <b>AsignaturaPrograma | <b>Fecha de generación de PDF
         Programación I | 08/08/2026
     }
     ====

@@ -6,7 +6,7 @@
 
 # pyCelda > abrirResultadosAprendizaje()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirResultadosAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirResultadosAprendizaje/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirResultadosAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirResultadosAprendizaje/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,8 +31,8 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorGrado`|
-|**Objetivo**|Consultar el catálogo de `ResultadoAprendizaje` de un `Grado`|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Consultar el catálogo de `ResultadoAprendizaje` de un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Subfunción|
 
@@ -42,6 +42,10 @@ Datos reales del plan de estudios de GII, aportados por el usuario en la [issue 
 
 ## Referencias
 
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `GRADO_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `ResultadoAprendizaje`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Grado *-d- ResultadoAprendizaje`: catálogo propio de Grado, no institucional
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()` (compartido con `Admin` desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642); pantalla propia en `/admin/...`, `*Admin.tsx`)
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `ResultadoAprendizaje`
+- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` (incluye este caso de uso desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642))
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-d- ResultadoAprendizaje`: catálogo propio de Programa, no institucional
+
+**Columna "Asignaturas"** ([discussion #585](https://github.com/mmasias/pyCelda/discussions/585), issue #586): la tabla gana el número de `AsignaturaPrograma` **de todo el programa** (todas sus materias) que tienen ese RA asociado. Puramente informativo, sin bloquear nada ni filtrar por `caracter`.

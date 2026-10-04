@@ -1,0 +1,47 @@
+@startuml editarActividadFormativa-diseño
+title Diagrama de Secuencia - Editar Actividad Formativa
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ActividadFormativaRepository" as AFRepo
+participant "ActividadFormativa" as AF
+database "Base de Datos" as DB
+
+Admin -> Vista: abre la ActividadFormativa a editar
+activate Vista
+Vista -> API: GET /api/v1/actividades-formativas/{actividad_formativa_id}
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> AFRepo: obtener(actividad_formativa_id)
+activate AFRepo
+AFRepo -> DB: SELECT ... FROM actividades_formativas WHERE id = :actividad_formativa_id
+activate DB
+DB --> AFRepo: fila ActividadFormativa
+deactivate DB
+AFRepo --> API: ActividadFormativa (404 si None)
+deactivate AFRepo
+API --> Vista: 200 OK (ActividadFormativaResponse JSON)
+deactivate API
+Vista --> Admin: muestra formulario con datos actuales (código de solo lectura)
+
+Admin -> Vista: modifica nombre, confirma
+Vista -> API: PUT /api/v1/actividades-formativas/{actividad_formativa_id} (ActividadFormativaUpdate JSON)
+activate API
+API -> AFRepo: editar(actividad, codigo, nombre)
+activate AFRepo
+AFRepo -> AF: actualizar(codigo, nombre)
+activate AF
+deactivate AF
+AFRepo -> DB: UPDATE actividades_formativas SET codigo = ..., nombre = ...
+activate DB
+DB --> AFRepo: ok
+deactivate DB
+AFRepo --> API: ActividadFormativa
+deactivate AFRepo
+API --> Vista: 200 OK (ActividadFormativaResponse JSON)
+deactivate API
+Vista --> Admin: datos actualizados
+deactivate Vista
+
+@enduml

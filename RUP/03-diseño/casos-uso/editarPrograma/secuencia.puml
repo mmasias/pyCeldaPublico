@@ -1,0 +1,47 @@
+@startuml editarPrograma-diseño
+title Diagrama de Secuencia - Editar Programa
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as ProgramaRepo
+participant "Programa" as Programa
+database "Base de Datos" as DB
+
+Admin -> Vista: abre el Programa a editar
+activate Vista
+Vista -> API: GET /api/v1/admin/programas/{programa_id}
+activate API
+note right of API: Depends(require_admin) -- ya disponible en\nbackend/app/core/auth.py (bloque anterior, ya mergeado)
+API -> ProgramaRepo: obtener(programa_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT ... FROM programas WHERE id = :programa_id
+activate DB
+DB --> ProgramaRepo: fila Programa
+deactivate DB
+ProgramaRepo --> API: Programa (404 si None)
+deactivate ProgramaRepo
+API --> Vista: 200 OK (ProgramaResponse JSON)
+deactivate API
+Vista --> Admin: muestra formulario -- codigo de solo lectura, nombre editable (sin estado)
+
+Admin -> Vista: modifica el nombre, confirma
+Vista -> API: PUT /api/v1/admin/programas/{programa_id} (ProgramaUpdate JSON)
+activate API
+API -> Programa: actualizar(nombre)
+activate Programa
+deactivate Programa
+API -> ProgramaRepo: actualizar(programa)
+activate ProgramaRepo
+ProgramaRepo -> DB: UPDATE programas SET nombre = ...
+activate DB
+DB --> ProgramaRepo: ok
+deactivate DB
+ProgramaRepo --> API: Programa
+deactivate ProgramaRepo
+API --> Vista: 200 OK (ProgramaResponse JSON)
+deactivate API
+Vista --> Admin: datos actualizados
+deactivate Vista
+
+@enduml

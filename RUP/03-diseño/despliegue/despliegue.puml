@@ -1,0 +1,29 @@
+@startuml despliegue
+
+title Diagrama de Despliegue -- pyCelda en producción (Prometeus)
+
+actor Usuario
+
+node "Prometeus (Fedora, casa de Manuel)" as prometeus {
+  node "Docker" {
+    node "caddy (imagen caddy:2-alpine)" as caddy_node {
+      artifact "Caddy\n(reverse proxy + TLS)" as caddy
+      artifact "SPA estática\n(frontend/dist, /srv)" as spa
+    }
+    node "backend (uvicorn :8000)" as backend_node {
+      artifact "FastAPI app\n(backend/app)" as api
+    }
+  }
+  database "SQLite\npycelda.db" as db
+  storage "caddy-data\n(certificados TLS)" as certs
+  artifact "systemd timer\npycelda-backup.timer" as backup_timer
+}
+
+Usuario --> caddy : HTTPS :443\nmmasias.cloud-ip.cc
+caddy --> spa : sirve estático\n(SPA, resto de rutas)
+caddy --> api : reverse_proxy\n/api/*, /auth/*\n(HTTP interno :8000)
+api --> db : SQLAlchemy\n(volumen pycelda-db)
+caddy --> certs : Let's Encrypt
+backup_timer ..> db : backup diario\n(fuera de Docker, host)
+
+@enduml

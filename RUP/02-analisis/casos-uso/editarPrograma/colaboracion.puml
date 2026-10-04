@@ -1,0 +1,34 @@
+@startuml editarPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbiertoSalida
+
+package editarPrograma as "editarPrograma()" {
+    rectangle #629EF9 EditarProgramaView
+    rectangle #b5bd68 ProgramaController
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+}
+
+ProgramaAbierto --> EditarProgramaView: <font size=8>editarPrograma(programaId)
+
+EditarProgramaView --> ProgramaController: <font size=8>cargarPrograma(programaId) : Programa
+
+ProgramaController --> ProgramaRepository: <font size=8>obtener(programaId) : Programa
+
+EditarProgramaView --> ProgramaController: <font size=8>validarDatosObligatorios(codigo, nombre) : boolean
+
+EditarProgramaView --> ProgramaController: <font size=8>guardarCambios(programaId, nombre) : boolean
+
+ProgramaController --> Programa: <font size=8>actualizar(nombre)
+
+ProgramaController --> ProgramaRepository: <font size=8>actualizar(programa)
+
+ProgramaRepository -- Programa
+
+EditarProgramaView --> ProgramaAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

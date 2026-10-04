@@ -1,14 +1,14 @@
 @startuml editarActividadesFormativasMateria-diseño
 title Diagrama de Secuencia - Editar Actividades Formativas (Materia)
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "ActividadFormativaMateriaRepository" as Repo
 participant "ActividadFormativaMateria" as AFM
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita editar las actividades formativas de la Materia
+DirectorPrograma -> Vista: solicita editar las actividades formativas de la Materia
 activate Vista
 Vista -> API: GET /api/v1/materias/{materia_id}/actividades-formativas
 activate API
@@ -22,14 +22,14 @@ Repo --> API: lista de ActividadFormativaMateria
 deactivate Repo
 API --> Vista: 200 OK (lista de ActividadFormativaMateriaResponse)
 deactivate API
-Vista --> DirectorGrado: presenta la rejilla de 10 filas (codigo/nombre solo lectura, horas editable)
+Vista --> DirectorPrograma: presenta la rejilla de 10 filas (codigo/nombre solo lectura, horas editable)
 
-DirectorGrado -> Vista: teclea las horas y guarda
+DirectorPrograma -> Vista: teclea las horas y guarda
 Vista -> API: PUT /api/v1/materias/{materia_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas})
 activate API
 alt algún horas < 0 o actividad_formativa_id fuera de catálogo
     API --> Vista: 422 Unprocessable Entity (no se persiste nada)
-    Vista --> DirectorGrado: presenta mensaje de horas no válidas
+    Vista --> DirectorPrograma: presenta mensaje de horas no válidas
 else todas las horas válidas
     loop por cada fila del body
         API -> AFM: actualizar(horas)
@@ -46,7 +46,7 @@ else todas las horas válidas
     Repo --> API: lista de ActividadFormativaMateria
     deactivate Repo
     API --> Vista: 200 OK (lista actualizada)
-    Vista --> DirectorGrado: reparto guardado
+    Vista --> DirectorPrograma: reparto guardado
 end
 deactivate API
 deactivate Vista

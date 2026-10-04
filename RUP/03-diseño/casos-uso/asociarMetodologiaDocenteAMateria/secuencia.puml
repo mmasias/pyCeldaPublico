@@ -1,14 +1,14 @@
 @startuml asociarMetodologiaDocenteAMateria-diseño
 title Diagrama de Secuencia - Asociar Metodología Docente a Materia
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "MetodologiaDocenteRepository" as MetodologiaRepo
 participant "MetodologiaMateriaRepository" as MetodologiaMateriaRepo
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita asociar una MetodologiaDocente a la Materia
+DirectorPrograma -> Vista: solicita asociar una MetodologiaDocente a la Materia
 activate Vista
 Vista -> API: GET /api/v1/materias/{materia_id}/metodologias-docentes/disponibles
 activate API
@@ -22,9 +22,9 @@ MetodologiaRepo --> API: List[MetodologiaDocente]
 deactivate MetodologiaRepo
 API --> Vista: 200 OK (List[MetodologiaDocenteResponse] JSON)
 deactivate API
-Vista --> DirectorGrado: muestra las MetodologiaDocente aún no asociadas
+Vista --> DirectorPrograma: muestra las MetodologiaDocente aún no asociadas
 
-DirectorGrado -> Vista: elige una MetodologiaDocente y confirma
+DirectorPrograma -> Vista: elige una MetodologiaDocente y confirma
 Vista -> API: POST /api/v1/materias/{materia_id}/metodologias-docentes (MetodologiaMateriaCreate JSON)
 activate API
 API -> MetodologiaMateriaRepo: crear(materia_id, metodologia_docente_id)
@@ -37,7 +37,7 @@ MetodologiaMateriaRepo --> API: MetodologiaMateria
 deactivate MetodologiaMateriaRepo
 API --> Vista: 201 Created (MetodologiaMateriaResponse JSON)
 deactivate API
-Vista --> DirectorGrado: MetodologiaDocente asociada (descripcion_propia vacía)
+Vista --> DirectorPrograma: MetodologiaDocente asociada (descripcion_propia vacía)
 deactivate Vista
 
 @enduml

@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -41,9 +41,9 @@ Bajada a diseño del caso de análisis [`abrirProfesores()`](/RUP/02-analisis/ca
 
 ## Decisiones de diseño
 
-- **Módulo `routers/profesor.py` nuevo**: primera función de `Profesor` propia del catálogo (el email de `Profesor` ya aparecía en `routers/auth.py` y en `routers/asignatura_grado.py` como `profesorado`, pero sin CRUD propio); el módulo crecerá con los 6 endpoints de los CU hermanos más el selector de disponibilidad.
+- **Módulo `routers/profesor.py` nuevo**: primera función de `Profesor` propia del catálogo (el email de `Profesor` ya aparecía en `routers/auth.py` y en `routers/asignatura_programa.py` como `profesorado`, pero sin CRUD propio); el módulo crecerá con los 6 endpoints de los CU hermanos más el selector de disponibilidad.
 - **Listado completo, sin filtro por sesión**: igual que `abrirAsignaturas()`/`abrirMetodologiasDocentes()`, aquí el `Admin` ve todas las filas -- ningún `Profesor` es "propio" de quien llama.
-- **Autorización de `Admin`: `Depends(require_admin)`** -- toda función de `routers/profesor.py` la declara explícitamente. Es catálogo de `Admin` sin pertenencia que verificar -- no usa `get_current_director_grado_id`, que aplica a los recursos con dueño del hilo `DirectorGrado`. El historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real, no un detalle menor.
+- **Autorización de `Admin`: `Depends(require_admin)`** -- toda función de `routers/profesor.py` la declara explícitamente. Es catálogo de `Admin` sin pertenencia que verificar -- no usa `get_current_director_programa_id`, que aplica a los recursos con dueño del hilo `DirectorPrograma`. El historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real, no un detalle menor.
 - **Sin capa Service**: Router delgado -> Repository (discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)).
 
 ## Referencias

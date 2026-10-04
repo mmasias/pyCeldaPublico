@@ -19,7 +19,7 @@
 
 <div align=center>
 
-|Bloqueada (tiene Grados asociados)|Confirmación (sin Grados)|
+|Bloqueada (tiene Programas asociados)|Confirmación (sin Programas)|
 |:-:|:-:|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarFacultad/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarFacultad/wireframe-confirmacion.svg)|
 ||<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
@@ -33,7 +33,7 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`Admin`|
-|**Objetivo**|Eliminar una `Facultad` del catálogo institucional, siempre que no tenga `Grado`s asociados|
+|**Objetivo**|Eliminar una `Facultad` del catálogo institucional, siempre que no tenga `Programa`s asociados|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
@@ -43,4 +43,4 @@
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `FACULTADES_ABIERTO --> FACULTADES_ABIERTO : eliminarFacultad()`
 - [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `Facultad`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Facultad *-- Grado` (composición: origen de la regla de bloqueo)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Facultad *-- Programa` (composición: origen de la regla de bloqueo)

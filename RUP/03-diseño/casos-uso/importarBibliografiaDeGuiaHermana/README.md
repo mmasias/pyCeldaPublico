@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > importarBibliografiaDeGuiaHermana() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/README.md)|[Análisis](/RUP/02-analisis/casos-uso/importarBibliografiaDeGuiaHermana/README.md)|**Diseño**|[Desarrollo](/RUP/04-desarrollo/casos-uso/importarBibliografiaDeGuiaHermana/README.md)|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/README.md)|[Análisis](/RUP/02-analisis/casos-uso/importarBibliografiaDeGuiaHermana/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -36,11 +36,11 @@ Bajada a diseño de [`importarBibliografiaDeGuiaHermana()`](/RUP/02-analisis/cas
 
 | Método | Ruta | Cuerpo | Respuesta | Autorización |
 |-|-|-|-|-|
-| `GET` | `/api/v1/guias/{guia_id}/importables` | -- | `list[GuiaHermanaImportableResponse]` | `get_current_profesor_id` + `imparte(destino.asignatura_grado_id, profesor_id)` |
+| `GET` | `/api/v1/guias/{guia_id}/importables` | -- | `list[GuiaHermanaImportableResponse]` | `get_current_profesor_id` + `imparte(destino.asignatura_programa_id, profesor_id)` |
 | `POST` | `/api/v1/guias/{guia_id}/importar-bibliografia` | `{origen_guia_id: int}` | `GuiaResponse` | ídem + revalidación de que `origen_guia_id` pertenece al conjunto de guías `Aprobada` de hermanas |
 | `POST` | `/api/v1/guias/{guia_id}/importar-planificacion-docente` | `{origen_guia_id: int}` | `GuiaResponse` | ídem (endpoint gemelo, ver [`importarPlanificacionDocenteDeGuiaHermana()`](../importarPlanificacionDocenteDeGuiaHermana/README.md)) |
 
-`GuiaHermanaImportableResponse = {guia_id, grado_codigo, asignatura_codigo, asignatura_grado_nombre, fecha_aprobacion: datetime | None, n_referencias, n_sesiones}`. El `GET` devuelve los tres campos de ambos CU (`n_referencias` y `n_sesiones`) en la misma respuesta -- un único punto de relajación de la regla de autorización, no dos.
+`GuiaHermanaImportableResponse = {guia_id, programa_codigo, asignatura_codigo, asignatura_programa_nombre, fecha_aprobacion: datetime | None, n_referencias, n_sesiones}`. El `GET` devuelve los tres campos de ambos CU (`n_referencias` y `n_sesiones`) en la misma respuesta -- un único punto de relajación de la regla de autorización, no dos.
 
 Router propio: `backend/app/routers/importar_guia_hermana.py` (registrado en `main.py` junto a `sesion.router`). Schema propio: `backend/app/schemas/importar_guia_hermana.py`.
 
@@ -49,19 +49,19 @@ Router propio: `backend/app/routers/importar_guia_hermana.py` (registrado en `ma
 - **Vista (React)**: `ImportarBibliografiaDeGuiaHermana.tsx` (ruta `/guias/:guiaId/importar-bibliografia`) -- desplegable de orígenes (`listarGuiasImportables`) + aviso del recuento a reemplazar; al confirmar, `importarBibliografiaDeGuiaHermana(guiaId, origenGuiaId)` y `limpiarExcluidos(claveReferenciasExcluidas(guiaId))` (los ids de la lista de trabajo en `sessionStorage` apuntan a filas ya borradas). El botón `[Importar de asignatura hermana]` vive en `ReferenciasBibliograficas.tsx`, condicional a que `listarGuiasImportables` devuelva algo.
 - **API**: `routers/importar_guia_hermana.py` -- `listar_importables()`, `importar_bibliografia()`. Helpers: `_guia_destino_o_404()`, `_guias_hermanas_aprobadas()`, `_origen_o_404()`, `_fecha_aprobacion()`, `_registrar_importacion()`.
 - **Repositorios**:
-  - `AsignaturaGradoRepository.listar_hermanas(asignatura_grado_id)` -- join a `Asignatura`, `asignatura_id ==` Y `Asignatura.codigo ==`, `id !=`; `[]` si `asignatura_id IS NULL` o el catálogo no tiene código.
-  - `GuiaRepository.listar_aprobadas_de_asignaturas_grado(ids)` -- filtra `estado == "Aprobada"`, precarga `referencias`/`sesiones`/`historial`/`asignatura_grado.asignatura`.
+  - `AsignaturaProgramaRepository.listar_hermanas(asignatura_programa_id)` -- join a `Asignatura`, `asignatura_id ==` Y `Asignatura.codigo ==`, `id !=`; `[]` si `asignatura_id IS NULL` o el catálogo no tiene código.
+  - `GuiaRepository.listar_aprobadas_de_asignaturas_programa(ids)` -- filtra `estado == "Aprobada"`, precarga `referencias`/`sesiones`/`historial`/`asignatura_programa.asignatura`.
   - `ReferenciaBibliograficaRepository.reemplazar_desde(guia_destino, referencias_origen)` -- borra vía ORM la colección ya cargada del destino, crea copias (`tipo`, `referencia`, `vinculada` replicada fila a fila), `flush()` sin `commit`.
 - **Modelo**:
-  - `AsignaturaGrado.asignatura` -- relación many-to-one nueva hacia `Asignatura` (solo lectura, la necesita `listar_hermanas` y el código del origen). No añade columna: `asignatura_id` ya existe desde #181.
+  - `AsignaturaPrograma.asignatura` -- relación many-to-one nueva hacia `Asignatura` (solo lectura, la necesita `listar_hermanas` y el código del origen). No añade columna: `asignatura_id` ya existe desde #181.
   - `Guia.confirmar_guardado()` -- reutilizado sin cambios: `fecha_ultima_modificacion = now()` y, si `estado == "Aprobada"`, `-> "Borrador"`.
-  - `HistorialCambio.registrar(campo="bibliografia", ...)` -- una fila; `valor_anterior = "{n} referencias"`, `valor_nuevo = "{grado} / {codigo}"`, `comentario = "bibliografía importada desde {grado} / {codigo}"`.
+  - `HistorialCambio.registrar(campo="bibliografia", ...)` -- una fila; `valor_anterior = "{n} referencias"`, `valor_nuevo = "{programa} / {codigo}"`, `comentario = "bibliografía importada desde {programa} / {codigo}"`.
 
 ## Decisiones de diseño
 
 - **Un solo commit por importación**. Las llamadas a repo (`reemplazar_desde`) hacen `flush()`, no `commit()` -- excepción documentada al patrón habitual del proyecto (donde cada método de repo confirma). El handler confirma una vez al final, tras `reemplazar_desde` + `HistorialCambio` + `confirmar_guardado()`. Si algo falla, rollback completo (atomicidad de la regla D6 del hilo #184).
 - **Borrado vía ORM, no `bulk delete`**. `reemplazar_desde` recorre `guia_destino.referencias` (ya cargada) y hace `db.delete()` fila a fila en vez de `query(...).delete(synchronize_session=False)` -- este último deja el identity map desincronizado (`SAWarning` al reinsertar con ids reciclados en SQLite; en PostgreSQL no recicla pero la colección quedaría stale igual).
-- **Revalidación server-side del origen**. El `origen_guia_id` del cliente nunca se confía: `_origen_o_404()` recalcula el conjunto {guías `Aprobada` de hermanas de la AG que el profesor imparte} y comprueba pertenencia -- `404` uniforme ("Guia no encontrada") si no está, mismo mensaje que el resto del hilo de `Guia`. Es la única lectura cross-grado que #184 abre.
+- **Revalidación server-side del origen**. El `origen_guia_id` del cliente nunca se confía: `_origen_o_404()` recalcula el conjunto {guías `Aprobada` de hermanas de la AG que el profesor imparte} y comprueba pertenencia -- `404` uniforme ("Guia no encontrada") si no está, mismo mensaje que el resto del hilo de `Guia`. Es la única lectura cross-programa que #184 abre.
 - **`fecha_aprobacion` derivada**, no columna: última fila de `HistorialCambio` con `campo="estado"` y `valor_nuevo="Aprobada"`; fallback `fecha_generacion_pdf` (que `aprobar()`/`escalar_a_aprobada()` fijan). `None` si no hay ninguna.
 - **`GuiaResponse` (escalar), no `AbrirGuiaResponse`**: el `POST` devuelve solo los campos propios de la `Guia` (incluido el `estado` ya degradado). La Vista recarga la colección con su propia navegación a `ReferenciasBibliograficas.tsx`.
 - **`vinculada` replicada tal cual, sin forzar**. El flujo normal (`c1` de `enviarGuiaARevision()`) garantiza que un origen `Aprobado` por `enviar -> aprobar` tiene todo vinculado; solo `escalarGuiaAAprobada()` (que bypasea `c1`) produce un origen con candidatas `vinculada=False`. Replicar fila a fila importa específicamente para orígenes escalados.

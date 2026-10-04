@@ -1,0 +1,46 @@
+@startuml abrirAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package abrirAsignaturaPrograma as "abrirAsignaturaPrograma()" {
+    rectangle #629EF9 AbrirAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E ResultadoAprendizaje
+    rectangle #F2AC4E Profesor
+}
+
+ProgramaAbierto --> AbrirAsignaturaProgramaView: <font size=8>abrirAsignaturaPrograma(asignaturaProgramaId)
+MateriaAbierto --> AbrirAsignaturaProgramaView: <font size=8>abrirAsignaturaPrograma(asignaturaProgramaId)
+
+AbrirAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>cargarAsignaturaPrograma(asignaturaProgramaId) : AsignaturaPrograma
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>obtener(asignaturaProgramaId) : AsignaturaPrograma
+
+AbrirAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>listarMetodologiasDocentesAsociadas(asignaturaProgramaId) : List<MetodologiaDocente>
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>listarMetodologiasDocentesDe(asignaturaProgramaId) : List<MetodologiaDocente>
+
+AbrirAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>listarResultadosAprendizajeAsociados(asignaturaProgramaId) : List<ResultadoAprendizaje>
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>listarResultadosAprendizajeDe(asignaturaProgramaId) : List<ResultadoAprendizaje>
+
+AbrirAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>listarProfesoradoAsignado(asignaturaProgramaId) : List<Profesor>
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>listarProfesoradoDe(asignaturaProgramaId) : List<Profesor>
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+AsignaturaPrograma -- MetodologiaDocente
+AsignaturaPrograma -- ResultadoAprendizaje
+AsignaturaPrograma -- Profesor
+
+AbrirAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>muestra datos de la AsignaturaPrograma, su profesorado, MetodologiaDocente y ResultadoAprendizaje asociados
+
+@enduml

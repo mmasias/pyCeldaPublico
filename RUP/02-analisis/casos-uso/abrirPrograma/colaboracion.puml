@@ -1,0 +1,67 @@
+@startuml abrirPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMAS_ABIERTO" as ProgramasAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbiertoSalida
+
+package abrirPrograma as "abrirPrograma()" {
+    rectangle #629EF9 AbrirProgramaView
+    rectangle #b5bd68 ProgramaController
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+ProgramasAbierto --> AbrirProgramaView: <font size=8>abrirPrograma(programaId)
+
+AbrirProgramaView --> ProgramaController: <font size=8>cargarPrograma(programaId) : Programa
+
+ProgramaController --> ProgramaRepository: <font size=8>obtener(programaId) : Programa
+
+AbrirProgramaView --> ProgramaController: <font size=8>listarGuiasDelPrograma(programaId) : List<Guia>
+
+ProgramaController --> GuiaRepository: <font size=8>listarDelPrograma(programaId) : List<Guia>
+
+ProgramaRepository -- Programa
+GuiaRepository -- Guia
+
+AbrirProgramaView --> ProgramaAbiertoSalida: <font size=8>muestra datos del Programa y el listado de Guia (retoque 2026-09-05, antes AsignaturaPrograma)
+
+@enduml
+
+@startuml abrirPrograma-admin-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMAS_ABIERTO" as ProgramasAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbiertoSalida
+
+package abrirProgramaAdmin as "abrirPrograma() -- Admin" {
+    rectangle #629EF9 AbrirProgramaView
+    rectangle #b5bd68 ProgramaController
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+}
+
+ProgramasAbierto --> AbrirProgramaView: <font size=8>abrirPrograma(programaId)
+
+AbrirProgramaView --> ProgramaController: <font size=8>cargarPrograma(programaId) : Programa
+
+ProgramaController --> ProgramaRepository: <font size=8>obtener(programaId) : Programa
+
+AbrirProgramaView --> ProgramaController: <font size=8>listarAsignaturasPrograma(programaId) : List<AsignaturaPrograma>
+
+ProgramaController --> AsignaturaProgramaRepository: <font size=8>listarDelPrograma(programaId) : List<AsignaturaPrograma>
+
+ProgramaRepository -- Programa
+AsignaturaProgramaRepository -- AsignaturaPrograma
+
+AbrirProgramaView --> ProgramaAbiertoSalida: <font size=8>muestra datos del Programa, enlace a Materias y tabla de AsignaturaPrograma con [Crear]/[Eliminar]
+
+@enduml

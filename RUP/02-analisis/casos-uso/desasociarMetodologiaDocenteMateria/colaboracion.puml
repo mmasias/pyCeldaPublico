@@ -15,9 +15,9 @@ package desasociarMetodologiaDocenteMateria as "desasociarMetodologiaDocenteMate
 
 MateriaAbierto --> DesasociarMetodologiaDocenteMateriaView: <font size=8>desasociarMetodologiaDocenteMateria(materiaId, metodologiaDocenteId)
 
-DesasociarMetodologiaDocenteMateriaView --> MateriaController: <font size=8>asignaturasGradoConMetodologiaDocente(materiaId, metodologiaDocenteId) : List<String>
+DesasociarMetodologiaDocenteMateriaView --> MateriaController: <font size=8>asignaturasProgramaConMetodologiaDocente(materiaId, metodologiaDocenteId) : List<String>
 
-MateriaController --> Materia: <font size=8>asignaturasGradoConMetodologiaDocente(metodologiaDocenteId) : List<String>
+MateriaController --> Materia: <font size=8>asignaturasProgramaConMetodologiaDocente(metodologiaDocenteId) : List<String>
 
 DesasociarMetodologiaDocenteMateriaView --> MateriaController: <font size=8>desasociarMetodologiaDocente(materiaId, metodologiaDocenteId)
 
@@ -26,7 +26,7 @@ MateriaController --> MetodologiaMateriaRepository: <font size=8>eliminar(materi
 MetodologiaMateriaRepository -- Materia
 
 DesasociarMetodologiaDocenteMateriaView ..[#green]> MateriaAbiertoSalida: <font size=8>lista actualizada
-DesasociarMetodologiaDocenteMateriaView ..[#red]> MateriaAbiertoSalida: <font size=8>bloqueada, sin cambios -- en uso en AsignaturaGrado de la Materia
+DesasociarMetodologiaDocenteMateriaView ..[#red]> MateriaAbiertoSalida: <font size=8>bloqueada, sin cambios -- en uso en AsignaturaPrograma de la Materia
 DesasociarMetodologiaDocenteMateriaView ..[#blue]> MateriaAbiertoSalida: <font size=8>cancelada, sin cambios
 
 @enduml

@@ -1,20 +1,20 @@
 @startuml crearResultadoAprendizaje-diseño
 title Diagrama de Secuencia - Crear Resultado de Aprendizaje
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "ResultadoAprendizajeRepository" as ResultadoRepo
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita crear un ResultadoAprendizaje
+DirectorPrograma -> Vista: solicita crear un ResultadoAprendizaje
 activate Vista
-Vista --> DirectorGrado: presenta formulario (código, tipo, descripción)
-DirectorGrado -> Vista: completa los tres campos y confirma
-Vista -> API: POST /api/v1/grados/{grado_id}/resultados-aprendizaje (ResultadoAprendizajeCreate JSON)
+Vista --> DirectorPrograma: presenta formulario (código, tipo, descripción)
+DirectorPrograma -> Vista: completa los tres campos y confirma
+Vista -> API: POST /api/v1/programas/{programa_id}/resultados-aprendizaje (ResultadoAprendizajeCreate JSON)
 activate API
 note right of API: los tres campos son obligatorios --\nResultadoAprendizajeCreate (Pydantic)\nlos exige antes de ejecutar la función
-API -> ResultadoRepo: crear(grado_id, codigo, tipo, descripcion)
+API -> ResultadoRepo: crear(programa_id, codigo, tipo, descripcion)
 activate ResultadoRepo
 ResultadoRepo -> DB: INSERT INTO resultados_aprendizaje ...
 activate DB
@@ -25,7 +25,7 @@ deactivate ResultadoRepo
 
 API --> Vista: 201 Created (ResultadoAprendizajeResponse JSON)
 deactivate API
-Vista --> DirectorGrado: navega a editarResultadoAprendizaje() (<<include>>)
+Vista --> DirectorPrograma: navega a editarResultadoAprendizaje() (<<include>>)
 deactivate Vista
 
 @enduml

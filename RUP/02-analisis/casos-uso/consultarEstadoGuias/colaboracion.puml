@@ -3,8 +3,8 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
-rectangle #CDEBA5 ":GUIAS_DEL_GRADO_ABIERTO" as GuiasDelGradoSalida
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":GUIAS_DEL_PROGRAMA_ABIERTO" as GuiasDelProgramaSalida
 
 package consultarEstadoGuias as "consultarEstadoGuias()" {
     rectangle #629EF9 ConsultarEstadoGuiasView
@@ -13,17 +13,17 @@ package consultarEstadoGuias as "consultarEstadoGuias()" {
     rectangle #F2AC4E GuiaRepository
 }
 
-GradoAbierto --> ConsultarEstadoGuiasView: <font size=8>consultarEstadoGuias(gradoId) [DirectorGrado o Admin]
+ProgramaAbierto --> ConsultarEstadoGuiasView: <font size=8>consultarEstadoGuias(programaId) [DirectorPrograma o Admin]
 
-ConsultarEstadoGuiasView --> GuiaController: <font size=8>listarGuiasDelGrado(gradoId) : List<Guia>
+ConsultarEstadoGuiasView --> GuiaController: <font size=8>listarGuiasDelPrograma(programaId) : List<Guia>
 
-GuiaController --> GuiaRepository: <font size=8>listarDelGrado(gradoId) : List<Guia>
-note right: gate previo: admin o dirige el grado (404 uniforme)
+GuiaController --> GuiaRepository: <font size=8>listarDelPrograma(programaId) : List<Guia>
+note right: gate previo: admin o dirige el programa (404 uniforme)
 
 GuiaController --> Guia: <font size=8>tienePdfGenerado() : boolean [por fila, para la variante Admin]
 
 GuiaRepository -- Guia
 
-ConsultarEstadoGuiasView --> GuiasDelGradoSalida: <font size=8>presenta listado (fila DirectorGrado: [Abrir]; fila Admin: [Previsualizar] + [Descargar PDF])
+ConsultarEstadoGuiasView --> GuiasDelProgramaSalida: <font size=8>presenta listado (fila DirectorPrograma: [Abrir]; fila Admin: [Previsualizar] + [Descargar PDF])
 
 @enduml

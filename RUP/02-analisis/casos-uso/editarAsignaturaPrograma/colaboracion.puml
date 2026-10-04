@@ -1,0 +1,37 @@
+@startuml editarAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package editarAsignaturaPrograma as "editarAsignaturaPrograma()" {
+    rectangle #629EF9 EditarAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E GuiaRepository
+}
+
+AsignaturaProgramaAbierto --> EditarAsignaturaProgramaView: <font size=8>editarAsignaturaPrograma(asignaturaProgramaId)
+
+EditarAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>obtenerParaEditar(asignaturaProgramaId)
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>obtener(asignaturaProgramaId) : AsignaturaPrograma
+AsignaturaProgramaController --> GuiaRepository: <font size=8>existeAlgunaDe(asignaturaProgramaId) : boolean
+
+AsignaturaProgramaController --> EditarAsignaturaProgramaView: <font size=8>AsignaturaPrograma, semestreDefaultBloqueado : boolean
+
+EditarAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>guardarCambios(asignaturaProgramaId, curso, caracter, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios) : AsignaturaPrograma
+
+AsignaturaProgramaController --> AsignaturaPrograma: <font size=8>actualizar(curso, caracter, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios)
+note right: semestreDefault se aplica solo si\nsemestreDefaultBloqueado era false
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>actualizar(asignaturaPrograma) : AsignaturaPrograma
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+
+EditarAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>datos actualizados
+
+@enduml

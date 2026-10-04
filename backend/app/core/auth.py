@@ -1,8 +1,8 @@
 """Login real con Google OAuth2/OIDC -- discussion #62.
 
 Sin auto-registro: el email de la cuenta de Google tiene que coincidir con
-un Profesor o DirectorGrado ya existente en la base de datos (creados por
-Admin vía crearProfesor()/definirDirectorGrado(), fuera de esta rebanada) --
+un Profesor o DirectorPrograma ya existente en la base de datos (creados por
+Admin vía crearProfesor()/definirDirectorPrograma(), fuera de esta rebanada) --
 si no hay coincidencia, el login se rechaza. Restringido al dominio
 institucional de Workspace (parámetro `hd` de Google OAuth).
 
@@ -22,8 +22,8 @@ from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.core.database import get_db
-from app.repositories.director_grado import DirectorGradoRepository
-from app.repositories.grado import GradoRepository
+from app.repositories.director_programa import DirectorProgramaRepository
+from app.repositories.programa import ProgramaRepository
 from app.repositories.profesor import ProfesorRepository
 
 oauth = OAuth()
@@ -90,11 +90,11 @@ def get_current_profesor_id(request: Request, db: Session = Depends(get_db)) -> 
     return profesor.id
 
 
-def get_current_director_grado_id(request: Request, db: Session = Depends(get_db)) -> int:
+def get_current_director_programa_id(request: Request, db: Session = Depends(get_db)) -> int:
     email = _email_from_cookie(request)
-    director = DirectorGradoRepository(db).obtener_por_email(email)
+    director = DirectorProgramaRepository(db).obtener_por_email(email)
     if director is None:
-        raise HTTPException(status_code=403, detail="Cuenta sin DirectorGrado asociado")
+        raise HTTPException(status_code=403, detail="Cuenta sin DirectorPrograma asociado")
     return director.id
 
 
@@ -102,20 +102,20 @@ def get_current_profesor_id_opcional(
     request: Request, db: Session = Depends(get_db)
 ) -> int | None:
     """Como get_current_profesor_id, pero sin exigir el rol -- para
-    endpoints compartidos con DirectorGrado (abrirGuia()) donde un email
+    endpoints compartidos con DirectorPrograma (abrirGuia()) donde un email
     puede no tener Profesor asociado sin que eso sea un 403."""
     email = _email_from_cookie(request)
     profesor = ProfesorRepository(db).obtener_por_email(email)
     return profesor.id if profesor is not None else None
 
 
-def get_current_director_grado_id_opcional(
+def get_current_director_programa_id_opcional(
     request: Request, db: Session = Depends(get_db)
 ) -> int | None:
-    """Como get_current_director_grado_id, pero sin exigir el rol -- ver
+    """Como get_current_director_programa_id, pero sin exigir el rol -- ver
     get_current_profesor_id_opcional."""
     email = _email_from_cookie(request)
-    director = DirectorGradoRepository(db).obtener_por_email(email)
+    director = DirectorProgramaRepository(db).obtener_por_email(email)
     return director.id if director is not None else None
 
 
@@ -138,7 +138,7 @@ def _decoded_admin_claims(request: Request) -> dict:
 
 def require_admin(request: Request) -> str:
     """Autorización de Admin, sin pasar por get_current_rol() -- ese
-    dependency solo resuelve Profesor/DirectorGrado. Admin no tiene tabla
+    dependency solo resuelve Profesor/DirectorPrograma. Admin no tiene tabla
     real (ver AdminRepository, sin uso, en Análisis de iniciarSesion()); el
     rol viene fijado en el propio token por create_admin_session_token(),
     emitido solo por /auth/admin/callback tras validar la whitelist
@@ -152,10 +152,10 @@ def require_admin(request: Request) -> str:
 def get_current_admin_email_opcional(request: Request) -> str | None:
     """Como require_admin(), pero sin exigir rol=admin -- devuelve None en
     vez de 403 cuando la sesión es válida pero de otro rol (Profesor o
-    DirectorGrado). Compone con _tiene_acceso_a_guia() en endpoints
+    DirectorPrograma). Compone con _tiene_acceso_a_guia() en endpoints
     compartidos entre los tres actores (descargarGuiaPDF(), discussion
     #224, cierre de issue #220) -- mismo criterio que
-    get_current_profesor_id_opcional/get_current_director_grado_id_opcional."""
+    get_current_profesor_id_opcional/get_current_director_programa_id_opcional."""
     claims = _decoded_admin_claims(request)
     return claims["email"] if claims.get("rol") == "admin" else None
 
@@ -166,26 +166,26 @@ def get_current_rol(request: Request, db: Session = Depends(get_db)) -> dict[str
 
     Rama `admin` (issue #314): el claim `rol=admin` del token, fijado por
     create_admin_session_token() en el login de Admin, corta aquí sin
-    consultar Profesor/DirectorGrado -- mismo criterio que require_admin()/
+    consultar Profesor/DirectorPrograma -- mismo criterio que require_admin()/
     get_current_admin_email_opcional(), unas líneas más arriba. Antes de
     este fix, un Admin puro (sin fila en ninguna de las dos tablas) caía al 403 de abajo y RequireSession lo
-    expulsaba a "/"; un Admin que además tuviera fila Profesor/DirectorGrado
-    resolvía en silencio como `profesor`/`director_grado`, nunca `admin` --
+    expulsaba a "/"; un Admin que además tuviera fila Profesor/DirectorPrograma
+    resolvía en silencio como `profesor`/`director_programa`, nunca `admin` --
     efecto secundario deliberado de este fix: ahora siempre resuelve `admin`.
 
-    Un email puede resolver a DirectorGrado y/o Profesor (`DirectorGrado --|>
+    Un email puede resolver a DirectorPrograma y/o Profesor (`DirectorPrograma --|>
     Profesor` en el modelo de dominio, roles independientes no exclusivos). El
-    rol `director_grado` requiere dirigir >= 1 Grado (fila en `directores_grado`
-    Y pertenencia a la colección `directores` de algún Grado): una fila
-    huérfana de ex-director (tras quitarDirectorGrado(), que nunca la borra)
+    rol `director_programa` requiere dirigir >= 1 Programa (fila en `directores_programa`
+    Y pertenencia a la colección `directores` de algún Programa): una fila
+    huérfana de ex-director (tras quitarDirectorPrograma(), que nunca la borra)
     cae a `profesor`, y aun sin impartir sigue resolviendo con éxito -- una
     cuenta autenticada y reconocida por el catálogo NUNCA se expulsa con 403,
     la capacidad ausente la absorbe abrirInicio() como sección vacía.
 
-    `es_profesor` y `dirige_grados` son las dos señales independientes que
+    `es_profesor` y `dirige_programas` son las dos señales independientes que
     abrirInicio() consume para decidir qué secciones muestra. `es_tambien_
-    profesor` se conserva para las pantallas de deep link (/grados,
-    /mis-asignaturas-grado)."""
+    profesor` se conserva para las pantallas de deep link (/programas,
+    /mis-asignaturas-programa)."""
     claims = _decoded_admin_claims(request)
     if claims.get("rol") == "admin":
         return {
@@ -193,19 +193,19 @@ def get_current_rol(request: Request, db: Session = Depends(get_db)) -> dict[str
             "rol": "admin",
             "es_tambien_profesor": False,
             "es_profesor": False,
-            "dirige_grados": False,
+            "dirige_programas": False,
         }
 
     email = claims["email"]
     es_profesor = ProfesorRepository(db).obtener_por_email(email) is not None
-    director = DirectorGradoRepository(db).obtener_por_email(email)
-    dirige_grados = (
+    director = DirectorProgramaRepository(db).obtener_por_email(email)
+    dirige_programas = (
         director is not None
-        and GradoRepository(db).contar_dirigidos_por(director.id) > 0
+        and ProgramaRepository(db).contar_dirigidos_por(director.id) > 0
     )
 
-    if dirige_grados:
-        rol = "director_grado"
+    if dirige_programas:
+        rol = "director_programa"
     elif es_profesor or director is not None:
         rol = "profesor"
     else:
@@ -214,7 +214,7 @@ def get_current_rol(request: Request, db: Session = Depends(get_db)) -> dict[str
     return {
         "email": email,
         "rol": rol,
-        "es_tambien_profesor": rol == "director_grado" and es_profesor,
+        "es_tambien_profesor": rol == "director_programa" and es_profesor,
         "es_profesor": es_profesor,
-        "dirige_grados": dirige_grados,
+        "dirige_programas": dirige_programas,
     }

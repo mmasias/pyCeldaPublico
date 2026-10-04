@@ -1,0 +1,59 @@
+@startuml desasociarMetodologiaDocentePrograma
+
+skinparam linetype polyline
+
+state PROGRAMA_ABIERTO
+state PROGRAMA_ABIERTO_SALIDA as "PROGRAMA_ABIERTO"
+
+PROGRAMA_ABIERTO -[#green]-> desasociarMetodologiaDocentePrograma
+note on link
+<b>Actor</b> solicita desasociar MetodologiaDocente de Programa
+end note
+
+state desasociarMetodologiaDocentePrograma as "desasociarMetodologiaDocentePrograma()" {
+
+    state " " as ConfirmandoDesasociacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoDesasociacion
+    note on link
+    [MetodologiaDocente sin Materia del Programa que la use]
+    <b>Sistema</b> presenta información de la asociación y advertencia de desasociación
+    <b>Sistema</b> permite solicitar confirmar/cancelar desasociación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [MetodologiaDocente con alguna Materia del Programa que la use]
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materia del Programa
+    end note
+
+    ConfirmandoDesasociacion -[#green]-> [*]
+    note on link
+    <b>Actor</b> solicita confirmar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#blue]-> [*]
+    note on link
+    <b>Actor</b> solicita cancelar desasociación
+    end note
+}
+
+desasociarMetodologiaDocentePrograma -[#green]-> PROGRAMA_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+desasociarMetodologiaDocentePrograma -[#red]-> PROGRAMA_ABIERTO_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+desasociarMetodologiaDocentePrograma -[#blue]-> PROGRAMA_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

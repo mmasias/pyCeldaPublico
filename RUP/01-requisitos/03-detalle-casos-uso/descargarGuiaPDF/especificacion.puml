@@ -18,11 +18,13 @@ state descargarGuiaPDF as "descargarGuiaPDF()" {
 
     c -[#green]-> [*]
     note on link
+    [Guia con PDF generado]
     <b>Sistema</b> presenta el PDF
     end note
 
     c -[#red]-> [*]
     note on link
+    [Guia sin PDF generado]
     <b>Sistema</b> presenta mensaje de bloqueo: PDF no generado todavía
     end note
 }

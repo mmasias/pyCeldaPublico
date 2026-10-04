@@ -6,7 +6,7 @@
 
 # pyCelda > abrirResultadoAprendizaje()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirResultadoAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirResultadoAprendizaje/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirResultadoAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirResultadoAprendizaje/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,7 +31,7 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorGrado`|
+|**Actor**|`Admin`, `DirectorPrograma`|
 |**Objetivo**|Consultar el detalle de un `ResultadoAprendizaje` concreto|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Subfunción|
@@ -42,6 +42,8 @@ RAK1 es dato real del plan de estudios de GII, aportado por el usuario en la [is
 
 ## Referencias
 
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultadoAprendizaje()`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `ResultadoAprendizaje`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultadoAprendizaje()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultadoAprendizaje()` (compartido con `Admin` desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642); pantalla propia en `/admin/...`, `*Admin.tsx`)
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `ResultadoAprendizaje`
+- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` (incluye este caso de uso desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642))
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ResultadoAprendizaje{codigo, tipo, descripcion}`

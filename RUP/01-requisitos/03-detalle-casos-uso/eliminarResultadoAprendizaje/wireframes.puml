@@ -7,7 +7,7 @@
     <b>RAC2 -- Competencias o capacidades</b>
 
     Este resultado de aprendizaje está asignado a materias o
-    asignaturas-en-grado del catálogo.
+    asignaturas-en-programa del catálogo.
 
     <i>Retira su asociación antes de eliminarlo.</i>
     ====
@@ -22,7 +22,7 @@
     <b>RAH2 -- Habilidades o destrezas</b>
 
     <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin asignaciones a materias ni asignaturas-en-grado.
+    Sin asignaciones a materias ni asignaturas-en-programa.
     ====
     {[Confirmar eliminación] | [Cancelar]}
 }

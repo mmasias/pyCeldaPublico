@@ -1,0 +1,54 @@
+@startuml activarSemestre-diseño
+title Diagrama de Secuencia - Activar Semestre
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CursoAcademicoRepository" as CursoAcademicoRepo
+participant "CursoAcademico" as CursoAcademico
+database "Base de Datos" as DB
+
+Admin -> Vista: abre el CursoAcademico y solicita activar semestre
+activate Vista
+Vista -> API: GET /api/v1/universidades/{universidad_id}/cursos-academicos (búsqueda del curso por id en el cliente)
+activate API
+note right of API: mismo endpoint que abrirCursosAcademicos();\nno hay GET por id
+API --> Vista: 200 OK (List[CursoAcademicoAdminResponse] JSON)
+deactivate API
+Vista --> Admin: muestra el semestre activo actual y los radio buttons 1 / 2
+
+Admin -> Vista: elige el semestre, confirma
+Vista -> API: PUT /api/v1/admin/cursos-academicos/{curso_academico_id}/semestre (SemestreActivoRequest JSON)
+activate API
+note right of API: Depends(require_admin) -- endpoint de escritura de Admin.\nsemestre: Literal[1, 2] -- otro valor -> 422 (Pydantic)
+API -> CursoAcademicoRepo: obtener(curso_academico_id)
+activate CursoAcademicoRepo
+CursoAcademicoRepo -> DB: SELECT ... FROM cursos_academicos WHERE id = :curso_academico_id
+activate DB
+DB --> CursoAcademicoRepo: fila CursoAcademico
+deactivate DB
+CursoAcademicoRepo --> API: CursoAcademico | None
+deactivate CursoAcademicoRepo
+
+alt no existe
+    API --> Vista: 404 (CursoAcademico no encontrado)
+    Vista --> Admin: muestra el error
+else existe -- sin ninguna precondición de estado
+    API -> CursoAcademico: activar_semestre(semestre)
+    activate CursoAcademico
+    deactivate CursoAcademico
+    API -> CursoAcademicoRepo: actualizar(curso)
+    activate CursoAcademicoRepo
+    CursoAcademicoRepo -> DB: UPDATE cursos_academicos SET semestre_activo = :semestre
+    activate DB
+    DB --> CursoAcademicoRepo: ok
+    deactivate DB
+    CursoAcademicoRepo --> API: CursoAcademico
+    deactivate CursoAcademicoRepo
+    API --> Vista: 200 OK (CursoAcademicoResponse JSON)
+    Vista --> Admin: vuelve al detalle del curso, con el semestre activo actualizado
+end
+deactivate API
+deactivate Vista
+
+@enduml

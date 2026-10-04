@@ -1,0 +1,62 @@
+@startuml eliminarActividadFormativa-diseño
+title Diagrama de Secuencia - Eliminar Actividad Formativa
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ActividadFormativaRepository" as AFRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita eliminar una ActividadFormativa del listado
+activate Vista
+Vista -> API: GET /api/v1/actividades-formativas/{actividad_formativa_id}
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
+API -> AFRepo: obtener(actividad_formativa_id)
+activate AFRepo
+AFRepo -> DB: SELECT ... FROM actividades_formativas WHERE id = :actividad_formativa_id
+activate DB
+DB --> AFRepo: fila ActividadFormativa
+deactivate DB
+AFRepo --> API: ActividadFormativa (404 si None)
+deactivate AFRepo
+API --> Vista: 200 OK (ActividadFormativaResponse JSON)
+deactivate API
+Vista --> Admin: presenta la información y pide confirmar/cancelar
+
+alt el Admin confirma
+  Admin -> Vista: confirma
+  Vista -> API: DELETE /api/v1/actividades-formativas/{actividad_formativa_id}
+  activate API
+  API -> AFRepo: nombres_materias_asociadas(actividad_formativa_id)
+  activate AFRepo
+  AFRepo -> DB: SELECT m.nombre FROM materias m\nJOIN actividades_formativas_materia afm ON afm.materia_id = m.id\nWHERE afm.actividad_formativa_id = :id AND afm.horas > 0\n(UNION las Materia de las AsignaturaPrograma con horas > 0)
+  activate DB
+  DB --> AFRepo: nombres de Materia
+  deactivate DB
+  AFRepo --> API: List[String]
+  deactivate AFRepo
+  alt en uso (horas > 0 en alguna Materia o AsignaturaPrograma)
+    API --> Vista: 409 Conflict (detail: "ActividadFormativa asignada a: ...")
+    deactivate API
+    Vista --> Admin: presenta el bloqueo con el detail del 409 tal cual, sin cambios
+  else sin uso
+    API -> AFRepo: eliminar(actividad_formativa_id)
+    activate AFRepo
+    AFRepo -> DB: DELETE de las filas a 0 de asociación y de la fila de actividades_formativas
+    activate DB
+    DB --> AFRepo: ok
+    deactivate DB
+    AFRepo --> API: void
+    deactivate AFRepo
+    API --> Vista: 204 No Content
+    deactivate API
+    Vista --> Admin: presenta la lista actualizada
+  end
+else el Admin cancela
+  Admin -> Vista: cancela
+  Vista --> Admin: cierra la confirmación, sin cambios -- sin llamada al backend
+end
+deactivate Vista
+
+@enduml

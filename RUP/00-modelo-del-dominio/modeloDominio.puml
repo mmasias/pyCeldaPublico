@@ -1,7 +1,10 @@
 @startuml modeloDominio
 
+!theme plain
 hide empty members
 hide circle
+skinparam linetype polyline
+left to right direction
 
 package "Estructura curricular" {
   class Universidad {
@@ -10,7 +13,10 @@ package "Estructura curricular" {
   class Facultad {
     nombre
   }
-  class Grado {
+  class ProgramaPadre {
+    nombre
+  }
+  class Programa {
     codigo
     nombre
     estado
@@ -38,7 +44,7 @@ package "Estructura curricular" {
   class ActividadFormativaMateria {
     horas
   }
-  class ActividadFormativaAsignaturaGrado {
+  class ActividadFormativaAsignaturaPrograma {
     horas
     porcentajePresencialidad
   }
@@ -49,7 +55,7 @@ package "Estructura curricular" {
     contenido
     estado
   }
-  class AsignaturaGrado {
+  class AsignaturaPrograma {
     nombre
     curso
     caracter
@@ -61,13 +67,11 @@ package "Estructura curricular" {
     sesionesMinimas
     estado
   }
-
   class ResultadoAprendizaje {
     codigo
     tipo
     descripcion
   }
-
   class Requisito {
     tipo
   }
@@ -77,10 +81,12 @@ package "Estructura curricular" {
     estado
     semestreActivo
   }
-  Universidad *-d- Facultad
-  Facultad *-d- Grado
-  Grado *-- Materia
-  Materia *-- AsignaturaGrado
+  Universidad *-- Facultad
+  Facultad *-- Programa
+  ProgramaPadre o-- Programa
+  Programa *-- Materia
+  Programa o-- MetodologiaDocente
+  Materia *-- AsignaturaPrograma
   Materia *-- SistemaEvaluacion
   Materia o-- MetodologiaDocente
   (Materia, MetodologiaDocente) .. MetodologiaMateria
@@ -88,16 +94,16 @@ package "Estructura curricular" {
   Universidad *-- ActividadFormativa
   Materia o-- ActividadFormativa
   (Materia, ActividadFormativa) .. ActividadFormativaMateria
-  AsignaturaGrado o-- ActividadFormativa
-  (AsignaturaGrado, ActividadFormativa) .. ActividadFormativaAsignaturaGrado
-  (Grado, Asignatura) .. AsignaturaGrado
-  Grado *-d- ResultadoAprendizaje
+  AsignaturaPrograma o-- ActividadFormativa
+  (AsignaturaPrograma, ActividadFormativa) .. ActividadFormativaAsignaturaPrograma
+  (Programa, Asignatura) .. AsignaturaPrograma
+  Programa *-d- ResultadoAprendizaje
   Materia o-u- ResultadoAprendizaje
-  AsignaturaGrado o- ResultadoAprendizaje
-  AsignaturaGrado o-r- MetodologiaDocente
-  AsignaturaGrado --> AsignaturaGrado : <sub>requiere</sub>
-  AsignaturaGrado -[hidden]r- Requisito
-  (AsignaturaGrado, AsignaturaGrado) .. Requisito
+  AsignaturaPrograma o- ResultadoAprendizaje
+  AsignaturaPrograma o-r- MetodologiaDocente
+  AsignaturaPrograma -> AsignaturaPrograma : <sub>requiere</sub>
+  'AsignaturaPrograma -[hidden]r- Requisito
+  (AsignaturaPrograma, AsignaturaPrograma) .. Requisito
   Universidad -- CursoAcademico
 }
 
@@ -125,7 +131,7 @@ package "Guía docente" {
     vinculada
   }
 
-  (AsignaturaGrado, CursoAcademico) .. Guia
+  (AsignaturaPrograma, CursoAcademico) .. Guia
   Guia *- HistorialCambio
   Guia *-d- PonderacionEvaluacion
   PonderacionEvaluacion -> SistemaEvaluacion
@@ -159,7 +165,7 @@ package "Personas y roles" {
   class Admin {
     email
   }
-  class DirectorGrado
+  class DirectorPrograma
   class PerfilProfesorCurso {
     validado
     orcid
@@ -188,11 +194,11 @@ package "Personas y roles" {
 
   Profesor -u-|> Actor
   Admin -u-|> Actor
-  DirectorGrado -u-|> Profesor
+  DirectorPrograma -u-|> Profesor
   Actor -> HistorialCambio
   Universidad -- Profesor
-  AsignaturaGrado - Profesor
-  Grado o- DirectorGrado
+  AsignaturaPrograma - Profesor
+  Programa o- DirectorPrograma
   (Profesor, CursoAcademico) .. PerfilProfesorCurso
 }
 

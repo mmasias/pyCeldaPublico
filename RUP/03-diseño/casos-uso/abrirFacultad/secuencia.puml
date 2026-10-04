@@ -22,7 +22,7 @@ FacultadRepo --> API: Facultad
 deactivate FacultadRepo
 API --> Vista: 200 OK (FacultadResponse JSON)
 deactivate API
-Vista --> Admin: muestra datos de la Facultad y la navegación a sus Grados
+Vista --> Admin: muestra datos de la Facultad y la navegación a sus Programas
 deactivate Vista
 
 @enduml

@@ -4,22 +4,22 @@ left to right direction
 
 ' Vista de Profesor, partida de actoresCasosUso.puml -- mismos usecase id, solo
 ' el subconjunto que usa este actor. El fichero completo (actoresCasosUso.puml)
-' se retiró -- el reparto por actor es la fuente de verdad. DirectorGrado --|> Profesor
-' hereda todo este catálogo -- ver actoresCasosUsoDirectorGrado.puml.
+' se retiró -- el reparto por actor es la fuente de verdad. DirectorPrograma --|> Profesor
+' hereda todo este catálogo -- ver actoresCasosUsoDirectorPrograma.puml.
 
 actor Profesor
 
 ' Acceso: abrirInicio() EXTIENDE a iniciarSesion() -- no lo incluye (discussion
-' #274, antes lo hacía abrirAsignaturasGrado() directamente). abrirInicio() es
+' #274, antes lo hacía abrirAsignaturasPrograma() directamente). abrirInicio() es
 ' primitiva de navegación (no cuenta en el catálogo de 102) que <<include>>
-' abrirAsignaturasGrado() (variante Profesor, "Mis guías") y abrirGrados()
-' (variante DirectorGrado, "Mis grados") -- esa inclusión SÍ es incondicional:
+' abrirAsignaturasPrograma() (variante Profesor, "Mis guías") y abrirProgramas()
+' (variante DirectorPrograma, "Mis programas") -- esa inclusión SÍ es incondicional:
 ' el hub incorpora las dos secciones siempre, la vacuidad por rol es un
 ' resultado de datos, no una rama. Sin asociación directa
-' Profesor--abrirAsignaturasGrado: se dispara solo como <<include>> del hub.
+' Profesor--abrirAsignaturasPrograma: se dispara solo como <<include>> del hub.
 ' <<extend>> (no <<include>>) para abrirInicio ..> iniciarSesion: solo se
 ' dispara UNA de dos ramas según el rol resuelto (abrirInicio para
-' Profesor/DirectorGrado, abrirPanelAdministracion para Admin), y
+' Profesor/DirectorPrograma, abrirPanelAdministracion para Admin), y
 ' iniciarSesion() es completo sin extensión.
 '
 ' iniciarSesion() lo invoca UsuarioNoLogueado, no Profesor -- error sistemático
@@ -31,13 +31,13 @@ package Acceso {
   usecase iniciarSesion as "iniciarSesion()"
   usecase cerrarSesion as "cerrarSesion()"
   usecase abrirInicio as "abrirInicio()"
-  usecase abrirAsignaturasGrado as "abrirAsignaturasGrado()"
+  usecase abrirAsignaturasPrograma as "abrirAsignaturasPrograma()"
 }
 
 UsuarioNoLogueado -- iniciarSesion
 Profesor -- cerrarSesion
-abrirInicio ..> iniciarSesion : <<extend>>\n(condición: rol in {Profesor, DirectorGrado})\n(punto: tras validación exitosa)
-abrirInicio ..> abrirAsignaturasGrado : <<include>>\n(sección "Mis guías")
+abrirInicio ..> iniciarSesion : <<extend>>\n(condición: rol in {Profesor, DirectorPrograma})\n(punto: tras validación exitosa)
+abrirInicio ..> abrirAsignaturasPrograma : <<include>>\n(sección "Mis guías")
 
 ' Las cuatro cajas son todas "Guía docente" -- sin wrapper exterior:
 ' agruparlas en un único package bloquea el layout mariposa, PlantUML deja
@@ -47,6 +47,7 @@ package Edicion {
   usecase abrirGuia as "abrirGuia()"
   usecase guardarBorradorGuia as "guardarBorradorGuia()"
   usecase enviarGuiaARevision as "enviarGuiaARevision()"
+  usecase importarContenidoDeGuiaHermana as "importarContenidoDeGuiaHermana()"
 }
 
 package PonderacionEvaluacion {
@@ -55,6 +56,7 @@ package PonderacionEvaluacion {
   usecase abrirPonderacionEvaluacion as "abrirPonderacionEvaluacion()"
   usecase editarPonderacionEvaluacion as "editarPonderacionEvaluacion()"
   usecase eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()"
+  usecase editarTextoSistemaEvaluacion as "editarTextoSistemaEvaluacion()"
 }
 
 package ReferenciaBibliografica {
@@ -71,7 +73,9 @@ package "Planificacion docente" {
   usecase crearSesion as "crearSesion()"
   usecase editarSesion as "editarSesion()"
   usecase eliminarSesion as "eliminarSesion()"
+  usecase duplicarSesion as "duplicarSesion()"
   usecase importarPlanificacionDocenteDeGuiaHermana as "importarPlanificacionDocenteDeGuiaHermana()"
+  usecase importarPlanificacionDocenteDesdeTexto as "importarPlanificacionDocenteDesdeTexto()"
   usecase generarPlanificacionDocenteGenerica as "generarPlanificacionDocenteGenerica()"
 }
 
@@ -80,9 +84,19 @@ package "Documento de la guía" {
   usecase previsualizarGuia as "previsualizarGuia()"
 }
 
+' Perfil (issue #423): no cuelga de una Guia concreta, es el propio Profesor
+' -- alcanzable directo desde INICIO_ABIERTO (ver diagramaContextoProfesor.puml),
+' sin abrir()/editar() separados (un solo CU, ver su especificacion.puml).
+package Perfil {
+  usecase editarPerfilPropio as "editarPerfilPropio()"
+}
+
+Profesor -- editarPerfilPropio
+
 abrirGuia -- Profesor
 guardarBorradorGuia -- Profesor
 enviarGuiaARevision -- Profesor
+importarContenidoDeGuiaHermana -- Profesor
 
 Profesor -- descargarGuiaPDF
 Profesor -- previsualizarGuia
@@ -92,6 +106,7 @@ crearPonderacionEvaluacion -- Profesor
 abrirPonderacionEvaluacion -- Profesor
 editarPonderacionEvaluacion -- Profesor
 eliminarPonderacionEvaluacion -- Profesor
+editarTextoSistemaEvaluacion -- Profesor
 
 Profesor -- abrirReferenciasBibliograficas
 Profesor -- crearReferenciaBibliografica
@@ -104,7 +119,9 @@ Profesor -- abrirPlanificacionDocente
 Profesor -- crearSesion
 Profesor -- editarSesion
 Profesor -- eliminarSesion
+Profesor -- duplicarSesion
 Profesor -- importarPlanificacionDocenteDeGuiaHermana
+Profesor -- importarPlanificacionDocenteDesdeTexto
 Profesor -- generarPlanificacionDocenteGenerica
 
 @enduml

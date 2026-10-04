@@ -1,0 +1,33 @@
+@startuml duplicarSesion
+
+skinparam linetype polyline
+
+state PLANIFICACION_DOCENTE_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
+
+PLANIFICACION_DOCENTE_ABIERTO -[#green]-> duplicarSesion
+note on link
+<b>Profesor</b> solicita duplicar Sesion de la Planificación docente
+end note
+
+state duplicarSesion as "duplicarSesion()" {
+
+    state " " as Duplicando
+
+    [*] -[#green]-> Duplicando
+    note on link
+    <b>Sistema</b> permite solicitar duplicar sobre sesiones ya guardadas
+    end note
+
+    Duplicando -[#green]-> [*]
+    note on link
+    <b>Profesor</b> solicita duplicar
+    end note
+}
+
+duplicarSesion -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+copia insertada tras la original, sesiones posteriores renumeradas
+end note
+
+@enduml

@@ -3,7 +3,7 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":ASIGNATURAS_GRADO_ABIERTO" as AsignaturasGradoAbierto
+rectangle #CDEBA5 ":ASIGNATURAS_PROGRAMA_ABIERTO" as AsignaturasProgramaAbierto
 rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
 
 package abrirGuia as "abrirGuia()" {
@@ -11,9 +11,9 @@ package abrirGuia as "abrirGuia()" {
     rectangle #b5bd68 GuiaController
     rectangle #F2AC4E Guia
     rectangle #F2AC4E GuiaRepository
-    rectangle #F2AC4E AsignaturaGrado
+    rectangle #F2AC4E AsignaturaPrograma
     rectangle #F2AC4E Profesor
-    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E ProgramaRepository
     rectangle #F2AC4E PonderacionEvaluacion
     rectangle #F2AC4E PonderacionEvaluacionRepository
     rectangle #F2AC4E ReferenciaBibliografica
@@ -22,13 +22,13 @@ package abrirGuia as "abrirGuia()" {
     rectangle #F2AC4E SesionRepository
 }
 
-AsignaturasGradoAbierto --> AbrirGuiaView: <font size=8>abrirGuia(guiaId)
+AsignaturasProgramaAbierto --> AbrirGuiaView: <font size=8>abrirGuia(guiaId)
 
 AbrirGuiaView --> GuiaController: <font size=8>cargarGuia(guiaId) : Guia
 
-GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia [carga junto asignaturaGrado y profesorado]
+GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia [carga junto asignaturaPrograma y profesorado]
 
-GuiaController --> GradoRepository: <font size=8>dirige(guia.gradoId, directorGradoId) : boolean [puedeRevisar]
+GuiaController --> ProgramaRepository: <font size=8>dirige(guia.programaId, directorProgramaId) : boolean [puedeRevisar]
 
 GuiaController --> PonderacionEvaluacionRepository: <font size=8>listarVinculadasDe(guia) : List<PonderacionEvaluacion>
 GuiaController --> PonderacionEvaluacionRepository: <font size=8>listarPendientesDe(guiaId) : List<PonderacionEvaluacion>
@@ -39,12 +39,12 @@ GuiaController --> ReferenciaBibliograficaRepository: <font size=8>listarPendien
 GuiaController --> SesionRepository: <font size=8>listarVinculadasDe(guia) : List<Sesion>
 GuiaController --> SesionRepository: <font size=8>listarPendientesDe(guiaId) : List<Sesion>
 
-GuiaController --> AbrirGuiaView: <font size=8>fusiona vinculadas + pendientes por colección, más asignaturaGrado, profesorado y puedeRevisar; la Vista calcula los medidores de completitud (#206)
+GuiaController --> AbrirGuiaView: <font size=8>fusiona vinculadas + pendientes por colección, más asignaturaPrograma, profesorado y puedeRevisar; la Vista calcula los medidores de completitud (#206)
 
 Guia -- PonderacionEvaluacion
 Guia -- ReferenciaBibliografica
 Guia -- Sesion
-Guia -- AsignaturaGrado
+Guia -- AsignaturaPrograma
 Guia -- Profesor
 GuiaRepository -- Guia
 PonderacionEvaluacionRepository -- PonderacionEvaluacion

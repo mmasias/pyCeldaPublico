@@ -38,7 +38,7 @@
 
 </div>
 
-**Retocado (issue #181, 2026-09-05)**: `codigo` (obligatorio y único desde `crearAsignatura()`, ver [Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/README.md)) se muestra pero no se ofrece como campo editable -- mismo criterio que `editarGrado()`/`editarMetodologiaDocente()`.
+**Retocado (issue #181, 2026-09-05)**: `codigo` (obligatorio y único desde `crearAsignatura()`, ver [Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/README.md)) se muestra pero no se ofrece como campo editable -- mismo criterio que `editarPrograma()`/`editarMetodologiaDocente()`.
 
 ## Referencias
 
@@ -46,4 +46,4 @@
 - [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `Asignatura`
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Asignatura` (codigo, nombre, ects, contenido, estado); `estado` queda fuera de este formulario -- se gestiona en exclusiva desde `eliminarAsignatura()` (Vigente/Extinguido), mismo criterio que `CursoAcademico.estado` con `activarCursoAcademico()`
 - [`crearAsignatura()`](/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/README.md) -- origen de `codigo`, obligatorio y único desde el alta (issue #181).
-- [`editarGrado()`](/RUP/01-requisitos/03-detalle-casos-uso/editarGrado/README.md) -- mismo criterio de `codigo` fijo, mostrado solo lectura.
+- [`editarPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/editarPrograma/README.md) -- mismo criterio de `codigo` fijo, mostrado solo lectura.

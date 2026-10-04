@@ -17,7 +17,7 @@ FacultadesAbierto --> EliminarFacultadView: <font size=8>eliminarFacultad(facult
 
 EliminarFacultadView --> FacultadController: <font size=8>puedeEliminar(facultadId) : boolean
 
-FacultadController --> FacultadRepository: <font size=8>tieneGradosAsociados(facultadId) : boolean
+FacultadController --> FacultadRepository: <font size=8>tieneProgramasAsociados(facultadId) : boolean
 
 EliminarFacultadView --> FacultadController: <font size=8>eliminar(facultadId)
 
@@ -26,7 +26,7 @@ FacultadController --> FacultadRepository: <font size=8>eliminar(facultadId)
 FacultadRepository -- Facultad
 
 EliminarFacultadView ..[#green]> FacultadesAbiertoSalida: <font size=8>lista actualizada
-EliminarFacultadView ..[#red]> FacultadesAbiertoSalida: <font size=8>bloqueada, sin cambios -- tiene Grados asociados
+EliminarFacultadView ..[#red]> FacultadesAbiertoSalida: <font size=8>bloqueada, sin cambios -- tiene Programas asociados
 EliminarFacultadView ..[#blue]> FacultadesAbiertoSalida: <font size=8>cancelada, sin cambios
 
 @enduml

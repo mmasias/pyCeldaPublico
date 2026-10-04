@@ -1,0 +1,54 @@
+@startuml editarTextoSistemaEvaluacion
+
+skinparam linetype polyline
+
+state PONDERACIONES_EVALUACION_ABIERTO
+state PONDERACIONES_EVALUACION_ABIERTO_SALIDA as "PONDERACIONES_EVALUACION_ABIERTO"
+
+PONDERACIONES_EVALUACION_ABIERTO -[#green]-> editarTextoSistemaEvaluacion
+note on link
+<b>Profesor</b> solicita editar el texto de convocatorias
+end note
+
+state editarTextoSistemaEvaluacion as "editarTextoSistemaEvaluacion()" {
+
+    state " " as EditandoTexto
+    state c <<choice>>
+
+    [*] -[#green]-> EditandoTexto
+    note on link
+    <b>Sistema</b> presenta el texto actual de convocatorias en un área de texto
+    <b>Sistema</b> ofrece tres plantillas (asignatura normal, prácticas externas, prácticas de laboratorio) que rellenan el área de texto sin guardar
+    <b>Sistema</b> permite solicitar guardar
+    end note
+
+    EditandoTexto -[#green]-> c
+    note on link
+    <b>Profesor</b> edita el texto, o elige una plantilla y la ajusta
+    <b>Profesor</b> solicita guardar
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [el texto contiene el marcador [TABLA] exactamente una vez]
+    <b>Sistema</b> persiste el texto
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [el marcador [TABLA] aparece cero veces o más de una]
+    <b>Sistema</b> presenta mensaje de rechazo: el texto debe contener el marcador [TABLA] exactamente una vez
+    end note
+}
+
+editarTextoSistemaEvaluacion -[#green]-> PONDERACIONES_EVALUACION_ABIERTO_SALIDA
+note on link
+texto actualizado
+end note
+
+editarTextoSistemaEvaluacion -[#red]-> PONDERACIONES_EVALUACION_ABIERTO_SALIDA
+note on link
+marcador [TABLA] ausente o repetido, sin cambios
+end note
+
+@enduml

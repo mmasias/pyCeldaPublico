@@ -19,12 +19,14 @@ state importarBibliografiaDeGuiaHermana as "importarBibliografiaDeGuiaHermana()"
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de bloqueo: ninguna asignatura hermana tiene guía aprobada
+    [ninguna AsignaturaPrograma hermana tiene Guia Aprobada en el CursoAcademico activo]
+    <b>Sistema</b> presenta mensaje de bloqueo: ninguna asignatura hermana tiene guía aprobada en el CursoAcademico activo
     end note
 
     c -[#green]-> SolicitandoOrigen
     note on link
-    <b>Sistema</b> presenta las guías aprobadas de asignaturas hermanas
+    [al menos una AsignaturaPrograma hermana tiene Guia Aprobada en el CursoAcademico activo]
+    <b>Sistema</b> presenta las guías Aprobada de asignaturas hermanas del CursoAcademico activo
     <b>Sistema</b> muestra el número de referencias que se reemplazarán
     end note
 

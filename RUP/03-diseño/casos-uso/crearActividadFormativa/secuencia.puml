@@ -1,0 +1,32 @@
+@startuml crearActividadFormativa-diseño
+title Diagrama de Secuencia - Crear Actividad Formativa
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ActividadFormativaRepository" as AFRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: completa código y nombre, confirma
+activate Vista
+Vista -> API: POST /api/v1/universidades/{universidad_id}/actividades-formativas (ActividadFormativaCreate JSON)
+activate API
+note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar.\n404 si la Universidad no existe
+API -> AFRepo: crear(universidad_id, codigo, nombre)
+activate AFRepo
+AFRepo -> DB: INSERT INTO actividades_formativas (universidad_id, codigo, nombre) VALUES (:universidad_id, :codigo, :nombre)
+activate DB
+DB --> AFRepo: id nueva fila
+deactivate DB
+AFRepo -> DB: INSERT filas a 0 (horas = 0) para las Materia / AsignaturaPrograma\nexistentes de la Universidad (autopoblado)
+activate DB
+DB --> AFRepo: ok
+deactivate DB
+AFRepo --> API: ActividadFormativa (con id)
+deactivate AFRepo
+API --> Vista: 201 Created (ActividadFormativaResponse JSON)
+deactivate API
+Vista --> Admin: navega al detalle de la ActividadFormativa creada (sin <<include>> C->U)
+deactivate Vista
+
+@enduml

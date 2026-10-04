@@ -1,0 +1,49 @@
+@startuml asignarProfesorAAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package asignarProfesorAAsignaturaPrograma as "asignarProfesorAAsignaturaPrograma()" {
+    rectangle #629EF9 AsignarProfesorAAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+AsignaturaProgramaAbierto --> AsignarProfesorAAsignaturaProgramaView: <font size=8>asignarProfesorAAsignaturaPrograma(asignaturaProgramaId)
+
+AsignarProfesorAAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>cargarProfesoresDisponibles(asignaturaProgramaId) : List<Profesor>
+
+AsignaturaProgramaController --> ProfesorRepository: <font size=8>listarDisponiblesParaAsignaturaPrograma(asignaturaProgramaId) : List<Profesor>
+
+AsignarProfesorAAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>asignarProfesor(asignaturaProgramaId, profesorId)
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>asignarProfesor(asignaturaProgramaId, profesorId)
+
+AsignaturaProgramaController --> GuiaRepository: <font size=8>obtenerPorAsignaturaPrograma(asignaturaProgramaId) : Guia
+
+AsignaturaProgramaController --> Guia: <font size=8>enviarARevision() [solo si la plantilla cambio y la Guia esta Aprobada]
+
+note on link
+issue #254: no se toca Guia -- Profesor aqui. Si la Guia activa
+estaba Aprobada, pasa a EnRevision (+ fila de HistorialCambio,
+autor centinela) para que el director re-apruebe -- al aprobar,
+Guia.aprobar() re-deriva Guia -- Profesor de la plantilla
+end note
+
+ProfesorRepository -- Profesor
+AsignaturaProgramaRepository -- AsignaturaPrograma
+GuiaRepository -- Guia
+AsignaturaPrograma -- Profesor
+Guia -- Profesor
+
+AsignarProfesorAAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>Profesor asignado
+
+@enduml

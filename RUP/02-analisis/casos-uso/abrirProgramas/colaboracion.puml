@@ -1,0 +1,26 @@
+@startuml abrirProgramas-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":PROGRAMAS_ABIERTO" as ProgramasAbiertoSalida
+
+package abrirProgramas as "abrirProgramas()" {
+    rectangle #629EF9 AbrirProgramasView
+    rectangle #b5bd68 ProgramaController
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+}
+
+ProgramaAbierto --> AbrirProgramasView: <font size=8>abrirProgramas(directorProgramaId)
+
+AbrirProgramasView --> ProgramaController: <font size=8>listarPropios(directorProgramaId) : List<Programa>
+
+ProgramaController --> ProgramaRepository: <font size=8>listarDirigidosPor(directorProgramaId) : List<Programa>
+
+ProgramaRepository -- Programa
+
+AbrirProgramasView --> ProgramasAbiertoSalida: <font size=8>presenta listado de Programas dirigidos por el DirectorPrograma
+
+@enduml

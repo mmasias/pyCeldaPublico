@@ -1,0 +1,26 @@
+@startuml abrirActividadFormativa-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ACTIVIDADES_FORMATIVAS_ABIERTO" as ActividadesFormativasAbierto
+rectangle #CDEBA5 ":ACTIVIDAD_FORMATIVA_ABIERTO" as ActividadFormativaAbiertoSalida
+
+package abrirActividadFormativa as "abrirActividadFormativa()" {
+    rectangle #629EF9 AbrirActividadFormativaView
+    rectangle #b5bd68 ActividadFormativaController
+    rectangle #F2AC4E ActividadFormativa
+    rectangle #F2AC4E ActividadFormativaRepository
+}
+
+ActividadesFormativasAbierto --> AbrirActividadFormativaView: <font size=8>abrirActividadFormativa(actividadFormativaId)
+
+AbrirActividadFormativaView --> ActividadFormativaController: <font size=8>cargarActividadFormativa(actividadFormativaId) : ActividadFormativa
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>obtener(actividadFormativaId) : ActividadFormativa
+
+ActividadFormativaRepository -- ActividadFormativa
+
+AbrirActividadFormativaView --> ActividadFormativaAbiertoSalida: <font size=8>muestra datos de la ActividadFormativa
+
+@enduml

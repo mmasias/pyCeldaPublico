@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -34,16 +34,16 @@ Bajada a diseño del caso de análisis [`editarMateria()`](/RUP/02-analisis/caso
 
 ## Participantes
 
-- **Vista**: `EditarMateriaAdmin.tsx` (React, ruta `/admin/materias/{materia_id}/editar`) -- carga el formulario con `GET /api/v1/admin/materias/{materia_id}` (endpoint Admin de la variante reducida de `abrirMateria()`, no el `GET /api/v1/materias/{materia_id}` de `DirectorGrado`, que agrega las colecciones de asociación); envía cambios con `PUT`.
-- **API**: `routers/materia.py::obtener_materia_admin(materia_id)` / `editar_materia(materia_id, datos)` -- funciones nuevas; sin validación de negocio, solo coordinan la actualización. El sufijo `_admin` evita colisionar de nombre con `obtener_materia()` ya existente (variante `DirectorGrado`).
-- **Modelo**: `Materia.actualizar(nombre)` -- método nuevo, mismo patrón que `Grado.actualizar(nombre)`/`Universidad.actualizar(nombre)`.
-- **Repositorio**: `MateriaRepository.obtener(materia_id)` (reutilizado); `.actualizar(materia)` -- método nuevo, mismo perfil que `GradoRepository.actualizar(grado)`.
+- **Vista**: `EditarMateriaAdmin.tsx` (React, ruta `/admin/materias/{materia_id}/editar`) -- carga el formulario con `GET /api/v1/admin/materias/{materia_id}` (endpoint Admin de la variante reducida de `abrirMateria()`, no el `GET /api/v1/materias/{materia_id}` de `DirectorPrograma`, que agrega las colecciones de asociación); envía cambios con `PUT`.
+- **API**: `routers/materia.py::obtener_materia_admin(materia_id)` / `editar_materia(materia_id, datos)` -- funciones nuevas; sin validación de negocio, solo coordinan la actualización. El sufijo `_admin` evita colisionar de nombre con `obtener_materia()` ya existente (variante `DirectorPrograma`).
+- **Modelo**: `Materia.actualizar(nombre)` -- método nuevo, mismo patrón que `Programa.actualizar(nombre)`/`Universidad.actualizar(nombre)`.
+- **Repositorio**: `MateriaRepository.obtener(materia_id)` (reutilizado); `.actualizar(materia)` -- método nuevo, mismo perfil que `ProgramaRepository.actualizar(programa)`.
 
 ## Decisiones de diseño
 
 - **Sin `alt` de negocio**: la única validación es de forma, resuelta por `MateriaUpdate` (Pydantic: `nombre` obligatorio), mismo mecanismo ya documentado en el diagrama de clases de Diseño para `validarDatosObligatorios()`. Sin `estado` que gestionar: `Materia` no se extingue.
-- **El `GET` previo usa el endpoint Admin reducido**: `MateriaAdminDetalleResponse` solo agrega `asignaturas_grado` -- suficiente para el formulario (que solo pinta `nombre`) y sin pedir las colecciones de asociación que `DirectorGrado` usa y `Admin` no.
-- **Namespace `/api/v1/admin/materias/{materia_id}`, con `Depends(require_admin)`** -- separado del `/api/v1/materias/{materia_id}` de `DirectorGrado`, mismo criterio del resto del namespace Admin. Especialmente relevante por ser endpoint de escritura (IDOR #86/#96).
+- **El `GET` previo usa el endpoint Admin reducido**: `MateriaAdminDetalleResponse` solo agrega `asignaturas_programa` -- suficiente para el formulario (que solo pinta `nombre`) y sin pedir las colecciones de asociación que `DirectorPrograma` usa y `Admin` no.
+- **Namespace `/api/v1/admin/materias/{materia_id}`, con `Depends(require_admin)`** -- separado del `/api/v1/materias/{materia_id}` de `DirectorPrograma`, mismo criterio del resto del namespace Admin. Especialmente relevante por ser endpoint de escritura (IDOR #86/#96).
 - **`404` si el identificador no existe**, tanto en el `GET` previo como en el `PUT` -- guardia de Router sobre el `None` del repositorio.
 - **Sin capa Service**: Router delgado -> Modelo/Repository.
 
@@ -52,5 +52,5 @@ Bajada a diseño del caso de análisis [`editarMateria()`](/RUP/02-analisis/caso
 - [`editarMateria()` en Análisis](/RUP/02-analisis/casos-uso/editarMateria/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarMateria/README.md).
 - [`crearMateria()` en Diseño](/RUP/03-diseño/casos-uso/crearMateria/README.md) -- `<<include>>` de origen.
-- [`editarGrado()` en Diseño](/RUP/03-diseño/casos-uso/editarGrado/README.md) -- mismo patrón de `GET` previo + `PUT` sin `alt` de negocio, el precedente directo de la rebanada anterior.
+- [`editarPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarPrograma/README.md) -- mismo patrón de `GET` previo + `PUT` sin `alt` de negocio, el precedente directo de la rebanada anterior.
 - [`abrirMateria()` en Diseño](/RUP/03-diseño/casos-uso/abrirMateria/README.md) -- el `GET` de la variante Admin reducida, construido en este mismo lote.

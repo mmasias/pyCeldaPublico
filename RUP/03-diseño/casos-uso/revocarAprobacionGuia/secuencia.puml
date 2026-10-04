@@ -1,7 +1,7 @@
 @startuml revocarAprobacionGuia-diseño
 title Diagrama de Secuencia - Revocar Aprobación de Guía
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
@@ -9,7 +9,7 @@ participant "Guia" as Guia
 participant "HistorialCambio" as HistorialCambio
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: introduce comentario (opcional), solicita revocar
+DirectorPrograma -> Vista: introduce comentario (opcional), solicita revocar
 activate Vista
 Vista -> API: POST /api/v1/guias/{guia_id}/revocar-aprobacion (comentario)
 activate API
@@ -44,7 +44,7 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON, con historial)
 deactivate API
-Vista --> DirectorGrado: "APROBACIÓN REVOCADA" -- Aprobada -> Borrador
+Vista --> DirectorPrograma: "APROBACIÓN REVOCADA" -- Aprobada -> Borrador
 deactivate Vista
 
 @enduml

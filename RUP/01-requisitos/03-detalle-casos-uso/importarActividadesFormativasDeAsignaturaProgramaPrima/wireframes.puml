@@ -1,0 +1,14 @@
+@startsalt importarActividadesFormativasDeAsignaturaProgramaPrima-wireframe
+{
+    <b>IMPORTAR ACTIVIDADES FORMATIVAS -- Programación I (6 ECTS)</b>
+    ====
+    <b>Asignaturas de la misma materia:</b>
+    {#
+        <b>Asignatura</b>          | <b>ECTS</b> | <b>Horas totales</b> | .
+        Programación II            | 6           | 150                  | {[Importar de esta]}
+        Estructuras de datos       | 7.5         | 187.5                | {[Importar de esta]}
+    }
+    --
+    <color:red>Esto reemplazará todas las horas y porcentajes actuales de esta asignatura, incluidos los que hayas tecleado.</color>
+}
+@endsalt

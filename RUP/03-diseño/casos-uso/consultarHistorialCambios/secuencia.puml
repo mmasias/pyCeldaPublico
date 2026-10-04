@@ -1,0 +1,73 @@
+@startuml consultarHistorialCambios-diseño
+title Diagrama de Secuencia - Consultar Historial de Cambios
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CursoAcademicoRepository" as CursoAcademicoRepo
+participant "ProfesorRepository" as ProfesorRepo
+database "Base de Datos" as DB
+
+== Feed de las últimas 50 acciones + índice de autores ==
+
+Admin -> Vista: solicita consultar el historial de cambios
+activate Vista
+Vista -> API: GET /api/v1/historial-cambios[?curso={curso_id}]
+activate API
+note right of API: Depends(require_admin) -- auditoría solo para Admin.\n?curso= opcional: sin él, histórico completo de todos los cursos
+
+opt viene ?curso=
+    API -> CursoAcademicoRepo: obtener(curso)
+    activate CursoAcademicoRepo
+    CursoAcademicoRepo -> DB: SELECT ... FROM cursos_academicos WHERE id = :curso
+    CursoAcademicoRepo --> API: CursoAcademico | None
+    deactivate CursoAcademicoRepo
+end
+
+alt el curso indicado no existe
+    API --> Vista: 404 (CursoAcademico no encontrado)
+    Vista --> Admin: muestra el error
+else sin filtro, o curso existente
+    API -> DB: SELECT h.* FROM historial_cambios h [JOIN guias g WHERE g.curso_academico_id = :curso]\nORDER BY h.fecha DESC, h.id DESC LIMIT 50
+    DB --> API: últimas 50 filas HistorialCambio
+    API -> DB: SELECT h.* FROM historial_cambios h [JOIN guias ... WHERE curso] (todas, para el índice de autores)
+    DB --> API: todas las filas del filtro
+
+    loop por cada fila (feed y, para el índice, todas)
+        API -> API: _clasificar_autor(campo, autor_id) -> (tipo, id)
+        API -> DB: SELECT profesor / director_programa (email, nombre)
+        opt autor DirectorPrograma
+            API -> ProfesorRepo: obtener_por_email(director.email)
+            ProfesorRepo --> API: Profesor | None (nombre real del director)
+        end
+        API -> DB: SELECT programa de la Guia (código para Asignatura@Sigla)
+        API -> API: _clave_agrupacion -> email normalizado | "admin"
+    end
+
+    API --> Vista: 200 OK (HistorialCambiosResponse JSON: ultimos + autores)
+    Vista --> Admin: feed de las últimas 50 acciones + índice de autores
+end
+deactivate API
+
+opt cambia el selector de curso
+    Admin -> Vista: elige "Todos los cursos" o un curso
+    Vista -> API: GET /api/v1/historial-cambios[?curso={curso_id}]
+    API --> Vista: 200 OK (HistorialCambiosResponse JSON)
+    Vista --> Admin: feed e índice refiltrados
+end
+
+== Historial completo de un autor ==
+
+Admin -> Vista: selecciona un autor del índice
+Vista -> API: GET /api/v1/historial-cambios/autores/{clave}
+activate API
+note right of API: Depends(require_admin).\nClave desconocida -> lista vacía, no 404
+API -> DB: SELECT h.* FROM historial_cambios h ORDER BY h.fecha DESC, h.id DESC
+DB --> API: todas las filas HistorialCambio
+API -> API: filtra por _clave_agrupacion(...) == clave.lower()
+API --> Vista: 200 OK (List[HistorialCambioResponse] JSON, con rol del autor por fila)
+deactivate API
+Vista --> Admin: historial del autor, sin límite de 50, mezclando sus identidades (Profesor/Director) si las tiene
+deactivate Vista
+
+@enduml

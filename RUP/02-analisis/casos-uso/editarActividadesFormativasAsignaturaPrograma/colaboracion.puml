@@ -1,0 +1,32 @@
+@startuml editarActividadesFormativasAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package editarActividadesFormativasAsignaturaPrograma as "editarActividadesFormativasAsignaturaPrograma()" {
+    rectangle #629EF9 EditarActividadesFormativasAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E ActividadFormativaAsignaturaPrograma
+    rectangle #F2AC4E ActividadFormativaAsignaturaProgramaRepository
+}
+
+AsignaturaProgramaAbierto --> EditarActividadesFormativasAsignaturaProgramaView: <font size=8>editarActividadesFormativasAsignaturaPrograma(asignaturaProgramaId)
+
+EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>cargarActividadesFormativas(asignaturaProgramaId) : lista de ActividadFormativaAsignaturaPrograma
+
+AsignaturaProgramaController --> ActividadFormativaAsignaturaProgramaRepository: <font size=8>listarDe(asignaturaProgramaId) : lista de ActividadFormativaAsignaturaPrograma
+
+EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>guardarActividadesFormativas(asignaturaProgramaId, reparto)
+
+AsignaturaProgramaController --> ActividadFormativaAsignaturaPrograma: <font size=8>actualizar(horas, porcentajePresencialidad)
+
+AsignaturaProgramaController --> ActividadFormativaAsignaturaProgramaRepository: <font size=8>actualizarLote(actividadesFormativasAsignaturaPrograma)
+
+ActividadFormativaAsignaturaProgramaRepository -- ActividadFormativaAsignaturaPrograma
+
+EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>reparto guardado (o valor no válido: horas negativas / presencialidad fuera de 0-100, no se guarda nada)
+
+@enduml

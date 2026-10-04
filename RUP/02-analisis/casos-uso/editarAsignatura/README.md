@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -13,7 +13,7 @@
 
 Traducción a clases de análisis del caso de uso [`editarAsignatura()`](/RUP/01-requisitos/03-detalle-casos-uso/editarAsignatura/README.md): CRUD real e inmediato contra `AsignaturaRepository`. Sin `<<choice>>` -- `Asignatura` no tiene ninguna regla de validación cruzada documentada en el modelo de dominio, solo los obligatorios `nombre` y `ects`; `contenido` es opcional. `estado` queda fuera del formulario: se gestiona en exclusiva desde [`eliminarAsignatura()`](../eliminarAsignatura/README.md) (Vigente/Extinguido). `Asignatura` gana aquí su método `actualizar(nombre, ects, contenido)`, mismo patrón que `Universidad.actualizar(nombre)`. Es también el destino del `<<include>>` de [`crearAsignatura()`](../crearAsignatura/README.md): tras crear, el `Admin` queda editando la `Asignatura` recién creada, completando `ECTS` y `contenido`.
 
-**Retocado (issue #181, 2026-09-05)**: `codigo` (obligatorio y único desde `crearAsignatura()`) se muestra pero no viaja en `guardarCambios(...)` -- mismo criterio que `editarGrado()`: `codigo` no se puede mutar aquí.
+**Retocado (issue #181, 2026-09-05)**: `codigo` (obligatorio y único desde `crearAsignatura()`) se muestra pero no viaja en `guardarCambios(...)` -- mismo criterio que `editarPrograma()`: `codigo` no se puede mutar aquí.
 
 <div align=center>
 
@@ -80,4 +80,4 @@ Traducción a clases de análisis del caso de uso [`editarAsignatura()`](/RUP/01
 - [`abrirAsignatura()`](../abrirAsignatura/README.md) -- mismo `AsignaturaController.cargarAsignatura(asignaturaId)`, reutilizado.
 - [`eliminarAsignatura()`](../eliminarAsignatura/README.md) -- único gestor del `estado`, fuera de este formulario.
 - [`editarUniversidad()`](../editarUniversidad/README.md) -- mismo patrón de edición sin `<<choice>>` de negocio.
-- [`editarGrado()`](../editarGrado/README.md) -- mismo criterio de `codigo` fijo, mostrado solo lectura.
+- [`editarPrograma()`](../editarPrograma/README.md) -- mismo criterio de `codigo` fijo, mostrado solo lectura.

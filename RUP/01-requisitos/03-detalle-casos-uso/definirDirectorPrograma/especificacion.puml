@@ -1,0 +1,44 @@
+@startuml definirDirectorPrograma
+
+skinparam linetype polyline
+
+state PROFESOR_ABIERTO
+state PROGRAMA_ABIERTO
+state PROFESOR_ABIERTO_SALIDA as "PROFESOR_ABIERTO"
+state PROGRAMA_ABIERTO_SALIDA as "PROGRAMA_ABIERTO"
+
+state definirDirectorPrograma as "definirDirectorPrograma()" {
+
+    state " " as SeleccionandoPrograma
+    state " " as SeleccionandoProfesor
+}
+
+PROFESOR_ABIERTO -[#green]-> SeleccionandoPrograma
+note on link
+<b>Admin</b> (desde el Profesor) solicita nombrar director de Programa
+<b>Sistema</b> presenta selector de Programas que el Profesor no dirige
+<b>Sistema</b> permite solicitar nombrar
+end note
+
+PROGRAMA_ABIERTO -[#green]-> SeleccionandoProfesor
+note on link
+<b>Admin</b> (desde el Programa, issue #492) solicita nombrar director de Programa
+<b>Sistema</b> presenta selector de Profesores que no dirigen el Programa
+<b>Sistema</b> permite solicitar nombrar
+end note
+
+SeleccionandoPrograma -[#green]-> PROFESOR_ABIERTO_SALIDA
+note on link
+<b>Admin</b> introduce Programa
+<b>Admin</b> solicita nombrar
+Programa añadido a los que dirige
+end note
+
+SeleccionandoProfesor -[#green]-> PROGRAMA_ABIERTO_SALIDA
+note on link
+<b>Admin</b> introduce Profesor
+<b>Admin</b> solicita nombrar
+Profesor añadido como director del Programa
+end note
+
+@enduml

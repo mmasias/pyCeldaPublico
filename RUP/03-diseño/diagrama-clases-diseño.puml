@@ -2,9 +2,9 @@
 
 ' Vista estática consolidada (unión incremental Vista/API/Modelo/Repositorio) de
 ' los 65 secuencia.puml cerrados en casos-uso/*/secuencia.puml (21 del hilo Guia
-' L7-L9 + 21 del lote DirectorGrado L2-L6 + 9 de Universidad/Facultad + 2 de
+' L7-L9 + 21 del lote DirectorPrograma L2-L6 + 9 de Universidad/Facultad + 2 de
 ' iniciarSesion()/abrirPanelAdministracion(), discussion #113, + 5 de Asignatura
-' + 3 de Grado + 4 de PlanificacionDocente/Sesion, discussion #140).
+' + 3 de Programa + 4 de PlanificacionDocente/Sesion, discussion #140).
 ' Un peldaño más abajo que
 ' diagrama-clases-analisis.puml (RUP/02-analisis/): mismas clases de Vista, capa
 ' Controlador de Análisis convergida en módulos de funciones sueltas (API,
@@ -75,10 +75,10 @@ package Vista {
     +editarSemestreGuia(guiaId, semestre)
   }
   class ConsultarEstadoGuiasView #629EF9 {
-    +consultarEstadoGuias(gradoId)
+    +consultarEstadoGuias(programaId)
   }
   class NotificarGuiasActualizadasView #629EF9 {
-    +notificarGuiasActualizadas(gradoId)
+    +notificarGuiasActualizadas(programaId)
   }
   class DescargarGuiaPDFView #629EF9 {
     +descargarGuiaPDF(guiaId)
@@ -87,13 +87,13 @@ package Vista {
     +previsualizarGuia(guiaId)
   }
   class AbrirResultadosAprendizajeView #629EF9 {
-    +abrirResultadosAprendizaje(gradoId)
+    +abrirResultadosAprendizaje(programaId)
   }
   class AbrirResultadoAprendizajeView #629EF9 {
     +abrirResultadoAprendizaje(resultadoAprendizajeId)
   }
   class CrearResultadoAprendizajeView #629EF9 {
-    +crearResultadoAprendizaje(gradoId, codigo, tipo, descripcion)
+    +crearResultadoAprendizaje(programaId, codigo, tipo, descripcion)
   }
   class EditarResultadoAprendizajeView #629EF9 {
     +editarResultadoAprendizaje(resultadoAprendizajeId, codigo, tipo, descripcion)
@@ -119,59 +119,59 @@ package Vista {
   class EditarActividadesFormativasMateriaView #629EF9 {
     +editarActividadesFormativasMateria(materiaId, actividades)
   }
-  class AsociarMetodologiaDocenteAAsignaturaGradoView #629EF9 {
-    +asociarMetodologiaDocenteAAsignaturaGrado(asignaturaGradoId, metodologiaDocenteId)
+  class AsociarMetodologiaDocenteAAsignaturaProgramaView #629EF9 {
+    +asociarMetodologiaDocenteAAsignaturaPrograma(asignaturaProgramaId, metodologiaDocenteId)
   }
-  class DesasociarMetodologiaDocenteAsignaturaGradoView #629EF9 {
-    +desasociarMetodologiaDocenteAsignaturaGrado(asignaturaGradoId, metodologiaDocenteId)
+  class DesasociarMetodologiaDocenteAsignaturaProgramaView #629EF9 {
+    +desasociarMetodologiaDocenteAsignaturaPrograma(asignaturaProgramaId, metodologiaDocenteId)
   }
-  class AsociarResultadoAprendizajeAAsignaturaGradoView #629EF9 {
-    +asociarResultadoAprendizajeAAsignaturaGrado(asignaturaGradoId, resultadoAprendizajeId)
+  class AsociarResultadoAprendizajeAAsignaturaProgramaView #629EF9 {
+    +asociarResultadoAprendizajeAAsignaturaPrograma(asignaturaProgramaId, resultadoAprendizajeId)
   }
-  class DesasociarResultadoAprendizajeAsignaturaGradoView #629EF9 {
-    +desasociarResultadoAprendizajeAsignaturaGrado(asignaturaGradoId, resultadoAprendizajeId)
+  class DesasociarResultadoAprendizajeAsignaturaProgramaView #629EF9 {
+    +desasociarResultadoAprendizajeAsignaturaPrograma(asignaturaProgramaId, resultadoAprendizajeId)
   }
-  class EditarActividadesFormativasAsignaturaGradoView #629EF9 {
-    +editarActividadesFormativasAsignaturaGrado(asignaturaGradoId, actividades)
+  class EditarActividadesFormativasAsignaturaProgramaView #629EF9 {
+    +editarActividadesFormativasAsignaturaPrograma(asignaturaProgramaId, actividades)
   }
-  class AbrirAsignaturaGradoAdminView #629EF9 {
-    +abrirAsignaturaGradoAdmin(asignaturaGradoId)
+  class AbrirAsignaturaProgramaAdminView #629EF9 {
+    +abrirAsignaturaProgramaAdmin(asignaturaProgramaId)
   }
-  class AsignarProfesorAAsignaturaGradoView #629EF9 {
-    +asignarProfesorAAsignaturaGrado(asignaturaGradoId)
+  class AsignarProfesorAAsignaturaProgramaView #629EF9 {
+    +asignarProfesorAAsignaturaPrograma(asignaturaProgramaId)
   }
-  class DesasignarProfesorAsignaturaGradoView #629EF9 {
-    +desasignarProfesorAsignaturaGrado(asignaturaGradoId, profesorId)
+  class DesasignarProfesorAsignaturaProgramaView #629EF9 {
+    +desasignarProfesorAsignaturaPrograma(asignaturaProgramaId, profesorId)
   }
-  class EditarAsignaturaGradoView #629EF9 {
-    +editarAsignaturaGrado(asignaturaGradoId, curso, caracter, idioma, semestreDefault, nombre, ects, contenido)
+  class EditarAsignaturaProgramaView #629EF9 {
+    +editarAsignaturaPrograma(asignaturaProgramaId, curso, caracter, idioma, semestreDefault, nombre, ects, contenido)
   }
-  class AbrirAsignaturasGradoView #629EF9 {
-    +abrirAsignaturasGrado(gradoId)
+  class AbrirAsignaturasProgramaView #629EF9 {
+    +abrirAsignaturasPrograma(programaId)
   }
-  class AbrirGradosView #629EF9 {
-    +abrirGrados()
+  class AbrirProgramasView #629EF9 {
+    +abrirProgramas()
   }
-  class AbrirGradoView #629EF9 {
-    +abrirGrado(gradoId)
+  class AbrirProgramaView #629EF9 {
+    +abrirPrograma(programaId)
   }
-  class CrearGradoView #629EF9 {
-    +crearGrado()
+  class CrearProgramaView #629EF9 {
+    +crearPrograma()
   }
-  class EditarGradoView #629EF9 {
-    +editarGrado(gradoId)
+  class EditarProgramaView #629EF9 {
+    +editarPrograma(programaId)
   }
-  class EliminarGradoView #629EF9 {
-    +eliminarGrado(gradoId)
+  class EliminarProgramaView #629EF9 {
+    +eliminarPrograma(programaId)
   }
   class AbrirMateriasView #629EF9 {
-    +abrirMaterias(gradoId)
+    +abrirMaterias(programaId)
   }
   class AbrirMateriaView #629EF9 {
     +abrirMateria(materiaId)
   }
-  class AbrirAsignaturaGradoView #629EF9 {
-    +abrirAsignaturaGrado(asignaturaGradoId)
+  class AbrirAsignaturaProgramaView #629EF9 {
+    +abrirAsignaturaPrograma(asignaturaProgramaId)
   }
   class AbrirUniversidadesView #629EF9 {
     +abrirUniversidades()
@@ -230,6 +230,21 @@ package Vista {
   class EliminarMetodologiaDocenteView #629EF9 {
     +eliminarMetodologiaDocente(metodologiaDocenteId)
   }
+  class AbrirActividadesFormativasView #629EF9 {
+    +abrirActividadesFormativas()
+  }
+  class AbrirActividadFormativaView #629EF9 {
+    +abrirActividadFormativa(actividadFormativaId)
+  }
+  class CrearActividadFormativaView #629EF9 {
+    +crearActividadFormativa()
+  }
+  class EditarActividadFormativaView #629EF9 {
+    +editarActividadFormativa(actividadFormativaId)
+  }
+  class EliminarActividadFormativaView #629EF9 {
+    +eliminarActividadFormativa(actividadFormativaId)
+  }
   class AbrirSistemasEvaluacionView #629EF9 {
     +abrirSistemasEvaluacion(materiaId)
   }
@@ -260,11 +275,11 @@ package Vista {
   class EliminarProfesorView #629EF9 {
     +eliminarProfesor(profesorId)
   }
-  class DefinirDirectorGradoView #629EF9 {
-    +definirDirectorGrado(profesorId)
+  class DefinirDirectorProgramaView #629EF9 {
+    +definirDirectorPrograma(profesorId)
   }
-  class QuitarDirectorGradoView #629EF9 {
-    +quitarDirectorGrado(profesorId, gradoId)
+  class QuitarDirectorProgramaView #629EF9 {
+    +quitarDirectorPrograma(profesorId, programaId)
   }
   class IniciarSesionView #629EF9 {
     +iniciarSesion()
@@ -299,8 +314,8 @@ package API {
     +escalar_guia_a_aprobada(guia_id)
     +revocar_aprobacion_guia(guia_id, datos)
     +editar_semestre_guia(guia_id, datos)
-    +listar_guias_del_grado(grado_id)
-    +notificar_guias_actualizadas(grado_id)
+    +listar_guias_del_programa(programa_id)
+    +notificar_guias_actualizadas(programa_id)
     +descargar_guia_pdf(guia_id)
     +previsualizar_guia(guia_id)
   }
@@ -336,15 +351,15 @@ package API {
     +importar_planificacion_docente(guia_id, datos)
   }
   class "routers/resultado_aprendizaje.py" as ResultadoAprendizajeRouter <<module>> #b5bd68 {
-    +listar_resultados_aprendizaje_del_grado(grado_id)
+    +listar_resultados_aprendizaje_del_programa(programa_id)
     +obtener_resultado_aprendizaje(resultado_aprendizaje_id)
-    +crear_resultado_aprendizaje(grado_id, datos)
+    +crear_resultado_aprendizaje(programa_id, datos)
     +editar_resultado_aprendizaje(resultado_aprendizaje_id, datos)
     +esta_asignado(resultado_aprendizaje_id)
     +eliminar_resultado_aprendizaje(resultado_aprendizaje_id)
   }
   class "routers/materia.py" as MateriaRouter <<module>> #b5bd68 {
-    +listar_materias_del_grado(grado_id)
+    +listar_materias_del_programa(programa_id)
     +obtener_materia(materia_id)
     +listar_metodologias_docentes_disponibles(materia_id)
     +asociar_metodologia_docente(materia_id, datos)
@@ -357,32 +372,32 @@ package API {
     +puede_desasociar_resultado_aprendizaje(materia_id, resultado_aprendizaje_id)
     +desasociar_resultado_aprendizaje(materia_id, resultado_aprendizaje_id)
   }
-  class "routers/asignatura_grado.py" as AsignaturaGradoRouter <<module>> #b5bd68 {
-    +listar_asignaturas_grado_del_grado(grado_id)
-    +obtener_asignatura_grado(asignatura_grado_id)
-    +obtener_para_editar(asignatura_grado_id)
-    +editar_asignatura_grado(asignatura_grado_id, datos)
-    +listar_metodologias_docentes_disponibles(asignatura_grado_id)
-    +asociar_metodologia_docente(asignatura_grado_id, datos)
-    +quedaria_sin_metodologias_tras_desasociar(asignatura_grado_id, metodologia_docente_id)
-    +desasociar_metodologia_docente(asignatura_grado_id, metodologia_docente_id)
-    +listar_resultados_aprendizaje_disponibles(asignatura_grado_id)
-    +asociar_resultado_aprendizaje(asignatura_grado_id, datos)
-    +quedaria_sin_resultados_tras_desasociar(asignatura_grado_id, resultado_aprendizaje_id)
-    +desasociar_resultado_aprendizaje(asignatura_grado_id, resultado_aprendizaje_id)
-    +obtener_asignatura_grado_admin(asignatura_grado_id)
-    +listar_profesores_disponibles(asignatura_grado_id)
-    +asignar_profesor_a_asignatura_grado(asignatura_grado_id, datos)
-    +desasignar_profesor_de_asignatura_grado(asignatura_grado_id, profesor_id)
+  class "routers/asignatura_programa.py" as AsignaturaProgramaRouter <<module>> #b5bd68 {
+    +listar_asignaturas_programa_del_programa(programa_id)
+    +obtener_asignatura_programa(asignatura_programa_id)
+    +obtener_para_editar(asignatura_programa_id)
+    +editar_asignatura_programa(asignatura_programa_id, datos)
+    +listar_metodologias_docentes_disponibles(asignatura_programa_id)
+    +asociar_metodologia_docente(asignatura_programa_id, datos)
+    +quedaria_sin_metodologias_tras_desasociar(asignatura_programa_id, metodologia_docente_id)
+    +desasociar_metodologia_docente(asignatura_programa_id, metodologia_docente_id)
+    +listar_resultados_aprendizaje_disponibles(asignatura_programa_id)
+    +asociar_resultado_aprendizaje(asignatura_programa_id, datos)
+    +quedaria_sin_resultados_tras_desasociar(asignatura_programa_id, resultado_aprendizaje_id)
+    +desasociar_resultado_aprendizaje(asignatura_programa_id, resultado_aprendizaje_id)
+    +obtener_asignatura_programa_admin(asignatura_programa_id)
+    +listar_profesores_disponibles(asignatura_programa_id)
+    +asignar_profesor_a_asignatura_programa(asignatura_programa_id, datos)
+    +desasignar_profesor_de_asignatura_programa(asignatura_programa_id, profesor_id)
   }
-  class "routers/grado.py" as GradoRouter <<module>> #b5bd68 {
-    +listar_grados()
-    +obtener_grado(grado_id)
-    +listar_grados_de_la_facultad(facultad_id)
-    +crear_grado(facultad_id, datos)
-    +obtener_grado_admin(grado_id)
-    +editar_grado(grado_id, datos)
-    +eliminar_grado(grado_id)
+  class "routers/programa.py" as ProgramaRouter <<module>> #b5bd68 {
+    +listar_programas()
+    +obtener_programa(programa_id)
+    +listar_programas_de_la_facultad(facultad_id)
+    +crear_programa(facultad_id, datos)
+    +obtener_programa_admin(programa_id)
+    +editar_programa(programa_id, datos)
+    +eliminar_programa(programa_id)
   }
   class "routers/universidad.py" as UniversidadRouter <<module>> #b5bd68 {
     +listar_universidades()
@@ -395,7 +410,7 @@ package API {
     +obtener_facultad(facultad_id)
     +crear_facultad(universidad_id, datos)
     +editar_facultad(facultad_id, datos)
-    +tiene_grados_asociados(facultad_id)
+    +tiene_programas_asociados(facultad_id)
     +eliminar_facultad(facultad_id)
   }
   class "routers/asignatura.py" as AsignaturaRouter <<module>> #b5bd68 {
@@ -425,9 +440,9 @@ package API {
     +obtener_profesor(profesor_id)
     +editar_profesor(profesor_id, datos)
     +eliminar_profesor(profesor_id)
-    +listar_grados_disponibles_para_dirigir(profesor_id)
-    +definir_director_grado(profesor_id, datos)
-    +quitar_director_grado(profesor_id, grado_id)
+    +listar_programas_disponibles_para_dirigir(profesor_id)
+    +definir_director_programa(profesor_id, datos)
+    +quitar_director_programa(profesor_id, programa_id)
   }
   class "routers/auth.py" as AuthRouter <<module>> #b5bd68 {
     +login()
@@ -506,12 +521,12 @@ package Modelo {
     id
     nombre
     +listar_sistemas_evaluacion()
-    +asignaturas_grado_con_metodologia_docente(metodologia_docente_id)
-    +asignaturas_grado_con_resultado_aprendizaje(resultado_aprendizaje_id)
+    +asignaturas_programa_con_metodologia_docente(metodologia_docente_id)
+    +asignaturas_programa_con_resultado_aprendizaje(resultado_aprendizaje_id)
   }
   class ResultadoAprendizaje #F2AC4E {
     id
-    grado_id
+    programa_id
     codigo
     tipo
     descripcion
@@ -531,8 +546,10 @@ package Modelo {
   }
   class ActividadFormativa #F2AC4E {
     id
+    universidad_id
     codigo
     nombre
+    +actualizar(codigo, nombre)
   }
   class ActividadFormativaMateria #F2AC4E {
     materia_id
@@ -540,14 +557,14 @@ package Modelo {
     horas
     +actualizar(horas)
   }
-  class ActividadFormativaAsignaturaGrado #F2AC4E {
-    asignatura_grado_id
+  class ActividadFormativaAsignaturaPrograma #F2AC4E {
+    asignatura_programa_id
     actividad_formativa_id
     horas
     porcentaje_presencialidad
     +actualizar(horas, porcentaje_presencialidad)
   }
-  class Grado #F2AC4E {
+  class Programa #F2AC4E {
     id
     codigo
     nombre
@@ -556,7 +573,7 @@ package Modelo {
     +actualizar(nombre)
     +extinguir()
   }
-  class AsignaturaGrado #F2AC4E {
+  class AsignaturaPrograma #F2AC4E {
     id
     asignatura_id
     nombre
@@ -578,7 +595,7 @@ package Modelo {
     email
     +actualizar(nombre, email)
   }
-  class DirectorGrado #F2AC4E {
+  class DirectorPrograma #F2AC4E {
     id
     email
   }
@@ -617,10 +634,10 @@ package Repositorio {
   class GuiaRepository #D98E73 {
     +obtener(guia_id)
     +actualizar(guia)
-    +listar_del_grado(grado_id)
-    +existe_alguna_de(asignatura_grado_id)
-    +obtener_por_asignatura_grado(asignatura_grado_id)
-    +listar_aprobadas_de_asignaturas_grado(ids)
+    +listar_del_programa(programa_id)
+    +existe_alguna_de(asignatura_programa_id)
+    +obtener_por_asignatura_programa(asignatura_programa_id)
+    +listar_aprobadas_de_asignaturas_programa(ids)
   }
   class PonderacionEvaluacionRepository #D98E73 {
     +crear(guia_id, sistema_evaluacion_id, descripcion, ponderacion)
@@ -657,7 +674,7 @@ package Repositorio {
   }
   class MateriaRepository #D98E73 {
     +obtener(materia_id)
-    +listar_del_grado(grado_id)
+    +listar_del_programa(programa_id)
     +listar_resultados_aprendizaje_de(materia_id)
     +listar_resultados_aprendizaje_disponibles(materia_id)
     +asociar_resultado_aprendizaje(materia_id, resultado_aprendizaje_id)
@@ -668,17 +685,17 @@ package Repositorio {
     +obtener(sistema_evaluacion_id)
     +crear(materia_id, tipo, descripcion, ponderacion_minima, ponderacion_maxima)
     +editar(sistema_evaluacion, tipo, descripcion, ponderacion_minima, ponderacion_maxima)
-    +contar_ponderaciones_asociadas(sistema_evaluacion_id)
+    +nombres_asignaciones(sistema_evaluacion_id)
     +eliminar(sistema_evaluacion_id)
   }
   class ResultadoAprendizajeRepository #D98E73 {
-    +listar_del_grado(grado_id)
+    +listar_del_programa(programa_id)
     +obtener(resultado_aprendizaje_id)
-    +crear(grado_id, codigo, tipo, descripcion)
+    +crear(programa_id, codigo, tipo, descripcion)
     +actualizar(resultado_aprendizaje)
     +esta_asignado(resultado_aprendizaje_id)
     +eliminar(resultado_aprendizaje_id)
-    +listar_disponibles_para_asignatura_grado(asignatura_grado_id)
+    +listar_disponibles_para_asignatura_programa(asignatura_programa_id)
   }
   class MetodologiaDocenteRepository #D98E73 {
     +listar()
@@ -688,7 +705,15 @@ package Repositorio {
     +nombres_materias_asociadas(metodologia_docente_id)
     +eliminar(metodologia_docente_id)
     +listar_disponibles_para_materia(materia_id)
-    +listar_disponibles_para_asignatura_grado(asignatura_grado_id)
+    +listar_disponibles_para_asignatura_programa(asignatura_programa_id)
+  }
+  class ActividadFormativaRepository #D98E73 {
+    +listar_de_la_universidad(universidad_id)
+    +obtener(actividad_formativa_id)
+    +crear(universidad_id, codigo, nombre)
+    +editar(actividad, codigo, nombre)
+    +nombres_materias_asociadas(actividad_formativa_id)
+    +eliminar(actividad_formativa_id)
   }
   class MetodologiaMateriaRepository #D98E73 {
     +crear(materia_id, metodologia_docente_id)
@@ -702,41 +727,41 @@ package Repositorio {
     +obtener(materia_id, actividad_formativa_id)
     +guardar()
   }
-  class ActividadFormativaAsignaturaGradoRepository #D98E73 {
-    +listar_de(asignatura_grado_id)
-    +obtener(asignatura_grado_id, actividad_formativa_id)
+  class ActividadFormativaAsignaturaProgramaRepository #D98E73 {
+    +listar_de(asignatura_programa_id)
+    +obtener(asignatura_programa_id, actividad_formativa_id)
     +guardar()
   }
-  class AsignaturaGradoRepository #D98E73 {
-    +obtener(asignatura_grado_id)
+  class AsignaturaProgramaRepository #D98E73 {
+    +obtener(asignatura_programa_id)
     +crear(materia_id, asignatura_id, nombre, curso, caracter, idioma, ects, semestre_default, contenido, sesiones_minimas)
-    +actualizar(asignatura_grado)
-    +listar_del_grado(grado_id)
+    +actualizar(asignatura_programa)
+    +listar_del_programa(programa_id)
     +listar_de_la_materia(materia_id)
-    +listar_hermanas(asignatura_grado_id)
-    +asociar_metodologia_docente(asignatura_grado_id, metodologia_docente_id)
-    +desasociar_metodologia_docente(asignatura_grado_id, metodologia_docente_id)
-    +quedaria_sin_metodologias_tras_desasociar(asignatura_grado_id, metodologia_docente_id)
-    +asociar_resultado_aprendizaje(asignatura_grado_id, resultado_aprendizaje_id)
-    +desasociar_resultado_aprendizaje(asignatura_grado_id, resultado_aprendizaje_id)
-    +quedaria_sin_resultados_tras_desasociar(asignatura_grado_id, resultado_aprendizaje_id)
-    +listar_metodologias_docentes_de(asignatura_grado_id)
-    +listar_resultados_aprendizaje_de(asignatura_grado_id)
-    +listar_profesorado_de(asignatura_grado_id)
+    +listar_hermanas(asignatura_programa_id)
+    +asociar_metodologia_docente(asignatura_programa_id, metodologia_docente_id)
+    +desasociar_metodologia_docente(asignatura_programa_id, metodologia_docente_id)
+    +quedaria_sin_metodologias_tras_desasociar(asignatura_programa_id, metodologia_docente_id)
+    +asociar_resultado_aprendizaje(asignatura_programa_id, resultado_aprendizaje_id)
+    +desasociar_resultado_aprendizaje(asignatura_programa_id, resultado_aprendizaje_id)
+    +quedaria_sin_resultados_tras_desasociar(asignatura_programa_id, resultado_aprendizaje_id)
+    +listar_metodologias_docentes_de(asignatura_programa_id)
+    +listar_resultados_aprendizaje_de(asignatura_programa_id)
+    +listar_profesorado_de(asignatura_programa_id)
     +listar_impartidas_por(profesor_id)
-    +imparte(asignatura_grado_id, profesor_id)
-    +asignar_profesor(asignatura_grado_id, profesor_id)
-    +desasignar_profesor(asignatura_grado_id, profesor_id)
+    +imparte(asignatura_programa_id, profesor_id)
+    +asignar_profesor(asignatura_programa_id, profesor_id)
+    +desasignar_profesor(asignatura_programa_id, profesor_id)
   }
-  class GradoRepository #D98E73 {
-    +listar_dirigidos_por(director_grado_id)
-    +obtener(grado_id)
+  class ProgramaRepository #D98E73 {
+    +listar_dirigidos_por(director_programa_id)
+    +obtener(programa_id)
     +obtener_por_codigo(codigo)
     +listar_de_la_facultad(facultad_id)
     +crear(codigo, nombre, facultad_id)
-    +actualizar(grado)
-    +contar_directores(grado_id)
-    +listar_disponibles_para_dirigir(director_grado_id)
+    +actualizar(programa)
+    +contar_directores(programa_id)
+    +listar_disponibles_para_dirigir(director_programa_id)
   }
   class UniversidadRepository #D98E73 {
     +listar()
@@ -750,7 +775,7 @@ package Repositorio {
     +crear(universidad_id, nombre)
     +actualizar(facultad)
     +eliminar(facultad_id)
-    +tiene_grados_asociados(facultad_id)
+    +tiene_programas_asociados(facultad_id)
   }
   class AsignaturaRepository #D98E73 {
     +listar()
@@ -768,9 +793,9 @@ package Repositorio {
     +editar(profesor, nombre, email)
     +motivos_bloqueo_eliminacion(profesor_id)
     +eliminar(profesor_id)
-    +listar_disponibles_para_asignatura_grado(asignatura_grado_id)
+    +listar_disponibles_para_asignatura_programa(asignatura_programa_id)
   }
-  class DirectorGradoRepository #D98E73 {
+  class DirectorProgramaRepository #D98E73 {
     +obtener_por_email(email)
     +crear(email)
   }
@@ -857,22 +882,22 @@ DesasociarResultadoAprendizajeAMateriaView --> MateriaRouter
 EditarActividadesFormativasMateriaView --> MateriaRouter
 AbrirMateriasView --> MateriaRouter
 AbrirMateriaView --> MateriaRouter
-AsociarMetodologiaDocenteAAsignaturaGradoView --> AsignaturaGradoRouter
-DesasociarMetodologiaDocenteAsignaturaGradoView --> AsignaturaGradoRouter
-AsociarResultadoAprendizajeAAsignaturaGradoView --> AsignaturaGradoRouter
-DesasociarResultadoAprendizajeAsignaturaGradoView --> AsignaturaGradoRouter
-EditarActividadesFormativasAsignaturaGradoView --> AsignaturaGradoRouter
-AbrirAsignaturaGradoAdminView --> AsignaturaGradoRouter
-AsignarProfesorAAsignaturaGradoView --> AsignaturaGradoRouter
-DesasignarProfesorAsignaturaGradoView --> AsignaturaGradoRouter
-EditarAsignaturaGradoView --> AsignaturaGradoRouter
-AbrirAsignaturasGradoView --> AsignaturaGradoRouter
-AbrirAsignaturaGradoView --> AsignaturaGradoRouter
-AbrirGradosView --> GradoRouter
-AbrirGradoView --> GradoRouter
-CrearGradoView --> GradoRouter
-EditarGradoView --> GradoRouter
-EliminarGradoView --> GradoRouter
+AsociarMetodologiaDocenteAAsignaturaProgramaView --> AsignaturaProgramaRouter
+DesasociarMetodologiaDocenteAsignaturaProgramaView --> AsignaturaProgramaRouter
+AsociarResultadoAprendizajeAAsignaturaProgramaView --> AsignaturaProgramaRouter
+DesasociarResultadoAprendizajeAsignaturaProgramaView --> AsignaturaProgramaRouter
+EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaRouter
+AbrirAsignaturaProgramaAdminView --> AsignaturaProgramaRouter
+AsignarProfesorAAsignaturaProgramaView --> AsignaturaProgramaRouter
+DesasignarProfesorAsignaturaProgramaView --> AsignaturaProgramaRouter
+EditarAsignaturaProgramaView --> AsignaturaProgramaRouter
+AbrirAsignaturasProgramaView --> AsignaturaProgramaRouter
+AbrirAsignaturaProgramaView --> AsignaturaProgramaRouter
+AbrirProgramasView --> ProgramaRouter
+AbrirProgramaView --> ProgramaRouter
+CrearProgramaView --> ProgramaRouter
+EditarProgramaView --> ProgramaRouter
+EliminarProgramaView --> ProgramaRouter
 AbrirUniversidadesView --> UniversidadRouter
 AbrirUniversidadView --> UniversidadRouter
 CrearUniversidadView --> UniversidadRouter
@@ -902,8 +927,8 @@ AbrirProfesorView --> ProfesorRouter
 CrearProfesorView --> ProfesorRouter
 EditarProfesorView --> ProfesorRouter
 EliminarProfesorView --> ProfesorRouter
-DefinirDirectorGradoView --> ProfesorRouter
-QuitarDirectorGradoView --> ProfesorRouter
+DefinirDirectorProgramaView --> ProfesorRouter
+QuitarDirectorProgramaView --> ProfesorRouter
 IniciarSesionView --> AuthRouter
 IniciarSesionAdminView --> AuthRouter
 
@@ -914,7 +939,7 @@ CrearResultadoAprendizajeView ..> EditarResultadoAprendizajeView : <<include>>
 CrearUniversidadView ..> EditarUniversidadView : <<include>>
 CrearFacultadView ..> EditarFacultadView : <<include>>
 CrearAsignaturaView ..> EditarAsignaturaView : <<include>>
-CrearGradoView ..> EditarGradoView : <<include>>
+CrearProgramaView ..> EditarProgramaView : <<include>>
 
 ' -- Relaciones API -> Modelo/Repositorio --
 GuiaRouter --> GuiaRepository
@@ -933,11 +958,11 @@ PonderacionEvaluacionRouter --> SistemaEvaluacion
 ReferenciaBibliograficaRouter --> ReferenciaBibliograficaRepository
 ReferenciaBibliograficaRouter --> ReferenciaBibliografica
 
-ImportarGuiaHermanaRouter --> AsignaturaGradoRepository
+ImportarGuiaHermanaRouter --> AsignaturaProgramaRepository
 ImportarGuiaHermanaRouter --> GuiaRepository
 ImportarGuiaHermanaRouter --> ReferenciaBibliograficaRepository
 ImportarGuiaHermanaRouter --> SesionRepository
-ImportarGuiaHermanaRouter --> GradoRepository
+ImportarGuiaHermanaRouter --> ProgramaRepository
 ImportarGuiaHermanaRouter --> Guia
 ImportarGuiaHermanaRouter --> HistorialCambio
 ResultadoAprendizajeRouter --> ResultadoAprendizajeRepository
@@ -950,17 +975,17 @@ MateriaRouter --> MetodologiaMateria
 MateriaRouter --> ResultadoAprendizaje
 MateriaRouter --> ActividadFormativaMateriaRepository
 MateriaRouter --> ActividadFormativaMateria
-AsignaturaGradoRouter --> AsignaturaGradoRepository
-AsignaturaGradoRouter --> AsignaturaGrado
-AsignaturaGradoRouter --> MetodologiaDocenteRepository
-AsignaturaGradoRouter --> ResultadoAprendizajeRepository
-AsignaturaGradoRouter --> GuiaRepository
-AsignaturaGradoRouter --> ProfesorRepository
-AsignaturaGradoRouter --> ActividadFormativaAsignaturaGradoRepository
-AsignaturaGradoRouter --> ActividadFormativaAsignaturaGrado
-GradoRouter --> GradoRepository
-GradoRouter --> Grado
-GradoRouter --> AsignaturaGradoRepository
+AsignaturaProgramaRouter --> AsignaturaProgramaRepository
+AsignaturaProgramaRouter --> AsignaturaPrograma
+AsignaturaProgramaRouter --> MetodologiaDocenteRepository
+AsignaturaProgramaRouter --> ResultadoAprendizajeRepository
+AsignaturaProgramaRouter --> GuiaRepository
+AsignaturaProgramaRouter --> ProfesorRepository
+AsignaturaProgramaRouter --> ActividadFormativaAsignaturaProgramaRepository
+AsignaturaProgramaRouter --> ActividadFormativaAsignaturaPrograma
+ProgramaRouter --> ProgramaRepository
+ProgramaRouter --> Programa
+ProgramaRouter --> AsignaturaProgramaRepository
 UniversidadRouter --> UniversidadRepository
 UniversidadRouter --> Universidad
 FacultadRouter --> FacultadRepository
@@ -969,15 +994,17 @@ AsignaturaRouter --> AsignaturaRepository
 AsignaturaRouter --> Asignatura
 MetodologiaDocenteRouter --> MetodologiaDocenteRepository
 MetodologiaDocenteRouter --> MetodologiaDocente
+ActividadFormativaRouter --> ActividadFormativaRepository
+ActividadFormativaRouter --> ActividadFormativa
 SistemaEvaluacionRouter --> SistemaEvaluacionRepository
 SistemaEvaluacionRouter --> SistemaEvaluacion
 SistemaEvaluacionRouter --> MateriaRepository
 ProfesorRouter --> ProfesorRepository
 ProfesorRouter --> Profesor
-ProfesorRouter --> DirectorGradoRepository
-ProfesorRouter --> GradoRepository
+ProfesorRouter --> DirectorProgramaRepository
+ProfesorRouter --> ProgramaRepository
 AuthRouter --> ProfesorRepository
-AuthRouter --> DirectorGradoRepository
+AuthRouter --> DirectorProgramaRepository
 
 ' -- Relaciones Repositorio -- Modelo (persiste) --
 GuiaRepository -- Guia
@@ -987,16 +1014,17 @@ MateriaRepository -- Materia
 SistemaEvaluacionRepository -- SistemaEvaluacion
 ResultadoAprendizajeRepository -- ResultadoAprendizaje
 MetodologiaDocenteRepository -- MetodologiaDocente
+ActividadFormativaRepository -- ActividadFormativa
 MetodologiaMateriaRepository -- MetodologiaMateria
 ActividadFormativaMateriaRepository -- ActividadFormativaMateria
-ActividadFormativaAsignaturaGradoRepository -- ActividadFormativaAsignaturaGrado
-AsignaturaGradoRepository -- AsignaturaGrado
-GradoRepository -- Grado
+ActividadFormativaAsignaturaProgramaRepository -- ActividadFormativaAsignaturaPrograma
+AsignaturaProgramaRepository -- AsignaturaPrograma
+ProgramaRepository -- Programa
 UniversidadRepository -- Universidad
 FacultadRepository -- Facultad
 AsignaturaRepository -- Asignatura
 ProfesorRepository -- Profesor
-DirectorGradoRepository -- DirectorGrado
+DirectorProgramaRepository -- DirectorPrograma
 
 ' -- Relaciones Modelo <-> Modelo --
 Guia -- PonderacionEvaluacion
@@ -1004,23 +1032,23 @@ Guia -- ReferenciaBibliografica
 Guia -- HistorialCambio
 PonderacionEvaluacion -- SistemaEvaluacion
 Materia -- SistemaEvaluacion
-Grado -- ResultadoAprendizaje
+Programa -- ResultadoAprendizaje
 Materia -- ResultadoAprendizaje
 Materia -- MetodologiaMateria
 MetodologiaMateria -- MetodologiaDocente
-Materia -- AsignaturaGrado
-AsignaturaGrado -- Asignatura
-AsignaturaGrado -- MetodologiaDocente
-AsignaturaGrado -- ResultadoAprendizaje
+Materia -- AsignaturaPrograma
+AsignaturaPrograma -- Asignatura
+AsignaturaPrograma -- MetodologiaDocente
+AsignaturaPrograma -- ResultadoAprendizaje
 Materia -- ActividadFormativaMateria
 ActividadFormativaMateria -- ActividadFormativa
-AsignaturaGrado -- ActividadFormativaAsignaturaGrado
-ActividadFormativaAsignaturaGrado -- ActividadFormativa
-AsignaturaGrado -- Profesor
-AsignaturaGrado -- Guia
+AsignaturaPrograma -- ActividadFormativaAsignaturaPrograma
+ActividadFormativaAsignaturaPrograma -- ActividadFormativa
+AsignaturaPrograma -- Profesor
+AsignaturaPrograma -- Guia
 Guia -- Profesor
 Universidad -- Facultad
-Facultad -- Grado
+Facultad -- Programa
 
 note bottom of IniciarSesionAdminView
   Sin flecha a Modelo/Repositorio propio de Admin: callback_admin()

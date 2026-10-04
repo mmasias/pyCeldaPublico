@@ -1,7 +1,7 @@
 @startuml escalarGuiaAAprobada-diseño
 title Diagrama de Secuencia - Escalar Guía a Aprobada
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
@@ -9,7 +9,7 @@ participant "Guia" as Guia
 participant "HistorialCambio" as HistorialCambio
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita escalar la Guía abierta a Aprobada
+DirectorPrograma -> Vista: solicita escalar la Guía abierta a Aprobada
 activate Vista
 Vista -> API: POST /api/v1/guias/{guia_id}/escalar-a-aprobada
 activate API
@@ -47,7 +47,7 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON, con historial)
 deactivate API
-Vista --> DirectorGrado: "GUÍA ESCALADA A APROBADA" -- estado anterior, Aprobada, comentario fijo
+Vista --> DirectorPrograma: "GUÍA ESCALADA A APROBADA" -- estado anterior, Aprobada, comentario fijo
 deactivate Vista
 
 @enduml

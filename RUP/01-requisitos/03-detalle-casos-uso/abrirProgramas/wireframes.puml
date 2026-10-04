@@ -1,0 +1,25 @@
+@startsalt abrirProgramas-wireframe
+{
+    <b>PROGRAMAS -- ESCUELA POLITÉCNICA SUPERIOR</b>
+    ====
+    {#
+        <b>Código | <b>Nombre | <b>Estado | . | .
+        GII | Grado en Ingeniería Informática | Vigente | [Abrir] | [Eliminar]
+        GIOI | Grado en Ingeniería de Organización Industrial | Vigente | [Abrir] | [Eliminar]
+        GIIAA | Grado en Ingeniería de las Industrias Agrarias y Alimentarias | Vigente | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear Programa</b> ]
+}
+@endsalt
+
+@startsalt abrirProgramas-wireframe-porDirector
+{
+    <b>MIS PROGRAMAS</b>
+    ====
+    {#
+        <b>Nombre | <b>Código | <b>Estado | .
+        Grado en Ingeniería Informática | GII | Vigente | [Abrir]
+    }
+}
+@endsalt

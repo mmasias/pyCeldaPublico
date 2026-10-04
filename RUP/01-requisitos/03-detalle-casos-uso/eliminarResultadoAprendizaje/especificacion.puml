@@ -7,7 +7,7 @@ state RESULTADOS_APRENDIZAJE_ABIERTOS_SALIDA as "RESULTADOS_APRENDIZAJE_ABIERTO"
 
 RESULTADOS_APRENDIZAJE_ABIERTO -[#green]-> eliminarResultadoAprendizaje
 note on link
-<b>DirectorGrado</b> solicita eliminar resultado de aprendizaje
+<b>Admin / DirectorPrograma</b> solicita eliminar resultado de aprendizaje
 end note
 
 state eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()" {
@@ -19,23 +19,25 @@ state eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()" {
 
     c -[#green]-> ConfirmandoEliminacion
     note on link
+    [ResultadoAprendizaje sin vinculaciones activas en Materias o AsignaturaPrograma]
     <b>Sistema</b> presenta información del resultado de aprendizaje y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias/AsignaturaGrado
+    [ResultadoAprendizaje con vinculaciones activas en Materias o AsignaturaPrograma]
+    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias/AsignaturaPrograma
     end note
 
     ConfirmandoEliminacion -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> solicita confirmar eliminación
+    <b>Admin / DirectorPrograma</b> solicita confirmar eliminación
     end note
 
     ConfirmandoEliminacion -[#blue]-> [*]
     note on link
-    <b>DirectorGrado</b> solicita cancelar eliminación
+    <b>Admin / DirectorPrograma</b> solicita cancelar eliminación
     end note
 }
 

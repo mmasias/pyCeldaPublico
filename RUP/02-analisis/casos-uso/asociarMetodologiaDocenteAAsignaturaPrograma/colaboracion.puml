@@ -1,0 +1,34 @@
+@startuml asociarMetodologiaDocenteAAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package asociarMetodologiaDocenteAAsignaturaPrograma as "asociarMetodologiaDocenteAAsignaturaPrograma()" {
+    rectangle #629EF9 AsociarMetodologiaDocenteAAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E MetodologiaDocente
+    rectangle #F2AC4E MetodologiaDocenteRepository
+}
+
+AsignaturaProgramaAbierto --> AsociarMetodologiaDocenteAAsignaturaProgramaView: <font size=8>asociarMetodologiaDocenteAAsignaturaPrograma(asignaturaProgramaId)
+
+AsociarMetodologiaDocenteAAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>cargarMetodologiasDocentesDisponibles(asignaturaProgramaId) : List<MetodologiaDocente>
+
+AsignaturaProgramaController --> MetodologiaDocenteRepository: <font size=8>listarDisponiblesParaAsignaturaPrograma(asignaturaProgramaId) : List<MetodologiaDocente>
+
+AsociarMetodologiaDocenteAAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>asociarMetodologiaDocente(asignaturaProgramaId, metodologiaDocenteId)
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>asociarMetodologiaDocente(asignaturaProgramaId, metodologiaDocenteId)
+
+MetodologiaDocenteRepository -- MetodologiaDocente
+AsignaturaProgramaRepository -- AsignaturaPrograma
+AsignaturaPrograma -- MetodologiaDocente
+
+AsociarMetodologiaDocenteAAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>MetodologiaDocente asociada
+
+@enduml

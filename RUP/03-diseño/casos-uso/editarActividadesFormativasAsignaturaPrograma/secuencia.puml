@@ -1,0 +1,53 @@
+@startuml editarActividadesFormativasAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Editar Actividades Formativas (AsignaturaPrograma)
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ActividadFormativaAsignaturaProgramaRepository" as Repo
+participant "ActividadFormativaAsignaturaPrograma" as AFAG
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita editar las actividades formativas de la AsignaturaPrograma
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas
+activate API
+API -> Repo: listar_de(asignatura_programa_id)
+activate Repo
+Repo -> DB: SELECT afag.*, af.codigo, af.nombre FROM actividades_formativas_asignatura_programa afag\nJOIN actividades_formativas af ON af.id = afag.actividad_formativa_id\nWHERE afag.asignatura_programa_id = :id ORDER BY af.codigo
+activate DB
+DB --> Repo: 10 filas (codigo/nombre + horas + porcentaje_presencialidad)
+deactivate DB
+Repo --> API: lista de ActividadFormativaAsignaturaPrograma
+deactivate Repo
+API --> Vista: 200 OK (lista de ActividadFormativaAsignaturaProgramaResponse)
+deactivate API
+Vista --> DirectorPrograma: presenta la rejilla de 10 filas (horas y % presencialidad editables)
+
+DirectorPrograma -> Vista: teclea horas y % presencialidad y guarda
+Vista -> API: PUT /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas, porcentaje_presencialidad})
+activate API
+alt horas < 0, o porcentaje_presencialidad fuera de [0, 100], o id fuera de catálogo
+    API --> Vista: 422 Unprocessable Entity (no se persiste nada)
+    Vista --> DirectorPrograma: presenta mensaje de valores no válidos
+else todos los valores válidos
+    loop por cada fila del body
+        API -> AFAG: actualizar(horas, porcentaje_presencialidad)
+        activate AFAG
+        deactivate AFAG
+    end
+    API -> Repo: actualizar_lote(filas)
+    activate Repo
+    Repo -> DB: UPDATE actividades_formativas_asignatura_programa\nSET horas = ..., porcentaje_presencialidad = ... (misma transacción)
+    activate DB
+    DB --> Repo: ok
+    deactivate DB
+    Repo --> API: lista actualizada
+    deactivate Repo
+    API --> Vista: 200 OK
+    Vista --> DirectorPrograma: reparto guardado
+end
+deactivate API
+deactivate Vista
+
+@enduml

@@ -102,7 +102,7 @@ def test_enviar_guia_a_revision_profesor_no_dueno_devuelve_404(
     assert resp.status_code == 404
 
 
-def test_enviar_guia_a_revision_sin_asignatura_grado_devuelve_404(client, guia):
+def test_enviar_guia_a_revision_sin_asignatura_programa_devuelve_404(client, guia):
     resp = client.post(f"/api/v1/guias/{guia.id}/enviar-a-revision")
     assert resp.status_code == 404
 
@@ -209,17 +209,17 @@ def test_enviar_guia_a_revision_rechaza_si_planificacion_docente_incompleta(
 
 
 def test_enviar_guia_a_revision_sistema_requerido_en_cero_bloquea(
-    client, db_session, guia_vinculada, materia_del_grado
+    client, db_session, guia_vinculada, materia_del_programa
 ):
     sistema_cubierto = SistemaEvaluacion(
-        materia_id=materia_del_grado.id,
+        materia_id=materia_del_programa.id,
         tipo="Examen",
         descripcion="Único",
         ponderacion_minima=0,
         ponderacion_maxima=100,
     )
     sistema_sin_asignar = SistemaEvaluacion(
-        materia_id=materia_del_grado.id,
+        materia_id=materia_del_programa.id,
         tipo="Prácticas",
         descripcion="Requeridas",
         ponderacion_minima=20,
@@ -258,21 +258,21 @@ def test_enviar_guia_a_revision_sistema_requerido_en_cero_bloquea(
 
 
 def test_enviar_guia_a_revision_sistema_por_encima_del_maximo_mensaje_sobra(
-    client, db_session, guia_vinculada, materia_del_grado
+    client, db_session, guia_vinculada, materia_del_programa
 ):
     """El maximo de un SistemaEvaluacion se valida por ponderacion individual
     al crearla (validar_maximo), no por suma -- para superarlo hacen falta
     varias ponderaciones bajo el mismo sistema, cada una dentro de su propio
     maximo, cuya suma sí lo excede."""
     sistema_excedido = SistemaEvaluacion(
-        materia_id=materia_del_grado.id,
+        materia_id=materia_del_programa.id,
         tipo="Examen",
         descripcion="Excedido",
         ponderacion_minima=0,
         ponderacion_maxima=50,
     )
     sistema_resto = SistemaEvaluacion(
-        materia_id=materia_del_grado.id,
+        materia_id=materia_del_programa.id,
         tipo="Prácticas",
         descripcion="Resto",
         ponderacion_minima=0,
@@ -326,17 +326,17 @@ def test_enviar_guia_a_revision_sistema_por_encima_del_maximo_mensaje_sobra(
 
 
 def test_enviar_guia_a_revision_sistema_sin_minimo_en_cero_no_bloquea(
-    client, db_session, guia_vinculada, materia_del_grado
+    client, db_session, guia_vinculada, materia_del_programa
 ):
     sistema_cubierto = SistemaEvaluacion(
-        materia_id=materia_del_grado.id,
+        materia_id=materia_del_programa.id,
         tipo="Examen",
         descripcion="Único",
         ponderacion_minima=0,
         ponderacion_maxima=100,
     )
     sistema_opcional_en_cero = SistemaEvaluacion(
-        materia_id=materia_del_grado.id,
+        materia_id=materia_del_programa.id,
         tipo="Prácticas",
         descripcion="Opcional",
         ponderacion_minima=0,

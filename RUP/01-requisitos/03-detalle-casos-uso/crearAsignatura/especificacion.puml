@@ -32,11 +32,13 @@ state crearAsignatura as "crearAsignatura()" {
 
     c -[#green]-> [*]
     note on link
+    [código introducido sin Asignatura previa con el mismo código]
     <b>Sistema</b> presenta Asignatura creada
     end note
 
     c -[#red]-> [*]
     note on link
+    [código introducido con Asignatura previa con el mismo código]
     <b>Sistema</b> presenta mensaje de código ya existente
     end note
 }

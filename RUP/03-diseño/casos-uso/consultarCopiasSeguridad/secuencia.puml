@@ -1,0 +1,45 @@
+@startuml consultarCopiasSeguridad-diseño
+title Diagrama de Secuencia - Consultar Copias de Seguridad
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "core/backups.py" as Backups
+database "backups_manifest.jsonl (sistema de ficheros)" as Manifiesto
+
+Admin -> Vista: solicita consultar las copias de seguridad
+activate Vista
+Vista -> API: GET /api/v1/copias-seguridad
+activate API
+note right of API: Depends(require_admin) -- el listado revela\nnombres y momentos de backup de la infraestructura
+API -> Backups: leer_copias_seguridad()
+activate Backups
+Backups -> Manifiesto: ruta_manifiesto_backups().exists()
+
+alt el manifiesto no existe (instalación nueva)
+    Backups --> API: lista vacía (no es un error)
+else el manifiesto existe
+    Backups -> Manifiesto: read_text().splitlines()
+    Manifiesto --> Backups: líneas JSON
+    loop por cada línea no vacía
+        alt línea válida
+            Backups -> Backups: CopiaSeguridadResponse(timestamp, familia, archivo, tamano_bytes, motivo, esquema_version)
+        else JSON inválido, campo faltante o de tipo equivocado
+            Backups -> Backups: logger.warning(...) y se salta la línea
+        end
+    end
+    Backups -> Backups: ordena por timestamp descendente
+    Backups --> API: List[CopiaSeguridadResponse]
+end
+deactivate Backups
+
+API --> Vista: 200 OK (List[CopiaSeguridadResponse] JSON)
+deactivate API
+alt hay copias
+    Vista --> Admin: listado con fecha exacta, familia, archivo, tamaño y motivo
+else lista vacía
+    Vista --> Admin: estado vacío
+end
+deactivate Vista
+
+@enduml

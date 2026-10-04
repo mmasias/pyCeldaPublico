@@ -1,0 +1,91 @@
+@startuml abrirPrograma-diseño
+title Diagrama de Secuencia - Abrir Programa (variante DirectorPrograma)
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as ProgramaRepo
+participant "GuiaRepository" as GuiaRepo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita abrir un Programa del listado
+activate Vista
+Vista -> API: GET /api/v1/programas/{programa_id}
+activate API
+
+API -> ProgramaRepo: obtener(programa_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT ... FROM programas WHERE id = :programa_id
+activate DB
+DB --> ProgramaRepo: fila Programa
+deactivate DB
+ProgramaRepo --> API: Programa (404 si None o no dirige)
+deactivate ProgramaRepo
+
+API --> Vista: 200 OK (ProgramaDetalleResponse JSON)
+deactivate API
+
+Vista -> API: GET /api/v1/programas/{programa_id}/guias
+activate API
+note right of API: Endpoint ya existente de consultarEstadoGuias() --\nreutilizado tal cual, sin backend/API nuevo (retoque\n2026-09-05: antes GET .../asignaturas-programa, ver Análisis)
+API -> GuiaRepo: listar_del_programa(programa_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT g.* FROM guias g\nJOIN asignaturas_programa ag ON ag.id = g.asignatura_programa_id\nJOIN materias m ON m.id = ag.materia_id\nWHERE m.programa_id = :programa_id\nAND g.curso_academico_id = (curso académico activo)
+activate DB
+DB --> GuiaRepo: filas Guia (con AsignaturaPrograma y Profesorado)
+deactivate DB
+GuiaRepo --> API: List[Guia]
+deactivate GuiaRepo
+
+API --> Vista: 200 OK (List[GuiaResumenResponse] JSON)
+deactivate API
+Vista --> DirectorPrograma: muestra datos del Programa y el listado de Guia con su estado
+deactivate Vista
+
+@enduml
+
+@startuml abrirPrograma-admin-diseño
+title Diagrama de Secuencia - Abrir Programa (variante Admin)
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ProgramaRepository" as ProgramaRepo
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita abrir un Programa del listado de su Facultad
+activate Vista
+Vista -> API: GET /api/v1/admin/programas/{programa_id}
+activate API
+note right of API: Depends(require_admin) -- endpoint plano\nProgramaResponse (sin tabla agregada), existente desde el lote\nde Programa; la Vista pide la tabla en paralelo
+API -> ProgramaRepo: obtener(programa_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT ... FROM programas WHERE id = :programa_id
+activate DB
+DB --> ProgramaRepo: fila Programa
+deactivate DB
+ProgramaRepo --> API: Programa (404 si None)
+deactivate ProgramaRepo
+
+API --> Vista: 200 OK (ProgramaResponse JSON)
+deactivate API
+
+Vista -> API: GET /api/v1/admin/programas/{programa_id}/asignaturas-programa
+activate API
+note right of API: Depends(require_admin) -- filas planas con\nmateria_nombre y estado, sin agrupar por Materia\n(la agrupación sería de presentación, no de consulta);\nsin profesorado ni estado de Guia por fila, a diferencia\nde GET /api/v1/programas/{programa_id}/asignaturas-programa
+API -> AsignaturaProgramaRepo: listar_del_programa(programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ag.* FROM asignaturas_programa ag\nJOIN materias m ON m.id = ag.materia_id\nWHERE m.programa_id = :programa_id
+activate DB
+DB --> AsignaturaProgramaRepo: filas AsignaturaPrograma
+deactivate DB
+AsignaturaProgramaRepo --> API: List[AsignaturaPrograma]
+deactivate AsignaturaProgramaRepo
+
+API --> Vista: 200 OK (List[AsignaturaProgramaResponse] JSON)
+deactivate API
+Vista --> Admin: muestra la ficha: datos del Programa, enlace "Ver Materias"\ny tabla de AsignaturaPrograma con [+ Crear AsignaturaPrograma] y [Eliminar] por fila
+deactivate Vista
+
+@enduml

@@ -7,7 +7,7 @@ state RESULTADO_APRENDIZAJE_ABIERTO
 
 RESULTADOS_APRENDIZAJE_ABIERTO -[#green]-> abrirResultadoAprendizaje
 note on link
-<b>DirectorGrado</b> solicita abrir resultado de aprendizaje
+<b>Admin / DirectorPrograma</b> solicita abrir resultado de aprendizaje
 end note
 
 state abrirResultadoAprendizaje as "abrirResultadoAprendizaje()" {

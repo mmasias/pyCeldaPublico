@@ -1,0 +1,37 @@
+@startuml comprobarCopiasSeguridad-diseño
+title Diagrama de Secuencia - Comprobar Copias de Seguridad
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "core/backups.py" as Backups
+database "Volumen (manifiesto y copias .db)" as Volumen
+
+Admin -> Vista: solicita comprobar las copias de seguridad
+activate Vista
+Vista -> API: POST /api/v1/copias-seguridad/comprobar
+activate API
+note right of API: Depends(require_admin)
+API -> Backups: comprobar_salud_copias()
+activate Backups
+Backups -> Backups: leer_copias_seguridad()
+loop por cada copia del manifiesto
+    alt nombre con separadores o fichero ausente
+        Backups -> Backups: salud = "no_disponible" (no se abre nada)
+    else no abre como SQLite
+        Backups -> Backups: salud = "ilegible"
+    else informe_integridad_de_fichero() == "ok"
+        Backups -> Backups: salud = "ok"
+    else
+        Backups -> Backups: salud = "danada" (detalle = primera línea)
+    end
+end
+Backups --> API: List[SaludCopiaSeguridadResponse]
+deactivate Backups
+API -> API: logger.info(admin, recuento)
+API --> Vista: 200 OK
+deactivate API
+Vista --> Admin: salud en la tabla y resumen
+deactivate Vista
+
+@enduml

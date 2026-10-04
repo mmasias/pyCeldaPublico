@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -41,7 +41,7 @@ El [issue #208](https://github.com/mmasias/pyCelda/issues/208) (2026-09-03) cerr
 **Colaboraciones:**
 - **Entrada:** `:GUIA_ABIERTO` -- el `Profesor` solicita enviar la `Guia` a revisión.
 - **Control:** `GuiaController`.
-- **Salida:** `:ASIGNATURAS_GRADO_ABIERTO` (éxito); `:GUIA_ABIERTO` (rechazo, por cualquiera de las tres razones, sigue en edición).
+- **Salida:** `:ASIGNATURAS_PROGRAMA_ABIERTO` (éxito); `:GUIA_ABIERTO` (rechazo, por cualquiera de las tres razones, sigue en edición).
 
 ## Clases de controlador
 
@@ -65,8 +65,8 @@ El [issue #208](https://github.com/mmasias/pyCelda/issues/208) (2026-09-03) cerr
 ### `Guia`
 
 **Responsabilidades:**
-- responde el motivo concreto de bloqueo de ponderaciones (`bloqueoPonderaciones()`, `c2`), o nulo si puede enviarse: la suma total de todas las `PonderacionEvaluacion` vinculadas debe ser exactamente 100%, **y** para **todos** los `SistemaEvaluacion` de la materia (`asignaturaGrado.materia.sistemasEvaluacion`) -- no solo los que ya tienen alguna ponderación vinculada, tratando como 0% el que no tiene ninguna -- la suma asignada debe estar dentro de `[ponderacionMinima, ponderacionMaxima]`. Un sistema con `ponderacionMinima == 0` no bloquea en 0%: el rango lo admite sin caso especial. `puedeEnviarseARevision()` sigue existiendo como `bloqueoPonderaciones() == null` (issue #208, corrige un hueco donde un sistema requerido en 0% no bloqueaba).
-- responde si su planificación docente está completa (`planificacionDocenteCompleta()`, `c3`): el número de `Sesion` vinculadas es al menos `sesionesMinimas` -- regla agregada de la misma familia que la suma = 100%. `sesionesMinimas` es un atributo de la propia `Guia` (snapshot de `AsignaturaGrado.sesionesMinimas` al nacer, [discussion #206](https://github.com/mmasias/pyCelda/discussions/206)).
+- responde el motivo concreto de bloqueo de ponderaciones (`bloqueoPonderaciones()`, `c2`), o nulo si puede enviarse: la suma total de todas las `PonderacionEvaluacion` vinculadas debe ser exactamente 100%, **y** para **todos** los `SistemaEvaluacion` de la materia (`asignaturaPrograma.materia.sistemasEvaluacion`) -- no solo los que ya tienen alguna ponderación vinculada, tratando como 0% el que no tiene ninguna -- la suma asignada debe estar dentro de `[ponderacionMinima, ponderacionMaxima]`. Un sistema con `ponderacionMinima == 0` no bloquea en 0%: el rango lo admite sin caso especial. `puedeEnviarseARevision()` sigue existiendo como `bloqueoPonderaciones() == null` (issue #208, corrige un hueco donde un sistema requerido en 0% no bloqueaba).
+- responde si su planificación docente está completa (`planificacionDocenteCompleta()`, `c3`): el número de `Sesion` vinculadas es al menos `sesionesMinimas` -- regla agregada de la misma familia que la suma = 100%. `sesionesMinimas` es un atributo de la propia `Guia` (snapshot de `AsignaturaPrograma.sesionesMinimas` al nacer, [discussion #206](https://github.com/mmasias/pyCelda/discussions/206)).
 - aplica su propia transición de estado `Borrador -> EnRevision` / `Rechazada -> EnRevision` (`enviarARevision()`), según su máquina de estados.
 
 **Colaboraciones:**
@@ -110,7 +110,7 @@ El [issue #208](https://github.com/mmasias/pyCelda/issues/208) (2026-09-03) cerr
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframes.puml) -- fuente de verdad de las tres comprobaciones (`c1`/`c2`/`c3`).
-- [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> ASIGNATURAS_GRADO_ABIERTO : enviarGuiaARevision()` (éxito), `GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()` (rechazo).
+- [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()` (éxito), `GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()` (rechazo).
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `Borrador -> EnRevision` / `Rechazada -> EnRevision`.
 - [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- quien vincula lo pendiente; su ausencia es lo que dispara la precondición de rechazo.
 - [`crearPonderacionEvaluacion()`](../crearPonderacionEvaluacion/README.md) -- valida el máximo puntual; esta validación es distinta y agregada -- rango por `SistemaEvaluacion` y suma total.

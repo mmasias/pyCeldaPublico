@@ -3,11 +3,11 @@
     <b>ASIGNATURAS</b>
     ====
     {#
-        <b>Nombre | <b>ECTS | <b>Estado | . | .
-        Programación I | 6 | Vigente | [Abrir] | [Eliminar]
-        Matemática I | 6 | Vigente | [Abrir] | [Eliminar]
-        Bases de Datos II | 6 | Vigente | [Abrir] | [Eliminar]
-        Física | 6 | Vigente | [Abrir] | [Eliminar]
+        <b>Nombre | <b>Código | <b>ECTS | <b>Estado | . | .
+        Programación I | GII-1001 | 6 | Vigente | [Abrir] | [Eliminar]
+        Matemática I | GII-1002 | 6 | Vigente | [Abrir] | [Eliminar]
+        Bases de Datos II | (sin código, legacy) | 6 | Vigente | [Abrir] | [Eliminar]
+        Física | GII-1004 | 6 | Vigente | [Abrir] | [Eliminar]
     }
     ====
     [ <b>+ Crear Asignatura</b> ]

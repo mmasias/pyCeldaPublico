@@ -1,18 +1,18 @@
 @startuml consultarEstadoActividadesFormativasMateria-diseño
 title Diagrama de Secuencia - Consultar Estado Actividades Formativas (Materia)
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "MateriaRepository" as Repo
 participant "Materia" as Materia
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: abre la Materia (sección "Actividades formativas de la materia")
+DirectorPrograma -> Vista: abre la Materia (sección "Actividades formativas de la materia")
 activate Vista
 Vista -> API: GET /api/v1/materias/{materia_id}/actividades-formativas/validacion
 activate API
-API -> Repo: obtener(materia_id)  (eager: ActividadFormativaMateria, AsignaturaGrado -> ActividadFormativaAsignaturaGrado)
+API -> Repo: obtener(materia_id)  (eager: ActividadFormativaMateria, AsignaturaPrograma -> ActividadFormativaAsignaturaPrograma)
 activate Repo
 Repo -> DB: SELECT ... (Materia + cascada de actividades formativas de los dos niveles)
 activate DB
@@ -22,12 +22,12 @@ Repo --> API: Materia
 deactivate Repo
 API -> Materia: discrepancias_actividades_formativas()
 activate Materia
-note right of Materia: por cada ActividadFormativa:\nhoras de la materia vs Σ horas de sus AsignaturaGrado\n-> {codigo, nombre, horas_materia, horas_asignaturas, cuadra, diferencia}
+note right of Materia: por cada ActividadFormativa:\nhoras de la materia vs Σ horas de sus AsignaturaPrograma\n-> {codigo, nombre, horas_materia, horas_asignaturas, cuadra, diferencia}
 Materia --> API: lista de 10 discrepancias
 deactivate Materia
 API --> Vista: 200 OK (lista de DiscrepanciaActividadFormativaResponse)
 deactivate API
-Vista --> DirectorGrado: presenta la tabla, resalta las filas que no cuadran (informativo, no bloquea)
+Vista --> DirectorPrograma: presenta la tabla, resalta las filas que no cuadran (informativo, no bloquea)
 deactivate Vista
 
 @enduml

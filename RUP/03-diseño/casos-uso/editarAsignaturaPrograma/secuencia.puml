@@ -1,0 +1,74 @@
+@startuml editarAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Editar AsignaturaPrograma
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+participant "GuiaRepository" as GuiaRepo
+participant "AsignaturaPrograma" as AsignaturaPrograma
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita editar la AsignaturaPrograma
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-programa/{asignatura_programa_id}/para-editar
+activate API
+API -> AsignaturaProgramaRepo: obtener(asignatura_programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ... FROM asignaturas_programa WHERE id = :asignatura_programa_id
+activate DB
+DB --> AsignaturaProgramaRepo: fila AsignaturaPrograma
+deactivate DB
+AsignaturaProgramaRepo --> API: AsignaturaPrograma
+deactivate AsignaturaProgramaRepo
+
+API -> GuiaRepo: existe_alguna_de(asignatura_programa_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT EXISTS (... FROM guias WHERE asignatura_programa_id = :asignatura_programa_id)
+activate DB
+DB --> GuiaRepo: boolean
+deactivate DB
+GuiaRepo --> API: boolean
+deactivate GuiaRepo
+
+API --> Vista: 200 OK (AsignaturaProgramaParaEditarResponse JSON,\ncon semestre_default_bloqueado)
+deactivate API
+
+alt semestre_default bloqueado (existe alguna Guia)
+  Vista --> DirectorPrograma: presenta los 8 campos, semestreDefault bloqueado con su motivo
+else semestre_default editable
+  Vista --> DirectorPrograma: presenta los 8 campos editables
+end
+
+DirectorPrograma -> Vista: modifica y guarda
+Vista -> API: PUT /api/v1/asignaturas-programa/{asignatura_programa_id} (AsignaturaProgramaUpdate JSON)
+activate API
+API -> AsignaturaProgramaRepo: obtener(asignatura_programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ... FROM asignaturas_programa WHERE id = :asignatura_programa_id
+activate DB
+DB --> AsignaturaProgramaRepo: fila AsignaturaPrograma
+deactivate DB
+AsignaturaProgramaRepo --> API: AsignaturaPrograma
+deactivate AsignaturaProgramaRepo
+
+API -> AsignaturaPrograma: actualizar(curso, caracter, idioma, semestre_default, nombre, ects, contenido, requisitos_previos)
+activate AsignaturaPrograma
+note right of AsignaturaPrograma: ignora semestre_default si tiene alguna Guia\n-- la protección de la invariante vive en el Modelo\n(Fat Model), no solo en la Vista.\nrequisitos_previos se normaliza (familia "No aplica" -> None)
+deactivate AsignaturaPrograma
+
+API -> AsignaturaProgramaRepo: actualizar(asignatura_programa)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: UPDATE asignaturas_programa SET ...
+activate DB
+DB --> AsignaturaProgramaRepo: ok
+deactivate DB
+AsignaturaProgramaRepo --> API: AsignaturaPrograma
+deactivate AsignaturaProgramaRepo
+
+API --> Vista: 200 OK (AsignaturaProgramaResponse JSON)
+deactivate API
+Vista --> DirectorPrograma: datos actualizados
+deactivate Vista
+
+@enduml

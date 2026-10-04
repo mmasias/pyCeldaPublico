@@ -1,0 +1,32 @@
+@startsalt editarPerfilPropio-wireframe
+{
+    { <b>MI PERFIL                                          [ Volver a Inicio ] }
+    ====
+    Nombre (*) | "Dr. Manuel Masías Vergara"
+    Email | Dr.Manuel.Masias@uneatlantico.es
+    ..
+    <b>Identificador académico
+    ORCID | "0000-0002-1825-0097"
+    ..
+    <b>Doctorado
+    [X] Soy doctor/a
+    Universidad | "Universidad de Cantabria"
+    Año | "2010"
+    ..
+    <b>Acreditación
+    Figura | ^Titular de Universidad^
+    Organismo acreditador | ^ANECA^
+    ..
+    <b>Sexenios de investigación (CNEAI)
+    Número reconocidos | "2"
+    Año del último | "2020"
+    [X] Tengo un sexenio en evaluación actualmente
+    ..
+    <b>Quinquenios docentes
+    Número reconocidos | "3"
+    Año del último | "2022"
+    ..
+    [ Guardar ]
+}
+<i>Todos los campos opcionales salvo Nombre. Email de solo lectura (clave de sesión). Universidad/Año de doctorado solo si "Soy doctor/a"; Organismo acreditador solo si hay Figura elegida (y un campo "¿Cuál?" adicional si Organismo = Otro); Año del último sexenio/quinquenio solo si el número reconocido es mayor que 0 -- issue #423.</i>
+@endsalt

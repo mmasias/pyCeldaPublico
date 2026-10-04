@@ -7,14 +7,14 @@ participant "API (FastAPI)" as API
 participant "MateriaRepository" as MateriaRepo
 database "Base de Datos" as DB
 
-Admin -> Vista: introduce el nombre de la Materia del Grado abierto, confirma
+Admin -> Vista: introduce el nombre de la Materia del Programa abierto, confirma
 activate Vista
-Vista -> API: POST /api/v1/admin/grados/{grado_id}/materias (MateriaCreate JSON)
+Vista -> API: POST /api/v1/admin/programas/{programa_id}/materias (MateriaCreate JSON)
 activate API
-note right of API: Depends(require_admin) -- guard de Admin.\ngrado_id viaja en la URL, no en el body\n(mismo patrón que POST /admin/facultades/{facultad_id}/grados)
-API -> MateriaRepo: crear(nombre, grado_id)
+note right of API: Depends(require_admin) -- guard de Admin.\nprograma_id viaja en la URL, no en el body\n(mismo patrón que POST /admin/facultades/{facultad_id}/programas)
+API -> MateriaRepo: crear(nombre, programa_id)
 activate MateriaRepo
-MateriaRepo -> DB: INSERT INTO materias (nombre, grado_id)\nVALUES (:nombre, :grado_id)
+MateriaRepo -> DB: INSERT INTO materias (nombre, programa_id)\nVALUES (:nombre, :programa_id)
 activate DB
 DB --> MateriaRepo: id nueva fila
 deactivate DB

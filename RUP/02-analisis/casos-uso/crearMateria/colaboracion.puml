@@ -19,7 +19,7 @@ CrearMateriaView --> MateriaController: <font size=8>validarDatosObligatorios(no
 
 CrearMateriaView --> MateriaController: <font size=8>crearMateria(nombre) : Materia
 
-MateriaController --> MateriaRepository: <font size=8>crear(nombre, gradoId) : Materia
+MateriaController --> MateriaRepository: <font size=8>crear(nombre, programaId) : Materia
 
 MateriaRepository -- Materia
 

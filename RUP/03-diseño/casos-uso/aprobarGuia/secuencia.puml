@@ -1,7 +1,7 @@
 @startuml aprobarGuia-diseño
 title Diagrama de Secuencia - Aprobar Guía
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
@@ -9,7 +9,7 @@ participant "Guia" as Guia
 participant "HistorialCambio" as HistorialCambio
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita aprobar la Guía abierta
+DirectorPrograma -> Vista: solicita aprobar la Guía abierta
 activate Vista
 Vista -> API: POST /api/v1/guias/{guia_id}/aprobar
 activate API
@@ -46,7 +46,7 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON, con historial)
 deactivate API
-Vista --> DirectorGrado: "GUÍA APROBADA" -- EnRevision -> Aprobada, "aprobada sin incidencia"
+Vista --> DirectorPrograma: "GUÍA APROBADA" -- EnRevision -> Aprobada, "aprobada sin incidencia"
 deactivate Vista
 
 @enduml

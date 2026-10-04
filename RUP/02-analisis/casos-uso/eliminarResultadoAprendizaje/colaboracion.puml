@@ -26,7 +26,7 @@ ResultadoAprendizajeController --> ResultadoAprendizajeRepository: <font size=8>
 ResultadoAprendizajeRepository -- ResultadoAprendizaje
 
 EliminarResultadoAprendizajeView ..[#green]> ResultadosAprendizajeAbiertoSalida: <font size=8>lista actualizada
-EliminarResultadoAprendizajeView ..[#red]> ResultadosAprendizajeAbiertoSalida: <font size=8>bloqueada, sin cambios -- asignado a Materia o AsignaturaGrado
+EliminarResultadoAprendizajeView ..[#red]> ResultadosAprendizajeAbiertoSalida: <font size=8>bloqueada, sin cambios -- asignado a Materia o AsignaturaPrograma
 EliminarResultadoAprendizajeView ..[#blue]> ResultadosAprendizajeAbiertoSalida: <font size=8>cancelada, sin cambios
 
 @enduml

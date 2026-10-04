@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from app.core.auth import create_admin_session_token, create_session_token, get_current_rol, oauth
 from app.core.config import get_settings
 from app.core.database import get_db
-from app.repositories.director_grado import DirectorGradoRepository
+from app.repositories.director_programa import DirectorProgramaRepository
 from app.repositories.profesor import ProfesorRepository
 
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -40,7 +40,7 @@ async def callback(request: Request, db: Session = Depends(get_db)):
 
     conocido = (
         ProfesorRepository(db).obtener_por_email(email) is not None
-        or DirectorGradoRepository(db).obtener_por_email(email) is not None
+        or DirectorProgramaRepository(db).obtener_por_email(email) is not None
     )
     if not conocido:
         raise HTTPException(

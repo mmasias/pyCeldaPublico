@@ -23,6 +23,6 @@ MateriaController --> Materia: <font size=8>discrepanciasActividadesFormativas()
 
 MateriaRepository -- Materia
 
-ConsultarEstadoActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>presenta las 10 actividades formativas con horas de la materia, Σ de las AsignaturaGrado y las que no cuadran
+ConsultarEstadoActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>presenta las 10 actividades formativas con horas de la materia, Σ de las AsignaturaPrograma y las que no cuadran
 
 @enduml

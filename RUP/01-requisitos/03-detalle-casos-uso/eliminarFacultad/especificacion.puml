@@ -19,13 +19,15 @@ state eliminarFacultad as "eliminarFacultad()" {
 
     c -[#green]-> ConfirmandoEliminacion
     note on link
+    [Facultad sin Programas asociados]
     <b>Sistema</b> presenta información de la Facultad y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de bloqueo por Grados asociados
+    [Facultad con Programas asociados]
+    <b>Sistema</b> presenta mensaje de bloqueo por Programas asociados
     end note
 
     ConfirmandoEliminacion -[#green]-> [*]

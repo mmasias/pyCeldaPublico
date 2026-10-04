@@ -1,0 +1,78 @@
+@startuml importarActividadesFormativasDeAsignaturaProgramaPrima-diseño
+title Diagrama de Secuencia - Importar Actividades Formativas de AsignaturaPrograma Prima
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as APRepo
+participant "ActividadFormativaAsignaturaProgramaRepository" as AFRepo
+participant "ActividadFormativaAsignaturaPrograma" as AFAP
+database "Base de Datos" as DB
+
+== Elegir origen (GET) ==
+
+DirectorPrograma -> Vista: abre la edición de actividades formativas de la AsignaturaPrograma
+activate Vista
+Vista -> API: GET /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas/importables
+activate API
+note right of API: Depends(get_current_director_programa_id)\n_verificar_asignatura_programa_del_director (404 si no)
+API -> APRepo: listar_primas(destino.id)
+activate APRepo
+APRepo -> DB: SELECT ... FROM asignaturas_programa\nWHERE materia_id = :materia_id AND id != :destino_id
+activate DB
+DB --> APRepo: primas
+deactivate DB
+APRepo --> API: lista de AsignaturaPrograma
+deactivate APRepo
+loop por cada prima
+    API -> AFRepo: listar_de(prima.id)
+    AFRepo --> API: 10 filas
+end
+note right of API: descarta primas con sum(horas) = 0;\norden por abs(ects_prima - ects_destino), luego nombre
+API --> Vista: 200 OK [{asignatura_programa_id, nombre, ects, total_horas}]
+deactivate API
+alt sin primas configuradas
+    Vista --> DirectorPrograma: estado vacío, sin botón de importar
+else hay candidatas
+    Vista --> DirectorPrograma: tabla de primas con botón por fila
+end
+
+== Importar (POST) ==
+
+DirectorPrograma -> Vista: pulsa importar en una prima
+Vista -> DirectorPrograma: confirmación del reemplazo total
+DirectorPrograma -> Vista: confirma
+Vista -> API: POST /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas/importar\n{origen_asignatura_programa_id}
+activate API
+API -> API: _verificar_asignatura_programa_del_director(destino)
+API -> API: _primas_importables(destino) -- revalidación server-side del origen
+alt destino inexistente o de otro director, u origen fuera de las candidatas
+    API --> Vista: 404 Not Found (nada se persiste)
+    Vista --> DirectorPrograma: presenta el error
+else origen válido
+    API -> AFRepo: listar_de(origen_asignatura_programa_id)
+    AFRepo --> API: filas del origen
+    API -> AFRepo: listar_de(asignatura_programa_id)
+    AFRepo --> API: filas de la destino
+    loop por cada fila de la destino con homóloga en el origen
+        API -> AFAP: actualizar(horas, porcentaje_presencialidad)
+        activate AFAP
+        note right of AFAP: in place, sin borrar ni recrear
+        deactivate AFAP
+    end
+    API -> AFRepo: guardar()
+    activate AFRepo
+    AFRepo -> DB: UPDATE actividades_formativas_asignatura_programa\nSET horas = ..., porcentaje_presencialidad = ...; COMMIT
+    activate DB
+    DB --> AFRepo: ok
+    deactivate DB
+    deactivate AFRepo
+    API -> AFRepo: listar_de(asignatura_programa_id)
+    AFRepo --> API: 10 filas actualizadas
+    API --> Vista: 200 OK (lista de ActividadFormativaAsignaturaProgramaResponse)
+    Vista --> DirectorPrograma: vuelve a la pantalla de origen, con el reparto importado
+end
+deactivate API
+deactivate Vista
+
+@enduml

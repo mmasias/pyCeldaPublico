@@ -4,7 +4,7 @@ title Diagrama de Secuencia - Generar Planificación Docente Genérica
 actor "Profesor" as Profesor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "AsignaturaGradoRepository" as AGRepo
+participant "AsignaturaProgramaRepository" as AGRepo
 participant "GuiaRepository" as GuiaRepo
 participant "SesionRepository" as SesionRepo
 participant "Guia" as Guia
@@ -18,7 +18,7 @@ Vista -> API: POST /api/v1/guias/{guia_id}/sesiones/generar-genericas
 activate API
 
 API -> GuiaRepo: obtener(guia_id) -> Guia (o 404)
-API -> AGRepo: imparte(guia.asignatura_grado_id, profesor_id)
+API -> AGRepo: imparte(guia.asignatura_programa_id, profesor_id)
 note right of API: 404 uniforme si no imparte
 API -> Guia: planificacion_docente_vacia()
 note right of Guia: 409 si ya hay Sesion (salvaguarda server-side;\nel botón solo aparece en el empty-state)

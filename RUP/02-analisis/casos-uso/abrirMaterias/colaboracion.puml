@@ -3,7 +3,7 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
 rectangle #CDEBA5 ":MATERIAS_ABIERTO" as MateriasAbiertoSalida
 
 package abrirMaterias as "abrirMaterias()" {
@@ -13,15 +13,15 @@ package abrirMaterias as "abrirMaterias()" {
     rectangle #F2AC4E MateriaRepository
 }
 
-GradoAbierto --> AbrirMateriasView: <font size=8>abrirMaterias(gradoId)
+ProgramaAbierto --> AbrirMateriasView: <font size=8>abrirMaterias(programaId)
 
-AbrirMateriasView --> MateriaController: <font size=8>listarMateriasDelGrado(gradoId) : List<Materia>
+AbrirMateriasView --> MateriaController: <font size=8>listarMateriasDelPrograma(programaId) : List<Materia>
 
-MateriaController --> MateriaRepository: <font size=8>listarDelGrado(gradoId) : List<Materia>
+MateriaController --> MateriaRepository: <font size=8>listarDelPrograma(programaId) : List<Materia>
 
 MateriaRepository -- Materia
 
-AbrirMateriasView --> MateriasAbiertoSalida: <font size=8>presenta listado de Materias del Grado
+AbrirMateriasView --> MateriasAbiertoSalida: <font size=8>presenta listado de Materias del Programa
 
 @enduml
 
@@ -30,7 +30,7 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
 rectangle #CDEBA5 ":MATERIAS_ABIERTO" as MateriasAbiertoSalida
 
 package abrirMateriasAdmin as "abrirMaterias() -- Admin" {
@@ -40,11 +40,11 @@ package abrirMateriasAdmin as "abrirMaterias() -- Admin" {
     rectangle #F2AC4E MateriaRepository
 }
 
-GradoAbierto --> AbrirMateriasView: <font size=8>abrirMaterias(gradoId)
+ProgramaAbierto --> AbrirMateriasView: <font size=8>abrirMaterias(programaId)
 
-AbrirMateriasView --> MateriaController: <font size=8>listarMateriasDelGrado(gradoId) : List<Materia>
+AbrirMateriasView --> MateriaController: <font size=8>listarMateriasDelPrograma(programaId) : List<Materia>
 
-MateriaController --> MateriaRepository: <font size=8>listarDelGrado(gradoId) : List<Materia>
+MateriaController --> MateriaRepository: <font size=8>listarDelPrograma(programaId) : List<Materia>
 
 MateriaRepository -- Materia
 

@@ -1,14 +1,14 @@
 @startuml editarSemestreGuia-diseño
 title Diagrama de Secuencia - Editar Semestre de Guía
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
 participant "Guia" as Guia
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: introduce semestre, solicita guardar
+DirectorPrograma -> Vista: introduce semestre, solicita guardar
 activate Vista
 Vista -> API: PUT /api/v1/guias/{guia_id}/semestre (semestre)
 activate API
@@ -42,7 +42,7 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON)
 deactivate API
-Vista --> DirectorGrado: semestre actualizado
+Vista --> DirectorPrograma: semestre actualizado
 deactivate Vista
 
 @enduml

@@ -1,14 +1,14 @@
 @startuml editarAsociacionMetodologiaDocenteMateria-diseño
 title Diagrama de Secuencia - Editar Asociación Metodología Docente-Materia
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "MetodologiaMateriaRepository" as MetodologiaMateriaRepo
 participant "MetodologiaMateria" as MetodologiaMateria
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita editar la asociación (codigo/descripcion en solo lectura)
+DirectorPrograma -> Vista: solicita editar la asociación (codigo/descripcion en solo lectura)
 activate Vista
 Vista -> API: GET /api/v1/materias/{materia_id}/metodologias-docentes/{metodologia_docente_id}
 activate API
@@ -22,9 +22,9 @@ MetodologiaMateriaRepo --> API: MetodologiaMateria
 deactivate MetodologiaMateriaRepo
 API --> Vista: 200 OK (MetodologiaMateriaResponse JSON)
 deactivate API
-Vista --> DirectorGrado: presenta descripcion_propia precargada
+Vista --> DirectorPrograma: presenta descripcion_propia precargada
 
-DirectorGrado -> Vista: modifica descripcion_propia y guarda
+DirectorPrograma -> Vista: modifica descripcion_propia y guarda
 Vista -> API: PUT /api/v1/materias/{materia_id}/metodologias-docentes/{metodologia_docente_id} (MetodologiaMateriaUpdate JSON)
 activate API
 API -> MetodologiaMateria: actualizar(descripcion_propia)
@@ -43,7 +43,7 @@ deactivate MetodologiaMateriaRepo
 
 API --> Vista: 200 OK (MetodologiaMateriaResponse JSON)
 deactivate API
-Vista --> DirectorGrado: descripcion_propia actualizada
+Vista --> DirectorPrograma: descripcion_propia actualizada
 deactivate Vista
 
 @enduml

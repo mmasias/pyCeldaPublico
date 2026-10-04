@@ -1,7 +1,7 @@
 @startuml desasociarMetodologiaDocenteMateria-diseño
 title Diagrama de Secuencia - Desasociar Metodología Docente de Materia
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "MateriaRepository" as MateriaRepo
@@ -9,33 +9,33 @@ participant "Materia" as Materia
 participant "MetodologiaMateriaRepository" as MetodologiaMateriaRepo
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita desasociar una MetodologiaDocente de la Materia
+DirectorPrograma -> Vista: solicita desasociar una MetodologiaDocente de la Materia
 activate Vista
 Vista -> API: GET /api/v1/materias/{materia_id}/metodologias-docentes/{metodologia_docente_id}/puede-desasociarse
 activate API
 API -> MateriaRepo: obtener(materia_id)
 activate MateriaRepo
-MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id\n(con AsignaturaGrado y sus MetodologiaDocente)
+MateriaRepo -> DB: SELECT ... FROM materias WHERE id = :materia_id\n(con AsignaturaPrograma y sus MetodologiaDocente)
 activate DB
 DB --> MateriaRepo: fila Materia (con asociadas)
 deactivate DB
 MateriaRepo --> API: Materia
 deactivate MateriaRepo
-API -> Materia: asignaturas_grado_con_metodologia_docente(metodologia_docente_id)
+API -> Materia: asignaturas_programa_con_metodologia_docente(metodologia_docente_id)
 activate Materia
-note right of Materia: Fat Model: recorre sus AsignaturaGrado y devuelve\nlos nombres de las que ya la usan (issue #179 --\nantes boolean, ahora list[str] con el detalle)
+note right of Materia: Fat Model: recorre sus AsignaturaPrograma y devuelve\nlos nombres de las que ya la usan (issue #179 --\nantes boolean, ahora list[str] con el detalle)
 Materia --> API: list[str]
 deactivate Materia
 API --> Vista: 200 OK (list[str] JSON, [] = no bloqueada)
 deactivate API
 
-alt en uso en alguna AsignaturaGrado de la Materia
-  Vista --> DirectorGrado: presenta el bloqueo con los nombres reales\n("En uso en: AsignaturaGrado 'X', AsignaturaGrado 'Y'"), sin cambios
-else sin uso -- el DirectorGrado confirma
-  DirectorGrado -> Vista: confirma
+alt en uso en alguna AsignaturaPrograma de la Materia
+  Vista --> DirectorPrograma: presenta el bloqueo con los nombres reales\n("En uso en: AsignaturaPrograma 'X', AsignaturaPrograma 'Y'"), sin cambios
+else sin uso -- el DirectorPrograma confirma
+  DirectorPrograma -> Vista: confirma
   Vista -> API: DELETE /api/v1/materias/{materia_id}/metodologias-docentes/{metodologia_docente_id}
   activate API
-  API -> Materia: asignaturas_grado_con_metodologia_docente(metodologia_docente_id)
+  API -> Materia: asignaturas_programa_con_metodologia_docente(metodologia_docente_id)
   activate Materia
   Materia --> API: list[str] (reverificado -- 409 con los mismos nombres si ya no está vacía)
   deactivate Materia
@@ -49,10 +49,10 @@ else sin uso -- el DirectorGrado confirma
   deactivate MetodologiaMateriaRepo
   API --> Vista: 204 No Content
   deactivate API
-  Vista --> DirectorGrado: presenta la lista actualizada
-else el DirectorGrado cancela
-  DirectorGrado -> Vista: cancela
-  Vista --> DirectorGrado: cierra la confirmación, sin cambios -- sin llamada al backend
+  Vista --> DirectorPrograma: presenta la lista actualizada
+else el DirectorPrograma cancela
+  DirectorPrograma -> Vista: cancela
+  Vista --> DirectorPrograma: cierra la confirmación, sin cambios -- sin llamada al backend
 end
 deactivate Vista
 

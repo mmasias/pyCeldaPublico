@@ -1,16 +1,16 @@
 @startuml editarResultadoAprendizaje-diseño
 title Diagrama de Secuencia - Editar Resultado de Aprendizaje
 
-actor "DirectorGrado" as DirectorGrado
+actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "ResultadoAprendizajeRepository" as ResultadoRepo
 participant "ResultadoAprendizaje" as ResultadoAprendizaje
 database "Base de Datos" as DB
 
-DirectorGrado -> Vista: solicita editar el ResultadoAprendizaje (precargado)
+DirectorPrograma -> Vista: solicita editar el ResultadoAprendizaje (precargado)
 activate Vista
-DirectorGrado -> Vista: modifica código, tipo o descripción y guarda
+DirectorPrograma -> Vista: modifica código, tipo o descripción y guarda
 Vista -> API: PUT /api/v1/resultados-aprendizaje/{resultado_aprendizaje_id} (ResultadoAprendizajeUpdate JSON)
 activate API
 
@@ -39,7 +39,7 @@ deactivate ResultadoRepo
 
 API --> Vista: 200 OK (ResultadoAprendizajeResponse JSON)
 deactivate API
-Vista --> DirectorGrado: datos actualizados
+Vista --> DirectorPrograma: datos actualizados
 deactivate Vista
 
 @enduml

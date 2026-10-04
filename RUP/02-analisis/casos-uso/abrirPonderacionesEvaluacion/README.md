@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > abrirPonderacionesEvaluacion()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirPonderacionesEvaluacion/README.md)|[Desarrollo](/RUP/04-desarrollo/casos-uso/abrirPonderacionesEvaluacion/README.md)|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirPonderacionesEvaluacion/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
@@ -41,30 +41,30 @@ Traducción a clases de análisis del caso de uso [`abrirPonderacionesEvaluacion
 
 **Responsabilidades:**
 - pide, para la `Guia`, las `PonderacionEvaluacion` ya vinculadas y las pendientes-sin-vincular por separado, y las fusiona en una sola lista por presentar -- mismo criterio que `GuiaController` en `abrirGuia()`: unión simple, sin regla de negocio.
-- resuelve, en una segunda lectura independiente, el catálogo de `SistemaEvaluacion` de la materia de la `Guia` (`listarSistemasEvaluacionDeGuia(guiaId)`): `Guia` -> `AsignaturaGrado` -> `Materia` -> `Materia.listarSistemasEvaluacion()` -- no hay un repositorio de `SistemaEvaluacion` involucrado en esta ruta, se llega a través de `Materia` (issue [#212](https://github.com/mmasias/pyCelda/issues/212)).
+- resuelve, en una segunda lectura independiente, el catálogo de `SistemaEvaluacion` de la materia de la `Guia` (`listarSistemasEvaluacionDeGuia(guiaId)`): `Guia` -> `AsignaturaPrograma` -> `Materia` -> `Materia.listarSistemasEvaluacion()` -- no hay un repositorio de `SistemaEvaluacion` involucrado en esta ruta, se llega a través de `Materia` (issue [#212](https://github.com/mmasias/pyCelda/issues/212)).
 - no valida ni muta nada -- caso de uso de solo lectura.
 
 **Colaboraciones:**
 - **Entrada:** `AbrirPonderacionesEvaluacionView`.
-- **Salida:** `GuiaRepository`, `AsignaturaGradoRepository`, `MateriaRepository`, `PonderacionEvaluacionRepository`.
+- **Salida:** `GuiaRepository`, `AsignaturaProgramaRepository`, `MateriaRepository`, `PonderacionEvaluacionRepository`.
 
 ## Clases de modelo
 
-### `Guia`, `AsignaturaGrado`, `Materia`
+### `Guia`, `AsignaturaPrograma`, `Materia`
 
 **Responsabilidades:**
-- `Guia` porta `asignaturaGradoId`, usado para llegar a la `AsignaturaGrado` de esta `Guia`; `AsignaturaGrado` porta `materiaId`, usado para llegar a su `Materia`; `Materia` expone su catálogo de `SistemaEvaluacion` (`listarSistemasEvaluacion()`). Ninguna de las tres aplica lógica propia aquí -- es una cadena de tres saltos para llegar al catálogo, sin regla de dominio de por medio.
+- `Guia` porta `asignaturaProgramaId`, usado para llegar a la `AsignaturaPrograma` de esta `Guia`; `AsignaturaPrograma` porta `materiaId`, usado para llegar a su `Materia`; `Materia` expone su catálogo de `SistemaEvaluacion` (`listarSistemasEvaluacion()`). Ninguna de las tres aplica lógica propia aquí -- es una cadena de tres saltos para llegar al catálogo, sin regla de dominio de por medio.
 
 **Colaboraciones:**
-- **Entrada:** `PonderacionEvaluacionController`, vía `GuiaRepository` / `AsignaturaGradoRepository` / `MateriaRepository` respectivamente.
-- Ver [`abrirGuia()`](../abrirGuia/README.md) para el resto de responsabilidades de `Guia`/`AsignaturaGrado`, y [`abrirMateria()`](../abrirMateria/README.md) para `Materia` -- aquí solo actúan como cadena de acceso al catálogo.
+- **Entrada:** `PonderacionEvaluacionController`, vía `GuiaRepository` / `AsignaturaProgramaRepository` / `MateriaRepository` respectivamente.
+- Ver [`abrirGuia()`](../abrirGuia/README.md) para el resto de responsabilidades de `Guia`/`AsignaturaPrograma`, y [`abrirMateria()`](../abrirMateria/README.md) para `Materia` -- aquí solo actúan como cadena de acceso al catálogo.
 
-### `GuiaRepository`, `AsignaturaGradoRepository`, `MateriaRepository`
+### `GuiaRepository`, `AsignaturaProgramaRepository`, `MateriaRepository`
 
 **Responsabilidades:**
-- `GuiaRepository.obtener(guiaId)` -- recupera la `Guia`, para la precondición de acceso y para llegar a su `AsignaturaGrado`.
-- `AsignaturaGradoRepository.obtener(asignaturaGradoId)` -- recupera la `AsignaturaGrado` de la `Guia`.
-- `MateriaRepository.obtener(materiaId)` -- recupera la `Materia` de esa `AsignaturaGrado`.
+- `GuiaRepository.obtener(guiaId)` -- recupera la `Guia`, para la precondición de acceso y para llegar a su `AsignaturaPrograma`.
+- `AsignaturaProgramaRepository.obtener(asignaturaProgramaId)` -- recupera la `AsignaturaPrograma` de la `Guia`.
+- `MateriaRepository.obtener(materiaId)` -- recupera la `Materia` de esa `AsignaturaPrograma`.
 
 **Colaboraciones:**
 - **Entrada:** `PonderacionEvaluacionController`.

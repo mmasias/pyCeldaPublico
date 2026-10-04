@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -20,7 +20,7 @@
 
 ## Propósito
 
-Bajada a diseño de [`generarPlanificacionDocenteGenerica()`](/RUP/02-analisis/casos-uso/generarPlanificacionDocenteGenerica/README.md) (familia del issue [#184](https://github.com/mmasias/pyCelda/issues/184)). Comparte `SesionRepository` y la traza de `HistorialCambio` con [`importarPlanificacionDocenteDeGuiaHermana()`](../importarPlanificacionDocenteDeGuiaHermana/README.md), pero **no** el router `importar_guia_hermana.py`: aquí no hay guía origen ni lectura cross-grado, así que el endpoint vive en `routers/sesion.py`, junto al resto del CRUD de la planificación docente.
+Bajada a diseño de [`generarPlanificacionDocenteGenerica()`](/RUP/02-analisis/casos-uso/generarPlanificacionDocenteGenerica/README.md) (familia del issue [#184](https://github.com/mmasias/pyCelda/issues/184)). Comparte `SesionRepository` y la traza de `HistorialCambio` con [`importarPlanificacionDocenteDeGuiaHermana()`](../importarPlanificacionDocenteDeGuiaHermana/README.md), pero **no** el router `importar_guia_hermana.py`: aquí no hay guía origen ni lectura cross-programa, así que el endpoint vive en `routers/sesion.py`, junto al resto del CRUD de la planificación docente.
 
 ## Diagrama de secuencia de diseño
 
@@ -34,7 +34,7 @@ Bajada a diseño de [`generarPlanificacionDocenteGenerica()`](/RUP/02-analisis/c
 
 ## Diseño
 
-- **Endpoint**: `POST /api/v1/guias/{guia_id}/sesiones/generar-genericas`, **body vacío**, respuesta `AbrirPlanificacionDocenteResponse` (el mismo shape que `GET /guias/{guia_id}/sesiones`) -- el frontend recarga el listado con la respuesta directa, sin segundo round-trip. Autorización: `get_current_profesor_id` + `AsignaturaGradoRepository.imparte(...)`, **404 uniforme** si el `Profesor` no imparte la `AsignaturaGrado` de la guía (sin la relajación cross-grado de `importarPlanificacionDocenteDeGuiaHermana()`).
+- **Endpoint**: `POST /api/v1/guias/{guia_id}/sesiones/generar-genericas`, **body vacío**, respuesta `AbrirPlanificacionDocenteResponse` (el mismo shape que `GET /guias/{guia_id}/sesiones`) -- el frontend recarga el listado con la respuesta directa, sin segundo round-trip. Autorización: `get_current_profesor_id` + `AsignaturaProgramaRepository.imparte(...)`, **404 uniforme** si el `Profesor` no imparte la `AsignaturaPrograma` de la guía (sin la relajación cross-programa de `importarPlanificacionDocenteDeGuiaHermana()`).
 - **`Guia.planificacion_docente_vacia() -> bool`** (Fat Model, método nuevo en `models/guia.py`): `not self.sesiones` -- ni vinculadas ni pendientes. El endpoint responde `409` (`detail="La planificación docente ya tiene sesiones"`) si no está vacía. `409` y no `404` porque la guía **sí** existe y el `Profesor` **sí** tiene acceso -- es un conflicto de estado, no un problema de identidad/autorización; la 404-uniforme protege identidad, no impide informar de un conflicto sobre un recurso ya visible. La rama roja de la especificación (salvaguarda server-side): el botón solo se ofrece en el empty-state de `PlanificacionDocente.tsx`.
 - **`SesionRepository.generar_genericas(guia, cantidad) -> list[Sesion]`** (método nuevo, simétrico a `reemplazar_desde()`): crea `cantidad` filas `Sesion(guia_id=guia.id, numero=i, tipo="CLASE_TEORICA", descripcion="", vinculada=True)` para `i` en `1..cantidad`, `add_all` + `flush()` **sin commit** -- el commit lo hace el handler, en la misma transacción que el `HistorialCambio` y el `fecha_ultima_modificacion`. Sin borrado previo: la precondición `planificacion_docente_vacia()` garantiza que no hay nada que borrar.
 - **`cantidad = guia.sesiones_minimas`** -- resuelto en el handler, no parámetro del cliente. `CLASE_TEORICA` como literal (valor de `SesionTipo`, ver `schemas/sesion.py`); si el enum cambiara de default, este es uno de los sitios a tocar.

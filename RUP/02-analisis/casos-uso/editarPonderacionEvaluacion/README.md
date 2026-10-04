@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > editarPonderacionEvaluacion()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarPonderacionEvaluacion/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarPonderacionEvaluacion/README.md)|[Desarrollo](/RUP/04-desarrollo/casos-uso/editarPonderacionEvaluacion/README.md)|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarPonderacionEvaluacion/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarPonderacionEvaluacion/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
@@ -41,7 +41,7 @@ Traducción a clases de análisis del caso de uso [`editarPonderacionEvaluacion(
 
 **Responsabilidades:**
 - recupera la `PonderacionEvaluacion` a editar (`PonderacionEvaluacionRepository.obtener(ponderacionId)`).
-- carga los `SistemaEvaluacion` ofertados: los de la `Materia` de la `AsignaturaGrado` de la `Guia`.
+- carga los `SistemaEvaluacion` ofertados: los de la `Materia` de la `AsignaturaPrograma` de la `Guia`.
 - valida los obligatorios (`sistemaEvaluacion`, `descripcion`, `ponderacion`).
 - aplica el `<<choice>>` del máximo puntual: dentro -> la `PonderacionEvaluacion` se actualiza a sí misma y se persiste; por encima -> no se toca nada.
 

@@ -4,7 +4,7 @@ skinparam linetype polyline
 
 state GUIA_ABIERTO
 state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
-state ASIGNATURAS_GRADO_ABIERTOS_SALIDA as "ASIGNATURAS_GRADO_ABIERTO"
+state ASIGNATURAS_PROGRAMA_ABIERTOS_SALIDA as "ASIGNATURAS_PROGRAMA_ABIERTO"
 
 GUIA_ABIERTO -[#green]-> enviarGuiaARevision
 note on link
@@ -21,6 +21,7 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
 
     c1 -[#red]-> [*]
     note on link
+    [Guia con PonderacionEvaluacion, ReferenciaBibliografica o Sesion pendientes de guardar]
     <b>Sistema</b> presenta error de ítems sin guardar
     end note
 
@@ -28,6 +29,7 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
 
     c2 -[#red]-> [*]
     note on link
+    [Guia con ponderaciones fuera de rango o sin sumar 100%]
     <b>Sistema</b> presenta error de rango o suma de ponderaciones
     end note
 
@@ -35,16 +37,18 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
 
     c3 -[#green]-> [*]
     note on link
+    [Guia con sesiones vinculadas mayor o igual que sesionesMinimas]
     <b>Sistema</b> presenta guía enviada a revisión
     end note
 
     c3 -[#red]-> [*]
     note on link
+    [Guia con sesiones vinculadas menor que sesionesMinimas]
     <b>Sistema</b> presenta error de planificación docente incompleta
     end note
 }
 
-enviarGuiaARevision -[#green]-> ASIGNATURAS_GRADO_ABIERTOS_SALIDA
+enviarGuiaARevision -[#green]-> ASIGNATURAS_PROGRAMA_ABIERTOS_SALIDA
 note on link
 enviada a revisión
 end note

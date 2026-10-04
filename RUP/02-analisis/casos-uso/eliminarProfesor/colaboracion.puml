@@ -26,7 +26,7 @@ ProfesorController --> ProfesorRepository: <font size=8>eliminar(profesorId)
 ProfesorRepository -- Profesor
 
 EliminarProfesorView ..[#green]> ProfesoresAbiertoSalida: <font size=8>lista actualizada
-EliminarProfesorView ..[#red]> ProfesoresAbiertoSalida: <font size=8>bloqueada, sin cambios -- AsignaturaGrado asignadas, Guia impartida, o rol de DirectorGrado activo
+EliminarProfesorView ..[#red]> ProfesoresAbiertoSalida: <font size=8>bloqueada, sin cambios -- AsignaturaPrograma asignadas, Guia impartida, o rol de DirectorPrograma activo
 EliminarProfesorView ..[#blue]> ProfesoresAbiertoSalida: <font size=8>cancelada, sin cambios
 
 @enduml

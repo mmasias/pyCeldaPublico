@@ -5,34 +5,34 @@ actor "Profesor" as Profesor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
-participant "GradoRepository" as GradoRepo
+participant "ProgramaRepository" as ProgramaRepo
 participant "PonderacionEvaluacionRepository" as PonderacionRepo
 participant "ReferenciaBibliograficaRepository" as ReferenciaRepo
 participant "SesionRepository" as SesionRepo
 database "Base de Datos" as DB
 
-Profesor -> Vista: abre su Guía desde ASIGNATURAS_GRADO_ABIERTO
+Profesor -> Vista: abre su Guía desde ASIGNATURAS_PROGRAMA_ABIERTO
 activate Vista
 Vista -> API: GET /api/v1/guias/{guia_id}
 activate API
 
 API -> GuiaRepo: obtener(guia_id)
 activate GuiaRepo
-GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id\n[joinedload(asignatura_grado) + selectinload(resultados_aprendizaje, metodologias_docentes),\nselectinload(profesorado), selectinload(sesiones)]
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id\n[joinedload(asignatura_programa) + selectinload(resultados_aprendizaje, metodologias_docentes),\nselectinload(profesorado), selectinload(sesiones)]
 activate DB
-DB --> GuiaRepo: fila Guia (con asignatura_grado y profesorado ya cargados)
+DB --> GuiaRepo: fila Guia (con asignatura_programa y profesorado ya cargados)
 deactivate DB
 GuiaRepo --> API: Guia
 deactivate GuiaRepo
 
-API -> GradoRepo: dirige(guia.grado_id, director_grado_id)
-activate GradoRepo
-GradoRepo -> DB: SELECT EXISTS (... FROM grados_directores_grado WHERE grado_id = :grado_id AND director_grado_id = :director_grado_id)
+API -> ProgramaRepo: dirige(guia.programa_id, director_programa_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: SELECT EXISTS (... FROM programas_directores_programa WHERE programa_id = :programa_id AND director_programa_id = :director_programa_id)
 activate DB
-DB --> GradoRepo: boolean
+DB --> ProgramaRepo: boolean
 deactivate DB
-GradoRepo --> API: boolean [puede_revisar]
-deactivate GradoRepo
+ProgramaRepo --> API: boolean [puede_revisar]
+deactivate ProgramaRepo
 
 API -> PonderacionRepo: listar_vinculadas_de(guia)
 activate PonderacionRepo
@@ -83,9 +83,9 @@ SesionRepo --> API: List[Sesion]
 deactivate SesionRepo
 
 API -> API: fusiona vinculadas + pendientes, por colección
-API --> Vista: 200 OK (AbrirGuiaResponse JSON: contenido, sesiones_minimas,\nasignatura_grado con resultados_aprendizaje/metodologias_docentes,\nprofesorado, puede_revisar, y las tres colecciones fusionadas)
+API --> Vista: 200 OK (AbrirGuiaResponse JSON: contenido, sesiones_minimas,\nasignatura_programa con resultados_aprendizaje/metodologias_docentes,\nprofesorado, puede_revisar, y las tres colecciones fusionadas)
 deactivate API
-note right of Vista: contenido en textarea editable (Profesor)\no solo lectura (DirectorGrado) -- discussion #191;\nla Vista calcula los medidores de ponderaciones y de sesiones -- discussion #206;\npuede_revisar es defensa en profundidad si la ruta fuerza modo revisor -- issue #212
+note right of Vista: contenido en textarea editable (Profesor)\no solo lectura (DirectorPrograma) -- discussion #191;\nla Vista calcula los medidores de ponderaciones y de sesiones -- discussion #206;\npuede_revisar es defensa en profundidad si la ruta fuerza modo revisor -- issue #212
 Vista --> Profesor: muestra metadatos, profesorado, temario, Evaluación, Bibliografía y Planificación docente fusionadas
 deactivate Vista
 

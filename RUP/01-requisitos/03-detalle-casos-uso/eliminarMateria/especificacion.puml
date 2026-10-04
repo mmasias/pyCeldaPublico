@@ -10,6 +10,9 @@ note on link
 <b>Admin</b> solicita eliminar Materia
 end note
 
+' No implementado en código -- caso de uso solo de la fase de Requisitos.
+' Mismo régimen que Requisito/CursoAcademico en el modelo del dominio:
+' representación correcta, pendiente de construir.
 state eliminarMateria as "eliminarMateria()" {
 
     state " " as ConfirmandoEliminacion
@@ -19,13 +22,15 @@ state eliminarMateria as "eliminarMateria()" {
 
     c -[#green]-> ConfirmandoEliminacion
     note on link
+    [Materia sin AsignaturaPrograma asociadas]
     <b>Sistema</b> presenta información de la Materia y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de bloqueo por AsignaturaGrado asociadas
+    [Materia con alguna AsignaturaPrograma asociada]
+    <b>Sistema</b> presenta mensaje de bloqueo por AsignaturaPrograma asociadas
     end note
 
     ConfirmandoEliminacion -[#green]-> [*]

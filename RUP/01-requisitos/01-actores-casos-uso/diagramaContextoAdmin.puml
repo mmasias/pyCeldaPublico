@@ -10,24 +10,28 @@ state UNIVERSIDADES_ABIERTO
 state UNIVERSIDAD_ABIERTO
 state FACULTADES_ABIERTO
 state FACULTAD_ABIERTO
-state GRADOS_ABIERTO
-state GRADO_ABIERTO
+state PROGRAMAS_ABIERTO
+state PROGRAMA_ABIERTO
 state ASIGNATURAS_ABIERTO
 state ASIGNATURA_ABIERTO
 state METODOLOGIAS_DOCENTES_ABIERTO
 state METODOLOGIA_DOCENTE_ABIERTO
+state METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO
+state RESULTADOS_APRENDIZAJE_ABIERTO
+state RESULTADO_APRENDIZAJE_ABIERTO
 state PROFESORES_ABIERTO
 state PROFESOR_ABIERTO
 state SISTEMAS_EVALUACION_ABIERTO
 state SISTEMA_EVALUACION_ABIERTO
 state MATERIAS_ABIERTO
 state MATERIA_ABIERTO
-state ASIGNATURA_GRADO_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO
 state CURSOS_ACADEMICOS_ABIERTO
 state CURSO_ACADEMICO_ABIERTO
-state GUIAS_DEL_GRADO_ABIERTO
+state GUIAS_DEL_PROGRAMA_ABIERTO
 state GUIA_ABIERTO
 state COPIAS_SEGURIDAD_ABIERTO
+state HISTORIAL_CAMBIOS_ABIERTO
 
 [*] --> SESION_CERRADA
 
@@ -40,9 +44,11 @@ SISTEMA_DISPONIBLE --> SESION_CERRADA : cerrarSesion()
 SISTEMA_DISPONIBLE --> UNIVERSIDADES_ABIERTO : abrirUniversidades()
 SISTEMA_DISPONIBLE --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
 SISTEMA_DISPONIBLE --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
+SISTEMA_DISPONIBLE --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
 SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()
 SISTEMA_DISPONIBLE --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
 SISTEMA_DISPONIBLE --> COPIAS_SEGURIDAD_ABIERTO : consultarCopiasSeguridad()
+SISTEMA_DISPONIBLE --> HISTORIAL_CAMBIOS_ABIERTO : consultarHistorialCambios()
 
 SISTEMA_DISPONIBLE --> SISTEMA_DISPONIBLE : generarGuiasPDF()
 
@@ -68,81 +74,131 @@ FACULTAD_ABIERTO --> FACULTAD_ABIERTO : editarFacultad()
 FACULTAD_ABIERTO --> FACULTADES_ABIERTO : abrirFacultades()
 FACULTADES_ABIERTO --> UNIVERSIDAD_ABIERTO : abrirUniversidad()
 
-' Grado tampoco es catálogo: composición real de Facultad (Facultad *-d- Grado),
+' Programa tampoco es catálogo: composición real de Facultad (Facultad *-d- Programa),
 ' mismo patrón que Facultad dentro de Universidad
-FACULTAD_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
+FACULTAD_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()
 
-GRADOS_ABIERTO --> GRADO_ABIERTO : crearGrado()
-GRADOS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
-GRADOS_ABIERTO --> GRADOS_ABIERTO : eliminarGrado()
-GRADO_ABIERTO --> GRADO_ABIERTO : editarGrado()
-GRADO_ABIERTO --> GRADOS_ABIERTO : abrirGrados()
-GRADOS_ABIERTO --> FACULTAD_ABIERTO : abrirFacultad()
+PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : crearPrograma()
+PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+PROGRAMAS_ABIERTO --> PROGRAMAS_ABIERTO : eliminarPrograma()
+PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : editarPrograma()
 
-' Materia tampoco es catálogo: composición real de Grado (Grado *-- Materia),
+' Segunda entrada a definirDirectorPrograma()/quitarDirectorPrograma() (issue #492,
+' flujo alternativo del mismo caso de uso ya catalogado sobre PROFESOR_ABIERTO,
+' ver mas abajo) -- el Admin tambien puede nombrar/quitar director de Programa
+' directamente desde la vista del Programa, sin pasar por el Profesor
+PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : definirDirectorPrograma()
+PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : quitarDirectorPrograma()
+
+' asociarMetodologiaDocenteAPrograma()/desasociarMetodologiaDocentePrograma():
+' catalogo de MetodologiaDocente del Programa (Programa o-- MetodologiaDocente), que
+' limita lo que las Materia del programa pueden elegir. Pantalla propia desde el issue #640
+' (abrirMetodologiasDocentesPrograma(), CU compartido con DirectorPrograma, igual que
+' abrirMaterias()); asociar/desasociar son self-loops sobre esa pantalla.
+' METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO es un estado DISTINTO de METODOLOGIAS_DOCENTES_ABIERTO
+' (ese es el catalogo institucional global, SISTEMA_DISPONIBLE->METODOLOGIAS_DOCENTES_ABIERTO,
+' con su propio CRUD de MetodologiaDocente mas abajo) -- pantallas y rutas distintas
+' (MetodologiasDocentesProgramaAdmin.tsx / /admin/programas/:id/metodologias-docentes
+' vs. MetodologiasDocentes.tsx / /admin/metodologias-docentes), aunque el nombre se parezca.
+' No es el mismo caso que MATERIAS_ABIERTO reutilizado entre diagramaContextoAdmin y
+' diagramaContextoDirectorPrograma (ahi SI es la misma pantalla conceptual, actor distinto);
+' aqui serian dos pantallas distintas para el MISMO actor Admin.
+PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : abrirMetodologiasDocentesPrograma()
+METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAPrograma()
+METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : desasociarMetodologiaDocentePrograma()
+
+' Resultados de Aprendizaje del Programa (issue #642): capacidad compartida con
+' DirectorPrograma (mismo patron que abrirMetodologiasDocentesPrograma(), #640).
+' RESULTADOS_APRENDIZAJE_ABIERTO / RESULTADO_APRENDIZAJE_ABIERTO estaban LIBRES en este
+' diagrama (grep previo): misma pantalla conceptual que en diagramaContextoDirectorPrograma,
+' actor distinto (rutas /admin/programas/:id/resultados-aprendizaje y
+' /admin/resultados-aprendizaje/:id).
+PROGRAMA_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : crearResultadoAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultadoAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : eliminarResultadoAprendizaje()
+RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()
+RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
+RESULTADOS_APRENDIZAJE_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+PROGRAMA_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()
+PROGRAMAS_ABIERTO --> FACULTAD_ABIERTO : abrirFacultad()
+
+' Materia tampoco es catálogo: composición real de Programa (Programa *-- Materia),
 ' se navega desde dentro de él -- necesaria pese a ser fina para Admin (nombre):
-' otros hijos de Materia (SistemaEvaluacion, pendiente; asociaciones de DirectorGrado
+' otros hijos de Materia (SistemaEvaluacion, pendiente; asociaciones de DirectorPrograma
 ' mas adelante) sí requieren "una Materia concreta abierta"
-GRADO_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
+PROGRAMA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
 
 MATERIAS_ABIERTO --> MATERIA_ABIERTO : crearMateria()
 MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
 MATERIAS_ABIERTO --> MATERIAS_ABIERTO : eliminarMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : editarMateria()
 MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
-MATERIAS_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+MATERIAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 
-' AsignaturaGrado: dos entradas (atajo plano desde GRADO_ABIERTO, agrupado por
+' AsignaturaPrograma: dos entradas (atajo plano desde PROGRAMA_ABIERTO, agrupado por
 ' materias; y desde la propia MATERIA_ABIERTO) y dos retornos, uno por cada entrada
-' (abrirGrado() y abrirMateria()) -- retoque de Manuel usando el producto (issue
-' #252, 2026-09-05): el retorno unico original a GRADO_ABIERTO ("la entrada mas
+' (abrirPrograma() y abrirMateria()) -- retoque de Manuel usando el producto (issue
+' #252, 2026-09-05): el retorno unico original a PROGRAMA_ABIERTO ("la entrada mas
 ' usada") resulto incomodo para quien entra desde MATERIA_ABIERTO. Segunda oleada
-' del mismo patron que #227/PR#234; DirectorGrado gano su segundo retorno antes
-' (ver diagramaContextoDirectorGrado.puml).
-GRADO_ABIERTO --> GRADO_ABIERTO : crearAsignaturaGrado()
-GRADO_ABIERTO --> GRADO_ABIERTO : eliminarAsignaturaGrado()
-GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
-MATERIA_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : abrirAsignaturaGrado()
+' del mismo patron que #227/PR#234; DirectorPrograma gano su segundo retorno antes
+' (ver diagramaContextoDirectorPrograma.puml).
+PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : crearAsignaturaPrograma()
+PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : eliminarAsignaturaPrograma()
+PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()
+MATERIA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()
+' Edicion correctiva (issue #602): paridad con DirectorPrograma, caso de uso compartido.
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarAsignaturaPrograma()
 
-' SistemaEvaluacion: mismo patrón que AsignaturaGrado -- composición real de Materia
+' SistemaEvaluacion: mismo patrón que AsignaturaPrograma -- composición real de Materia
 ' (Materia *-- SistemaEvaluacion), cero reutilización cruzada, se navega desde dentro de ella
 MATERIA_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : abrirSistemasEvaluacion()
 
-' asignar/desasignarProfesorAAsignaturaGrado(): self-loop de navegacion (el Admin
-' no sale de ASIGNATURA_GRADO_ABIERTO), pero con efecto colateral sobre el ciclo de
+' asignar/desasignarProfesorAAsignaturaPrograma(): self-loop de navegacion (el Admin
+' no sale de ASIGNATURA_PROGRAMA_ABIERTO), pero con efecto colateral sobre el ciclo de
 ' vida de la Guia activa (issue #254): si la plantilla cambio de verdad y esa Guia
 ' esta Aprobada, pasa a EnRevision (+ fila de HistorialCambio, autor centinela) para
-' que el DirectorGrado re-apruebe -- al aprobar, Guia--Profesor se re-deriva de la
+' que el DirectorPrograma re-apruebe -- al aprobar, Guia--Profesor se re-deriva de la
 ' plantilla. Es el segundo trigger Admin de Aprobada->EnRevision (el otro es
 ' reabrirGuiaPorIncidencia()), no una transicion de navegacion propia.
-ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : asignarProfesorAAsignaturaGrado()
-ASIGNATURA_GRADO_ABIERTO --> ASIGNATURA_GRADO_ABIERTO : desasignarProfesorAsignaturaGrado()
-ASIGNATURA_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
-ASIGNATURA_GRADO_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asignarProfesorAAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasignarProfesorAsignaturaPrograma()
+
+' issue #599: paridad con DirectorPrograma (vía de corrección excepcional) -- cinco
+' self-loops de navegación más, sin efecto sobre el ciclo de vida de la Guia.
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarResultadoAprendizajeAAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarResultadoAprendizajeAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarMetodologiaDocenteAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarActividadesFormativasAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
 
 ' consultarEstadoGuias() del Admin, DOS propositos sobre el mismo listado:
 ' (1) issue #6 -- localizar la guia con incidencia para reabrirla; el paso
 '     abrirGuia() de ese flujo da hoy 403 al Admin en codigo (deriva
 '     pre-existente, issue #265; reabrirGuiaPorIncidencia() nunca se construyo).
 ' (2) issue #262 -- pantalla propia de Admin ([Estado del curso actual] en
-'     GradoAdmin) para monitorear el estado de las guias durante la beta.
-GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : consultarEstadoGuias()
-GUIAS_DEL_GRADO_ABIERTO --> GUIA_ABIERTO : abrirGuia()
+'     ProgramaAdmin) para monitorear el estado de las guias durante la beta.
+PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : consultarEstadoGuias()
+GUIAS_DEL_PROGRAMA_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 ' previsualizarGuia()/descargarGuiaPDF() desde la LISTA (issue #262): los
 ' botones de fila de la pantalla de Admin abren pestana / descargan blob, la
-' pantalla no cambia -- self-loop de GUIAS_DEL_GRADO_ABIERTO, no de GUIA_ABIERTO
-' (el Admin no abre la guia). Actor Profesor/DirectorGrado/Admin, 404 uniforme
+' pantalla no cambia -- self-loop de GUIAS_DEL_PROGRAMA_ABIERTO, no de GUIA_ABIERTO
+' (el Admin no abre la guia). Actor Profesor/DirectorPrograma/Admin, 404 uniforme
 ' (discussion #218 P3; Admin alineado en #263/#238).
-GUIAS_DEL_GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : previsualizarGuia()
-GUIAS_DEL_GRADO_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : descargarGuiaPDF()
+GUIAS_DEL_PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : previsualizarGuia()
+GUIAS_DEL_PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : descargarGuiaPDF()
 ' descargarGuiaPDF() desde GUIA_ABIERTO se conserva por el flujo de #6
 ' (localizar -> abrir -> descargar -> reabrir); #262 lo invoca ademas desde la lista.
 GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
-GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : reabrirGuiaPorIncidencia()
-' abrirGrado(): mismo patrón que las cuatro vueltas equivalentes de
-' diagramaContextoDirectorGrado.puml -- listado, no formulario, destino ya con
+GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : reabrirGuiaPorIncidencia()
+' abrirPrograma(): mismo patrón que las cuatro vueltas equivalentes de
+' diagramaContextoDirectorPrograma.puml -- listado, no formulario, destino ya con
 ' nombre propio. Corregido al planificar Análisis (discussion #47).
-GUIAS_DEL_GRADO_ABIERTO --> GRADO_ABIERTO : abrirGrado()
+GUIAS_DEL_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 
 ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : crearAsignatura()
 ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : abrirAsignatura()
@@ -158,13 +214,26 @@ METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaD
 METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
 METODOLOGIAS_DOCENTES_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
-' definirDirectorGrado()/quitarDirectorGrado(): rol sobre un Profesor ya abierto, no entidad propia
+' ActividadFormativa (issue #655): catalogo de Universidad con CRUD completo de Admin, mismo
+' patron que MetodologiaDocente. Antes era seed-estatico sin pantalla (discussion #227): la
+' rejilla de horas por Materia/AsignaturaPrograma (DirectorPrograma) sigue siendo otro CU
+' distinto -- estos estados son el CATALOGO global de la Universidad, no esa rejilla.
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : crearActividadFormativa()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : eliminarActividadFormativa()
+ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()
+ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
+
+' definirDirectorPrograma()/quitarDirectorPrograma(): rol sobre un Profesor ya abierto, no entidad propia.
+' Segunda entrada desde PROGRAMA_ABIERTO anadida en el issue #492 (ver mas arriba) -- mismos dos
+' casos de uso, flujo alternativo, sin duplicar ficha de Requisitos
 PROFESORES_ABIERTO --> PROFESOR_ABIERTO : crearProfesor()
 PROFESORES_ABIERTO --> PROFESOR_ABIERTO : abrirProfesor()
 PROFESORES_ABIERTO --> PROFESORES_ABIERTO : eliminarProfesor()
 PROFESOR_ABIERTO --> PROFESOR_ABIERTO : editarProfesor()
-PROFESOR_ABIERTO --> PROFESOR_ABIERTO : definirDirectorGrado()
-PROFESOR_ABIERTO --> PROFESOR_ABIERTO : quitarDirectorGrado()
+PROFESOR_ABIERTO --> PROFESOR_ABIERTO : definirDirectorPrograma()
+PROFESOR_ABIERTO --> PROFESOR_ABIERTO : quitarDirectorPrograma()
 PROFESOR_ABIERTO --> PROFESORES_ABIERTO : abrirProfesores()
 PROFESORES_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
@@ -197,5 +266,17 @@ CURSOS_ACADEMICOS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 ' reales del dominio con CRUD). Self-loop de listado: no hay detalle que abrir,
 ' ninguna fila es una entidad propia sobre la que navegar.
 COPIAS_SEGURIDAD_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
+
+' comprobarCopiasSeguridad() (issue #683): comprobación bajo demanda, solo
+' lectura y sin estado, de la integridad de cada copia del volumen. Autotransición
+' de la pantalla de copias; el resultado vive en pantalla, no cambia de estado.
+COPIAS_SEGURIDAD_ABIERTO --> COPIAS_SEGURIDAD_ABIERTO : comprobarCopiasSeguridad()
+
+' consultarHistorialCambios() (issue #392): auditoría de solo lectura sobre
+' HistorialCambio -- feed de últimas 50 acciones + índice de autores
+' fusionado por email (Profesor+DirectorPrograma de la misma persona, issue
+' #401), sin CRUD. Self-loop conceptual: la navegación al detalle de un
+' autor concreto vive dentro del mismo CU, no es un estado propio.
+HISTORIAL_CAMBIOS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 @enduml

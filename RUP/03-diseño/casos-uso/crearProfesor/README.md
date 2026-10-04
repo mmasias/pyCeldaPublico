@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -37,14 +37,14 @@ Bajada a diseño del caso de análisis [`crearProfesor()`](/RUP/02-analisis/caso
 - **Vista**: `CrearProfesorView` (React) -- formulario de dos campos (`nombre`, `email`); al confirmar, `POST /api/v1/profesores`.
 - **API**: `routers/profesor.py::crear_profesor(datos)` -- función suelta, sin capa Service; comprueba unicidad de email y delega en el repositorio.
 - **Modelo**: `Profesor` (SQLAlchemy) -- sin lógica propia invocada: el Repository construye la fila directamente. La columna `nombre` (añadida nullable + backfill previo) se exige siempre vía Pydantic aquí.
-- **Repositorio**: `ProfesorRepository.crear(nombre, email)` -- persistencia real e inmediata; normaliza el email (`strip().lower()`) para que la resolución de rol por email contra `DirectorGrado` y el login funcionen sin variantes de caja.
+- **Repositorio**: `ProfesorRepository.crear(nombre, email)` -- persistencia real e inmediata; normaliza el email (`strip().lower()`) para que la resolución de rol por email contra `DirectorPrograma` y el login funcionen sin variantes de caja.
 
 ## Decisiones de diseño
 
 - **Validación de obligatoriedad por esquema de entrada**, no por paso explícito de la secuencia: `ProfesorCreate` (Pydantic) exige `nombre` y `email` antes de que la función del Router se ejecute -- `validarDatosObligatorios(nombre, email)` de Análisis se disuelve en Pydantic, mismo hallazgo ya documentado en el diagrama de clases de Diseño (discussion [#60](https://github.com/mmasias/pyCelda/discussions/60)).
 - **`409` por email duplicado, comprobado antes de crear**: el endpoint consulta `obtener_por_email()` y responde `409` con `detail="Ya existe un Profesor con el email ..."` -- el `unique=True` de la columna queda como red de seguridad de último nivel, no como mecanismo de respuesta al usuario (un `IntegrityError` crudo no llevaría mensaje útil).
 - **`201 Created` con el objeto creado (incluido su `id`), navegando al detalle** -- sin patrón C->U no hay `<<include>>` de edición: la Vista navega a `abrirProfesor()` del `Profesor` recién creado (`:PROFESOR_ABIERTO`); la nota `editarProfesor()` de la transición de Requisitos es la edición disponible desde ese detalle, no un salto directo al formulario.
-- **Normalización de email en el repositorio** (`strip().lower()`), mismo criterio que `app/scripts/definir_director_grado.py`: la unicidad y la resolución de rol por email operan sobre una sola forma canónica.
+- **Normalización de email en el repositorio** (`strip().lower()`), mismo criterio que `app/scripts/definir_director_programa.py`: la unicidad y la resolución de rol por email operan sobre una sola forma canónica.
 - **Autorización de `Admin`: `Depends(require_admin)`** -- especialmente relevante aquí por ser endpoint de escritura: el historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real.
 - **Sin capa Service**: Router delgado -> Repository.
 

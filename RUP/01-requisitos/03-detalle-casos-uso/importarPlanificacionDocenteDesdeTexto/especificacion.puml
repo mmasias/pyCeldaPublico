@@ -1,0 +1,37 @@
+@startuml importarPlanificacionDocenteDesdeTexto
+
+skinparam linetype polyline
+
+state PLANIFICACION_DOCENTE_ABIERTO
+state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
+
+PLANIFICACION_DOCENTE_ABIERTO -[#green]-> importarPlanificacionDocenteDesdeTexto
+note on link
+<b>Profesor</b> solicita importar planificación docente desde texto
+end note
+
+state importarPlanificacionDocenteDesdeTexto as "importarPlanificacionDocenteDesdeTexto()" {
+
+    state " " as SolicitandoTexto
+
+    [*] -[#green]-> SolicitandoTexto
+    note on link
+    <b>Sistema</b> presenta la tabla de códigos (CT, CP, CTP, CL, EC, EP) y el área de texto
+    <b>Sistema</b> muestra el número de sesiones que se reemplazarán
+    end note
+
+    SolicitandoTexto -[#green]-> [*]
+    note on link
+    <b>Profesor</b> pega el texto, una sesión por línea (CODIGO - Descripción)
+    <b>Profesor</b> solicita importar
+    end note
+}
+
+importarPlanificacionDocenteDesdeTexto -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+reemplaza la planificación docente; si la guía estaba Aprobada, pasa a Borrador
+end note
+
+importarPlanificacionDocenteDesdeTexto -[#red]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+
+@enduml

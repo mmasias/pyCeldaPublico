@@ -32,7 +32,7 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`Profesor`|
-|**Objetivo**|Reemplazar la planificación docente de la `Guia` abierta con la de una `Guia` `Aprobada` de una `AsignaturaGrado` hermana|
+|**Objetivo**|Reemplazar la planificación docente de la `Guia` abierta con la de una `Guia` `Aprobada` de una `AsignaturaPrograma` hermana|
 |**Tipo**|Primario|
 |**Nivel**|Objetivo de usuario|
 
@@ -40,15 +40,15 @@
 
 Caso de uso gemelo de [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) -- misma mecánica, misma autorización, sobre `Sesion` en vez de `ReferenciaBibliografica`. Dos casos de uso separados, no uno con parámetro: escalarán distinto (decisión de Manuel en el hilo del issue [#184](https://github.com/mmasias/pyCelda/issues/184)). Toda la ficha de `importarBibliografiaDeGuiaHermana()` aplica aquí -- a continuación solo lo específico de la planificación docente.
 
-Reutilizado por `DirectorGrado`, misma ficha (`DirectorGrado --|> Profesor`), no redeclarado. Actor efectivo: `Profesor` de la `AsignaturaGrado` destino.
+Reutilizado por `DirectorPrograma`, misma ficha (`DirectorPrograma --|> Profesor`), no redeclarado. Actor efectivo: `Profesor` de la `AsignaturaPrograma` destino.
 
-**`AsignaturaGrado` hermana**: misma doble comprobación -- mismo `asignatura_id` (FK del issue [#181](https://github.com/mmasias/pyCelda/issues/181), no nula) y mismo `Asignatura.codigo`.
+**`AsignaturaPrograma` hermana**: misma doble comprobación -- mismo `asignatura_id` (FK del issue [#181](https://github.com/mmasias/pyCelda/issues/181), no nula) y mismo `Asignatura.codigo`.
 
-**Origen**: una `Guia` en estado `Aprobada` de una `AsignaturaGrado` hermana; desplegable con el origen plenamente identificado (grado, código, nombre de la hermana, fecha de aprobación, número de sesiones) si hay más de una; botón ausente si ninguna.
+**Origen**: una `Guia` en estado `Aprobada` de una `AsignaturaPrograma` hermana; desplegable con el origen plenamente identificado (programa, código, nombre de la hermana, fecha de aprobación, número de sesiones) si hay más de una; botón ausente si ninguna.
 
 **Copia con reemplazo total, real e inmediata** (a diferencia de [`crearSesion()`](../crearSesion/README.md)/[`editarSesion()`](../editarSesion/README.md)/[`eliminarSesion()`](../eliminarSesion/README.md), que quedan en memoria hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)): borra **todas** las `Sesion` de la `Guia` destino -- vinculadas y tecleadas a mano -- y crea filas nuevas copiando `tipo` y `descripcion` de las de la guía origen, replicando el flag `vinculada` de cada fila origen tal cual. Operación atómica, un solo commit.
 
-**Renumeración `1..N` en persistencia**: las `Sesion` copiadas se renumeran `1..N` en el orden `numero` del origen, y ese número queda persistido en `Sesion.numero` -- a diferencia de [`eliminarSesion()`](../eliminarSesion/README.md), donde la renumeración es solo posicional (de presentación) y `Sesion.numero` conserva el valor de alta. Aquí las filas son nuevas, la numeración secuencial desde 1 es su valor de alta, no un reajuste. **`Guia.sesiones_minimas` del destino NO se toca**: es config de la propia `AsignaturaGrado` destino (umbral de la regla `c3` de [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md), discussion [#206](https://github.com/mmasias/pyCelda/discussions/206)), puede diferir legítimamente del de la hermana; tras importar, el medidor "N / M sesiones" refleja el conteo real contra el umbral propio.
+**Renumeración `1..N` en persistencia**: las `Sesion` copiadas se renumeran `1..N` en el orden `numero` del origen, y ese número queda persistido en `Sesion.numero` -- a diferencia de [`eliminarSesion()`](../eliminarSesion/README.md), donde la renumeración es solo posicional (de presentación) y `Sesion.numero` conserva el valor de alta. Aquí las filas son nuevas, la numeración secuencial desde 1 es su valor de alta, no un reajuste. **`Guia.sesiones_minimas` del destino NO se toca**: es config de la propia `AsignaturaPrograma` destino (umbral de la regla `c3` de [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md), discussion [#206](https://github.com/mmasias/pyCelda/discussions/206)), puede diferir legítimamente del de la hermana; tras importar, el medidor "N / M sesiones" refleja el conteo real contra el umbral propio.
 
 **Guía destino `Aprobada`**: se permite y se degrada a `Borrador` (mismo mecanismo que `guardarBorradorGuia()`).
 

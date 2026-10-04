@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -17,7 +17,7 @@
 
 ## Propósito
 
-Vista **relacional** del almacén de datos (SQLite + SQLAlchemy, 26 tablas), complemento del [diagrama de clases de diseño](/RUP/03-diseño/diagrama-clases-diseño.puml) (vista OO, Fat Model). Peldaño intermedio de la escala de tres representaciones del sistema (discussion [#59](https://github.com/mmasias/pyCelda/discussions/59)): un nivel por debajo de las clases de diseño, comprometido con el esquema físico.
+Vista **relacional** del almacén de datos (SQLite + SQLAlchemy, 27 tablas), complemento del [diagrama de clases de diseño](/RUP/03-diseño/diagrama-clases-diseño.puml) (vista OO, Fat Model). Peldaño intermedio de la escala de tres representaciones del sistema (discussion [#59](https://github.com/mmasias/pyCelda/discussions/59)): un nivel por debajo de las clases de diseño, comprometido con el esquema físico.
 
 La vista OO deja invisibles las 6 tablas de unión (son `secondary=` de una relación), las columnas FK reales y su nulabilidad, y qué asociación del dominio es FK física y cuál lógica. Este artefacto las documenta. Criterio de arranque en la discussion [#196](https://github.com/mmasias/pyCelda/discussions/196).
 
@@ -40,7 +40,7 @@ La vista OO deja invisibles las 6 tablas de unión (son `secondary=` de una rela
 
 Los hechos estructurales (tablas, columnas, tipos, nulabilidad, defaults, PK, FK, unique) se **generan** por introspección de `SQLAlchemy.metadata` -- no se transcriben a mano, no driftean. Ya hay tres representaciones del dominio (modelo de dominio, clases de análisis, clases de diseño) más el código; un cuarto artefacto 100% a mano se pudre (el PR [#192](https://github.com/mmasias/pyCelda/pull/192) lo demostró: el `diagrama-clases-diseño.puml` tenía `actualizar()` ausente en dos repositorios).
 
-Pero un artefacto 100% generado no captura lo que SQLAlchemy no sabe: que `String(20)` en `guias.estado` es el dominio `{Borrador, EnRevision, Aprobada, Rechazada}`, que `guias.grado_id` es denormalizado sin FK, que `(Grado, Asignatura)` es único aunque no haya `UniqueConstraint`. Eso se escribe **a mano**, referenciando el [README del modelo de dominio](/RUP/00-modelo-del-dominio/README.md) en vez de duplicar el "por qué".
+Pero un artefacto 100% generado no captura lo que SQLAlchemy no sabe: que `String(20)` en `guias.estado` es el dominio `{Borrador, EnRevision, Aprobada, Rechazada}`, que `guias.programa_id` es denormalizado sin FK, que `(Programa, Asignatura)` es único aunque no haya `UniqueConstraint`. Eso se escribe **a mano**, referenciando el [README del modelo de dominio](/RUP/00-modelo-del-dominio/README.md) en vez de duplicar el "por qué".
 
 ### Delimitación de las dos capas
 
@@ -67,4 +67,4 @@ Un PR que toca `backend/app/models/` **regenera el DER y el diccionario y revisa
 - [Discussion #196](https://github.com/mmasias/pyCelda/discussions/196) -- criterio de este artefacto.
 - [Diagrama de clases de diseño](/RUP/03-diseño/diagrama-clases-diseño.puml) -- vista OO complementaria.
 - [README del modelo de dominio](/RUP/00-modelo-del-dominio/README.md) -- el "por qué" de cada regla, no reexplicado aquí.
-- [Issue #181](https://github.com/mmasias/pyCelda/issues/181) -- `AsignaturaGrado.asignatura_id`, FK física hacia `Asignatura` (nullable, cerrado 2026-09-05).
+- [Issue #181](https://github.com/mmasias/pyCelda/issues/181) -- `AsignaturaPrograma.asignatura_id`, FK física hacia `Asignatura` (nullable, cerrado 2026-09-05).

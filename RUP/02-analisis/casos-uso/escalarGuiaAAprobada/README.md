@@ -1,21 +1,21 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > escalarGuiaAAprobada()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/escalarGuiaAAprobada/README.md)|[Desarrollo](/RUP/04-desarrollo/casos-uso/escalarGuiaAAprobada/README.md)|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/escalarGuiaAAprobada/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`escalarGuiaAAprobada()`](/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/README.md): un solo paso, sin `<<choice>>`, sin formulario -- el `DirectorGrado` solicita escalar y el sistema transiciona `Guia.estado` de `Borrador` o `Rechazada` a `Aprobada`, registrando el `HistorialCambio` con el comentario fijo `"escalada a aprobada sin incidencia"`. Misma familia que [`aprobarGuia()`](../aprobarGuia/README.md): "sí" sin matiz, comentario fijo por el propio caso de uso -- a diferencia de aquel, el estado de origen no es único (`{Borrador, Rechazada}`), así que el `valorAnterior` registrado varía según de cuál venga.
+Traducción a clases de análisis del caso de uso [`escalarGuiaAAprobada()`](/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/README.md): un solo paso, sin `<<choice>>`, sin formulario -- el `DirectorPrograma` solicita escalar y el sistema transiciona `Guia.estado` de `Borrador` o `Rechazada` a `Aprobada`, registrando el `HistorialCambio` con el comentario fijo `"escalada a aprobada sin incidencia"`. Misma familia que [`aprobarGuia()`](../aprobarGuia/README.md): "sí" sin matiz, comentario fijo por el propio caso de uso -- a diferencia de aquel, el estado de origen no es único (`{Borrador, Rechazada}`), así que el `valorAnterior` registrado varía según de cuál venga.
 
 **Retoque posterior (discussion [#224](https://github.com/mmasias/pyCelda/discussions/224), cierre de Frente B)**: mismo retoque que [`aprobarGuia()`](../aprobarGuia/README.md) -- `escalarAAprobada()` regenera `fechaGeneracionPDF` (`regenerarPDF()`) como parte del propio cambio de estado, encapsulado en el método (Fat Model), sin colaboración nueva en el diagrama.
 
-**Retoque posterior (issue [#254](https://github.com/mmasias/pyCelda/issues/254))**: también como `aprobarGuia()` -- dentro del mismo `escalarAAprobada()` la `Guia` re-deriva `Guia -- Profesor` de `AsignaturaGrado -- Profesor` (Fat Model, sin flecha nueva). Un escalado directo es un punto de sincronización de la copia igual que una aprobación desde `EnRevision`.
+**Retoque posterior (issue [#254](https://github.com/mmasias/pyCelda/issues/254))**: también como `aprobarGuia()` -- dentro del mismo `escalarAAprobada()` la `Guia` re-deriva `Guia -- Profesor` de `AsignaturaPrograma -- Profesor` (Fat Model, sin flecha nueva). Un escalado directo es un punto de sincronización de la copia igual que una aprobación desde `EnRevision`.
 
 <div align=center>
 
@@ -34,9 +34,9 @@ Traducción a clases de análisis del caso de uso [`escalarGuiaAAprobada()`](/RU
 - presenta la pantalla de resultado: estado anterior, estado actual (`Aprobada`) y el comentario fijo registrado.
 
 **Colaboraciones:**
-- **Entrada:** `:GUIA_ABIERTO` -- el `DirectorGrado` solicita escalar la `Guia` abierta.
+- **Entrada:** `:GUIA_ABIERTO` -- el `DirectorPrograma` solicita escalar la `Guia` abierta.
 - **Control:** `GuiaController`.
-- **Salida:** `:GUIAS_DEL_GRADO_ABIERTO`.
+- **Salida:** `:GUIAS_DEL_PROGRAMA_ABIERTO`.
 
 ## Clases de controlador
 
@@ -85,7 +85,7 @@ Traducción a clases de análisis del caso de uso [`escalarGuiaAAprobada()`](/RU
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/wireframes.puml) -- fuente de verdad del paso único y del comentario fijo.
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : escalarGuiaAAprobada()`.
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : escalarGuiaAAprobada()`.
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- transición `{Borrador, Rechazada} -> Aprobada` (escalado directo) que la `Guia` aplica en `escalarAAprobada()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`, `Guia *- HistorialCambio`.
 - [`aprobarGuia()`](../aprobarGuia/README.md) -- misma familia, mismo criterio de comentario fijo sin pedir nada al actor, mismo retoque de `regenerarPDF()`.

@@ -38,7 +38,7 @@
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorGrado --|> Profesor`).
+Caso de uso reutilizado por `DirectorPrograma`, misma ficha -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`).
 
 **Sin `<<choice>>` bloqueante**, mismo criterio que [`eliminarPonderacionEvaluacion()`](../eliminarPonderacionEvaluacion/README.md): nada depende estructuralmente de una `ReferenciaBibliografica`. Solicitada desde el listado ([`abrirReferenciasBibliograficas()`](../abrirReferenciasBibliograficas/README.md)), no desde el detalle.
 

@@ -33,16 +33,18 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`Admin`|
-|**Objetivo**|Eliminar una `Materia` de un `Grado`, siempre que no tenga `AsignaturaGrado` asociadas|
+|**Objetivo**|Eliminar una `Materia` de un `Programa`, siempre que no tenga `AsignaturaPrograma` asociadas|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()`/`eliminarMetodologiaDocente()`: a diferencia de `Asignatura`/`Grado`/`AsignaturaGrado` (borrado lógico vía `estado`), `Materia` no tiene `estado` propio -- vive y muere con el `Grado` que la contiene, así que su borrado es siempre físico. El bloqueo usa `AsignaturaGrado`, no `SistemaEvaluacion`, porque `Materia *-- AsignaturaGrado` es la composición cerrada explícitamente como "sin ventana de orfandad" en el modelo de dominio: el alta de una `AsignaturaGrado` es atómica con su `Materia`, así que una `Materia` con `AsignaturaGrado` no puede desaparecer sin dejar huérfanos. Elección de "Programación"/"Ingeniería del Software" para bloqueada/confirmación es ilustrativa: ambas son materias reales de agrupación de asignaturas de GII, pero qué `AsignaturaGrado` tiene cada una en el catálogo real no está en el seed.
+**No implementado en código -- caso de uso solo de la fase de Requisitos.** Mismo régimen que `Requisito`/`CursoAcademico` en el modelo del dominio: representación correcta, pendiente de construir. No existe ningún endpoint `DELETE` de `Materia` en el backend (los dos `DELETE` reales de `materia.py` desasocian `MetodologiaDocente`/`ResultadoAprendizaje`, entidades distintas).
+
+Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()`/`eliminarMetodologiaDocente()`: a diferencia de `Asignatura`/`Programa`/`AsignaturaPrograma` (borrado lógico vía `estado`), `Materia` no tiene `estado` propio -- vive y muere con el `Programa` que la contiene, así que su borrado es siempre físico. El bloqueo usa `AsignaturaPrograma`, no `SistemaEvaluacion`, porque `Materia *-- AsignaturaPrograma` es la composición cerrada explícitamente como "sin ventana de orfandad" en el modelo de dominio: el alta de una `AsignaturaPrograma` es atómica con su `Materia`, así que una `Materia` con `AsignaturaPrograma` no puede desaparecer sin dejar huérfanos. Elección de "Programación"/"Ingeniería del Software" para bloqueada/confirmación es ilustrativa: ambas son materias reales de agrupación de asignaturas de GII, pero qué `AsignaturaPrograma` tiene cada una en el catálogo real no está en el seed.
 
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIAS_ABIERTO --> MATERIAS_ABIERTO : eliminarMateria()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `Materia`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia *-- AsignaturaGrado` (composición sin ventana de orfandad, origen de la regla de bloqueo); README, "Cambiar el reparto de Materia... de un Grado implica un Grado nuevo... ni Materia ni ResultadoAprendizaje necesitan estado propio"
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia *-- AsignaturaPrograma` (composición sin ventana de orfandad, origen de la regla de bloqueo); README, "Cambiar el reparto de Materia... de un Programa implica un Programa nuevo... ni Materia ni ResultadoAprendizaje necesitan estado propio"

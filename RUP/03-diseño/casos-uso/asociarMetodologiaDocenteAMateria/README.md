@@ -1,12 +1,12 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > asociarMetodologiaDocenteAMateria() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/README.md)|[Análisis](/RUP/02-analisis/casos-uso/asociarMetodologiaDocenteAMateria/README.md)|**Diseño**|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/README.md)|[Análisis](/RUP/02-analisis/casos-uso/asociarMetodologiaDocenteAMateria/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -50,4 +50,4 @@ Bajada a diseño del caso de análisis [`asociarMetodologiaDocenteAMateria()`](/
 
 - [`asociarMetodologiaDocenteAMateria()` en Análisis](/RUP/02-analisis/casos-uso/asociarMetodologiaDocenteAMateria/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/README.md).
-- [`asociarMetodologiaDocenteAAsignaturaGrado()` en Diseño](/RUP/03-diseño/casos-uso/asociarMetodologiaDocenteAAsignaturaGrado/README.md) -- segundo escalón de la cascada; contrasta en el filtro de disponibles (subconjunto de la `Materia`, no catálogo completo).
+- [`asociarMetodologiaDocenteAAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/asociarMetodologiaDocenteAAsignaturaPrograma/README.md) -- segundo escalón de la cascada; contrasta en el filtro de disponibles (subconjunto de la `Materia`, no catálogo completo).

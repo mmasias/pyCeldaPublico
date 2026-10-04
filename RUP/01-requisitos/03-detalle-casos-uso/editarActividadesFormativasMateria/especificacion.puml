@@ -7,7 +7,7 @@ state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
 
 MATERIA_ABIERTO -[#green]-> editarActividadesFormativasMateria
 note on link
-<b>DirectorGrado</b> solicita editar las actividades formativas de la Materia
+<b>DirectorPrograma</b> solicita editar las actividades formativas de la Materia
 end note
 
 state editarActividadesFormativasMateria as "editarActividadesFormativasMateria()" {
@@ -23,17 +23,19 @@ state editarActividadesFormativasMateria as "editarActividadesFormativasMateria(
 
     EditandoReparto -[#green]-> c
     note on link
-    <b>DirectorGrado</b> introduce las horas de cada actividad formativa
-    <b>DirectorGrado</b> solicita guardar
+    <b>DirectorPrograma</b> introduce las horas de cada actividad formativa
+    <b>DirectorPrograma</b> solicita guardar
     end note
 
     c -[#green]-> [*]
     note on link
+    [horas >= 0 en las 10 actividades formativas]
     <b>Sistema</b> presenta el reparto guardado
     end note
 
     c -[#red]-> [*]
     note on link
+    [alguna hora negativa]
     <b>Sistema</b> presenta mensaje de horas no válidas (valor negativo)
     end note
 }

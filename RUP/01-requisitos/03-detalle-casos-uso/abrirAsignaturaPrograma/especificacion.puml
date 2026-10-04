@@ -1,0 +1,29 @@
+@startuml abrirAsignaturaPrograma
+
+skinparam linetype polyline
+
+state PROGRAMA_ABIERTO
+state MATERIA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO
+
+PROGRAMA_ABIERTO -[#green]-> abrirAsignaturaPrograma
+note on link
+<b>Admin</b> solicita abrir AsignaturaPrograma
+end note
+
+MATERIA_ABIERTO -[#green]-> abrirAsignaturaPrograma
+note on link
+<b>Admin</b> solicita abrir AsignaturaPrograma
+end note
+
+state abrirAsignaturaPrograma as "abrirAsignaturaPrograma()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la AsignaturaPrograma
+    end note
+}
+
+abrirAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO
+
+@enduml

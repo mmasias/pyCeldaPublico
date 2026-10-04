@@ -1,0 +1,31 @@
+@startuml desasociarMetodologiaDocenteAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package desasociarMetodologiaDocenteAsignaturaPrograma as "desasociarMetodologiaDocenteAsignaturaPrograma()" {
+    rectangle #629EF9 DesasociarMetodologiaDocenteAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+}
+
+AsignaturaProgramaAbierto --> DesasociarMetodologiaDocenteAsignaturaProgramaView: <font size=8>desasociarMetodologiaDocenteAsignaturaPrograma(asignaturaProgramaId, metodologiaDocenteId)
+
+DesasociarMetodologiaDocenteAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>quedaSinMetodologiasDocentesTrasDesasociar(asignaturaProgramaId, metodologiaDocenteId) : boolean
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>quedaSinMetodologiasDocentesTrasDesasociar(asignaturaProgramaId, metodologiaDocenteId) : boolean
+
+DesasociarMetodologiaDocenteAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>desasociarMetodologiaDocente(asignaturaProgramaId, metodologiaDocenteId)
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>desasociarMetodologiaDocente(asignaturaProgramaId, metodologiaDocenteId)
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+
+DesasociarMetodologiaDocenteAsignaturaProgramaView ..[#green]> AsignaturaProgramaAbiertoSalida: <font size=8>confirmada, lista actualizada (con advertencia si quedaba sin ninguna)
+DesasociarMetodologiaDocenteAsignaturaProgramaView ..[#blue]> AsignaturaProgramaAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

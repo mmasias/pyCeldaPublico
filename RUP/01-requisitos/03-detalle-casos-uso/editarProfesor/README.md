@@ -42,4 +42,4 @@
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROFESOR_ABIERTO --> PROFESOR_ABIERTO : editarProfesor()`
 - [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `Profesor`
-- Datos reales: [`backend/app/data/seed/profesores.json`](/backend/app/data/seed/profesores.json) (repo privado)
+- Datos reales: `backend/app/data/seed/profesores.json` (repo privado)

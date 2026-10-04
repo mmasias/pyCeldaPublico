@@ -1,0 +1,65 @@
+@startuml quitarDirectorPrograma
+
+skinparam linetype polyline
+
+state PROFESOR_ABIERTO
+state PROGRAMA_ABIERTO
+state PROFESOR_ABIERTO_SALIDA as "PROFESOR_ABIERTO"
+state PROGRAMA_ABIERTO_SALIDA as "PROGRAMA_ABIERTO"
+
+state quitarDirectorPrograma as "quitarDirectorPrograma()" {
+
+    state " " as ConfirmandoQuitarRolDesdeProfesor
+    state cProfesor <<choice>>
+    state cPrograma <<choice>>
+}
+
+PROFESOR_ABIERTO -[#green]-> cProfesor
+note on link
+<b>Admin</b> (desde el Profesor) solicita quitar rol de director de Programa
+end note
+
+PROGRAMA_ABIERTO -[#green]-> cPrograma
+note on link
+<b>Admin</b> (desde el Programa, issue #492) solicita quitar rol de director de Programa
+end note
+
+cProfesor -[#green]-> ConfirmandoQuitarRolDesdeProfesor
+note on link
+[Programa con más de un DirectorPrograma activo]
+<b>Sistema</b> presenta información del Programa y advertencia de pérdida del rol
+<b>Sistema</b> permite solicitar confirmar/cancelar
+end note
+
+cProfesor -[#red]-> PROFESOR_ABIERTO_SALIDA
+note on link
+[Programa con un único DirectorPrograma activo]
+<b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa
+end note
+
+cPrograma -[#green]-> PROGRAMA_ABIERTO_SALIDA
+note on link
+[Programa con más de un DirectorPrograma activo]
+<b>Admin</b> solicita quitar, sin pantalla de confirmación (issue #492: acción directa por fila, sin el paso "¿seguro?" que sí tiene la entrada desde el Profesor)
+rol quitado, lista actualizada
+end note
+
+cPrograma -[#red]-> PROGRAMA_ABIERTO_SALIDA
+note on link
+[Programa con un único DirectorPrograma activo]
+<b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa (llega como error tras el intento, sin pantalla de bloqueo propia)
+end note
+
+ConfirmandoQuitarRolDesdeProfesor -[#green]-> PROFESOR_ABIERTO_SALIDA
+note on link
+<b>Admin</b> solicita confirmar quitar director
+rol quitado, lista actualizada
+end note
+
+ConfirmandoQuitarRolDesdeProfesor -[#blue]-> PROFESOR_ABIERTO_SALIDA
+note on link
+<b>Admin</b> solicita cancelar quitar director
+cancelado, sin cambios
+end note
+
+@enduml

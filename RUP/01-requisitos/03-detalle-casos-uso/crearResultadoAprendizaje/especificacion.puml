@@ -7,7 +7,7 @@ state RESULTADO_APRENDIZAJE_ABIERTO
 
 RESULTADOS_APRENDIZAJE_ABIERTO -[#green]-> crearResultadoAprendizaje
 note on link
-<b>DirectorGrado</b> solicita crear resultado de aprendizaje
+<b>Admin / DirectorPrograma</b> solicita crear resultado de aprendizaje
 end note
 
 state crearResultadoAprendizaje as "crearResultadoAprendizaje()" {
@@ -25,10 +25,10 @@ state crearResultadoAprendizaje as "crearResultadoAprendizaje()" {
 
     SolicitandoDatos -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> introduce código
-    <b>DirectorGrado</b> introduce tipo
-    <b>DirectorGrado</b> introduce descripción
-    <b>DirectorGrado</b> solicita crear
+    <b>Admin / DirectorPrograma</b> introduce código
+    <b>Admin / DirectorPrograma</b> introduce tipo
+    <b>Admin / DirectorPrograma</b> introduce descripción
+    <b>Admin / DirectorPrograma</b> solicita crear
     end note
 }
 

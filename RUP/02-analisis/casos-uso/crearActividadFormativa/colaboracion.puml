@@ -1,0 +1,28 @@
+@startuml crearActividadFormativa-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ACTIVIDADES_FORMATIVAS_ABIERTO" as ActividadesFormativasAbierto
+rectangle #CDEBA5 ":ACTIVIDAD_FORMATIVA_ABIERTO" as ActividadFormativaAbierto
+
+package crearActividadFormativa as "crearActividadFormativa()" {
+    rectangle #629EF9 CrearActividadFormativaView
+    rectangle #b5bd68 ActividadFormativaController
+    rectangle #F2AC4E ActividadFormativa
+    rectangle #F2AC4E ActividadFormativaRepository
+}
+
+ActividadesFormativasAbierto --> CrearActividadFormativaView: <font size=8>crearActividadFormativa()
+
+CrearActividadFormativaView --> ActividadFormativaController: <font size=8>validarDatosObligatorios(codigo, nombre) : boolean
+
+CrearActividadFormativaView --> ActividadFormativaController: <font size=8>crearActividadFormativa(universidadId, codigo, nombre) : ActividadFormativa
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>crear(universidadId, codigo, nombre) : ActividadFormativa
+
+ActividadFormativaRepository -- ActividadFormativa
+
+CrearActividadFormativaView --> ActividadFormativaAbierto: <font size=8>detalle de la ActividadFormativa creada
+
+@enduml

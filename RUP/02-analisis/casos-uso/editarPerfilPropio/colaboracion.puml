@@ -1,0 +1,51 @@
+@startuml editarPerfilPropio-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":INICIO_ABIERTO" as InicioAbierto
+rectangle #CDEBA5 ":PERFIL_ABIERTO" as PerfilAbierto
+rectangle #CDEBA5 ":PERFIL_ABIERTO" as PerfilAbiertoSalida
+
+package editarPerfilPropio as "editarPerfilPropio()" {
+    rectangle #629EF9 EditarPerfilPropioView
+    rectangle #b5bd68 ProfesorController
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E CursoAcademicoRepository
+    rectangle #F2AC4E PerfilProfesorCurso
+    rectangle #F2AC4E PerfilProfesorCursoRepository
+}
+
+InicioAbierto --> EditarPerfilPropioView: <font size=8>editarPerfilPropio()
+
+PerfilAbierto --> EditarPerfilPropioView: <font size=8>editarPerfilPropio()
+
+EditarPerfilPropioView --> ProfesorController: <font size=8>cargarMiPerfil(profesorId) : PerfilProfesorCurso
+
+ProfesorController --> ProfesorRepository: <font size=8>obtener(profesorId) : Profesor
+
+ProfesorController --> CursoAcademicoRepository: <font size=8>activo(universidadId) : CursoAcademico
+
+ProfesorController --> PerfilProfesorCursoRepository: <font size=8>obtener(profesorId, cursoAcademicoId) : PerfilProfesorCurso
+note right: rama 1: fila del curso activo, validado real
+
+ProfesorController --> PerfilProfesorCursoRepository: <font size=8>obtenerMasReciente(profesorId) : PerfilProfesorCurso
+note right: rama 2: sugerencia de curso anterior, validado forzado a falso\nrama 3: ninguna fila, formulario en blanco
+
+EditarPerfilPropioView --> ProfesorController: <font size=8>validarDatosPerfil(datos) : boolean
+
+EditarPerfilPropioView --> ProfesorController: <font size=8>guardarPerfil(profesorId, datos) : PerfilProfesorCurso
+
+ProfesorController --> Profesor: <font size=8>actualizarNombre(nombre)
+
+ProfesorController --> PerfilProfesorCursoRepository: <font size=8>upsert(profesorId, cursoAcademicoId, datos) : PerfilProfesorCurso
+
+PerfilProfesorCursoRepository --> PerfilProfesorCurso: <font size=8>actualizar(datos) [validado = true]
+
+ProfesorRepository -- Profesor
+PerfilProfesorCursoRepository -- PerfilProfesorCurso
+
+EditarPerfilPropioView --> PerfilAbiertoSalida: <font size=8>perfil mostrado / datos actualizados y validados
+
+@enduml

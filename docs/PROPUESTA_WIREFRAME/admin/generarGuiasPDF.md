@@ -1,3 +1,9 @@
+<div align=right>
+
+<sub>Volver: [Al inicio](/README.md) / [inicio de Admin](/docs/PROPUESTA_WIREFRAME/admin/iniciarSesion.md)</sub>
+
+</div>
+
 # Admin
 
 <div align=center>
@@ -14,5 +20,7 @@
 |[**Metodologías docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
 |[**Profesores**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
 |[**Cursos académicos**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
+|[**Consultar copias seguridad**](consultarCopiasSeguridad.md)|<sub>consultarCopiasSeguridad()</sub>|
+|[**Consultar historial cambios**](consultarHistorialCambios.md)|<sub>consultarHistorialCambios()</sub>|
 
 </div>

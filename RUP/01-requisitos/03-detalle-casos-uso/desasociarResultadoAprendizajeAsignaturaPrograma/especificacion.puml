@@ -1,0 +1,44 @@
+@startuml desasociarResultadoAprendizajeAsignaturaPrograma
+
+skinparam linetype polyline
+
+state ASIGNATURA_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO_SALIDA as "ASIGNATURA_PROGRAMA_ABIERTO"
+
+ASIGNATURA_PROGRAMA_ABIERTO -[#green]-> desasociarResultadoAprendizajeAsignaturaPrograma
+note on link
+<b>DirectorPrograma</b> solicita desasociar ResultadoAprendizaje de AsignaturaPrograma
+end note
+
+state desasociarResultadoAprendizajeAsignaturaPrograma as "desasociarResultadoAprendizajeAsignaturaPrograma()" {
+
+    state " " as ConfirmandoDesasociacion
+
+    [*] -[#green]-> ConfirmandoDesasociacion
+    note on link
+    <b>Sistema</b> presenta información de la asociación y advertencia si es el único ResultadoAprendizaje de la AsignaturaPrograma
+    <b>Sistema</b> permite solicitar confirmar/cancelar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#green]-> [*]
+    note on link
+    <b>DirectorPrograma</b> solicita confirmar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#blue]-> [*]
+    note on link
+    <b>DirectorPrograma</b> solicita cancelar desasociación
+    end note
+}
+
+desasociarResultadoAprendizajeAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+desasociarResultadoAprendizajeAsignaturaPrograma -[#blue]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

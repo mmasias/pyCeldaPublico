@@ -11,9 +11,9 @@ package abrirProfesor as "abrirProfesor()" {
     rectangle #b5bd68 ProfesorController
     rectangle #F2AC4E Profesor
     rectangle #F2AC4E ProfesorRepository
-    rectangle #F2AC4E Grado
-    rectangle #F2AC4E GradoRepository
-    rectangle #F2AC4E DirectorGradoRepository
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+    rectangle #F2AC4E DirectorProgramaRepository
 }
 
 ProfesoresAbierto --> AbrirProfesorView: <font size=8>abrirProfesor(profesorId)
@@ -22,15 +22,15 @@ AbrirProfesorView --> ProfesorController: <font size=8>cargarProfesor(profesorId
 
 ProfesorController --> ProfesorRepository: <font size=8>obtener(profesorId) : Profesor
 
-AbrirProfesorView --> ProfesorController: <font size=8>cargarGradosDirigidos(profesorId) : List<Grado>
+AbrirProfesorView --> ProfesorController: <font size=8>cargarProgramasDirigidos(profesorId) : List<Programa>
 
-ProfesorController --> DirectorGradoRepository: <font size=8>obtenerPorEmail(email) : DirectorGrado
+ProfesorController --> DirectorProgramaRepository: <font size=8>obtenerPorEmail(email) : DirectorPrograma
 
-ProfesorController --> GradoRepository: <font size=8>listarDirigidosPor(directorGradoId) : List<Grado>
+ProfesorController --> ProgramaRepository: <font size=8>listarDirigidosPor(directorProgramaId) : List<Programa>
 
 ProfesorRepository -- Profesor
-GradoRepository -- Grado
+ProgramaRepository -- Programa
 
-AbrirProfesorView --> ProfesorAbiertoSalida: <font size=8>muestra datos del Profesor y los Grados que dirige
+AbrirProfesorView --> ProfesorAbiertoSalida: <font size=8>muestra datos del Profesor y los Programas que dirige
 
 @enduml

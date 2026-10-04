@@ -6,7 +6,7 @@
 
 # pyCelda > asociarMetodologiaDocenteAMateria()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/asociarMetodologiaDocenteAMateria/README.md)|[Diseño](/RUP/03-diseño/casos-uso/asociarMetodologiaDocenteAMateria/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/asociarMetodologiaDocenteAMateria/README.md)|[Diseño](/RUP/03-diseño/casos-uso/asociarMetodologiaDocenteAMateria/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,7 +31,7 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorGrado`|
+|**Actor**|`DirectorPrograma`|
 |**Objetivo**|Asociar una `MetodologiaDocente` del catálogo institucional a una `Materia`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
@@ -42,7 +42,7 @@ Solo elige una `MetodologiaDocente` del catálogo -- sin `descripcionPropia` en 
 
 ## Referencias
 
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarMetodologiaDocenteAMateria()`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `Materia`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarMetodologiaDocenteAMateria()`
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `Materia`
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia o-- MetodologiaDocente` vía `MetodologiaMateria{descripcionPropia}`
 - [Discussion #27](https://github.com/mmasias/pyCelda/discussions/27) -- cierre del hueco de verbos de asociación a nivel de `Materia`

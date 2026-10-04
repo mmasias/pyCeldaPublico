@@ -1,0 +1,40 @@
+@startuml abrirAsignaturasPrograma-diseño
+title Diagrama de Secuencia - Abrir AsignaturasPrograma
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+participant "GuiaRepository" as GuiaRepo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita abrir las AsignaturaPrograma del Programa
+activate Vista
+Vista -> API: GET /api/v1/programas/{programa_id}/asignaturas-programa
+activate API
+
+API -> AsignaturaProgramaRepo: listar_del_programa(programa_id)
+activate AsignaturaProgramaRepo
+AsignaturaProgramaRepo -> DB: SELECT ag.* FROM asignaturas_programa ag\nJOIN materias m ON m.id = ag.materia_id\nWHERE m.programa_id = :programa_id\n(con profesorado asignado)
+activate DB
+DB --> AsignaturaProgramaRepo: filas AsignaturaPrograma (con Profesorado)
+deactivate DB
+AsignaturaProgramaRepo --> API: List[AsignaturaPrograma]
+deactivate AsignaturaProgramaRepo
+
+API -> GuiaRepo: listar_del_programa(programa_id)
+activate GuiaRepo
+GuiaRepo -> DB: SELECT ... FROM guias ...\nWHERE programa = :programa_id AND curso_academico activo
+activate DB
+DB --> GuiaRepo: filas Guia
+deactivate DB
+GuiaRepo --> API: List[Guia]
+deactivate GuiaRepo
+
+API -> API: fusiona cada AsignaturaPrograma con el estado de su Guia del CursoAcademico activo
+API --> Vista: 200 OK (List[AsignaturaProgramaConEstadoGuiaResponse] JSON)
+deactivate API
+Vista --> DirectorPrograma: presenta listado con profesorado y estado de cada Guia
+deactivate Vista
+
+@enduml

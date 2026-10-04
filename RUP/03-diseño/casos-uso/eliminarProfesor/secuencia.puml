@@ -30,26 +30,26 @@ alt el Admin confirma
   activate API
   API -> ProfesorRepo: motivos_bloqueo_eliminacion(profesor_id)
   activate ProfesorRepo
-  ProfesorRepo -> DB: SELECT ag.nombre FROM asignaturas_grado ag\nJOIN asignaturas_grado_profesores agp ON agp.asignatura_grado_id = ag.id\nWHERE agp.profesor_id = :id
+  ProfesorRepo -> DB: SELECT ag.nombre FROM asignaturas_programa ag\nJOIN asignaturas_programa_profesores agp ON agp.asignatura_programa_id = ag.id\nWHERE agp.profesor_id = :id
   activate DB
-  DB --> ProfesorRepo: nombres de AsignaturaGrado
+  DB --> ProfesorRepo: nombres de AsignaturaPrograma
   deactivate DB
-  ProfesorRepo -> DB: SELECT ag.nombre FROM asignaturas_grado ag\nJOIN guias g ON g.asignatura_grado_id = ag.id\nJOIN guias_profesores gp ON gp.guia_id = g.id\nWHERE gp.profesor_id = :id
-  note right of DB: tabla propia -- copia puntual al crear la Guia,\nno derivada de asignaturas_grado_profesores (issue #13)
+  ProfesorRepo -> DB: SELECT ag.nombre FROM asignaturas_programa ag\nJOIN guias g ON g.asignatura_programa_id = ag.id\nJOIN guias_profesores gp ON gp.guia_id = g.id\nWHERE gp.profesor_id = :id
+  note right of DB: tabla propia -- copia puntual al crear la Guia,\nno derivada de asignaturas_programa_profesores (issue #13)
   activate DB
-  DB --> ProfesorRepo: nombres de AsignaturaGrado (vía Guia)
+  DB --> ProfesorRepo: nombres de AsignaturaPrograma (vía Guia)
   deactivate DB
-  ProfesorRepo -> DB: SELECT d.email FROM directores_grado d WHERE d.email = :email
+  ProfesorRepo -> DB: SELECT d.email FROM directores_programa d WHERE d.email = :email
   activate DB
-  DB --> ProfesorRepo: None / fila DirectorGrado
+  DB --> ProfesorRepo: None / fila DirectorPrograma
   deactivate DB
-  ProfesorRepo -> DB: (si existe) SELECT grados dirigidos por ese director
+  ProfesorRepo -> DB: (si existe) SELECT programas dirigidos por ese director
   activate DB
-  DB --> ProfesorRepo: List[Grado]
+  DB --> ProfesorRepo: List[Programa]
   deactivate DB
   ProfesorRepo --> API: List[String] -- un motivo por condición real
   deactivate ProfesorRepo
-  alt hay motivos (AsignaturaGrado asignadas, Guia impartida, y/o rol de DirectorGrado activo)
+  alt hay motivos (AsignaturaPrograma asignadas, Guia impartida, y/o rol de DirectorPrograma activo)
     API --> Vista: 409 Conflict (detail: "Profesor asignado a: ...; dirige: ...")
     deactivate API
     Vista --> Admin: presenta el bloqueo con el detail del 409 tal cual, sin cambios

@@ -4,7 +4,7 @@
 Uso:
     python3 docs/scripts/generar_mockup_navegable.py <actor>
 
-    <actor>: Admin | Profesor | DirectorGrado (debe existir diagramaContexto<actor>.puml)
+    <actor>: Admin | Profesor | DirectorPrograma (debe existir diagramaContexto<actor>.puml)
 
 Salida: docs/PROPUESTA_WIREFRAME/<actor_lower>/<cu>.md por cada CU detallado del actor.
 
@@ -37,8 +37,8 @@ LABELS = {
     "reabrirGuiaPorIncidencia": "Reabrir guía por incidencia",
     "completarGestion": "Completar gestión",
     "descargarGuiaPDF": "Descargar guía PDF",
-    "definirDirectorGrado": "Definir director de grado",
-    "quitarDirectorGrado": "Quitar director de grado",
+    "definirDirectorPrograma": "Definir director de programa",
+    "quitarDirectorPrograma": "Quitar director de programa",
     "activarCursoAcademico": "Activar curso académico",
     "activarSemestre": "Activar semestre",
     "guardarBorradorGuia": "Guardar borrador de guía",
@@ -69,17 +69,17 @@ CONTEXTUAL_LABELS = {
     ("abrirAsignatura", "editarAsignatura"): "Editar",
     ("abrirCursoAcademico", "editarCursoAcademico"): "Editar",
     ("abrirFacultad", "editarFacultad"): "Editar",
-    ("abrirGrado", "eliminarAsignaturaGrado"): "Eliminar",
-    ("abrirGrado", "editarGrado"): "Editar",
+    ("abrirPrograma", "eliminarAsignaturaPrograma"): "Eliminar",
+    ("abrirPrograma", "editarPrograma"): "Editar",
     ("abrirMetodologiaDocente", "editarMetodologiaDocente"): "Editar",
     ("abrirProfesor", "editarProfesor"): "Editar",
-    ("abrirProfesor", "quitarDirectorGrado"): "Quitar",
+    ("abrirProfesor", "quitarDirectorPrograma"): "Quitar",
     ("abrirSistemaEvaluacion", "editarSistemaEvaluacion"): "Editar",
     ("abrirUniversidad", "editarUniversidad"): "Editar",
     ("abrirUniversidades", "abrirUniversidad"): "Abrir",
     ("consultarEstadoGuias", "abrirGuia"): "Abrir",
-    ("consultarEstadoGuias", "completarGestion"): "Volver al grado",
-    ("abrirAsignaturasGrado", "abrirGuia"): "Abrir",
+    ("consultarEstadoGuias", "completarGestion"): "Volver al programa",
+    ("abrirAsignaturasPrograma", "abrirGuia"): "Abrir",
     ("abrirPonderacionEvaluacion", "editarPonderacionEvaluacion"): "Editar",
     ("abrirReferenciaBibliografica", "editarReferenciaBibliografica"): "Editar",
     ("abrirResultadoAprendizaje", "editarResultadoAprendizaje"): "Editar",
@@ -97,15 +97,15 @@ CONTEXTUAL_LABELS = {
     ("abrirFacultades", "crearFacultad"): "Crear Facultad",
     ("abrirFacultades", "abrirFacultad"): "Abrir",
     ("abrirFacultades", "eliminarFacultad"): "Eliminar",
-    ("abrirGrado", "abrirGrados"): "Volver al listado",
-    ("abrirGrado", "crearAsignaturaGrado"): "Crear AsignaturaGrado",
-    ("abrirGrado", "abrirAsignaturaGrado"): "Abrir",
-    ("abrirGrados", "crearGrado"): "Crear Grado",
-    ("abrirGrados", "abrirGrado"): "Abrir",
-    ("abrirGrados", "eliminarGrado"): "Eliminar",
+    ("abrirPrograma", "abrirProgramas"): "Volver al listado",
+    ("abrirPrograma", "crearAsignaturaPrograma"): "Crear AsignaturaPrograma",
+    ("abrirPrograma", "abrirAsignaturaPrograma"): "Abrir",
+    ("abrirProgramas", "crearPrograma"): "Crear Programa",
+    ("abrirProgramas", "abrirPrograma"): "Abrir",
+    ("abrirProgramas", "eliminarPrograma"): "Eliminar",
     ("abrirMateria", "editarMateria"): "Editar",
     ("abrirMateria", "abrirMaterias"): "Volver al listado",
-    ("abrirMateria", "abrirAsignaturaGrado"): "Abrir",
+    ("abrirMateria", "abrirAsignaturaPrograma"): "Abrir",
     ("abrirMateria", "asociarMetodologiaDocenteAMateria"): "Asociar Metodología Docente",
     ("abrirMateria", "desasociarMetodologiaDocenteMateria"): "Quitar",
     ("abrirMateria", "editarAsociacionMetodologiaDocenteMateria"): "Editar",
@@ -114,21 +114,21 @@ CONTEXTUAL_LABELS = {
     ("abrirMaterias", "crearMateria"): "Crear Materia",
     ("abrirMaterias", "abrirMateria"): "Abrir",
     ("abrirMaterias", "eliminarMateria"): "Eliminar",
-    ("abrirAsignaturaGrado", "asignarProfesorAAsignaturaGrado"): "Asignar Profesor",
-    ("abrirAsignaturaGrado", "editarAsignaturaGrado"): "Editar",
-    ("abrirAsignaturaGrado", "asociarResultadoAprendizajeAAsignaturaGrado"): "Asociar Resultado de Aprendizaje",
-    ("abrirAsignaturaGrado", "desasociarResultadoAprendizajeAsignaturaGrado"): "Quitar",
-    ("abrirAsignaturaGrado", "asociarMetodologiaDocenteAAsignaturaGrado"): "Asociar Metodología Docente",
-    ("abrirAsignaturaGrado", "desasociarMetodologiaDocenteAsignaturaGrado"): "Quitar",
-    ("abrirAsignaturaGrado", "abrirGrado"): "Volver al Grado",
-    # desasignarProfesorAsignaturaGrado() no tiene wireframe propio (pendiente
-    # wireframe) -- texto ya fijado a mano en el override admin/abrirAsignaturaGrado.md.
-    ("abrirAsignaturaGrado", "desasignarProfesorAsignaturaGrado"): "Quitar profesor",
+    ("abrirAsignaturaPrograma", "asignarProfesorAAsignaturaPrograma"): "Asignar Profesor",
+    ("abrirAsignaturaPrograma", "editarAsignaturaPrograma"): "Editar",
+    ("abrirAsignaturaPrograma", "asociarResultadoAprendizajeAAsignaturaPrograma"): "Asociar Resultado de Aprendizaje",
+    ("abrirAsignaturaPrograma", "desasociarResultadoAprendizajeAsignaturaPrograma"): "Quitar",
+    ("abrirAsignaturaPrograma", "asociarMetodologiaDocenteAAsignaturaPrograma"): "Asociar Metodología Docente",
+    ("abrirAsignaturaPrograma", "desasociarMetodologiaDocenteAsignaturaPrograma"): "Quitar",
+    ("abrirAsignaturaPrograma", "abrirPrograma"): "Volver al Programa",
+    # desasignarProfesorAsignaturaPrograma() no tiene wireframe propio (pendiente
+    # wireframe) -- texto ya fijado a mano en el override admin/abrirAsignaturaPrograma.md.
+    ("abrirAsignaturaPrograma", "desasignarProfesorAsignaturaPrograma"): "Quitar profesor",
     ("abrirAsignatura", "abrirAsignaturas"): "Volver al listado",
     ("abrirAsignaturas", "crearAsignatura"): "Crear Asignatura",
     ("abrirAsignaturas", "abrirAsignatura"): "Abrir",
     ("abrirAsignaturas", "eliminarAsignatura"): "Eliminar",
-    ("abrirProfesor", "definirDirectorGrado"): "Nombrar director de Grado",
+    ("abrirProfesor", "definirDirectorPrograma"): "Nombrar director de Programa",
     ("abrirProfesor", "abrirProfesores"): "Volver al listado",
     ("abrirProfesores", "crearProfesor"): "Crear Profesor",
     ("abrirProfesores", "abrirProfesor"): "Abrir",
@@ -301,9 +301,9 @@ def main(actor):
     if actor == "Admin":
         cu_to_dst["iniciarSesion"] = "SISTEMA_DISPONIBLE"
     elif actor == "Profesor":
-        cu_to_dst["iniciarSesion"] = "ASIGNATURAS_GRADO_ABIERTO"
-    elif actor == "DirectorGrado":
-        cu_to_dst["iniciarSesion"] = "GRADOS_ABIERTO"
+        cu_to_dst["iniciarSesion"] = "ASIGNATURAS_PROGRAMA_ABIERTO"
+    elif actor == "DirectorPrograma":
+        cu_to_dst["iniciarSesion"] = "PROGRAMAS_ABIERTO"
 
     cus_in_actor = {cu for _, _, cu in transitions}
 

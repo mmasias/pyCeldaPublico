@@ -3,8 +3,8 @@
     <b>UNIVERSIDADES</b>
     ====
     {#
-        <b>Nombre | .
-        Universidad Europea del Atlántico (UNEATLANTICO) | [Abrir]
+        <b>Nombre | <b>Facultades | .
+        Universidad Europea del Atlántico (UNEATLANTICO) | 3 | [Abrir]
     }
     ====
     [ <b>+ Crear Universidad</b> ]

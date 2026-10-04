@@ -1,0 +1,156 @@
+@startuml actoresCasosUsoDirectorPrograma
+
+left to right direction
+
+' Vista de DirectorPrograma, partida de actoresCasosUso.puml -- mismos usecase id,
+' solo el subconjunto que usa este actor. El fichero completo (actoresCasosUso.puml)
+' se retiró -- el reparto por actor es la fuente de verdad.
+'
+' DirectorPrograma --|> Profesor: hereda todo el catálogo de actoresCasosUsoProfesor.puml
+' (abrirGuia(), guardarBorradorGuia(), enviarGuiaARevision(),
+' importarContenidoDeGuiaHermana() -- issue #409, descargarGuiaPDF(),
+' previsualizarGuia(), CRUD de PonderacionEvaluacion y de ReferenciaBibliografica,
+' [issue #612: la escritura de guardarBorradorGuia(), CRUD de PonderacionEvaluacion/
+' ReferenciaBibliografica y de Sesion queda abierta tambien a DirectorPrograma como
+' correccion excepcional, con transicion de estado -- ver diagramaContextoDirectorPrograma.puml]
+' editarPerfilPropio() -- issue #423, cualquier DirectorPrograma activo tiene fila
+' Profesor asociada) -- no redeclarado aquí, mismo criterio que el fichero
+' original (sin relacion explicita para lo heredado).
+
+actor DirectorPrograma
+actor Profesor
+
+Profesor <|-d- DirectorPrograma
+
+' Acceso: abrirInicio() EXTIENDE a iniciarSesion() -- no lo incluye (discussion
+' #274, antes lo hacía abrirProgramas() directamente, issue #50). abrirInicio() es
+' primitiva de navegación (no cuenta en el catálogo de 102) que <<include>>
+' abrirProgramas() (variante DirectorPrograma, "Mis programas") y abrirAsignaturasPrograma()
+' (variante Profesor, "Mis guías" -- la ve un DirectorPrograma que además imparte,
+' antes era el "tercer punto de extensión" de abrirAsignaturasPrograma(), issue
+' #103, ahora subsumido). Esa inclusión SÍ es incondicional: el hub incorpora
+' las dos secciones siempre, la vacuidad por rol es un resultado de datos.
+' <<extend>> (no <<include>>) para abrirInicio ..> iniciarSesion: solo se
+' dispara UNA de dos ramas según el rol resuelto (abrirInicio para
+' Profesor/DirectorPrograma, abrirPanelAdministracion para Admin).
+'
+' iniciarSesion() lo invoca UsuarioNoLogueado, no DirectorPrograma -- mismo error
+' sistemático corregido en actoresCasosUsoProfesor.puml: el rol específico
+' solo existe después de validar credenciales. cerrarSesion() no se redeclara
+' aquí -- heredado de Profesor (DirectorPrograma --|> Profesor, ya declarado).
+actor UsuarioNoLogueado
+package Acceso {
+  usecase iniciarSesion as "iniciarSesion()"
+  usecase abrirInicio as "abrirInicio()"
+}
+
+' "Catálogos institucionales", "Configuración del programa" y "Guía docente"
+' eran wrappers exteriores -- se aplanan: agrupar en un único package
+' bloquea el layout mariposa, PlantUML deja todo el contenido a un único
+' lado del actor con independencia del sentido de la asociación.
+package Programa {
+  usecase abrirProgramas as "abrirProgramas()"
+  usecase abrirPrograma as "abrirPrograma()"
+  usecase abrirMetodologiasDocentesPrograma as "abrirMetodologiasDocentesPrograma()"
+  usecase asociarMetodologiaDocenteAPrograma as "asociarMetodologiaDocenteAPrograma()"
+  usecase desasociarMetodologiaDocentePrograma as "desasociarMetodologiaDocentePrograma()"
+}
+
+UsuarioNoLogueado -- iniciarSesion
+abrirInicio ..> iniciarSesion : <<extend>>\n(condición: rol in {Profesor, DirectorPrograma})\n(punto: tras validación exitosa)
+abrirInicio ..> abrirProgramas : <<include>>\n(sección "Mis programas")
+
+package Materia {
+  usecase abrirMaterias as "abrirMaterias()"
+  usecase abrirMateria as "abrirMateria()"
+  usecase asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()"
+  usecase desasociarMetodologiaDocenteMateria as "desasociarMetodologiaDocenteMateria()"
+  usecase editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()"
+  usecase asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()"
+  usecase desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()"
+  usecase editarActividadesFormativasMateria as "editarActividadesFormativasMateria()"
+  usecase consultarEstadoActividadesFormativasMateria as "consultarEstadoActividadesFormativasMateria()"
+}
+
+package ResultadoAprendizaje {
+  usecase abrirResultadosAprendizaje as "abrirResultadosAprendizaje()"
+  usecase crearResultadoAprendizaje as "crearResultadoAprendizaje()"
+  usecase abrirResultadoAprendizaje as "abrirResultadoAprendizaje()"
+  usecase eliminarResultadoAprendizaje as "eliminarResultadoAprendizaje()"
+  usecase editarResultadoAprendizaje as "editarResultadoAprendizaje()"
+}
+
+package AsignaturaPrograma {
+  usecase abrirAsignaturaPrograma as "abrirAsignaturaPrograma()"
+  usecase editarAsignaturaPrograma as "editarAsignaturaPrograma()"
+  usecase asociarResultadoAprendizajeAAsignaturaPrograma as "asociarResultadoAprendizajeAAsignaturaPrograma()"
+  usecase desasociarResultadoAprendizajeAsignaturaPrograma as "desasociarResultadoAprendizajeAsignaturaPrograma()"
+  usecase asociarMetodologiaDocenteAAsignaturaPrograma as "asociarMetodologiaDocenteAAsignaturaPrograma()"
+  usecase desasociarMetodologiaDocenteAsignaturaPrograma as "desasociarMetodologiaDocenteAsignaturaPrograma()"
+  usecase editarActividadesFormativasAsignaturaPrograma as "editarActividadesFormativasAsignaturaPrograma()"
+  usecase importarActividadesFormativasDeAsignaturaProgramaPrima as "importarActividadesFormativasDeAsignaturaProgramaPrima()"
+}
+
+package Edicion {
+  usecase abrirAsignaturasPrograma as "abrirAsignaturasPrograma()"
+}
+
+package Revision {
+  usecase consultarEstadoGuias as "consultarEstadoGuias()"
+  usecase aprobarGuia as "aprobarGuia()"
+  usecase rechazarGuia as "rechazarGuia()"
+  usecase escalarGuiaAAprobada as "escalarGuiaAAprobada()"
+  usecase notificarGuiasActualizadas as "notificarGuiasActualizadas()"
+  usecase revocarAprobacionGuia as "revocarAprobacionGuia()"
+  usecase editarSemestreGuia as "editarSemestreGuia()"
+}
+
+abrirProgramas -- DirectorPrograma
+abrirPrograma -- DirectorPrograma
+DirectorPrograma -- abrirMetodologiasDocentesPrograma
+DirectorPrograma -- asociarMetodologiaDocenteAPrograma
+DirectorPrograma -- desasociarMetodologiaDocentePrograma
+
+DirectorPrograma -- abrirAsignaturasPrograma
+
+abrirMaterias -- DirectorPrograma
+abrirMateria -- DirectorPrograma
+asociarMetodologiaDocenteAMateria -- DirectorPrograma
+desasociarMetodologiaDocenteMateria -- DirectorPrograma
+editarAsociacionMetodologiaDocenteMateria -- DirectorPrograma
+asociarResultadoAprendizajeAMateria -- DirectorPrograma
+desasociarResultadoAprendizajeAMateria -- DirectorPrograma
+editarActividadesFormativasMateria -- DirectorPrograma
+consultarEstadoActividadesFormativasMateria -- DirectorPrograma
+
+DirectorPrograma -- abrirResultadosAprendizaje
+DirectorPrograma -- crearResultadoAprendizaje
+DirectorPrograma -- abrirResultadoAprendizaje
+DirectorPrograma -- eliminarResultadoAprendizaje
+DirectorPrograma -- editarResultadoAprendizaje
+
+DirectorPrograma -- editarAsignaturaPrograma
+DirectorPrograma -- asociarResultadoAprendizajeAAsignaturaPrograma
+DirectorPrograma -- desasociarResultadoAprendizajeAsignaturaPrograma
+DirectorPrograma -- asociarMetodologiaDocenteAAsignaturaPrograma
+DirectorPrograma -- desasociarMetodologiaDocenteAsignaturaPrograma
+DirectorPrograma -- editarActividadesFormativasAsignaturaPrograma
+DirectorPrograma -- importarActividadesFormativasDeAsignaturaProgramaPrima
+DirectorPrograma -- abrirAsignaturaPrograma
+
+consultarEstadoGuias -- DirectorPrograma
+aprobarGuia -- DirectorPrograma
+rechazarGuia -- DirectorPrograma
+escalarGuiaAAprobada -- DirectorPrograma
+notificarGuiasActualizadas -- DirectorPrograma
+revocarAprobacionGuia -- DirectorPrograma
+editarSemestreGuia -- DirectorPrograma
+
+' Relación cruzada entre packages -- al final para no duplicar el usecase
+' (ver actoresCasosUso*.puml). abrirInicio() (package Acceso) <<include>>
+' abrirAsignaturasPrograma() (package Edicion) como sección "Mis guías" -- la ve
+' un DirectorPrograma que además tiene fila propia en Profesor (issue #103,
+' subsumido en discussion #274).
+abrirInicio ..> abrirAsignaturasPrograma : <<include>>\n(sección "Mis guías", si además imparte)
+
+@enduml

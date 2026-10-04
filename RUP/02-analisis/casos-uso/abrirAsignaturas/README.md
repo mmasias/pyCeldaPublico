@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`abrirAsignaturas()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturas/README.md): un solo paso, sin `<<choice>>`, de solo lectura. Presenta el listado completo de `Asignatura` -- catálogo institucional plano que cuelga directamente de `SISTEMA_DISPONIBLE` (sin composición padre, a diferencia de `Facultad` bajo `Universidad`), reutilizado por `AsignaturaGrado` en cada `Grado`. Cada fila muestra `nombre`, `ects` y `estado` (Vigente/Extinguido).
+Traducción a clases de análisis del caso de uso [`abrirAsignaturas()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturas/README.md): un solo paso, sin `<<choice>>`, de solo lectura. Presenta el listado completo de `Asignatura` -- catálogo institucional plano que cuelga directamente de `SISTEMA_DISPONIBLE` (sin composición padre, a diferencia de `Facultad` bajo `Universidad`), reutilizado por `AsignaturaPrograma` en cada `Programa`. Cada fila muestra `nombre`, `ects` y `estado` (Vigente/Extinguido).
 
 <div align=center>
 
@@ -69,6 +69,6 @@ Traducción a clases de análisis del caso de uso [`abrirAsignaturas()`](/RUP/01
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturas/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturas/wireframes.puml) -- fuente de verdad del listado.
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> ASIGNATURAS_ABIERTO : abrirAsignaturas()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Asignatura` (nombre, ects, contenido, estado), catálogo independiente reutilizado por `AsignaturaGrado`.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Asignatura` (nombre, ects, contenido, estado), catálogo independiente reutilizado por `AsignaturaPrograma`.
 - [`abrirAsignatura()`](../abrirAsignatura/README.md) / [`crearAsignatura()`](../crearAsignatura/README.md) / [`eliminarAsignatura()`](../eliminarAsignatura/README.md) -- casos de uso alcanzados desde el listado.
 - [`abrirUniversidades()`](../abrirUniversidades/README.md) -- mismo patrón de listado plano sin composición padre, mismo `SISTEMA_DISPONIBLE` de entrada.

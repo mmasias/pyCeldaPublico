@@ -1,0 +1,32 @@
+@startuml desasociarMetodologiaDocentePrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO" as MetodologiasDocentesAbierto
+rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO" as MetodologiasDocentesAbiertoSalida
+
+package desasociarMetodologiaDocentePrograma as "desasociarMetodologiaDocentePrograma()" {
+    rectangle #629EF9 DesasociarMetodologiaDocenteProgramaView
+    rectangle #b5bd68 ProgramaController
+    rectangle #F2AC4E Programa
+    rectangle #F2AC4E ProgramaRepository
+}
+
+MetodologiasDocentesAbierto --> DesasociarMetodologiaDocenteProgramaView: <font size=8>desasociarMetodologiaDocentePrograma(programaId, metodologiaDocenteId)
+
+DesasociarMetodologiaDocenteProgramaView --> ProgramaController: <font size=8>materiasConMetodologiaDocente(programaId, metodologiaDocenteId) : List<String>
+
+ProgramaController --> Programa: <font size=8>materiasConMetodologiaDocente(metodologiaDocenteId) : List<String>
+
+DesasociarMetodologiaDocenteProgramaView --> ProgramaController: <font size=8>desasociarMetodologiaDocente(programaId, metodologiaDocenteId)
+
+ProgramaController --> ProgramaRepository: <font size=8>desasociarMetodologiaDocente(programaId, metodologiaDocenteId)
+
+ProgramaRepository -- Programa
+
+DesasociarMetodologiaDocenteProgramaView ..[#green]> MetodologiasDocentesAbiertoSalida: <font size=8>lista actualizada
+DesasociarMetodologiaDocenteProgramaView ..[#red]> MetodologiasDocentesAbiertoSalida: <font size=8>bloqueada, sin cambios -- en uso en Materia del Programa
+DesasociarMetodologiaDocenteProgramaView ..[#blue]> MetodologiasDocentesAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`abrirProfesor()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirProfesor/README.md): un solo paso, sin `<<choice>>`, de solo lectura. Presenta el detalle de un `Profesor` -- `nombre` y `email` -- más la sección "Grados que dirige": la tabla de `Grado` de los que es `DirectorGrado`, con `[Quitar]` por fila y `[+ Nombrar director de Grado]`. Esa sección hace que el detalle no sea una carga de una sola entidad: el rol se resuelve por email contra `DirectorGrado` y de ahí a los `Grado` que dirige (`Grado o- DirectorGrado`, muchos a muchos).
+Traducción a clases de análisis del caso de uso [`abrirProfesor()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirProfesor/README.md): un solo paso, sin `<<choice>>`, de solo lectura. Presenta el detalle de un `Profesor` -- `nombre` y `email` -- más la sección "Programas que dirige": la tabla de `Programa` de los que es `DirectorPrograma`, con `[Quitar]` por fila y `[+ Nombrar director de Programa]`. Esa sección hace que el detalle no sea una carga de una sola entidad: el rol se resuelve por email contra `DirectorPrograma` y de ahí a los `Programa` que dirige (`Programa o- DirectorPrograma`, muchos a muchos).
 
 <div align=center>
 
@@ -27,7 +27,7 @@ Traducción a clases de análisis del caso de uso [`abrirProfesor()`](/RUP/01-re
 
 **Responsabilidades:**
 - presenta `nombre` y `email` del `Profesor`.
-- presenta la sección "Grados que dirige" (`Grado` con `[Quitar]` por fila) y el botón `[+ Nombrar director de Grado]` -- entrada a `quitarDirectorGrado()`/`definirDirectorGrado()`.
+- presenta la sección "Programas que dirige" (`Programa` con `[Quitar]` por fila) y el botón `[+ Nombrar director de Programa]` -- entrada a `quitarDirectorPrograma()`/`definirDirectorPrograma()`.
 - ofrece `[Editar]` y `[Volver al listado]`.
 
 **Colaboraciones:**
@@ -41,36 +41,36 @@ Traducción a clases de análisis del caso de uso [`abrirProfesor()`](/RUP/01-re
 
 **Responsabilidades:**
 - carga el `Profesor` (`cargarProfesor(profesorId)`).
-- carga los `Grado` que dirige (`cargarGradosDirigidos(profesorId)`) -- resuelve el rol por email y lista los `Grado` del `DirectorGrado` resultante; sin `DirectorGrado` para ese email, la sección queda vacía.
+- carga los `Programa` que dirige (`cargarProgramasDirigidos(profesorId)`) -- resuelve el rol por email y lista los `Programa` del `DirectorPrograma` resultante; sin `DirectorPrograma` para ese email, la sección queda vacía.
 
 **Colaboraciones:**
 - **Entrada:** `AbrirProfesorView`.
-- **Salida:** `ProfesorRepository`, `DirectorGradoRepository`, `GradoRepository`.
+- **Salida:** `ProfesorRepository`, `DirectorProgramaRepository`, `ProgramaRepository`.
 
 ## Clases de modelo
 
 ### `Profesor`
 
 **Responsabilidades:**
-- porta `nombre` y `email` -- la información presentada en el detalle; el `email` es además la llave con la que se resuelve su rol de `DirectorGrado`.
+- porta `nombre` y `email` -- la información presentada en el detalle; el `email` es además la llave con la que se resuelve su rol de `DirectorPrograma`.
 
 **Colaboraciones:**
 - **Entrada:** recuperada por `ProfesorRepository`.
 
-### `DirectorGradoRepository` / `GradoRepository`
+### `DirectorProgramaRepository` / `ProgramaRepository`
 
 **Responsabilidades:**
-- `DirectorGradoRepository` resuelve el rol por email (`obtenerPorEmail(email)`).
-- `GradoRepository` lista los `Grado` que dirige (`listarDirigidosPor(directorGradoId)`) -- el mismo método que alimenta `abrirGrados()` del hilo `DirectorGrado`.
+- `DirectorProgramaRepository` resuelve el rol por email (`obtenerPorEmail(email)`).
+- `ProgramaRepository` lista los `Programa` que dirige (`listarDirigidosPor(directorProgramaId)`) -- el mismo método que alimenta `abrirProgramas()` del hilo `DirectorPrograma`.
 
 **Colaboraciones:**
 - **Entrada:** `ProfesorController`.
-- **Salida:** gestiona `DirectorGrado` / `Grado`.
+- **Salida:** gestiona `DirectorPrograma` / `Programa`.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirProfesor/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirProfesor/wireframes.puml) -- fuente de verdad del detalle con "Grados que dirige".
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirProfesor/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirProfesor/wireframes.puml) -- fuente de verdad del detalle con "Programas que dirige".
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROFESORES_ABIERTO --> PROFESOR_ABIERTO : abrirProfesor()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Grado o- DirectorGrado` (muchos a muchos), `DirectorGrado -u-|> Profesor` (hereda email).
-- [`definirDirectorGrado()`](../definirDirectorGrado/README.md) / [`quitarDirectorGrado()`](../quitarDirectorGrado/README.md) -- acciones sobre la sección que este detalle presenta.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa o- DirectorPrograma` (muchos a muchos), `DirectorPrograma -u-|> Profesor` (hereda email).
+- [`definirDirectorPrograma()`](../definirDirectorPrograma/README.md) / [`quitarDirectorPrograma()`](../quitarDirectorPrograma/README.md) -- acciones sobre la sección que este detalle presenta.
 - [`abrirMetodologiaDocente()`](../abrirMetodologiaDocente/README.md) -- contraste: detalle de una sola entidad, sin sección de rol lateral.

@@ -1,0 +1,46 @@
+@startuml asociarMetodologiaDocenteAPrograma-diseño
+title Diagrama de Secuencia - Asociar Metodología Docente a Programa
+
+actor "DirectorPrograma" as DirectorPrograma
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "MetodologiaDocenteRepository" as MetodologiaRepo
+participant "ProgramaRepository" as ProgramaRepo
+database "Base de Datos" as DB
+
+DirectorPrograma -> Vista: solicita asociar una MetodologiaDocente al Programa
+activate Vista
+Vista -> API: GET /api/v1/programas/{programa_id}/metodologias-docentes/disponibles
+activate API
+note right of API: _verificar_programa_del_director(): 404 si el Programa\nno existe o no es del DirectorPrograma (Admin pasa sin comprobación)
+API -> MetodologiaRepo: listar_disponibles_para_programa(programa_id)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: SELECT md.* FROM metodologias_docentes md\nLEFT JOIN programas_metodologias_docentes pmd\nON pmd.metodologia_docente_id = md.id AND pmd.programa_id = :programa_id\nWHERE md.universidad_id = :universidad_del_programa AND pmd.programa_id IS NULL
+activate DB
+DB --> MetodologiaRepo: filas MetodologiaDocente
+deactivate DB
+MetodologiaRepo --> API: List[MetodologiaDocente]
+deactivate MetodologiaRepo
+API --> Vista: 200 OK (List[MetodologiaDocenteResponse] JSON)
+deactivate API
+Vista --> DirectorPrograma: muestra la selección disponible
+
+DirectorPrograma -> Vista: elige una MetodologiaDocente y confirma
+Vista -> API: POST /api/v1/programas/{programa_id}/metodologias-docentes (AsociarMetodologiaDocenteCreate JSON)
+activate API
+API -> API: exigir_metodologia_de_la_universidad(universidad_id_de(programa_id), metodologia_docente_id)
+note right of API: 409 si la MetodologiaDocente es de otra Universidad (issue #655)
+API -> ProgramaRepo: asociar_metodologia_docente(programa_id, metodologia_docente_id)
+activate ProgramaRepo
+ProgramaRepo -> DB: INSERT INTO programas_metodologias_docentes ...
+activate DB
+DB --> ProgramaRepo: ok
+deactivate DB
+ProgramaRepo --> API: void
+deactivate ProgramaRepo
+API --> Vista: 204 No Content
+deactivate API
+Vista --> DirectorPrograma: MetodologiaDocente asociada, vuelve a la pantalla de metodologías del Programa
+deactivate Vista
+
+@enduml

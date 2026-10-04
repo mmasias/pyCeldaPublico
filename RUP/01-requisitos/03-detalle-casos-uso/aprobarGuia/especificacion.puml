@@ -3,11 +3,11 @@
 skinparam linetype polyline
 
 state GUIA_ABIERTO
-state GUIAS_DEL_GRADO_ABIERTOS_SALIDA as "GUIAS_DEL_GRADO_ABIERTO"
+state GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA as "GUIAS_DEL_PROGRAMA_ABIERTO"
 
 GUIA_ABIERTO -[#green]-> aprobarGuia
 note on link
-<b>DirectorGrado</b> solicita aprobar Guia
+<b>DirectorPrograma</b> solicita aprobar Guia
 end note
 
 state aprobarGuia as "aprobarGuia()" {
@@ -18,7 +18,7 @@ state aprobarGuia as "aprobarGuia()" {
     end note
 }
 
-aprobarGuia -[#green]-> GUIAS_DEL_GRADO_ABIERTOS_SALIDA
+aprobarGuia -[#green]-> GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA
 note on link
 EnRevision -> Aprobada; registra "aprobada sin incidencia" en HistorialCambio
 end note

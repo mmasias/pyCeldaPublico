@@ -1,0 +1,53 @@
+@startuml crearAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbiertoSalida
+
+package crearAsignaturaPrograma as "crearAsignaturaPrograma()" {
+    rectangle #629EF9 CrearAsignaturaProgramaView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E MateriaRepository
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+ProgramaAbierto --> CrearAsignaturaProgramaView: <font size=8>crearAsignaturaPrograma(programaId)
+
+CrearAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>listarMateriasDelPrograma(programaId) : List<Materia>
+
+AsignaturaProgramaController --> MateriaRepository: <font size=8>listarDelPrograma(programaId) : List<Materia>
+
+CrearAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>listarAsignaturasDelCatalogo() : List<Asignatura>
+
+AsignaturaProgramaController --> AsignaturaRepository: <font size=8>listar() : List<Asignatura>
+
+CrearAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>validarDatosObligatorios(materiaId, asignaturaId, curso, caracter, idioma, semestreDefault) : boolean
+
+CrearAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>crearAsignaturaPrograma(materiaId, asignaturaId, curso, caracter, idioma, semestreDefault, nombre?, ects?, contenido?) : AsignaturaPrograma
+
+AsignaturaProgramaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
+
+AsignaturaProgramaController --> AsignaturaRepository: <font size=8>obtener(asignaturaId) : Asignatura
+
+AsignaturaProgramaController --> Asignatura: <font size=8>heredar nombre/ects/contenido si no hay override
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>crear(materiaId, nombre, curso, caracter, idioma, ects, semestreDefault, contenido) : AsignaturaPrograma
+
+AsignaturaProgramaController --> GuiaRepository: <font size=8>crear(programaId, asignaturaProgramaId, semestreDefault) : Guia
+
+MateriaRepository -- Materia
+AsignaturaRepository -- Asignatura
+AsignaturaProgramaRepository -- AsignaturaPrograma
+GuiaRepository -- Guia
+
+CrearAsignaturaProgramaView --> ProgramaAbiertoSalida: <font size=8>tabla de AsignaturaPrograma del Programa actualizada
+
+@enduml

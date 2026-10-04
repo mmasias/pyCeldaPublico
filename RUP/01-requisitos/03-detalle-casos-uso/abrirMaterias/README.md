@@ -31,19 +31,22 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Admin`|
-|**Objetivo**|Consultar el listado de `Materia` de un `Grado`|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Consultar el listado de `Materia` de un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Subfunción|
 
 </div>
 
-Caso de uso reutilizado por `DirectorGrado` (`DirectorGrado --|> Profesor`), misma ficha -- ver [diagramaContextoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml). El CRUD de `Materia` es de `Admin`; `DirectorGrado` solo navega este listado para llegar a sus casos de asociación (`asociarMetodologiaDocenteAMateria()`, `asociarResultadoAprendizajeAMateria()`, L4, sin empezar).
+Caso de uso reutilizado por `DirectorPrograma` (`DirectorPrograma --|> Profesor`), misma ficha -- ver [diagramaContextoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml). El CRUD de `Materia` es de `Admin`; `DirectorPrograma` solo navega este listado para llegar a sus casos de asociación (`asociarMetodologiaDocenteAMateria()`, `asociarResultadoAprendizajeAMateria()`, L4, sin empezar).
+
+**Retocado el wireframe al cerrar la tanda #486/#487/#488/#492 (issue [#496](https://github.com/mmasias/pyCelda/issues/496)), sin tocar la especificación**: el listado gana la columna "Asignaturas" -- contador derivado del número de `AsignaturaPrograma` de cada `Materia`, issue [#487](https://github.com/mmasias/pyCelda/issues/487).
 
 ## Referencias
 
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `GRADO_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()`
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `GRADO_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `Materia`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- reutilización del caso de uso por `DirectorGrado`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Grado *-- Materia`: composición real, se navega desde dentro del Grado abierto, no es catálogo institucional plano
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- reutilización del caso de uso por `DirectorPrograma`
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-- Materia`: composición real, se navega desde dentro del Programa abierto, no es catálogo institucional plano
+- [Issue #487](https://github.com/mmasias/pyCelda/issues/487) -- origen de la columna "Asignaturas"

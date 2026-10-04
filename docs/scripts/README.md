@@ -10,7 +10,7 @@ Genera el mockup navegable por actor a partir del diagrama de contexto + wirefra
 
 ```bash
 python3 docs/scripts/generar_mockup_navegable.py <Actor>
-# Actor: Admin | Profesor | DirectorGrado (debe existir diagramaContexto<Actor>.puml)
+# Actor: Admin | Profesor | DirectorPrograma (debe existir diagramaContexto<Actor>.puml)
 ```
 
 ### Salida
@@ -36,7 +36,7 @@ Cuando una página requiere contenido que el script no sabe producir (botones vi
 en cualquier posición del fichero. El script detecta la marca y **skip** esa página al regenerar, con aviso explícito:
 
 ```
-[SKIP] abrirAsignaturaGrado.md (override manual protegido)
+[SKIP] abrirAsignaturaPrograma.md (override manual protegido)
 ```
 
 Cualquier otra página del mismo actor se regenera normalmente. Para retirar la protección, basta con borrar la línea del comentario.

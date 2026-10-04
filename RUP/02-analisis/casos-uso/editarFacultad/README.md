@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -73,7 +73,7 @@ Traducción a clases de análisis del caso de uso [`editarFacultad()`](/RUP/01-r
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarFacultad/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarFacultad/wireframes.puml) -- fuente de verdad del formulario, sin rama de rechazo.
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `FACULTAD_ABIERTO --> FACULTAD_ABIERTO : editarFacultad()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Universidad *-d- Facultad`, `Facultad *-d- Grado`.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Universidad *-d- Facultad`, `Facultad *-d- Programa`.
 - [`crearFacultad()`](../crearFacultad/README.md) -- `<<include>>` de origen, ya cerrado apuntando aquí.
 - [`abrirFacultad()`](../abrirFacultad/README.md) -- mismo `FacultadController.cargarFacultad(facultadId)`, reutilizado.
 - [`editarUniversidad()`](../editarUniversidad/README.md) -- mismo patrón un nivel arriba.

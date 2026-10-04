@@ -34,11 +34,13 @@ state editarPonderacionEvaluacion as "editarPonderacionEvaluacion()" {
 
     c -[#green]-> [*]
     note on link
+    [ponderación mayor que cero y no superior al máximo del SistemaEvaluacion seleccionado]
     <b>Sistema</b> presenta PonderacionEvaluacion actualizada
     end note
 
     c -[#red]-> [*]
     note on link
+    [ponderación no positiva o por encima del máximo del SistemaEvaluacion seleccionado]
     <b>Sistema</b> presenta mensaje de rechazo: ponderación no positiva, o por encima del máximo del SistemaEvaluacion seleccionado
     end note
 }

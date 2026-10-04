@@ -4,21 +4,21 @@ skinparam linetype polyline
 left to right direction
 
 rectangle #CDEBA5 ":SESION_CERRADA" as SesionCerrada
-rectangle #CDEBA5 ":Collaboration AbrirAsignaturasGrado" as AbrirAsignaturasGrado
-rectangle #CDEBA5 ":Collaboration AbrirGrados" as AbrirGrados
+rectangle #CDEBA5 ":Collaboration AbrirAsignaturasPrograma" as AbrirAsignaturasPrograma
+rectangle #CDEBA5 ":Collaboration AbrirProgramas" as AbrirProgramas
 rectangle #CDEBA5 ":GUIA_ABIERTO" as GuiaAbierto
-rectangle #CDEBA5 ":GRADO_ABIERTO" as GradoAbierto
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
 
 package abrirInicio as "abrirInicio()" {
     rectangle #629EF9 AbrirInicioView
 }
 
-SesionCerrada --> AbrirInicioView: <font size=8>abrirInicio() -- <<extend>> de iniciarSesion() (rol in {Profesor, DirectorGrado})
+SesionCerrada --> AbrirInicioView: <font size=8>abrirInicio() -- <<extend>> de iniciarSesion() (rol in {Profesor, DirectorPrograma})
 
-AbrirInicioView ..[#green]> AbrirAsignaturasGrado: <font size=8> <<include>> seccion "Mis guias" (si rol == Profesor)
-AbrirInicioView ..[#green]> AbrirGrados: <font size=8> <<include>> seccion "Mis grados" (si dirige >= 1 Grado)
+AbrirInicioView ..[#green]> AbrirAsignaturasPrograma: <font size=8> <<include>> seccion "Mis guias" (si rol == Profesor)
+AbrirInicioView ..[#green]> AbrirProgramas: <font size=8> <<include>> seccion "Mis programas" (si dirige >= 1 Programa)
 
 AbrirInicioView --> GuiaAbierto: <font size=8>abrirGuia()
-AbrirInicioView --> GradoAbierto: <font size=8>abrirGrado()
+AbrirInicioView --> ProgramaAbierto: <font size=8>abrirPrograma()
 
 @enduml

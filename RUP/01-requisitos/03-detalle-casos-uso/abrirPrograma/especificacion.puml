@@ -1,0 +1,23 @@
+@startuml abrirPrograma
+
+skinparam linetype polyline
+
+state PROGRAMAS_ABIERTO
+state PROGRAMA_ABIERTO
+
+PROGRAMAS_ABIERTO -[#green]-> abrirPrograma
+note on link
+<b>Admin</b> solicita abrir Programa
+end note
+
+state abrirPrograma as "abrirPrograma()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos del Programa
+    end note
+}
+
+abrirPrograma -[#green]-> PROGRAMA_ABIERTO
+
+@enduml

@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -41,9 +41,9 @@ Bajada a diseño del caso de análisis [`abrirMetodologiasDocentes()`](/RUP/02-a
 
 ## Decisiones de diseño
 
-- **Módulo `routers/metodologia_docente.py` nuevo**: primera función de `MetodologiaDocente` fuera de las asociaciones (que viven en `routers/materia.py`/`routers/asignatura_grado.py`); el módulo crecerá con `obtener_metodologia_docente()` (de `abrirMetodologiaDocente()`), `crear_metodologia_docente()`, `editar_metodologia_docente()` y `eliminar_metodologia_docente()` de los CU hermanos.
-- **Listado completo, sin filtro por sesión**: igual que `abrirAsignaturas()`, aquí el `Admin` ve todas las filas -- ninguna `MetodologiaDocente` es "propia" de quien llama. A diferencia de las variantes `DirectorGrado` (`listar_disponibles_para_materia()`/`listar_disponibles_para_asignatura_grado()`), este endpoint no filtra por disponibilidad de asociación.
-- **Autorización de `Admin`: `Depends(require_admin)`** -- ya disponible en `backend/app/core/auth.py`, sin nota de pendiente: toda función de `routers/metodologia_docente.py` la declara explícitamente. Es catálogo de `Admin` sin pertenencia que verificar -- no usa `get_current_director_grado_id`, que aplica a los recursos con dueño del hilo `DirectorGrado`. El historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real, no un detalle menor.
+- **Módulo `routers/metodologia_docente.py` nuevo**: primera función de `MetodologiaDocente` fuera de las asociaciones (que viven en `routers/materia.py`/`routers/asignatura_programa.py`); el módulo crecerá con `obtener_metodologia_docente()` (de `abrirMetodologiaDocente()`), `crear_metodologia_docente()`, `editar_metodologia_docente()` y `eliminar_metodologia_docente()` de los CU hermanos.
+- **Listado completo, sin filtro por sesión**: igual que `abrirAsignaturas()`, aquí el `Admin` ve todas las filas -- ninguna `MetodologiaDocente` es "propia" de quien llama. A diferencia de las variantes `DirectorPrograma` (`listar_disponibles_para_materia()`/`listar_disponibles_para_asignatura_programa()`), este endpoint no filtra por disponibilidad de asociación.
+- **Autorización de `Admin`: `Depends(require_admin)`** -- ya disponible en `backend/app/core/auth.py`, sin nota de pendiente: toda función de `routers/metodologia_docente.py` la declara explícitamente. Es catálogo de `Admin` sin pertenencia que verificar -- no usa `get_current_director_programa_id`, que aplica a los recursos con dueño del hilo `DirectorPrograma`. El historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real, no un detalle menor.
 - **Sin capa Service**: Router delgado -> Repository (discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)).
 
 ## Referencias

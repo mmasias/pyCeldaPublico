@@ -1,17 +1,17 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [**Análisis**](/RUP/02-analisis/README.md) / [Diseño](/RUP/03-diseño/README.md)</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
 # pyCelda > rechazarGuia()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/rechazarGuia/README.md)|[Desarrollo](/RUP/04-desarrollo/casos-uso/rechazarGuia/README.md)|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/rechazarGuia/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`rechazarGuia()`](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/README.md): un solo paso, sin `<<choice>>` -- el `DirectorGrado` introduce un comentario opcional y solicita rechazar; el sistema transiciona `Guia.estado` de `EnRevision` a `Rechazada` y registra el `HistorialCambio` con ese comentario. Misma familia que [`aprobarGuia()`](../aprobarGuia/README.md) (decisión de revisión inmediata, con persistencia real), pero con `comentario` pedido al actor en vez de fijo -- es una incidencia, no un "sí" sin matiz.
+Traducción a clases de análisis del caso de uso [`rechazarGuia()`](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/README.md): un solo paso, sin `<<choice>>` -- el `DirectorPrograma` introduce un comentario opcional y solicita rechazar; el sistema transiciona `Guia.estado` de `EnRevision` a `Rechazada` y registra el `HistorialCambio` con ese comentario. Misma familia que [`aprobarGuia()`](../aprobarGuia/README.md) (decisión de revisión inmediata, con persistencia real), pero con `comentario` pedido al actor en vez de fijo -- es una incidencia, no un "sí" sin matiz.
 
 <div align=center>
 
@@ -30,9 +30,9 @@ Traducción a clases de análisis del caso de uso [`rechazarGuia()`](/RUP/01-req
 - permite solicitar rechazar.
 
 **Colaboraciones:**
-- **Entrada:** `:GUIA_ABIERTO` -- el `DirectorGrado` solicita rechazar la `Guia` abierta.
+- **Entrada:** `:GUIA_ABIERTO` -- el `DirectorPrograma` solicita rechazar la `Guia` abierta.
 - **Control:** `GuiaController`.
-- **Salida:** `:GUIAS_DEL_GRADO_ABIERTO`.
+- **Salida:** `:GUIAS_DEL_PROGRAMA_ABIERTO`.
 
 ## Clases de controlador
 
@@ -61,7 +61,7 @@ Traducción a clases de análisis del caso de uso [`rechazarGuia()`](/RUP/01-req
 ### `HistorialCambio`
 
 **Responsabilidades:**
-- registra el cambio con `campo = "estado"`, `valorAnterior = "EnRevision"`, `valorNuevo = "Rechazada"` y el `comentario` introducido por el `DirectorGrado` (opcional); fija su `fecha`.
+- registra el cambio con `campo = "estado"`, `valorAnterior = "EnRevision"`, `valorNuevo = "Rechazada"` y el `comentario` introducido por el `DirectorPrograma` (opcional); fija su `fecha`.
 
 **Colaboraciones:**
 - **Entrada:** `GuiaController` (registro); `Guia` (composición).
@@ -78,7 +78,7 @@ Traducción a clases de análisis del caso de uso [`rechazarGuia()`](/RUP/01-req
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/wireframes.puml) -- fuente de verdad del comentario opcional.
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : rechazarGuia()`.
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : rechazarGuia()`.
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- transición `EnRevision -> Rechazada` que la `Guia` aplica en `rechazar()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`, `Guia *- HistorialCambio`.
 - [`aprobarGuia()`](../aprobarGuia/README.md) -- misma familia de decisiones de revisión, contraste: comentario fijo, sin pedir nada al actor.

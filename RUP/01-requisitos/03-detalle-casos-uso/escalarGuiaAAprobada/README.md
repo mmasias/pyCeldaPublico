@@ -6,7 +6,7 @@
 
 # pyCelda > escalarGuiaAAprobada()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/escalarGuiaAAprobada/README.md)|[Diseño](/RUP/03-diseño/casos-uso/escalarGuiaAAprobada/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/escalarGuiaAAprobada/README.md)|[Diseño](/RUP/03-diseño/casos-uso/escalarGuiaAAprobada/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,7 +31,7 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorGrado`|
+|**Actor**|`DirectorPrograma`|
 |**Objetivo**|Aprobar directamente una `Guia` que está `Borrador` o `Rechazada`, sin pasar por `EnRevision`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
@@ -40,16 +40,16 @@
 
 Tercera decisión de la familia -- ver [`aprobarGuia()`](../aprobarGuia/README.md) para el contexto completo. `GUIA_ABIERTO` es un único estado en el diagrama de contexto independientemente de si `Guia.estado` es `Borrador` o `Rechazada`: la especificación no distingue el origen (ambas transiciones comparten el mismo destino `Aprobada` y la misma mecánica), es el propio dato de la `Guia` el que determina si el botón `[Escalar a aprobada]` tiene sentido ofrecerlo -- mismo criterio de disponibilidad condicional que el resto de decisiones de esta familia.
 
-**Sin campo de formulario**, igual que `aprobarGuia()`: es un "sí" sin incidencia que explicar, el sistema registra `"escalada a aprobada sin incidencia"` en `HistorialCambio.comentario` sin pedir nada al `DirectorGrado`. **Sin pantalla de confirmación**: se deshace igual que `aprobarGuia()`, con `revocarAprobacionGuia()`. Ambos puntos cerrados en la discussion [#44](https://github.com/mmasias/pyCelda/discussions/44).
+**Sin campo de formulario**, igual que `aprobarGuia()`: es un "sí" sin incidencia que explicar, el sistema registra `"escalada a aprobada sin incidencia"` en `HistorialCambio.comentario` sin pedir nada al `DirectorPrograma`. **Sin pantalla de confirmación**: se deshace igual que `aprobarGuia()`, con `revocarAprobacionGuia()`. Ambos puntos cerrados en la discussion [#44](https://github.com/mmasias/pyCelda/discussions/44).
 
-**Sincronización de `Guia -- Profesor`** (issue [#254](https://github.com/mmasias/pyCelda/issues/254)), igual que `aprobarGuia()`: pasar a `Aprobada` re-deriva la copia de la plantilla `AsignaturaGrado -- Profesor`. Un escalado directo desde `Borrador`/`Rechazada` también es un punto de sincronización.
+**Sincronización de `Guia -- Profesor`** (issue [#254](https://github.com/mmasias/pyCelda/issues/254)), igual que `aprobarGuia()`: pasar a `Aprobada` re-deriva la copia de la plantilla `AsignaturaPrograma -- Profesor`. Un escalado directo desde `Borrador`/`Rechazada` también es un punto de sincronización.
 
 Único caso de uso de L9 con dato real, sin hipótesis: `GII__IYA003` está realmente en `Borrador` (estado visible en el catálogo desde L7), así que el wireframe la usa tal cual -- no hace falta forzar un estado hipotético, a diferencia del resto de decisiones de esta familia.
 
 ## Referencias
 
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_GRADO_ABIERTO : escalarGuiaAAprobada()`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `Guia`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : escalarGuiaAAprobada()`
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `Guia`
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `{Borrador,Rechazada} -> Aprobada`, escalado directo
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`
 - [`aprobarGuia()`](../aprobarGuia/README.md) -- misma mecánica de "sí sin incidencia", origen `EnRevision` en vez de `{Borrador,Rechazada}`; mismo punto de sincronización de `Guia -- Profesor`

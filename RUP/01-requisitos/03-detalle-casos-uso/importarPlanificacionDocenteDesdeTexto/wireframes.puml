@@ -1,0 +1,24 @@
+@startsalt importarPlanificacionDocenteDesdeTexto-wireframe
+{
+    <b>IMPORTAR PLANIFICACIÓN DOCENTE DESDE TEXTO</b>
+    ====
+    Pega el texto con una sesión por línea, con el formato CODIGO - Descripción.
+    {#
+     <b>Código</b> | <b>Tipo de sesión</b>
+     CT | Clase teórica
+     CP | Clase práctica
+     CTP | Clase teórico-práctica
+     CL | Clase de laboratorio
+     EC | Evaluación continua
+     EP | Evaluación parcial
+    }
+    {+
+     CTP - Algoritmos – El lenguaje JAVA
+     CP - Laboratorio
+     .
+    }
+    <color:red>Esto reemplazará las 25 sesiones actuales de esta guía, incluidas las que hayas añadido a mano. Las sesiones importadas se renumeran 1..N.</color>
+    ~~
+    {[Importar planificación docente]}
+}
+@endsalt

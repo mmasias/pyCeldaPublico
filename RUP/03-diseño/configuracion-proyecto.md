@@ -1,6 +1,6 @@
 <div align=right>
 
-<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>[*Dashboard de seguimiento*](/RUP/99-seguimiento/README.md)</sub>
+<sub>[Modelo del dominio](/RUP/00-modelo-del-dominio/README.md) / [Actores y casos de uso](/RUP/01-requisitos/01-actores-casos-uso/README.md) / [Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md) / [Análisis](/RUP/02-analisis/README.md) / **Diseño**</sub><br><sub>Subconjunto público de [pyCelda](https://github.com/mmasias/pyCelda) -- incluye modelo de dominio, requisitos, análisis y diseño completos; desarrollo solo para 5 casos de uso elegidos como ejemplo. Sin dashboard de seguimiento.</sub>
 
 </div>
 
@@ -52,7 +52,7 @@ frontend/
 
 **`routers/` es funcional, no orientado a objetos**: cada módulo es un fichero de funciones sueltas decoradas con `@router.get`/`@router.post`/etc., nunca una clase `*Controller` -- confirmado contra `backend/app/routers/aulas.py` de pySigHor y contra los 9 `README.md` de esta rebanada, que citan `routers/guia.py`, `routers/ponderacion_evaluacion.py`, `routers/referencia_bibliografica.py` como módulos, nunca como clases. Ver el diagrama de clases de esta misma fase para el inventario completo de funciones por módulo.
 
-**Frontend: UI mínima de prueba, no la rebanada completa de 9 pantallas**: los 9 `secuencia.puml` modelan la Vista como participante genérico "Vista (React)" sin comprometerse con una estructura de carpetas (ver `RUP/02-analisis/README.md`, discussion [#57](https://github.com/mmasias/pyCelda/discussions/57)) -- decisión que sigue en pie para las otras 8 pantallas. Lo que entra en alcance ahora es solo la prueba de fuego del login real (Google OAuth2/OIDC, discussion [#62](https://github.com/mmasias/pyCelda/discussions/62)): `frontend/` con Vite + React + TypeScript, dos pantallas (`Login`, `AbrirGuia`), sin gestor de estado ni capa de servicios propia -- `src/api.ts` centraliza `fetch` con `credentials: "include"` (necesario para que la cookie httpOnly de sesión viaje al backend en `:8000`). `AbrirGuia` sigue el wireframe de `RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframes.puml`, pero solo rellena con datos reales los campos que `AbrirGuiaResponse` devuelve (`estado`, `fecha_ultima_modificacion`, `ponderaciones`, `referencias`) -- las secciones que dependerían de `AsignaturaGrado` (nombre de asignatura, semestre, resultados de aprendizaje, metodologías), deliberadamente fuera de esta rebanada, se muestran marcadas como "Fuera de alcance de esta rebanada" en vez de inventar datos. Documentar las 8 pantallas restantes sigue siendo trabajo de una rebanada posterior.
+**Frontend: UI mínima de prueba, no la rebanada completa de 9 pantallas**: los 9 `secuencia.puml` modelan la Vista como participante genérico "Vista (React)" sin comprometerse con una estructura de carpetas (ver `RUP/02-analisis/README.md`, discussion [#57](https://github.com/mmasias/pyCelda/discussions/57)) -- decisión que sigue en pie para las otras 8 pantallas. Lo que entra en alcance ahora es solo la prueba de fuego del login real (Google OAuth2/OIDC, discussion [#62](https://github.com/mmasias/pyCelda/discussions/62)): `frontend/` con Vite + React + TypeScript, dos pantallas (`Login`, `AbrirGuia`), sin gestor de estado ni capa de servicios propia -- `src/api.ts` centraliza `fetch` con `credentials: "include"` (necesario para que la cookie httpOnly de sesión viaje al backend en `:8000`). `AbrirGuia` sigue el wireframe de `RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframes.puml`, pero solo rellena con datos reales los campos que `AbrirGuiaResponse` devuelve (`estado`, `fecha_ultima_modificacion`, `ponderaciones`, `referencias`) -- las secciones que dependerían de `AsignaturaPrograma` (nombre de asignatura, semestre, resultados de aprendizaje, metodologías), deliberadamente fuera de esta rebanada, se muestran marcadas como "Fuera de alcance de esta rebanada" en vez de inventar datos. Documentar las 8 pantallas restantes sigue siendo trabajo de una rebanada posterior.
 
 ## Stack
 
@@ -62,7 +62,7 @@ Ya decidido en conversación, registrado en la discussion [#57](https://github.c
 - **SQLAlchemy**: ORM de `models/` -- clases `Base`, columnas y relaciones; los métodos de dominio (`Guia.aprobar()`, `SistemaEvaluacion.validar_maximo()`, ...) viven en la propia clase (Fat Model), no en un mixin ni en un service.
 - **SQLite**: motor de base de datos -- suficiente para la rebanada mínima (9 casos de uso, sin requisito de concurrencia ni volumen); no se descarta migrar a otro motor cuando el catálogo escale, pero esa decisión no se toma aquí.
 - **Jinja2 + WeasyPrint** (v1 del render de la guía docente, discussion [#218](https://github.com/mmasias/pyCelda/discussions/218)): Jinja2 para la plantilla `templates/guia_docente.html`, WeasyPrint (Python puro, CSS Paged Media -- no Chromium headless) para convertirla a PDF en `descargarGuiaPDF()`; la vista HTML de `previsualizarGuia()` sirve la misma plantilla sin pasar por WeasyPrint. WeasyPrint necesita librerías de sistema (`libpango`, `libharfbuzz`, `libffi`, fuentes) en el `backend/Dockerfile` -- `python:3.12-slim` no las trae.
-- **Autenticación real, Google OAuth2/OIDC** (discussion [#62](https://github.com/mmasias/pyCelda/discussions/62), sustituye al stub inicial de la decisión 3 de la discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)): "Sign in with Google" vía `Authlib`, restringido al dominio institucional de Workspace (parámetro `hd`), sin auto-registro -- el email de la cuenta tiene que coincidir con un `Profesor`/`DirectorGrado` ya existente en la base de datos, o el login se rechaza. Sesión vía JWT (`joserfc`) en cookie `httpOnly`, sin almacén de sesión en servidor. Detalle completo en [`RUP/04-desarrollo/README.md`](/RUP/04-desarrollo/README.md#autenticación-real-google-oauth2oidc). `iniciarSesion()` no está en el catálogo de 91 casos de uso de pyCelda como CU propio -- este mecanismo es Diseño/Desarrollo, no Requisitos (ver discussion #62).
+- **Autenticación real, Google OAuth2/OIDC** (discussion [#62](https://github.com/mmasias/pyCelda/discussions/62), sustituye al stub inicial de la decisión 3 de la discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)): "Sign in with Google" vía `Authlib`, restringido al dominio institucional de Workspace (parámetro `hd`), sin auto-registro -- el email de la cuenta tiene que coincidir con un `Profesor`/`DirectorPrograma` ya existente en la base de datos, o el login se rechaza. Sesión vía JWT (`joserfc`) en cookie `httpOnly`, sin almacén de sesión en servidor. Detalle completo en [`RUP/04-desarrollo/README.md`](/RUP/04-desarrollo/README.md#autenticación-real-google-oauth2oidc). `iniciarSesion()` no está en el catálogo de 91 casos de uso de pyCelda como CU propio -- este mecanismo es Diseño/Desarrollo, no Requisitos (ver discussion #62).
 
 ## Mapeo entre artefactos de Diseño y código
 
@@ -77,8 +77,8 @@ Ya decidido en conversación, registrado en la discussion [#57](https://github.c
 | `ResultadoAprendizaje` (Modelo) | `backend/app/models/resultado_aprendizaje.py` |
 | `MetodologiaDocente` (Modelo) | `backend/app/models/metodologia_docente.py` |
 | `MetodologiaMateria` (Modelo) | `backend/app/models/metodologia_materia.py` |
-| `Grado` (Modelo) | `backend/app/models/grado.py` |
-| `AsignaturaGrado` (Modelo) | `backend/app/models/asignatura_grado.py` |
+| `Programa` (Modelo) | `backend/app/models/programa.py` |
+| `AsignaturaPrograma` (Modelo) | `backend/app/models/asignatura_programa.py` |
 | `Profesor` (Modelo) | `backend/app/models/profesor.py` |
 | `GuiaRepository` | `backend/app/repositories/guia.py` |
 | `PonderacionEvaluacionRepository` | `backend/app/repositories/ponderacion_evaluacion.py` |
@@ -88,8 +88,8 @@ Ya decidido en conversación, registrado en la discussion [#57](https://github.c
 | `ResultadoAprendizajeRepository` | `backend/app/repositories/resultado_aprendizaje.py` |
 | `MetodologiaDocenteRepository` | `backend/app/repositories/metodologia_docente.py` |
 | `MetodologiaMateriaRepository` | `backend/app/repositories/metodologia_materia.py` |
-| `AsignaturaGradoRepository` | `backend/app/repositories/asignatura_grado.py` |
-| `GradoRepository` | `backend/app/repositories/grado.py` |
+| `AsignaturaProgramaRepository` | `backend/app/repositories/asignatura_programa.py` |
+| `ProgramaRepository` | `backend/app/repositories/programa.py` |
 | `routers/guia.py` (12 funciones) | `backend/app/routers/guia.py` |
 | `render/guia_docente.py` (`render_pdf`, `render_html`) | `backend/app/render/guia_docente.py` |
 | `templates/guia_docente.html` | `backend/app/templates/guia_docente.html` |
@@ -97,14 +97,14 @@ Ya decidido en conversación, registrado en la discussion [#57](https://github.c
 | `routers/referencia_bibliografica.py` (4 funciones) | `backend/app/routers/referencia_bibliografica.py` |
 | `routers/resultado_aprendizaje.py` (6 funciones) | `backend/app/routers/resultado_aprendizaje.py` |
 | `routers/materia.py` (12 funciones) | `backend/app/routers/materia.py` |
-| `routers/asignatura_grado.py` (12 funciones) | `backend/app/routers/asignatura_grado.py` |
-| `routers/grado.py` (2 funciones) | `backend/app/routers/grado.py` |
+| `routers/asignatura_programa.py` (12 funciones) | `backend/app/routers/asignatura_programa.py` |
+| `routers/programa.py` (2 funciones) | `backend/app/routers/programa.py` |
 
 Sin fila de Service: no existe esa capa. Sin fila de Vista/frontend: la Vista de los 89 `secuencia.puml` no mapea 1:1 a una clase de Diseño -- `frontend/src/pages/Login.tsx` y `frontend/src/pages/AbrirGuia.tsx` (ver arriba) son las dos únicas pantallas reales hasta ahora, el resto sigue sin construir.
 
 ## Variables de entorno
 
-Sin secretos reales comiteados -- ver [`backend/.env.example`](/backend/.env.example) (plantilla, valores vacíos/de ejemplo) y `backend/.gitignore` (`*.env` fuera del repo).
+Sin secretos reales comiteados -- ver `backend/.env.example` (plantilla, valores vacíos/de ejemplo) y `backend/.gitignore` (`*.env` fuera del repo).
 
 |Variable|Obligatoria|Descripción|
 |-|-|-|

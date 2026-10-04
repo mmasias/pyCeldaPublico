@@ -7,7 +7,7 @@ state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
 
 GUIA_ABIERTO -[#green]-> editarSemestreGuia
 note on link
-<b>DirectorGrado</b> solicita editar semestre de Guia
+<b>DirectorPrograma</b> solicita editar semestre de Guia
 end note
 
 state editarSemestreGuia as "editarSemestreGuia()" {
@@ -22,8 +22,8 @@ state editarSemestreGuia as "editarSemestreGuia()" {
 
     EditandoSemestre -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> introduce semestre
-    <b>DirectorGrado</b> solicita guardar
+    <b>DirectorPrograma</b> introduce semestre
+    <b>DirectorPrograma</b> solicita guardar
     end note
 }
 

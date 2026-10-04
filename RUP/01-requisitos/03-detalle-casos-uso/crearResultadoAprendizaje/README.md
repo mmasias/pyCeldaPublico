@@ -6,7 +6,7 @@
 
 # pyCelda > crearResultadoAprendizaje()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/crearResultadoAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/crearResultadoAprendizaje/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/crearResultadoAprendizaje/README.md)|[Diseño](/RUP/03-diseño/casos-uso/crearResultadoAprendizaje/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,8 +31,8 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorGrado`|
-|**Objetivo**|Dar de alta un `ResultadoAprendizaje` en el catálogo de un `Grado`|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Dar de alta un `ResultadoAprendizaje` en el catálogo de un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
@@ -42,7 +42,9 @@
 
 ## Referencias
 
-- [Diagrama de contexto de DirectorGrado](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorGrado.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : crearResultadoAprendizaje()`
-- [actoresCasosUsoDirectorGrado.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorGrado.puml) -- catálogo de casos de uso de `DirectorGrado` sobre `ResultadoAprendizaje`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Grado *-d- ResultadoAprendizaje`, `ResultadoAprendizaje{codigo, tipo, descripcion}`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : crearResultadoAprendizaje()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : crearResultadoAprendizaje()` (compartido con `Admin` desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642); pantalla propia en `/admin/...`, `*Admin.tsx`)
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `ResultadoAprendizaje`
+- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` (incluye este caso de uso desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642))
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-d- ResultadoAprendizaje`, `ResultadoAprendizaje{codigo, tipo, descripcion}`
 - [Issue #24](https://github.com/mmasias/pyCelda/issues/24) -- revisión del lote L3, origen de la corrección sobre C→U

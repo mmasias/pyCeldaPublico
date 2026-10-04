@@ -1,0 +1,69 @@
+@startuml editarCursoAcademico-diseño
+title Diagrama de Secuencia - Editar Curso Académico
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CursoAcademicoRepository" as CursoAcademicoRepo
+participant "CursoAcademico" as CursoAcademico
+database "Base de Datos" as DB
+
+Admin -> Vista: abre el CursoAcademico a editar
+activate Vista
+Vista -> API: GET /api/v1/universidades/{universidad_id}/cursos-academicos (búsqueda del curso por id en el cliente)
+activate API
+note right of API: mismo endpoint que abrirCursosAcademicos();\nno hay GET por id. Trae tiene_guia_asociada ya resuelto
+API --> Vista: 200 OK (List[CursoAcademicoAdminResponse] JSON)
+deactivate API
+
+alt tiene_guia_asociada (<<choice>> resuelto al cargar)
+    Vista --> Admin: variante bloqueada -- "NO SE PUEDE EDITAR", sin formulario ni PUT
+else sin Guia asociadas
+    Vista --> Admin: formulario con inicio y fin editables
+    Admin -> Vista: modifica inicio/fin, confirma
+    Vista -> API: PUT /api/v1/admin/cursos-academicos/{curso_academico_id} (CursoAcademicoUpdate JSON)
+    activate API
+    note right of API: Depends(require_admin) -- endpoint de escritura de Admin
+    API -> CursoAcademicoRepo: obtener(curso_academico_id)
+    activate CursoAcademicoRepo
+    CursoAcademicoRepo -> DB: SELECT ... FROM cursos_academicos WHERE id = :curso_academico_id
+    activate DB
+    DB --> CursoAcademicoRepo: fila CursoAcademico
+    deactivate DB
+    CursoAcademicoRepo --> API: CursoAcademico | None
+    deactivate CursoAcademicoRepo
+
+    alt no existe
+        API --> Vista: 404 (CursoAcademico no encontrado)
+        Vista --> Admin: muestra el error
+    else existe
+        API -> CursoAcademico: tiene_guia_asociada()
+        activate CursoAcademico
+        CursoAcademico -> DB: SELECT guias del curso (relación perezosa)
+        CursoAcademico --> API: boolean
+        deactivate CursoAcademico
+
+        alt tiene Guia asociada (una nació entre la carga y el envío)
+            API --> Vista: 400 (No se puede editar el curso académico: ya existen Guías creadas para este curso)
+            Vista --> Admin: variante bloqueada con el motivo del servidor, sin cambios
+        else sin Guia asociada
+            API -> CursoAcademico: actualizar(inicio, fin)
+            activate CursoAcademico
+            deactivate CursoAcademico
+            API -> CursoAcademicoRepo: actualizar(curso)
+            activate CursoAcademicoRepo
+            CursoAcademicoRepo -> DB: UPDATE cursos_academicos SET inicio = ..., fin = ...
+            activate DB
+            DB --> CursoAcademicoRepo: ok
+            deactivate DB
+            CursoAcademicoRepo --> API: CursoAcademico
+            deactivate CursoAcademicoRepo
+            API --> Vista: 200 OK (CursoAcademicoResponse JSON)
+            Vista --> Admin: vuelve al detalle del curso, con los datos actualizados
+        end
+    end
+    deactivate API
+end
+deactivate Vista
+
+@enduml

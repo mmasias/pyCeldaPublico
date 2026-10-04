@@ -7,7 +7,7 @@ state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
 
 MATERIA_ABIERTO -[#green]-> editarAsociacionMetodologiaDocenteMateria
 note on link
-<b>DirectorGrado</b> solicita editar asociación de MetodologiaDocente
+<b>DirectorPrograma</b> solicita editar asociación de MetodologiaDocente
 end note
 
 state editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()" {
@@ -22,8 +22,8 @@ state editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaD
 
     EditandoDatos -[#green]-> [*]
     note on link
-    <b>DirectorGrado</b> introduce descripción propia
-    <b>DirectorGrado</b> solicita guardar
+    <b>DirectorPrograma</b> introduce descripción propia
+    <b>DirectorPrograma</b> solicita guardar
     end note
 }
 

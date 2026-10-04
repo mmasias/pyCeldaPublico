@@ -1,0 +1,62 @@
+@startuml importarContenidoDeGuiaHermana-diseño
+title Diagrama de Secuencia - Importar Contenido de Guía Hermana
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AGRepo
+participant "GuiaRepository" as GuiaRepo
+participant "Guia (destino)" as Guia
+database "Base de Datos" as DB
+
+== Elegir origen (GET, mismo endpoint que bibliografía y planificación) ==
+
+Profesor -> Vista: abre la Guía (AbrirGuia)
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/importables
+activate API
+note right of API: relajación acotada de la 404-uniforme: solo guías\nAprobadas de hermanas del curso ACTIVO
+API -> GuiaRepo: obtener(guia_id)
+API -> AGRepo: imparte(destino.asignatura_programa_id, profesor_id)
+AGRepo --> API: true  (si false -> 404 uniforme)
+API -> AGRepo: listar_hermanas(destino.asignatura_programa_id)
+AGRepo --> API: [AsignaturaPrograma hermanas]
+API -> GuiaRepo: listar_aprobadas_de_asignaturas_programa([ids hermanas], curso_activo.id)
+GuiaRepo -> DB: SELECT ... WHERE asignatura_programa_id IN (...) AND estado = 'Aprobada' AND curso_academico_id = :activo
+DB --> GuiaRepo: [Guia aprobadas de hermanas]
+GuiaRepo --> API: [Guia aprobadas de hermanas]
+API --> Vista: 200 [{guia_id, programa_codigo, asignatura_codigo, asignatura_programa_nombre, ...}]
+deactivate API
+Vista --> Profesor: control "Importar de guía hermana" (solo si hay orígenes; nunca en modo revisión)
+
+== Importar contenido (POST, operación atómica) ==
+
+Profesor -> Vista: elige la guía origen (aviso: reemplaza el contenido, incluidos cambios sin guardar), confirma
+Vista -> API: POST /api/v1/guias/{guia_id}/importar-contenido {origen_guia_id}
+activate API
+API -> GuiaRepo: obtener(guia_id)  + AGRepo.imparte(...)  -> destino (o 404)
+API -> API: _origen_o_404: origen_guia_id in {guías Aprobadas de hermanas, curso activo}?
+note right of API: revalidación server-side;\n404 uniforme si el id no pertenece al conjunto
+API -> Guia: actualizar_contenido(origen.contenido)
+activate Guia
+Guia --> API: contenido anterior | None (si el texto es idéntico)
+deactivate Guia
+
+alt el contenido cambió
+    API -> DB: INSERT historial_cambios (campo="contenido", autor=profesor_id,\nvalor_anterior=resumen(anterior), valor_nuevo=resumen(nuevo),\ncomentario="contenido importado desde PROGRAMA / CODIGO")
+else contenido idéntico
+    note right of API: no-op sin fila de HistorialCambio
+end
+
+API -> Guia: confirmar_guardado()
+activate Guia
+note right of Guia: actualiza fecha_ultima_modificacion;\nsi estado era Aprobada -> Borrador\n(se ejecuta también si el contenido era idéntico)
+deactivate Guia
+API -> DB: COMMIT  (un único commit: contenido + historial + estado)
+API --> Vista: 200 GuiaResponse
+deactivate API
+Vista -> Vista: setContenido(respuesta.contenido) -- el textarea no pisa lo importado al guardar
+Vista --> Profesor: la misma Guía, con el contenido ya reemplazado
+deactivate Vista
+
+@enduml

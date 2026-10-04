@@ -1,0 +1,50 @@
+@startuml importarPlanificacionDocenteDesdeTexto-diseño
+title Diagrama de Secuencia - Importar Planificación Docente desde Texto
+
+actor "Profesor" as Profesor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AGRepo
+participant "GuiaRepository" as GuiaRepo
+participant "parsear_planificacion_texto" as Parser
+participant "SesionRepository" as SesionRepo
+participant "Guia (destino)" as Guia
+database "Base de Datos" as DB
+
+== Preparar la pantalla ==
+
+Profesor -> Vista: abre "Importar planificación docente desde texto"
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/sesiones
+API --> Vista: 200 [sesiones actuales]
+Vista --> Profesor: tabla de códigos + área de texto + aviso "reemplazará N sesiones, se renumeran 1..N"
+
+== Importar (POST, operación atómica) ==
+
+Profesor -> Vista: pega el texto, confirma
+Vista -> API: POST /api/v1/guias/{guia_id}/importar-planificacion-docente-desde-texto {texto}
+activate API
+API -> GuiaRepo: obtener(guia_id)
+API -> AGRepo: imparte(asignatura_programa_id, profesor_id)
+note right of API: si no existe o no la imparte -> 404 uniforme
+API -> Parser: parsear_planificacion_texto(texto)
+Parser --> API: [(tipo, descripcion), ...]
+API -> SesionRepo: reemplazar_desde(destino, sesiones transitorias 1..N, vinculada=False)
+activate SesionRepo
+SesionRepo -> DB: DELETE (vía ORM) todas las sesiones del destino
+SesionRepo -> DB: INSERT sesiones numero = 1..N
+note right of SesionRepo: renumeración 1..N EN PERSISTENCIA;\nNO toca Guia.sesiones_minimas del destino
+SesionRepo -> SesionRepo: flush() -- sin commit
+SesionRepo --> API: [Sesion nuevas]
+deactivate SesionRepo
+API -> DB: INSERT historial_cambios (campo="planificacion_docente", texto pegado)
+API -> Guia: confirmar_guardado()
+note right of Guia: fecha_ultima_modificacion; si Aprobada -> Borrador
+API -> DB: COMMIT (borrado + sesiones + historial + estado en un commit)
+API --> Vista: 200 GuiaResponse
+deactivate API
+Vista -> Vista: limpiarExcluidos(claveSesionesExcluidas)
+Vista --> Profesor: navega a la planificación docente, ya reemplazada
+deactivate Vista
+
+@enduml
