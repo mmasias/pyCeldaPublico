@@ -6,7 +6,7 @@ Cada curso académico, cada asignatura de cada programa necesita una guía docen
 
 ## ¿Qué?
 
-CELDA formaliza ese proceso en un modelo de datos, construido disciplina a disciplina siguiendo el Proceso Unificado de Desarrollo: 109 casos de uso especificados de extremo a extremo (Requisitos, Análisis, Diseño, Desarrollo, Pruebas, Despliegue), 106 implementados con un test real detrás de cada uno.
+CELDA formaliza ese proceso en un modelo de datos, construido disciplina a disciplina siguiendo el Proceso Unificado de Desarrollo: 122 casos de uso especificados de extremo a extremo (Requisitos, Análisis, Diseño, Desarrollo, Pruebas, Despliegue), 119 implementados con un test real detrás de cada uno.
 
 | Qué | Cantidad real |
 | --- | --- |
@@ -16,7 +16,7 @@ CELDA formaliza ese proceso en un modelo de datos, construido disciplina a disci
 | Asignaturas de catálogo institucional | 402 |
 | Guías docentes completas | 775 |
 | Metodologías docentes institucionales | 10 |
-| Resultados de aprendizaje repartidos | 5.048 |
+| Resultados de aprendizaje | 5.048 |
 
 Ese corpus reconciliado (16 programas oficiales) parte de un corpus histórico mayor: 834 guías docentes reales en Word, extraídas y parseadas (`extractor.py`, ver `docs/scripts/README.md`) -- 9 facultades, 36 grados detectados en la nomenclatura real, 375 asignaturas de catálogo, 803 asignaturas-en-grado, 216 profesores. La reconciliación posterior contra las memorias verificadas de ANECA es la que redujo esos 36 grados detectados a los 16 programas oficiales de la tabla anterior.
 
@@ -36,12 +36,12 @@ No es solo velocidad. Cada guía que entra en pyCelda pasa, sin que nadie tenga 
 | --- | --- |
 | Rango ANECA | Una ponderación fuera del mínimo/máximo verificado de su sistema de evaluación, o una guía cuya suma de ponderaciones no sea exactamente 100% |
 | Cascada de catálogos (Programa -> Materia -> Asignatura) | Que una metodología docente, resultado de aprendizaje o actividad formativa llegue a una asignatura sin haber sido habilitada antes por su programa y su materia |
-| Ciclo de vida gobernado (4 estados, 11 transiciones) | Que alguien sin autoridad apruebe, rechace o edite una guía fuera de su rol -- el profesor redacta, el director decide, el admin nunca decide contenido |
+| Ciclo de vida gobernado (4 estados, 15 transiciones) | Que alguien sin autoridad apruebe, rechace o edite una guía fuera de su rol -- el profesor redacta, el director decide, el admin nunca decide contenido |
 | Historial íntegro | Una edición sin autor, campo, valor anterior y valor nuevo registrados |
 | Copia de seguridad diaria automatizada | Pérdida de datos entre backups manuales |
 | Auditoría externa independiente (dos modelos de IA sin coordinarse) | Redundancias, contradicciones o huecos de trazabilidad sin detectar -- cero encontrados sobre el catálogo completo de casos de uso |
 
-Auditoría del 2026-08-08, sobre el catálogo de 91 casos de uso vigente entonces -- no repetida sobre los 109 actuales.
+Auditoría del 2026-08-08, sobre el catálogo de 91 casos de uso vigente entonces -- no repetida sobre los 122 actuales.
 
 ## ¿Y ahora qué?
 

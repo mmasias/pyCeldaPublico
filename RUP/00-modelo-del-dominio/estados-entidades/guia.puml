@@ -9,6 +9,7 @@ Borrador --> Aprobada : <sub><b>DirectorPrograma</b></sub>\n<sub>escalado direct
 
 EnRevision --> Aprobada : <sub><b>DirectorPrograma</b></sub>\n<sub>aprueba</sub>
 EnRevision --> Rechazada : <sub><b>DirectorPrograma</b></sub>\n<sub>rechaza</sub>
+EnRevision --> Rechazada : <sub><b>DirectorPrograma</b></sub>\n<sub>edita el contenido</sub>\n<sub>(corrección excepcional)</sub>
 
 EnRevision --> Borrador : <sub><b>Profesor</b></sub>\n<sub>se retira de la revisión</sub>\n<sub>para seguir trabajando</sub>
 EnRevision --> EnRevision : <sub><b>Profesor</b></sub>\n<sub>corrige y reenvía</sub>\n<sub>sin esperar decisión</sub>
@@ -19,7 +20,8 @@ Rechazada --> Aprobada : <sub><b>DirectorPrograma</b></sub>\n<sub>escalado direc
 Aprobada --> EnRevision : <sub><b>Profesor</b></sub>\n<sub>detecta un error</sub>\n<sub>y completa su corrección</sub>
 Aprobada --> Borrador : <sub><b>Profesor</b></sub>\n<sub>detecta un error y</sub>\n<sub>empieza a trabajar en él</sub>
 Aprobada --> Borrador : <sub><b>DirectorPrograma</b></sub>\n<sub>revoca la aprobación</sub>
+Aprobada --> Borrador : <sub><b>DirectorPrograma</b></sub>\n<sub>edita el contenido</sub>\n<sub>(corrección excepcional)</sub>
 Aprobada --> EnRevision : <sub><b>Admin</b></sub>\n<sub>incidencia al generar el PDF</sub>
-Aprobada --> EnRevision : <sub><b>Admin</b></sub>\n<sub>cambio en los profesores que</sub>\n<sub>la imparten (issue 254)</sub>
+Aprobada --> EnRevision : <sub><b>Admin</b></sub>\n<sub>cambio en los profesores que</sub>\n<sub>la imparten</sub>
 
 @enduml
