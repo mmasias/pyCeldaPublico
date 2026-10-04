@@ -26,6 +26,7 @@ class "Materia" as Materia #D2B4DE
 class "Sistema de evaluación" as SistemaEvaluacion #A9CCE3
 class "Asignatura de programa" as AsignaturaPrograma #D2B4DE
 class "Guía docente" as Guia #F5CBA7
+class "Curso académico" as CursoAcademico #A9CCE3
 
 Universidad --> Facultad
 Facultad --> Programa
@@ -33,6 +34,8 @@ Programa --> Materia
 Materia --> SistemaEvaluacion
 Materia --> AsignaturaPrograma
 AsignaturaPrograma --> Guia
+Universidad --> CursoAcademico
+CursoAcademico --> Guia
 
 ' Categoría 2 -- catálogos asignados en cascada: existen con independencia de
 ' dónde se usan: la misma entrada puede asignarse en varios sitios.
@@ -40,6 +43,7 @@ class "Asignatura" as Asignatura #A9CCE3
 class "Metodología docente" as MetodologiaDocente #A9CCE3
 class "Resultado de aprendizaje" as ResultadoAprendizaje #A9DFBF
 class "Actividad formativa" as ActividadFormativa #A9CCE3
+class "Profesor" as Profesor #A9CCE3
 
 Asignatura ..> AsignaturaPrograma
 MetodologiaDocente ..> Programa
@@ -49,5 +53,8 @@ ResultadoAprendizaje ..> Materia
 ResultadoAprendizaje ..> AsignaturaPrograma
 ActividadFormativa ..> Materia
 ActividadFormativa ..> AsignaturaPrograma
+Universidad --> Profesor
+Profesor ..> AsignaturaPrograma
+Profesor ..> Programa
 
 @enduml
