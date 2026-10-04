@@ -8,6 +8,7 @@ state PONDERACIONES_EVALUACION_ABIERTO_SALIDA as "PONDERACIONES_EVALUACION_ABIER
 PONDERACIONES_EVALUACION_ABIERTO -[#green]-> editarTextoSistemaEvaluacion
 note on link
 <b>Profesor</b> solicita editar el texto de convocatorias
+<b>DirectorPrograma</b> solicita editar el texto de convocatorias como corrección excepcional
 end note
 
 state editarTextoSistemaEvaluacion as "editarTextoSistemaEvaluacion()" {
@@ -24,14 +25,16 @@ state editarTextoSistemaEvaluacion as "editarTextoSistemaEvaluacion()" {
 
     EditandoTexto -[#green]-> c
     note on link
-    <b>Profesor</b> edita el texto, o elige una plantilla y la ajusta
-    <b>Profesor</b> solicita guardar
+    <b>Profesor</b> o <b>DirectorPrograma</b> edita el texto, o elige una plantilla y la ajusta
+    <b>Profesor</b> o <b>DirectorPrograma</b> solicita guardar
     end note
 
     c -[#green]-> [*]
     note on link
     [el texto contiene el marcador [TABLA] exactamente una vez]
-    <b>Sistema</b> persiste el texto
+    [lo edita el DirectorPrograma y la guía está Aprobada] <b>Sistema</b> devuelve la guía a Borrador
+    [lo edita el DirectorPrograma y la guía está EnRevision] <b>Sistema</b> pasa la guía a Rechazada
+    <b>Sistema</b> persiste el texto y registra el cambio en el historial
     end note
 
     c -[#red]-> [*]

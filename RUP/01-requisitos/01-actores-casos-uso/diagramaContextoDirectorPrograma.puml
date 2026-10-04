@@ -42,6 +42,8 @@ GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
 GUIA_ABIERTO --> GUIA_ABIERTO : previsualizarGuia()
 
 GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
+' editarTextoSistemaEvaluacion() (issue #707): correccion excepcional, misma transicion de estado que el resto de #612
+PONDERACIONES_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : editarTextoSistemaEvaluacion()
 PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : crearPonderacionEvaluacion()
 PONDERACIONES_EVALUACION_ABIERTO --> PONDERACION_EVALUACION_ABIERTO : abrirPonderacionEvaluacion()
 PONDERACIONES_EVALUACION_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : eliminarPonderacionEvaluacion()
@@ -75,7 +77,7 @@ GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()
 GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
 
 ' === Propio de DirectorPrograma (issue #612, Parte 2 de #601): correccion excepcional ===
-' Director escribe el temario (guardarBorradorGuia()), las PonderacionEvaluacion, las
+' Director escribe el temario (guardarBorradorGuia()), el texto de convocatorias (editarTextoSistemaEvaluacion(), #707), las PonderacionEvaluacion, las
 ' ReferenciaBibliografica y las Sesion de las Guias de los Programas que dirige --
 ' mismas transiciones que Profesor, mismas pantallas. NO gana enviarGuiaARevision()
 ' (ya decide el estado con aprobar/rechazar/escalar/revocar), ni los atajos

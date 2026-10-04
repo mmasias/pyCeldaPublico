@@ -31,7 +31,7 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Profesor`|
+|**Actor**|`Profesor` (y `DirectorPrograma` como corrección excepcional)|
 |**Objetivo**|Editar el texto de convocatorias (apartado 5 de la guía docente) de una `Guia` propia|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
@@ -50,7 +50,7 @@ No se documenta como ampliación de [`editarPonderacionEvaluacion()`](../editarP
 
 **Datos legados**: la migración `migrar_texto_sistema_evaluacion.py` hace backfill de las guías ya existentes con el texto que antes estaba hardcodeado (plantilla "asignatura normal"), para que no rendericen la sección en blanco. El render tolera un dato legado sin exactamente un marcador (lo trata entero como "antes de la tabla") en vez de fallar.
 
-**Limitación real del código: el `DirectorPrograma` no puede editarlo todavía.** La pantalla "Gestionar evaluación" ofrece el área de texto y el botón de guardado también al `DirectorPrograma` (la ruta del frontend es compartida y no distingue el rol), pero `PUT /api/v1/guias/{guia_id}/texto-sistema-evaluacion` exige identidad de `Profesor` que imparte la asignatura (`get_current_profesor_id`): sin identidad de `Profesor` responde `403` (`Cuenta sin Profesor asociado`) y, con ella pero sin impartir la asignatura, `404` uniforme -- en ningún caso la guarda. Esto no es la corrección excepcional del resto de la `Guia` (ver [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)): ese guardado propio no se amplió al Director en el issue [#612](https://github.com/mmasias/pyCelda/issues/612) y queda como brecha conocida (nota (c) de [#610](https://github.com/mmasias/pyCelda/issues/610)); `Admin` sigue fuera de alcance.
+**Corrección excepcional del `DirectorPrograma`** (issue [#707](https://github.com/mmasias/pyCelda/issues/707), PR [#708](https://github.com/mmasias/pyCelda/pull/708)): la limitación que señaló la auditoría [#704](https://github.com/mmasias/pyCelda/issues/704) (la pantalla ofrecía el campo al Director y el guardado solo admitía al `Profesor`) está resuelta. El `DirectorPrograma` que dirige el programa de la `Guia` guarda el texto con el mismo mecanismo que el resto de [#612](https://github.com/mmasias/pyCelda/issues/612) (ver [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)): `Aprobada` pasa a `Borrador` y `EnRevision` a `Rechazada`, y queda fila de `HistorialCambio` con el autor real. `Admin` sigue fuera de alcance.
 
 ## Referencias
 

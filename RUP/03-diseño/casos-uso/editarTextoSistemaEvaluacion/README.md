@@ -35,7 +35,7 @@ Bajada a diseño del caso de análisis [`editarTextoSistemaEvaluacion()`](/RUP/0
 ## Participantes
 
 - **Vista**: `PonderacionesEvaluacion` (React, ruta `/guias/:guiaId/ponderaciones-evaluacion`) -- `<textarea>` precargado con `guia.texto_sistema_evaluacion` (del `GET` de la guía que ya hace la pantalla) y tres plantillas de frontend (`textoSistemaEvaluacion.ts`: asignatura normal, prácticas externas, prácticas de laboratorio) que rellenan sin guardar. Cuenta los marcadores en cliente y deshabilita "Guardar texto" si no hay exactamente uno. Pide `PUT /api/v1/guias/{guia_id}/texto-sistema-evaluacion` con `{ texto }`.
-- **API**: `routers/guia.py::editar_texto_sistema_evaluacion(guia_id, datos)` -- función suelta, sin capa Service. Autorización `get_current_profesor_id` + `AsignaturaProgramaRepository.imparte(...)`.
+- **API**: `routers/guia.py::editar_texto_sistema_evaluacion(guia_id, datos)` -- función suelta, sin capa Service. Autorización `get_current_rol` + `get_current_profesor_id_opcional` + `get_current_director_programa_id_opcional` y `autorizar_escritura_guia()`.
 - **Modelo**: `Guia.texto_sistema_evaluacion` (columna `Text`, `default=""`) y constante `MARCADOR_TABLA = "[TABLA]"`. No hay método de dominio: el Router asigna el atributo directamente.
 - **Repositorios**: `GuiaRepository.obtener(guia_id)` / `.actualizar(guia)`; `AsignaturaProgramaRepository.imparte(asignatura_programa_id, profesor_id)`.
 
@@ -43,8 +43,8 @@ Bajada a diseño del caso de análisis [`editarTextoSistemaEvaluacion()`](/RUP/0
 
 - **Endpoint propio, independiente de `guardarBorradorGuia()`**: el texto se guarda por su cuenta, sin pasar por el borrador de la guía.
 - **Guardia de forma en Router**: `texto.count(MARCADOR_TABLA) != 1` -> `422` con detalle `El texto debe contener el marcador [TABLA] exactamente una vez`. Se comprueba en **cada** guardado; nada se persiste si falla.
-- **`404` uniforme** si la guía no existe, no tiene `asignatura_programa_id` o el Profesor no imparte la asignatura. Admin y Director quedan fuera hasta [#601](https://github.com/mmasias/pyCelda/issues/601).
-- **Sin efectos colaterales de guía**: el handler no registra `HistorialCambio`, no llama a `confirmar_guardado()` ni a `regenerar_pdf()`. Persiste con `GuiaRepository.actualizar(guia)` (commit + refresh) y devuelve `GuiaResponse`.
+- **Autorización por `autorizar_escritura_guia()`** (#612, #707): escribe el Profesor que imparte o, como corrección excepcional, el DirectorPrograma que dirige el Programa de la guía; `404` uniforme si ninguno tiene derecho. Admin queda fuera. Si escribe el Director, `aplicar_transicion_por_correccion_del_director()` (Aprobada -> Borrador, EnRevision -> Rechazada) corre antes de guardar, en la misma transacción.
+- **Historial**: registra `HistorialCambio` `campo="texto_sistema_evaluacion"` con el autor real (Profesor o Director), para ambos actores (antes #707 no registraba nada). No llama a `confirmar_guardado()` ni a `regenerar_pdf()`. Persiste con `GuiaRepository.actualizar(guia)` (commit + refresh) y devuelve `GuiaResponse`.
 - **Patrón B (clonado entre cursos)**: `texto_sistema_evaluacion` se copia de la `Guia` previa en [`activarCursoAcademico()`](../activarCursoAcademico/README.md); sin predecesora nace vacío. No es parte de este flujo.
 - **Render tolerante**: `render/guia_docente.py` parte el texto por `[TABLA]` (antes / tabla de ponderaciones / después); un dato legado sin exactamente un marcador se pinta entero como "antes" sin fallar. Tras la sección va siempre el párrafo fijo de régimen de uso de IA.
 - **Sin capa Service**: Router delgado -> Repository.

@@ -2,7 +2,7 @@
 
 Hallazgo de [issue #610](https://github.com/mmasias/pyCelda/issues/610) (debate de #609): el texto de convocatorias del apartado 5 de la guía docente pasa de estar hardcodeado en la plantilla a ser dato editable de la `Guia`. Se documenta como ficha propia y no como ampliación de [`editarPonderacionEvaluacion()`](../editarPonderacionEvaluacion/README.md): edita otro atributo (`Guia.texto_sistema_evaluacion`), con endpoint de guardado propio, aunque vive en la pantalla "Gestionar evaluación".
 
-**Actor:** Profesor que imparte la asignatura (Admin y Director quedan fuera hasta [#601](https://github.com/mmasias/pyCelda/issues/601)).
+**Actor:** Profesor que imparte la asignatura; el DirectorPrograma que dirige el Programa de la guía también puede, como corrección excepcional ([#612](https://github.com/mmasias/pyCelda/issues/612), [#707](https://github.com/mmasias/pyCelda/issues/707)), con la transición de estado Aprobada -> Borrador / EnRevision -> Rechazada. Admin queda fuera.
 
 **Pantalla:** `PonderacionesEvaluacion` (`/guias/{guiaId}/ponderaciones-evaluacion`), `<textarea>` + tres plantillas de frontend (asignatura normal, prácticas externas, prácticas de laboratorio) que rellenan sin guardar.
 

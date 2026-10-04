@@ -10,7 +10,7 @@ left to right direction
 ' (abrirGuia(), guardarBorradorGuia(), enviarGuiaARevision(),
 ' importarContenidoDeGuiaHermana() -- issue #409, descargarGuiaPDF(),
 ' previsualizarGuia(), CRUD de PonderacionEvaluacion y de ReferenciaBibliografica,
-' [issue #612: la escritura de guardarBorradorGuia(), CRUD de PonderacionEvaluacion/
+' [issue #612: la escritura de guardarBorradorGuia(), editarTextoSistemaEvaluacion() (#707), CRUD de PonderacionEvaluacion/
 ' ReferenciaBibliografica y de Sesion queda abierta tambien a DirectorPrograma como
 ' correccion excepcional, con transicion de estado -- ver diagramaContextoDirectorPrograma.puml]
 ' editarPerfilPropio() -- issue #423, cualquier DirectorPrograma activo tiene fila

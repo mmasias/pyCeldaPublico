@@ -1,11 +1,10 @@
 @startuml editarTextoSistemaEvaluacion-diseño
 title Diagrama de Secuencia - Editar Texto del Sistema de Evaluación
 
-actor "Profesor" as Profesor
+actor "Profesor / DirectorPrograma" as Profesor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "GuiaRepository" as GuiaRepo
-participant "AsignaturaProgramaRepository" as APRepo
 participant "Guia" as Guia
 database "Base de Datos" as DB
 
@@ -15,7 +14,7 @@ Profesor -> Vista: edita el texto de convocatorias (o carga una plantilla) y gua
 note right of Vista: contarMarcadorTabla(texto) == 1 se comprueba\naquí; si no, "Guardar texto" queda deshabilitado
 Vista -> API: PUT /api/v1/guias/{guia_id}/texto-sistema-evaluacion {texto}
 activate API
-note right of API: Depends(get_current_profesor_id)
+note right of API: Depends(get_current_rol), get_current_profesor_id_opcional,\nget_current_director_programa_id_opcional
 API -> GuiaRepo: obtener(guia_id)
 activate GuiaRepo
 GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
@@ -24,20 +23,22 @@ DB --> GuiaRepo: fila Guia
 deactivate DB
 GuiaRepo --> API: Guia (o None)
 deactivate GuiaRepo
-API -> APRepo: imparte(guia.asignatura_programa_id, profesor_id)
-activate APRepo
-APRepo --> API: bool
-deactivate APRepo
+API -> API: autorizar_escritura_guia(guia, profesor_id, director_programa_id)
 
-alt Guia inexistente, sin AsignaturaPrograma o Profesor que no la imparte
+alt Guia inexistente, o ni Profesor que imparte ni Director que dirige el Programa
     API --> Vista: 404 Not Found ("Guia no encontrada")
     Vista --> Profesor: presenta el error
 else texto.count("[TABLA]") != 1
     API --> Vista: 422 Unprocessable Entity (no se persiste nada)
     Vista --> Profesor: presenta el error del marcador
 else texto con exactamente un marcador
+    opt escribe el DirectorPrograma (corrección excepcional)
+        API -> API: aplicar_transicion_por_correccion_del_director(guia)\nAprobada -> Borrador / EnRevision -> Rechazada
+        API -> DB: INSERT INTO historial_cambios (campo = "estado", autor = Director) -- solo si hubo transición
+    end
     API -> Guia: texto_sistema_evaluacion = texto
-    note right of Guia: asignación directa; sin HistorialCambio,\nsin confirmar_guardado(), sin regenerar_pdf()
+    API -> DB: INSERT INTO historial_cambios (campo = "texto_sistema_evaluacion", autor real)
+    note right of Guia: asignación directa; sin confirmar_guardado(), sin regenerar_pdf()
     API -> GuiaRepo: actualizar(guia)
     activate GuiaRepo
     GuiaRepo -> DB: UPDATE guias SET texto_sistema_evaluacion = ...; COMMIT

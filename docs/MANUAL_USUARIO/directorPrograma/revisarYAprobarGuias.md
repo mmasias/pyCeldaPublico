@@ -56,6 +56,8 @@ El director puede editar el **Contenido** de la guía y guardarlo con **💾 Gua
 - Sobre una guía en **Borrador** o **Rechazada**, el estado no cambia.
 - Cada cambio queda en el historial con el director como autor, y el comentario "corrección directa del Director" en el cambio de estado.
 
+El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación**, en el campo "Texto de convocatorias" y con **💾 Guardar texto**. Debe contener el marcador `[TABLA]` exactamente una vez, y aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
+
 El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usa los atajos de importar o generar contenido, que son del profesor. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
 
 ## Editar el semestre
