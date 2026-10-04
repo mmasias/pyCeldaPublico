@@ -40,7 +40,7 @@ export default function AdminLogin() {
           <h1 style={{ fontSize: "2.5rem", margin: 0, lineHeight: 1 }}>CELDA</h1>
         </div>
         <p style={{ margin: 0 }}>
-          <sub><i>Catálogo ELectrónico de Datos Académicos - v{__APP_VERSION__}{esquemaVersion !== null ? ` · esquema ${esquemaVersion}` : ""}</i></sub>
+          <sub><i>Catálogo ELectrónico de Documentación Académica - v{__APP_VERSION__}{esquemaVersion !== null ? ` · esquema ${esquemaVersion}` : ""}</i></sub>
         </p>
       </div>
       <p style={{ margin: 0 }}>
