@@ -1,4 +1,8 @@
-<div align=right><sub>Volver: [Al inicio](/README.md) / Véase también: [Resumen del experimento](/RESUMEN.md) · [Dónde vive cada regla (MVC)](MVCHowTo.md)</sub></div>
+<div align=right>
+  
+  <sub>Volver: [Al inicio](/README.md) / Véase también: [Resumen del experimento](/RESUMEN.md) · [Dónde vive cada regla (MVC)](MVCHowTo.md)</sub>
+  
+</div>
 
 # Proyecto CELDA
 
@@ -46,6 +50,12 @@ No es solo velocidad. Cada guía que entra en pyCelda pasa, sin que nadie tenga 
 Auditoría del 2026-08-08, sobre el catálogo de 91 casos de uso vigente entonces -- no repetida sobre los 124 actuales.
 
 ## ¿Y ahora qué?
+
+<div align=right>
+  
+  <sup> [*Ecosistema CELDA*](https://github.com/mmasias/_ECOSISTEMA_CELDA) </sup>
+  
+</div>
 
 A partir de aquí se puede -sin sobrecargar o pervertir pyCelda- desarrollar un conjunto de soluciones satélites: ninguna de las siguientes existe todavía. Se listan porque, si se construyen, no requerirían volver a modelar programas, materias, profesores o guías -- reutilizarían y extenderían el catálogo ya validado y las soluciones a las que se tendria acceso.
 
