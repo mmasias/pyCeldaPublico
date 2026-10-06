@@ -16,7 +16,7 @@ Antes de poder enviar la guía a revisión, es necesario alcanzar un número mí
 
 ## Cómo llegar
 
-Desde la guía, pulsar **Gestionar planificación docente**, en la sección **Planificación docente**.
+Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha del título **Planificación docente**.
 
 ## Qué muestra
 
@@ -28,7 +28,7 @@ Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las fil
 2. Elegir el **Tipo**: Clase Teórica, Clase Práctica, Clase Teórico/Práctica, Clase Laboratorio, Evaluación Continua o Evaluación Parcial.
 3. Escribir una **Descripción** breve de lo que se trabaja en esa sesión.
 
-La fila se guarda sola en cuanto la descripción deja de estar vacía y se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". **➕ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **Quitar** antes de completarla.
+La fila se guarda sola en cuanto la descripción deja de estar vacía y se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". **➕ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **➖** (Quitar) antes de completarla.
 
 ## Límite de la descripción
 
@@ -36,13 +36,13 @@ La descripción de cada sesión admite un máximo de **500 caracteres**. Si se s
 
 ## Editar o eliminar una sesión
 
-Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Pulsar **Eliminar** dos veces seguidas (la segunda para confirmar) para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
+Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda, cuando dice "pulsa de nuevo para confirmar") para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
 
 Si un guardado falla (por ejemplo, por un corte de red), aparece un mensaje de error con el botón **Reintentar**; lo escrito no se pierde.
 
 ## Duplicar una sesión
 
-Pulsar **Duplicar** en la fila de una sesión crea una copia con el mismo tipo y la misma descripción, justo debajo de la original -- las sesiones que venían después se renumeran automáticamente para dejar sitio a la copia. Si falla, aparece el mismo tipo de aviso con el botón **Reintentar**.
+Pulsar **📑 Duplicar** en la fila de una sesión crea una copia con el mismo tipo y la misma descripción, justo debajo de la original -- las sesiones que venían después se renumeran automáticamente para dejar sitio a la copia. Si falla, aparece el mismo tipo de aviso con el botón **Reintentar**.
 
 Pensado para sesiones consecutivas parecidas -- un tema que continúa, una práctica que se repite -- editando después solo lo que cambia en vez de escribir la sesión entera de nuevo.
 
@@ -53,7 +53,7 @@ Si la guía todavía no tiene ninguna sesión creada, aparece el botón **Crear 
 1. Pulsar **Crear N sesiones genéricas**.
 2. El botón cambia a **Crear N sesiones genéricas (pulsa de nuevo para confirmar)**. Pulsarlo otra vez confirma la creación; **Cancelar** la descarta.
 
-Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de la 1 a la N, ya guardadas -- no hace falta pulsar **Guardar borrador** después. A partir de ahí, cada una puede editarse para ajustar el tipo y añadir la descripción real de la clase. El botón solo está disponible mientras la planificación está completamente vacía: en cuanto existe al menos una sesión (aunque sea creada a mano), desaparece.
+Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de la 1 a la N, ya guardadas -- no hace falta pulsar **💾 Guardar borrador** después. A partir de ahí, cada una puede editarse para ajustar el tipo y añadir la descripción real de la clase. El botón solo está disponible mientras la planificación está completamente vacía: en cuanto existe al menos una sesión (aunque sea creada a mano), desaparece.
 
 ## Importar de una asignatura hermana
 
@@ -95,7 +95,7 @@ La pantalla avisa de que la importación reemplaza por completo la planificació
 
 ## Volver
 
-**Volver a la guía** lleva de vuelta a la guía docente. **Mis asignaturas** lleva al listado completo de asignaturas.
+**Volver a la Guía**, arriba a la derecha, lleva de vuelta a la guía docente; **🏠 Inicio** vuelve a la lista de guías.
 
 ---
 

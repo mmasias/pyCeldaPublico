@@ -46,7 +46,7 @@ Pulsar **🗑️ Eliminar** (en **Zona de riesgo** de la pantalla **Editar**, o 
 
 ## Metodologías docentes del programa
 
-Pulsar **🧩 Ver Metodologías** en el detalle del programa. Aparece una tabla con **Código** y **Descripción** de las metodologías docentes asociadas al programa, con **➖ Desasociar** en cada fila. **➕ Asociar Metodología Docente** permite añadir otra del catálogo institucional (ver [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md)). **Volver al Programa** regresa al detalle. Es la misma pantalla que tiene el director de programa.
+Pulsar **🧩 Ver Metodologías** en el detalle del programa. Aparece una tabla con **Código** y **Descripción** de las metodologías docentes asociadas al programa, con **➖ Desasociar** en cada fila. **➕ Asociar Metodología Docente** permite añadir otra del catálogo institucional (ver [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md)). **Volver al Programa** regresa al detalle. El director de programa gestiona lo mismo desde su propia pantalla.
 
 ## Resultados de aprendizaje del programa
 

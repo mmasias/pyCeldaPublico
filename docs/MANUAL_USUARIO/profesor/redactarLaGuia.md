@@ -12,45 +12,62 @@ La guía docente es el documento oficial de la asignatura: temario, evaluación,
 
 ## Cómo llegar
 
-Desde **Inicio** (o desde **Mis asignaturas**), pulsar **Abrir guía** en la fila de la asignatura correspondiente.
+Desde **Inicio**, pulsar **📂 Abrir** en la fila de la asignatura correspondiente.
 
 ## Qué muestra
 
-Arriba de la guía aparecen los datos generales: semestre, estado, profesorado asignado, fecha de creación y fecha de última modificación. Si la guía se aprobó alguna vez, también aparece la fecha en que se generó el PDF.
+Arriba, el título **Guía docente** y, debajo de la línea, el nombre de la asignatura en grande. A continuación, la ficha de la guía en dos columnas: a la izquierda, **Programa**, **Semestre** y **Profesores**; a la derecha, **Estado**, **Creación**, **Última modificación** y **Generación del PDF** ("--" si la guía no se ha aprobado nunca).
 
-Debajo, el campo de texto **Contenido** con el temario de la asignatura, con un límite de 10.000 caracteres; el contador bajo el cuadro de texto indica cuánto se lleva escrito y se pone en rojo al llegar al límite.
+Debajo de la ficha, los botones de trabajo: **💾 Guardar borrador**, **📤 Enviar a revisión**, **👁️ Previsualizar** y, si la guía se aprobó alguna vez, **⬇️ Descargar PDF** (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
 
-Más abajo aparecen, en este orden: **Resultados de aprendizaje** y **Metodologías docentes** (información fija de la asignatura, no editable desde aquí), **Actividades formativas** (igual, solo lectura), la sección **Evaluación**, la sección **Bibliografía** y la sección **Planificación docente**. Las tres últimas tienen su propio capítulo en este manual: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
+Después, en este orden:
+
+1. **Contenido**: a la izquierda, el cuadro de texto con el temario de la asignatura; a la derecha, en un recuadro gris, el **contenido aprobado en memoria**, la referencia con la que la guía debe ser coherente.
+2. **Evaluación**, **Bibliografía** y **Planificación docente**: un resumen de solo lectura de cada una, con su botón **🔧 Gestionar...** a la derecha del título. Cada una tiene su propio capítulo: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
+3. **Información adicional**: **Resultados de aprendizaje**, **Metodologías docentes** y **Actividades formativas** de la asignatura. Es información fija, de solo lectura.
 
 ## Editar y guardar el temario
 
-1. Escribir o corregir el texto en el cuadro **Contenido**.
-2. Pulsar **Guardar borrador**.
+1. Escribir o corregir el texto en el cuadro **Contenido**. El límite es de 10.000 caracteres; el contador bajo el cuadro indica cuánto se lleva escrito y se pone en rojo al llegar al límite.
+2. Pulsar **💾 Guardar borrador**.
 
-Al pulsar **Guardar borrador** se confirma de una sola vez todo lo cambiado desde el último guardado: el texto del temario, y cualquier instrumento de evaluación, referencia bibliográfica o sesión de planificación creado, editado o marcado para eliminar en las pantallas de gestión (ver los capítulos correspondientes). Si la guía se abandona sin pulsar **Guardar borrador**, esos cambios pendientes no se pierden del todo, pero tampoco quedan confirmados -- siguen ahí, a la espera de guardarse, la próxima vez que se entra.
+Al pulsar **💾 Guardar borrador** se confirma de una sola vez todo lo cambiado desde el último guardado: el texto del temario, y cualquier instrumento de evaluación, referencia bibliográfica o sesión de planificación creado, editado o marcado para eliminar en las pantallas de gestión (ver los capítulos correspondientes). Si la guía se abandona sin guardar, el texto del temario escrito desde el último guardado se pierde; los cambios de las pantallas de gestión siguen ahí, sin confirmar, la próxima vez que se entra.
 
 Si el texto del temario supera los 10.000 caracteres, al guardar aparece el error "El contenido supera el límite de 10.000 caracteres" y no se guarda nada, ni siquiera el resto de lo pendiente. Corresponde recortar el texto y guardar de nuevo.
+
+## Importar el contenido de una guía hermana
+
+Si la misma asignatura se imparte también en otro programa y esa otra guía está aprobada en el curso actual, debajo del cuadro **Contenido** aparece **Importar de guía hermana**, con una lista de las guías de las que se puede copiar el temario.
+
+1. Elegir la guía de origen en la lista. Aparece el aviso "Esto reemplazará el contenido actual, incluidos cambios sin guardar."
+2. Pulsar **📥 Importar contenido**.
+
+La importación sustituye el temario de inmediato y queda guardada: no hace falta pulsar **💾 Guardar borrador** después. Si la guía estaba **Aprobada**, pasa a **Borrador**, como con cualquier otro guardado; el estado de la ficha se actualiza al volver a abrir la guía.
 
 ## Los cuatro estados de la guía
 
 - **Borrador**: la guía está en preparación. El contenido, la evaluación, la bibliografía y la planificación docente son editables libremente.
 - **En revisión**: la guía se ha enviado y está pendiente de que el director de programa la revise. Sigue siendo editable mientras tanto.
-- **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se pulsa **Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar.
-- **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva, justo debajo del estado, tanto en el listado de asignaturas como al abrir la guía. Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
+- **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se pulsa **💾 Guardar borrador** la guía vuelve automáticamente a **Borrador** -- una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar.
+- **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva bajo el estado, en la tabla de **Inicio** (dentro de la guía no se muestra). Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
 Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque Admin ha cambiado el profesorado asignado a esa asignatura estando la guía ya aprobada -- es automático, no un error.
 
-Si el director revoca una aprobación ya concedida, la guía vuelve a **Borrador** y aparece su comentario en cursiva, igual que con un rechazo.
+Si el director revoca una aprobación ya concedida, la guía vuelve a **Borrador** y su comentario aparece en cursiva en la tabla de **Inicio**, igual que con un rechazo.
 
 ## Qué no es editable aquí
 
 El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona el director de programa -- no el profesorado. Se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.
 
+## Volver
+
+**🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías.
+
 ---
 
 <div align=center>
 
-| [Entrar y ver las asignaturas](entrarYVerTusAsignaturas.md) | [Índice](README.md) | [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) |
+| [Mi perfil](miPerfil.md) | [Índice](README.md) | [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) |
 |---|:-:|---|
 
 </div>

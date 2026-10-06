@@ -20,7 +20,7 @@ Una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin pro
 
 Cada fila tiene los botones **Previsualizar** y **Descargar PDF**; este último aparece desactivado mientras la guía no tenga un PDF generado todavía.
 
-Debajo de la tabla, una leyenda de colores relaciona cada estado con el color de su indicador.
+El estado se muestra con su nombre sobre un fondo de color: neutro para Borrador, ámbar para En revisión, verde para Aprobada y rojo para Rechazada.
 
 ---
 

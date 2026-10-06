@@ -12,11 +12,11 @@ La bibliografía de la guía: los libros, artículos y otras fuentes recomendada
 
 ## Cómo llegar
 
-Desde la guía, pulsar **Gestionar bibliografía**, en la sección **Bibliografía**.
+Desde la guía, pulsar **🔧 Gestionar bibliografía**, a la derecha del título **Bibliografía**.
 
 ## Qué muestra
 
-Una tabla con todas las referencias ya creadas: **Tipo**, **Referencia** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **Guardar borrador** en la guía).
+Una tabla con todas las referencias ya creadas: **Tipo**, **Referencia** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **💾 Guardar borrador** en la guía).
 
 ## Crear una referencia
 
@@ -29,7 +29,7 @@ Si la referencia supera los 500 caracteres se rechaza con el mensaje "La referen
 
 ## Editar o eliminar una referencia
 
-Igual que con los instrumentos de evaluación: pulsar **Abrir** y luego **Editar** para cambiarla, o pulsar **Eliminar** dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía.
+Igual que con los instrumentos de evaluación: pulsar **📂 Abrir** y luego **✏️ Editar** para cambiarla, o pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía.
 
 ## Importar de una asignatura hermana
 
@@ -40,11 +40,11 @@ Si la asignatura se imparte también en otro programa y esa otra guía ya está 
 3. Aparece un aviso: la importación reemplaza por completo la bibliografía actual de la guía, incluida cualquier referencia añadida a mano. Si la guía de origen no tiene ninguna referencia, el aviso lo indica explícitamente.
 4. Pulsar **Importar bibliografía** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
 
-A diferencia de crear o editar una referencia a mano, importar sustituye la bibliografía de inmediato -- no hace falta pulsar **Guardar borrador** después.
+A diferencia de crear o editar una referencia a mano, importar sustituye la bibliografía de inmediato -- no hace falta pulsar **💾 Guardar borrador** después.
 
 ## Volver
 
-**Volver a la guía** lleva de vuelta a la guía docente. **Mis asignaturas** lleva al listado completo de asignaturas.
+**Volver a la Guía**, arriba a la derecha, lleva de vuelta a la guía docente; **🏠 Inicio** vuelve a la lista de guías.
 
 ---
 

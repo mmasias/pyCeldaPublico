@@ -8,7 +8,7 @@
 
 ## Entrar
 
-El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de programa. Pulsar **🔑 Iniciar sesión** y autenticarse con Google con una cuenta con permisos de Admin. Junto al nombre CELDA se ve la versión de la aplicación y la versión de esquema de la base de datos (p. ej. `v0.11.0 · esquema N`).
+El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de programa. Pulsar **🔑 Iniciar sesión** y autenticarse con Google con una cuenta con permisos de Admin. Al pie de esa pantalla, en pequeño, se ve la versión de la aplicación y la versión de esquema de la base de datos (p. ej. `Versión v0.11.8 · esquema 2`).
 
 ## El panel de administración
 

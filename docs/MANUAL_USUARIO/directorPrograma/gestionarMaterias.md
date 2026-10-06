@@ -12,19 +12,19 @@ Cada materia agrupa una o más asignaturas del programa. Sobre una materia se as
 
 ## Cómo llegar
 
-Desde la barra de navegación del programa, pulsar **📚 Materias**.
+Desde la franja del programa, pulsar **📚 Materias**.
 
 ## Qué muestra
 
-Una tabla con **Nombre** y el botón **Abrir** de cada materia. Los botones **Eliminar** (junto a cada fila) y **➕ Crear Materia** aparecen desactivados: crear y eliminar materias no está disponible todavía en pyCelda.
+Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Crear, renombrar y eliminar materias lo hace el Admin desde su módulo.
 
 ## Detalle de una materia
 
-Al abrir una materia aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con acceso a cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación** (catálogo de solo lectura). El botón **Editar** de la cabecera está desactivado -- los datos propios de la materia (nombre) no son editables todavía; lo que sí se gestiona desde aquí son las cuatro secciones siguientes.
+Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación** (catálogo de solo lectura). El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las tres secciones siguientes.
 
 ## Metodologías docentes
 
-Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz específico de esta materia sobre la metodología general) y los botones **Editar** y **Quitar** de cada fila.
+Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz específico de esta materia sobre la metodología general) y los botones **✏️ Editar** y **➖** (Quitar) de cada fila.
 
 ### Asociar una metodología docente
 
@@ -36,15 +36,15 @@ Si no queda ninguna metodología disponible para asociar, la pantalla lo indica 
 
 ### Editar la descripción propia
 
-Pulsar **Editar** en la fila de la metodología. El código y la descripción general no son editables aquí, solo la **Descripción propia**.
+Pulsar **✏️ Editar** en la fila de la metodología. El código y la descripción general no son editables aquí, solo la **Descripción propia**.
 
 ### Quitar una metodología
 
-Pulsar **Quitar** en la fila de la metodología. Si ninguna asignatura de la materia la está usando, aparece una pantalla de confirmación (**Confirmar desasociación** / **Cancelar**). Si alguna asignatura la está usando, la desasociación queda bloqueada y la pantalla indica en qué asignaturas está en uso -- hace falta quitarla antes de esas asignaturas.
+Pulsar **➖** (Quitar) en la fila de la metodología. Si ninguna asignatura de la materia la está usando, aparece una pantalla de confirmación (**Confirmar desasociación** / **Cancelar**). Si alguna asignatura la está usando, la desasociación queda bloqueada y la pantalla indica en qué asignaturas está en uso -- hace falta quitarla antes de esas asignaturas.
 
 ## Resultados de aprendizaje
 
-Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado) y el botón **Quitar** de cada fila; **➕ Asociar Resultado de Aprendizaje** para añadir uno de los disponibles. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
+Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado) y el botón **➖** (Quitar) de cada fila; **➕ Asociar Resultado de Aprendizaje** para añadir uno de los disponibles. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
 
 ## Actividades formativas de la materia
 

@@ -16,7 +16,7 @@ Antes de poder enviar la guía a revisión, la suma de todos los porcentajes tie
 
 ## Cómo llegar
 
-Desde la guía, pulsar **Gestionar evaluación**, en la sección **Evaluación**.
+Desde la guía, pulsar **🔧 Gestionar evaluación**, a la derecha del título **Evaluación**.
 
 ## Qué muestra
 
@@ -36,20 +36,20 @@ Si la ponderación es cero o un número negativo, aparece el error "La ponderaci
 
 ## Editar un instrumento
 
-1. En la tabla, pulsar **Abrir** en la fila del instrumento.
-2. Pulsar **Editar**.
+1. En la tabla, pulsar **📂 Abrir** en la fila del instrumento.
+2. Pulsar **✏️ Editar**.
 3. Cambiar lo necesario y pulsar **Guardar**.
 
 ## Eliminar un instrumento
 
-1. En la tabla, pulsar **Eliminar** en la fila del instrumento.
-2. El botón cambia a **Eliminar (pulsa de nuevo para confirmar)**. Pulsarlo otra vez confirma el borrado; **Cancelar** lo descarta.
+1. En la tabla, pulsar la papelera **🗑️** (Eliminar) en la fila del instrumento.
+2. El botón cambia a **🗑️ pulsa de nuevo para confirmar**. Pulsarlo otra vez confirma el borrado; **Cancelar** lo descarta.
 
-Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado no se hace definitivo hasta volver a la guía y pulsar **Guardar borrador**. Si el navegador se cierra antes de guardar, el instrumento sigue existiendo la próxima vez que se entra.
+Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado no se hace definitivo hasta volver a la guía y pulsar **💾 Guardar borrador**. Si el navegador se cierra antes de guardar, el instrumento sigue existiendo la próxima vez que se entra.
 
 ## Qué significa "Vinculada"
 
-Un instrumento recién creado o editado aparece como **Vinculada: No** hasta confirmar los cambios con **Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar: el borrador pendiente de guardar es lo que deja esos cambios sin confirmar.
+Un instrumento recién creado o editado aparece como **Vinculada: No** hasta confirmar los cambios con **💾 Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar: el borrador pendiente de guardar es lo que deja esos cambios sin confirmar.
 
 ## Texto de convocatorias
 
@@ -57,13 +57,13 @@ Al final de la pantalla, la sección **Texto de convocatorias** contiene el text
 
 - El texto debe contener el marcador `[TABLA]` **exactamente una vez**: en ese punto se inserta la tabla de instrumentos de evaluación al generar el documento. Si el marcador falta o aparece más de una vez, la pantalla avisa ("El texto debe contener [TABLA] exactamente una vez (ahora: N)") y **💾 Guardar texto** queda desactivado.
 - Tres botones cargan una plantilla de partida, que **sustituye** el texto del cuadro: **Plantilla: Asignatura normal**, **Plantilla: Prácticas externas** y **Plantilla: Prácticas de laboratorio**. Los cambios no se guardan hasta pulsar **💾 Guardar texto**; mientras hay cambios sin guardar aparece "(cambios sin guardar)", y al guardar, "Texto guardado.".
-- Este guardado es independiente de **Guardar borrador**: se confirma en el momento.
+- Este guardado es independiente de **💾 Guardar borrador**: se confirma en el momento.
 
 Tras el texto editable, el documento oficial incluye siempre un párrafo fijo, **Régimen de uso de inteligencia artificial en las actividades de evaluación**, que remite al Protocolo de Medidas para Garantizar la Calidad y la Integridad Académicas de UNEATLANTICO. Ese párrafo no es editable y aparece en toda guía.
 
 ## Volver
 
-**Volver a la guía** lleva de vuelta a la guía docente. **Mis asignaturas** lleva al listado completo de asignaturas.
+**Volver a la Guía**, arriba a la derecha, lleva de vuelta a la guía docente; **🏠 Inicio** vuelve a la lista de guías.
 
 ---
 

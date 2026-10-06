@@ -12,21 +12,27 @@ Cada asignatura de programa es la versión concreta de una asignatura dentro de 
 
 ## Cómo llegar
 
-Desde la barra de navegación del programa, pulsar **Asignaturas**.
+Desde la franja del programa, pulsar **📘 Asignaturas**.
 
 ## Qué muestra
 
-Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesorado** (los correos del profesorado asignado, o "Sin profesorado asignado") y **Estado** (el estado de la guía docente de esa asignatura, con la misma leyenda de colores que en otras listas de guías). Última columna, sin título: el botón **Abrir**.
+Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesorado** (los correos del profesorado asignado, o "Sin profesorado asignado") y **Estado** (el estado de la guía docente de esa asignatura, con el mismo color que en otras listas de guías). Última columna, sin título: el botón **📂 Abrir**.
 
 ## Detalle de una asignatura de programa
 
-Al abrir una asignatura aparecen sus datos: Asignatura, Materia, Curso, Carácter, Idioma, ECTS, Semestre por defecto, Contenido, Requisitos previos y Estado. Debajo, el **Profesorado asignado** (de solo lectura -- asignar o quitar profesorado lo gestiona Admin, no esta pantalla), y las mismas cuatro secciones que en una materia: **Resultados de aprendizaje asociados**, **Metodologías docentes asociadas** y **Actividades formativas**, con el mismo mecanismo de asociar/quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados y metodologías que ya están en la materia y todavía no están en esta asignatura.
+Al abrir una asignatura, la pestaña **📘 Asignaturas** queda marcada y el título dice **📘 Asignaturas › nombre de la asignatura**; pulsar **Asignaturas** en ese título vuelve a la lista. A la derecha del título, **✏️ Editar**.
+
+Debajo, la ficha de la asignatura en dos columnas: **Materia** (un enlace a la pantalla de la materia) y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** e **Idioma**; **Estado** y **Código** (el de la asignatura en el catálogo institucional). Después, a ancho completo, el **Contenido** y los **Requisitos previos**.
+
+Más abajo, los **Resultados de aprendizaje asociados**, las **Metodologías docentes asociadas** y las **Actividades formativas**, con el mismo mecanismo de asociar y quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados y metodologías que ya están en la materia y todavía no están en esta asignatura. Al final, el **Profesorado asignado**, de solo lectura: asignar o quitar profesorado lo gestiona Admin, no esta pantalla.
 
 ## Editar una asignatura de programa
 
-1. Pulsar **Editar**.
-2. Cambiar los campos que hagan falta: Curso, Carácter e Idioma son obligatorios. El Semestre por defecto es editable solo si la asignatura todavía no tiene ninguna guía creada con ese semestre -- en caso contrario aparece bloqueado, con una nota explicándolo. Nombre, ECTS, Contenido y Requisitos previos son de edición libre.
-3. Pulsar **Guardar**.
+1. Pulsar **✏️ Editar**.
+2. Cambiar los campos que hagan falta. Los campos cortos van en una tabla de tres filas: **Nombre** y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** e **Idioma**. Curso, Carácter e Idioma son obligatorios. El Semestre por defecto es editable solo si la asignatura todavía no tiene ninguna guía creada -- en caso contrario aparece bloqueado, con una nota debajo. Debajo de la tabla, **Contenido** y **Requisitos previos**, de edición libre.
+3. Pulsar **Guardar**. En cuanto hay algún cambio, aparece también un **Guardar** arriba, con el aviso "Tienes cambios sin guardar", para no tener que bajar hasta el final del formulario.
+
+Para salir sin guardar, **Cancelar**, arriba a la derecha o al final del formulario. Si hay cambios sin guardar, pide confirmación antes de descartarlos.
 
 Dejar Requisitos previos vacío equivale a "No aplica" en la guía docente.
 

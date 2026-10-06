@@ -19,7 +19,7 @@ Pulsar **💾 Copias de seguridad** en el panel de administración. Para salir, 
 Una tabla con las columnas **Familia**, **Fecha**, **Tamaño**, **Esquema**, **Motivo**, **Salud** y **Restaurar**. Si todavía no hay ninguna copia registrada, la pantalla lo indica.
 
 - **Familia**: **Diario** (las automáticas), **Puntual** (las hechas a demanda) o **Previa a restaurar** (la que el sistema hace solo justo antes de cada restauración).
-- **Esquema**: la versión de esquema de la base de datos con la que se hizo la copia, o "—" si no se pudo leer. La versión de esquema vigente (y la de la aplicación) se ve también en la pantalla de entrada, junto al nombre CELDA: `v0.11.0 · esquema N`.
+- **Esquema**: la versión de esquema de la base de datos con la que se hizo la copia, o "—" si no se pudo leer. La versión de esquema vigente (y la de la aplicación) se ve también al pie de la pantalla de entrada: `Versión v0.11.8 · esquema 2`.
 - **Salud**: vacía hasta que se pulsa **🩺 Comprobar salud de las copias** (ver más abajo).
 
 Por defecto solo se listan las copias **restaurables**: las que existen en el volumen y tienen exactamente la misma versión de esquema que la base de datos actual. Encima de la tabla, la casilla **Mostrar todos (incluye no restaurables)** muestra el historial completo; no borra nada, es solo un filtro visual. Un texto indica cuántas se muestran ("Mostrando X de Y copias"); si ninguna es restaurable, la pantalla lo dice y sugiere activar la casilla.
