@@ -59,7 +59,7 @@ Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de 
 
 Igual que con la bibliografía: si la asignatura se imparte también en otro programa y esa guía ya está aprobada, la planificación docente completa puede copiarse directamente.
 
-1. Pulsar **Importar de asignatura hermana** (solo aparece si hay alguna guía de la que importar).
+1. Pulsar **📥 Importar de asignatura hermana**, a la derecha del título (solo aparece si hay alguna guía de la que importar).
 2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, la fecha en que se aprobó y cuántas sesiones tiene.
 3. Aparece un aviso: la importación reemplaza por completo la planificación actual de la guía, incluida cualquier sesión añadida a mano, y las sesiones importadas se renumeran de 1 en adelante. Si la guía de origen no tiene ninguna sesión, el aviso lo indica explícitamente.
 4. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
@@ -70,7 +70,7 @@ Como con la bibliografía, importar sustituye la planificación de inmediato -- 
 
 Alternativa a la importación de una asignatura hermana cuando la planificación ya existe como texto (un documento, un correo): se pega y pyCelda crea las sesiones.
 
-1. Pulsar **Importar desde texto**.
+1. Pulsar **📥 Importar desde texto**, a la derecha del título.
 2. Pegar en el cuadro de texto una sesión por línea, con el formato `CODIGO - Descripción`. El separador es el primer ` - ` (espacio, guion, espacio) de la línea; los ` - ` posteriores forman parte de la descripción.
 3. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
 
@@ -95,7 +95,7 @@ La pantalla avisa de que la importación reemplaza por completo la planificació
 
 ## Volver
 
-**Volver a la Guía**, arriba a la derecha, lleva de vuelta a la guía docente; **🏠 Inicio** vuelve a la lista de guías.
+Bajo la cabecera, el título de la pantalla es una miga: **nombre de la asignatura › Planificación docente**. Pulsar el nombre de la asignatura vuelve a la guía docente; **🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; el nombre completo se ve al pasar el ratón.
 
 ---
 

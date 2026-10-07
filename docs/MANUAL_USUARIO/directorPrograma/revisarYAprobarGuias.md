@@ -35,7 +35,7 @@ A continuación, la **barra de trabajo**, con el mismo fondo que la franja de pe
 
 Justo debajo de la barra, en una línea, el **Resumen de completitud**: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
 
-Después, el recuadro de la corrección excepcional (ver más abajo) y el contenido de la guía: temario, evaluación, bibliografía, planificación docente e información adicional. Editarlos es tarea del profesorado, salvo esa corrección excepcional.
+Después, si hay algo que guardar, el recuadro de la corrección excepcional (ver más abajo), y el contenido de la guía: temario, evaluación, bibliografía, planificación docente e información adicional. Editarlos es tarea del profesorado, salvo esa corrección excepcional.
 
 Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la pantalla muestra un aviso de confirmación con el estado anterior, el estado nuevo y el comentario registrado, y el botón **Volver a las Guías**. **❌ Rechazar** y **↩️ Revocar aprobación** llevan a un formulario aparte y, al confirmarlo, vuelven directamente a la lista de guías.
 
@@ -57,14 +57,14 @@ Pulsar **↩️ Revocar aprobación** en una guía **Aprobada** que necesita cor
 
 ## Corregir el contenido (excepcional)
 
-El director puede editar el **Contenido** de la guía y guardarlo con **💾 Guardar borrador**, que está en un recuadro propio, junto a la nota que explica sus consecuencias; según el cambio, la guía puede incluir también evaluación, bibliografía y planificación docente (la pantalla lo describe como "contenido, evaluación, bibliografía o planificación docente"). Es una corrección excepcional, no la vía normal de trabajo, y tiene consecuencias sobre el estado que conviene tener presentes:
+El director puede editar el **Contenido** de la guía y guardarlo con **💾 Guardar borrador**. En cuanto hay algo que guardar (el temario cambiado o elementos pendientes de evaluación, bibliografía o planificación), aparece un recuadro con el aviso "**Hay una corrección excepcional del director**: guardar esta edición la devuelve a borrador (si la guía está aprobada) o la rechaza (si está en revisión). El envío a revisión sigue siendo del profesorado." y el botón a su derecha; si se deshace el cambio, el recuadro desaparece; según el cambio, la guía puede incluir también evaluación, bibliografía y planificación docente (la pantalla lo describe como "contenido, evaluación, bibliografía o planificación docente"). Es una corrección excepcional, no la vía normal de trabajo, y tiene consecuencias sobre el estado que conviene tener presentes:
 
 - Guardar una edición sobre una guía **Aprobada** la devuelve a **Borrador**.
 - Guardar una edición sobre una guía **En revisión** la pasa a **Rechazada**.
 - Sobre una guía en **Borrador** o **Rechazada**, el estado no cambia.
 - Cada cambio queda en el historial con el director como autor, y el comentario "corrección directa del Director" en el cambio de estado.
 
-El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación**, en el campo "Texto de convocatorias" y con **💾 Guardar texto**. Debe contener el marcador `[TABLA]` exactamente una vez, y aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
+El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en el campo "Texto de convocatorias" y con **💾 Guardar texto**. Debe contener el marcador `[TABLA]` exactamente una vez, y aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
 
 El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usa los atajos de importar o generar contenido, que son del profesor. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
 

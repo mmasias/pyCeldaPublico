@@ -26,7 +26,7 @@ Más abajo, la tabla **Sistemas de evaluación de la materia**: el catálogo com
 
 ## Crear un instrumento
 
-1. Pulsar **Crear Instrumento**.
+1. Pulsar **➕ Crear Instrumento**, a la derecha del título.
 2. Elegir el **Sistema de evaluación** de la lista desplegable.
 3. Escribir una **Descripción** (por ejemplo, "Examen final" o "Trabajo en grupo").
 4. Escribir la **Ponderación**, el porcentaje que vale sobre el total. Tiene que ser mayor que cero.
@@ -36,8 +36,8 @@ Si la ponderación es cero o un número negativo, aparece el error "La ponderaci
 
 ## Editar un instrumento
 
-1. En la tabla, pulsar **📂 Abrir** en la fila del instrumento.
-2. Pulsar **✏️ Editar**.
+1. En la tabla, pulsar **📂 Abrir** en la fila del instrumento. El título pasa a ser **asignatura › Evaluación › instrumento**; **Evaluación** vuelve a la lista.
+2. Pulsar **✏️ Editar**, a la derecha del título.
 3. Cambiar lo necesario y pulsar **Guardar**.
 
 ## Eliminar un instrumento
@@ -63,7 +63,7 @@ Tras el texto editable, el documento oficial incluye siempre un párrafo fijo, *
 
 ## Volver
 
-**Volver a la Guía**, arriba a la derecha, lleva de vuelta a la guía docente; **🏠 Inicio** vuelve a la lista de guías.
+Bajo la cabecera, el título de la pantalla es una miga: **nombre de la asignatura › Evaluación**. Pulsar el nombre de la asignatura vuelve a la guía docente; **🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; el nombre completo se ve al pasar el ratón.
 
 ---
 
