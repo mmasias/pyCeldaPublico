@@ -18,7 +18,8 @@ Pulsar **🔍 Auditoría** en el panel de administración. Para salir, **Volver 
 
 Cada fila es un cambio en una guía. Los tipos de cambio (columna **Campo**) son:
 
-- **Estado**: cambios de estado de la guía (aprobar, rechazar, revocar, enviar a revisión, o la vuelta a **Borrador** por una corrección directa del director). Cuando el profesorado modifica una guía Aprobada, esta vuelve a revisión y queda registrado a nombre de **Admin**.
+- **Estado**: cambios de estado de la guía (aprobar, rechazar, revocar, enviar a revisión, o la vuelta a **Borrador** por una corrección directa del director). Cuando el profesor edita una guía Aprobada, la vuelta a **Borrador** queda a su nombre con el comentario "edición del Profesor sobre la guía aprobada". Cuando Admin cambia el profesorado de una asignatura con la guía Aprobada, esta vuelve a revisión y queda registrado a nombre de **Admin**.
+- **Corrección del Director**: el director corrigió una guía en **Borrador** o **Rechazada**, que no cambia de estado: el cambio figura con el mismo estado antes y después (`Borrador → Borrador` o `Rechazada → Rechazada`).
 - **Contenido**: edición del temario.
 - **Planificación docente**: crear, editar, duplicar o generar las sesiones.
 - **Ponderaciones de evaluación**: altas y bajas de ponderaciones.

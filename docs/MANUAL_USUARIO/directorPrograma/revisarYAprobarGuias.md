@@ -62,7 +62,7 @@ El director puede editar el **Contenido** de la guía y guardarlo con **💾 Gua
 - Guardar una edición sobre una guía **Aprobada** la devuelve a **Borrador**.
 - Guardar una edición sobre una guía **En revisión** la pasa a **Rechazada**.
 - Sobre una guía en **Borrador** o **Rechazada**, el estado no cambia.
-- Cada cambio queda en el historial con el director como autor, y el comentario "corrección directa del Director" en el cambio de estado.
+- La corrección queda en el historial a nombre del director, con el comentario "corrección directa del Director": en el cambio de estado o, si el estado no cambia, en una fila de corrección. En el listado de guías, **Última actualización** muestra Director.
 
 El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en el campo "Texto de convocatorias" y con **💾 Guardar texto**. Debe contener el marcador `[TABLA]` exactamente una vez, y aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
 
