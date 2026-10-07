@@ -22,6 +22,8 @@ Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha d
 
 Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, un aviso con el total de sesiones y el mínimo exigido, en rojo si todavía no se alcanza.
 
+Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador.
+
 ## Crear una sesión
 
 1. Pulsar **➕ Añadir fila**. Se añade una fila vacía al final de la tabla.
@@ -48,7 +50,7 @@ Pensado para sesiones consecutivas parecidas -- un tema que continúa, una prác
 
 ## Arrancar la planificación de golpe
 
-Si la guía todavía no tiene ninguna sesión creada, aparece el botón **Crear N sesiones genéricas** (N es el mínimo exigido para la asignatura). Es un atajo para no partir de una tabla completamente vacía.
+Si la guía todavía no tiene ninguna sesión creada, aparece el botón **Crear N sesiones genéricas** (N es el mínimo exigido para la asignatura), en la fila de la leyenda, a la derecha. Es un atajo para no partir de una tabla completamente vacía.
 
 1. Pulsar **Crear N sesiones genéricas**.
 2. El botón cambia a **Crear N sesiones genéricas (pulsa de nuevo para confirmar)**. Pulsarlo otra vez confirma la creación; **Cancelar** la descarta.
@@ -59,7 +61,7 @@ Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de 
 
 Igual que con la bibliografía: si la asignatura se imparte también en otro programa y esa guía ya está aprobada, la planificación docente completa puede copiarse directamente.
 
-1. Pulsar **📥 Importar de asignatura hermana**, a la derecha del título (solo aparece si hay alguna guía de la que importar).
+1. Pulsar **📥 Importar de asignatura hermana**, en la fila de la leyenda, a la derecha (solo aparece si hay alguna guía de la que importar).
 2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, la fecha en que se aprobó y cuántas sesiones tiene.
 3. Aparece un aviso: la importación reemplaza por completo la planificación actual de la guía, incluida cualquier sesión añadida a mano, y las sesiones importadas se renumeran de 1 en adelante. Si la guía de origen no tiene ninguna sesión, el aviso lo indica explícitamente.
 4. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
@@ -70,7 +72,7 @@ Como con la bibliografía, importar sustituye la planificación de inmediato -- 
 
 Alternativa a la importación de una asignatura hermana cuando la planificación ya existe como texto (un documento, un correo): se pega y pyCelda crea las sesiones.
 
-1. Pulsar **📥 Importar desde texto**, a la derecha del título.
+1. Pulsar **📥 Importar desde texto**, en la fila de la leyenda, a la derecha.
 2. Pegar en el cuadro de texto una sesión por línea, con el formato `CODIGO - Descripción`. El separador es el primer ` - ` (espacio, guion, espacio) de la línea; los ` - ` posteriores forman parte de la descripción.
 3. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
 

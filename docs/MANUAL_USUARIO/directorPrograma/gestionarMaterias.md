@@ -50,7 +50,7 @@ Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**,
 
 Tabla de solo lectura con **Actividad formativa** y **Horas**. Pulsar **Editar reparto** abre un formulario con un campo de horas por actividad; **Guardar** confirma los nuevos valores.
 
-Si las horas de la materia no coinciden con la suma de las horas de sus asignaturas, aparece debajo una tabla adicional señalando la discrepancia por actividad -- es solo informativa, no impide guardar.
+Debajo, la tabla **Estado de las actividades formativas** compara, por actividad, las horas de la materia con la suma de las de sus asignaturas: **OK** si cuadran o **Discrepancia** con la diferencia. Es solo informativa: no impide guardar.
 
 ---
 

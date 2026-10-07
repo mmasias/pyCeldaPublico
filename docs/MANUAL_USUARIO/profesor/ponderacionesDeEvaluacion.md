@@ -22,6 +22,8 @@ Desde la guía, pulsar **🔧 Gestionar evaluación**, a la derecha del título 
 
 Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, **Ponderación** y **Vinculada** (Sí o No -- ver más abajo). Debajo, el total asignado sobre 100%, en rojo si no cuadra.
 
+Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
+
 Más abajo, la tabla **Sistemas de evaluación de la materia**: el catálogo completo de tipos de evaluación de la asignatura, con su porcentaje mínimo y máximo permitido, y cuánto hay asignado a cada uno. Si un sistema está fuera de su rango permitido, o en 0% siendo obligatorio, aparece marcado en rojo.
 
 ## Crear un instrumento
@@ -32,7 +34,7 @@ Más abajo, la tabla **Sistemas de evaluación de la materia**: el catálogo com
 4. Escribir la **Ponderación**, el porcentaje que vale sobre el total. Tiene que ser mayor que cero.
 5. Pulsar **Guardar**.
 
-Si la ponderación es cero o un número negativo, aparece el error "La ponderación de un instrumento debe ser mayor que cero" y no se crea nada.
+Si la ponderación es cero o un número negativo, aparece el error "La ponderación de un instrumento debe ser mayor que cero" y no se crea nada. Si supera el máximo del sistema elegido (la lista lo indica como "máx. N%"), aparece "La ponderación supera el máximo del sistema de evaluación".
 
 ## Editar un instrumento
 
@@ -59,7 +61,7 @@ Al final de la pantalla, la sección **Texto de convocatorias** contiene el text
 
 - El texto debe contener el marcador `[TABLA]` **exactamente una vez**: en ese punto se inserta la tabla de instrumentos de evaluación al generar el documento. Si el marcador falta o aparece más de una vez, la pantalla avisa ("El texto debe contener [TABLA] exactamente una vez (ahora: N)") y **💾 Guardar texto** queda desactivado.
 - Tres botones cargan una plantilla de partida, que **sustituye** el texto del cuadro: **Plantilla: Asignatura normal**, **Plantilla: Prácticas externas** y **Plantilla: Prácticas de laboratorio**. Los cambios no se guardan hasta pulsar **💾 Guardar texto**; mientras hay cambios sin guardar aparece "(cambios sin guardar)", y al guardar, "Texto guardado.".
-- Este guardado es independiente de **💾 Guardar borrador**: se confirma en el momento. Si la guía estaba **Aprobada**, vuelve a **Borrador**.
+- Este guardado es independiente de **💾 Guardar borrador**: se confirma en el momento. Si la guía estaba **Aprobada**, vuelve a **Borrador**. Salir de la pantalla con el texto sin guardar no avisa y descarta el cambio.
 
 Tras el texto editable, el documento oficial incluye siempre un párrafo fijo, **Régimen de uso de inteligencia artificial en las actividades de evaluación**, que remite al Protocolo de Medidas para Garantizar la Calidad y la Integridad Académicas de UNEATLANTICO. Ese párrafo no es editable y aparece en toda guía.
 

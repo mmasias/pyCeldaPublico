@@ -18,7 +18,7 @@ Desde la franja del programa, pulsar **📄 Guías**.
 
 A la derecha del título **📄 Guías**, el selector **Curso académico**: al entrar muestra el curso vigente (marcado "(vigente)" en la lista), y permite consultar las guías de otros cursos.
 
-Debajo, una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Última columna, sin título: el botón **📂 Abrir**.
+Debajo, una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Bajo el nombre de cada asignatura aparecen, en pequeño, su curso y semestre (por ejemplo, "(II-s1)"). Última columna, sin título: el botón **📂 Abrir**.
 
 La misma tabla, para el curso vigente, aparece también en la pestaña **📋 Vista general**.
 
@@ -64,9 +64,17 @@ El director puede editar el **Contenido** de la guía y guardarlo con **💾 Gua
 - Sobre una guía en **Borrador** o **Rechazada**, el estado no cambia.
 - La corrección queda en el historial a nombre del director, con el comentario "corrección directa del Director": en el cambio de estado o, si el estado no cambia, en una fila de corrección. En el listado de guías, **Última actualización** muestra Director.
 
+Si se ha cambiado el temario sin guardar, salir de la guía por la franja del programa, por **📄 Guías** en el título o por los accesos de arriba pide confirmación: "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?". Los botones **✏️ Editar semestre**, **❌ Rechazar** y **↩️ Revocar aprobación** no la piden y descartan el cambio.
+
+### Evaluación, bibliografía y planificación
+
+Desde **🔧 Gestionar evaluación**, **🔧 Gestionar bibliografía** y **🔧 Gestionar planificación docente**, el director usa las mismas pantallas que el profesorado (ver el [manual de Profesor](../profesor/README.md)), con la franja del programa y el título en forma de miga: **📄 Guías › asignatura › Evaluación** (o Bibliografía, o Planificación docente). Pulsar **📄 Guías** vuelve a la lista y pulsar la asignatura vuelve a la guía; un nombre largo aparece recortado y se ve completo al pasar el ratón. Desde ellas puede crear, editar y eliminar instrumentos de evaluación, referencias y sesiones, y duplicar sesiones.
+
+A diferencia del temario, aquí el estado cambia en el momento, sin esperar a **💾 Guardar borrador**: crear un elemento o editar uno que ya forma parte de la guía devuelve a **Borrador** una guía **Aprobada** y pasa a **Rechazada** una **En revisión**. Lo creado queda como **Vinculada: No** hasta pulsar **💾 Guardar borrador** en el recuadro de la guía, y lo eliminado no se hace definitivo hasta entonces. Un aviso en ámbar bajo el título, y en los formularios de editar, recuerda la consecuencia: "⚠️ Esta guía está en revisión: si guardas un cambio como corrección del director, quedará rechazada." (o, si está aprobada, que volverá a borrador). Si el director también imparte esa asignatura, sus cambios cuentan como del profesor: una guía en revisión no se rechaza y ese aviso no aparece.
+
 El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en el campo "Texto de convocatorias" y con **💾 Guardar texto**. Debe contener el marcador `[TABLA]` exactamente una vez, y aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
 
-El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usa los atajos de importar o generar contenido, que son del profesor. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
+El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
 
 ## Editar el semestre
 

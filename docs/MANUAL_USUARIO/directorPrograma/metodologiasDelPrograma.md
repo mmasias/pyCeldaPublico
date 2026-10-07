@@ -26,7 +26,9 @@ La sección **🧩 Metodologías docentes** con una tabla de **Código** y **Des
 
 ## Desasociar una metodología docente
 
-Pulsar **➖** (Quitar) en la fila y confirmar en la pantalla siguiente con **➖ Confirmar desasociación**. La metodología sigue existiendo en el catálogo institucional; solo deja de estar asociada al programa.
+Pulsar **➖** (Quitar) en la fila y confirmar en la pantalla siguiente con **➖ Confirmar desasociación**. La metodología sigue existiendo en el catálogo institucional; solo deja de estar asociada al programa. Para salir sin desasociar, **Cancelar**.
+
+Si alguna materia del programa tiene asociada esa metodología, la desasociación queda bloqueada: la pantalla indica "No se puede desasociar. En uso en:" con las materias afectadas, y la única salida es **Volver**. Hay que quitarla antes de esas materias.
 
 ---
 

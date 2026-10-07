@@ -12,7 +12,7 @@ pyCelda gestiona la guía docente de las asignaturas: temario, evaluación, bibl
 - Crear, editar y eliminar las sesiones de la planificación docente (el cronograma de clases), arrancarla de golpe con una plantilla genérica, o importarla de una guía hermana o desde texto.
 - Enviar la guía a revisión, previsualizar el documento oficial y descargar el PDF una vez aprobada.
 
-Todas las pantallas del modo académico (Profesor y Director) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Arriba a la derecha de cada pantalla están siempre los mismos accesos: **🏠 Inicio**, **🪪 Mi perfil** y **🚪 Cerrar sesión** (y **🎓 Mis programas** si la cuenta dirige algún programa).
+Todas las pantallas del modo académico (Profesor y Director) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Arriba a la derecha de cada pantalla están siempre los mismos accesos: **🏠 Inicio**, **🎓 Mis programas** (si la cuenta dirige algún programa), **🪪 Mi perfil** y, separado, **🚪 Cerrar sesión**.
 
 Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).
 

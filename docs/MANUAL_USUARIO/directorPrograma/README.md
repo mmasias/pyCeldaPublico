@@ -9,7 +9,7 @@ pyCelda gestiona el catálogo académico del programa (materias, asignaturas, re
 - Editar las asignaturas de programa: datos propios y requisitos previos, asociaciones de metodologías docentes y resultados de aprendizaje, reparto de actividades formativas.
 - Gestionar el catálogo de resultados de aprendizaje del programa: crear, editar y eliminar.
 - Gestionar las metodologías docentes del programa: asociar y desasociar las del catálogo institucional.
-- Revisar las guías docentes del programa: aprobar, rechazar, escalar directamente a aprobada, revocar una aprobación y editar el semestre; y, como corrección excepcional, editar el contenido de una guía.
+- Revisar las guías docentes del programa: aprobar, rechazar, escalar directamente a aprobada, revocar una aprobación y editar el semestre; y, como corrección excepcional, editar una guía: temario, instrumentos de evaluación, texto de convocatorias, bibliografía y planificación docente.
 
 Todas las pantallas del modo académico (Director y Profesor) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Dentro de un programa, una franja de pestañas (**📋 Vista general**, **📚 Materias**, **🎯 Resultados de aprendizaje**, **🧩 Metodologías**, **📘 Asignaturas** y **📄 Guías**) marca siempre en qué sección se está; el capítulo [Entrar y ver los programas](entrarYVerLosProgramas.md) explica cómo moverse.
 
