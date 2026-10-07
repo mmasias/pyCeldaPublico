@@ -36,7 +36,7 @@ La descripción de cada sesión admite un máximo de **500 caracteres**. Si se s
 
 ## Editar o eliminar una sesión
 
-Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda, cuando dice "pulsa de nuevo para confirmar") para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
+Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Si la sesión ya formaba parte de la guía y la guía estaba **Aprobada**, la guía vuelve a **Borrador**; lo mismo ocurre al **📑 Duplicar** una sesión que tenga otras detrás, porque se renumeran. Salir de una celda sin haber cambiado nada no cuenta como cambio. Pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda, cuando dice "pulsa de nuevo para confirmar") para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
 
 Si un guardado falla (por ejemplo, por un corte de red), aparece un mensaje de error con el botón **Reintentar**; lo escrito no se pierde.
 

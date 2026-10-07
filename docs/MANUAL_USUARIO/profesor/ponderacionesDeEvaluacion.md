@@ -40,6 +40,8 @@ Si la ponderación es cero o un número negativo, aparece el error "La ponderaci
 2. Pulsar **✏️ Editar**, a la derecha del título.
 3. Cambiar lo necesario y pulsar **Guardar**.
 
+Editar un instrumento que ya forma parte de la guía se guarda en el acto, sin pasar por **💾 Guardar borrador**. Si la guía estaba **Aprobada**, vuelve a **Borrador** (como con cualquier otro cambio en una guía aprobada) y habrá que enviarla de nuevo a revisión; el cambio queda en el historial.
+
 ## Eliminar un instrumento
 
 1. En la tabla, pulsar la papelera **🗑️** (Eliminar) en la fila del instrumento.
@@ -49,7 +51,7 @@ Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado
 
 ## Qué significa "Vinculada"
 
-Un instrumento recién creado o editado aparece como **Vinculada: No** hasta confirmar los cambios con **💾 Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar: el borrador pendiente de guardar es lo que deja esos cambios sin confirmar.
+Un instrumento **recién creado** aparece como **Vinculada: No** hasta confirmarlo con **💾 Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar. Editar un instrumento que ya estaba en **Sí** no lo devuelve a "No": el cambio se guarda en el acto (ver "Editar un instrumento").
 
 ## Texto de convocatorias
 
@@ -57,7 +59,7 @@ Al final de la pantalla, la sección **Texto de convocatorias** contiene el text
 
 - El texto debe contener el marcador `[TABLA]` **exactamente una vez**: en ese punto se inserta la tabla de instrumentos de evaluación al generar el documento. Si el marcador falta o aparece más de una vez, la pantalla avisa ("El texto debe contener [TABLA] exactamente una vez (ahora: N)") y **💾 Guardar texto** queda desactivado.
 - Tres botones cargan una plantilla de partida, que **sustituye** el texto del cuadro: **Plantilla: Asignatura normal**, **Plantilla: Prácticas externas** y **Plantilla: Prácticas de laboratorio**. Los cambios no se guardan hasta pulsar **💾 Guardar texto**; mientras hay cambios sin guardar aparece "(cambios sin guardar)", y al guardar, "Texto guardado.".
-- Este guardado es independiente de **💾 Guardar borrador**: se confirma en el momento.
+- Este guardado es independiente de **💾 Guardar borrador**: se confirma en el momento. Si la guía estaba **Aprobada**, vuelve a **Borrador**.
 
 Tras el texto editable, el documento oficial incluye siempre un párrafo fijo, **Régimen de uso de inteligencia artificial en las actividades de evaluación**, que remite al Protocolo de Medidas para Garantizar la Calidad y la Integridad Académicas de UNEATLANTICO. Ese párrafo no es editable y aparece en toda guía.
 

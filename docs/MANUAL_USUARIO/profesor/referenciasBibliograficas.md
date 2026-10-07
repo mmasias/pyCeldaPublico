@@ -29,7 +29,7 @@ Si la referencia supera los 500 caracteres se rechaza con el mensaje "La referen
 
 ## Editar o eliminar una referencia
 
-Igual que con los instrumentos de evaluación: pulsar **📂 Abrir** y luego **✏️ Editar** para cambiarla, o pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía.
+Igual que con los instrumentos de evaluación: pulsar **📂 Abrir** y luego **✏️ Editar** para cambiarla, o pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía. Como con los instrumentos, editar una referencia que ya forma parte de la guía se guarda en el acto y, si la guía estaba **Aprobada**, la devuelve a **Borrador**.
 
 ## Importar de una asignatura hermana
 
