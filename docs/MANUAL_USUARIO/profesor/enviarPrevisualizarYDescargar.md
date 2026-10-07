@@ -18,13 +18,13 @@ Antes del envío se comprueban tres cosas -- si alguna falla, aparece un aviso e
 
 ## Previsualizar el documento oficial
 
-En cualquier momento, aunque la guía no esté todavía aprobada, **👁️ Previsualizar** muestra el documento tal y como se generaría oficialmente, en una pestaña nueva del navegador. Si la guía todavía no está en estado **Aprobada**, el documento lleva un aviso indicando que es un borrador, no la versión oficial.
+Mientras la guía no está **Aprobada**, **👁️ Previsualizar** muestra el documento tal y como se generaría oficialmente, en una pestaña nueva del navegador, cruzado en diagonal por la marca "BORRADOR - NO OFICIAL" y con un aviso arriba que indica el estado de la guía: es un borrador, no la versión oficial. Con la guía aprobada este botón no aparece: su lugar lo ocupa **⬇️ Descargar PDF**.
 
 ## Descargar el PDF
 
-El botón **⬇️ Descargar PDF** solo aparece una vez que la guía se ha aprobado por primera vez. Al pulsarlo, el navegador descarga el archivo con el nombre `guia-<número>.pdf`.
+El botón **⬇️ Descargar PDF** solo aparece mientras la guía está **Aprobada**. Al pulsarlo, el navegador descarga el documento oficial con el nombre `guia-<número>.pdf`.
 
-El PDF descargable corresponde a la última vez que la guía estuvo aprobada. Si después de esa aprobación la guía sigue editándose y vuelve a **Borrador** o pasa de nuevo por revisión, el botón de descarga sigue disponible con el PDF anterior, hasta la siguiente aprobación y su nueva generación.
+El PDF se genera en el momento a partir de la guía. pyCelda no guarda una copia de cada versión aprobada: si la guía vuelve a **Borrador** para editarla, el botón desaparece hasta la siguiente aprobación. Conviene descargar el PDF mientras la guía está aprobada si se necesita conservar esa versión.
 
 ## Volver
 

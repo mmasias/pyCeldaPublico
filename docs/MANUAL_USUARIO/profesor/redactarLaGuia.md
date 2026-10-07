@@ -20,7 +20,7 @@ Arriba, el título **Guía docente** y, debajo de la línea, el nombre de la asi
 
 Si la guía está **Aprobada**, bajo la ficha aparece un aviso en ámbar: "⚠️ Esta guía está aprobada: si guardas un cambio, volverá a borrador y habrá que enviarla de nuevo a revisión."
 
-Debajo de la ficha, los botones de trabajo: **💾 Guardar borrador**, **📤 Enviar a revisión**, **👁️ Previsualizar** y, si la guía se aprobó alguna vez, **⬇️ Descargar PDF** (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
+Debajo de la ficha, los botones de trabajo: **💾 Guardar borrador**, **📤 Enviar a revisión**, **👁️ Previsualizar** o, si la guía está aprobada, **⬇️ Descargar PDF** en su lugar (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
 
 Después, en este orden:
 
@@ -50,7 +50,7 @@ La importación sustituye el temario de inmediato y queda guardada: no hace falt
 
 - **Borrador**: la guía está en preparación. El contenido, la evaluación, la bibliografía y la planificación docente son editables libremente.
 - **En revisión**: la guía se ha enviado y está pendiente de que el director de programa la revise. Sigue siendo editable mientras tanto.
-- **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede previsualizar y descargar en PDF. El contenido sigue siendo editable, pero en cuanto se guarda cualquier cambio la guía vuelve automáticamente a **Borrador**: con **💾 Guardar borrador**, al editar un instrumento, una referencia o una sesión que ya forman parte de la guía, con **📑 Duplicar** una sesión, con **💾 Guardar texto** de convocatorias o con una importación. Una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar. El aviso en ámbar lo recuerda en la guía y en sus pantallas de gestión.
+- **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede descargar en PDF. El contenido sigue siendo editable, pero en cuanto se guarda cualquier cambio la guía vuelve automáticamente a **Borrador**: con **💾 Guardar borrador**, al editar un instrumento, una referencia o una sesión que ya forman parte de la guía, con **📑 Duplicar** una sesión, con **💾 Guardar texto** de convocatorias o con una importación. Una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar. El aviso en ámbar lo recuerda en la guía y en sus pantallas de gestión.
 - **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva bajo el estado, en la tabla de **Inicio** (dentro de la guía no se muestra). Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
 Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque Admin ha cambiado el profesorado asignado a esa asignatura estando la guía ya aprobada -- es automático, no un error.

@@ -8,7 +8,7 @@
 
 ## Qué es
 
-El ciclo de decisión sobre las guías docentes que redacta el profesorado del programa: aprobar, rechazar, escalar directamente a aprobada, revocar una aprobación ya concedida y ajustar el semestre. La redacción del contenido, la evaluación, la bibliografía y la planificación docente es tarea del profesorado -- se explica en el [manual de Profesor](../profesor/README.md), no aquí.
+El ciclo de decisión sobre las guías docentes que redacta el profesorado del programa: aprobar, rechazar, escalar directamente a aprobada, y revocar una aprobación ya concedida. La redacción del contenido, la evaluación, la bibliografía y la planificación docente es tarea del profesorado -- se explica en el [manual de Profesor](../profesor/README.md), no aquí.
 
 ## Cómo llegar
 
@@ -31,17 +31,17 @@ A continuación, la **barra de trabajo**, con el mismo fondo que la franja de pe
 - **En revisión**: **✅ Aprobar** o **❌ Rechazar**.
 - **Borrador** o **Rechazada**: **⏫ Escalar a aprobada**.
 - **Aprobada**: **↩️ Revocar aprobación**.
-- En cualquier estado: **✏️ Editar semestre**, **👁️ Previsualizar** y **⬇️ Descargar PDF** (si la guía ya se generó en PDF alguna vez).
+- En cualquier estado, para ver el documento: **👁️ Previsualizar**, o **⬇️ Descargar PDF** si la guía está aprobada.
 
 Justo debajo de la barra, en una línea, el **Resumen de completitud**: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
 
 Después, si hay algo que guardar, el recuadro de la corrección excepcional (ver más abajo), y el contenido de la guía: temario, evaluación, bibliografía, planificación docente e información adicional. Editarlos es tarea del profesorado, salvo esa corrección excepcional.
 
-Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la pantalla muestra un aviso de confirmación con el estado anterior, el estado nuevo y el comentario registrado, y el botón **Volver a las Guías**. **❌ Rechazar** y **↩️ Revocar aprobación** llevan a un formulario aparte y, al confirmarlo, vuelven directamente a la lista de guías.
+Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la pantalla muestra un aviso de confirmación con el estado anterior, el estado nuevo y el comentario registrado, y el botón **Volver a las Guías**. **❌ Rechazar** y **↩️ Revocar aprobación** llevan a un formulario aparte y, al confirmarlo, vuelven directamente a la lista de guías. Esos formularios no tienen la franja ni los accesos: se sale con el botón de confirmar o con **Cancelar** (arriba a la derecha y junto al de confirmar), que vuelve a la guía sin cambiar nada; si ya se ha escrito un comentario, pregunta antes "Tienes cambios sin guardar. ¿Salir sin guardarlos?".
 
 ## Aprobar
 
-Pulsar **✅ Aprobar** en una guía **En revisión**. La guía pasa a **Aprobada** sin necesidad de comentario -- el documento oficial queda disponible para previsualizar y descargar en PDF.
+Pulsar **✅ Aprobar** en una guía **En revisión**. La guía pasa a **Aprobada** sin necesidad de comentario -- el documento oficial queda disponible para descargar en PDF.
 
 ## Rechazar
 
@@ -64,7 +64,7 @@ El director puede editar el **Contenido** de la guía y guardarlo con **💾 Gua
 - Sobre una guía en **Borrador** o **Rechazada**, el estado no cambia.
 - La corrección queda en el historial a nombre del director, con el comentario "corrección directa del Director": en el cambio de estado o, si el estado no cambia, en una fila de corrección. En el listado de guías, **Última actualización** muestra Director.
 
-Si se ha cambiado el temario sin guardar, salir de la guía por la franja del programa, por **📄 Guías** en el título o por los accesos de arriba pide confirmación: "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?". Los botones **✏️ Editar semestre**, **❌ Rechazar** y **↩️ Revocar aprobación** no la piden y descartan el cambio.
+Si se ha cambiado el temario sin guardar, salir de la guía por la franja del programa, por **📄 Guías** en el título, por los accesos de arriba o con **❌ Rechazar** o **↩️ Revocar aprobación** pide confirmación: "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?".
 
 ### Evaluación, bibliografía y planificación
 
@@ -74,11 +74,7 @@ A diferencia del temario, aquí el estado cambia en el momento, sin esperar a **
 
 El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en el campo "Texto de convocatorias" y con **💾 Guardar texto**. Debe contener el marcador `[TABLA]` exactamente una vez, y aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
 
-El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
-
-## Editar el semestre
-
-Pulsar **✏️ Editar semestre**, cambiar el número y pulsar **Guardar**. Disponible en cualquier estado de la guía.
+El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor: en sus pantallas no aparecen esos botones. Si el director también imparte la asignatura, en la planificación y la bibliografía sí los tiene, como profesor; para importar el temario de una guía hermana tiene que entrar en la guía como profesor, desde su **Inicio**. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
 
 ---
 
