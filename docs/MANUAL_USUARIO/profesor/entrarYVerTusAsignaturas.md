@@ -43,10 +43,10 @@ Arriba a la derecha de cada pantalla están siempre los mismos accesos, en este 
 - **🏠 Inicio**: vuelve a esta pantalla desde cualquier sitio.
 - **🎓 Mis programas**: solo si la cuenta dirige algún programa.
 - **🪪 Mi perfil**: el perfil académico del curso.
-- Debajo, en algunos formularios, su salida propia (por ejemplo, **Volver a las Ponderaciones**). Las pantallas de evaluación, bibliografía y planificación no tienen botón de volver: su título es una miga (**asignatura › Evaluación**) y pulsar el nombre de la asignatura vuelve a la guía.
+- Debajo, en algunos formularios, su salida propia (por ejemplo, **Volver a las ponderaciones**). Las pantallas de evaluación, bibliografía y planificación no tienen botón de volver: su título es una miga (**asignatura › Evaluación**) y pulsar el nombre de la asignatura vuelve a la guía.
 - Al final, algo separado para no pulsarlo por error, **🚪 Cerrar sesión**.
 
-No aparece el acceso de la pantalla en la que ya se está. En los formularios de crear o editar no hay accesos: se sale con **Guardar** o con su salida propia (**Cancelar**, o **Volver a las Ponderaciones** y **Volver a las Referencias bibliográficas** en los de evaluación y bibliografía).
+No aparece el acceso de la pantalla en la que ya se está. En los formularios de crear o editar no hay accesos: se sale con **Guardar** o con su salida propia (**Cancelar**, o **Volver a las ponderaciones** y **Volver a las referencias bibliográficas** en los de evaluación y bibliografía).
 
 ---
 

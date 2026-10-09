@@ -33,11 +33,11 @@ A continuación, la **barra de trabajo**, con el mismo fondo que la franja de pe
 - **Aprobada**: **↩️ Revocar aprobación**.
 - En cualquier estado, para ver el documento: **👁️ Previsualizar**, o **⬇️ Descargar PDF** si la guía está aprobada.
 
-Justo debajo de la barra, en una línea, el **Resumen de completitud**: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
+Justo debajo de la barra, el **Resumen de completitud**, con el rótulo a la izquierda y un criterio por línea a su derecha: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
 
 Después, si hay algo que guardar, el recuadro de la corrección excepcional (ver más abajo), y el contenido de la guía: temario, evaluación, bibliografía, planificación docente e información adicional. Editarlos es tarea del profesorado, salvo esa corrección excepcional.
 
-Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la pantalla muestra un aviso de confirmación con el estado anterior, el estado nuevo y el comentario registrado, y el botón **Volver a las Guías**. **❌ Rechazar** y **↩️ Revocar aprobación** llevan a un formulario aparte y, al confirmarlo, vuelven directamente a la lista de guías. Esos formularios no tienen la franja ni los accesos: se sale con el botón de confirmar o con **Cancelar** (arriba a la derecha y junto al de confirmar), que vuelve a la guía sin cambiar nada; si ya se ha escrito un comentario, pregunta antes "Tienes cambios sin guardar. ¿Salir sin guardarlos?".
+Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la pantalla muestra un aviso de confirmación con el estado anterior, el estado nuevo y el comentario registrado, y el botón **Volver a las guías**. **❌ Rechazar** y **↩️ Revocar aprobación** llevan a un formulario aparte y, al confirmarlo, vuelven directamente a la lista de guías. Esos formularios no tienen la franja ni los accesos: se sale con el botón de confirmar o con **Cancelar** (arriba a la derecha y junto al de confirmar), que vuelve a la guía sin cambiar nada; si ya se ha escrito un comentario, pregunta antes "Tienes cambios sin guardar. ¿Salir sin guardarlos?".
 
 ## Aprobar
 
@@ -57,7 +57,7 @@ Pulsar **↩️ Revocar aprobación** en una guía **Aprobada** que necesita cor
 
 ## Corregir el contenido (excepcional)
 
-El director puede editar el **Contenido** de la guía y guardarlo con **💾 Guardar borrador**. En cuanto hay algo que guardar (el temario cambiado o elementos pendientes de evaluación, bibliografía o planificación), aparece un recuadro con el aviso "**Hay una corrección excepcional del director**: guardar esta edición la devuelve a borrador (si la guía está aprobada) o la rechaza (si está en revisión). El envío a revisión sigue siendo del profesorado." y el botón a su derecha; si se deshace el cambio, el recuadro desaparece; según el cambio, la guía puede incluir también evaluación, bibliografía y planificación docente (la pantalla lo describe como "contenido, evaluación, bibliografía o planificación docente"). Es una corrección excepcional, no la vía normal de trabajo, y tiene consecuencias sobre el estado que conviene tener presentes:
+El director puede editar el **Contenido** de la guía y guardarlo con **💾 Guardar borrador**. En cuanto hay algo que guardar (el temario cambiado, elementos pendientes de evaluación, bibliografía o planificación, o elementos eliminados en esas pantallas), aparece un recuadro con el aviso "⚠️ **Hay una corrección excepcional del director**: guardar esta edición la devuelve a borrador (si la guía está aprobada) o la rechaza (si está en revisión). El envío a revisión sigue siendo del profesorado." y el botón a su derecha; si se deshace el cambio, el recuadro desaparece; según el cambio, la guía puede incluir también evaluación, bibliografía y planificación docente (la pantalla lo describe como "contenido, evaluación, bibliografía o planificación docente"). Es una corrección excepcional, no la vía normal de trabajo, y tiene consecuencias sobre el estado que conviene tener presentes:
 
 - Guardar una edición sobre una guía **Aprobada** la devuelve a **Borrador**.
 - Guardar una edición sobre una guía **En revisión** la pasa a **Rechazada**.

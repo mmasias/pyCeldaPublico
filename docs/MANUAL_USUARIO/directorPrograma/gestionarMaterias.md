@@ -28,7 +28,7 @@ Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz espec
 
 ### Asociar una metodología docente
 
-1. Pulsar **➕ Asociar Metodología Docente**.
+1. Pulsar **➕ Asociar metodología docente**.
 2. Elegir la metodología de la lista desplegable -- solo aparecen las que la materia todavía no tiene.
 3. Pulsar **Asociar**.
 
@@ -44,7 +44,7 @@ Pulsar **➖** (Quitar) en la fila de la metodología. Si ninguna asignatura de 
 
 ## Resultados de aprendizaje
 
-Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado) y el botón **➖** (Quitar) de cada fila; **➕ Asociar Resultado de Aprendizaje** para añadir uno de los disponibles. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
+Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado) y el botón **➖** (Quitar) de cada fila; **➕ Asociar resultado de aprendizaje** para añadir uno de los disponibles. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
 
 ## Actividades formativas de la materia
 

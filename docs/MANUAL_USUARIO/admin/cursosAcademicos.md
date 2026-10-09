@@ -12,7 +12,7 @@ La pantalla donde se gestionan los cursos académicos de cada universidad: ver l
 
 ## Cómo llegar
 
-Pulsar **🗓️ Cursos académicos** en el panel de administración. Para salir, **Volver al Panel de Administración**.
+Pulsar **🗓️ Cursos académicos** en el panel de administración. Para volver al panel, **⚙️ Panel**, arriba a la derecha.
 
 ## Qué muestra
 
@@ -27,7 +27,7 @@ Si se acaba de activar un curso, sobre la tabla aparece un mensaje de confirmaci
 
 ## Crear un curso académico
 
-1. Pulsar **➕ Crear Curso Académico**.
+1. Pulsar **➕ Crear curso académico**.
 2. Elegir la **Universidad (\*)** (viene preseleccionada si solo hay una) e indicar **Inicio (\*)** y **Fin (\*)**, ambas fechas obligatorias.
 3. Pulsar **Crear** (o **Cancelar**).
 
@@ -35,13 +35,13 @@ El curso nace **Inactivo** y sin semestre activo: la propia pantalla lo recuerda
 
 ## Abrir un curso
 
-**📂 Abrir** muestra el detalle del curso: **Inicio**, **Fin**, **Estado** y **Semestre activo**, con los botones **✏️ Editar** y **Activar semestre**. Volver con **Volver a los Cursos académicos**.
+**📂 Abrir** muestra el detalle del curso: **Inicio**, **Fin**, **Estado** y **Semestre activo**, con los botones **✏️ Editar** y **Activar semestre** a la derecha del título. El título es una miga, **🗓️ Cursos académicos › curso**: pulsar **Cursos académicos** vuelve a la lista.
 
 ## Editar un curso
 
 Desde el detalle, **✏️ Editar** permite corregir **Inicio (\*)** y **Fin (\*)** y se confirma con **Guardar** (o **Cancelar**).
 
-La edición queda **bloqueada en cuanto el curso tiene guías asociadas**: la pantalla muestra **NO SE PUEDE EDITAR** ("Este curso académico tiene Guías asociadas. Los datos de inicio/fin quedan fijos una vez el curso tiene actividad"). El botón **✏️ Editar** sigue visible; el bloqueo se comprueba al entrar en la pantalla. Un curso recién creado, sin guías, sí se puede corregir.
+La edición queda **bloqueada en cuanto el curso tiene guías asociadas**: la pantalla muestra **⛔ No se puede editar** ("Este curso académico tiene Guías asociadas. Los datos de inicio/fin quedan fijos una vez el curso tiene actividad"). El botón **✏️ Editar** sigue visible; el bloqueo se comprueba al entrar en la pantalla. Un curso recién creado, sin guías, sí se puede corregir.
 
 ## Activar un curso
 
@@ -52,7 +52,7 @@ El botón **Activar** solo aparece en las filas elegibles. Es elegible:
 
 Cualquier otro curso, y el que ya está Activo, no muestra el botón.
 
-Al pulsar **Activar**, la pantalla muestra el curso y avisa: **Esta acción no se puede deshacer.** Se confirma con **Confirmar activación** (o **Cancelar**). Si entretanto el curso dejó de ser elegible, aparece **NO SE PUEDE ACTIVAR** con el motivo.
+Al pulsar **Activar**, la pantalla muestra el curso y avisa: **Esta acción no se puede deshacer.** Se confirma con **Confirmar activación** (o **Cancelar**). Si entretanto el curso dejó de ser elegible, aparece **⛔ No se puede activar** con el motivo.
 
 ### Qué implica para las guías
 

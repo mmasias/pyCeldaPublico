@@ -12,15 +12,15 @@ Cada materia agrupa una o más asignaturas de un programa. Desde Admin se crea l
 
 ## Cómo llegar
 
-Pulsar **Ver Materias** en el detalle de un programa.
+Pulsar la pestaña **📚 Materias** del programa.
 
 ## Qué muestra
 
-Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que tiene y el botón **Abrir**. El botón **Eliminar** aparece desactivado: no está disponible en esta versión.
+Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que tiene y el botón **Abrir**. El botón **🗑️** (Eliminar) aparece desactivado: no está disponible en esta versión.
 
 ### Crear una materia
 
-1. Pulsar **➕ Crear Materia**.
+1. Pulsar **➕ Crear materia**.
 2. Rellenar **Nombre**.
 3. Pulsar **Crear**.
 
@@ -32,11 +32,11 @@ Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Cu
 
 ## Sistemas de evaluación
 
-Pulsar **Abrir sistemas de evaluación** en el detalle de la materia. Aparece una tabla con **Tipo**, **Descripción**, **Ponderación** (mínima -- máxima, en porcentaje) y los botones **Abrir** y **Eliminar** de cada sistema.
+Pulsar **Abrir sistemas de evaluación** en el detalle de la materia. Aparece una tabla con **Tipo**, **Descripción**, **Ponderación** (mínima -- máxima, en porcentaje) y los botones **Abrir** y **🗑️** (Eliminar) de cada sistema.
 
 ### Crear un sistema de evaluación
 
-1. Pulsar **➕ Crear Sistema de Evaluación**.
+1. Pulsar **➕ Crear sistema de evaluación**.
 2. Elegir el **Tipo**: **Evaluación continua** o **Evaluación final**.
 3. Rellenar, opcionalmente, la **Descripción**.
 4. Rellenar **Ponderación mínima** y **Ponderación máxima**, en porcentaje.
@@ -50,7 +50,7 @@ Pulsar **Editar** en el detalle. Los mismos campos que en el alta quedan editabl
 
 ### Eliminar un sistema de evaluación
 
-Pulsar **Eliminar** y confirmar en **Confirmar eliminación**. Si el sistema está en uso en la evaluación de alguna guía docente, la eliminación queda bloqueada y la pantalla muestra el aviso "SistemaEvaluacion en uso en:" seguido de los nombres de las asignaturas que lo bloquean -- hace falta retirarlo primero de esas guías.
+Pulsar **🗑️** (Eliminar) y confirmar en **Confirmar eliminación**. Si el sistema está en uso en la evaluación de alguna guía docente, la eliminación queda bloqueada y la pantalla muestra el aviso "SistemaEvaluacion en uso en:" seguido de los nombres de las asignaturas que lo bloquean -- hace falta retirarlo primero de esas guías.
 
 ---
 

@@ -16,11 +16,11 @@ Desde la franja del programa, pulsar **🎯 Resultados de aprendizaje**.
 
 ## Qué muestra
 
-Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear Resultado de Aprendizaje** está a la derecha del título de la sección.
+Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear resultado de aprendizaje** está a la derecha del título de la sección.
 
 ## Crear un resultado de aprendizaje
 
-1. Pulsar **➕ Crear Resultado de Aprendizaje**.
+1. Pulsar **➕ Crear resultado de aprendizaje**.
 2. Escribir el **Código**.
 3. Elegir el **Tipo**: Conocimientos o contenidos, Competencias o capacidades, o Habilidades o destrezas.
 4. Escribir la **Descripción**.

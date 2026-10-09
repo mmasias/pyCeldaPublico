@@ -12,7 +12,7 @@ La pantalla donde se ven las copias de seguridad de la base de datos y se gestio
 
 ## Cómo llegar
 
-Pulsar **💾 Copias de seguridad** en el panel de administración. Para salir, **Volver al Panel de Administración**.
+Pulsar **💾 Copias de seguridad** en el panel de administración. Para volver al panel, **⚙️ Panel**, arriba a la derecha.
 
 ## Qué muestra
 

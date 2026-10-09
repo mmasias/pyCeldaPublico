@@ -12,7 +12,7 @@ Una consulta de solo lectura del historial de cambios de las guías docentes: qu
 
 ## Cómo llegar
 
-Pulsar **🔍 Auditoría** en el panel de administración. Para salir, **Volver al Panel de Administración**.
+Pulsar **🔍 Auditoría** en el panel de administración. Para volver al panel, **⚙️ Panel**, arriba a la derecha.
 
 ## Qué registra
 
@@ -42,7 +42,7 @@ Bajo **Últimas 50 acciones** (o "Sin acciones registradas todavía."), de la m�
 
 ## Autores
 
-A la derecha, la lista **Autores** (o "Sin autores registrados todavía."), con un botón por persona que aparece en el historial mostrado; si es profesor y director a la vez, figura una sola vez. Al pulsar un nombre se abre **Actividad de** esa persona: todos sus cambios (sin el límite de 50 ni el filtro de curso), con las mismas columnas salvo **Rol** (**Profesor**, **Director** o **Admin**) en lugar de **Autor**. Volver con **Volver a Auditoría**.
+A la derecha, la lista **Autores** (o "Sin autores registrados todavía."), con un botón por persona que aparece en el historial mostrado; si es profesor y director a la vez, figura una sola vez. Al pulsar un nombre se abre **Actividad de** esa persona: todos sus cambios (sin el límite de 50 ni el filtro de curso), con las mismas columnas salvo **Rol** (**Profesor**, **Director** o **Admin**) en lugar de **Autor**. El título es una miga, **🔍 Auditoría › Actividad de ...**: pulsar **Auditoría** vuelve al historial completo.
 
 ---
 

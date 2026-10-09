@@ -1,7 +1,5 @@
 <div align=right><sub>Volver: [Al inicio](/README.md) / Manuales: [Profesor](profesor/README.md) · [Director de Programa](directorPrograma/README.md) · [Administrador](admin/README.md)</sub></div>
 
-# Estructura del sistema
-
 pyCelda organiza sus datos en dos tipos de relación distintos: una jerarquía donde cada nivel pertenece al anterior (universidad, facultad, programa, materia y lo que cuelga de ella, más los cursos académicos y el profesorado de cada universidad), y catálogos que existen de forma independiente y se asignan donde haga falta (asignaturas, metodologías docentes, resultados de aprendizaje, actividades formativas; y los profesores, que se asignan a asignaturas de programa y pueden dirigir un programa). Este mapa muestra el conjunto completo y quién gestiona cada bloque, antes de entrar en el detalle de cada tarea en los tres manuales.
 
 ## El mapa

@@ -12,7 +12,7 @@ El estado de las guías docentes de un programa, desde el punto de vista de Admi
 
 ## Cómo llegar
 
-Pulsar **Estado del curso actual** en el detalle de un programa.
+Pulsar la pestaña **🚦 Guías** del programa.
 
 ## Qué muestra
 

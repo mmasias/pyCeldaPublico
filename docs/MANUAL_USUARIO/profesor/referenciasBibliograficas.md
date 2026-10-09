@@ -22,23 +22,23 @@ Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guar
 
 ## Crear una referencia
 
-1. Pulsar **➕ Crear Referencia**, a la derecha del título.
+1. Pulsar **➕ Crear referencia**, a la derecha del título.
 2. Elegir el **Tipo**: Básica, Complementaria, Webs de referencia u Otras fuentes de consulta.
 3. Escribir el texto completo de la **Referencia**, con un máximo de 500 caracteres.
-4. Pulsar **Guardar**.
+4. Pulsar **Guardar**; **Cancelar**, junto a él, vuelve a la lista sin crear nada.
 
 Si la referencia supera los 500 caracteres se rechaza con el mensaje "La referencia bibliográfica supera el límite de 500 caracteres" y no se guarda. Lo mismo ocurre al importar de una asignatura hermana: si alguna referencia de la guía de origen supera el límite, la importación entera se rechaza y no se cambia nada.
 
 ## Editar o eliminar una referencia
 
-Igual que con los instrumentos de evaluación: pulsar **📂 Abrir** y luego **✏️ Editar** para cambiarla, o pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía. Como con los instrumentos, editar una referencia que ya forma parte de la guía se guarda en el acto y, si la guía estaba **Aprobada**, la devuelve a **Borrador**.
+Igual que con los instrumentos de evaluación: pulsar el lápiz **✏️** (Editar) de su fila para cambiarla, o pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía. Como con los instrumentos, editar una referencia que ya forma parte de la guía se guarda en el acto y, si la guía estaba **Aprobada**, la devuelve a **Borrador**.
 
 ## Importar de una asignatura hermana
 
-Si la asignatura se imparte también en otro programa y esa otra guía ya está aprobada, la bibliografía puede copiarse directamente en lugar de escribirla de cero.
+Si la asignatura se imparte también en otro programa, la bibliografía de esa otra guía puede copiarse directamente en lugar de escribirla de cero: si está aprobada o, si también la impartes, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
 
 1. Pulsar **📥 Importar de asignatura hermana**, en la fila bajo el título, a la derecha (solo aparece si hay alguna guía de la que importar).
-2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, la fecha en que se aprobó y cuántas referencias tiene.
+2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, su estado ("aprobada el..." o "en revisión desde...") y cuántas referencias tiene.
 3. Aparece un aviso: la importación reemplaza por completo la bibliografía actual de la guía, incluida cualquier referencia añadida a mano. Si la guía de origen no tiene ninguna referencia, el aviso lo indica explícitamente.
 4. Pulsar **Importar bibliografía** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
 

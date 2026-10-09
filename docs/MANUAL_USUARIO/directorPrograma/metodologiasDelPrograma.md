@@ -16,11 +16,11 @@ Desde la franja del programa, pulsar **🧩 Metodologías**.
 
 ## Qué muestra
 
-La sección **🧩 Metodologías docentes** con una tabla de **Código** y **Descripción** de cada metodología asociada, y el botón **➖** (Quitar) de cada fila. A la derecha del título, **➕ Asociar Metodología Docente**.
+La sección **🧩 Metodologías docentes** con una tabla de **Código** y **Descripción** de cada metodología asociada, y el botón **➖** (Quitar) de cada fila. A la derecha del título, **➕ Asociar metodología docente**.
 
 ## Asociar una metodología docente
 
-1. Pulsar **➕ Asociar Metodología Docente**.
+1. Pulsar **➕ Asociar metodología docente**.
 2. Elegir la metodología de la lista -- solo aparecen las del catálogo que el programa todavía no tiene.
 3. Pulsar **Asociar**.
 
