@@ -27,6 +27,8 @@ Todas las pantallas de Admin llevan una **barra azul** fija en el borde superior
 
 En las demás pantallas de Admin que no son formularios, arriba a la derecha están siempre **⚙️ Panel**, que vuelve a este panel, y **🚪 Cerrar sesión**, separado debajo. Los formularios no los llevan: se sale con **Guardar** o **Cancelar**.
 
+La sesión dura 12 horas. Si al guardar en un formulario (crear o editar, asociar, asignar profesor, definir director, activar semestre) o al crear una copia de seguridad con su motivo la sesión ha caducado, el formulario no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada de Admin en una pestaña nueva; tras entrar, se vuelve a la pestaña del formulario y se pulsa otra vez el botón. En los formularios largos (asignatura del programa, sus actividades formativas) el aviso sale también junto a **Guardar**. Hay que entrar por el enlace del aviso, que es la entrada de Admin: si se entra por la del profesorado, la sesión deja de ser de Admin, el siguiente guardado lleva a la entrada de Admin y lo escrito sí se pierde.
+
 Las fichas (un profesor, una asignatura, una materia, una universidad...) no tienen botón "Volver a...": su título es una **miga** con el camino desde el listado, por ejemplo **🧑‍🏫 Profesores › Ana García** o **🏛️ Universidades › UNEATLANTICO › Facultad de Ingeniería**. Cada paso de la miga es un enlace a su pantalla; un nombre largo aparece recortado y se ve completo al pasar el ratón. Las acciones de la ficha (**✏️ Editar**, **➕ Crear**...) van a la derecha de la miga.
 
 ---
