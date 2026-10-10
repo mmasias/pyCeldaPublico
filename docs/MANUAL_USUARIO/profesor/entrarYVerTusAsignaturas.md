@@ -20,7 +20,7 @@ Al empezar cada curso académico, el perfil académico hay que confirmarlo una v
 
 ## Qué muestra Inicio
 
-En **Inicio** aparece la sección **Mis guías**. Debajo del título, una línea resume cuántas guías hay en cada estado (por ejemplo, "6 guías: 1 rechazada, 2 en borrador, 3 aprobadas"), empezando por lo que más pide atención. Debajo, una tabla con una fila por cada asignatura impartida en el curso.
+En **Inicio** aparece la sección **Mis guías**. Si Admin ha activado un semestre en el curso, la sección muestra solo las asignaturas de ese semestre, y el desplegable a la derecha del título ("Semestre 1 (activo)") permite cambiar a **Todas**; sin semestre activado se ven todas, sin desplegable. Si en el semestre activo no hay ninguna asignatura, aparece "No tienes asignaturas en el semestre N.". Debajo del título, una línea resume cuántas guías de las mostradas hay en cada estado (por ejemplo, "6 guías: 1 rechazada, 2 en borrador, 3 aprobadas"), empezando por lo que más pide atención. Debajo, una tabla con una fila por cada asignatura impartida en el curso (con el filtro, solo las del semestre activo).
 
 Columnas de la tabla:
 

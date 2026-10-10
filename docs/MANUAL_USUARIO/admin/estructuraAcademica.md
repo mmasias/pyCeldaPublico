@@ -30,7 +30,7 @@ Tras crearlo, la pantalla pasa directamente a editar el programa recién creado.
 
 ## Detalle de un programa
 
-Las pantallas de un programa llevan su nombre en la cabecera, con **Volver a la facultad** a la derecha, en la misma fila que **⚙️ Panel**, y debajo una franja de pestañas, con la de la pantalla actual marcada (igual que en la vista del director de programa):
+Las pantallas de un programa llevan su nombre en la cabecera y, encima en pequeño, la miga **🏛️ Universidades › universidad › facultad**, cuyos pasos son enlaces para subir en la estructura. Debajo va una franja de pestañas, con la de la pantalla actual marcada (igual que en la vista del director de programa):
 
 - **📋 Ficha**: su **Código** y **Estado**, los directores y una tabla de sus **Asignaturas del programa** -- ver el capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md). **✏️ Editar**, a la derecha del título **Ficha**, cambia el nombre del programa; el código no es editable una vez creado. Al pie de esa pantalla, en **Zona de riesgo**, está **🗑️ Eliminar** (ver más abajo).
 - **📚 Materias**: las materias del programa -- capítulo [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md).

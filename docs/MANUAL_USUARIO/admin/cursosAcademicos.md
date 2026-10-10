@@ -70,6 +70,8 @@ Desde el detalle, **Activar semestre** abre una pantalla con el **Semestre activ
 
 No tiene precondiciones: se puede hacer en cualquier curso, Activo o no.
 
+El semestre activo del curso vigente filtra la sección **Mis guías** del Inicio del profesorado: cada profesor ve por defecto solo las asignaturas de ese semestre, y puede elegir **Todas**. Sin semestre activo, ve todas. El aviso de guías pendientes de revisión del director no se filtra.
+
 ---
 
 <div align=center>
