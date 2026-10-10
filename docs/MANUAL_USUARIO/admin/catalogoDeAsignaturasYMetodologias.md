@@ -32,7 +32,7 @@ Pulsar **🗑️** (Eliminar) y confirmar en **Confirmar eliminación**. Esta ac
 
 ### Presente en
 
-Al abrir una asignatura del catálogo, debajo de su detalle aparece la sección **Presente en**: una tabla con cada asignatura de programa que parte de ella (**Programa**, **Materia**, **Curso** -- curso y semestre por defecto tal como los devuelve la asignatura de programa, sin convertir a números romanos -- y **Carácter**), o el aviso "Esta Asignatura no está en ningún Programa todavía" si no la usa ninguna.
+Al abrir una asignatura del catálogo, debajo de su detalle aparece la sección **Presente en**: una tabla con cada asignatura de programa que parte de ella (**Programa**, **Materia**, **Curso** -- curso y semestre por defecto tal como los devuelve la asignatura de programa, sin convertir a números romanos -- y **Carácter**), o el aviso "Esta asignatura no está en ningún programa todavía" si no la usa ninguna.
 
 ## Metodologías docentes
 

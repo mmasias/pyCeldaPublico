@@ -39,7 +39,7 @@ Si la ponderación es cero o un número negativo, aparece el error "La ponderaci
 ## Editar un instrumento
 
 1. En la tabla, pulsar el lápiz **✏️** (Editar) en la fila del instrumento.
-2. Cambiar lo necesario y pulsar **Guardar**; **Cancelar**, junto a él, o **Volver a las ponderaciones**, arriba, vuelven a la lista sin guardar.
+2. Cambiar lo necesario y pulsar **Guardar**; **Cancelar**, junto a él, vuelve a la lista sin guardar.
 
 Editar un instrumento que ya forma parte de la guía se guarda en el acto, sin pasar por **💾 Guardar borrador**. Si la guía estaba **Aprobada**, vuelve a **Borrador** (como con cualquier otro cambio en una guía aprobada) y habrá que enviarla de nuevo a revisión; el cambio queda en el historial.
 

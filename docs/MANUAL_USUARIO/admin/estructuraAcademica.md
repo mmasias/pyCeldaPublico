@@ -53,14 +53,14 @@ Pulsar la pestaña **🧩 Metodologías** del programa. Aparece una tabla con **
 Pulsar la pestaña **🎯 Resultados de aprendizaje** del programa. Aparece una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asignado cada resultado, o "--" si no consta), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
 
 - **➕ Crear resultado de aprendizaje**: formulario con **Código (*)**, **Tipo (*)** y **Descripción (*)**; se confirma con **Crear**.
-- **📂 Abrir**: muestra código, tipo y descripción, el botón **✏️ Editar** (mismos campos que el alta) y la sección **Distribución**: las materias y las asignaturas de programa a las que está asignado, o "Sin asignaciones a materias ni asignaturas-programa".
-- **🗑️** (Eliminar): si el resultado está asignado a alguna materia o asignatura de programa, la pantalla indica **⛔ No se puede eliminar** y lista dónde está asignado -- hay que retirarlo primero de ahí. Si no, pide confirmación y la baja no se puede deshacer.
+- **📂 Abrir**: muestra código, tipo y descripción, el botón **✏️ Editar** (mismos campos que el alta) y la sección **Distribución**: las materias y las asignaturas de programa a las que está asignado, cada una con un enlace a su ficha, o "Sin asignaciones a materias ni asignaturas-programa".
+- **🗑️** (Eliminar): si el resultado está asignado a alguna materia o asignatura de programa, la pantalla indica **⛔ No se puede eliminar** y lista dónde está asignado, con un enlace a cada materia o asignatura -- hay que retirarlo primero de ahí. Si no, pide confirmación y la baja no se puede deshacer.
 
 ## Directores del programa
 
 Junto al **Código** y el **Estado** del programa, la sección **Directores** lista los directores de programa ya nombrados (nombre y email de cada uno) con un botón **➖** (Quitar) en cada fila.
 
-Si queda algún profesor de la universidad sin nombrar, aparece además un selector con esos profesores disponibles y un botón **👑 Nombrar**; si ya todos dirigen el programa, en su lugar se muestra el aviso "No hay Profesores disponibles: todos ya dirigen este Programa."
+Si queda algún profesor de la universidad sin nombrar, aparece además un selector con esos profesores disponibles y un botón **👑 Nombrar**; si ya todos dirigen el programa, en su lugar se muestra el aviso "No hay profesores disponibles: todos ya dirigen este programa."
 
 Esta gestión también puede hacerse en sentido inverso, desde el detalle del propio profesor -- ver el capítulo [Profesores](profesores.md).
 

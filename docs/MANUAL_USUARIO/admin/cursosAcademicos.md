@@ -41,7 +41,7 @@ El curso nace **Inactivo** y sin semestre activo: la propia pantalla lo recuerda
 
 Desde el detalle, **✏️ Editar** permite corregir **Inicio (\*)** y **Fin (\*)** y se confirma con **Guardar** (o **Cancelar**).
 
-La edición queda **bloqueada en cuanto el curso tiene guías asociadas**: la pantalla muestra **⛔ No se puede editar** ("Este curso académico tiene Guías asociadas. Los datos de inicio/fin quedan fijos una vez el curso tiene actividad"). El botón **✏️ Editar** sigue visible; el bloqueo se comprueba al entrar en la pantalla. Un curso recién creado, sin guías, sí se puede corregir.
+La edición queda **bloqueada en cuanto el curso tiene guías asociadas**: la pantalla muestra **⛔ No se puede editar** ("Este curso académico tiene guías asociadas. Los datos de inicio/fin quedan fijos una vez el curso tiene actividad"). El botón **✏️ Editar** sigue visible; el bloqueo se comprueba al entrar en la pantalla. Un curso recién creado, sin guías, sí se puede corregir.
 
 ## Activar un curso
 
@@ -62,7 +62,7 @@ Al pulsar **Activar**, la pantalla muestra el curso y avisa: **Esta acción no s
 - Si no tenía guía previa, la nueva nace de los datos propios de la asignatura.
 - El profesorado de la guía nueva es el asignado en ese momento a la asignatura, no el del curso anterior.
 
-Al terminar, la pantalla vuelve al listado con el mensaje "Curso Académico AAAA-AAAA activado." y, si lo había, "AAAA-AAAA pasa a Inactivo."
+Al terminar, la pantalla vuelve al listado con el mensaje "Curso académico AAAA-AAAA activado." y, si lo había, "AAAA-AAAA pasa a inactivo."
 
 ## Activar el semestre
 

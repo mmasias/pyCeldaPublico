@@ -30,7 +30,7 @@ Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el n�
 
 Al abrir un resultado, la pestaña **🎯 Resultados de aprendizaje** queda marcada y el título dice **🎯 Resultados de aprendizaje › código del resultado**; pulsar la primera parte vuelve a la lista. A la derecha del título, **✏️ Editar**.
 
-Debajo aparecen el **Tipo**, la **Descripción** (en cursiva) y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que tienen asociado el resultado ("Ninguna" si una columna está vacía). Si no está asociado a nada, una sola línea lo indica.
+Debajo aparecen el **Tipo**, la **Descripción** (en cursiva) y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que tienen asociado el resultado ("Ninguna" si una columna está vacía). Cada nombre es un enlace a su materia o asignatura. Si no está asociado a nada, una sola línea lo indica.
 
 ## Editar un resultado de aprendizaje
 
@@ -40,7 +40,7 @@ Pulsar **✏️ Editar** y cambiar código, tipo o descripción; **Guardar** con
 
 Pulsar la papelera **🗑️** (Eliminar) en la fila del resultado. La pantalla siguiente muestra el código, el tipo y la descripción del resultado, para confirmar que es el correcto.
 
-- Si está asociado a alguna materia o asignatura del programa, la eliminación queda bloqueada: la pantalla muestra en dos columnas (**Materias** y **Asignaturas del programa**) dónde está en uso. Hace falta quitarlo de ahí (desde la materia o la asignatura, con **➖**) antes de eliminarlo.
+- Si está asociado a alguna materia o asignatura del programa, la eliminación queda bloqueada: la pantalla muestra en dos columnas (**Materias** y **Asignaturas del programa**) dónde está en uso, con un enlace a cada una. Hace falta quitarlo de ahí (desde la materia o la asignatura, con **➖**) antes de eliminarlo.
 - Si no está en uso, aparece la confirmación (**🗑️ Confirmar eliminación** / **Cancelar**); la eliminación no se puede deshacer.
 
 ---
