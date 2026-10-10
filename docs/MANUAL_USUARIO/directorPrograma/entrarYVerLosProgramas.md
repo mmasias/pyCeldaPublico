@@ -31,7 +31,7 @@ Todas las pantallas de un programa tienen la misma estructura:
 3. Bajo la franja, el **título de la sección** y, a su derecha, su acción o sus datos (por ejemplo, **➕ Crear** o **➕ Asociar**).
 4. El contenido.
 
-Al abrir un elemento (una materia, una asignatura, un resultado de aprendizaje o una guía), la pestaña de su sección sigue marcada y el título indica dónde se está: por ejemplo, **📚 Materias › Programación**. La primera parte, **📚 Materias**, es un enlace que vuelve a la lista. Desde estas pantallas no hay botones "Volver": se vuelve con la pestaña o con ese enlace. Los formularios y las pantallas de confirmación (asociar, quitar, eliminar) sí tienen su **Cancelar** o **Volver**.
+Al abrir un elemento (una materia, una asignatura, un resultado de aprendizaje o una guía), la pestaña de su sección sigue marcada y el título indica dónde se está: por ejemplo, **📚 Materias › Programación**. La primera parte, **📚 Materias**, es un enlace que vuelve a la lista. Desde estas pantallas no hay botones "Volver": se vuelve con la pestaña o con ese enlace. Los formularios y las pantallas de confirmación (asociar, quitar, eliminar) sí tienen su **Cancelar**; si la acción está bloqueada ("⛔ No se puede eliminar"), la salida es **Volver a...**. En los formularios, si se ha escrito o cambiado algo, **Cancelar** pregunta "Tienes cambios sin guardar. ¿Salir sin guardarlos?" antes de descartarlo, y en los largos (las actividades formativas de una asignatura o de una materia) aparece también un **Guardar** arriba en cuanto hay cambios, con el aviso "Tienes cambios sin guardar.".
 
 ## La vista general
 

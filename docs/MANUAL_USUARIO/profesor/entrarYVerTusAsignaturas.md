@@ -46,7 +46,7 @@ Arriba a la derecha de cada pantalla están siempre los mismos accesos, en este 
 - Las pantallas de evaluación, bibliografía y planificación no tienen botón de volver: su título es una miga (**asignatura › Evaluación**) y pulsar el nombre de la asignatura vuelve a la guía.
 - Al final, algo separado para no pulsarlo por error, **🚪 Cerrar sesión**.
 
-No aparece el acceso de la pantalla en la que ya se está. En los formularios de crear o editar no hay accesos: se sale con **Guardar** o con **Cancelar**.
+No aparece el acceso de la pantalla en la que ya se está. En los formularios de crear o editar no hay accesos: se sale con **Guardar** o con **Cancelar**. Si se ha escrito o cambiado algo, **Cancelar** pregunta "Tienes cambios sin guardar. ¿Salir sin guardarlos?" antes de descartarlo.
 
 ---
 
