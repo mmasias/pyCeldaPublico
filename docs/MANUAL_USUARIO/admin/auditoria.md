@@ -22,7 +22,7 @@ Cada fila es un cambio en una guía. Los tipos de cambio (columna **Campo**) son
 - **Corrección del Director**: el director corrigió una guía en **Borrador** o **Rechazada**, que no cambia de estado: el cambio figura con el mismo estado antes y después (`Borrador → Borrador` o `Rechazada → Rechazada`).
 - **Contenido**: edición del temario.
 - **Planificación docente**: crear, editar, duplicar o generar las sesiones.
-- **Ponderaciones de evaluación**: altas y bajas de ponderaciones.
+- **Ponderaciones de evaluación**: altas y bajas de ponderaciones, y la edición de un instrumento ya incluido en la guía (descripción y peso antes y después; si cambia el sistema de evaluación, el comentario lo indica, p. ej. "sistema: Evaluación continua -> Evaluación final").
 - **Referencias bibliográficas**: altas y bajas de referencias.
 
 ## Filtro
