@@ -37,7 +37,7 @@ Al pulsar **💾 Guardar borrador** se confirma de una sola vez todo lo cambiado
 
 Si el texto del temario supera los 10.000 caracteres, al guardar aparece el error "El contenido supera el límite de 10.000 caracteres" y no se guarda nada, ni siquiera el resto de lo pendiente. Corresponde recortar el texto y guardar de nuevo.
 
-La sesión dura 12 horas. Si al guardar (o al enviar, importar o descargar) la sesión ha caducado, la guía no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña de la guía y se pulsa otra vez el botón. Lo mismo vale para el texto de convocatorias en 🔧 Gestionar evaluación.
+La sesión dura 12 horas. Si al guardar (o al enviar, importar o descargar) la sesión ha caducado, la guía no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña de la guía y se pulsa otra vez el botón. Lo mismo vale para el texto de convocatorias en 🔧 Gestionar evaluación y para los formularios de crear o editar instrumentos y referencias; los del director de programa, en [Entrar y ver los programas](../directorPrograma/entrarYVerLosProgramas.md#cómo-entrar).
 
 ## Importar el contenido de una guía hermana
 

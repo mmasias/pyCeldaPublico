@@ -10,6 +10,8 @@
 
 El acceso es el mismo mecanismo que para el profesorado: iniciar sesión con la cuenta de correo de la universidad dada de alta por Admin, mediante el botón **🔑 Iniciar sesión** de la pantalla de entrada (**Módulo académico**), que autentica con Google. Al pie de esa pantalla, en pequeño, se ve la versión de la aplicación y la de esquema (p. ej. `Versión v0.11.8 · esquema 2`). Tras iniciar sesión, la pantalla de destino es **Inicio**. Todas las pantallas del modo académico llevan una **barra naranja** fija en el borde superior de la ventana, la señal de que se está en el modo del profesorado y los directores (el modo Admin tiene una barra azul).
 
+La sesión dura 12 horas. Si al guardar en un formulario de crear o editar (resultados de aprendizaje, asignatura del programa, actividades formativas de la asignatura o de la materia, metodología de la materia, semestre de una guía) la sesión ha caducado, el formulario no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña del formulario y se pulsa otra vez el botón. Lo mismo al importar las actividades formativas de otra asignatura.
+
 ## Qué muestra Inicio
 
 Si hay guías del programa esperando la revisión del director, **Inicio** lo dice en una línea: por ejemplo, "🚦 **3 guías esperan tu revisión** como director(a) del Grado en Ingeniería Informática". El nombre del programa es un enlace a sus guías. Si hay guías pendientes en varios de los programas dirigidos, aparecen todos en la misma línea, con el número de cada uno entre paréntesis. Si no hay nada pendiente, la línea no aparece.
