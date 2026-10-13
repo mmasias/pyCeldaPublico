@@ -24,7 +24,7 @@ Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, *
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
 
-Más abajo, la tabla **Sistemas de evaluación de la materia**: el catálogo completo de tipos de evaluación de la asignatura, con su porcentaje mínimo y máximo permitido, y cuánto hay asignado a cada uno. Si un sistema está fuera de su rango permitido, o en 0% siendo obligatorio, aparece marcado en rojo. Al pie, bajo **Asignado**, el total asignado, también en rojo si no suma 100%.
+Más abajo, alineada a la derecha y en pequeño porque es de referencia, la tabla **Sistemas de evaluación de la materia**: el catálogo completo de tipos de evaluación de la asignatura, con su porcentaje mínimo y máximo permitido, y cuánto hay asignado a cada uno. Si un sistema está fuera de su rango permitido, o en 0% siendo obligatorio, aparece marcado en rojo. Al pie, bajo **Asignado**, el total asignado, también en rojo si no suma 100%.
 
 ## Crear un instrumento
 
