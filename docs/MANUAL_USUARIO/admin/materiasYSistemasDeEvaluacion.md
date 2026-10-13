@@ -34,7 +34,7 @@ Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Cu
 
 Funcionan igual que para el director de programa (ver su capítulo [Gestionar materias](../directorPrograma/gestionarMaterias.md)):
 
-- **➕ Asociar resultado de aprendizaje** y **➕ Asociar metodología docente**, a la derecha de cada título, añaden uno de los disponibles: los del catálogo del programa que la materia aún no tiene.
+- **➕ Asociar resultado de aprendizaje** y **➕ Asociar metodología docente**, a la derecha de cada título, añaden uno de los disponibles: los del catálogo del programa que la materia aún no tiene. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo.
 - **✏️ Editar**, en cada metodología, cambia su **Descripción propia**.
 - **➖** (Quitar) retira el resultado o la metodología de la materia, con confirmación. Si alguna asignatura de la materia lo está usando, queda bloqueado y la pantalla dice en cuáles.
 

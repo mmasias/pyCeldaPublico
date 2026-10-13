@@ -40,7 +40,7 @@ Al abrir una asignatura de programa aparecen **Materia**, **Curso**, **Carácter
 
 La tabla muestra **Código**, **Tipo** y **Descripción** de cada resultado asociado, con **➖** (Quitar) en cada fila.
 
-Para añadir uno, pulsar **➕ Asociar resultado de aprendizaje**, elegirlo en **Resultado de aprendizaje (*)** y confirmar. Solo se ofrecen los resultados ya asignados a la materia de la asignatura de programa y que aún no están asociados a ella; si no queda ninguno, la pantalla lo indica y solo ofrece **Volver**.
+Para añadir uno, pulsar **➕ Asociar resultado de aprendizaje**, elegirlo en **Resultado de aprendizaje (*)** y confirmar. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo. Solo se ofrecen los resultados ya asignados a la materia de la asignatura de programa y que aún no están asociados a ella; si no queda ninguno, la pantalla lo indica y solo ofrece **Volver**.
 
 ## Metodologías docentes asociadas
 
