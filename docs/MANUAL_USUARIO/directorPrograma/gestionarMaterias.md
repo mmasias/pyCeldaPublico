@@ -20,7 +20,7 @@ Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Crear, reno
 
 ## Detalle de una materia
 
-Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación** (catálogo de solo lectura). El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las tres secciones siguientes.
+Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las cuatro secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
 
 ## Metodologías docentes
 
@@ -51,6 +51,16 @@ Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**,
 Tabla de solo lectura con **Actividad formativa** y **Horas**. Pulsar **Editar reparto** abre un formulario con un campo de horas por actividad; **Guardar** confirma los nuevos valores.
 
 Debajo, la tabla **Estado de las actividades formativas** compara, por actividad, las horas de la materia con la suma de las de sus asignaturas: **OK** si cuadran o **Discrepancia** con la diferencia. Es solo informativa: no impide guardar.
+
+## Sistemas de evaluación
+
+Tabla con **Tipo**, **Descripción**, **Ponderación mínima** y **Ponderación máxima** de cada sistema, con **✏️ Editar** y **🗑️** (Eliminar) en cada fila.
+
+- **➕ Crear sistema de evaluación**: elegir el **Tipo** (**Evaluación continua** o **Evaluación final**), la **Descripción** opcional y las ponderaciones mínima y máxima en porcentaje (0 ≤ mínima ≤ máxima ≤ 100), y pulsar **Crear**.
+- **✏️ Editar**: los mismos campos. **Guardar** vuelve a la materia.
+- **🗑️**: pide confirmación. Si el sistema se usa en la evaluación de alguna guía, queda bloqueado y la pantalla dice en qué asignaturas.
+
+Crear un sistema o cambiar su rango se rechaza si alguna guía del curso activo **En revisión** o **Aprobada** dejaría de cumplirlo: la suma de sus instrumentos de ese sistema tiene que quedar entre la mínima y la máxima, y un sistema nuevo cuenta como 0 % en las guías que ya existen. El aviso nombra cada asignatura con lo que tiene asignado. Las guías en borrador o rechazadas no cuentan: se vuelven a comprobar al enviarlas a revisión.
 
 ---
 

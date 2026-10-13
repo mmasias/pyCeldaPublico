@@ -5,7 +5,7 @@ pyCelda gestiona el catálogo académico del programa (materias, asignaturas, re
 ## Qué permite hacer
 
 - Consultar los programas a cargo y el estado de sus guías docentes.
-- Gestionar las materias del programa: asociar y desasociar metodologías docentes y resultados de aprendizaje, editar el reparto de sus actividades formativas.
+- Gestionar las materias del programa: asociar y desasociar metodologías docentes y resultados de aprendizaje, editar el reparto de sus actividades formativas, y crear, editar o eliminar sus sistemas de evaluación.
 - Editar las asignaturas de programa: datos propios y requisitos previos, asociaciones de metodologías docentes y resultados de aprendizaje, reparto de actividades formativas.
 - Gestionar el catálogo de resultados de aprendizaje del programa: crear, editar y eliminar.
 - Gestionar las metodologías docentes del programa: asociar y desasociar las del catálogo institucional.

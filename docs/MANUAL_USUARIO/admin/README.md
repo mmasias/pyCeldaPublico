@@ -6,7 +6,7 @@ pyCelda gestiona el catálogo académico de la institución (universidades, facu
 
 - Gestionar universidades, facultades y programas: crear universidades y facultades; en cada programa, crear, editar el nombre, dar de baja (desde **Editar**), nombrar directores y gestionar sus metodologías docentes y sus resultados de aprendizaje.
 - Gestionar el catálogo institucional de asignaturas, el de metodologías docentes y el de actividades formativas: crear, editar, dar de baja.
-- Gestionar las materias de un programa y sus sistemas de evaluación: crear materias, y crear, editar o eliminar sistemas de evaluación.
+- Gestionar las materias de un programa: crearlas, asociar o quitar sus resultados de aprendizaje y metodologías docentes, editar las horas de sus actividades formativas, y crear, editar o eliminar sus sistemas de evaluación.
 - Gestionar las asignaturas de un programa: crear, editar (incluidos los resultados de aprendizaje, metodologías y actividades formativas), dar de baja, y asignar o desasignar profesorado.
 - Gestionar el profesorado: crear, editar, dar de baja, y nombrar o quitar director de programa.
 - Consultar el estado de las guías docentes de un programa, previsualizarlas y descargar su PDF.
