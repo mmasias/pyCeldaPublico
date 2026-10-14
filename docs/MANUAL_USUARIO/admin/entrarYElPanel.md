@@ -8,7 +8,7 @@
 
 ## Entrar
 
-El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de programa. Pulsar **🔑 Iniciar sesión** y autenticarse con Google con una cuenta con permisos de Admin. Al pie de esa pantalla, en pequeño, se ve la versión de la aplicación y la versión de esquema de la base de datos (p. ej. `Versión v0.11.8 · esquema 2`).
+El acceso de Admin tiene una dirección propia, separada de la del profesorado y los directores de programa. Pulsar **🔑 Iniciar sesión** y autenticarse con Google con una cuenta con permisos de Admin. En la esquina superior derecha del recuadro gris del logo hay un pequeño **cuadrado naranja**: es el enlace a la pantalla de entrada del **módulo académico** (el naranja es el color de la barra de ese modo); el cuadrado azul de esa pantalla vuelve aquí. Si la sesión de Admin sigue abierta, el marcador de la dirección de entrada lleva directo al panel de administración, sin pasar por esta pantalla. Al pie, en pequeño, se ve la versión de la aplicación y la versión de esquema de la base de datos (p. ej. `Versión v0.11.8 · esquema 2`).
 
 ## El panel de administración
 
