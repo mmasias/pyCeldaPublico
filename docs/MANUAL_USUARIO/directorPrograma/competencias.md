@@ -20,7 +20,7 @@ Desde la franja del programa, pulsar **🧭 Competencias** (a la derecha de **�
 
 Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas del programa que tienen asociada cada competencia), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear competencia** está a la derecha del título de la sección.
 
-El número de asignaturas es solo informativo: una competencia con 0 no impide nada, pero indica que ninguna asignatura la cubre todavía.
+El número de asignaturas es solo informativo: una competencia con 0 no impide nada, pero indica que ninguna asignatura la cubre todavía, y su celda lleva fondo rojo suave para verla de un vistazo. Lo mismo en la tabla de competencias de cada materia.
 
 ## Crear una competencia
 

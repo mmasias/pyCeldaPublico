@@ -16,7 +16,7 @@ Desde la franja del programa, pulsar **🎯 Resultados de aprendizaje**.
 
 ## Qué muestra
 
-Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear resultado de aprendizaje** está a la derecha del título de la sección.
+Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta; si es 0, la celda lleva fondo rojo suave: ninguna asignatura lo cubre todavía, aunque no impide nada), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear resultado de aprendizaje** está a la derecha del título de la sección.
 
 ## Crear un resultado de aprendizaje
 

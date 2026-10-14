@@ -52,7 +52,7 @@ Pulsar la pestaña **🧩 Metodologías** del programa. Aparece una tabla con **
 
 ## Resultados de aprendizaje del programa
 
-Pulsar la pestaña **🎯 Resultados de aprendizaje** del programa. Aparece una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asignado cada resultado, o "--" si no consta), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
+Pulsar la pestaña **🎯 Resultados de aprendizaje** del programa. Aparece una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asignado cada resultado, o "--" si no consta; con fondo rojo suave si es 0), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
 
 - **➕ Crear resultado de aprendizaje**: formulario con **Código (*)**, **Tipo (*)** y **Descripción (*)**; se confirma con **Crear**.
 - **📂 Abrir**: muestra código, tipo y descripción, el botón **✏️ Editar** (mismos campos que el alta) y la sección **Distribución**: las materias y las asignaturas de programa a las que está asignado, cada una con un enlace a su ficha, o "Sin asignaciones a materias ni asignaturas-programa".
@@ -60,7 +60,7 @@ Pulsar la pestaña **🎯 Resultados de aprendizaje** del programa. Aparece una 
 
 ## Competencias del programa
 
-Pulsar la pestaña **🧭 Competencias** del programa. Funciona como los resultados de aprendizaje: tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (cuántas asignaturas del programa tienen asociada cada competencia), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
+Pulsar la pestaña **🧭 Competencias** del programa. Funciona como los resultados de aprendizaje: tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (cuántas asignaturas del programa tienen asociada cada competencia; con fondo rojo suave si es 0), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
 
 - **➕ Crear competencia**: formulario con **Código (*)**, **Tipo (*)** (Básica, General, Transversal o Específica) y **Descripción (*)**; se confirma con **Crear**. El código no puede repetirse dentro del programa, sin distinguir mayúsculas y minúsculas: si ya existe, el formulario lo indica y conserva lo escrito.
 - **📂 Abrir**: muestra tipo y descripción, **✏️ Editar** (mismos campos que el alta) y la **Distribución**: las materias y las asignaturas de programa que la tienen, cada una con un enlace a su ficha.

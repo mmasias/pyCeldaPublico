@@ -44,11 +44,11 @@ Pulsar **➖** (Quitar) en la fila de la metodología. Si ninguna asignatura de 
 
 ## Resultados de aprendizaje
 
-Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado) y el botón **➖** (Quitar) de cada fila; **➕ Asociar resultado de aprendizaje** para añadir uno de los disponibles. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
+Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado; con fondo rojo suave si es 0) y el botón **➖** (Quitar) de cada fila; **➕ Asociar resultado de aprendizaje** para añadir uno de los disponibles. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
 
 ## Competencias
 
-Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (cuántas asignaturas de la materia tienen asociada la competencia) y **➖** (Quitar); **➕ Asociar competencia** para añadir una de las del programa que la materia aún no tiene. Quitar una que usa alguna asignatura de la materia queda bloqueado. Detalle en el capítulo [Competencias](competencias.md).
+Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (cuántas asignaturas de la materia tienen asociada la competencia; con fondo rojo suave si es 0) y **➖** (Quitar); **➕ Asociar competencia** para añadir una de las del programa que la materia aún no tiene. Quitar una que usa alguna asignatura de la materia queda bloqueado. Detalle en el capítulo [Competencias](competencias.md).
 
 ## Actividades formativas de la materia
 
