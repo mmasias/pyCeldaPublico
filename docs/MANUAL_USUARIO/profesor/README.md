@@ -4,13 +4,14 @@ pyCelda gestiona la guía docente de las asignaturas: temario, evaluación, bibl
 
 ## Qué permite hacer
 
-- Ver de un vistazo todas las asignaturas asignadas y el estado de la guía de cada una.
-- Mantener el perfil académico (datos generales, doctorado, acreditación, sexenios, quinquenios y experiencia), que se confirma una vez por curso.
-- Redactar el contenido de la guía docente y guardarlo como borrador.
-- Crear, editar y eliminar los instrumentos de evaluación de cada guía (exámenes, trabajos, prácticas...), comprobar que la suma de ponderaciones cumple las reglas de la asignatura y editar el texto de convocatorias del apartado 5 de la guía.
-- Crear, editar y eliminar la bibliografía de cada guía, o importarla directamente de una guía ya aprobada de la misma asignatura en otro programa.
-- Crear, editar y eliminar las sesiones de la planificación docente (el cronograma de clases), arrancarla de golpe con una plantilla genérica, o importarla de una guía hermana o desde texto.
+- Ver de un vistazo sus asignaturas y el estado de la guía de cada una.
+- En la guía docente de sus asignaturas:
+  - Redactar el contenido.
+  - Crear, editar y eliminar los instrumentos de evaluación de cada guía (exámenes, trabajos, prácticas...), comprobar que la suma de ponderaciones cumple las reglas de la asignatura y editar el texto de convocatorias del apartado 5 de la guía.
+  - Crear, editar y eliminar la bibliografía de cada guía, o importarla directamente de una guía ya aprobada de la misma asignatura en otro programa.
+  - Crear, editar y eliminar las sesiones de la planificación docente (el cronograma de clases), arrancarla de golpe con una plantilla genérica, o importarla de una guía hermana o desde texto.
 - Enviar la guía a revisión, previsualizar el documento oficial y descargar el PDF una vez aprobada.
+- Mantener el perfil académico (datos generales, doctorado, acreditación, sexenios y experiencia), que se confirma una vez por curso.
 
 Todas las pantallas del modo académico (Profesor y Director) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Arriba a la derecha de cada pantalla están siempre los mismos accesos: **🏠 Inicio**, **🎓 Mis programas** (si la cuenta dirige algún programa), **🪪 Mi perfil** y, separado, **🚪 Cerrar sesión**.
 

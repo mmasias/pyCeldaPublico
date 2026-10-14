@@ -5,11 +5,19 @@ pyCelda gestiona el catálogo académico del programa (materias, asignaturas, re
 ## Qué permite hacer
 
 - Consultar los programas a cargo y el estado de sus guías docentes.
-- Gestionar las materias del programa: asociar y desasociar metodologías docentes y resultados de aprendizaje, editar el reparto de sus actividades formativas, y crear, editar o eliminar sus sistemas de evaluación.
-- Editar las asignaturas de programa: datos propios y requisitos previos, asociaciones de metodologías docentes y resultados de aprendizaje, reparto de actividades formativas.
+- En las materias del programa:
+  - Asociar y desasociar metodologías docentes y resultados de aprendizaje.
+  - Editar el reparto de sus actividades formativas.
+  - Crear, editar o eliminar sus sistemas de evaluación.
+- En las asignaturas de programa:
+  - Editar sus datos propios y requisitos previos.
+  - Asociar y desasociar metodologías docentes y resultados de aprendizaje.
+  - Editar el reparto de sus actividades formativas.
 - Gestionar el catálogo de resultados de aprendizaje del programa: crear, editar y eliminar.
 - Gestionar las metodologías docentes del programa: asociar y desasociar las del catálogo institucional.
-- Revisar las guías docentes del programa: aprobar, rechazar, escalar directamente a aprobada, y revocar una aprobación; y, como corrección excepcional, editar una guía: temario, instrumentos de evaluación, texto de convocatorias, bibliografía y planificación docente.
+- En las guías docentes del programa:
+  - Aprobar, rechazar, escalar directamente a aprobada, y revocar una aprobación.
+  - Como corrección excepcional, editar una guía: temario, instrumentos de evaluación, texto de convocatorias, bibliografía y planificación docente.
 
 Todas las pantallas del modo académico (Director y Profesor) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Dentro de un programa, una franja de pestañas (**📋 Vista general**, **📚 Materias**, **🎯 Resultados de aprendizaje**, **🧩 Metodologías**, **📘 Asignaturas** y **📄 Guías**) marca siempre en qué sección se está; el capítulo [Entrar y ver los programas](entrarYVerLosProgramas.md) explica cómo moverse.
 
