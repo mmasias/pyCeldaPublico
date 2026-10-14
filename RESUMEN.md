@@ -53,37 +53,37 @@ El titular del experimento es ese reparto. Aislando el esfuerzo de codificar, lo
 
 ## Números del proyecto
 
-Aproximadamente 60.600 líneas de código (un tercio de ellas, tests) y 64.800 de documentación. Medidos el 2026-10-04 sobre el árbol del repo, excluyendo lo generado o ajeno (`.git`, `node_modules`, `.venv`, `dist/`, caches, lockfiles, binarios y los SVG regenerados a partir de los `.puml`).
+Aproximadamente 69.200 líneas de código (un tercio de ellas, tests) y 65.600 de documentación. Medidos el 2026-10-14 sobre el árbol del repo, excluyendo lo generado o ajeno (`.git`, `node_modules`, `.venv`, `dist/`, caches, lockfiles, binarios y los SVG regenerados a partir de los `.puml`).
 
 ### Código
 
 - 23 modelos de dominio (SQLAlchemy)
-- 22 routers, 167 endpoints
-- 19 repositorios, 22 schemas Pydantic, 43 scripts
-- 129 componentes y páginas React (`.tsx`)
-- 17.756 LoC de backend (Python, `app/`)
-- 20.522 LoC de frontend (TS/TSX), más 341 de CSS
-- 1.900 LoC auxiliares: plantilla HTML del PDF (282), scripts de documentación (1.144), shell (224), infraestructura Docker/Caddy/CI (139), config de build (95)
-- Total: 40.519 LoC de producto sin tests; 60.622 con tests
+- 22 routers, 181 endpoints
+- 19 repositorios, 22 schemas Pydantic, 72 scripts
+- 134 componentes y páginas React (`.tsx`)
+- 22.346 LoC de backend (Python, `app/`)
+- 22.829 LoC de frontend (TS/TSX), más 685 de CSS
+- 1.868 LoC auxiliares: plantilla HTML del PDF (289), scripts de documentación (1.144), shell (224), infraestructura Docker/Caddy/CI (139), config de build (72)
+- Total: 47.728 LoC de producto sin tests; 69.179 con tests
 
 ### Pruebas
 
-- 117 ficheros de test
-- 974 funciones `def test_`, 1.089 casos ejecutados con parametrización
-- 20.103 LoC de test
-- Ratio test:código en backend, aproximadamente 1,13 : 1
+- 121 ficheros de test
+- 1.035 funciones `def test_`, 1.238 casos recogidos por pytest (incluye parametrización)
+- 21.451 LoC de test
+- Ratio test:código en backend, aproximadamente 0,96 : 1
 
 ### RUP
 
 - 124 casos de uso con ficha de requisitos
 - 121 con las fases Análisis, Diseño, Desarrollo y Pruebas completas; los 3 restantes (eliminarMateria, generarGuiasPDF, reabrirGuiaPorIncidencia) siguen solo en Requisitos, despriorizados a propósito
-- 504 ficheros PlantUML, 730 SVG generados, 623 READMEs
-- 56.932 líneas de documentación RUP (35.360 `.md` + 21.572 `.puml`); documentación total del repo, 64.839 líneas en 1.343 ficheros `.md` + `.puml`
+- 503 ficheros PlantUML, 731 SVG generados, 623 READMEs
+- 57.460 líneas de documentación RUP (35.670 `.md` + 21.790 `.puml`); documentación total del repo, 65.603 líneas en 1.350 ficheros `.md` + `.puml`
 - Cada caso de uso con su máquina de estados, wireframe, diagrama de colaboración, diagrama de secuencia y ficha de desarrollo enlazada al código real, no duplicada
 
 ### Proceso
 
-- 924 commits
-- 359 pull requests, todos mergeados
-- 708 elementos numerados en GitHub: 107 discussions, 242 issues, 359 PRs
+- 1.076 commits
+- 390 pull requests, todos mergeados
+- 759 elementos numerados en GitHub: 116 discussions, 253 issues, 390 PRs
 - Dashboard de seguimiento por actor, coloreado por fase
