@@ -26,7 +26,7 @@ Después, en este orden:
 
 1. **Contenido**: arriba, en un recuadro gris, el **contenido aprobado en memoria**, la referencia con la que la guía debe ser coherente; debajo, a todo el ancho, el cuadro de texto con el temario de la asignatura.
 2. **Evaluación**, **Bibliografía** y **Planificación docente**: un resumen de solo lectura de cada una, con su botón **🔧 Gestionar...** a la derecha del título. Cada una tiene su propio capítulo: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
-3. **Información adicional**: **Resultados de aprendizaje**, **Metodologías docentes** y **Actividades formativas** de la asignatura. Es información fija, de solo lectura.
+3. **Información adicional**: **Resultados de aprendizaje**, **Competencias** (si la asignatura tiene), **Metodologías docentes** y **Actividades formativas** de la asignatura. Es información fija, de solo lectura.
 
 ## Editar y guardar el temario
 
@@ -76,7 +76,7 @@ El director de programa también puede, como corrección excepcional, cambiar di
 
 ## Qué no es editable aquí
 
-El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprendizaje, las metodologías docentes y las actividades formativas los gestiona el director de programa -- no el profesorado. Se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.
+El profesorado asignado lo gestiona Admin; el semestre, los resultados de aprendizaje, las competencias, las metodologías docentes y las actividades formativas los gestiona el director de programa -- no el profesorado. Se muestran para dar el contexto completo de la asignatura, pero no son editables desde esta pantalla.
 
 ## Volver
 

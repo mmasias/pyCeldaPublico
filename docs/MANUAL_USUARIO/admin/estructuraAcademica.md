@@ -33,8 +33,10 @@ Tras crearlo, la pantalla pasa directamente a editar el programa recién creado.
 Las pantallas de un programa llevan su nombre en la cabecera y, encima en pequeño, la miga **🏛️ Universidades › universidad › facultad**, cuyos pasos son enlaces para subir en la estructura. Debajo va una franja de pestañas, con la de la pantalla actual marcada (igual que en la vista del director de programa):
 
 - **📋 Ficha**: su **Código** y **Estado**, los directores y una tabla de sus **Asignaturas del programa** -- ver el capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md). **✏️ Editar**, a la derecha del título **Ficha**, cambia el nombre del programa; el código no es editable una vez creado. Al pie de esa pantalla, en **Zona de riesgo**, está **🗑️ Eliminar** (ver más abajo).
+- **🧱 Módulos**: los módulos en que se agrupan las materias del programa (ver más abajo).
 - **📚 Materias**: las materias del programa -- capítulo [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md).
 - **🎯 Resultados de aprendizaje**: los resultados de aprendizaje del programa (ver más abajo).
+- **🧭 Competencias**: las competencias del programa (ver más abajo).
 - **🧩 Metodologías**: las metodologías docentes del programa (ver más abajo).
 - **🚦 Guías**: el seguimiento de sus guías docentes -- capítulo [Seguimiento de guías](seguimientoDeGuias.md).
 
@@ -55,6 +57,28 @@ Pulsar la pestaña **🎯 Resultados de aprendizaje** del programa. Aparece una 
 - **➕ Crear resultado de aprendizaje**: formulario con **Código (*)**, **Tipo (*)** y **Descripción (*)**; se confirma con **Crear**.
 - **📂 Abrir**: muestra código, tipo y descripción, el botón **✏️ Editar** (mismos campos que el alta) y la sección **Distribución**: las materias y las asignaturas de programa a las que está asignado, cada una con un enlace a su ficha, o "Sin asignaciones a materias ni asignaturas-programa".
 - **🗑️** (Eliminar): si el resultado está asignado a alguna materia o asignatura de programa, la pantalla indica **⛔ No se puede eliminar** y lista dónde está asignado, con un enlace a cada materia o asignatura -- hay que retirarlo primero de ahí. Si no, pide confirmación y la baja no se puede deshacer.
+
+## Competencias del programa
+
+Pulsar la pestaña **🧭 Competencias** del programa. Funciona como los resultados de aprendizaje: tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (cuántas asignaturas del programa tienen asociada cada competencia), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
+
+- **➕ Crear competencia**: formulario con **Código (*)**, **Tipo (*)** (Básica, General, Transversal o Específica) y **Descripción (*)**; se confirma con **Crear**. El código no puede repetirse dentro del programa, sin distinguir mayúsculas y minúsculas: si ya existe, el formulario lo indica y conserva lo escrito.
+- **📂 Abrir**: muestra tipo y descripción, **✏️ Editar** (mismos campos que el alta) y la **Distribución**: las materias y las asignaturas de programa que la tienen, cada una con un enlace a su ficha.
+- **🗑️** (Eliminar): si la competencia está asociada a alguna materia o asignatura de programa, la pantalla indica **⛔ No se puede eliminar** y lista dónde; si no, pide confirmación y la baja no se puede deshacer.
+
+Las competencias se asocian a las materias y, de las de cada materia, a sus asignaturas, desde la sección **Competencias** de cada una (capítulos [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md) y [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)). El director de programa gestiona lo mismo desde su vista. Los programas cuya memoria sigue el formato nuevo no tienen competencias: la lista queda vacía y no hace falta hacer nada.
+
+## Módulos del programa
+
+Un módulo agrupa materias del programa. Es opcional: una materia puede no tener módulo, y un programa puede no tener ninguno. Solo Admin los gestiona; el director de programa los ve en su lista de materias, agrupada por módulo.
+
+Pulsar la pestaña **🧱 Módulos** del programa. Aparece una tabla con **Código**, **Nombre**, **Descripción** y **Nº de materias**, con **✏️ Editar** y la papelera **🗑️** (Eliminar) en cada fila.
+
+- **➕ Crear módulo**: formulario con **Código (*)**, **Nombre (*)** y **Descripción** (opcional); se confirma con **Crear** y se vuelve a la lista. El código no puede repetirse dentro del programa, sin distinguir mayúsculas y minúsculas.
+- **✏️ Editar**: los mismos campos, con los datos actuales.
+- **🗑️** (Eliminar): si el módulo tiene materias, la pantalla lo indica y las lista; hay que cambiarles antes el módulo (editando cada materia). Si no tiene, pide confirmación.
+
+El módulo de cada materia se elige al crearla o editarla, en el desplegable **Módulo** (capítulo [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md)).
 
 ## Directores del programa
 

@@ -8,7 +8,7 @@
 
 ## Qué es
 
-El catálogo de resultados de aprendizaje del programa -- las competencias que luego se asocian a materias y asignaturas de programa.
+El catálogo de resultados de aprendizaje del programa, que luego se asocian a materias y asignaturas de programa. Las competencias del programa tienen su propio catálogo: capítulo [Competencias](competencias.md).
 
 ## Cómo llegar
 
@@ -47,7 +47,7 @@ Pulsar la papelera **🗑️** (Eliminar) en la fila del resultado. La pantalla 
 
 <div align=center>
 
-| [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md) | [Índice](README.md) | [Metodologías docentes del programa](metodologiasDelPrograma.md) |
+| [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md) | [Índice](README.md) | [Competencias](competencias.md) |
 |---|:-:|---|
 
 </div>

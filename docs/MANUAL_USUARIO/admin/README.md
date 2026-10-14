@@ -1,21 +1,21 @@
 # Manual de usuario -- Admin
 
-pyCelda gestiona el catálogo académico de la institución (universidades, facultades, programas, asignaturas, materias, sistemas de evaluación), el profesorado y el seguimiento del estado de las guías docentes.
+pyCelda gestiona el catálogo académico de la institución (universidades, facultades, programas, módulos, asignaturas, materias, sistemas de evaluación, competencias), el profesorado y el seguimiento del estado de las guías docentes.
 
 ## Qué permite hacer
 
 - En la estructura académica:
   - Crear universidades y facultades.
-  - En cada programa: crear, editar el nombre, dar de baja (desde **Editar**), nombrar directores y gestionar sus metodologías docentes y sus resultados de aprendizaje.
+  - En cada programa: crear, editar el nombre, dar de baja (desde **Editar**), nombrar directores y gestionar sus metodologías docentes, sus resultados de aprendizaje, sus competencias y sus módulos.
 - Gestionar el catálogo institucional de asignaturas, el de metodologías docentes y el de actividades formativas: crear, editar, dar de baja.
 - En las materias de un programa:
-  - Crearlas.
-  - Asociar o quitar resultados de aprendizaje y metodologías docentes.
+  - Crearlas y asignarles su módulo.
+  - Asociar o quitar resultados de aprendizaje, competencias y metodologías docentes.
   - Editar las horas de sus actividades formativas.
   - Crear, editar o eliminar sus sistemas de evaluación.
 - En las asignaturas de un programa:
   - Crear, editar y dar de baja.
-  - Editar sus resultados de aprendizaje, metodologías y actividades formativas.
+  - Editar sus resultados de aprendizaje, competencias, metodologías y actividades formativas.
   - Asignar o desasignar profesorado.
 - Gestionar el profesorado: crear, editar, dar de baja, y nombrar o quitar director de programa.
 - Consultar el estado de las guías docentes de un programa, previsualizarlas y descargar su PDF.

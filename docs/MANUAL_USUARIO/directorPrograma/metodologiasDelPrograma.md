@@ -34,7 +34,7 @@ Si alguna materia del programa tiene asociada esa metodología, la desasociació
 
 <div align=center>
 
-| [Resultados de aprendizaje](resultadosDeAprendizaje.md) | [Índice](README.md) | [Revisar y aprobar guías](revisarYAprobarGuias.md) |
+| [Competencias](competencias.md) | [Índice](README.md) | [Revisar y aprobar guías](revisarYAprobarGuias.md) |
 |---|:-:|---|
 
 </div>

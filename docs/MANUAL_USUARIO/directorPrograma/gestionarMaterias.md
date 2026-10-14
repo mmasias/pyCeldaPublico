@@ -8,7 +8,7 @@
 
 ## Qué es
 
-Cada materia agrupa una o más asignaturas del programa. Sobre una materia se asocian o desasocian sus metodologías docentes y sus resultados de aprendizaje, y se reparte su carga de actividades formativas.
+Cada materia agrupa una o más asignaturas del programa. Sobre una materia se asocian o desasocian sus metodologías docentes, sus resultados de aprendizaje y sus competencias, y se reparte su carga de actividades formativas. Si el programa tiene módulos, cada materia puede pertenecer a uno.
 
 ## Cómo llegar
 
@@ -16,11 +16,11 @@ Desde la franja del programa, pulsar **📚 Materias**.
 
 ## Qué muestra
 
-Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Crear, renombrar y eliminar materias lo hace el Admin desde su módulo.
+Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Si alguna materia del programa tiene módulo, la tabla se agrupa por módulo: una fila de cabecera **🧱 código -- nombre** por módulo, con sus materias debajo, y al final **🧱 Sin módulo** con las que aún no tienen. Crear, renombrar y eliminar materias, y asignarles su módulo, lo hace el Admin desde su módulo de administración.
 
 ## Detalle de una materia
 
-Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparece, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las cuatro secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
+Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparece el **Módulo** de la materia (código y nombre, o "Sin módulo") y, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
 
 ## Metodologías docentes
 
@@ -45,6 +45,10 @@ Pulsar **➖** (Quitar) en la fila de la metodología. Si ninguna asignatura de 
 ## Resultados de aprendizaje
 
 Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado) y el botón **➖** (Quitar) de cada fila; **➕ Asociar resultado de aprendizaje** para añadir uno de los disponibles. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
+
+## Competencias
+
+Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (cuántas asignaturas de la materia tienen asociada la competencia) y **➖** (Quitar); **➕ Asociar competencia** para añadir una de las del programa que la materia aún no tiene. Quitar una que usa alguna asignatura de la materia queda bloqueado. Detalle en el capítulo [Competencias](competencias.md).
 
 ## Actividades formativas de la materia
 

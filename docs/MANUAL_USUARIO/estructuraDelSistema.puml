@@ -27,9 +27,12 @@ class "Sistema de evaluación" as SistemaEvaluacion #A9CCE3
 class "Asignatura de programa" as AsignaturaPrograma #D2B4DE
 class "Guía docente" as Guia #F5CBA7
 class "Curso académico" as CursoAcademico #A9CCE3
+' #762: el módulo pertenece al programa y agrupa materias (opcional para cada materia).
+class "Módulo" as Modulo #A9CCE3
 
 Universidad --> Facultad
 Facultad --> Programa
+Programa --> Modulo
 Programa --> Materia
 Materia --> SistemaEvaluacion
 Materia --> AsignaturaPrograma
@@ -42,6 +45,8 @@ CursoAcademico --> Guia
 class "Asignatura" as Asignatura #A9CCE3
 class "Metodología docente" as MetodologiaDocente #A9CCE3
 class "Resultado de aprendizaje" as ResultadoAprendizaje #A9DFBF
+' #761: catálogo del programa, mismo reparto que el resultado de aprendizaje.
+class "Competencia" as Competencia #A9DFBF
 class "Actividad formativa" as ActividadFormativa #A9CCE3
 class "Profesor" as Profesor #A9CCE3
 
@@ -51,6 +56,9 @@ MetodologiaDocente ..> Materia
 MetodologiaDocente ..> AsignaturaPrograma
 ResultadoAprendizaje ..> Materia
 ResultadoAprendizaje ..> AsignaturaPrograma
+Competencia ..> Materia
+Competencia ..> AsignaturaPrograma
+Modulo ..> Materia
 ActividadFormativa ..> Materia
 ActividadFormativa ..> AsignaturaPrograma
 Universidad --> Profesor

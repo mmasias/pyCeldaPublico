@@ -8,7 +8,7 @@
 
 ## Qué es
 
-Cada asignatura de programa es la versión concreta de una asignatura dentro de un programa y un curso: sus datos propios, sus requisitos previos, las metodologías docentes y resultados de aprendizaje que le aplican, y el reparto de sus actividades formativas.
+Cada asignatura de programa es la versión concreta de una asignatura dentro de un programa y un curso: sus datos propios, sus requisitos previos, las metodologías docentes, resultados de aprendizaje y competencias que le aplican, y el reparto de sus actividades formativas.
 
 ## Cómo llegar
 
@@ -24,7 +24,7 @@ Al abrir una asignatura, la pestaña **📘 Asignaturas** queda marcada y el tí
 
 Debajo, la ficha de la asignatura en dos columnas: **Materia** (un enlace a la pantalla de la materia) y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** e **Idioma**; **Estado** y **Código** (el de la asignatura en el catálogo institucional). Después, a ancho completo, el **Contenido** y los **Requisitos previos**.
 
-Más abajo, los **Resultados de aprendizaje asociados**, las **Metodologías docentes asociadas** y las **Actividades formativas**, con el mismo mecanismo de asociar y quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados y metodologías que ya están en la materia y todavía no están en esta asignatura. Al final, el **Profesorado asignado**, de solo lectura: asignar o quitar profesorado lo gestiona Admin, no esta pantalla.
+Más abajo, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Metodologías docentes asociadas** y las **Actividades formativas**, con el mismo mecanismo de asociar y quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados, competencias y metodologías que ya están en la materia y todavía no están en esta asignatura. Al final, el **Profesorado asignado**, de solo lectura: asignar o quitar profesorado lo gestiona Admin, no esta pantalla.
 
 ## Editar una asignatura de programa
 

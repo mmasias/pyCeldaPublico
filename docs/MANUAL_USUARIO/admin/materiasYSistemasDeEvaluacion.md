@@ -8,7 +8,7 @@
 
 ## Qué es
 
-Cada materia agrupa una o más asignaturas de un programa. Desde Admin se crea la materia y se gestiona todo su contenido: sistemas de evaluación, resultados de aprendizaje, metodologías docentes y horas de actividades formativas. El director de programa puede hacer lo mismo en las materias de sus programas: las dos vistas son espejo, para que cualquiera de los dos pueda corregir.
+Cada materia agrupa una o más asignaturas de un programa. Desde Admin se crea la materia, se le asigna su módulo y se gestiona todo su contenido: sistemas de evaluación, resultados de aprendizaje, competencias, metodologías docentes y horas de actividades formativas. El director de programa puede hacer lo mismo en las materias de sus programas: las dos vistas son espejo, para que cualquiera de los dos pueda corregir.
 
 ## Cómo llegar
 
@@ -16,27 +16,28 @@ Pulsar la pestaña **📚 Materias** del programa.
 
 ## Qué muestra
 
-Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que tiene y el botón **Abrir**. El botón **🗑️** (Eliminar) aparece desactivado: no está disponible en esta versión.
+Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que tiene y el botón **Abrir**. Si alguna materia del programa tiene módulo, la tabla se agrupa por módulo: una fila de cabecera **🧱 código -- nombre** por módulo y, al final, **🧱 Sin módulo** con las que aún no tienen (los módulos se gestionan en la pestaña **🧱 Módulos**, capítulo [Estructura académica](estructuraAcademica.md)). El botón **🗑️** (Eliminar) aparece desactivado: no está disponible en esta versión.
 
 ### Crear una materia
 
 1. Pulsar **➕ Crear materia**.
 2. Rellenar **Nombre**.
-3. Pulsar **Crear**.
+3. Elegir, si procede, el **Módulo** (por defecto, **Sin módulo**). Si el programa no tiene módulos, el formulario lo indica en lugar del desplegable.
+4. Pulsar **Crear**.
 
 Tras crearla, la pantalla pasa directamente a editarla.
 
 ## Detalle de una materia
 
-Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Sistemas de evaluación**, sus **Resultados de aprendizaje** (tabla con **Código**, **Tipo**, **Descripción** y **Asignaturas**, el número de asignaturas de la materia en que está asociado cada uno), sus **Metodologías docentes** asociadas y las **Actividades formativas de la materia** (ver más abajo). Pulsar **Editar** cambia únicamente el **Nombre** de la materia.
+Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Sistemas de evaluación**, sus **Resultados de aprendizaje** (tabla con **Código**, **Tipo**, **Descripción** y **Asignaturas**, el número de asignaturas de la materia en que está asociado cada uno), sus **Competencias** (misma tabla), sus **Metodologías docentes** asociadas y las **Actividades formativas de la materia** (ver más abajo). Debajo del nombre, el **Módulo** de la materia (código y nombre, o "Sin módulo"). Pulsar **Editar** cambia el **Nombre** y el **Módulo** de la materia (**Sin módulo** la saca de su módulo).
 
-## Resultados de aprendizaje y metodologías docentes
+## Resultados de aprendizaje, competencias y metodologías docentes
 
 Funcionan igual que para el director de programa (ver su capítulo [Gestionar materias](../directorPrograma/gestionarMaterias.md)):
 
-- **➕ Asociar resultado de aprendizaje** y **➕ Asociar metodología docente**, a la derecha de cada título, añaden uno de los disponibles: los del catálogo del programa que la materia aún no tiene. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo.
+- **➕ Asociar resultado de aprendizaje**, **➕ Asociar competencia** y **➕ Asociar metodología docente** añaden uno de los disponibles: los del catálogo del programa que la materia aún no tiene. En el desplegable, cada resultado o competencia aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo.
 - **✏️ Editar**, en cada metodología, cambia su **Descripción propia**.
-- **➖** (Quitar) retira el resultado o la metodología de la materia, con confirmación. Si alguna asignatura de la materia lo está usando, queda bloqueado y la pantalla dice en cuáles.
+- **➖** (Quitar) retira el resultado, la competencia o la metodología de la materia, con confirmación. Si alguna asignatura de la materia lo está usando, queda bloqueado y la pantalla dice en cuáles.
 
 ## Actividades formativas de la materia
 

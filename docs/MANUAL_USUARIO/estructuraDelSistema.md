@@ -15,8 +15,9 @@ pyCelda organiza sus datos en dos tipos de relación distintos: una jerarquía d
 | Bloque | Quién lo gestiona |
 |---|---|
 | Universidades y facultades | Admin: crear universidades y facultades y consultarlas; editarlas o eliminarlas todavía no está disponible |
-| Programas | Admin: crear, editar el nombre, dar de baja, nombrar o quitar director de programa, y gestionar sus metodologías docentes y sus resultados de aprendizaje; el director de programa gestiona también las de su programa |
-| Materias | Admin crea la materia; el director de programa gestiona su contenido -- metodologías docentes, resultados de aprendizaje y actividades formativas asociadas |
+| Programas | Admin: crear, editar el nombre, dar de baja, nombrar o quitar director de programa, y gestionar sus metodologías docentes, sus resultados de aprendizaje, sus competencias y sus módulos; el director de programa gestiona también las metodologías, los resultados de aprendizaje y las competencias de su programa (los módulos, solo Admin) |
+| Módulos | Admin: crear, editar y eliminar los módulos de cada programa, y elegir el módulo de cada materia al crearla o editarla; el director de programa los ve agrupando su lista de materias. Un módulo agrupa materias de su programa; es opcional para cada materia |
+| Materias | Admin crea la materia; el director de programa gestiona su contenido -- metodologías docentes, resultados de aprendizaje, competencias y actividades formativas asociadas |
 | Sistemas de evaluación | Admin |
 | Cursos académicos | Admin: crear, editar (solo mientras no tenga guías), activar el curso -- nace entonces una guía por asignatura de programa, clonada de la del curso anterior -- y activar el semestre. Cada guía docente pertenece a un curso académico |
 | Profesorado | Admin: dar de alta, editar y dar de baja profesores de su universidad, asignarlos a asignaturas de programa y nombrar o quitar al director de un programa; cada profesor edita su propio perfil |
@@ -25,4 +26,5 @@ pyCelda organiza sus datos en dos tipos de relación distintos: una jerarquía d
 | Catálogo de asignaturas | Admin |
 | Catálogo de metodologías docentes | Admin gestiona el catálogo institucional (por universidad); el director de programa elige cuáles se asocian a su programa, a cada materia y, dentro de ella, a cada asignatura de programa |
 | Catálogo de resultados de aprendizaje | El director de programa -- creación y reparto en materias y asignaturas de programa; Admin también puede crearlos, editarlos y eliminarlos por programa y asociarlos a asignaturas de programa |
+| Catálogo de competencias | El director de programa y Admin, igual que los resultados de aprendizaje: crear, editar y eliminar por programa, y repartirlas en materias y, de las de cada materia, en sus asignaturas de programa. Los programas de memoria de formato nuevo no tienen competencias |
 | Catálogo de actividades formativas | Admin gestiona el catálogo (por universidad): crear, editar, eliminar; el director de programa reparte las horas por materia y por asignatura de programa |

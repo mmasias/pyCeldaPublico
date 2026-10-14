@@ -28,19 +28,25 @@ Pulsar **✏️ Editar** en el detalle. El Admin tiene los mismos campos editabl
 
 Si ya existen guías creadas para la asignatura, la **Materia** y el **Semestre por defecto** dejan de ser editables y la pantalla lo indica.
 
+Tampoco se puede cambiar la asignatura a una materia que no tenga todas sus competencias: el sistema rechaza el cambio y dice qué competencias de la asignatura faltan en la nueva materia. Hay que asociarlas antes a esa materia o quitarlas de la asignatura.
+
 ## Dar de baja una asignatura de programa
 
 Pulsar **🗑️** (Eliminar) y confirmar en **🗑️ Confirmar eliminación**. Esta acción no se puede deshacer: la asignatura de programa pasa a estado **Extinguido**, deja de admitir altas nuevas apoyadas en ella, pero las guías ya existentes permanecen intactas.
 
 ## Detalle de una asignatura de programa
 
-Al abrir una asignatura de programa aparecen **Materia**, **Curso**, **Carácter**, **Sesiones mínimas para enviar a revisión**, **Idioma**, **ECTS**, **Semestre por defecto**, **Contenido** y **Requisitos previos**, y debajo estas secciones, en este orden: **Profesorado**, **Resultados de aprendizaje asociados**, **Metodologías docentes asociadas** y **Actividades formativas**. Arriba, la franja del programa con **📚 Materias** marcada y, debajo, la miga **📚 Materias › materia › asignatura**: cada paso vuelve a su pantalla; la ficha del programa con su tabla de asignaturas está en la pestaña **📋 Ficha**.
+Al abrir una asignatura de programa aparecen **Materia**, **Curso**, **Carácter**, **Sesiones mínimas para enviar a revisión**, **Idioma**, **ECTS**, **Semestre por defecto**, **Contenido** y **Requisitos previos**, y debajo estas secciones, en este orden: **Profesorado**, **Resultados de aprendizaje asociados**, **Competencias**, **Metodologías docentes asociadas** y **Actividades formativas**. Arriba, la franja del programa con **📚 Materias** marcada y, debajo, la miga **📚 Materias › materia › asignatura**: cada paso vuelve a su pantalla; la ficha del programa con su tabla de asignaturas está en la pestaña **📋 Ficha**.
 
 ## Resultados de aprendizaje asociados
 
 La tabla muestra **Código**, **Tipo** y **Descripción** de cada resultado asociado, con **➖** (Quitar) en cada fila.
 
 Para añadir uno, pulsar **➕ Asociar resultado de aprendizaje**, elegirlo en **Resultado de aprendizaje (*)** y confirmar. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo. Solo se ofrecen los resultados ya asignados a la materia de la asignatura de programa y que aún no están asociados a ella; si no queda ninguno, la pantalla lo indica y solo ofrece **Volver**.
+
+## Competencias
+
+Tabla con **Código**, **Tipo** y **Descripción** de cada competencia asociada, con **➖** (Quitar) en cada fila; quitar pide confirmación. **➕ Asociar competencia** añade una: solo se ofrecen las ya asociadas a la materia de la asignatura y que esta aún no tiene; si no queda ninguna, la pantalla lo indica. Las competencias de la asignatura aparecen también, en solo lectura, en su guía docente.
 
 ## Metodologías docentes asociadas
 
