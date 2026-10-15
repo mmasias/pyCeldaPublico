@@ -54,8 +54,9 @@ Pulsar la pestaña **🧩 Metodologías** del programa. Aparece una tabla con **
 
 Pulsar la pestaña **🎯 Resultados de aprendizaje** del programa. Aparece una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asignado cada resultado, o "--" si no consta; con fondo rojo suave si es 0), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
 
-- **➕ Crear resultado de aprendizaje**: formulario con **Código (*)**, **Tipo (*)** y **Descripción (*)**; se confirma con **Crear**.
-- **📂 Abrir**: muestra código, tipo y descripción, el botón **✏️ Editar** (mismos campos que el alta) y la sección **Distribución**: las materias y las asignaturas de programa a las que está asignado, cada una con un enlace a su ficha, o "Sin asignaciones a materias ni asignaturas-programa".
+- **➕ Crear resultado de aprendizaje**: formulario con **Código (*)**, **Tipo (*)** y **Descripción (*)**; se confirma con **Crear** y se abre el resultado recién creado.
+- **📂 Abrir**: la pestaña **🎯 Resultados de aprendizaje** queda marcada y el título es la miga **🎯 Resultados de aprendizaje › código del resultado** (la primera parte vuelve a la lista). Muestra el tipo y la descripción, el botón **✏️ Editar** (mismos campos que el alta) y la sección **Distribución**: las materias y las asignaturas de programa a las que está asignado, cada una con un enlace a su ficha, o "Sin asignaciones a materias ni a asignaturas del programa". Es la misma pantalla que la del director de programa y la de una competencia.
+- En **✏️ Editar**, si el tipo del resultado no está en la lista (por ejemplo, uno cargado desde la memoria verificada del programa), el desplegable lo ofrece también, para que guardar sin tocarlo no lo cambie.
 - **🗑️** (Eliminar): si el resultado está asignado a alguna materia o asignatura de programa, la pantalla indica **⛔ No se puede eliminar** y lista dónde está asignado, con un enlace a cada materia o asignatura -- hay que retirarlo primero de ahí. Si no, pide confirmación y la baja no se puede deshacer.
 
 ## Competencias del programa

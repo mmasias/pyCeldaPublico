@@ -24,7 +24,9 @@ Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el n�
 2. Escribir el **Código**.
 3. Elegir el **Tipo**: Conocimientos o contenidos, Competencias o capacidades, o Habilidades o destrezas.
 4. Escribir la **Descripción**.
-5. Pulsar **Crear**.
+5. Pulsar **Crear**. Se abre el resultado recién creado.
+
+Para salir sin crear, **Cancelar**; si hay algo escrito, pide confirmación antes de descartarlo.
 
 ## Detalle de un resultado de aprendizaje
 
@@ -34,7 +36,9 @@ Debajo aparecen el **Tipo**, la **Descripción** (en cursiva) y la **Distribuci�
 
 ## Editar un resultado de aprendizaje
 
-Pulsar **✏️ Editar** y cambiar código, tipo o descripción; **Guardar** confirma los cambios.
+Pulsar **✏️ Editar** y cambiar código, tipo o descripción; **Guardar** confirma los cambios y vuelve al detalle. **Cancelar** con cambios sin guardar pide confirmación antes de descartarlos.
+
+Si el resultado tiene un tipo que no está entre los tres de la lista (por ejemplo, uno cargado desde la memoria verificada del programa), el desplegable lo ofrece también, en primer lugar, para que guardar sin tocarlo no lo cambie.
 
 ## Eliminar un resultado de aprendizaje
 
