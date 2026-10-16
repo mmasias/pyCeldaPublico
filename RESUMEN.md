@@ -2,7 +2,11 @@
 
 > **Documento en constante actualización.** Refleja el estado de pyCelda en la fecha de su última medición (ver "Números del proyecto") y se revisa a medida que el proyecto avanza: cifras, versiones y estado pueden haber cambiado desde entonces. Las referencias numeradas (discussion #92, #213...) y los recuentos de GitHub corresponden al repositorio de trabajo de pyCelda, que es privado; este espejo público solo contiene el subconjunto descrito en el [README](/README.md).
 
-<div align=right><sub>Volver: [Al inicio](/README.md) / Para explorar: [Estructura del sistema](/docs/MANUAL_USUARIO/estructuraDelSistema.md) · [Manuales de usuario](/README.md#manual-de-usuario) · [Prototipo navegable](/README.md#prototipo-navegable) · [RUP](/RUP/README.md) · [#2think](/docs/2Think/2Think.md)</sub></div>
+<div align=right><sub>
+  
+  Volver: [Al inicio](/README.md) / Para explorar: [Estructura del sistema](/docs/MANUAL_USUARIO/estructuraDelSistema.md) · [Manuales de usuario](/README.md#manual-de-usuario) · [Prototipo navegable](/README.md#prototipo-navegable) · [RUP](/RUP/README.md) · [#2think](/docs/2Think/2Think.md)
+  
+  </sub></div>
 
 ## Qué es pyCelda
 
