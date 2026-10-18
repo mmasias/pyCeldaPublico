@@ -28,11 +28,16 @@ package "Estructura curricular" {
     estado : String(20)
     facultad_id : Integer <<FK>>
     programa_padre_id : Integer <<FK>>
+    codigo_ruct : String(20)
+    denominacion_oficial : String(300)
   }
   class materias {
     id : Integer <<PK>>
     nombre : String(200)
     programa_id : Integer <<FK>>
+    modulo_id : Integer <<FK>>
+    codigo_ruct : String(20)
+    ects : Numeric(5, 1)
   }
   class asignaturas {
     id : Integer <<PK>>
@@ -60,14 +65,15 @@ package "Estructura curricular" {
   class sistemas_evaluacion {
     id : Integer <<PK>>
     materia_id : Integer <<FK>>
+    codigo : String(20)
     tipo : String(50)
-    descripcion : String(200)
+    descripcion : String(300)
     ponderacion_minima : Numeric(5, 2)
     ponderacion_maxima : Numeric(5, 2)
   }
   class metodologias_docentes {
     id : Integer <<PK>>
-    universidad_id : Integer <<FK>>
+    programa_id : Integer <<FK>>
     codigo : String(20)
     descripcion : String(500)
   }
@@ -75,10 +81,6 @@ package "Estructura curricular" {
     materia_id : Integer <<PK,FK>>
     metodologia_docente_id : Integer <<PK,FK>>
     descripcion_propia : Text
-  }
-  class programas_metodologias_docentes {
-    programa_id : Integer <<PK,FK>>
-    metodologia_docente_id : Integer <<PK,FK>>
   }
   class resultados_aprendizaje {
     id : Integer <<PK>>
@@ -103,9 +105,31 @@ package "Estructura curricular" {
     asignatura_programa_id : Integer <<PK,FK>>
     profesor_id : Integer <<PK,FK>>
   }
+  class competencias {
+    id : Integer <<PK>>
+    programa_id : Integer <<FK>>
+    codigo : String(20)
+    tipo : String(20)
+    descripcion : String(2000)
+  }
+  class materias_competencias {
+    materia_id : Integer <<PK,FK>>
+    competencia_id : Integer <<PK,FK>>
+  }
+  class asignaturas_programa_competencias {
+    asignatura_programa_id : Integer <<PK,FK>>
+    competencia_id : Integer <<PK,FK>>
+  }
+  class modulos {
+    id : Integer <<PK>>
+    programa_id : Integer <<FK>>
+    codigo : String(20)
+    nombre : String(200)
+    descripcion : String(2000)
+  }
   class actividades_formativas {
     id : Integer <<PK>>
-    universidad_id : Integer <<FK>>
+    programa_id : Integer <<FK>>
     codigo : String(10)
     nombre : String(200)
   }
@@ -113,12 +137,12 @@ package "Estructura curricular" {
     materia_id : Integer <<PK,FK>>
     actividad_formativa_id : Integer <<PK,FK>>
     horas : Numeric(6, 2)
+    porcentaje_presencialidad : Numeric(5, 2)
   }
   class actividades_formativas_asignatura_programa {
     asignatura_programa_id : Integer <<PK,FK>>
     actividad_formativa_id : Integer <<PK,FK>>
     horas : Numeric(6, 2)
-    porcentaje_presencialidad : Numeric(5, 2)
   }
   class cursos_academicos {
     id : Integer <<PK>>
@@ -230,7 +254,7 @@ package "Personas y roles" {
 }
 
 ' --- Relaciones (crow's foot) ---
-actividades_formativas }--|| universidades
+actividades_formativas }--|| programas : del plan de
 actividades_formativas_asignatura_programa }--|| asignaturas_programa : reparte en
 actividades_formativas_asignatura_programa }--|| actividades_formativas : instancia de
 actividades_formativas_materia }--|| materias : reparte en
@@ -239,16 +263,17 @@ asignaturas_programa ||--{ asignaturas_programa_metodologias_docentes
 metodologias_docentes ||--{ asignaturas_programa_metodologias_docentes
 asignaturas_programa ||--{ asignaturas_programa_resultados_aprendizaje
 resultados_aprendizaje ||--{ asignaturas_programa_resultados_aprendizaje
+asignaturas_programa ||--{ asignaturas_programa_competencias
+competencias ||--{ asignaturas_programa_competencias
 asignaturas_programa ||--{ asignaturas_programa_profesores
 profesores ||--{ asignaturas_programa_profesores
 asignaturas_programa }--|| materias : concreta
 asignaturas_programa }--o| asignaturas
+competencias }--|| programas : del plan de
 cursos_academicos }--o| universidades
 facultades }--|| universidades : pertenece a
 programas ||--{ programas_directores_programa
 directores_programa ||--{ programas_directores_programa
-programas ||--{ programas_metodologias_docentes
-metodologias_docentes ||--{ programas_metodologias_docentes
 programas }--o| facultades : adscrito a
 programas }--o| programas_padre : versión de
 guias ||--{ guias_profesores
@@ -258,10 +283,14 @@ guias }--|| cursos_academicos : cursada en
 historial_cambios }--|| guias : audita
 materias ||--{ materias_resultados_aprendizaje
 resultados_aprendizaje ||--{ materias_resultados_aprendizaje
+materias ||--{ materias_competencias
+competencias ||--{ materias_competencias
 materias }--o| programas : del plan de
-metodologias_docentes }--|| universidades
+materias }--o| modulos : agrupada en
+metodologias_docentes }--|| programas : del plan de
 metodologias_materia }--|| materias
 metodologias_materia }--|| metodologias_docentes
+modulos }--|| programas : del plan de
 perfiles_profesor_curso }--|| profesores : perfil de
 perfiles_profesor_curso }--|| cursos_academicos : del curso
 ponderaciones_evaluacion }--|| guias : pesa en

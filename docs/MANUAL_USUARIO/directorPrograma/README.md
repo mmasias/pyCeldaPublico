@@ -7,20 +7,19 @@ pyCelda gestiona el catálogo académico del programa (materias, asignaturas, re
 - Consultar los programas a cargo y el estado de sus guías docentes.
 - En las materias del programa:
   - Asociar y desasociar metodologías docentes, resultados de aprendizaje y competencias.
-  - Editar el reparto de sus actividades formativas.
+  - Editar las horas y la presencialidad de sus actividades formativas.
   - Crear, editar o eliminar sus sistemas de evaluación.
 - En las asignaturas de programa:
   - Editar sus datos propios y requisitos previos.
   - Asociar y desasociar metodologías docentes, resultados de aprendizaje y competencias.
-  - Editar el reparto de sus actividades formativas.
-- Gestionar el catálogo de resultados de aprendizaje del programa y el de competencias: crear, editar y eliminar.
+  - Editar el reparto de horas de sus actividades formativas.
+- Gestionar los catálogos del programa (resultados de aprendizaje, competencias, metodologías docentes y actividades formativas): crear, editar y eliminar.
 - Ver el módulo de cada materia: la lista de materias se agrupa por módulo cuando alguna lo tiene (los módulos los gestiona Admin).
-- Gestionar las metodologías docentes del programa: asociar y desasociar las del catálogo institucional.
 - En las guías docentes del programa:
   - Aprobar, rechazar, escalar directamente a aprobada, y revocar una aprobación.
   - Como corrección excepcional, editar una guía: temario, instrumentos de evaluación, texto de convocatorias, bibliografía y planificación docente.
 
-Todas las pantallas del modo académico (Director y Profesor) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Dentro de un programa, una franja de pestañas (**📋 Vista general**, **📚 Materias**, **🎯 Resultados de aprendizaje**, **🧭 Competencias**, **🧩 Metodologías**, **📘 Asignaturas** y **📄 Guías**) marca siempre en qué sección se está; el capítulo [Entrar y ver los programas](entrarYVerLosProgramas.md) explica cómo moverse.
+Todas las pantallas del modo académico (Director y Profesor) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Dentro de un programa, una franja de pestañas en dos filas (arriba **📋 Vista general** y **📄 Guías**; debajo **📚 Materias**, **🎯 Resultados de aprendizaje**, **🧭 Competencias**, **🧩 Metodologías**, **🏋️ Actividades formativas** y **📘 Asignaturas**) marca siempre en qué sección se está; el capítulo [Entrar y ver los programas](entrarYVerLosProgramas.md) explica cómo moverse.
 
 Si la cuenta también imparte alguna asignatura, la gestión de esa guía propia (redactar el temario, la evaluación, la bibliografía y la planificación docente) se explica en el [manual de Profesor](../profesor/README.md), no en este.
 
@@ -33,5 +32,5 @@ Para el mapa completo de qué depende de qué y quién gestiona cada bloque del 
 3. [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)
 4. [Resultados de aprendizaje](resultadosDeAprendizaje.md)
 5. [Competencias](competencias.md)
-6. [Metodologías docentes del programa](metodologiasDelPrograma.md)
+6. [Metodologías docentes y actividades formativas](metodologiasDelPrograma.md)
 7. [Revisar y aprobar guías](revisarYAprobarGuias.md)

@@ -36,18 +36,18 @@ Bajada a diseño de [`importarActividadesFormativasDeAsignaturaProgramaPrima()`]
 
 - **Vista**: `EditarActividadesFormativasAsignaturaPrograma` (React, ruta `/asignaturas-programa/:id/actividades-formativas/editar`) -- la importación vive como sección "Importar de otra asignatura de la misma materia" de la pantalla de edición del reparto, no como pantalla propia. Tabla de primas (`nombre`, `ects` junto a los de la destino, `total_horas`) con un botón por fila; `window.confirm` previo del reemplazo total; estado vacío ("No hay asignaturas de la misma materia con actividades formativas configuradas") sin botones. Tras importar vuelve a la pantalla de origen.
 - **API**: `routers/asignatura_programa.py` -- `listar_primas_importables_actividades_formativas(asignatura_programa_id)` (`GET .../actividades-formativas/importables`) e `importar_actividades_formativas_de_asignatura_programa_prima(asignatura_programa_id, datos)` (`POST .../actividades-formativas/importar`), con helper `_primas_importables(db, destino)` y auth `get_current_director_programa_id` + `_verificar_asignatura_programa_del_director`. Función suelta, sin capa Service ni `Controller`.
-- **Modelo**: `ActividadFormativaAsignaturaPrograma.actualizar(horas, porcentaje_presencialidad)` -- la misma operación que usa [`editarActividadesFormativasAsignaturaPrograma()`](../editarActividadesFormativasAsignaturaPrograma/README.md).
+- **Modelo**: `ActividadFormativaAsignaturaPrograma.actualizar(horas)` -- la misma operación que usa [`editarActividadesFormativasAsignaturaPrograma()`](../editarActividadesFormativasAsignaturaPrograma/README.md).
 - **Repositorios**: `AsignaturaProgramaRepository.obtener(id)` / `.listar_primas(asignatura_programa_id)`; `ActividadFormativaAsignaturaProgramaRepository.listar_de(asignatura_programa_id)` / `.guardar()`.
 
 ## Decisiones de diseño
 
 - **Dos endpoints**: el `GET /importables` calcula las candidatas y el `POST /importar` las **recalcula** para validar el origen; el id que manda el cliente nunca se confía.
 - **Primas = mismo `materia_id`**: `listar_primas` devuelve las otras `AsignaturaPrograma` de la misma `Materia`, excluyendo la propia (`[]` si el id no existe o la destino no tiene `materia_id`). A diferencia de `listar_hermanas()` (mismo `Asignatura` de catálogo, cualquier Materia/Programa), aquí el criterio es contenedor.
-- **Candidatas**: solo primas con `sum(horas) > 0` (se excluyen las de 10 filas a 0); orden por `abs(ects_prima - ects_destino)` y luego por `nombre`.
+- **Candidatas**: solo primas con `sum(horas) > 0` (se excluyen las que tienen todas las filas a 0); orden por `abs(ects_prima - ects_destino)` y luego por `nombre`.
 - **`404` uniforme**: `AsignaturaPrograma` destino inexistente o no dirigida por el `DirectorPrograma` (`AsignaturaPrograma no encontrada`), y origen fuera del conjunto de candidatas -- inexistente, de otra Materia o sin configurar -- (`AsignaturaPrograma origen no encontrada`).
-- **Reemplazo in place**: por cada fila de la destino se busca la fila del origen con el mismo `actividad_formativa_id` y se llama a `actualizar(horas, porcentaje_presencialidad)`; no se borra ni se crea nada. Un solo `guardar()` (commit) al final.
+- **Reemplazo in place**: por cada fila de la destino se busca la fila del origen con el mismo `actividad_formativa_id` y se llama a `actualizar(horas)`; no se borra ni se crea nada. Un solo `guardar()` (commit) al final. Desde el issue [#772](https://github.com/mmasias/pyCelda/issues/772) solo se copian horas: la presencialidad vive en `ActividadFormativaMateria` y origen y destino son de la misma `Materia`.
 - **Sin `HistorialCambio` ni efecto en `Guia`**: el reparto de la `AsignaturaPrograma` no pasa por el historial de guías (a diferencia de `importarPlanificacionDocenteDeGuiaHermana()`).
-- **Respuesta**: las 10 filas de la destino serializadas con `serializar_actividades_formativas_asignatura_programa`, misma forma que el `PUT` de edición.
+- **Respuesta**: las filas de la destino serializadas con `serializar_actividades_formativas_asignatura_programa` (con la presencialidad de la `Materia`), misma forma que el `PUT` de edición.
 - **Sin capa Service**: Router delgado -> Repository.
 
 ## Referencias

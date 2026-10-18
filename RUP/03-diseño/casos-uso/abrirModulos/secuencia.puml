@@ -1,0 +1,27 @@
+@startuml abrirModulos-diseño
+title Diagrama de Secuencia - Abrir Modulos
+
+actor "Admin" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ModuloRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita abrir los módulos del Programa
+activate Vista
+Vista -> API: GET /api/v1/programas/{programa_id}/modulos
+activate API
+API -> Repo: listar_del_programa(programa_id)
+activate Repo
+Repo -> DB: SELECT ... FROM modulos WHERE programa_id = :p ORDER BY codigo
+Repo --> API: List[Modulo]
+API -> Repo: contar_materias_por_modulo(programa_id)
+Repo -> DB: SELECT modulo_id, COUNT(id) FROM materias\nWHERE programa_id = :p AND modulo_id IS NOT NULL GROUP BY modulo_id
+Repo --> API: dict[id, n]
+deactivate Repo
+API --> Vista: 200 OK (List[ModuloResponse] con num_materias)
+deactivate API
+Vista --> Actor: presenta los módulos
+deactivate Vista
+
+@enduml

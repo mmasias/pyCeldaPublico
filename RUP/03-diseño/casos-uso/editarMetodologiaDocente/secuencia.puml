@@ -1,47 +1,37 @@
 @startuml editarMetodologiaDocente-diseño
 title Diagrama de Secuencia - Editar Metodología Docente
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "MetodologiaDocenteRepository" as MetodologiaRepo
-participant "MetodologiaDocente" as Metodologia
+participant "MetodologiaDocenteRepository" as Repo
+participant "MetodologiaDocente" as Modelo
 database "Base de Datos" as DB
 
-Admin -> Vista: abre la MetodologiaDocente a editar
+Actor -> Vista: solicita editar la metodología docente
 activate Vista
 Vista -> API: GET /api/v1/metodologias-docentes/{metodologia_docente_id}
+API --> Vista: 200 OK (MetodologiaDocenteResponse)
+Vista --> Actor: presenta formulario con los datos actuales
+Actor -> Vista: cambia los campos y confirma
+Vista -> API: PUT /api/v1/metodologias-docentes/{metodologia_docente_id} (MetodologiaDocenteUpdate)
 activate API
-note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> MetodologiaRepo: obtener(metodologia_docente_id)
-activate MetodologiaRepo
-MetodologiaRepo -> DB: SELECT ... FROM metodologias_docentes WHERE id = :metodologia_docente_id
-activate DB
-DB --> MetodologiaRepo: fila MetodologiaDocente
-deactivate DB
-MetodologiaRepo --> API: MetodologiaDocente (404 si None)
-deactivate MetodologiaRepo
-API --> Vista: 200 OK (MetodologiaDocenteResponse JSON)
+note right of API: _autorizar_metodologia (404) y misma\nvalidación de forma que crear (422)
+API -> Repo: codigo_en_uso(programa_id, codigo, salvo_id=metodologia_docente_id)
+activate Repo
+Repo --> API: boolean
+alt código ya usado por otra metodología del Programa
+  API --> Vista: 409 Conflict
+  Vista --> Actor: presenta el mensaje, el formulario conserva lo escrito
+else código libre
+  API -> Modelo: actualizar(codigo, descripcion)
+  API -> Repo: actualizar(metodologia_docente)
+  Repo -> DB: UPDATE metodologias_docentes SET ... WHERE id = :metodologia_docente_id
+  API --> Vista: 200 OK (MetodologiaDocenteResponse)
+  Vista --> Actor: vuelve a la ficha
+end
+deactivate Repo
 deactivate API
-Vista --> Admin: muestra formulario con datos actuales (código de solo lectura)
-
-Admin -> Vista: modifica descripción, confirma
-Vista -> API: PUT /api/v1/metodologias-docentes/{metodologia_docente_id} (MetodologiaDocenteUpdate JSON)
-activate API
-API -> MetodologiaRepo: editar(metodologia, codigo, descripcion)
-activate MetodologiaRepo
-MetodologiaRepo -> Metodologia: actualizar(codigo, descripcion)
-activate Metodologia
-deactivate Metodologia
-MetodologiaRepo -> DB: UPDATE metodologias_docentes SET codigo = ..., descripcion = ...
-activate DB
-DB --> MetodologiaRepo: ok
-deactivate DB
-MetodologiaRepo --> API: MetodologiaDocente
-deactivate MetodologiaRepo
-API --> Vista: 200 OK (MetodologiaDocenteResponse JSON)
-deactivate API
-Vista --> Admin: datos actualizados
 deactivate Vista
 
 @enduml

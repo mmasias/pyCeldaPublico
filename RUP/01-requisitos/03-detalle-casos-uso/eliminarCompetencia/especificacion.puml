@@ -1,0 +1,59 @@
+@startuml eliminarCompetencia
+
+skinparam linetype polyline
+
+state COMPETENCIAS_ABIERTO
+state COMPETENCIAS_ABIERTO_SALIDA as "COMPETENCIAS_ABIERTO"
+
+COMPETENCIAS_ABIERTO -[#green]-> eliminarCompetencia
+note on link
+<b>Admin / DirectorPrograma</b> solicita eliminar competencia
+end note
+
+state eliminarCompetencia as "eliminarCompetencia()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    [Competencia sin asignar a ninguna Materia ni AsignaturaPrograma]
+    <b>Sistema</b> presenta información de la competencia y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [Competencia asignada a alguna Materia o AsignaturaPrograma]
+    <b>Sistema</b> presenta mensaje de bloqueo con las Materias y AsignaturaPrograma que la tienen asignada
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarCompetencia -[#green]-> COMPETENCIAS_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarCompetencia -[#red]-> COMPETENCIAS_ABIERTO_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarCompetencia -[#blue]-> COMPETENCIAS_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

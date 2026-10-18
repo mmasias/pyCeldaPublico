@@ -3,14 +3,14 @@
     <b>EDITAR ACTIVIDAD FORMATIVA</b>
     ====
     {
-        <b>Código:</b> AF3
+        <b>Código (*):</b>
+        "AD1       "
         <b>Nombre (*):</b>
-        "Clases prácticas (laboratorio)"
+        "Actividad Dirigida: Clases de teoría              "
         --
         <i>(*) Campo obligatorio</i>
-        <i>El código no es editable una vez creada la actividad</i>
     }
     ~~
-    {[Guardar]}
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

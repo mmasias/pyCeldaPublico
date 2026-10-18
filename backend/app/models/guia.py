@@ -25,6 +25,44 @@ COMENTARIO_REVISION_POR_PROFESORADO = (
     "En revisión por cambio en los profesores que la imparten"
 )
 
+# Discussion #731 (opción A, sin cambio de esquema): HistorialCambio no guarda
+# el rol del autor y los id de Profesor y DirectorPrograma son de tablas
+# distintas, así que la autoría de las filas que marcan quién tocó la guía se
+# distingue como la de Administración, por un valor fijo:
+# - el Profesor que edita una guía Aprobada deja una fila campo="estado"
+#   (Aprobada -> Borrador) con COMENTARIO_EDICION_PROFESOR;
+# - el Director que corrige una guía en Borrador o Rechazada (sin transición de
+#   estado) deja una fila campo=CAMPO_CORRECCION_DIRECTOR.
+# La mejora limpia (opción B) es una columna de rol en HistorialCambio, con
+# subida de esquema.
+COMENTARIO_EDICION_PROFESOR = "edición del Profesor sobre la guía aprobada"
+COMENTARIO_CORRECCION_DIRECTOR = "corrección directa del Director"
+CAMPO_CORRECCION_DIRECTOR = "correccion_director"
+
+
+COMENTARIOS_RESERVADOS = (COMENTARIO_EDICION_PROFESOR, COMENTARIO_CORRECCION_DIRECTOR)
+
+
+def es_edicion_del_profesor(
+    campo: str, valor_anterior: str | None, valor_nuevo: str | None, comentario: str | None
+) -> bool:
+    """Fila de estado Aprobada -> Borrador que deja el Profesor al editar una
+    guía aprobada (no es una revocación del Director). El comentario es texto
+    libre en rechazar/revocar: esos endpoints rechazan COMENTARIOS_RESERVADOS
+    para que un Director no pueda dejar una fila que pase por esta."""
+    return (
+        campo == "estado"
+        and valor_anterior == "Aprobada"
+        and valor_nuevo == "Borrador"
+        and comentario == COMENTARIO_EDICION_PROFESOR
+    )
+
+
+def _es_edicion_del_profesor(cambio: "HistorialCambio") -> bool:
+    return es_edicion_del_profesor(
+        cambio.campo, cambio.valor_anterior, cambio.valor_nuevo, cambio.comentario
+    )
+
 # Tope de longitud de Guia.contenido (issue #303, hallazgo H-12). Criterio:
 # ~2x el máximo real de producción (4.801 caracteres, 108 guías medidas),
 # redondeado. Un temario más largo es señal de un pegado accidental que no
@@ -123,22 +161,24 @@ class Guia(Base):
         return self.asignatura_programa.semestre_default if self.asignatura_programa else None
 
     def _ultimo_cambio_historial(self) -> "HistorialCambio | None":
-        # Solo las transiciones de estado son señal de "el Director tocó esto"
-        # (aprobar/rechazar/escalar/revocar). Las filas campo="contenido" son
-        # ediciones del Profesor, ya cubiertas por fecha_ultima_modificacion vía
-        # confirmar_guardado() -- no deben desplazar la autoría al Director.
-        cambios_estado = [h for h in self.historial if h.campo == "estado"]
-        if not cambios_estado:
+        # Solo las filas que dicen quién tocó la guía cuentan para la autoría:
+        # las transiciones de estado (aprobar/rechazar/escalar/revocar, la del
+        # Profesor que edita una aprobada y la administrativa de #254) y la
+        # corrección del Director sin transición (#731). Las filas de contenido
+        # no: su autor_id no dice de qué tabla sale.
+        cambios = [
+            h for h in self.historial if h.campo in ("estado", CAMPO_CORRECCION_DIRECTOR)
+        ]
+        if not cambios:
             return None
-        return max(cambios_estado, key=lambda h: h.fecha)
+        return max(cambios, key=lambda h: (h.fecha, h.id or 0))
 
     @property
     def ultima_actualizacion(self) -> datetime:
-        """Máximo entre guardar-borrador (Profesor, campo propio del modelo) y
-        aprobar/rechazar/escalar/revocar (Director, vía HistorialCambio) --
-        ninguna de las dos señales por separado cubre el ciclo de vida
-        completo (enviarARevision y editarSemestreGuia no tocan ninguna).
-        Documentado como simplificación conocida, no oculta."""
+        """Máximo entre guardar-borrador (campo propio del modelo) y las filas
+        de autoría de HistorialCambio -- ninguna de las dos señales por separado
+        cubre el ciclo de vida completo (enviarARevision y editarSemestreGuia no
+        tocan ninguna). Documentado como simplificación conocida, no oculta."""
         ultimo_historial = self._ultimo_cambio_historial()
         if ultimo_historial is not None and ultimo_historial.fecha > self.fecha_ultima_modificacion:
             return ultimo_historial.fecha
@@ -146,13 +186,18 @@ class Guia(Base):
 
     @property
     def ultima_actualizacion_rol(self) -> str:
+        # >= y no >: una escritura deja su fila de autoría con la misma fecha
+        # que pone en fecha_ultima_modificacion (#731,
+        # aplicar_regla_de_estado_por_escritura); con > esa fila no contaría.
         ultimo_historial = self._ultimo_cambio_historial()
-        if ultimo_historial is not None and ultimo_historial.fecha > self.fecha_ultima_modificacion:
+        if ultimo_historial is not None and ultimo_historial.fecha >= self.fecha_ultima_modificacion:
             # issue #254: la transición Aprobada -> EnRevision administrativa
             # es campo="estado" pero no la hace el Director -- el autor centinela
             # la distingue para no atribuírsela.
             if ultimo_historial.autor_id == AUTOR_ADMIN_CENTINELA:
                 return "Administración"
+            if _es_edicion_del_profesor(ultimo_historial):
+                return "Profesor"
             return "Director"
         return "Profesor"
 
@@ -196,7 +241,13 @@ class Guia(Base):
         ]
         if not revocaciones:
             return None
-        return max(revocaciones, key=lambda h: h.fecha).comentario
+        ultima = max(revocaciones, key=lambda h: (h.fecha, h.id or 0))
+        # #731: si la guía volvió a Borrador porque el Profesor la editó, no
+        # hay comentario del Director que mostrar (ni el de una revocación de
+        # un ciclo anterior).
+        if _es_edicion_del_profesor(ultima):
+            return None
+        return ultima.comentario
 
     def sincronizar_ponderaciones(
         self, ids_ponderaciones_final: list[int]
@@ -251,8 +302,8 @@ class Guia(Base):
         self.contenido = contenido
         return anterior
 
-    def confirmar_guardado(self) -> None:
-        self.fecha_ultima_modificacion = datetime.now(UTC)
+    def confirmar_guardado(self, ahora: datetime | None = None) -> None:
+        self.fecha_ultima_modificacion = ahora or datetime.now(UTC)
         if self.estado == "Aprobada":
             self.estado = "Borrador"
 
@@ -281,12 +332,12 @@ class Guia(Base):
             maxima = float(sistema.ponderacion_maxima)
             if asignado < minima:
                 return (
-                    f"Falta asignar {minima - asignado:g}% en {sistema.tipo} "
+                    f"Falta asignar {minima - asignado:g}% en {sistema.etiqueta()} "
                     f"(mínimo {minima:g}%, asignado {asignado:g}%)"
                 )
             if asignado > maxima:
                 return (
-                    f"Sobra {asignado - maxima:g}% en {sistema.tipo} "
+                    f"Sobra {asignado - maxima:g}% en {sistema.etiqueta()} "
                     f"(máximo {maxima:g}%, asignado {asignado:g}%)"
                 )
         return None

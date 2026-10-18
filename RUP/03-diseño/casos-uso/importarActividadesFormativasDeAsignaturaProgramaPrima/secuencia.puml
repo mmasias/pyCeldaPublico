@@ -26,7 +26,7 @@ APRepo --> API: lista de AsignaturaPrograma
 deactivate APRepo
 loop por cada prima
     API -> AFRepo: listar_de(prima.id)
-    AFRepo --> API: 10 filas
+    AFRepo --> API: filas de la prima
 end
 note right of API: descarta primas con sum(horas) = 0;\norden por abs(ects_prima - ects_destino), luego nombre
 API --> Vista: 200 OK [{asignatura_programa_id, nombre, ects, total_horas}]
@@ -55,20 +55,20 @@ else origen válido
     API -> AFRepo: listar_de(asignatura_programa_id)
     AFRepo --> API: filas de la destino
     loop por cada fila de la destino con homóloga en el origen
-        API -> AFAP: actualizar(horas, porcentaje_presencialidad)
+        API -> AFAP: actualizar(horas)
         activate AFAP
-        note right of AFAP: in place, sin borrar ni recrear
+        note right of AFAP: in place, sin borrar ni recrear;\nsolo horas (la presencialidad es de la Materia)
         deactivate AFAP
     end
     API -> AFRepo: guardar()
     activate AFRepo
-    AFRepo -> DB: UPDATE actividades_formativas_asignatura_programa\nSET horas = ..., porcentaje_presencialidad = ...; COMMIT
+    AFRepo -> DB: UPDATE actividades_formativas_asignatura_programa\nSET horas = ...; COMMIT
     activate DB
     DB --> AFRepo: ok
     deactivate DB
     deactivate AFRepo
     API -> AFRepo: listar_de(asignatura_programa_id)
-    AFRepo --> API: 10 filas actualizadas
+    AFRepo --> API: filas actualizadas
     API --> Vista: 200 OK (lista de ActividadFormativaAsignaturaProgramaResponse)
     Vista --> DirectorPrograma: vuelve a la pantalla de origen, con el reparto importado
 end

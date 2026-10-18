@@ -882,4 +882,125 @@ AdminRepository -- Admin
 SesionRepository -- Sesion
 Guia -- Sesion
 
+
+' -- Competencia (#761) y Modulo (#762) --
+package Vista {
+  class AbrirCompetenciasView #629EF9 {
+    +abrirCompetencias(programaId)
+  }
+  class AbrirCompetenciaView #629EF9 {
+    +abrirCompetencia(competenciaId)
+  }
+  class CrearCompetenciaView #629EF9 {
+    +crearCompetencia(programaId)
+  }
+  class EditarCompetenciaView #629EF9 {
+    +editarCompetencia(competenciaId)
+  }
+  class EliminarCompetenciaView #629EF9 {
+    +eliminarCompetencia(competenciaId)
+  }
+  class AsociarCompetenciaAMateriaView #629EF9 {
+    +asociarCompetenciaAMateria(materiaId)
+  }
+  class DesasociarCompetenciaAMateriaView #629EF9 {
+    +desasociarCompetenciaAMateria(materiaId, competenciaId)
+  }
+  class AsociarCompetenciaAAsignaturaProgramaView #629EF9 {
+    +asociarCompetenciaAAsignaturaPrograma(asignaturaProgramaId)
+  }
+  class DesasociarCompetenciaAsignaturaProgramaView #629EF9 {
+    +desasociarCompetenciaAsignaturaPrograma(asignaturaProgramaId, competenciaId)
+  }
+  class AbrirModulosView #629EF9 {
+    +abrirModulos(programaId)
+  }
+  class CrearModuloView #629EF9 {
+    +crearModulo(programaId)
+  }
+  class EditarModuloView #629EF9 {
+    +editarModulo(moduloId)
+  }
+  class EliminarModuloView #629EF9 {
+    +eliminarModulo(moduloId)
+  }
+}
+
+package Controlador {
+  class CompetenciaController #b5bd68 {
+    +listarCompetenciasDelPrograma(programaId) : List<Competencia>
+    +cargarCompetencia(competenciaId) : Competencia
+    +cargarAsignaciones(competenciaId)
+    +crearCompetencia(programaId, codigo, tipo, descripcion) : Competencia
+    +editarCompetencia(competenciaId, codigo, tipo, descripcion) : Competencia
+    +eliminar(competenciaId)
+    +cargarDisponibles(materiaId | asignaturaProgramaId) : List<Competencia>
+    +asociar(materiaId | asignaturaProgramaId, competenciaId)
+    +asignaturasProgramaConCompetencia(materiaId, competenciaId) : List<String>
+    +desasociar(materiaId | asignaturaProgramaId, competenciaId)
+  }
+  class ModuloController #b5bd68 {
+    +listarModulosDelPrograma(programaId) : List<Modulo>
+    +cargarModulo(moduloId) : Modulo
+    +crearModulo(programaId, codigo, nombre, descripcion) : Modulo
+    +editarModulo(moduloId, codigo, nombre, descripcion) : Modulo
+    +eliminar(moduloId)
+  }
+}
+
+package Modelo {
+  class Competencia #F2AC4E {
+    +actualizar(codigo, tipo, descripcion)
+  }
+  class CompetenciaRepository #F2AC4E {
+    +obtener(competenciaId) : Competencia
+    +listarDelPrograma(programaId) : List<Competencia>
+    +conteoAsignaturasDelPrograma(programaId)
+    +codigoEnUso(programaId, codigo, salvo) : boolean
+    +crear(programaId, codigo, tipo, descripcion) : Competencia
+    +actualizar(competencia)
+    +eliminar(competencia)
+    +asignaciones(competenciaId)
+    +listarDisponiblesParaMateria(materia) : List<Competencia>
+    +listarDisponiblesParaAsignaturaPrograma(asignaturaPrograma) : List<Competencia>
+    +estaEnLaMateria(materiaId, competenciaId) : boolean
+    +asociarAMateria(materiaId, competenciaId)
+    +desasociarDeMateria(materiaId, competenciaId)
+    +asociarAAsignaturaPrograma(asignaturaProgramaId, competenciaId)
+    +desasociarDeAsignaturaPrograma(asignaturaProgramaId, competenciaId)
+  }
+  class Modulo #F2AC4E {
+    +actualizar(codigo, nombre, descripcion)
+  }
+  class ModuloRepository #F2AC4E {
+    +obtener(moduloId) : Modulo
+    +listarDelPrograma(programaId) : List<Modulo>
+    +contarMateriasPorModulo(programaId)
+    +codigoEnUso(programaId, codigo, salvo) : boolean
+    +crear(programaId, codigo, nombre, descripcion) : Modulo
+    +actualizar(modulo)
+    +eliminar(modulo)
+  }
+}
+
+AbrirCompetenciasView --> CompetenciaController
+AbrirCompetenciaView --> CompetenciaController
+CrearCompetenciaView --> CompetenciaController
+EditarCompetenciaView --> CompetenciaController
+EliminarCompetenciaView --> CompetenciaController
+AsociarCompetenciaAMateriaView --> CompetenciaController
+DesasociarCompetenciaAMateriaView --> CompetenciaController
+AsociarCompetenciaAAsignaturaProgramaView --> CompetenciaController
+DesasociarCompetenciaAsignaturaProgramaView --> CompetenciaController
+AbrirModulosView --> ModuloController
+CrearModuloView --> ModuloController
+EditarModuloView --> ModuloController
+EliminarModuloView --> ModuloController
+CompetenciaController --> CompetenciaRepository
+CompetenciaController --> Materia
+ModuloController --> ModuloRepository
+CompetenciaRepository -- Competencia
+ModuloRepository -- Modulo
+Modulo -- Materia
+
 @enduml

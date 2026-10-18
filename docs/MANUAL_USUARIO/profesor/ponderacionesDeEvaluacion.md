@@ -12,7 +12,7 @@ Cada instrumento de evaluación de la asignatura (un examen, un trabajo, unas pr
 
 ## Cuándo se necesita
 
-Antes de poder enviar la guía a revisión, la suma de todos los porcentajes tiene que llegar exactamente al 100%, y repartirse dentro de los márgenes que la materia tenga fijados para cada tipo de sistema de evaluación (por ejemplo, "Evaluación continua" o "Evaluación final").
+Antes de poder enviar la guía a revisión, la suma de todos los porcentajes tiene que llegar exactamente al 100%, y repartirse dentro de los márgenes que la materia tenga fijados para cada sistema de evaluación. Los sistemas son los de la memoria del título, con su código y su denominación (por ejemplo, "SE1 Pruebas teóricas finales" o "SE3 Actividades de evaluación continua y formativa"); cada uno es de evaluación continua o final.
 
 ## Cómo llegar
 

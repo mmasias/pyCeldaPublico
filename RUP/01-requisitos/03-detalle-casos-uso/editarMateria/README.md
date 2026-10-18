@@ -38,6 +38,8 @@
 
 </div>
 
+**Módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: mismo desplegable **Módulo** que en [`crearMateria()`](../crearMateria/README.md), con el módulo actual preseleccionado; "Sin módulo" lo quita. Es la única forma de mover una materia de módulo, y también la de vaciar un módulo antes de [`eliminarModulo()`](../eliminarModulo/README.md). Si la petición no menciona el módulo, el servidor lo conserva: solo cambia cuando el formulario lo envía.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : editarMateria()`

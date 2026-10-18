@@ -1,0 +1,33 @@
+@startuml asociarCompetenciaAMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> asociarCompetenciaAMateria
+note on link
+<b>Admin / DirectorPrograma</b> solicita asociar Competencia a Materia
+end note
+
+state asociarCompetenciaAMateria as "asociarCompetenciaAMateria()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta selección de Competencia del Programa no asociadas aún a la Materia
+    <b>Sistema</b> muestra descripción completa de la Competencia seleccionada
+    <b>Sistema</b> permite solicitar asociar
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> selecciona Competencia
+    <b>Admin / DirectorPrograma</b> solicita asociar
+    end note
+}
+
+asociarCompetenciaAMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+
+@enduml

@@ -46,6 +46,9 @@ Bajada a diseño del caso de análisis [`asociarResultadoAprendizajeAMateria()`]
 - **204 No Content**, no 201: no se crea ninguna entidad nueva -- solo una fila en la tabla intermedia; no hay `XxxResponse` que devolver más allá del código de estado.
 - **`AsociarResultadoAprendizajeCreate` transporta solo `resultado_aprendizaje_id`** -- `materia_id` va en la URL.
 
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: endpoint espejo bajo `/api/v1/admin/materias/{id}/...`, autenticado con `require_admin` en vez de `get_current_director_programa_id` + comprobación de propiedad (`_obtener_materia_o_404`); mismo cuerpo y mismos repositorios. La secuencia es idéntica con `Admin` como actor.
+
+
 ## Referencias
 
 - [`asociarResultadoAprendizajeAMateria()` en Análisis](/RUP/02-analisis/casos-uso/asociarResultadoAprendizajeAMateria/README.md) -- diagrama de colaboración origen.

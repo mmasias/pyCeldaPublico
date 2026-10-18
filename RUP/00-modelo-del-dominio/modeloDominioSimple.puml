@@ -22,6 +22,8 @@ package "Estructura curricular" {
   class Asignatura
   class AsignaturaPrograma
   class ResultadoAprendizaje
+  class Competencia
+  class Modulo
   class Requisito
   class CursoAcademico
 
@@ -29,13 +31,12 @@ package "Estructura curricular" {
   Facultad *-- Programa
   ProgramaPadre o-- Programa
   Programa *-- Materia
-  Programa o-- MetodologiaDocente
+  Programa *-- MetodologiaDocente
   Materia *-- AsignaturaPrograma
   Materia *-- SistemaEvaluacion
   Materia o-- MetodologiaDocente
   (Materia, MetodologiaDocente) .. MetodologiaMateria
-  Universidad *-- MetodologiaDocente
-  Universidad *-- ActividadFormativa
+  Programa *-- ActividadFormativa
   Materia o-- ActividadFormativa
   (Materia, ActividadFormativa) .. ActividadFormativaMateria
   AsignaturaPrograma o-- ActividadFormativa
@@ -44,6 +45,11 @@ package "Estructura curricular" {
   Programa *-d- ResultadoAprendizaje
   Materia o-u- ResultadoAprendizaje
   AsignaturaPrograma o- ResultadoAprendizaje
+  Programa *-- Competencia
+  Materia o-- Competencia
+  AsignaturaPrograma o-- Competencia
+  Programa *-- Modulo
+  Modulo o-- Materia
   AsignaturaPrograma o-r- MetodologiaDocente
   AsignaturaPrograma -> AsignaturaPrograma : <sub>requiere</sub>
   'AsignaturaPrograma -[hidden]r- Requisito

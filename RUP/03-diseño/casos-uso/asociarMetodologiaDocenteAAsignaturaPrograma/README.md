@@ -52,5 +52,5 @@ Bajada a diseño del caso de análisis [`asociarMetodologiaDocenteAAsignaturaPro
 
 - [`asociarMetodologiaDocenteAAsignaturaPrograma()` en Análisis](/RUP/02-analisis/casos-uso/asociarMetodologiaDocenteAAsignaturaPrograma/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAAsignaturaPrograma/README.md).
-- [`asociarMetodologiaDocenteAMateria()` en Diseño](/RUP/03-diseño/casos-uso/asociarMetodologiaDocenteAMateria/README.md) -- primer escalón de la cascada; contraste en el filtro de disponibles (catálogo institucional completo).
+- [`asociarMetodologiaDocenteAMateria()` en Diseño](/RUP/03-diseño/casos-uso/asociarMetodologiaDocenteAMateria/README.md) -- primer escalón de la cascada; contraste en el filtro de disponibles (catálogo del `Programa` (#772; antes institucional) completo).
 - [`desasociarMetodologiaDocenteAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/desasociarMetodologiaDocenteAsignaturaPrograma/README.md) -- caso de uso complementario.

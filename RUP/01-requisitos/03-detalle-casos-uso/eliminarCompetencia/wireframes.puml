@@ -1,0 +1,32 @@
+@startsalt eliminarCompetencia-wireframe-bloqueada
+{
+    <b>ELIMINAR COMPETENCIA</b>
+    ====
+    <color:red><b>⛔ No se puede eliminar</b></color>
+    ====
+    <b>CE7 -- Específica</b>
+    <i>Conocimiento y aplicación de los principios fundamentales...</i>
+    --
+    Esta competencia está asignada a:
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Programación | Programación II
+    }
+    <i>Retira su asociación antes de eliminarla.</i>
+    ====
+    [ Volver a las <b>competencias</b> ]
+}
+@endsalt
+
+@startsalt eliminarCompetencia-wireframe-confirmacion
+{
+    <b>ELIMINAR COMPETENCIA</b>
+    ====
+    <b>CT2 -- Transversal</b>
+    <i>Capacidad de trabajo en equipo interdisciplinar...</i>
+
+    Esta acción no se puede deshacer. Sin asignaciones a materias ni a asignaturas del programa.
+    ====
+    {[Confirmar eliminación] | [Cancelar]}
+}
+@endsalt

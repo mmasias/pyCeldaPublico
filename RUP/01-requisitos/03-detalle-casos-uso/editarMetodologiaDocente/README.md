@@ -6,7 +6,7 @@
 
 # pyCelda > editarMetodologiaDocente()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/editarMetodologiaDocente/README.md)|[Diseño](/RUP/03-diseño/casos-uso/editarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/editarMetodologiaDocente/README.md)|[Diseño](/RUP/03-diseño/casos-uso/editarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,17 +31,20 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Admin`|
-|**Objetivo**|Editar la descripción de una `MetodologiaDocente` del catálogo institucional|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Editar `codigo` y `descripcion` de una `MetodologiaDocente` del catálogo de un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Solo `descripción` es editable -- `código` es el identificador institucional fijo (`MD1`-`MD7`, ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)) y se fija en `crearMetodologiaDocente()`, no se toca después.
+Mismo formulario que [`crearMetodologiaDocente()`](../crearMetodologiaDocente/README.md), con los datos precargados y el mismo `<<choice>>` de código repetido (el código propio de la metodología no cuenta como repetido). `codigo` es editable, como en [`editarCompetencia()`](../editarCompetencia/README.md). La edición se refleja en vivo en todas las materias, asignaturas y guías que la tienen asignada: la asociación no copia el texto (salvo la `descripcionPropia` de una `Materia`, que se gestiona en [`editarAsociacionMetodologiaDocenteMateria()`](../editarAsociacionMetodologiaDocenteMateria/README.md), fuera de este caso).
+
+Hasta #772 solo `descripcion` era editable y `codigo` se tenía por identificador institucional fijo (`MD1`-`MD7`); la verificación contra las memorias mostró que cada programa da a sus códigos significados propios (ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)).
 
 ## Referencias
 
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()`
-- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `MetodologiaDocente`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `MetodologiaDocente { codigo, descripcion }`; `MetodologiaMateria.descripcionPropia` es el override por materia, fuera del alcance de este caso (vive en L4)
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()` (misma pantalla conceptual, rutas `/admin/...`)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `MetodologiaDocente{codigo, descripcion}`; `MetodologiaMateria.descripcionPropia` es el override por materia
+- Issue [#772](https://github.com/mmasias/pyCelda/issues/772)

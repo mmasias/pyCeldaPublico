@@ -48,7 +48,7 @@ Primer listado del catálogo con columna de `SistemaEvaluacion` -- necesaria por
 
 ## Notas de diseño y trazabilidad
 
-- Columna "Sistema": muestra "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo, y solo "Tipo" si la descripción está vacía o coincide (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). "Total asignado" va en cuerpo 0.875rem (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). La segunda tabla ya distingue por su columna Descripción propia (issue [#279](https://github.com/mmasias/pyCelda/issues/279)) y no lleva el paréntesis.
+- Columna "Sistema": muestra "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo, y solo "Tipo" si la descripción está vacía o coincide (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). Con código de la memoria (fase F2 de [#768](https://github.com/mmasias/pyCelda/issues/768)), la etiqueta es "Código Denominación" ("SE1 Pruebas teóricas finales") y los sistemas se ordenan por código (E9 antes que E10); la regla vive en `SistemaEvaluacion.etiqueta()` y en `etiquetaSistemaEvaluacion()` del frontend. En la segunda tabla, la columna Descripción antepone el código; en el desplegable para elegir sistema de crear y editar un instrumento, cada opción es "Código Denominación -- Tipo (máx. N%)" o, sin código, "Tipo -- Descripción (máx. N%)". "Total asignado" va en cuerpo 0.875rem (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). La segunda tabla ya distingue por su columna Descripción propia (issue [#279](https://github.com/mmasias/pyCelda/issues/279)) y no lleva el paréntesis.
 
 ## Referencias
 

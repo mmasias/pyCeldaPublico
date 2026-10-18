@@ -28,7 +28,7 @@ ProgramaController --> GuiaRepository: <font size=8>listarDelPrograma(programaId
 ProgramaRepository -- Programa
 GuiaRepository -- Guia
 
-AbrirProgramaView --> ProgramaAbiertoSalida: <font size=8>muestra datos del Programa y el listado de Guia (retoque 2026-09-05, antes AsignaturaPrograma)
+AbrirProgramaView --> ProgramaAbiertoSalida: <font size=8>muestra datos del Programa (con código RUCT) y el listado de Guia (retoque 2026-09-05, antes AsignaturaPrograma)
 
 @enduml
 
@@ -62,6 +62,6 @@ ProgramaController --> AsignaturaProgramaRepository: <font size=8>listarDelProgr
 ProgramaRepository -- Programa
 AsignaturaProgramaRepository -- AsignaturaPrograma
 
-AbrirProgramaView --> ProgramaAbiertoSalida: <font size=8>muestra datos del Programa, enlace a Materias y tabla de AsignaturaPrograma con [Crear]/[Eliminar]
+AbrirProgramaView --> ProgramaAbiertoSalida: <font size=8>muestra datos del Programa (con código RUCT y denominación oficial), enlace a Materias y tabla de AsignaturaPrograma con [Crear]/[Eliminar]
 
 @enduml

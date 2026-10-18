@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`editarActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md): el `DirectorPrograma` edita las `horas` de las 10 filas `ActividadFormativaMateria` de una `Materia` en una sola operación (rejilla). `codigo`/`nombre` de cada `ActividadFormativa` se muestran de solo lectura -- catálogo institucional de `Universidad`, no se editan desde aquí. `<<choice>>` de validación de entrada: si alguna `horas` es negativa no se guarda nada. La regla `AfM = Σ AfAdM` **no** se comprueba aquí (blanda, vive en [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md)).
+Traducción a clases de análisis del caso de uso [`editarActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md): el `DirectorPrograma` edita las `horas` y el `porcentajePresencialidad` de las filas `ActividadFormativaMateria` de una `Materia` -- una por cada `ActividadFormativa` del catálogo de su `Programa` -- en una sola operación (rejilla). `codigo`/`nombre` de cada `ActividadFormativa` se muestran de solo lectura -- catálogo del `Programa`, se edita en [`editarActividadFormativa()`](../editarActividadFormativa/README.md). La presencialidad vive en la `Materia` desde el issue [#772](https://github.com/mmasias/pyCelda/issues/772) (antes, en la `AsignaturaPrograma`). `<<choice>>` de validación de entrada: si alguna `horas` es negativa o alguna presencialidad sale de 0-100, no se guarda nada. El total frente a 25 h por ECTS de la `Materia` es un cálculo de presentación de la vista, sin colaboración propia. La regla `AfM = Σ AfAdM` **no** se comprueba aquí (blanda, vive en [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md)).
 
 <div align=center>
 
@@ -26,13 +26,14 @@ Traducción a clases de análisis del caso de uso [`editarActividadesFormativasM
 ### `EditarActividadesFormativasMateriaView`
 
 **Responsabilidades:**
-- presenta las 10 `ActividadFormativa` (`codigo`/`nombre` de solo lectura) con sus `horas` actuales editables.
+- presenta las `ActividadFormativa` del catálogo del `Programa` (`codigo`/`nombre` de solo lectura) con sus `horas` y su `porcentajePresencialidad` actuales editables.
+- presenta el total de horas frente a 25 h por ECTS de la `Materia`, si tiene `ects` (informativo).
 - ofrece la navegación a solicitar guardar el reparto completo.
 
 **Colaboraciones:**
 - **Entrada:** `:MATERIA_ABIERTO` -- el `DirectorPrograma` solicita editar las actividades formativas de la `Materia`.
 - **Control:** `MateriaController`.
-- **Salida:** `:MATERIA_ABIERTO` (reparto guardado, o algún valor de `horas` no válido -- no se guarda nada).
+- **Salida:** `:MATERIA_ABIERTO` (reparto guardado, o algún valor no válido -- no se guarda nada).
 
 ## Clases de controlador
 
@@ -40,8 +41,8 @@ Traducción a clases de análisis del caso de uso [`editarActividadesFormativasM
 
 **Responsabilidades:**
 - recupera el reparto actual (`cargarActividadesFormativas(materiaId)`).
-- valida que ninguna `horas` sea negativa; si alguna lo es, rechaza el guardado completo.
-- aplica el nuevo reparto (`guardarActividadesFormativas(materiaId, repartoHoras)`) fila a fila y persiste el lote.
+- valida que ninguna `horas` sea negativa y que la presencialidad esté entre 0 y 100; si algún valor no lo cumple, rechaza el guardado completo.
+- aplica el nuevo reparto (`guardarActividadesFormativas(materiaId, reparto)`) fila a fila y persiste el lote. Una fila sin presencialidad en el reparto conserva la que tenía.
 
 **Colaboraciones:**
 - **Entrada:** `EditarActividadesFormativasMateriaView`.
@@ -52,7 +53,7 @@ Traducción a clases de análisis del caso de uso [`editarActividadesFormativasM
 ### `ActividadFormativaMateria`
 
 **Responsabilidades:**
-- actualiza sus `horas` (`actualizar(horas)`) -- único campo editable de la asociación. Las 10 filas existen siempre (autopobladas a 0 al crear la `Materia`), no se crean ni se borran aquí.
+- actualiza sus `horas` y, si llega, su `porcentajePresencialidad` (`actualizar(horas, porcentajePresencialidad)`) -- los dos campos editables de la asociación. Las filas existen siempre, una por cada actividad del catálogo del `Programa` (autopobladas a 0 al crear la `Materia` o la actividad); no se crean ni se borran aquí.
 
 **Colaboraciones:**
 - **Entrada:** `MateriaController`, vía `ActividadFormativaMateriaRepository`.
@@ -60,16 +61,19 @@ Traducción a clases de análisis del caso de uso [`editarActividadesFormativasM
 ### `ActividadFormativaMateriaRepository`
 
 **Responsabilidades:**
-- recupera las 10 filas de asociación de una `Materia` (`listarDe(materiaId)`).
+- recupera las filas de asociación de una `Materia` (`listarDe(materiaId)`), en el orden de alta del catálogo.
 - persiste el lote de cambios (`actualizarLote(actividadesFormativasMateria)`).
 
 **Colaboraciones:**
 - **Entrada:** `MateriaController`.
 - **Salida:** gestiona `ActividadFormativaMateria`.
 
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: la colaboración es la misma con `Admin` como iniciador; la única diferencia es que no se comprueba que el `Programa` de la `Materia` sea del actor (`Admin` no tiene programa propio).
+
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/wireframes.puml) -- fuente de verdad del formulario.
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativaMateria{horas}`, `(Materia, ActividadFormativa) .. ActividadFormativaMateria`.
-- [`editarActividadesFormativasAsignaturaPrograma()`](../editarActividadesFormativasAsignaturaPrograma/README.md) -- el mismo patrón un nivel más abajo, con `porcentajePresencialidad` además de `horas`.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativaMateria{horas, porcentajePresencialidad}`, `(Materia, ActividadFormativa) .. ActividadFormativaMateria`.
+- [`editarActividadesFormativasAsignaturaPrograma()`](../editarActividadesFormativasAsignaturaPrograma/README.md) -- el mismo patrón un nivel más abajo, solo con `horas`; presenta de solo lectura la presencialidad de esta `Materia`.

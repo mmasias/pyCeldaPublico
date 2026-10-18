@@ -6,12 +6,12 @@
 
 # pyCelda > abrirMetodologiasDocentes()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirMetodologiasDocentes/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirMetodologiasDocentes/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`abrirMetodologiasDocentes()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/README.md): un solo paso, sin `<<choice>>`, de solo lectura. Presenta el listado completo de `MetodologiaDocente` -- catálogo institucional plano que cuelga directamente de `SISTEMA_DISPONIBLE` (entrada directa desde `abrirPanelAdministracion()`, sin composición padre, a diferencia de `Facultad` bajo `Universidad`), reutilizado por `Materia` y `AsignaturaPrograma` vía sus tablas de asociación. Cada fila muestra `codigo` y `descripcion`.
+Traducción a clases de análisis de [`abrirMetodologiasDocentes()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): listado de solo lectura del catálogo de `MetodologiaDocente` del `Programa`, con el número de `AsignaturaPrograma` que tienen asignada cada una. Mismo patrón que [`abrirCompetencias()`](../abrirCompetencias/README.md). Hasta #772 el listado colgaba de `SISTEMA_DISPONIBLE` y filtraba el catálogo institucional por `Universidad`; el subconjunto habilitado en el `Programa` era otro caso de uso (`abrirMetodologiasDocentesPrograma()`), absorbido por este.
 
 <div align=center>
 
@@ -26,11 +26,10 @@ Traducción a clases de análisis del caso de uso [`abrirMetodologiasDocentes()`
 ### `AbrirMetodologiasDocentesView`
 
 **Responsabilidades:**
-- presenta el listado de `MetodologiaDocente`: `codigo`, `descripcion`.
-- ofrece la navegación a abrir cada `MetodologiaDocente` y a crear una nueva (`[+ Crear Metodología Docente]`).
+- presenta el catálogo (descripción, código, nº de asignaturas) con entrada a abrir, crear y eliminar.
 
 **Colaboraciones:**
-- **Entrada:** `:SISTEMA_DISPONIBLE` -- el `Admin` solicita abrir Metodologías Docentes desde el panel de administración.
+- **Entrada:** `:PROGRAMA_ABIERTO` (`Admin` o `DirectorPrograma`).
 - **Control:** `MetodologiaDocenteController`.
 - **Salida:** `:METODOLOGIAS_DOCENTES_ABIERTO`.
 
@@ -39,8 +38,8 @@ Traducción a clases de análisis del caso de uso [`abrirMetodologiasDocentes()`
 ### `MetodologiaDocenteController`
 
 **Responsabilidades:**
-- lista las `MetodologiaDocente` del catálogo (`listarMetodologiasDocentes()`).
-- no valida ni muta nada -- caso de uso de solo lectura.
+- autoriza el `Programa` (Admin cualquiera; director, solo los que dirige).
+- compone el listado con el conteo de asignaturas por metodología.
 
 **Colaboraciones:**
 - **Entrada:** `AbrirMetodologiasDocentesView`.
@@ -51,24 +50,21 @@ Traducción a clases de análisis del caso de uso [`abrirMetodologiasDocentes()`
 ### `MetodologiaDocente`
 
 **Responsabilidades:**
-- porta `codigo` y `descripcion` -- los dos datos mostrados en cada fila del listado.
+- porta `codigo` y `descripcion`, los literales de la memoria del `Programa`.
 
 **Colaboraciones:**
-- **Entrada:** listada por `MetodologiaDocenteRepository`.
+- **Entrada:** gestionada por `MetodologiaDocenteRepository`.
 
 ### `MetodologiaDocenteRepository`
 
 **Responsabilidades:**
-- lista las `MetodologiaDocente` (`listar()`).
+- gestiona `MetodologiaDocente` y consulta sus dos tablas de asociación (`metodologias_materia`, `asignaturas_programa_metodologias_docentes`).
 
 **Colaboraciones:**
 - **Entrada:** `MetodologiaDocenteController`.
-- **Salida:** gestiona `MetodologiaDocente`.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/wireframes.puml) -- fuente de verdad del listado.
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `MetodologiaDocente { codigo, descripcion }`, catálogo institucional reutilizado por `Materia` y `AsignaturaPrograma`.
-- [`abrirMetodologiaDocente()`](../abrirMetodologiaDocente/README.md) / [`crearMetodologiaDocente()`](../crearMetodologiaDocente/README.md) / [`eliminarMetodologiaDocente()`](../eliminarMetodologiaDocente/README.md) -- casos de uso alcanzados desde el listado.
-- [`abrirAsignaturas()`](../abrirAsignaturas/README.md) -- mismo patrón de listado plano sin composición padre, mismo `SISTEMA_DISPONIBLE` de entrada.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/wireframes.puml) -- fuente de verdad
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-- MetodologiaDocente`
+- [`abrirCompetencias()`](../abrirCompetencias/README.md) -- patrón de origen

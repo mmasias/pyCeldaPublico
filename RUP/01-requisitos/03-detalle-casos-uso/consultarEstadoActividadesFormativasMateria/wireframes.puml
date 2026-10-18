@@ -2,20 +2,17 @@
 {
     <b>ACTIVIDADES FORMATIVAS -- ESTADO DE LA MATERIA</b>
     ====
-    <b>Programación</b>
+    <b>Programación</b> (12 ECTS)
+    --
+    <b>Horas de la materia:</b> 290 de 300 (12 ECTS a 25 h) -- Discrepancia (-10). Informativo, no bloquea guardar.
     --
     {#
-        <b>Actividad formativa</b>          | <b>Horas materia</b> | <b>Σ asignaturas</b> | <b>Estado</b>
-        Clases expositivas                  | 45                   | 45                   | OK
-        Clases prácticas                    | 20                   | 15                   | -5 (falta)
-        Clases prácticas (laboratorio)      | 10                   | 12                   | +2 (sobra)
-        Seminarios y talleres               | 0                    | 0                    | OK
-        Supervisión de actividades          | 5                    | 5                    | OK
-        Tutorías (individual / en grupo)    | 5                    | 5                    | OK
-        Preparación de clases               | 0                    | 0                    | OK
-        Estudio personal y lecturas         | 40                   | 40                   | OK
-        Elaboración de trabajos             | 20                   | 20                   | OK
-        Trabajo individual en campus virtual| 0                    | 0                    | OK
+        <b>Actividad formativa</b>                     | <b>Horas materia</b> | <b>Σ asignaturas</b> | <b>Estado</b>
+        Actividad Dirigida: Clases de teoría            | 60                   | 60                   | OK
+        Actividad Dirigida: Clases prácticas            | 54                   | 49                   | Discrepancia (-5)
+        Actividad Supervisada: Tutorías                 | 12                   | 14                   | Discrepancia (+2)
+        Actividad Autónoma: Estudio personal            | 110                  | 110                  | OK
+        Actividad Autónoma: Elaboración de trabajos     | 54                   | 54                   | OK
     }
     --
     "Medidor informativo: las discrepancias NO impiden guardar ningún reparto (regla blanda)."

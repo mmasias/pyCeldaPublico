@@ -45,6 +45,9 @@ Bajada a diseño del caso de análisis [`editarAsociacionMetodologiaDocenteMater
 - **`MetodologiaMateriaUpdate` exige `descripcion_propia` presente**: el campo es editable y obligatorio en el formulario, aunque pueda enviarse como cadena vacía -- se distingue "no lo envías" (422) de "lo vacías" (válido).
 - **Sin rama de fallo**: sin `<<choice>>` en Análisis ni validación de negocio -- camino único de guardado.
 
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: endpoint espejo bajo `/api/v1/admin/materias/{id}/...`, autenticado con `require_admin` en vez de `get_current_director_programa_id` + comprobación de propiedad (`_obtener_materia_o_404`); mismo cuerpo y mismos repositorios. La secuencia es idéntica con `Admin` como actor.
+
+
 ## Referencias
 
 - [`editarAsociacionMetodologiaDocenteMateria()` en Análisis](/RUP/02-analisis/casos-uso/editarAsociacionMetodologiaDocenteMateria/README.md) -- diagrama de colaboración origen.

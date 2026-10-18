@@ -1,10 +1,13 @@
 @startsalt abrirActividadFormativa-wireframe
 {
-    <b>AF1</b>
+    <b>🏋️ ACTIVIDADES FORMATIVAS > AD1</b>
     ====
-    <b>Código:</b> AF1
-    <b>Nombre:</b> Clases expositivas
+    <b>Nombre:</b>
+    <i>Actividad Dirigida: Clases de teoría</i>
+    --
+    <i>Las horas y la presencialidad de cada materia, y las horas de cada</i>
+    <i>asignatura, se editan desde la materia y desde la asignatura.</i>
     ====
-    {[Editar] | [Volver al listado]}
+    {[Editar]}
 }
 @endsalt

@@ -29,7 +29,9 @@ ImportarContenidoDeGuiaHermanaController --> AsignaturaProgramaRepository: <font
 
 ImportarContenidoDeGuiaHermanaController --> CursoAcademicoRepository: <font size=8>activo(universidadId) : CursoAcademico
 
-ImportarContenidoDeGuiaHermanaController --> GuiaRepository: <font size=8>listarAprobadasDe(hermanas, cursoAcademicoId) : lista de Guia
+ImportarContenidoDeGuiaHermanaController --> GuiaRepository: <font size=8>listarImportablesDe(hermanas, cursoAcademicoId) : lista de Guia [Aprobada o EnRevision]
+
+ImportarContenidoDeGuiaHermanaController --> AsignaturaProgramaRepository: <font size=8>imparte(asignaturaProgramaOrigenId, profesorId) : boolean [solo para origen EnRevision]
 
 ImportarContenidoDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaOrigenId) : Guia [revalidacion server-side del origen]
 

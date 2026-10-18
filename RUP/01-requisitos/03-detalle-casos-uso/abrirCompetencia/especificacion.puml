@@ -1,0 +1,24 @@
+@startuml abrirCompetencia
+
+skinparam linetype polyline
+
+state COMPETENCIAS_ABIERTO
+state COMPETENCIA_ABIERTO
+
+COMPETENCIAS_ABIERTO -[#green]-> abrirCompetencia
+note on link
+<b>Admin / DirectorPrograma</b> solicita abrir competencia
+end note
+
+state abrirCompetencia as "abrirCompetencia()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> muestra datos de la competencia
+    <b>Sistema</b> muestra materias y asignaturas del Programa que tienen asignada la competencia
+    end note
+}
+
+abrirCompetencia -[#green]-> COMPETENCIA_ABIERTO
+
+@enduml

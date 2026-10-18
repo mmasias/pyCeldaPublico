@@ -3,11 +3,11 @@
 skinparam linetype polyline
 
 state ACTIVIDADES_FORMATIVAS_ABIERTO
-state ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA as "ACTIVIDADES_FORMATIVAS_ABIERTO"
+state ACTIVIDADES_FORMATIVAS_ABIERTO_SALIDA as "ACTIVIDADES_FORMATIVAS_ABIERTO"
 
 ACTIVIDADES_FORMATIVAS_ABIERTO -[#green]-> eliminarActividadFormativa
 note on link
-<b>Admin</b> solicita eliminar ActividadFormativa
+<b>Admin / DirectorPrograma</b> solicita eliminar actividad formativa
 end note
 
 state eliminarActividadFormativa as "eliminarActividadFormativa()" {
@@ -15,43 +15,46 @@ state eliminarActividadFormativa as "eliminarActividadFormativa()" {
     state " " as ConfirmandoEliminacion
     state c <<choice>>
 
-    [*] -[#green]-> c
-
-    c -[#green]-> ConfirmandoEliminacion
+    [*] -[#green]-> ConfirmandoEliminacion
     note on link
-    [ActividadFormativa sin Materias asociadas]
-    <b>Sistema</b> presenta información de la ActividadFormativa y advertencia de eliminación
+    <b>Sistema</b> presenta código y nombre de la actividad formativa y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#green]-> c
+    note on link
+    <b>Admin / DirectorPrograma</b> solicita confirmar eliminación
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [sin horas en ninguna Materia ni AsignaturaPrograma del Programa]
+    <b>Sistema</b> retira la actividad formativa de las Materias y AsignaturaPrograma, donde está a 0 horas
     end note
 
     c -[#red]-> [*]
     note on link
-    [ActividadFormativa con Materias asociadas]
-    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias
-    end note
-
-    ConfirmandoEliminacion -[#green]-> [*]
-    note on link
-    <b>Admin</b> solicita confirmar eliminación
+    [con horas en alguna Materia o en alguna de sus AsignaturaPrograma]
+    <b>Sistema</b> presenta mensaje de bloqueo con las Materias en las que está en uso
     end note
 
     ConfirmandoEliminacion -[#blue]-> [*]
     note on link
-    <b>Admin</b> solicita cancelar eliminación
+    <b>Admin / DirectorPrograma</b> solicita cancelar eliminación
     end note
 }
 
-eliminarActividadFormativa -[#green]-> ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA
+eliminarActividadFormativa -[#green]-> ACTIVIDADES_FORMATIVAS_ABIERTO_SALIDA
 note on link
 lista actualizada
 end note
 
-eliminarActividadFormativa -[#red]-> ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA
+eliminarActividadFormativa -[#red]-> ACTIVIDADES_FORMATIVAS_ABIERTO_SALIDA
 note on link
 bloqueada, sin cambios
 end note
 
-eliminarActividadFormativa -[#blue]-> ACTIVIDADES_FORMATIVAS_ABIERTOS_SALIDA
+eliminarActividadFormativa -[#blue]-> ACTIVIDADES_FORMATIVAS_ABIERTO_SALIDA
 note on link
 cancelada, sin cambios
 end note

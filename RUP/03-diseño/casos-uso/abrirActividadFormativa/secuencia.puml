@@ -1,28 +1,26 @@
 @startuml abrirActividadFormativa-diseño
 title Diagrama de Secuencia - Abrir Actividad Formativa
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "ActividadFormativaRepository" as AFRepo
+participant "ActividadFormativaRepository" as Repo
 database "Base de Datos" as DB
 
-Admin -> Vista: solicita abrir una ActividadFormativa del listado
+Actor -> Vista: solicita abrir una actividad formativa
 activate Vista
 Vista -> API: GET /api/v1/actividades-formativas/{actividad_formativa_id}
 activate API
-note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> AFRepo: obtener(actividad_formativa_id)
-activate AFRepo
-AFRepo -> DB: SELECT ... FROM actividades_formativas WHERE id = :actividad_formativa_id
-activate DB
-DB --> AFRepo: fila ActividadFormativa
-deactivate DB
-AFRepo --> API: ActividadFormativa (404 si None)
-deactivate AFRepo
-API --> Vista: 200 OK (ActividadFormativaResponse JSON)
+note right of API: _autorizar_actividad: por el Programa\nde la actividad; si no, 404
+API -> Repo: obtener(actividad_formativa_id)
+activate Repo
+Repo -> DB: SELECT * FROM actividades_formativas WHERE id = :actividad_formativa_id
+DB --> Repo: fila
+Repo --> API: ActividadFormativa
+deactivate Repo
+API --> Vista: 200 OK (ActividadFormativaResponse)
 deactivate API
-Vista --> Admin: muestra datos de la ActividadFormativa y la navegación a su edición
+Vista --> Actor: presenta código y nombre
 deactivate Vista
 
 @enduml

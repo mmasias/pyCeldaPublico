@@ -1,0 +1,10 @@
+@startsalt desasociarCompetenciaAsignaturaPrograma-wireframe
+{
+    <b>DESASOCIAR COMPETENCIA</b>
+    ====
+    <b>CE7</b> (Programación II -- GII, 1er curso)
+    <i>Conocimiento y aplicación de los principios fundamentales...</i>
+    ====
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

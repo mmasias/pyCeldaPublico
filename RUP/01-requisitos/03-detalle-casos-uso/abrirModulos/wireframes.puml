@@ -1,0 +1,14 @@
+@startsalt abrirModulos-wireframe
+{
+    <b>MÓDULOS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+        <b>Código | <b>Nombre | <b>Descripción | <b>Nº de materias | . | .
+        M1 | Formación básica | Materias de formación básica de la rama... | 4 | [Editar] | [Eliminar]
+        M2 | Común a la rama de informática | . | 7 | [Editar] | [Eliminar]
+        M5 | Trabajo fin de grado | . | 0 | [Editar] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear módulo</b> ]
+}
+@endsalt

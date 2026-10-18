@@ -1,0 +1,32 @@
+@startuml desasociarCompetenciaAMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package desasociarCompetenciaAMateria as "desasociarCompetenciaAMateria()" {
+    rectangle #629EF9 DesasociarCompetenciaAMateriaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Materia
+    rectangle #F2AC4E CompetenciaRepository
+}
+
+MateriaAbierto --> DesasociarCompetenciaAMateriaView: <font size=8>desasociarCompetenciaAMateria(materiaId, competenciaId)
+
+DesasociarCompetenciaAMateriaView --> CompetenciaController: <font size=8>asignaturasProgramaConCompetencia(materiaId, competenciaId) : List<String>
+
+CompetenciaController --> Materia: <font size=8>asignaturasProgramaConCompetencia(competenciaId) : List<String>
+
+DesasociarCompetenciaAMateriaView --> CompetenciaController: <font size=8>desasociar(materiaId, competenciaId)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>desasociarDeMateria(materiaId, competenciaId)
+
+CompetenciaRepository -- Materia
+
+DesasociarCompetenciaAMateriaView ..[#green]> MateriaAbiertoSalida: <font size=8>lista actualizada
+DesasociarCompetenciaAMateriaView ..[#red]> MateriaAbiertoSalida: <font size=8>bloqueada, sin cambios -- en uso en AsignaturaPrograma de la Materia
+DesasociarCompetenciaAMateriaView ..[#blue]> MateriaAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

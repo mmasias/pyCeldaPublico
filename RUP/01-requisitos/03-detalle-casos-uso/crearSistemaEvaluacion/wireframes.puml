@@ -5,6 +5,8 @@
     <b>Programación</b>
     --
     {
+        <b>Código:</b>
+        {"E1  " | <i>(el de la memoria verificada)</i>}
         <b>Tipo (*):</b>
         ^Evaluación continua^
         <b>Descripción:</b>

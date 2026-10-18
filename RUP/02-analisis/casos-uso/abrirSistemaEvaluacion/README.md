@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`abrirSistemaEvaluacion()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirSistemaEvaluacion/README.md): un solo paso, sin `<<choice>>`, de solo lectura. Presenta el detalle de un `SistemaEvaluacion` concreto: `tipo`, `descripcion`, `ponderacionMinima` y `ponderacionMaxima`. También es el destino del alta de [`crearSistemaEvaluacion()`](../crearSistemaEvaluacion/README.md) -- desde aquí se alcanza `editarSistemaEvaluacion()` y se vuelve al listado de la `Materia`.
+Traducción a clases de análisis del caso de uso [`abrirSistemaEvaluacion()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirSistemaEvaluacion/README.md): un solo paso, sin `<<choice>>`, de solo lectura. Presenta el detalle de un `SistemaEvaluacion` concreto: `codigo`, `tipo`, `descripcion`, `ponderacionMinima` y `ponderacionMaxima`. También es el destino del alta de [`crearSistemaEvaluacion()`](../crearSistemaEvaluacion/README.md) -- desde aquí se alcanza `editarSistemaEvaluacion()` y se vuelve al listado de la `Materia`.
 
 <div align=center>
 
@@ -26,7 +26,7 @@ Traducción a clases de análisis del caso de uso [`abrirSistemaEvaluacion()`](/
 ### `AbrirSistemaEvaluacionView`
 
 **Responsabilidades:**
-- presenta `tipo`, `descripcion`, `ponderacionMinima` y `ponderacionMaxima` del `SistemaEvaluacion`.
+- presenta `codigo`, `tipo`, `descripcion`, `ponderacionMinima` y `ponderacionMaxima` del `SistemaEvaluacion`.
 - ofrece la navegación a editarlo y a volver al listado de la `Materia` que lo contiene.
 
 **Colaboraciones:**
@@ -51,7 +51,7 @@ Traducción a clases de análisis del caso de uso [`abrirSistemaEvaluacion()`](/
 ### `SistemaEvaluacion`
 
 **Responsabilidades:**
-- porta `tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima`.
+- porta `codigo`, `tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima`.
 
 **Colaboraciones:**
 - **Entrada:** `SistemaEvaluacionController`, vía `SistemaEvaluacionRepository`.
@@ -65,10 +65,12 @@ Traducción a clases de análisis del caso de uso [`abrirSistemaEvaluacion()`](/
 - **Entrada:** `SistemaEvaluacionController`.
 - **Salida:** gestiona `SistemaEvaluacion`.
 
+**`codigo` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: `SistemaEvaluacion` gana `codigo`, el de la memoria verificada (p. ej. `E1`), opcional; vacío se guarda como nulo, sin unicidad que comprobar. `descripcion` pasa a ser la denominación literal de la memoria: la clase no cambia de forma, cambia el significado del dato.
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirSistemaEvaluacion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirSistemaEvaluacion/wireframes.puml) -- fuente de verdad del contenido presentado.
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMAS_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : abrirSistemaEvaluacion()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `SistemaEvaluacion{tipo, descripcion, ponderacionMinima, ponderacionMaxima}`.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `SistemaEvaluacion{codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima}`.
 - [`abrirSistemasEvaluacion()`](../abrirSistemasEvaluacion/README.md) -- listado del que se alcanza este caso de uso.
 - [`abrirResultadoAprendizaje()`](../abrirResultadoAprendizaje/README.md) -- mismo patrón de lectura simple por identificador bajo un padre.

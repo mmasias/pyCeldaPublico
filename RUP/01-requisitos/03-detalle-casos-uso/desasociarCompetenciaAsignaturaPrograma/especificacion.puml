@@ -1,0 +1,44 @@
+@startuml desasociarCompetenciaAsignaturaPrograma
+
+skinparam linetype polyline
+
+state ASIGNATURA_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO_SALIDA as "ASIGNATURA_PROGRAMA_ABIERTO"
+
+ASIGNATURA_PROGRAMA_ABIERTO -[#green]-> desasociarCompetenciaAsignaturaPrograma
+note on link
+<b>Admin / DirectorPrograma</b> solicita desasociar Competencia de AsignaturaPrograma
+end note
+
+state desasociarCompetenciaAsignaturaPrograma as "desasociarCompetenciaAsignaturaPrograma()" {
+
+    state " " as ConfirmandoDesasociacion
+
+    [*] -[#green]-> ConfirmandoDesasociacion
+    note on link
+    <b>Sistema</b> presenta información de la asociación
+    <b>Sistema</b> permite solicitar confirmar/cancelar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#green]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> solicita confirmar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#blue]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> solicita cancelar desasociación
+    end note
+}
+
+desasociarCompetenciaAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+desasociarCompetenciaAsignaturaPrograma -[#blue]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

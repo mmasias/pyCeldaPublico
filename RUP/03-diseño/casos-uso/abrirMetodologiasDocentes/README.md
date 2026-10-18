@@ -6,7 +6,7 @@
 
 # pyCelda > abrirMetodologiasDocentes() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/README.md)|[Análisis](/RUP/02-analisis/casos-uso/abrirMetodologiasDocentes/README.md)|**Diseño**|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/README.md)|[Análisis](/RUP/02-analisis/casos-uso/abrirMetodologiasDocentes/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -14,13 +14,13 @@
 - **Proyecto**: pyCelda
 - **Fase RUP**: Elaboración
 - **Disciplina**: Diseño
-- **Versión**: 1.0
-- **Fecha**: 2026-08-26
-- **Autor**: GLM (vía opencode)
+- **Versión**: 2.0
+- **Fecha**: 2026-10-17
+- **Autor**: Claude (vía Claude Code)
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`abrirMetodologiasDocentes()`](/RUP/02-analisis/casos-uso/abrirMetodologiasDocentes/README.md): un solo paso, de solo lectura. Presenta el listado completo de `MetodologiaDocente` -- catálogo institucional plano que cuelga directamente de `SISTEMA_DISPONIBLE` (entrada directa desde `abrirPanelAdministracion()`, sin composición padre). Cada fila presenta `codigo` y `descripcion`. `MetodologiaDocenteController` converge en `routers/metodologia_docente.py`, módulo nuevo de funciones sueltas.
+Bajada a diseño de [`abrirMetodologiasDocentes()`](/RUP/02-analisis/casos-uso/abrirMetodologiasDocentes/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): dos consultas, el listado y un conteo agregado (una sola consulta `GROUP BY`, sin N+1), como en `abrirCompetencias()`.
 
 ## Diagrama de secuencia de diseño
 
@@ -34,21 +34,18 @@ Bajada a diseño del caso de análisis [`abrirMetodologiasDocentes()`](/RUP/02-a
 
 ## Participantes
 
-- **Vista**: `AbrirMetodologiasDocentesView` (React) -- ofrece un selector de `Universidad` y pide `GET /api/v1/universidades/{universidad_id}/metodologias-docentes` de la elegida; presenta `codigo` y `descripcion` por fila.
-- **API**: `routers/metodologia_docente.py::listar_metodologias_docentes(universidad_id)` -- función suelta, primera del módulo nuevo.
-- **Modelo**: ninguno con lógica propia invocada -- `MetodologiaDocente` solo porta los datos de cada fila.
-- **Repositorio**: `MetodologiaDocenteRepository.listar_de_la_universidad(universidad_id)` -- `SELECT` filtrado por `universidad_id`: el listado es el catálogo de `MetodologiaDocente` de la `Universidad` elegida, no una selección propia de quien llama. El repositorio ya existía con las queries de disponibilidad para asociación; gana aquí su primer método de catálogo propio.
+- **Vista**: `MetodologiasDocentes` (React), la misma página en las dos vistas (`/programas/:id/metodologias-docentes` y `/admin/programas/:id/metodologias-docentes`, prop `admin`).
+- **API**: `routers/metodologia_docente.py::listar_metodologias_docentes_del_programa(programa_id)`.
+- **Repositorio**: `MetodologiaDocenteRepository.listar_del_programa()`, `conteo_asignaturas_del_programa()`.
 
 ## Decisiones de diseño
 
-- **Módulo `routers/metodologia_docente.py` nuevo**: primera función de `MetodologiaDocente` fuera de las asociaciones (que viven en `routers/materia.py`/`routers/asignatura_programa.py`); el módulo crecerá con `obtener_metodologia_docente()` (de `abrirMetodologiaDocente()`), `crear_metodologia_docente()`, `editar_metodologia_docente()` y `eliminar_metodologia_docente()` de los CU hermanos.
-- **Listado completo, sin filtro por sesión**: igual que `abrirAsignaturas()`, aquí el `Admin` ve todas las filas -- ninguna `MetodologiaDocente` es "propia" de quien llama. A diferencia de las variantes `DirectorPrograma` (`listar_disponibles_para_materia()`/`listar_disponibles_para_asignatura_programa()`), este endpoint no filtra por disponibilidad de asociación.
-- **Autorización de `Admin`: `Depends(require_admin)`** -- ya disponible en `backend/app/core/auth.py`, sin nota de pendiente: toda función de `routers/metodologia_docente.py` la declara explícitamente. Es catálogo de `Admin` sin pertenencia que verificar -- no usa `get_current_director_programa_id`, que aplica a los recursos con dueño del hilo `DirectorPrograma`. El historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real, no un detalle menor.
-- **Sin capa Service**: Router delgado -> Repository (discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)).
+- **Autorización compartida Admin/Director** (`_autorizar_programa`/`_puede_en_programa`, importados de `routers/competencia.py`, y `_autorizar_metodologia` en `routers/metodologia_docente.py`): un mismo endpoint para los dos actores, sin espejo `/api/v1/admin/...`. Resuelve la identidad con `get_current_admin_email_opcional` y `get_current_director_programa_id_opcional`: con sesión Admin, cualquier `Programa`; sin ella, solo los que dirige el director. Fuera de eso, 404 uniforme, sin distinguir "no existe" de "no es tuyo" -- mismo criterio que `Competencia`.
+- **Orden natural de códigos** en Python (`ordenadas()` con `clave_codigo`), no en SQL: MD1, MD2, MD10.
+- **Conteo informativo**: `numero_asignaturas` no bloquea nada; solo lo rellena la lista del programa (en la ficha queda a `null`).
+- **Hasta #772** el catálogo era de `Universidad` (`/api/v1/universidades/{universidad_id}/metodologias-docentes`, solo `require_admin`) y el `Programa` habilitaba un subconjunto en `programas_metodologias_docentes`; ese endpoint y esa tabla desaparecen (la migración `migrar_catalogos_por_programa.py` copia a cada programa las que tenía habilitadas o en uso).
 
 ## Referencias
 
 - [`abrirMetodologiasDocentes()` en Análisis](/RUP/02-analisis/casos-uso/abrirMetodologiasDocentes/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/README.md).
-- [`abrirMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/abrirMetodologiaDocente/README.md) / [`crearMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/crearMetodologiaDocente/README.md) / [`eliminarMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/eliminarMetodologiaDocente/README.md) -- destinos de navegación del listado.
-- [`abrirAsignaturas()` en Diseño](/RUP/03-diseño/casos-uso/abrirAsignaturas/README.md) -- mismo patrón de listado plano sin filtro por sesión.

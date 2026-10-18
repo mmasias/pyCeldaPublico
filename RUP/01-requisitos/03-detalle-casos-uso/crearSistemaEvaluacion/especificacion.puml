@@ -17,6 +17,7 @@ state crearSistemaEvaluacion as "crearSistemaEvaluacion()" {
     [*] -[#green]-> SolicitandoDatos
     note on link
     <b>Sistema</b> presenta solicitud de datos del sistema de evaluación
+    <b>Sistema</b> muestra código
     <b>Sistema</b> muestra tipo
     <b>Sistema</b> muestra descripción
     <b>Sistema</b> muestra ponderación mínima
@@ -26,6 +27,7 @@ state crearSistemaEvaluacion as "crearSistemaEvaluacion()" {
 
     SolicitandoDatos -[#green]-> [*]
     note on link
+    <b>Admin</b> introduce código
     <b>Admin</b> introduce tipo
     <b>Admin</b> introduce descripción
     <b>Admin</b> introduce ponderación mínima

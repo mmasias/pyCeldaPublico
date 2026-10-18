@@ -3,16 +3,15 @@
     <b>CREAR METODOLOGÍA DOCENTE</b>
     ====
     {
-        <b>Universidad (*):</b>
-        ^Universidad Europea del Atlántico (UNEATLANTICO)^
         <b>Código (*):</b>
         "          "
         <b>Descripción (*):</b>
+        "                                                  "
         "                                                  "
         --
         <i>(*) Campo obligatorio</i>
     }
     ~~
-    {[Crear]}
+    {[Crear] | [Cancelar]}
 }
 @endsalt

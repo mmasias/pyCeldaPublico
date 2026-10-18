@@ -29,33 +29,36 @@ Tras crearla, la pantalla pasa directamente a editarla.
 
 ## Detalle de una materia
 
-Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Sistemas de evaluación**, sus **Resultados de aprendizaje** (tabla con **Código**, **Tipo**, **Descripción** y **Asignaturas**, el número de asignaturas de la materia en que está asociado cada uno, con fondo rojo suave si es 0), sus **Competencias** (misma tabla), sus **Metodologías docentes** asociadas y las **Actividades formativas de la materia** (ver más abajo). Debajo del nombre, el **Módulo** de la materia (código y nombre, o "Sin módulo"). Pulsar **Editar** cambia el **Nombre** y el **Módulo** de la materia (**Sin módulo** la saca de su módulo).
+Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Sistemas de evaluación**, sus **Resultados de aprendizaje** (tabla con **Código**, **Tipo**, **Descripción** y **Asignaturas**, el número de asignaturas de la materia en que está asociado cada uno, con fondo rojo suave si es 0), sus **Competencias** (misma tabla), sus **Metodologías docentes** asociadas y las **Actividades formativas de la materia** (ver más abajo). Debajo del nombre, el **Módulo** de la materia (código y nombre, o "Sin módulo") y, si se han importado de la memoria, sus **ECTS** y su **Código RUCT** (solo lectura). Pulsar **Editar** cambia el **Nombre** y el **Módulo** de la materia (**Sin módulo** la saca de su módulo).
 
 ## Resultados de aprendizaje, competencias y metodologías docentes
 
 Funcionan igual que para el director de programa (ver su capítulo [Gestionar materias](../directorPrograma/gestionarMaterias.md)):
 
-- **➕ Asociar resultado de aprendizaje**, **➕ Asociar competencia** y **➕ Asociar metodología docente** añaden uno de los disponibles: los del catálogo del programa que la materia aún no tiene. En el desplegable, cada resultado o competencia aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo.
+- **➕ Asociar resultado de aprendizaje**, **➕ Asociar competencia** y **➕ Asociar metodología docente** añaden uno de los disponibles: los del catálogo del programa (sus pestañas, capítulo [Estructura académica](estructuraAcademica.md)) que la materia aún no tiene. En el desplegable, cada resultado o competencia aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo.
 - **✏️ Editar**, en cada metodología, cambia su **Descripción propia**.
 - **➖** (Quitar) retira el resultado, la competencia o la metodología de la materia, con confirmación. Si alguna asignatura de la materia lo está usando, queda bloqueado y la pantalla dice en cuáles.
 
 ## Actividades formativas de la materia
 
-La tabla muestra las **Horas** de cada actividad formativa de la materia. **Editar reparto** abre un formulario con un campo de horas por actividad (mínimo 0) y se confirma con **Guardar**; lo mismo que puede hacer el director de programa.
+La tabla muestra las **Horas** y la **Presencialidad (%)** de cada actividad formativa de la materia: la memoria fija las dos por materia. **Editar reparto** abre un formulario con los dos campos por actividad (horas mínimo 0, presencialidad de 0 a 100) y el total de horas frente a 25 h por ECTS si la materia tiene ECTS; se confirma con **Guardar**. Lo mismo que puede hacer el director de programa.
+
+Si la materia tiene ECTS, bajo la tabla una línea compara sus horas con las que corresponden: **OK** o **Discrepancia**. Es informativa.
 
 Debajo, la tabla **Estado de las actividades formativas** compara, por actividad, las horas de la materia con la suma de las de sus asignaturas: **OK** si cuadran o **Discrepancia** con la diferencia. Es solo informativa: no impide guardar. Cambiar las horas de la materia no reparte nada entre sus asignaturas; sus horas se editan en cada asignatura (capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)).
 
 ## Sistemas de evaluación
 
-Pulsar **Abrir sistemas de evaluación** en el detalle de la materia. Aparece una tabla con **Tipo**, **Descripción**, **Ponderación** (mínima -- máxima, en porcentaje) y los botones **Abrir** y **🗑️** (Eliminar) de cada sistema.
+Pulsar **Abrir sistemas de evaluación** en el detalle de la materia. Aparece una tabla con **Código**, **Tipo**, **Descripción**, **Ponderación** (mínima -- máxima, en porcentaje) y los botones **Abrir** y **🗑️** (Eliminar) de cada sistema. En los títulos cuya memoria publica el RUCT con sistemas por materia, los carga la importación tal como figuran en ella (código, denominación y horquilla); en ese caso conviene no cambiarlos a mano, porque la guía tiene que nombrarlos como la memoria.
 
 ### Crear un sistema de evaluación
 
 1. Pulsar **➕ Crear sistema de evaluación**.
-2. Elegir el **Tipo**: **Evaluación continua** o **Evaluación final**.
-3. Rellenar, opcionalmente, la **Descripción**.
-4. Rellenar **Ponderación mínima** y **Ponderación máxima**, en porcentaje.
-5. Pulsar **Crear**.
+2. Escribir, opcionalmente, el **Código** de la memoria (p. ej. E1).
+3. Elegir el **Tipo**: **Evaluación continua** o **Evaluación final**.
+4. Rellenar la **Descripción**: la denominación del sistema en la memoria (p. ej. "Prueba Parcial"), que es la que nombra la guía.
+5. Rellenar **Ponderación mínima** y **Ponderación máxima**, en porcentaje.
+6. Pulsar **Crear**.
 
 La ponderación mínima no puede superar la máxima, y ambas deben quedar entre 0 y 100.
 
@@ -75,7 +78,7 @@ Pulsar **🗑️** (Eliminar) y confirmar en **Confirmar eliminación**. Si el s
 
 <div align=center>
 
-| [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) | [Índice](README.md) | [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md) |
+| [Catálogo de asignaturas](catalogoDeAsignaturasYMetodologias.md) | [Índice](README.md) | [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md) |
 |---|:-:|---|
 
 </div>

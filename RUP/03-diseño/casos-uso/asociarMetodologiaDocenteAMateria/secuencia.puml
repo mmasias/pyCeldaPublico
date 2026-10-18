@@ -14,7 +14,7 @@ Vista -> API: GET /api/v1/materias/{materia_id}/metodologias-docentes/disponible
 activate API
 API -> MetodologiaRepo: listar_disponibles_para_materia(materia_id)
 activate MetodologiaRepo
-MetodologiaRepo -> DB: SELECT md.* FROM metodologias_docentes md\nLEFT JOIN metodologias_materia mm ON mm.metodologia_docente_id = md.id\nAND mm.materia_id = :materia_id\nWHERE mm.id IS NULL
+MetodologiaRepo -> DB: SELECT md.* FROM metodologias_docentes md\nLEFT JOIN metodologias_materia mm ON mm.metodologia_docente_id = md.id\nAND mm.materia_id = :materia_id\nWHERE md.programa_id = :programa_de_la_materia AND mm.materia_id IS NULL
 activate DB
 DB --> MetodologiaRepo: filas MetodologiaDocente
 deactivate DB
@@ -22,11 +22,21 @@ MetodologiaRepo --> API: List[MetodologiaDocente]
 deactivate MetodologiaRepo
 API --> Vista: 200 OK (List[MetodologiaDocenteResponse] JSON)
 deactivate API
-Vista --> DirectorPrograma: muestra las MetodologiaDocente aún no asociadas
+Vista --> DirectorPrograma: muestra las MetodologiaDocente del Programa aún no asociadas
 
 DirectorPrograma -> Vista: elige una MetodologiaDocente y confirma
 Vista -> API: POST /api/v1/materias/{materia_id}/metodologias-docentes (MetodologiaMateriaCreate JSON)
 activate API
+API -> MetodologiaRepo: exigir_metodologia_del_programa(programa_id, metodologia_docente_id)
+activate MetodologiaRepo
+MetodologiaRepo -> DB: SELECT ... FROM metodologias_docentes WHERE id = :metodologia_docente_id
+DB --> MetodologiaRepo: fila o nada
+alt no existe o es de otro Programa
+  MetodologiaRepo --> API: 404
+  API --> Vista: 404 Not Found ("MetodologiaDocente no encontrada")
+else del Programa de la Materia
+MetodologiaRepo --> API: MetodologiaDocente
+deactivate MetodologiaRepo
 API -> MetodologiaMateriaRepo: crear(materia_id, metodologia_docente_id)
 activate MetodologiaMateriaRepo
 MetodologiaMateriaRepo -> DB: INSERT INTO metodologias_materia\n(materia_id, metodologia_docente_id, descripcion_propia = '')
@@ -38,6 +48,7 @@ deactivate MetodologiaMateriaRepo
 API --> Vista: 201 Created (MetodologiaMateriaResponse JSON)
 deactivate API
 Vista --> DirectorPrograma: MetodologiaDocente asociada (descripcion_propia vacía)
+end
 deactivate Vista
 
 @enduml

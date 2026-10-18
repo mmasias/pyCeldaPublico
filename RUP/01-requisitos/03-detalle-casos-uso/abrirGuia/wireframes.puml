@@ -28,6 +28,11 @@
         <b>Código | <b>Tipo
         RAK1 | Conocimientos o contenidos
     }
+    Competencias:
+    {#
+        <b>Código | <b>Tipo | <b>Descripción
+        CE7 | Específica | Conocimiento y aplicación de los principios...
+    }
     Metodologías docentes:
     {#
         <b>Código | <b>Descripción
@@ -35,10 +40,10 @@
     }
     Actividades formativas:
     {#
-        <b>Actividad formativa | <b>Horas | <b>% presencialidad
-        Clases expositivas | 30 | 100
-        Clases prácticas | 15 | 100
-        ... (las 10, solo lectura) | |
+        <b>Actividad formativa | <b>Horas | <b>% presencialidad (de la materia)
+        Actividad Dirigida: Clases de teoría | 30 | 100
+        Actividad Dirigida: Clases prácticas | 27 | 100
+        ... (las del catálogo del programa, solo lectura) | |
     }
     ====
     Evaluación:
@@ -107,6 +112,11 @@
         <b>Código | <b>Tipo
         RAK1 | Conocimientos o contenidos
     }
+    Competencias:
+    {#
+        <b>Código | <b>Tipo | <b>Descripción
+        CE7 | Específica | Conocimiento y aplicación de los principios...
+    }
     Metodologías docentes:
     {#
         <b>Código | <b>Descripción
@@ -114,10 +124,10 @@
     }
     Actividades formativas:
     {#
-        <b>Actividad formativa | <b>Horas | <b>% presencialidad
-        Clases expositivas | 30 | 100
-        Clases prácticas | 15 | 100
-        ... (las 10, solo lectura) | |
+        <b>Actividad formativa | <b>Horas | <b>% presencialidad (de la materia)
+        Actividad Dirigida: Clases de teoría | 30 | 100
+        Actividad Dirigida: Clases prácticas | 27 | 100
+        ... (las del catálogo del programa, solo lectura) | |
     }
     ====
     Evaluación:

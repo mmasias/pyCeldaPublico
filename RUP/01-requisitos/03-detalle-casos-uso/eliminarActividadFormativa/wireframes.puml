@@ -2,15 +2,13 @@
 {
     <b>ELIMINAR ACTIVIDAD FORMATIVA</b>
     ====
-    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    <color:red><b>⛔ No se puede eliminar.</b> ActividadFormativa asignada a: Fundamentos de programación, Programación</color>
     ====
-    <b>AF1 -- Clases expositivas</b>
-
-    Esta actividad formativa está en uso en materias del catálogo.
-
-    <i>Retira su asociación de las materias antes de eliminarla.</i>
+    <b>AD1 -- Actividad Dirigida: Clases de teoría</b>
+    --
+    <i>Pon a 0 sus horas en esas materias y en sus asignaturas antes de eliminarla.</i>
     ====
-    [ <b>Volver al listado</b> ]
+    [ Volver ]
 }
 @endsalt
 
@@ -18,10 +16,10 @@
 {
     <b>ELIMINAR ACTIVIDAD FORMATIVA</b>
     ====
-    <b>AF7 -- Preparación de clases</b>
+    <b>AA2 -- Actividad Autónoma: Elaboración de trabajos</b>
 
-    <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin materias asociadas.
+    Esta acción no se puede deshacer. Se retira de todas las materias
+    y asignaturas del programa, donde está a 0 horas.
     ====
     {[Confirmar eliminación] | [Cancelar]}
 }

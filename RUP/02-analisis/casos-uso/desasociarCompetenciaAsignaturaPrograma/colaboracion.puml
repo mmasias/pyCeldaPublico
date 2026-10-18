@@ -1,0 +1,27 @@
+@startuml desasociarCompetenciaAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package desasociarCompetenciaAsignaturaPrograma as "desasociarCompetenciaAsignaturaPrograma()" {
+    rectangle #629EF9 DesasociarCompetenciaAsignaturaProgramaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E CompetenciaRepository
+}
+
+AsignaturaProgramaAbierto --> DesasociarCompetenciaAsignaturaProgramaView: <font size=8>desasociarCompetenciaAsignaturaPrograma(asignaturaProgramaId, competenciaId)
+
+DesasociarCompetenciaAsignaturaProgramaView --> CompetenciaController: <font size=8>desasociar(asignaturaProgramaId, competenciaId)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>desasociarDeAsignaturaPrograma(asignaturaProgramaId, competenciaId)
+
+CompetenciaRepository -- AsignaturaPrograma
+
+DesasociarCompetenciaAsignaturaProgramaView ..[#green]> AsignaturaProgramaAbiertoSalida: <font size=8>lista actualizada
+DesasociarCompetenciaAsignaturaProgramaView ..[#blue]> AsignaturaProgramaAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

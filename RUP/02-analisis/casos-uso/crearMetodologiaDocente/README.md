@@ -6,12 +6,12 @@
 
 # pyCelda > crearMetodologiaDocente()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/crearMetodologiaDocente/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/crearMetodologiaDocente/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`crearMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md): CRUD real e inmediato contra `MetodologiaDocenteRepository`. Ambos campos obligatorios (`codigo`, `descripcion`) y sin `<<choice>>` -- Requisitos cierra explícitamente "sin patrón C->U": los dos datos identifican la metodología desde el alta, no hay un dato secundario que diferir a la edición (a diferencia de `crearAsignatura()`, que solo pide `nombre`). La salida es única, sin rama de rechazo, a `:METODOLOGIA_DOCENTE_ABIERTO` -- la transición lleva la nota `editarMetodologiaDocente()` como edición disponible desde el detalle alcanzado, no como `<<include>>` C->U.
+Traducción a clases de análisis de [`crearMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): formulario de `codigo` y `descripcion`, sin patrón C→U, como en `Competencia` pero sin `tipo`. El `<<choice>>` de código repetido lo resuelve el controlador contra el repositorio antes de escribir: si el código ya lo usa otra metodología del `Programa`, el formulario sigue con lo escrito y el mensaje. Hasta #772 el alta pedía además la `Universidad` del catálogo institucional y no comprobaba el código repetido.
 
 <div align=center>
 
@@ -26,21 +26,21 @@ Traducción a clases de análisis del caso de uso [`crearMetodologiaDocente()`](
 ### `CrearMetodologiaDocenteView`
 
 **Responsabilidades:**
-- presenta el formulario de creación: `codigo` y `descripcion`, ambos obligatorios.
-- permite solicitar crear.
+- presenta el formulario: `codigo` y `descripcion` (multilínea), los dos obligatorios.
+- presenta el mensaje de código repetido sin perder lo escrito.
 
 **Colaboraciones:**
-- **Entrada:** `:METODOLOGIAS_DOCENTES_ABIERTO` -- el `Admin` solicita crear una `MetodologiaDocente` desde el listado.
+- **Entrada:** `:METODOLOGIAS_DOCENTES_ABIERTO`.
 - **Control:** `MetodologiaDocenteController`.
-- **Salida:** `:METODOLOGIA_DOCENTE_ABIERTO`.
+- **Salida:** `<<include>>` hacia [`editarMetodologiaDocente()`](../editarMetodologiaDocente/README.md), `:METODOLOGIA_DOCENTE_ABIERTO`.
 
 ## Clases de controlador
 
 ### `MetodologiaDocenteController`
 
 **Responsabilidades:**
-- valida que `codigo` y `descripcion` estén presentes (`validarDatosObligatorios(codigo, descripcion)`).
-- crea la `MetodologiaDocente` directamente en `MetodologiaDocenteRepository`, real e inmediato (`crearMetodologiaDocente(codigo, descripcion)`).
+- valida que el `codigo` no lo use otra metodología del `Programa`, sin distinguir mayúsculas.
+- crea la `MetodologiaDocente`, real e inmediata.
 
 **Colaboraciones:**
 - **Entrada:** `CrearMetodologiaDocenteView`.
@@ -51,24 +51,20 @@ Traducción a clases de análisis del caso de uso [`crearMetodologiaDocente()`](
 ### `MetodologiaDocente`
 
 **Responsabilidades:**
-- porta `codigo` y `descripcion` desde el momento de crearse.
+- porta `codigo` y `descripcion`, los literales de la memoria del `Programa`.
 
 **Colaboraciones:**
-- **Entrada:** creada por `MetodologiaDocenteRepository`.
+- **Entrada:** `MetodologiaDocenteRepository`.
 
 ### `MetodologiaDocenteRepository`
 
 **Responsabilidades:**
-- crea la `MetodologiaDocente` (`crear(codigo, descripcion)`) -- persistencia real e inmediata, no una mutación de sesión.
+- gestiona `MetodologiaDocente` y consulta sus dos tablas de asociación (`metodologias_materia`, `asignaturas_programa_metodologias_docentes`).
 
 **Colaboraciones:**
 - **Entrada:** `MetodologiaDocenteController`.
-- **Salida:** gestiona `MetodologiaDocente`.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/wireframes.puml) -- fuente de verdad del formulario, salida única sin rama de rechazo.
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : crearMetodologiaDocente()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `MetodologiaDocente { codigo, descripcion }`, catálogo institucional.
-- [`editarMetodologiaDocente()`](../editarMetodologiaDocente/README.md) -- edición disponible desde el detalle alcanzado tras crear.
-- [`crearAsignatura()`](../crearAsignatura/README.md) -- contraste: creación con patrón C->U (solo `nombre` en el alta).
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/wireframes.puml) -- fuente de verdad
+- [`crearCompetencia()`](../crearCompetencia/README.md) -- patrón de origen

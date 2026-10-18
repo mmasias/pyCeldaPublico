@@ -61,11 +61,14 @@ Traducción a clases de análisis del caso de uso [`desasociarMetodologiaDocente
 ### `MetodologiaMateriaRepository`
 
 **Responsabilidades:**
-- elimina real e inmediata la asociación (`eliminar(materiaId, metodologiaDocenteId)`) -- no es un borrado de `MetodologiaDocente`, que sigue en el catálogo institucional.
+- elimina real e inmediata la asociación (`eliminar(materiaId, metodologiaDocenteId)`) -- no es un borrado de `MetodologiaDocente`, que sigue en el catálogo del `Programa` (#772; antes institucional).
 
 **Colaboraciones:**
 - **Entrada:** `MateriaController`.
 - **Salida:** gestiona la asociación entre `Materia` y `MetodologiaDocente`.
+
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: la colaboración es la misma con `Admin` como iniciador; la única diferencia es que no se comprueba que el `Programa` de la `Materia` sea del actor.
+
 
 ## Referencias
 

@@ -6,12 +6,12 @@
 
 # pyCelda > abrirActividadFormativa()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirActividadFormativa/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirActividadFormativa/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`abrirActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/README.md): un solo paso, de solo lectura. Presenta `codigo` y `nombre` de la `ActividadFormativa` y ofrece la edición. A diferencia de `abrirUniversidad()`, no hay catálogo hijo al que navegar: `ActividadFormativa` no compone nada.
+Traducción a clases de análisis de [`abrirActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): un solo paso, de solo lectura. Presenta `codigo` y `nombre` y ofrece la edición. A diferencia de [`abrirCompetencia()`](../abrirCompetencia/README.md), no hay colaboración de asignaciones: con el autopoblado todas las `Materia` y `AsignaturaPrograma` del programa tienen fila para la actividad, así que una lista de "dónde está asignada" no informaría de nada.
 
 <div align=center>
 
@@ -27,10 +27,10 @@ Traducción a clases de análisis del caso de uso [`abrirActividadFormativa()`](
 
 **Responsabilidades:**
 - presenta los datos de la `ActividadFormativa`: `codigo` y `nombre`.
-- permite solicitar editar o volver al listado.
+- permite solicitar editar o volver al catálogo del programa.
 
 **Colaboraciones:**
-- **Entrada:** `:ACTIVIDADES_FORMATIVAS_ABIERTO` -- el `Admin` abre una `ActividadFormativa` del listado.
+- **Entrada:** `:ACTIVIDADES_FORMATIVAS_ABIERTO` -- el actor abre una actividad del catálogo.
 - **Control:** `ActividadFormativaController`.
 - **Salida:** `:ACTIVIDAD_FORMATIVA_ABIERTO`.
 
@@ -50,7 +50,7 @@ Traducción a clases de análisis del caso de uso [`abrirActividadFormativa()`](
 ### `ActividadFormativa`
 
 **Responsabilidades:**
-- porta `codigo` y `nombre`.
+- porta `codigo` y `nombre`, y el `Programa` al que pertenece.
 
 **Colaboraciones:**
 - **Entrada:** recuperada por `ActividadFormativaRepository`.
@@ -66,9 +66,6 @@ Traducción a clases de análisis del caso de uso [`abrirActividadFormativa()`](
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/wireframes.puml) -- fuente de verdad de el detalle de solo lectura..
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo de `Universidad` (`Universidad *-- ActividadFormativa`).
-- [`abrirMetodologiaDocente()`](../abrirMetodologiaDocente/README.md) -- clúster plantilla.
-- [`abrirActividadesFormativas()`](../abrirActividadesFormativas/README.md) -- listado desde el que se alcanza este caso de uso.
-- [`editarActividadFormativa()`](../editarActividadFormativa/README.md) -- edición disponible desde el detalle.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/wireframes.puml) -- fuente de verdad de la ficha de solo lectura.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo del `Programa`.
+- [`abrirCompetencia()`](../abrirCompetencia/README.md) -- contraste: ficha con distribución.

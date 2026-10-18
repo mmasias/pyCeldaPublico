@@ -14,9 +14,25 @@ actor Admin
 package "Contenido de asignaturas" {
   usecase asociarResultadoAprendizajeAAsignaturaPrograma as "asociarResultadoAprendizajeAAsignaturaPrograma()"
   usecase desasociarResultadoAprendizajeAsignaturaPrograma as "desasociarResultadoAprendizajeAsignaturaPrograma()"
+  ' #761: Competencia, mismo reparto que ResultadoAprendizaje.
+  usecase asociarCompetenciaAAsignaturaPrograma as "asociarCompetenciaAAsignaturaPrograma()"
+  usecase desasociarCompetenciaAsignaturaPrograma as "desasociarCompetenciaAsignaturaPrograma()"
   usecase asociarMetodologiaDocenteAAsignaturaPrograma as "asociarMetodologiaDocenteAAsignaturaPrograma()"
   usecase desasociarMetodologiaDocenteAsignaturaPrograma as "desasociarMetodologiaDocenteAsignaturaPrograma()"
   usecase editarActividadesFormativasAsignaturaPrograma as "editarActividadesFormativasAsignaturaPrograma()"
+}
+
+package "Contenido de materias" {
+  usecase asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()"
+  usecase editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()"
+  usecase desasociarMetodologiaDocenteMateria as "desasociarMetodologiaDocenteMateria()"
+  usecase asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()"
+  usecase desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()"
+  ' #761: Competencia, mismo reparto que ResultadoAprendizaje.
+  usecase asociarCompetenciaAMateria as "asociarCompetenciaAMateria()"
+  usecase desasociarCompetenciaAMateria as "desasociarCompetenciaAMateria()"
+  usecase editarActividadesFormativasMateria as "editarActividadesFormativasMateria()"
+  usecase consultarEstadoActividadesFormativasMateria as "consultarEstadoActividadesFormativasMateria()"
 }
 
 package "Profesorado de asignaturas" {
@@ -118,6 +134,18 @@ Admin -- desasociarResultadoAprendizajeAsignaturaPrograma
 Admin -- asociarMetodologiaDocenteAAsignaturaPrograma
 Admin -- desasociarMetodologiaDocenteAsignaturaPrograma
 Admin -- editarActividadesFormativasAsignaturaPrograma
+Admin -- editarActividadesFormativasMateria
+Admin -- consultarEstadoActividadesFormativasMateria
+Admin -- asociarMetodologiaDocenteAMateria
+Admin -- editarAsociacionMetodologiaDocenteMateria
+Admin -- desasociarMetodologiaDocenteMateria
+Admin -- asociarResultadoAprendizajeAMateria
+Admin -- desasociarResultadoAprendizajeAMateria
+' #761: competencias de la materia y de la asignatura, compartido con DirectorPrograma
+Admin -- asociarCompetenciaAMateria
+Admin -- desasociarCompetenciaAMateria
+Admin -- asociarCompetenciaAAsignaturaPrograma
+Admin -- desasociarCompetenciaAsignaturaPrograma
 
 Admin --- crearAsignaturaPrograma
 Admin --- abrirAsignaturaPrograma

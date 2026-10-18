@@ -23,7 +23,7 @@ deactivate SistemaRepo
 
 API --> Vista: 200 OK (SistemaEvaluacionResponse JSON, con materia_id)
 deactivate API
-Vista --> Admin: muestra tipo, descripción y rango de ponderación
+Vista --> Admin: muestra código, tipo, descripción y rango de ponderación
 deactivate Vista
 
 @enduml

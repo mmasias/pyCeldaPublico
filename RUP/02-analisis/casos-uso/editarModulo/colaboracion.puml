@@ -1,0 +1,33 @@
+@startuml editarModulo-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MODULOS_ABIERTO" as ModulosAbierto
+rectangle #CDEBA5 ":MODULOS_ABIERTO" as ModulosAbiertoSalida
+
+package editarModulo as "editarModulo()" {
+    rectangle #629EF9 EditarModuloView
+    rectangle #b5bd68 ModuloController
+    rectangle #F2AC4E Modulo
+    rectangle #F2AC4E ModuloRepository
+}
+
+ModulosAbierto --> EditarModuloView: <font size=8>editarModulo(moduloId)
+
+EditarModuloView --> ModuloController: <font size=8>cargarModulo(moduloId) : Modulo
+
+EditarModuloView --> ModuloController: <font size=8>editarModulo(moduloId, codigo, nombre, descripcion) : Modulo
+
+ModuloController --> ModuloRepository: <font size=8>codigoEnUso(programaId, codigo, salvo=moduloId) : boolean
+
+ModuloController --> Modulo: <font size=8>actualizar(codigo, nombre, descripcion)
+
+ModuloController --> ModuloRepository: <font size=8>actualizar(modulo)
+
+ModuloRepository -- Modulo
+
+EditarModuloView ..[#green]> ModulosAbiertoSalida: <font size=8>lista actualizada
+EditarModuloView ..[#red]> EditarModuloView: <font size=8>código repetido, formulario con lo escrito
+
+@enduml

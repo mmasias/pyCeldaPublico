@@ -1,28 +1,26 @@
 @startuml abrirActividadesFormativas-diseño
 title Diagrama de Secuencia - Abrir Actividades Formativas
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "ActividadFormativaRepository" as AFRepo
+participant "ActividadFormativaRepository" as Repo
 database "Base de Datos" as DB
 
-Admin -> Vista: solicita abrir Actividades Formativas
+Actor -> Vista: solicita abrir las actividades formativas del Programa
 activate Vista
-Vista -> API: GET /api/v1/universidades/{universidad_id}/actividades-formativas
+Vista -> API: GET /api/v1/programas/{programa_id}/actividades-formativas
 activate API
-note right of API: listado de la Universidad indicada, orden de alta.\nDepends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> AFRepo: listar_de_la_universidad(universidad_id)
-activate AFRepo
-AFRepo -> DB: SELECT * FROM actividades_formativas WHERE universidad_id = :universidad_id ORDER BY id
-activate DB
-DB --> AFRepo: filas ActividadFormativa
-deactivate DB
-AFRepo --> API: List[ActividadFormativa]
-deactivate AFRepo
-API --> Vista: 200 OK (List[ActividadFormativaResponse] JSON)
+note right of API: _autorizar_programa: Admin, o director\nque dirige el Programa; si no, 404
+API -> Repo: listar_del_programa(programa_id)
+activate Repo
+Repo -> DB: SELECT * FROM actividades_formativas WHERE programa_id = :programa_id ORDER BY id
+DB --> Repo: filas ActividadFormativa
+Repo --> API: List[ActividadFormativa]
+deactivate Repo
+API --> Vista: 200 OK (List[ActividadFormativaResponse])
 deactivate API
-Vista --> Admin: presenta el listado de Actividades Formativas
+Vista --> Actor: presenta el catálogo
 deactivate Vista
 
 @enduml

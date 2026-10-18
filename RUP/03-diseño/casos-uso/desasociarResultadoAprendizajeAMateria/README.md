@@ -50,6 +50,9 @@ Bajada a diseño del caso de análisis [`desasociarResultadoAprendizajeAMateria(
 - **Dos endpoints (chequeo + `DELETE`)** y **204 No Content**, idéntico criterio al del par de `MetodologiaDocente`.
 - **La rama "cancelada" no genera llamada HTTP** -- rama del `alt` solo para reflejar la salida azul de Análisis.
 
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: endpoint espejo bajo `/api/v1/admin/materias/{id}/...`, autenticado con `require_admin` en vez de `get_current_director_programa_id` + comprobación de propiedad (`_obtener_materia_o_404`); mismo cuerpo y mismos repositorios. La secuencia es idéntica con `Admin` como actor.
+
+
 ## Referencias
 
 - [`desasociarResultadoAprendizajeAMateria()` en Análisis](/RUP/02-analisis/casos-uso/desasociarResultadoAprendizajeAMateria/README.md) -- diagrama de colaboración origen.

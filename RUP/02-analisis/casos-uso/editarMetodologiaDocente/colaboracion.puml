@@ -17,18 +17,17 @@ MetodologiaDocenteAbierto --> EditarMetodologiaDocenteView: <font size=8>editarM
 
 EditarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>cargarMetodologiaDocente(metodologiaDocenteId) : MetodologiaDocente
 
-MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>obtener(metodologiaDocenteId) : MetodologiaDocente
+EditarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>editarMetodologiaDocente(metodologiaDocenteId, codigo, descripcion) : MetodologiaDocente
 
-EditarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>validarDatosObligatorios(codigo, descripcion) : boolean
-
-EditarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>guardarCambios(metodologiaDocenteId, codigo, descripcion) : boolean
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>codigoEnUso(programaId, codigo, salvo=metodologiaDocenteId) : boolean
 
 MetodologiaDocenteController --> MetodologiaDocente: <font size=8>actualizar(codigo, descripcion)
 
-MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>editar(metodologiaDocente)
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>actualizar(metodologiaDocente)
 
 MetodologiaDocenteRepository -- MetodologiaDocente
 
-EditarMetodologiaDocenteView --> MetodologiaDocenteAbiertoSalida: <font size=8>datos actualizados
+EditarMetodologiaDocenteView ..[#green]> MetodologiaDocenteAbiertoSalida: <font size=8>MetodologiaDocente guardada
+EditarMetodologiaDocenteView ..[#red]> EditarMetodologiaDocenteView: <font size=8>código repetido, formulario con lo escrito
 
 @enduml

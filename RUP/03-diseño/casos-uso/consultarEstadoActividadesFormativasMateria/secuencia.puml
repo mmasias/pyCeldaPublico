@@ -10,9 +10,22 @@ database "Base de Datos" as DB
 
 DirectorPrograma -> Vista: abre la Materia (sección "Actividades formativas de la materia")
 activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}
+activate API
+API -> Repo: obtener(materia_id)
+Repo -> DB: SELECT ... (Materia + ActividadFormativaMateria)
+DB --> Repo: Materia
+Repo --> API: Materia
+API -> Materia: comprobacion_horas_ects()
+activate Materia
+note right of Materia: sin ects -> None;\nsi no: {ects, horas_esperadas = ects × 25,\nhoras_materia = Σ horas, cuadra, diferencia}
+Materia --> API: comprobación o None
+deactivate Materia
+API --> Vista: 200 OK (MateriaDetalleResponse con ects, codigo_ruct, comprobacion_horas_ects)
+deactivate API
 Vista -> API: GET /api/v1/materias/{materia_id}/actividades-formativas/validacion
 activate API
-API -> Repo: obtener(materia_id)  (eager: ActividadFormativaMateria, AsignaturaPrograma -> ActividadFormativaAsignaturaPrograma)
+API -> Repo: obtener(materia_id)  (ActividadFormativaMateria, AsignaturaPrograma -> ActividadFormativaAsignaturaPrograma)
 activate Repo
 Repo -> DB: SELECT ... (Materia + cascada de actividades formativas de los dos niveles)
 activate DB
@@ -22,12 +35,12 @@ Repo --> API: Materia
 deactivate Repo
 API -> Materia: discrepancias_actividades_formativas()
 activate Materia
-note right of Materia: por cada ActividadFormativa:\nhoras de la materia vs Σ horas de sus AsignaturaPrograma\n-> {codigo, nombre, horas_materia, horas_asignaturas, cuadra, diferencia}
-Materia --> API: lista de 10 discrepancias
+note right of Materia: por cada ActividadFormativa del catálogo del Programa:\nhoras de la materia vs Σ horas de sus AsignaturaPrograma\n-> {codigo, nombre, horas_materia, horas_asignaturas, cuadra, diferencia}
+Materia --> API: lista de discrepancias
 deactivate Materia
 API --> Vista: 200 OK (lista de DiscrepanciaActividadFormativaResponse)
 deactivate API
-Vista --> DirectorPrograma: presenta la tabla, resalta las filas que no cuadran (informativo, no bloquea)
+Vista --> DirectorPrograma: presenta el total frente a 25 h por ECTS y la tabla,\nresalta lo que no cuadra (informativo, no bloquea)
 deactivate Vista
 
 @enduml

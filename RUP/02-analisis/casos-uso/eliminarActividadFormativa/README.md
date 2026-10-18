@@ -6,12 +6,12 @@
 
 # pyCelda > eliminarActividadFormativa()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/eliminarActividadFormativa/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/eliminarActividadFormativa/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`eliminarActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/README.md): `<<choice>>` bloqueante -- borrado físico del catálogo, bloqueado si la `ActividadFormativa` está *en uso* (horas > 0 en alguna `Materia` o en alguna `AsignaturaPrograma`). Las filas a 0 son autopoblado puro (toda `Materia` las tiene para todo el catálogo de su `Universidad`) y no cuentan como asignación: si contaran, ninguna actividad sería eliminable. A diferencia de `eliminarMetodologiaDocente()`, el chequeo cubre **dos** tablas de asociación (`ActividadFormativaMateria` y `ActividadFormativaAsignaturaPrograma`) porque, a diferencia de las metodologías, no existe un guard que garantice la inclusión de una en la otra. El mensaje de bloqueo nombra las `Materia` afectadas. Al borrar, se retiran también las filas a 0 de autopoblado.
+Traducción a clases de análisis de [`eliminarActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): borrado físico del catálogo del `Programa`, con `<<choice>>` bloqueante tras la confirmación. "En uso" = horas > 0 en alguna `Materia` o en alguna `AsignaturaPrograma`; las filas a 0 son autopoblado y no cuentan. El chequeo cubre las **dos** clases de asociación (`ActividadFormativaMateria` y `ActividadFormativaAsignaturaPrograma`): nada garantiza que unas horas en una asignatura impliquen horas en su materia (la regla `AfM = Σ AfAdM` es blanda). Al borrar se retiran también las filas a 0.
 
 <div align=center>
 
@@ -26,11 +26,11 @@ Traducción a clases de análisis del caso de uso [`eliminarActividadFormativa()
 ### `EliminarActividadFormativaView`
 
 **Responsabilidades:**
-- en la rama verde, presenta la información de la `ActividadFormativa` y pide confirmar/cancelar.
-- en la rama roja, presenta el mensaje de bloqueo por uso, con los nombres de las `Materia` afectadas.
+- presenta `codigo` y `nombre` de la `ActividadFormativa` y pide confirmar/cancelar.
+- en la rama roja, presenta el mensaje de bloqueo con los nombres de las `Materia` en las que está en uso.
 
 **Colaboraciones:**
-- **Entrada:** `:ACTIVIDADES_FORMATIVAS_ABIERTO` -- el `Admin` solicita eliminar una `ActividadFormativa`.
+- **Entrada:** `:ACTIVIDADES_FORMATIVAS_ABIERTO`.
 - **Control:** `ActividadFormativaController`.
 - **Salida:** `:ACTIVIDADES_FORMATIVAS_ABIERTO` en los tres casos -- "lista actualizada" (verde), "bloqueada, sin cambios" (rojo) o "cancelada, sin cambios" (azul).
 
@@ -39,8 +39,8 @@ Traducción a clases de análisis del caso de uso [`eliminarActividadFormativa()
 ### `ActividadFormativaController`
 
 **Responsabilidades:**
-- aplica el `<<choice>>`: pregunta si la `ActividadFormativa` está en uso (`puedeEliminar(actividadFormativaId)`).
-- si no está bloqueada y el `Admin` confirma, elimina real e inmediato (`eliminar(actividadFormativaId)`) -- borrado físico, sin `estado` propio que mutar.
+- carga la `ActividadFormativa` para la confirmación.
+- al confirmar, aplica el `<<choice>>`: si `nombresMateriasAsociadas()` no está vacía, rechaza con esos nombres; si lo está, elimina real e inmediato.
 
 **Colaboraciones:**
 - **Entrada:** `EliminarActividadFormativaView`.
@@ -60,18 +60,14 @@ Traducción a clases de análisis del caso de uso [`eliminarActividadFormativa()
 ### `ActividadFormativaRepository`
 
 **Responsabilidades:**
-- responde con los nombres de las `Materia` donde la actividad está en uso (`nombresMateriasAsociadas(actividadFormativaId)`) -- lista vacía significa que puede eliminarse; los nombres alimentan el mensaje de la rama roja.
-- elimina la `ActividadFormativa` (`eliminar(actividadFormativaId)`) y sus filas a 0 de autopoblado.
+- responde con los nombres de las `Materia` donde la actividad está en uso (`nombresMateriasAsociadas(actividadFormativaId)`): horas > 0 en la propia `Materia` o en alguna de sus `AsignaturaPrograma`. Lista vacía significa que puede eliminarse.
+- elimina la `ActividadFormativa` y sus filas a 0 de autopoblado (`eliminar(actividadFormativaId)`).
 
 **Colaboraciones:**
 - **Entrada:** `ActividadFormativaController`.
-- **Salida:** gestiona `ActividadFormativa`.
+- **Salida:** gestiona `ActividadFormativa` y sus dos clases de asociación.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframes.puml) -- fuente de verdad de el `<<choice>>` bloqueante por uso en Materias..
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : eliminarActividadFormativa()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo de `Universidad` (`Universidad *-- ActividadFormativa`).
-- [`eliminarMetodologiaDocente()`](../eliminarMetodologiaDocente/README.md) -- clúster plantilla; allí el chequeo es de una sola tabla.
-- [`eliminarResultadoAprendizaje()`](../eliminarResultadoAprendizaje/README.md) -- mismo patrón de `<<choice>>` bloqueante con borrado físico y cascada de dos niveles.
-- [`eliminarAsignatura()`](../eliminarAsignatura/README.md) -- contraste: borrado lógico sin `<<choice>>`.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframes.puml) -- fuente de verdad.
+- [`eliminarCompetencia()`](../eliminarCompetencia/README.md) -- contraste: bloqueo con consulta previa de asignaciones.

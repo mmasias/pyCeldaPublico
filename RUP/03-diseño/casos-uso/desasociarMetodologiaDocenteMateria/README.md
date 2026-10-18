@@ -51,6 +51,9 @@ Bajada a diseño del caso de análisis [`desasociarMetodologiaDocenteMateria()`]
 - **204 No Content**: el `DELETE` no devuelve entidad; la Vista refresca el listado de asociadas de la `Materia`.
 - **La rama "cancelada" no genera llamada HTTP** -- se modela como rama del `alt` para reflejar las tres salidas de Análisis (verde/roja/azul).
 
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: endpoint espejo bajo `/api/v1/admin/materias/{id}/...`, autenticado con `require_admin` en vez de `get_current_director_programa_id` + comprobación de propiedad (`_obtener_materia_o_404`); mismo cuerpo y mismos repositorios. La secuencia es idéntica con `Admin` como actor.
+
+
 ## Referencias
 
 - [`desasociarMetodologiaDocenteMateria()` en Análisis](/RUP/02-analisis/casos-uso/desasociarMetodologiaDocenteMateria/README.md) -- diagrama de colaboración origen.

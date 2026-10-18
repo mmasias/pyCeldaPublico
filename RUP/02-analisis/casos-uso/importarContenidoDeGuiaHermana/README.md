@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`importarContenidoDeGuiaHermana()`](/RUP/01-requisitos/03-detalle-casos-uso/importarContenidoDeGuiaHermana/README.md) (issue [#409](https://github.com/mmasias/pyCelda/issues/409)): el `Profesor` de una `AsignaturaPrograma` reemplaza el `contenido` (temario) de la `Guia` que tiene abierta con el de una `Guia` en estado `Aprobada` de una `AsignaturaPrograma` hermana -- otra con `id` distinto, el mismo `asignaturaId` no nulo y el mismo `Asignatura.codigo` (familia del issue [#184](https://github.com/mmasias/pyCelda/issues/184)). Calca [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) con tres diferencias reales: (1) `contenido` es un **campo escalar de la propia `Guia`**, sin colección que gestionar -- no hay `ReferenciaBibliograficaRepository` ni equivalente, y la copia se hace con `Guia.actualizarContenido()`; (2) es un **self-loop directo de `GUIA_ABIERTO`**, no de un listado propio, y **no hay `<<include>>`** de vuelta: la pantalla no cambia, el control vive inline en la de `abrirGuia()`; (3) la fila de `HistorialCambio` es de `campo="contenido"` -- campo ya existente, compartido con la edición manual -- y **solo se registra si el contenido cambió**. Reemplazo total (no fusiona), real e inmediato en un solo commit. Si la guía destino estaba `Aprobada`, se degrada a `Borrador` (mismo mecanismo que `guardarBorradorGuia()` -> `Guia.confirmarGuardado()`). Autorización: la misma relajación acotada de la regla 404-uniforme que el resto de la familia -- el `Profesor` de la `AsignaturaPrograma` destino puede leer guías `Aprobadas` de sus hermanas del curso **activo**, solo para listar y elegir origen. Caso de uso reutilizado por `DirectorPrograma` (hereda de `Profesor`); el actor efectivo es siempre el `Profesor` de la `AsignaturaPrograma` destino.
+Traducción a clases de análisis del caso de uso [`importarContenidoDeGuiaHermana()`](/RUP/01-requisitos/03-detalle-casos-uso/importarContenidoDeGuiaHermana/README.md) (issue [#409](https://github.com/mmasias/pyCelda/issues/409)): el `Profesor` de una `AsignaturaPrograma` reemplaza el `contenido` (temario) de la `Guia` que tiene abierta con el de una `Guia` importable (`Aprobada`, la imparta o no quien importa, o `EnRevision` solo si el `Profesor` también imparte la `AsignaturaPrograma` de la guía origen; nunca `Borrador` ni `Rechazada` -- issue [#740](https://github.com/mmasias/pyCelda/issues/740), 2026-10-09, regla completa en la [ficha de Requisitos de `importarBibliografiaDeGuiaHermana()`](/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/README.md)) de una `AsignaturaPrograma` hermana -- otra con `id` distinto, el mismo `asignaturaId` no nulo y el mismo `Asignatura.codigo` (familia del issue [#184](https://github.com/mmasias/pyCelda/issues/184)). Calca [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) con tres diferencias reales: (1) `contenido` es un **campo escalar de la propia `Guia`**, sin colección que gestionar -- no hay `ReferenciaBibliograficaRepository` ni equivalente, y la copia se hace con `Guia.actualizarContenido()`; (2) es un **self-loop directo de `GUIA_ABIERTO`**, no de un listado propio, y **no hay `<<include>>`** de vuelta: la pantalla no cambia, el control vive inline en la de `abrirGuia()`; (3) la fila de `HistorialCambio` es de `campo="contenido"` -- campo ya existente, compartido con la edición manual -- y **solo se registra si el contenido cambió**. Reemplazo total (no fusiona), real e inmediato en un solo commit. Si la guía destino estaba `Aprobada`, se degrada a `Borrador` (mismo mecanismo que `guardarBorradorGuia()` -> `Guia.confirmarGuardado()`). Autorización: la misma relajación acotada de la regla 404-uniforme que el resto de la familia -- el `Profesor` de la `AsignaturaPrograma` destino puede leer guías importables de sus hermanas del curso **activo**, solo para listar y elegir origen y revalidarlo al importar. Importar es una copia, no un enlace: si después el origen se rechaza, se revoca o cambia, el destino no se entera. Caso de uso reutilizado por `DirectorPrograma` (hereda de `Profesor`); el actor efectivo es siempre el `Profesor` de la `AsignaturaPrograma` destino.
 
 <div align=center>
 
@@ -26,10 +26,10 @@ Traducción a clases de análisis del caso de uso [`importarContenidoDeGuiaHerma
 ### `ImportarContenidoDeGuiaHermanaView`
 
 **Responsabilidades:**
-- presenta el desplegable de guías origen candidatas -- las `Aprobadas` de `AsignaturaPrograma` hermanas del curso activo, cada una identificada por código de `Asignatura` + programa + nombre de la `AsignaturaPrograma` hermana -- y el botón de importar, deshabilitado hasta elegir origen. Sin recuento de referencias ni fecha de aprobación en la opción (a diferencia de bibliografía) y sin previsualización del contenido.
+- presenta el desplegable de guías origen candidatas -- las importables de `AsignaturaPrograma` hermanas del curso activo, cada una identificada por código de `Asignatura` + programa + nombre de la `AsignaturaPrograma` hermana + estado con su fecha ("aprobada el ..." o "en revisión desde ...", issue #740) -- y el botón de importar, deshabilitado hasta elegir origen. Sin recuento de referencias en la opción (a diferencia de bibliografía) y sin previsualización del contenido.
 - tras elegir origen, avisa de que importar **reemplaza el contenido actual, incluidos los cambios sin guardar**.
 - tras importar, actualiza el `contenido` local de la pantalla con la respuesta, para que un guardado posterior no pise en silencio lo recién importado con el valor viejo que seguía en el campo de texto.
-- el control no se ofrece cuando no hay ninguna guía hermana `Aprobada`, ni en modo revisión (`DirectorPrograma` evaluando la `Guia` de otro).
+- el control no se ofrece cuando no hay ninguna guía hermana importable, ni en modo revisión (`DirectorPrograma` evaluando la `Guia` de otro).
 
 **Colaboraciones:**
 - **Entrada:** `:GUIA_ABIERTO` -- el `Profesor` solicita importar el contenido de una guía hermana para la `Guia` que tiene abierta.
@@ -41,8 +41,8 @@ Traducción a clases de análisis del caso de uso [`importarContenidoDeGuiaHerma
 ### `ImportarContenidoDeGuiaHermanaController`
 
 **Responsabilidades:**
-- `listarOrigenesImportables(guiaDestinoId)`: guías `Aprobadas` de hermanas del curso activo -- alimenta el desplegable; lista vacía = control ausente.
-- vuelve a obtener la `Guia` origen por id (`GuiaRepository.obtener(guiaOrigenId)`) y `validarHermandad(guiaDestino, guiaOrigen)`: revalidación server-side -- comprueba que `guiaOrigen.estado == "Aprobada"`, que pertenece al curso activo y que su `AsignaturaPrograma` sigue siendo hermana de la de destino (mismo `asignaturaId` no nulo y mismo `Asignatura.codigo`). El `guiaOrigenId` del cliente nunca se confía; el detalle de la respuesta (404 uniforme si no valida) se fija en Diseño.
+- `listarOrigenesImportables(guiaDestinoId)`: guías importables de hermanas del curso activo -- alimenta el desplegable; lista vacía = control ausente. De las candidatas `Aprobadas` o `EnRevision` del `CursoAcademico` activo, conserva las `Aprobadas` y solo las `EnRevision` cuya `AsignaturaPrograma` también imparte el `Profesor` (`AsignaturaProgramaRepository.imparte()`).
+- vuelve a obtener la `Guia` origen por id (`GuiaRepository.obtener(guiaOrigenId)`) y `validarHermandad(guiaDestino, guiaOrigen)`: revalidación server-side -- comprueba que la guía origen es importable (`Aprobada`, o `EnRevision` de una `AsignaturaPrograma` que el `Profesor` también imparte), que pertenece al curso activo y que su `AsignaturaPrograma` sigue siendo hermana de la de destino (mismo `asignaturaId` no nulo y mismo `Asignatura.codigo`). El `guiaOrigenId` del cliente nunca se confía; el detalle de la respuesta (404 uniforme si no valida) se fija en Diseño.
 - `importarContenido(guiaDestinoId, guiaOrigenId)`: orquesta el reemplazo -- pide a la `Guia` destino que adopte el `contenido` del origen, registra una fila de `HistorialCambio` solo si el texto cambió, degrada la guía destino si estaba `Aprobada` y persiste.
 - real e inmediato: toda la operación persiste en un solo commit.
 
@@ -65,6 +65,7 @@ Traducción a clases de análisis del caso de uso [`importarContenidoDeGuiaHerma
 
 **Responsabilidades:**
 - `listarHermanas(asignaturaProgramaId)`: otras `AsignaturaPrograma` con el mismo `asignaturaId` y el mismo `codigo`, excluyendo la propia; `[]` si `asignaturaId` es nulo.
+- `imparte(asignaturaProgramaId, profesorId)`: si el `Profesor` imparte esa `AsignaturaPrograma` -- la misma comprobación que autoriza el destino, aplicada aquí a la guía origen `EnRevision` (issue #740).
 - `imparte(asignaturaProgramaId, profesorId)`: base de la autorización -- el `Profesor` debe impartir la `AsignaturaPrograma` destino.
 
 **Colaboraciones:**
@@ -94,7 +95,7 @@ Traducción a clases de análisis del caso de uso [`importarContenidoDeGuiaHerma
 ### `GuiaRepository`
 
 **Responsabilidades:**
-- localiza la guía destino (`obtener(guiaDestinoId)`) y las guías `Aprobadas` de las hermanas del curso activo (`listarAprobadasDe(hermanas, cursoAcademicoId)`).
+- localiza la guía destino (`obtener(guiaDestinoId)`) y las guías `Aprobadas` o `EnRevision` de las hermanas del curso activo (`listarImportablesDe(hermanas, cursoAcademicoId)`); el filtro de "imparte" para las `EnRevision` lo aplica el controlador, no esta consulta.
 - persiste la `Guia` tras el reemplazo -- nuevo `contenido` y posible cambio de `estado`.
 
 **Colaboraciones:**
@@ -120,3 +121,4 @@ Traducción a clases de análisis del caso de uso [`importarContenidoDeGuiaHerma
 - [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- `Guia.actualizarContenido()` y mecanismo de degradado `Aprobada -> Borrador` compartidos.
 - [`abrirGuia()`](../abrirGuia/README.md) -- pantalla donde vive el control inline.
 - [Issue #409](https://github.com/mmasias/pyCelda/issues/409) -- origen del caso de uso.
+- [Issue #740](https://github.com/mmasias/pyCelda/issues/740) -- orígenes importables: `Aprobada`, o `EnRevision` que quien importa también imparte.

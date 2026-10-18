@@ -77,6 +77,8 @@ Este `colaboracion.puml` contiene **dos diagramas**: el primero (`abrirMaterias-
 
 **`[Eliminar]` en la variante Admin**: `eliminarMateria()` es caso de uso de `Admin` pero no forma parte de esta rebanada -- el botón se muestra deshabilitado en la Vista. La rebanada original de `DirectorPrograma` (discussion [#65](https://github.com/mmasias/pyCelda/discussions/65)) tampoco cubría el CRUD, solo la navegación (`[Abrir]`) hacia los casos de asociación.
 
+**Agrupación por módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: cada `Materia` del listado lleva su `Modulo` (código y nombre); la vista agrupa por módulo, con "Sin módulo" al final, si alguna materia tiene módulo.
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirMaterias/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirMaterias/wireframes.puml) -- fuente de verdad del contenido presentado, compartidas por ambos actores.

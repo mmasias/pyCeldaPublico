@@ -32,7 +32,7 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`Profesor`|
-|**Objetivo**|Reemplazar la planificación docente de la `Guia` abierta con la de una `Guia` `Aprobada` de una `AsignaturaPrograma` hermana|
+|**Objetivo**|Reemplazar la planificación docente de la `Guia` abierta con la de una `Guia` importable (`Aprobada`, o `EnRevision` que el `Profesor` también imparte) de una `AsignaturaPrograma` hermana|
 |**Tipo**|Primario|
 |**Nivel**|Objetivo de usuario|
 
@@ -44,7 +44,9 @@ Reutilizado por `DirectorPrograma`, misma ficha (`DirectorPrograma --|> Profesor
 
 **`AsignaturaPrograma` hermana**: misma doble comprobación -- mismo `asignatura_id` (FK del issue [#181](https://github.com/mmasias/pyCelda/issues/181), no nula) y mismo `Asignatura.codigo`.
 
-**Origen**: una `Guia` en estado `Aprobada` de una `AsignaturaPrograma` hermana; desplegable con el origen plenamente identificado (programa, código, nombre de la hermana, fecha de aprobación, número de sesiones) si hay más de una; botón ausente si ninguna.
+**Origen**: una `Guia` importable de una `AsignaturaPrograma` hermana en el `CursoAcademico` activo -- `Aprobada`, la imparta o no quien importa, o `EnRevision` solo si el `Profesor` también imparte la `AsignaturaPrograma` de la guía origen; nunca `Borrador` ni `Rechazada` (issue [#740](https://github.com/mmasias/pyCelda/issues/740), 2026-10-09; regla completa y su porqué en la [ficha del caso gemelo](../importarBibliografiaDeGuiaHermana/README.md)). Desplegable con el origen plenamente identificado (programa, código, nombre de la hermana, estado con su fecha -- "aprobada el dd/mm/aaaa" o "en revisión desde dd/mm/aaaa" --, número de sesiones) si hay más de una; botón ausente si ninguna.
+
+**Importar es una copia, no un enlace**: si después el origen se rechaza, se revoca o cambia, el destino no se entera; la guía destino la revisa su propio director como cualquier otra.
 
 **Copia con reemplazo total, real e inmediata** (a diferencia de [`crearSesion()`](../crearSesion/README.md)/[`editarSesion()`](../editarSesion/README.md)/[`eliminarSesion()`](../eliminarSesion/README.md), que quedan en memoria hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)): borra **todas** las `Sesion` de la `Guia` destino -- vinculadas y tecleadas a mano -- y crea filas nuevas copiando `tipo` y `descripcion` de las de la guía origen, replicando el flag `vinculada` de cada fila origen tal cual. Operación atómica, un solo commit.
 
@@ -54,7 +56,7 @@ Reutilizado por `DirectorPrograma`, misma ficha (`DirectorPrograma --|> Profesor
 
 **Rastro**: una sola fila de `HistorialCambio` (`campo="planificacion_docente"`), origen identificado en el comentario.
 
-**Relajación acotada de la 404-uniforme**: idéntica a la del caso gemelo -- lectura de la planificación docente de una `Guia` `Aprobada` de una hermana, solo para listar y elegir origen. Previsualización fila a fila **diferida**.
+**Relajación acotada de la 404-uniforme**: idéntica a la del caso gemelo -- lectura de la planificación docente de una `Guia` importable (`Aprobada`, o `EnRevision` que el `Profesor` también imparte) de una hermana, solo para listar y elegir origen y revalidarlo al importar. Previsualización fila a fila **diferida**.
 
 **Divergencia lateral registrada** (no la resuelve este caso de uso): el [modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) declara `Guia *-- PlanificacionDocente *-- Sesion` (`PlanificacionDocente` como entidad propia), pero el código aplana `Sesion` colgando directamente de `Guia` (`Sesion.guia_id`). Este caso de uso opera sobre `Sesion.guia_id` como el resto del código -- no añade lógica que dependa de una `PlanificacionDocente` intermedia, no empeora el aplanamiento. El nombre del caso de uso sí usa `PlanificacionDocente` (el concepto del modelo), no `Sesiones`.
 
@@ -71,3 +73,4 @@ Reutilizado por `DirectorPrograma`, misma ficha (`DirectorPrograma --|> Profesor
 - [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) -- caso de uso gemelo, ficha completa de la mecánica compartida
 - [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) -- regla `c3` (`Guia.sesiones_minimas`) que este caso de uso no altera
 - [Issue #184](https://github.com/mmasias/pyCelda/issues/184) -- diseño cerrado con el usuario
+- [Issue #740](https://github.com/mmasias/pyCelda/issues/740) -- orígenes importables: `Aprobada`, o `EnRevision` que quien importa también imparte (2026-10-09)

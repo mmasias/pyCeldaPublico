@@ -7,28 +7,37 @@ state ACTIVIDAD_FORMATIVA_ABIERTO
 
 ACTIVIDADES_FORMATIVAS_ABIERTO -[#green]-> crearActividadFormativa
 note on link
-<b>Admin</b> solicita crear ActividadFormativa
+<b>Admin / DirectorPrograma</b> solicita crear actividad formativa
 end note
 
 state crearActividadFormativa as "crearActividadFormativa()" {
 
-    state " " as SolicitandoDatos
+    state " " as Datos
+    state c <<choice>>
 
-    [*] -[#green]-> SolicitandoDatos
+    [*] -[#green]-> Datos
     note on link
-    <b>Sistema</b> presenta solicitud de datos de la ActividadFormativa
-    <b>Sistema</b> muestra selector de Universidad
-    <b>Sistema</b> muestra código
-    <b>Sistema</b> muestra nombre
+    <b>Sistema</b> presenta solicitud de datos de la actividad formativa
     <b>Sistema</b> permite solicitar crear
     end note
 
-    SolicitandoDatos -[#green]-> [*]
+    Datos -[#green]-> c
     note on link
-    <b>Admin</b> elige Universidad
-    <b>Admin</b> introduce código
-    <b>Admin</b> introduce nombre
-    <b>Admin</b> solicita crear
+    <b>Admin / DirectorPrograma</b> introduce código
+    <b>Admin / DirectorPrograma</b> introduce nombre
+    <b>Admin / DirectorPrograma</b> solicita crear
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [código no usado por otra actividad formativa del Programa, sin distinguir mayúsculas]
+    <b>Sistema</b> añade la actividad formativa, a 0 horas, a cada Materia y AsignaturaPrograma del Programa
+    end note
+
+    c -[#red]-> Datos
+    note on link
+    [código ya usado por otra actividad formativa del Programa, sin distinguir mayúsculas]
+    <b>Sistema</b> presenta mensaje de código repetido
     end note
 }
 

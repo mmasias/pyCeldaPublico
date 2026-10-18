@@ -4,7 +4,8 @@ skinparam linetype polyline
 left to right direction
 
 rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_ABIERTO" as MetodologiasDocentesAbierto
-rectangle #CDEBA5 ":METODOLOGIA_DOCENTE_ABIERTO" as MetodologiaDocenteAbierto
+rectangle #CDEBA5 ":Collaboration EditarMetodologiaDocente" as EditarMetodologiaDocente
+rectangle #CDEBA5 ":METODOLOGIA_DOCENTE_ABIERTO" as MetodologiaDocenteAbiertoSalida
 
 package crearMetodologiaDocente as "crearMetodologiaDocente()" {
     rectangle #629EF9 CrearMetodologiaDocenteView
@@ -13,16 +14,18 @@ package crearMetodologiaDocente as "crearMetodologiaDocente()" {
     rectangle #F2AC4E MetodologiaDocenteRepository
 }
 
-MetodologiasDocentesAbierto --> CrearMetodologiaDocenteView: <font size=8>crearMetodologiaDocente()
+MetodologiasDocentesAbierto --> CrearMetodologiaDocenteView: <font size=8>crearMetodologiaDocente(programaId)
 
-CrearMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>validarDatosObligatorios(codigo, descripcion) : boolean
+CrearMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>crearMetodologiaDocente(programaId, codigo, descripcion) : MetodologiaDocente
 
-CrearMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>crearMetodologiaDocente(codigo, descripcion) : MetodologiaDocente
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>codigoEnUso(programaId, codigo) : boolean
 
-MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>crear(codigo, descripcion) : MetodologiaDocente
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>crear(programaId, codigo, descripcion) : MetodologiaDocente
 
 MetodologiaDocenteRepository -- MetodologiaDocente
 
-CrearMetodologiaDocenteView --> MetodologiaDocenteAbierto: <font size=8>detalle de la MetodologiaDocente creada
+CrearMetodologiaDocenteView ..> EditarMetodologiaDocente: <font size=8> <<include>> editarMetodologiaDocente()
+CrearMetodologiaDocenteView ..[#green]> MetodologiaDocenteAbiertoSalida: <font size=8>MetodologiaDocente creada
+CrearMetodologiaDocenteView ..[#red]> CrearMetodologiaDocenteView: <font size=8>código repetido, formulario con lo escrito
 
 @enduml

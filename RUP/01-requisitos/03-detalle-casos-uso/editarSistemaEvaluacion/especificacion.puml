@@ -22,6 +22,7 @@ state editarSistemaEvaluacion as "editarSistemaEvaluacion()" {
 
     EditandoDatos -[#green]-> [*]
     note on link
+    <b>Admin</b> introduce código
     <b>Admin</b> introduce tipo
     <b>Admin</b> introduce descripción
     <b>Admin</b> introduce ponderación mínima

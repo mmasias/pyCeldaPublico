@@ -10,7 +10,7 @@ Recuento actual (verificado contra las carpetas, issue [#658](https://github.com
 
 Ciclo de vida completo de `Guia` (L7-L9): los 9 primeros cubren de principio a fin el ciclo de edición desde el punto de vista del `Profesor` -- abrir, crear/editar/eliminar hijos con CRUD real e inmediato, sincronizar su vinculación (como borrador o a revisión), y la aprobación del `DirectorPrograma`; ya pasaron por Diseño y Desarrollo real. Los 12 siguientes completan la entidad: el CRUD completo (listado, detalle, edición) de `PonderacionEvaluacion`/`ReferenciaBibliografica`, y el resto del ciclo de revisión del `DirectorPrograma` -- rechazar, escalar, revocar, editar semestre, notificar y descargar PDF; también cerrados hasta Desarrollo (PR [#68](https://github.com/mmasias/pyCelda/pull/68)). `previsualizarGuia()` (discussion [#218](https://github.com/mmasias/pyCelda/discussions/218)) se añade después, en la misma rebanada que el v1 del render real de `descargarGuiaPDF()`: vista HTML de la guía renderizada, comparte `RenderizadorGuiaDocente` con la salida PDF.
 
-Importación entre `AsignaturaPrograma` hermanas (L8/L10, issue [#184](https://github.com/mmasias/pyCelda/issues/184), 2 CU): [`importarBibliografiaDeGuiaHermana()`](importarBibliografiaDeGuiaHermana/README.md) / [`importarPlanificacionDocenteDeGuiaHermana()`](importarPlanificacionDocenteDeGuiaHermana/README.md) -- actor `Profesor` de la `AsignaturaPrograma` destino, heredado por `DirectorPrograma`. Copia con reemplazo total de la colección (`ReferenciaBibliografica` / `Sesion`) de una `Guia` `Aprobada` de una hermana, real e inmediata contra el repositorio (`reemplazarDesde`), degradando la guía destino si estaba `Aprobada` (`Guia.confirmar_guardado()` reutilizado) y registrando una fila de `HistorialCambio`. `Profesor` deja de estar en 0 CU restantes -- estos dos son los primeros CU de `Profesor` fuera del hilo `Guia` original.
+Importación entre `AsignaturaPrograma` hermanas (L8/L10, issue [#184](https://github.com/mmasias/pyCelda/issues/184), 2 CU): [`importarBibliografiaDeGuiaHermana()`](importarBibliografiaDeGuiaHermana/README.md) / [`importarPlanificacionDocenteDeGuiaHermana()`](importarPlanificacionDocenteDeGuiaHermana/README.md) -- actor `Profesor` de la `AsignaturaPrograma` destino, heredado por `DirectorPrograma`. Copia con reemplazo total de la colección (`ReferenciaBibliografica` / `Sesion`) de una `Guia` importable de una hermana (`Aprobada`; desde el issue [#740](https://github.com/mmasias/pyCelda/issues/740), también `EnRevision` si el `Profesor` imparte el origen), real e inmediata contra el repositorio (`reemplazarDesde`), degradando la guía destino si estaba `Aprobada` (`Guia.confirmar_guardado()` reutilizado) y registrando una fila de `HistorialCambio`. `Profesor` deja de estar en 0 CU restantes -- estos dos son los primeros CU de `Profesor` fuera del hilo `Guia` original.
 
 A partir de aquí, resto del catálogo real de `DirectorPrograma` (L2-L6): 21 casos que completan su catálogo propio -- CRUD de `ResultadoAprendizaje`, las cuatro asociaciones `MetodologiaDocente`/`ResultadoAprendizaje` con `Materia` y `AsignaturaPrograma`, `editarAsignaturaPrograma()`, y la navegación de lectura (`abrirProgramas()`, `abrirPrograma()`, `abrirMaterias()`, `abrirMateria()`, `abrirAsignaturaPrograma()`, `abrirAsignaturasPrograma()`) que reutiliza CU compartidos con `Admin` o que es exclusiva de `DirectorPrograma`. `Profesor` estuvo en 0 CU restantes hasta el issue #184 (arriba). Más el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227), 3 CU): `editarActividadesFormativasMateria()` / `editarActividadesFormativasAsignaturaPrograma()` (rejilla de un submit sobre las 10 filas de asociación, siempre presentes) y `consultarEstadoActividadesFormativasMateria()` (medidor blando de `AfM = Σ AfAdM`, `Materia.discrepanciasActividadesFormativas()` en el modelo).
 
@@ -78,7 +78,6 @@ Los grupos tercero y cuarto: el CRUD del catálogo estructural que `Admin` gesti
 |[`abrirFacultades()`](abrirFacultades/README.md)|Listado de `Facultad` de una `Universidad`; composición real, no catálogo plano|
 |[`abrirMetodologiaDocente()`](abrirMetodologiaDocente/README.md)|Detalle de solo lectura de `MetodologiaDocente` (`codigo`, `descripcion`), sin catálogo hijo|
 |[`abrirMetodologiasDocentes()`](abrirMetodologiasDocentes/README.md)|Listado plano del catálogo `MetodologiaDocente`, reutilizado por `Materia` y `AsignaturaPrograma`|
-|[`abrirMetodologiasDocentesPrograma()`](abrirMetodologiasDocentesPrograma/README.md)|Listado de solo lectura de las metodologías docentes asociadas al `Programa`; pantalla propia de `Admin` y `DirectorPrograma`|
 |[`abrirInicio()`](abrirInicio/README.md)|Primitiva de navegación: compone "Mis guías" (`<<include>>` de `abrirAsignaturasPrograma()`) y "Mis programas" (`<<include>>` de `abrirProgramas()`), sin Controlador ni Modelo propios; discussion #274|
 |[`abrirPanelAdministracion()`](abrirPanelAdministracion/README.md)|Primitiva de navegación pura: menú fijo de seis enlaces, sin Controlador ni Modelo|
 |[`abrirPlanificacionDocente()`](abrirPlanificacionDocente/README.md)|Listado de solo lectura de `Sesion` de la `Guia`, fusionando vinculado+pendiente, ordenado por `numero`|
@@ -148,6 +147,28 @@ Existían como carpeta con ficha pero no figuraban en este índice (sincronizado
 |[`restaurarCopiaSeguridad()`](restaurarCopiaSeguridad/README.md)|Hecho|
 |[`consultarHistorialCambios()`](consultarHistorialCambios/README.md)|Hecho|
 |[`importarContenidoDeGuiaHermana()`](importarContenidoDeGuiaHermana/README.md)|Hecho|
-|[`asociarMetodologiaDocenteAPrograma()`](asociarMetodologiaDocenteAPrograma/README.md)|Hecho|
-|[`desasociarMetodologiaDocentePrograma()`](desasociarMetodologiaDocentePrograma/README.md)|Hecho|
 |[`duplicarSesion()`](duplicarSesion/README.md)|Hecho|
+
+## Competencia y Módulo (issues [#761](https://github.com/mmasias/pyCelda/issues/761), [#762](https://github.com/mmasias/pyCelda/issues/762))
+
+13 fichas nuevas (recuentos de este documento sin recalcular): 9 de `Competencia`, actores `Admin` y `DirectorPrograma`; 4 de `Modulo`, solo `Admin`.
+
+|Caso|Estado|
+|-|-|
+|[`abrirCompetencias()`](abrirCompetencias/README.md)|Hecho|
+|[`abrirCompetencia()`](abrirCompetencia/README.md)|Hecho|
+|[`crearCompetencia()`](crearCompetencia/README.md)|Hecho|
+|[`editarCompetencia()`](editarCompetencia/README.md)|Hecho|
+|[`eliminarCompetencia()`](eliminarCompetencia/README.md)|Hecho|
+|[`asociarCompetenciaAMateria()`](asociarCompetenciaAMateria/README.md)|Hecho|
+|[`desasociarCompetenciaAMateria()`](desasociarCompetenciaAMateria/README.md)|Hecho|
+|[`asociarCompetenciaAAsignaturaPrograma()`](asociarCompetenciaAAsignaturaPrograma/README.md)|Hecho|
+|[`desasociarCompetenciaAsignaturaPrograma()`](desasociarCompetenciaAsignaturaPrograma/README.md)|Hecho|
+|[`abrirModulos()`](abrirModulos/README.md)|Hecho|
+|[`crearModulo()`](crearModulo/README.md)|Hecho|
+|[`editarModulo()`](editarModulo/README.md)|Hecho|
+|[`eliminarModulo()`](eliminarModulo/README.md)|Hecho|
+
+## Catálogos de `MetodologiaDocente` y `ActividadFormativa` por `Programa` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))
+
+3 fichas retiradas, ninguna nueva: 131 carpetas con ficha tras el #772 (verificado contra las carpetas). Se retiran `asociarMetodologiaDocenteAPrograma()` y `desasociarMetodologiaDocentePrograma()` (desaparece la habilitación de una metodología del catálogo de `Universidad` en el `Programa`) y `abrirMetodologiasDocentesPrograma()`, absorbido por [`abrirMetodologiasDocentes()`](abrirMetodologiasDocentes/README.md). Los CRUD de `MetodologiaDocente` y `ActividadFormativa` pasan a catálogo del `Programa`, actores `Admin` y `DirectorPrograma`. Retocadas sin caso de uso nuevo: [`crearSistemaEvaluacion()`](crearSistemaEvaluacion/README.md), [`editarSistemaEvaluacion()`](editarSistemaEvaluacion/README.md) y [`abrirSistemaEvaluacion()`](abrirSistemaEvaluacion/README.md) (`codigo`), [`abrirPrograma()`](abrirPrograma/README.md) y [`abrirMateria()`](abrirMateria/README.md) (identidad RUCT de solo lectura; en la materia, además, presencialidad y comprobación de horas frente a 25 h × ECTS).

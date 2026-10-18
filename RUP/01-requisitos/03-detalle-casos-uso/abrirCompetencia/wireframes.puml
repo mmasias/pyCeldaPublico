@@ -1,0 +1,20 @@
+@startsalt abrirCompetencia-wireframe
+{
+    <b>COMPETENCIAS > CE7</b>
+    ====
+    <b>Tipo:</b> Específica
+    <b>Descripción:</b>
+    "Conocimiento y aplicación de los principios fundamentales y técnicas
+    básicas de la programación paralela, concurrente, distribuida y de
+    tiempo real."
+    ====
+    <b>Distribución</b>
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Programación | Programación II
+        . | Sistemas operativos
+    }
+    ====
+    {[Editar]}
+}
+@endsalt

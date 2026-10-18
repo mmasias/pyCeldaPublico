@@ -1,0 +1,33 @@
+@startuml asociarCompetenciaAAsignaturaPrograma
+
+skinparam linetype polyline
+
+state ASIGNATURA_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO_SALIDA as "ASIGNATURA_PROGRAMA_ABIERTO"
+
+ASIGNATURA_PROGRAMA_ABIERTO -[#green]-> asociarCompetenciaAAsignaturaPrograma
+note on link
+<b>Admin / DirectorPrograma</b> solicita asociar Competencia a AsignaturaPrograma
+end note
+
+state asociarCompetenciaAAsignaturaPrograma as "asociarCompetenciaAAsignaturaPrograma()" {
+
+    state " " as SolicitandoDatos
+
+    [*] -[#green]-> SolicitandoDatos
+    note on link
+    <b>Sistema</b> presenta selección de Competencia ya asignadas a la Materia y no asignadas aún a esta AsignaturaPrograma
+    <b>Sistema</b> muestra descripción completa de la Competencia seleccionada
+    <b>Sistema</b> permite solicitar asociar
+    end note
+
+    SolicitandoDatos -[#green]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> selecciona Competencia
+    <b>Admin / DirectorPrograma</b> solicita asociar
+    end note
+}
+
+asociarCompetenciaAAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+
+@enduml

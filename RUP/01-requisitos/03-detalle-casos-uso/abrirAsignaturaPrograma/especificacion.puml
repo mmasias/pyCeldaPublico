@@ -21,6 +21,7 @@ state abrirAsignaturaPrograma as "abrirAsignaturaPrograma()" {
     [*] -[#green]-> [*]
     note on link
     <b>Sistema</b> muestra datos de la AsignaturaPrograma
+    <b>Sistema</b> muestra Competencias de la AsignaturaPrograma
     end note
 }
 

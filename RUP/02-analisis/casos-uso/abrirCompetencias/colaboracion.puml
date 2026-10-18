@@ -1,0 +1,28 @@
+@startuml abrirCompetencias-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":COMPETENCIAS_ABIERTO" as CompetenciasAbiertoSalida
+
+package abrirCompetencias as "abrirCompetencias()" {
+    rectangle #629EF9 AbrirCompetenciasView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Competencia
+    rectangle #F2AC4E CompetenciaRepository
+}
+
+ProgramaAbierto --> AbrirCompetenciasView: <font size=8>abrirCompetencias(programaId)
+
+AbrirCompetenciasView --> CompetenciaController: <font size=8>listarCompetenciasDelPrograma(programaId) : List<Competencia>
+
+CompetenciaController --> CompetenciaRepository: <font size=8>listarDelPrograma(programaId) : List<Competencia>
+
+CompetenciaController --> CompetenciaRepository: <font size=8>conteoAsignaturasDelPrograma(programaId) : Map<id, int>
+
+CompetenciaRepository -- Competencia
+
+AbrirCompetenciasView --> CompetenciasAbiertoSalida: <font size=8>presenta catálogo de Competencia del Programa
+
+@enduml

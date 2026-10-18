@@ -32,16 +32,19 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorPrograma`|
+|**Actor**|`DirectorPrograma`, `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))|
 |**Objetivo**|Desasociar una `MetodologiaDocente` de una `Materia`, siempre que ninguna `AsignaturaPrograma` de esa `Materia` la tenga asignada|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-No es un borrado de entidad (la `MetodologiaDocente` sigue en el catálogo institucional) -- es romper el vínculo `MetodologiaMateria`, con `<<choice>>` bloqueante mismo patrón que `eliminarMetodologiaDocente()`/`eliminarMateria()`. El bloqueo aquí es distinto: no es "la Materia tiene hijos" sino un hallazgo de esta misma sesión -- `MetodologiaDocente` sigue la misma cascada en dos pasos que `ResultadoAprendizaje` (`AsignaturaPrograma o-- MetodologiaDocente`, ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)), así que desasociar de `Materia` sin comprobar su uso en `AsignaturaPrograma` dejaría el reparto de esa `AsignaturaPrograma` sin base. MD1/MD5 para bloqueada/confirmación son ilustrativos: `MetodologiaMateria` no está en el seed extraído.
+No es un borrado de entidad (la `MetodologiaDocente` sigue en el catálogo del `Programa` (#772; antes institucional)) -- es romper el vínculo `MetodologiaMateria`, con `<<choice>>` bloqueante mismo patrón que `eliminarMetodologiaDocente()`/`eliminarMateria()`. El bloqueo aquí es distinto: no es "la Materia tiene hijos" sino un hallazgo de esta misma sesión -- `MetodologiaDocente` sigue la misma cascada en dos pasos que `ResultadoAprendizaje` (`AsignaturaPrograma o-- MetodologiaDocente`, ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)), así que desasociar de `Materia` sin comprobar su uso en `AsignaturaPrograma` dejaría el reparto de esa `AsignaturaPrograma` sin base. MD1/MD5 para bloqueada/confirmación son ilustrativos: `MetodologiaMateria` no está en el seed extraído.
 
 **Retocado (issue #179, 2026-09-05)**: el mensaje de bloqueo nombra las `AsignaturaPrograma` concretas en uso, en vez de un genérico "está en uso en asignaturas-en-programa de esta materia" -- mismo patrón ya construido para [`eliminarResultadoAprendizaje()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarResultadoAprendizaje/README.md) (PR #178), auditado y replicado aquí.
+
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
+
 
 ## Referencias
 

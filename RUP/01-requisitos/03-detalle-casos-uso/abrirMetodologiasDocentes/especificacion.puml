@@ -2,27 +2,20 @@
 
 skinparam linetype polyline
 
-state SISTEMA_DISPONIBLE
+state PROGRAMA_ABIERTO
 state METODOLOGIAS_DOCENTES_ABIERTO
 
-SISTEMA_DISPONIBLE -[#green]-> abrirMetodologiasDocentes
+PROGRAMA_ABIERTO -[#green]-> abrirMetodologiasDocentes
 note on link
-<b>Admin</b> solicita abrir Metodologías Docentes
+<b>Admin / DirectorPrograma</b> solicita abrir metodologías docentes
 end note
 
 state abrirMetodologiasDocentes as "abrirMetodologiasDocentes()" {
 
-    state " " as ListandoCatalogo
-
-    [*] -[#green]-> ListandoCatalogo
+    [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> presenta selector de Universidad
-    <b>Sistema</b> presenta listado de MetodologiaDocente de la Universidad seleccionada
-    end note
-
-    ListandoCatalogo -[#green]-> [*]
-    note on link
-    <b>Admin</b> elige Universidad
+    <b>Sistema</b> presenta listado de metodologías docentes del Programa
+    <b>Sistema</b> muestra número de asignaturas de cada metodología docente
     end note
 }
 

@@ -40,7 +40,7 @@ state importarActividadesFormativasDeAsignaturaProgramaPrima as "importarActivid
 
 importarActividadesFormativasDeAsignaturaProgramaPrima -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
 note on link
-reemplaza las horas y el porcentaje de presencialidad de las 10 actividades formativas
+reemplaza las horas de todas las actividades formativas
 end note
 
 importarActividadesFormativasDeAsignaturaProgramaPrima -[#red]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA

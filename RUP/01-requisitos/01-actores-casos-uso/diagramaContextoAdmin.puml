@@ -16,9 +16,11 @@ state ASIGNATURAS_ABIERTO
 state ASIGNATURA_ABIERTO
 state METODOLOGIAS_DOCENTES_ABIERTO
 state METODOLOGIA_DOCENTE_ABIERTO
-state METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO
 state RESULTADOS_APRENDIZAJE_ABIERTO
 state RESULTADO_APRENDIZAJE_ABIERTO
+state COMPETENCIAS_ABIERTO
+state COMPETENCIA_ABIERTO
+state MODULOS_ABIERTO
 state PROFESORES_ABIERTO
 state PROFESOR_ABIERTO
 state SISTEMAS_EVALUACION_ABIERTO
@@ -45,8 +47,6 @@ SISTEMA_DISPONIBLE --> SESION_CERRADA : cerrarSesion()
 
 SISTEMA_DISPONIBLE --> UNIVERSIDADES_ABIERTO : abrirUniversidades()
 SISTEMA_DISPONIBLE --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
-SISTEMA_DISPONIBLE --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
-SISTEMA_DISPONIBLE --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
 SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()
 SISTEMA_DISPONIBLE --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
 SISTEMA_DISPONIBLE --> COPIAS_SEGURIDAD_ABIERTO : consultarCopiasSeguridad()
@@ -65,7 +65,7 @@ UNIVERSIDAD_ABIERTO --> UNIVERSIDAD_ABIERTO : editarUniversidad()
 UNIVERSIDAD_ABIERTO --> UNIVERSIDADES_ABIERTO : abrirUniversidades()
 UNIVERSIDADES_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
-' Facultad no es catálogo institucional (a diferencia de Asignatura/MetodologiaDocente):
+' Facultad no es catálogo institucional (a diferencia de Asignatura):
 ' es composición real de Universidad (Universidad *-- Facultad), se navega desde dentro de ella
 UNIVERSIDAD_ABIERTO --> FACULTADES_ABIERTO : abrirFacultades()
 
@@ -92,26 +92,8 @@ PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : editarPrograma()
 PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : definirDirectorPrograma()
 PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : quitarDirectorPrograma()
 
-' asociarMetodologiaDocenteAPrograma()/desasociarMetodologiaDocentePrograma():
-' catalogo de MetodologiaDocente del Programa (Programa o-- MetodologiaDocente), que
-' limita lo que las Materia del programa pueden elegir. Pantalla propia desde el issue #640
-' (abrirMetodologiasDocentesPrograma(), CU compartido con DirectorPrograma, igual que
-' abrirMaterias()); asociar/desasociar son self-loops sobre esa pantalla.
-' METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO es un estado DISTINTO de METODOLOGIAS_DOCENTES_ABIERTO
-' (ese es el catalogo institucional global, SISTEMA_DISPONIBLE->METODOLOGIAS_DOCENTES_ABIERTO,
-' con su propio CRUD de MetodologiaDocente mas abajo) -- pantallas y rutas distintas
-' (MetodologiasDocentesProgramaAdmin.tsx / /admin/programas/:id/metodologias-docentes
-' vs. MetodologiasDocentes.tsx / /admin/metodologias-docentes), aunque el nombre se parezca.
-' No es el mismo caso que MATERIAS_ABIERTO reutilizado entre diagramaContextoAdmin y
-' diagramaContextoDirectorPrograma (ahi SI es la misma pantalla conceptual, actor distinto);
-' aqui serian dos pantallas distintas para el MISMO actor Admin.
-PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : abrirMetodologiasDocentesPrograma()
-METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
-METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAPrograma()
-METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : desasociarMetodologiaDocentePrograma()
-
 ' Resultados de Aprendizaje del Programa (issue #642): capacidad compartida con
-' DirectorPrograma (mismo patron que abrirMetodologiasDocentesPrograma(), #640).
+' DirectorPrograma.
 ' RESULTADOS_APRENDIZAJE_ABIERTO / RESULTADO_APRENDIZAJE_ABIERTO estaban LIBRES en este
 ' diagrama (grep previo): misma pantalla conceptual que en diagramaContextoDirectorPrograma,
 ' actor distinto (rutas /admin/programas/:id/resultados-aprendizaje y
@@ -123,6 +105,53 @@ RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : eliminarResu
 RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()
 RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
 RESULTADOS_APRENDIZAJE_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' Competencias del Programa (#761): misma pantalla conceptual que en
+' diagramaContextoDirectorPrograma, actor distinto -- mismo patron que RESULTADOS_APRENDIZAJE_ABIERTO.
+PROGRAMA_ABIERTO --> COMPETENCIAS_ABIERTO : abrirCompetencias()
+COMPETENCIAS_ABIERTO --> COMPETENCIA_ABIERTO : crearCompetencia()
+COMPETENCIAS_ABIERTO --> COMPETENCIA_ABIERTO : abrirCompetencia()
+COMPETENCIAS_ABIERTO --> COMPETENCIAS_ABIERTO : eliminarCompetencia()
+COMPETENCIA_ABIERTO --> COMPETENCIA_ABIERTO : editarCompetencia()
+COMPETENCIA_ABIERTO --> COMPETENCIAS_ABIERTO : abrirCompetencias()
+COMPETENCIAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' MetodologiaDocente y ActividadFormativa del Programa (#772): pasan de catalogo de
+' Universidad (antes desde SISTEMA_DISPONIBLE, con vuelta por abrirPanelAdministracion())
+' a catalogo propio del Programa (Programa *-- MetodologiaDocente, Programa *-- ActividadFormativa),
+' compartido con DirectorPrograma -- mismo patron que COMPETENCIAS_ABIERTO. Se retira
+' METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO con sus tres casos de uso
+' (abrirMetodologiasDocentesPrograma(), absorbido por abrirMetodologiasDocentes();
+' asociarMetodologiaDocenteAPrograma()/desasociarMetodologiaDocentePrograma(), sin objeto
+' al desaparecer la habilitacion de una metodologia del catalogo de Universidad).
+PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : crearMetodologiaDocente()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : abrirMetodologiaDocente()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()
+METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()
+METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
+METODOLOGIAS_DOCENTES_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' crearActividadFormativa() autopuebla la fila nueva a 0 en todas las Materia y
+' AsignaturaPrograma del Programa. La rejilla de horas por Materia/AsignaturaPrograma
+' sigue siendo otro CU (editarActividadesFormativas*()), self-loop de su estado.
+PROGRAMA_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : crearActividadFormativa()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : eliminarActividadFormativa()
+ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()
+ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' Modulos del Programa (#762), solo Admin. Sin MODULO_ABIERTO: el Modulo no tiene
+' ficha propia (codigo, nombre, descripcion caben en la fila del listado), asi que
+' crear/editar/eliminar son self-loops del listado -- crearModulo() vuelve al listado,
+' no a un detalle. El modulo de cada Materia se fija en crearMateria()/editarMateria().
+PROGRAMA_ABIERTO --> MODULOS_ABIERTO : abrirModulos()
+MODULOS_ABIERTO --> MODULOS_ABIERTO : crearModulo()
+MODULOS_ABIERTO --> MODULOS_ABIERTO : editarModulo()
+MODULOS_ABIERTO --> MODULOS_ABIERTO : eliminarModulo()
+MODULOS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 
 PROGRAMA_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()
 ' eliminarPrograma() tambien desde la edicion del Programa (issue #645): vuelve al listado.
@@ -139,6 +168,18 @@ MATERIAS_ABIERTO --> MATERIA_ABIERTO : crearMateria()
 MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
 MATERIAS_ABIERTO --> MATERIAS_ABIERTO : eliminarMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : editarMateria()
+' #755: paridad con DirectorPrograma en la materia: horas de actividades formativas y su medidor,
+' metodologias docentes y resultados de aprendizaje.
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : consultarEstadoActividadesFormativasMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarMetodologiaDocenteAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarAsociacionMetodologiaDocenteMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarMetodologiaDocenteMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarResultadoAprendizajeAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarResultadoAprendizajeAMateria()
+' #761: competencias de la materia, compartido con DirectorPrograma.
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarCompetenciaAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarCompetenciaAMateria()
 MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
 MATERIAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 
@@ -174,6 +215,9 @@ ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasignarProfesor
 ' self-loops de navegación más, sin efecto sobre el ciclo de vida de la Guia.
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarResultadoAprendizajeAAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarResultadoAprendizajeAsignaturaPrograma()
+' #761: competencias de la asignatura, compartido con DirectorPrograma.
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarCompetenciaAAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarCompetenciaAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarMetodologiaDocenteAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarActividadesFormativasAsignaturaPrograma()
@@ -210,24 +254,6 @@ ASIGNATURAS_ABIERTO --> ASIGNATURAS_ABIERTO : eliminarAsignatura()
 ASIGNATURA_ABIERTO --> ASIGNATURA_ABIERTO : editarAsignatura()
 ASIGNATURA_ABIERTO --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
 ASIGNATURAS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
-
-METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : crearMetodologiaDocente()
-METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : abrirMetodologiaDocente()
-METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()
-METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()
-METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
-METODOLOGIAS_DOCENTES_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
-
-' ActividadFormativa (issue #655): catalogo de Universidad con CRUD completo de Admin, mismo
-' patron que MetodologiaDocente. Antes era seed-estatico sin pantalla (discussion #227): la
-' rejilla de horas por Materia/AsignaturaPrograma (DirectorPrograma) sigue siendo otro CU
-' distinto -- estos estados son el CATALOGO global de la Universidad, no esa rejilla.
-ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : crearActividadFormativa()
-ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()
-ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : eliminarActividadFormativa()
-ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()
-ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
-ACTIVIDADES_FORMATIVAS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
 
 ' definirDirectorPrograma()/quitarDirectorPrograma(): rol sobre un Profesor ya abierto, no entidad propia.
 ' Segunda entrada desde PROGRAMA_ABIERTO anadida en el issue #492 (ver mas arriba) -- mismos dos

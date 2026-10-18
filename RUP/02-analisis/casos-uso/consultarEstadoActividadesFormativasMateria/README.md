@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/README.md): caso de uso de **solo lectura**, sin `<<choice>>`. Presenta el estado de la regla `AfM = Σ AfAdM` de una `Materia` -- por cada `ActividadFormativa`, las `horas` de la materia frente a la suma de las `horas` de sus `AsignaturaPrograma`, con las discrepancias marcadas. El cálculo vive en el modelo (`Materia.discrepanciasActividadesFormativas()`, Fat Model -- mismo sitio que `Guia.bloqueo_ponderaciones()`), no en el controlador ni en un servicio.
+Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/README.md): caso de uso de **solo lectura**, sin `<<choice>>`. Presenta el estado de la regla `AfM = Σ AfAdM` de una `Materia` -- por cada `ActividadFormativa`, las `horas` de la materia frente a la suma de las `horas` de sus `AsignaturaPrograma`, con las discrepancias marcadas -- y, desde el issue [#772](https://github.com/mmasias/pyCelda/issues/772), el total de horas de la materia frente a 25 h por ECTS cuando la `Materia` tiene `ects`. Los dos cálculos viven en el modelo (`Materia.discrepanciasActividadesFormativas()` y `Materia.comprobacionHorasEcts()`, Fat Model -- mismo sitio que `Guia.bloqueo_ponderaciones()`), no en el controlador ni en un servicio. Ninguno reparte ni bloquea nada.
 
 <div align=center>
 
@@ -26,7 +26,8 @@ Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFo
 ### `ConsultarEstadoActividadesFormativasMateriaView`
 
 **Responsabilidades:**
-- presenta las 10 `ActividadFormativa` con `horas` de la materia, suma de las de sus `AsignaturaPrograma` y la diferencia; resalta las que no cuadran.
+- presenta las `ActividadFormativa` del catálogo del `Programa` con `horas` de la materia, suma de las de sus `AsignaturaPrograma` y la diferencia; resalta las que no cuadran.
+- presenta, si la `Materia` tiene `ects`, sus horas frente a las esperadas (`ects × 25`) y la diferencia.
 - deja claro que el medidor es informativo -- no bloquea ningún guardado.
 - ofrece la navegación a volver a la `Materia`.
 
@@ -41,7 +42,7 @@ Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFo
 
 **Responsabilidades:**
 - recupera la `Materia` con sus `ActividadFormativaMateria` y las `ActividadFormativaAsignaturaPrograma` de sus `AsignaturaPrograma` (`cargarEstadoActividadesFormativas(materiaId)`).
-- delega el cálculo de discrepancias en el modelo; no valida ni muta nada -- solo lectura.
+- delega el cálculo de discrepancias y la comprobación por ECTS en el modelo; no valida ni muta nada -- solo lectura.
 
 **Colaboraciones:**
 - **Entrada:** `ConsultarEstadoActividadesFormativasMateriaView`.
@@ -53,6 +54,7 @@ Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFo
 
 **Responsabilidades:**
 - calcula, por cada `ActividadFormativa`, `horas` de la materia vs `Σ horas` de sus `AsignaturaPrograma`, y marca las que no cuadran (`discrepanciasActividadesFormativas()`). Método de dominio (Fat Model), mismo patrón que `Guia.bloqueo_ponderaciones()` -- pero puramente informativo, no hay envío ni transición que bloquear.
+- compara la suma de `horas` de sus `ActividadFormativaMateria` con `ects × 25` (`comprobacionHorasEcts()`): `ects`, horas esperadas, horas de la materia, si cuadra y la diferencia; nada si no tiene `ects`.
 
 **Colaboraciones:**
 - **Entrada:** `MateriaController`.
@@ -66,9 +68,12 @@ Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFo
 - **Entrada:** `MateriaController`.
 - **Salida:** gestiona `Materia`.
 
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: misma colaboración con `Admin` como iniciador, sin comprobación de programa propio.
+
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframes.puml) -- fuente de verdad.
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : consultarEstadoActividadesFormativasMateria()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativaMateria{horas}`, `ActividadFormativaAsignaturaPrograma{horas, porcentajePresencialidad}`.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativaMateria{horas, porcentajePresencialidad}`, `ActividadFormativaAsignaturaPrograma{horas}`, `Materia.ects`.
 - [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md) -- precedente del verbo y de la forma (read agregado sin mutación).

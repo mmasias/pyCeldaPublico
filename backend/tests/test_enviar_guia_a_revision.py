@@ -253,7 +253,7 @@ def test_enviar_guia_a_revision_sistema_requerido_en_cero_bloquea(
     resp = client.post(f"/api/v1/guias/{guia_vinculada.id}/enviar-a-revision")
     assert resp.status_code == 422
     assert resp.json()["detail"] == (
-        "Falta asignar 20% en Prácticas (mínimo 20%, asignado 0%)"
+        "Falta asignar 20% en Requeridas (Prácticas) (mínimo 20%, asignado 0%)"
     )
 
 
@@ -264,8 +264,11 @@ def test_enviar_guia_a_revision_sistema_por_encima_del_maximo_mensaje_sobra(
     al crearla (validar_maximo), no por suma -- para superarlo hacen falta
     varias ponderaciones bajo el mismo sistema, cada una dentro de su propio
     maximo, cuya suma sí lo excede."""
+    # Con código de la memoria (#768, F2): el mensaje nombra el sistema por
+    # código y denominación, no por tipo.
     sistema_excedido = SistemaEvaluacion(
         materia_id=materia_del_programa.id,
+        codigo="SE1",
         tipo="Examen",
         descripcion="Excedido",
         ponderacion_minima=0,
@@ -321,7 +324,7 @@ def test_enviar_guia_a_revision_sistema_por_encima_del_maximo_mensaje_sobra(
     resp = client.post(f"/api/v1/guias/{guia_vinculada.id}/enviar-a-revision")
     assert resp.status_code == 422
     assert resp.json()["detail"] == (
-        "Sobra 10% en Examen (máximo 50%, asignado 60%)"
+        "Sobra 10% en SE1 Excedido (máximo 50%, asignado 60%)"
     )
 
 

@@ -32,7 +32,7 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorPrograma`|
+|**Actor**|`DirectorPrograma`, `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))|
 |**Objetivo**|Desasociar un `ResultadoAprendizaje` de una `Materia`, siempre que ninguna `AsignaturaPrograma` de esa `Materia` lo tenga asignado|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
@@ -42,6 +42,9 @@
 `<<choice>>` bloqueante por integridad de la cascada: los `ResultadoAprendizaje` de una `AsignaturaPrograma` deben ser subconjunto de los ya asignados a su `Materia` (regla de consistencia del [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)) -- desasociar de `Materia` sin comprobarlo dejaría huérfano ese reparto en `AsignaturaPrograma`. Mismo criterio de bloqueo que `eliminarResultadoAprendizaje()`, aplicado aquí a un nivel de la cascada en vez de al catálogo completo del `Programa`. RAK1/RAH1 para bloqueada/confirmación son ilustrativos: la asignación real `Materia`-`ResultadoAprendizaje` no está en el seed extraído.
 
 **Retocado (issue #179, 2026-09-05)**: el mensaje de bloqueo nombra las `AsignaturaPrograma` concretas en uso, en vez de un genérico "está en uso en asignaturas-en-programa de esta materia" -- mismo patrón ya construido para [`eliminarResultadoAprendizaje()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarResultadoAprendizaje/README.md) (PR #178), auditado y replicado aquí.
+
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
+
 
 ## Referencias
 

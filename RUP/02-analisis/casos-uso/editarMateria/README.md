@@ -69,6 +69,8 @@ Traducción a clases de análisis del caso de uso [`editarMateria()`](/RUP/01-re
 - **Entrada:** `MateriaController`.
 - **Salida:** gestiona `Materia`.
 
+**Módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: el formulario añade la selección del `Modulo` (o ninguno); el `ModuloController` comprueba que el `Modulo` elegido es del mismo `Programa` que la materia (si no, no encontrado). Si la petición no trae el módulo, se conserva.
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarMateria/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarMateria/wireframes.puml) -- fuente de verdad del formulario nombre-only, sin rama de rechazo.

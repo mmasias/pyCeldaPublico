@@ -216,13 +216,13 @@ package Vista {
     +eliminarAsignatura(asignaturaId)
   }
   class AbrirMetodologiasDocentesView #629EF9 {
-    +abrirMetodologiasDocentes()
+    +abrirMetodologiasDocentes(programaId)
   }
   class AbrirMetodologiaDocenteView #629EF9 {
     +abrirMetodologiaDocente(metodologiaDocenteId)
   }
   class CrearMetodologiaDocenteView #629EF9 {
-    +crearMetodologiaDocente()
+    +crearMetodologiaDocente(programaId)
   }
   class EditarMetodologiaDocenteView #629EF9 {
     +editarMetodologiaDocente(metodologiaDocenteId)
@@ -231,13 +231,13 @@ package Vista {
     +eliminarMetodologiaDocente(metodologiaDocenteId)
   }
   class AbrirActividadesFormativasView #629EF9 {
-    +abrirActividadesFormativas()
+    +abrirActividadesFormativas(programaId)
   }
   class AbrirActividadFormativaView #629EF9 {
     +abrirActividadFormativa(actividadFormativaId)
   }
   class CrearActividadFormativaView #629EF9 {
-    +crearActividadFormativa()
+    +crearActividadFormativa(programaId)
   }
   class EditarActividadFormativaView #629EF9 {
     +editarActividadFormativa(actividadFormativaId)
@@ -421,11 +421,19 @@ package API {
     +eliminar_asignatura(asignatura_id)
   }
   class "routers/metodologia_docente.py" as MetodologiaDocenteRouter <<module>> #b5bd68 {
-    +listar_metodologias_docentes()
+    +listar_metodologias_docentes_del_programa(programa_id)
+    +crear_metodologia_docente(programa_id, datos)
     +obtener_metodologia_docente(metodologia_docente_id)
-    +crear_metodologia_docente(datos)
     +editar_metodologia_docente(metodologia_docente_id, datos)
+    +obtener_asignaciones_metodologia_docente(metodologia_docente_id)
     +eliminar_metodologia_docente(metodologia_docente_id)
+  }
+  class "routers/actividad_formativa.py" as ActividadFormativaRouter <<module>> #b5bd68 {
+    +listar_actividades_formativas(programa_id)
+    +crear_actividad_formativa(programa_id, datos)
+    +obtener_actividad_formativa(actividad_formativa_id)
+    +editar_actividad_formativa(actividad_formativa_id, datos)
+    +eliminar_actividad_formativa(actividad_formativa_id)
   }
   class "routers/sistema_evaluacion.py" as SistemaEvaluacionRouter <<module>> #b5bd68 {
     +listar_sistemas_evaluacion_de_materia(materia_id)
@@ -510,17 +518,22 @@ package Modelo {
   class SistemaEvaluacion #F2AC4E {
     id
     materia_id
+    codigo
     tipo
     descripcion
     ponderacion_minima
     ponderacion_maxima
-    +actualizar(tipo, descripcion, ponderacion_minima, ponderacion_maxima)
+    +actualizar(tipo, descripcion, ponderacion_minima, ponderacion_maxima, codigo)
+    +etiqueta()
     +validar_maximo(ponderacion)
   }
   class Materia #F2AC4E {
     id
     nombre
+    codigo_ruct
+    ects
     +listar_sistemas_evaluacion()
+    +comprobacion_horas_ects()
     +asignaturas_programa_con_metodologia_docente(metodologia_docente_id)
     +asignaturas_programa_con_resultado_aprendizaje(resultado_aprendizaje_id)
   }
@@ -534,6 +547,7 @@ package Modelo {
   }
   class MetodologiaDocente #F2AC4E {
     id
+    programa_id
     codigo
     descripcion
     +actualizar(codigo, descripcion)
@@ -546,7 +560,7 @@ package Modelo {
   }
   class ActividadFormativa #F2AC4E {
     id
-    universidad_id
+    programa_id
     codigo
     nombre
     +actualizar(codigo, nombre)
@@ -555,14 +569,14 @@ package Modelo {
     materia_id
     actividad_formativa_id
     horas
-    +actualizar(horas)
+    porcentaje_presencialidad
+    +actualizar(horas, porcentaje_presencialidad)
   }
   class ActividadFormativaAsignaturaPrograma #F2AC4E {
     asignatura_programa_id
     actividad_formativa_id
     horas
-    porcentaje_presencialidad
-    +actualizar(horas, porcentaje_presencialidad)
+    +actualizar(horas)
   }
   class Programa #F2AC4E {
     id
@@ -570,6 +584,8 @@ package Modelo {
     nombre
     estado
     facultad_id
+    codigo_ruct
+    denominacion_oficial
     +actualizar(nombre)
     +extinguir()
   }
@@ -637,7 +653,7 @@ package Repositorio {
     +listar_del_programa(programa_id)
     +existe_alguna_de(asignatura_programa_id)
     +obtener_por_asignatura_programa(asignatura_programa_id)
-    +listar_aprobadas_de_asignaturas_programa(ids)
+    +listar_importables_de_asignaturas_programa(ids, curso_academico_id)
   }
   class PonderacionEvaluacionRepository #D98E73 {
     +crear(guia_id, sistema_evaluacion_id, descripcion, ponderacion)
@@ -683,8 +699,8 @@ package Repositorio {
   class SistemaEvaluacionRepository #D98E73 {
     +listar_de_materia(materia_id)
     +obtener(sistema_evaluacion_id)
-    +crear(materia_id, tipo, descripcion, ponderacion_minima, ponderacion_maxima)
-    +editar(sistema_evaluacion, tipo, descripcion, ponderacion_minima, ponderacion_maxima)
+    +crear(materia_id, tipo, descripcion, ponderacion_minima, ponderacion_maxima, codigo)
+    +editar(sistema_evaluacion, tipo, descripcion, ponderacion_minima, ponderacion_maxima, codigo)
     +nombres_asignaciones(sistema_evaluacion_id)
     +eliminar(sistema_evaluacion_id)
   }
@@ -698,19 +714,22 @@ package Repositorio {
     +listar_disponibles_para_asignatura_programa(asignatura_programa_id)
   }
   class MetodologiaDocenteRepository #D98E73 {
-    +listar()
+    +listar_del_programa(programa_id)
     +obtener(metodologia_docente_id)
-    +crear(codigo, descripcion)
-    +editar(metodologia_docente, codigo, descripcion)
-    +nombres_materias_asociadas(metodologia_docente_id)
-    +eliminar(metodologia_docente_id)
+    +codigo_en_uso(programa_id, codigo, salvo_id)
+    +crear(programa_id, codigo, descripcion)
+    +actualizar(metodologia_docente)
+    +conteo_asignaturas_del_programa(programa_id)
+    +asignaciones(metodologia_docente_id)
+    +eliminar(metodologia_docente)
     +listar_disponibles_para_materia(materia_id)
     +listar_disponibles_para_asignatura_programa(asignatura_programa_id)
   }
   class ActividadFormativaRepository #D98E73 {
-    +listar_de_la_universidad(universidad_id)
+    +listar_del_programa(programa_id)
     +obtener(actividad_formativa_id)
-    +crear(universidad_id, codigo, nombre)
+    +codigo_en_uso(programa_id, codigo, salvo_id)
+    +crear(programa_id, codigo, nombre)
     +editar(actividad, codigo, nombre)
     +nombres_materias_asociadas(actividad_formativa_id)
     +eliminar(actividad_formativa_id)
@@ -1070,5 +1089,121 @@ SesionRouter --> GuiaRepository
 SesionRepository -- Sesion
 
 Guia -- Sesion
+
+
+' -- Competencia (#761) y Modulo (#762) --
+package Vista {
+  class "Competencias.tsx" as CompetenciasPage #629EF9
+  class "Competencia.tsx" as CompetenciaPage #629EF9
+  class "CrearCompetencia.tsx" as CrearCompetenciaPage #629EF9
+  class "EditarCompetencia.tsx" as EditarCompetenciaPage #629EF9
+  class "EliminarCompetencia.tsx" as EliminarCompetenciaPage #629EF9
+  class "AsociarCompetenciaMateria.tsx" as AsociarCompetenciaMateriaPage #629EF9
+  class "DesasociarCompetenciaMateria.tsx" as DesasociarCompetenciaMateriaPage #629EF9
+  class "AsociarCompetenciaAsignaturaPrograma.tsx" as AsociarCompetenciaAsignaturaProgramaPage #629EF9
+  class "DesasociarCompetenciaAsignaturaPrograma.tsx" as DesasociarCompetenciaAsignaturaProgramaPage #629EF9
+  class "ModulosAdmin.tsx" as ModulosAdminPage #629EF9
+  class "CrearModuloAdmin.tsx" as CrearModuloAdminPage #629EF9
+  class "EditarModuloAdmin.tsx" as EditarModuloAdminPage #629EF9
+  class "EliminarModuloAdmin.tsx" as EliminarModuloAdminPage #629EF9
+}
+
+package API {
+  class "routers/competencia.py" as CompetenciaRouter <<module>> #b5bd68 {
+    +listar_competencias_del_programa(programa_id)
+    +crear_competencia(programa_id, datos)
+    +obtener_competencia(competencia_id)
+    +editar_competencia(competencia_id, datos)
+    +obtener_asignaciones_competencia(competencia_id)
+    +eliminar_competencia(competencia_id)
+    +listar_competencias_disponibles_materia(materia_id)
+    +asociar_competencia_materia(materia_id, datos)
+    +puede_desasociar_competencia_materia(materia_id, competencia_id)
+    +desasociar_competencia_materia(materia_id, competencia_id)
+    +listar_competencias_disponibles_asignatura_programa(asignatura_programa_id)
+    +asociar_competencia_asignatura_programa(asignatura_programa_id, datos)
+    +desasociar_competencia_asignatura_programa(asignatura_programa_id, competencia_id)
+  }
+  class "routers/modulo.py" as ModuloRouter <<module>> #b5bd68 {
+    +listar_modulos_del_programa(programa_id)
+    +crear_modulo(programa_id, datos)
+    +obtener_modulo(modulo_id)
+    +editar_modulo(modulo_id, datos)
+    +eliminar_modulo(modulo_id)
+  }
+}
+
+package Modelo {
+  class Competencia #F2AC4E {
+    id
+    programa_id
+    codigo
+    tipo
+    descripcion
+    +actualizar(codigo, tipo, descripcion)
+  }
+  class Modulo #F2AC4E {
+    id
+    programa_id
+    codigo
+    nombre
+    descripcion
+    +actualizar(codigo, nombre, descripcion)
+  }
+}
+
+package Repositorio {
+  class CompetenciaRepository #D98E73 {
+    +obtener(competencia_id)
+    +listar_del_programa(programa_id)
+    +codigo_en_uso(programa_id, codigo, salvo_id)
+    +crear(programa_id, codigo, tipo, descripcion)
+    +actualizar(competencia)
+    +eliminar(competencia)
+    +conteo_asignaturas_del_programa(programa_id)
+    +conteo_asignaturas_de_la_materia(materia_id)
+    +asignaciones(competencia_id)
+    +listar_de_la_materia(materia_id)
+    +listar_disponibles_para_materia(materia)
+    +asociar_a_materia(materia_id, competencia_id)
+    +desasociar_de_materia(materia_id, competencia_id)
+    +listar_de_la_asignatura_programa(asignatura_programa_id)
+    +listar_disponibles_para_asignatura_programa(asignatura_programa)
+    +esta_en_la_materia(materia_id, competencia_id)
+    +asociar_a_asignatura_programa(asignatura_programa_id, competencia_id)
+    +desasociar_de_asignatura_programa(asignatura_programa_id, competencia_id)
+  }
+  class ModuloRepository #D98E73 {
+    +obtener(modulo_id)
+    +listar_del_programa(programa_id)
+    +contar_materias_por_modulo(programa_id)
+    +codigo_en_uso(programa_id, codigo, salvo_id)
+    +crear(programa_id, codigo, nombre, descripcion)
+    +actualizar(modulo)
+    +eliminar(modulo)
+  }
+}
+
+CompetenciasPage --> CompetenciaRouter
+CompetenciaPage --> CompetenciaRouter
+CrearCompetenciaPage --> CompetenciaRouter
+EditarCompetenciaPage --> CompetenciaRouter
+EliminarCompetenciaPage --> CompetenciaRouter
+AsociarCompetenciaMateriaPage --> CompetenciaRouter
+DesasociarCompetenciaMateriaPage --> CompetenciaRouter
+AsociarCompetenciaAsignaturaProgramaPage --> CompetenciaRouter
+DesasociarCompetenciaAsignaturaProgramaPage --> CompetenciaRouter
+ModulosAdminPage --> ModuloRouter
+CrearModuloAdminPage --> ModuloRouter
+EditarModuloAdminPage --> ModuloRouter
+EliminarModuloAdminPage --> ModuloRouter
+CompetenciaRouter --> CompetenciaRepository
+CompetenciaRouter --> Materia
+ModuloRouter --> ModuloRepository
+MateriaRouter --> ModuloRepository
+MateriaRouter --> CompetenciaRepository
+CompetenciaRepository -- Competencia
+ModuloRepository -- Modulo
+Modulo -- Materia
 
 @enduml

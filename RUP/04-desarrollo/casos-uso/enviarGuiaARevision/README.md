@@ -41,9 +41,9 @@ Cubre `PonderacionEvaluacion`, `ReferenciaBibliografica` y `Sesion`.
 
 **Response (422 Unprocessable Entity, `c2` -- rango o suma total incorrectos):**
 ```json
-{ "detail": "Falta asignar 20% en Prácticas (mínimo 20%, asignado 0%)" }
+{ "detail": "Falta asignar 10% en SE2 Pruebas prácticas finales (mínimo 10%, asignado 0%)" }
 ```
-El motivo concreto lo arma `Guia.bloqueo_ponderaciones()` (issue #208): recorre todos los `SistemaEvaluacion` de la materia, no solo los que ya tienen alguna `PonderacionEvaluacion` vinculada. Otras variantes del mismo `422`: `"Sobra N% en <tipo> (máximo M%, asignado X%)"` (por encima del máximo), o el genérico `"Rango por SistemaEvaluacion o suma total incorrectos"` si no hay ninguna ponderación vinculada o la suma total no es 100%.
+El motivo concreto lo arma `Guia.bloqueo_ponderaciones()` (issue #208): recorre todos los `SistemaEvaluacion` de la materia, no solo los que ya tienen alguna `PonderacionEvaluacion` vinculada. El sistema se nombra con `SistemaEvaluacion.etiqueta()` (código y denominación de la memoria; sin código, la regla de #285). Otras variantes del mismo `422`: `"Sobra N% en <sistema> (máximo M%, asignado X%)"` (por encima del máximo), o el genérico `"Rango por SistemaEvaluacion o suma total incorrectos"` si no hay ninguna ponderación vinculada o la suma total no es 100%.
 
 **Response (422 Unprocessable Entity, `c3` -- planificación docente incompleta):**
 ```json

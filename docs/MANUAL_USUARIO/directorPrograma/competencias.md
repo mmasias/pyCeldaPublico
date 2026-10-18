@@ -62,7 +62,7 @@ Las competencias de una asignatura se ven también en su guía docente, en la pa
 
 <div align=center>
 
-| [Resultados de aprendizaje](resultadosDeAprendizaje.md) | [Índice](README.md) | [Metodologías docentes del programa](metodologiasDelPrograma.md) |
+| [Resultados de aprendizaje](resultadosDeAprendizaje.md) | [Índice](README.md) | [Metodologías docentes y actividades formativas](metodologiasDelPrograma.md) |
 |---|:-:|---|
 
 </div>

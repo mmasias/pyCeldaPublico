@@ -1,0 +1,33 @@
+@startuml asociarCompetenciaAMateria-diseño
+title Diagrama de Secuencia - Asociar Competencia a Materia
+
+actor "Admin / DirectorPrograma" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CompetenciaRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita asociar una competencia
+activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}/competencias/disponibles
+activate API
+API -> Repo: listar_disponibles_para_materia(materia)
+note right of Repo: del Programa de la materia y no asociadas a ella
+Repo -> DB: SELECT competencias ... LEFT JOIN materias_competencias ... WHERE ... IS NULL ORDER BY codigo
+DB --> Repo: filas
+Repo --> API: List[Competencia]
+API --> Vista: 200 OK (List[CompetenciaResponse])
+deactivate API
+Vista --> Actor: presenta código -- extracto de cada una y el texto completo de la elegida
+Actor -> Vista: elige y confirma
+Vista -> API: POST /api/v1/materias/{materia_id}/competencias (AsociarCompetenciaCreate)
+activate API
+note right of API: competencia.programa_id == materia.programa_id\n(el id viene del cuerpo: IDOR); si no, 404.\nYa asociada: 409
+API -> Repo: asociar_a_materia(materia_id, competencia_id)
+Repo -> DB: INSERT INTO materias_competencias ...
+API --> Vista: 204 No Content
+deactivate API
+Vista --> Actor: vuelve a la ficha con la competencia asociada
+deactivate Vista
+
+@enduml

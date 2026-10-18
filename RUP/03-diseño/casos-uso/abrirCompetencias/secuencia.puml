@@ -1,0 +1,30 @@
+@startuml abrirCompetencias-diseño
+title Diagrama de Secuencia - Abrir Competencias
+
+actor "Admin / DirectorPrograma" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CompetenciaRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita abrir las competencias del Programa
+activate Vista
+Vista -> API: GET /api/v1/programas/{programa_id}/competencias
+activate API
+note right of API: _autorizar_programa: Admin, o director\nque dirige el Programa; si no, 404
+API -> Repo: listar_del_programa(programa_id)
+activate Repo
+Repo -> DB: SELECT ... FROM competencias WHERE programa_id = :programa_id ORDER BY codigo
+DB --> Repo: filas Competencia
+Repo --> API: List[Competencia]
+API -> Repo: conteo_asignaturas_del_programa(programa_id)
+Repo -> DB: SELECT competencia_id, COUNT(asignatura_programa_id)\nFROM asignaturas_programa_competencias JOIN asignaturas_programa\nJOIN materias WHERE materias.programa_id = :programa_id GROUP BY competencia_id
+DB --> Repo: filas (id, n)
+Repo --> API: dict[id, n]
+deactivate Repo
+API --> Vista: 200 OK (List[CompetenciaResponse] con numero_asignaturas)
+deactivate API
+Vista --> Actor: presenta el catálogo
+deactivate Vista
+
+@enduml

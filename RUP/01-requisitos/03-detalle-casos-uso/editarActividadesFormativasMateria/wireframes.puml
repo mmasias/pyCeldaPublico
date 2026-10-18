@@ -2,24 +2,20 @@
 {
     <b>EDITAR ACTIVIDADES FORMATIVAS -- MATERIA</b>
     ====
-    <b>Programación</b>
+    <b>Programación</b> (12 ECTS)
     --
     {#
-        <b>Actividad formativa</b>          | <b>Horas</b>
-        Clases expositivas                  | "45  "
-        Clases prácticas                    | "20  "
-        Clases prácticas (laboratorio)      | "10  "
-        Seminarios y talleres               | "0   "
-        Supervisión de actividades          | "5   "
-        Tutorías (individual / en grupo)    | "5   "
-        Preparación de clases               | "0   "
-        Estudio personal y lecturas         | "40  "
-        Elaboración de trabajos             | "20  "
-        Trabajo individual en campus virtual| "0   "
+        <b>Actividad formativa</b>                          | <b>Horas</b> | <b>Presencialidad (%)</b>
+        AD1 -- Actividad Dirigida: Clases de teoría          | "60  "       | "100 "
+        AD2 -- Actividad Dirigida: Clases prácticas          | "54  "       | "100 "
+        AS1 -- Actividad Supervisada: Tutorías               | "12  "       | "50  "
+        AA1 -- Actividad Autónoma: Estudio personal          | "120 "       | "0   "
+        AA2 -- Actividad Autónoma: Elaboración de trabajos   | "54  "       | "0   "
     }
     --
+    <b>Total:</b> 300 h -- la memoria fija 12 ECTS, 300 h a 25 h por ECTS (cuadra).
     "Regla AfM = ΣAfAdM: se valida en consultarEstadoActividadesFormativasMateria(), no bloquea guardar."
     ~~
-    {[Guardar]}
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

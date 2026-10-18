@@ -14,8 +14,9 @@ state consultarEstadoActividadesFormativasMateria as "consultarEstadoActividades
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> presenta las 10 actividades formativas con las horas de la materia y la suma de las de sus AsignaturaPrograma
+    <b>Sistema</b> presenta las actividades formativas del catálogo del Programa con las horas de la materia y la suma de las de sus AsignaturaPrograma
     <b>Sistema</b> visualiza las actividades formativas cuya regla AfM = ΣAfAdM no cuadra
+    <b>Sistema</b> muestra las horas de la materia frente a 25 h por ECTS, si la Materia tiene ECTS
     end note
 }
 

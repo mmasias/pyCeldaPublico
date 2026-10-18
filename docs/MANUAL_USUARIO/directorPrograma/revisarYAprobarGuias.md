@@ -80,7 +80,7 @@ El director **no puede enviar a revisión** (eso sigue siendo del profesorado) n
 
 <div align=center>
 
-| [Metodologías docentes del programa](metodologiasDelPrograma.md) | [Índice](README.md) |  |
+| [Metodologías docentes y actividades formativas](metodologiasDelPrograma.md) | [Índice](README.md) |  |
 |---|:-:|---|
 
 </div>

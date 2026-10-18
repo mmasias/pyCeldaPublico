@@ -23,6 +23,8 @@ MateriaController --> MetodologiaDocenteRepository: <font size=8>listarDisponibl
 
 AsociarMetodologiaDocenteAMateriaView --> MateriaController: <font size=8>asociarMetodologiaDocente(materiaId, metodologiaDocenteId) : MetodologiaMateria
 
+MateriaController --> MetodologiaDocenteRepository: <font size=8>exigirMetodologiaDelPrograma(programaId, metodologiaDocenteId) : MetodologiaDocente
+
 MateriaController --> MetodologiaMateriaRepository: <font size=8>crear(materiaId, metodologiaDocenteId) : MetodologiaMateria
 
 MetodologiaDocenteRepository -- MetodologiaDocente

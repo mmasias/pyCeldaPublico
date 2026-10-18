@@ -32,7 +32,7 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`Profesor`|
-|**Objetivo**|Reemplazar el contenido (temario) de la `Guia` abierta con el de una `Guia` `Aprobada` de una `AsignaturaPrograma` hermana|
+|**Objetivo**|Reemplazar el contenido (temario) de la `Guia` abierta con el de una `Guia` importable (`Aprobada`, o `EnRevision` que el `Profesor` también imparte) de una `AsignaturaPrograma` hermana|
 |**Tipo**|Primario|
 |**Nivel**|Objetivo de usuario|
 
@@ -42,6 +42,8 @@
 
 **Caso de uso reutilizado por `DirectorPrograma`, misma ficha** -- ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) (`DirectorPrograma --|> Profesor`), no redeclarado, mismo trato que [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)/[`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md). El actor efectivo es siempre el `Profesor` de la `AsignaturaPrograma` **destino**.
 
+**Origen**: una `Guia` importable de una `AsignaturaPrograma` hermana en el `CursoAcademico` activo -- `Aprobada`, la imparta o no quien importa, o `EnRevision` solo si el `Profesor` también imparte la `AsignaturaPrograma` de la guía origen; nunca `Borrador` ni `Rechazada` (issue [#740](https://github.com/mmasias/pyCelda/issues/740), 2026-10-09; hasta entonces solo `Aprobada`). Regla completa y su porqué en la [ficha del caso gemelo](../importarBibliografiaDeGuiaHermana/README.md). Importar es una copia, no un enlace: si después el origen se rechaza, se revoca o cambia, el destino no se entera; la guía destino la revisa su propio director como cualquier otra.
+
 **Self-loop directo de `GUIA_ABIERTO`, no de un listado propio** -- a diferencia de [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) (self-loop de `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`) e [`importarPlanificacionDocenteDeGuiaHermana()`](../importarPlanificacionDocenteDeGuiaHermana/README.md) (self-loop de `PLANIFICACION_DOCENTE_ABIERTO`): `contenido` es un campo escalar de la propia `Guia`, sin colección que gestionar -- no hay pantalla plural que justifique un estado propio.
 
 **Reutiliza al completo la infraestructura del issue #184** (`backend/app/routers/importar_guia_hermana.py`): mismo helper `_guia_destino_o_404()` (gate de autorización -- el `Profesor` debe impartir la `AsignaturaPrograma` destino, mismo criterio 404-uniforme relajado solo para leer orígenes hermanos), mismo `_origen_o_404()`, mismo `_identificador_origen()`, mismo schema `ImportarDeGuiaHermanaRequest`/`GuiaResponse` (sin schema nuevo). `Guia.actualizar_contenido()` (ya existente, usado también por [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)) devuelve el valor anterior solo si el texto cambió -- una importación que trae el mismo contenido no genera fila de `HistorialCambio` ("no-op sin fila").
@@ -50,7 +52,7 @@
 
 **Guía destino `Aprobada`**: se permite importar y la `Guia` se degrada a `Borrador` -- mismo mecanismo (`Guia.confirmar_guardado()`) que [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md).
 
-**UI deliberadamente ligera** -- "algo ligero y rápido: botón y a tomar por saco" (Manuel, sesión previa a #423): control inline en [`abrirGuia()`](../abrirGuia/README.md) (`AbrirGuia.tsx`), select + botón tras el textarea de Contenido, sin pantalla ni ruta propia. Sin recuento de referencias ni fecha de aprobación en la opción del desplegable (a diferencia de bibliografía, que sí las muestra) -- solo programa/código/nombre de la asignatura hermana. Sin previsualización del contenido antes de importar, aviso genérico tras seleccionar origen ("esto reemplazará el contenido actual, incluidos cambios sin guardar"), no un recuento como en bibliografía.
+**UI deliberadamente ligera** -- "algo ligero y rápido: botón y a tomar por saco" (Manuel, sesión previa a #423): control inline en [`abrirGuia()`](../abrirGuia/README.md) (`AbrirGuia.tsx`), select + botón tras el textarea de Contenido, sin pantalla ni ruta propia. Sin recuento de referencias en la opción del desplegable (a diferencia de bibliografía, que sí lo muestra) -- programa/código/nombre de la asignatura hermana y, desde el issue #740, el estado de la guía origen con su fecha ("aprobada el dd/mm/aaaa" o "en revisión desde dd/mm/aaaa"), igual que en los casos gemelos. Sin previsualización del contenido antes de importar, aviso genérico tras seleccionar origen ("esto reemplazará el contenido actual, incluidos cambios sin guardar"), no un recuento como en bibliografía.
 
 **Punto crítico de implementación**: el contenido del textarea vive en estado local (React) hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- tras importar, el frontend actualiza ese estado local con la respuesta del `POST`, para que un guardado posterior no pise en silencio el contenido recién importado con el valor viejo que seguía en pantalla.
 
@@ -73,4 +75,5 @@
 - [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) / [`importarPlanificacionDocenteDeGuiaHermana()`](../importarPlanificacionDocenteDeGuiaHermana/README.md) -- casos de uso gemelos, misma infraestructura del issue #184
 - [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- `Guia.actualizar_contenido()`/mecanismo de degradado `Aprobada -> Borrador` compartidos
 - [Issue #184](https://github.com/mmasias/pyCelda/issues/184) -- diseño original de la familia de importación entre hermanas
+- [Issue #740](https://github.com/mmasias/pyCelda/issues/740) -- orígenes importables: `Aprobada`, o `EnRevision` que quien importa también imparte (2026-10-09)
 - [Issue #409](https://github.com/mmasias/pyCelda/issues/409) -- diseño de este caso de uso; [PR #410](https://github.com/mmasias/pyCelda/pull/410) -- construcción, desplegado en producción (`9732bb2`)

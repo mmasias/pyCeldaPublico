@@ -6,12 +6,12 @@
 
 # pyCelda > abrirActividadesFormativas()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirActividadesFormativas/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/abrirActividadesFormativas/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`abrirActividadesFormativas()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/README.md): un solo paso, de solo lectura. Presenta el listado de `ActividadFormativa` de una `Universidad` -- catálogo que cuelga directamente de `:SISTEMA_DISPONIBLE` (entrada desde `abrirPanelAdministracion()`, sin composición padre propia). Sin `<<choice>>`: la salida es única a `:ACTIVIDADES_FORMATIVAS_ABIERTO`.
+Traducción a clases de análisis de [`abrirActividadesFormativas()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): un solo paso, de solo lectura. Presenta el catálogo de `ActividadFormativa` de un `Programa`, con entrada desde `:PROGRAMA_ABIERTO`, mismo patrón que [`abrirCompetencias()`](../abrirCompetencias/README.md). Sin `<<choice>>`: la salida es única a `:ACTIVIDADES_FORMATIVAS_ABIERTO`. `Admin` y `DirectorPrograma` comparten la colaboración; la diferencia de alcance (cualquier `Programa` o los que dirige) es de autorización, no de análisis.
 
 <div align=center>
 
@@ -26,11 +26,11 @@ Traducción a clases de análisis del caso de uso [`abrirActividadesFormativas()
 ### `AbrirActividadesFormativasView`
 
 **Responsabilidades:**
-- presenta el listado de `ActividadFormativa` de la `Universidad` elegida, con `codigo` y `nombre` por fila.
+- presenta el catálogo de `ActividadFormativa` del `Programa`, con `nombre` y `codigo` por fila, en orden de alta.
 - permite abrir, crear o eliminar una `ActividadFormativa` desde el listado.
 
 **Colaboraciones:**
-- **Entrada:** `:SISTEMA_DISPONIBLE` -- el `Admin` solicita abrir las actividades formativas.
+- **Entrada:** `:PROGRAMA_ABIERTO` -- el actor abre la pestaña de actividades formativas del programa.
 - **Control:** `ActividadFormativaController`.
 - **Salida:** `:ACTIVIDADES_FORMATIVAS_ABIERTO`.
 
@@ -39,7 +39,7 @@ Traducción a clases de análisis del caso de uso [`abrirActividadesFormativas()
 ### `ActividadFormativaController`
 
 **Responsabilidades:**
-- obtiene el listado de la `Universidad` (`listarActividadesFormativas(universidadId)`).
+- obtiene el catálogo del `Programa` (`listarActividadesFormativasDelPrograma(programaId)`).
 
 **Colaboraciones:**
 - **Entrada:** `AbrirActividadesFormativasView`.
@@ -58,7 +58,7 @@ Traducción a clases de análisis del caso de uso [`abrirActividadesFormativas()
 ### `ActividadFormativaRepository`
 
 **Responsabilidades:**
-- lista las `ActividadFormativa` de la `Universidad` (`listarDeLaUniversidad(universidadId)`), orden de alta.
+- lista las `ActividadFormativa` del `Programa` (`listarDelPrograma(programaId)`), en orden de alta.
 
 **Colaboraciones:**
 - **Entrada:** `ActividadFormativaController`.
@@ -66,8 +66,7 @@ Traducción a clases de análisis del caso de uso [`abrirActividadesFormativas()
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/wireframes.puml) -- fuente de verdad de el listado y la salida única..
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo de `Universidad` (`Universidad *-- ActividadFormativa`).
-- [`abrirMetodologiasDocentes()`](../abrirMetodologiasDocentes/README.md) -- clúster plantilla, mismo patrón de listado de catálogo.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/wireframes.puml) -- fuente de verdad del listado y la salida única.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo del `Programa` (`Programa *-- ActividadFormativa`). Hasta #772, catálogo de `Universidad` (issue [#655](https://github.com/mmasias/pyCelda/issues/655)).
+- [`abrirCompetencias()`](../abrirCompetencias/README.md) -- patrón de origen.
 - [`abrirActividadFormativa()`](../abrirActividadFormativa/README.md) -- destino de navegación del listado.

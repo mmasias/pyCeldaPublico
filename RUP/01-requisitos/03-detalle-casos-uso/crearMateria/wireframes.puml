@@ -5,6 +5,8 @@
     {
         <b>Nombre (*):</b>
         "                                                  "
+        <b>Módulo:</b>
+        ^Sin módulo^
         --
         <i>(*) Campo obligatorio</i>
     }

@@ -14,37 +14,39 @@ Vista -> API: GET /api/v1/asignaturas-programa/{asignatura_programa_id}/activida
 activate API
 API -> Repo: listar_de(asignatura_programa_id)
 activate Repo
-Repo -> DB: SELECT afag.*, af.codigo, af.nombre FROM actividades_formativas_asignatura_programa afag\nJOIN actividades_formativas af ON af.id = afag.actividad_formativa_id\nWHERE afag.asignatura_programa_id = :id ORDER BY af.codigo
+Repo -> DB: SELECT afag.*, af.codigo, af.nombre FROM actividades_formativas_asignatura_programa afag\nJOIN actividades_formativas af ON af.id = afag.actividad_formativa_id\nWHERE afag.asignatura_programa_id = :id ORDER BY af.id
 activate DB
-DB --> Repo: 10 filas (codigo/nombre + horas + porcentaje_presencialidad)
+DB --> Repo: una fila por actividad del catálogo del Programa (codigo/nombre + horas)
 deactivate DB
 Repo --> API: lista de ActividadFormativaAsignaturaPrograma
 deactivate Repo
-API --> Vista: 200 OK (lista de ActividadFormativaAsignaturaProgramaResponse)
+API -> DB: presencialidad_de_la_materia(materia_id):\nSELECT actividad_formativa_id, porcentaje_presencialidad\nFROM actividades_formativas_materia WHERE materia_id = :materia_id
+DB --> API: presencialidad por actividad
+API --> Vista: 200 OK (lista de ActividadFormativaAsignaturaProgramaResponse,\nporcentaje_presencialidad de la Materia)
 deactivate API
-Vista --> DirectorPrograma: presenta la rejilla de 10 filas (horas y % presencialidad editables)
+Vista --> DirectorPrograma: presenta la rejilla (horas editables,\n% presencialidad de la materia de solo lectura)
 
-DirectorPrograma -> Vista: teclea horas y % presencialidad y guarda
-Vista -> API: PUT /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas, porcentaje_presencialidad})
+DirectorPrograma -> Vista: teclea horas y guarda
+Vista -> API: PUT /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas})
 activate API
-alt horas < 0, o porcentaje_presencialidad fuera de [0, 100], o id fuera de catálogo
+alt horas < 0, o id fuera de catálogo o duplicado
     API --> Vista: 422 Unprocessable Entity (no se persiste nada)
-    Vista --> DirectorPrograma: presenta mensaje de valores no válidos
+    Vista --> DirectorPrograma: presenta mensaje de horas no válidas
 else todos los valores válidos
     loop por cada fila del body
-        API -> AFAG: actualizar(horas, porcentaje_presencialidad)
+        API -> AFAG: actualizar(horas)
         activate AFAG
+        note right of AFAG: una porcentaje_presencialidad\nen el body se ignora
         deactivate AFAG
     end
-    API -> Repo: actualizar_lote(filas)
+    API -> Repo: guardar()
     activate Repo
-    Repo -> DB: UPDATE actividades_formativas_asignatura_programa\nSET horas = ..., porcentaje_presencialidad = ... (misma transacción)
+    Repo -> DB: UPDATE actividades_formativas_asignatura_programa SET horas = ...\n(misma transacción)
     activate DB
     DB --> Repo: ok
     deactivate DB
-    Repo --> API: lista actualizada
     deactivate Repo
-    API --> Vista: 200 OK
+    API --> Vista: 200 OK (lista actualizada, con la presencialidad de la Materia)
     Vista --> DirectorPrograma: reparto guardado
 end
 deactivate API

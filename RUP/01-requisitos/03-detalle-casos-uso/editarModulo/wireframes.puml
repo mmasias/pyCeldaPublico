@@ -1,0 +1,18 @@
+@startsalt editarModulo-wireframe
+{
+    <b>EDITAR MÓDULO</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "M1"
+        <b>Nombre (*):</b>
+        "Formación básica"
+        <b>Descripción:</b>
+        "Materias de formación básica de la rama de ingeniería."
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

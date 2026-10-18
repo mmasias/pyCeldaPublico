@@ -124,12 +124,19 @@ Este `colaboracion.puml` contiene **dos diagramas**: el primero (`abrirMateria-a
 
 **Sin `[Abrir]` activo por fila de `AsignaturaPrograma` en la variante Admin**: `abrirAsignaturaPrograma()` existe como CU de `DirectorPrograma` (endpoint `/api/v1/asignaturas-programa/{id}` con guard de ese actor); su variante Admin no se construye en esta rebanada -- el botón se muestra deshabilitado.
 
+**Módulo y competencias (issues [#762](https://github.com/mmasias/pyCelda/issues/762), [#761](https://github.com/mmasias/pyCelda/issues/761))**: la ficha añade el `Modulo` de la materia y sus `Competencia` con el número de asignaturas de la materia que cubre cada una (conteo informativo).
+
+**Identidad RUCT, presencialidad y comprobación por ECTS (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**, en las dos variantes:
+- `AbrirMateriaView` presenta además `ects` y `codigoRuct` de la `Materia` (solo lectura), la `porcentajePresencialidad` de cada `ActividadFormativaMateria` junto a sus `horas`, la comprobación de horas frente a 25 h × `ects` y el `codigo` de cada `SistemaEvaluacion`.
+- `Materia` porta `codigoRuct` y `ects` y calcula la comprobación (`comprobacionHorasEcts()`): suma las `horas` de sus `ActividadFormativaMateria` y la compara con `HORAS_POR_ECTS` (25) × `ects`; devuelve `ects`, horas esperadas, horas de la materia, si cuadra y la diferencia, o nada si la `Materia` no tiene `ects`. Es un medidor blando, mismo criterio que `discrepanciasActividadesFormativas()` de [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md): no reparte ni bloquea nada.
+- `MateriaController` no gana responsabilidades: recoge el resultado de `Materia.comprobacionHorasEcts()` al cargar la `Materia`.
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/wireframes.puml) -- fuente de verdad del contenido presentado; las secciones de asociación son de `DirectorPrograma`, la variante Admin solo consume la tabla de `AsignaturaPrograma`.
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()`.
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia o-- MetodologiaDocente` vía `MetodologiaMateria{descripcionPropia}`, `Materia o-u- ResultadoAprendizaje`, `Materia *-- AsignaturaPrograma`.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia{nombre, codigoRuct, ects}`, `Materia o-- MetodologiaDocente` vía `MetodologiaMateria{descripcionPropia}`, `ActividadFormativaMateria{horas, porcentajePresencialidad}`, `Materia o-u- ResultadoAprendizaje`, `Materia *-- AsignaturaPrograma`.
 - [`asociarMetodologiaDocenteAMateria()`](../asociarMetodologiaDocenteAMateria/README.md) / [`asociarResultadoAprendizajeAMateria()`](../asociarResultadoAprendizajeAMateria/README.md) -- quienes pueblan las dos listas de asociación que la variante DirectorPrograma fusiona.
 - [`editarMateria()`](../editarMateria/README.md) -- acción `[Editar]` de la variante Admin, construida en este mismo lote.
 - [`editarActividadesFormativasMateria()`](../editarActividadesFormativasMateria/README.md) / [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md) -- el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)) añade una cuarta colección a la variante `DirectorPrograma` (las 10 `ActividadFormativaMateria` + el medidor); la fusión de esa colección en `abrirMateria()` y el cambio de `MateriaDetalleResponse` se detallan al construir el clúster (audit del agregado `Materia`).

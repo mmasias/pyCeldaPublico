@@ -2,22 +2,19 @@
 {
     <b>EDITAR ACTIVIDADES FORMATIVAS -- ASIGNATURA</b>
     ====
-    <b>Programación I</b> (Programación)
+    <b>Programación I</b> (6 ECTS)
     --
     {#
-        <b>Actividad formativa</b>          | <b>Horas</b> | <b>% presencialidad</b>
-        Clases expositivas                  | "30  "       | "100 "
-        Clases prácticas                    | "15  "       | "100 "
-        Clases prácticas (laboratorio)      | "10  "       | "100 "
-        Seminarios y talleres               | "0   "       | "0   "
-        Supervisión de actividades          | "2   "       | "50  "
-        Tutorías (individual / en grupo)    | "3   "       | "50  "
-        Preparación de clases               | "0   "       | "0   "
-        Estudio personal y lecturas         | "45  "       | "0   "
-        Elaboración de trabajos             | "20  "       | "0   "
-        Trabajo individual en campus virtual| "0   "       | "0   "
+        <b>Actividad formativa</b>                          | <b>Horas</b> | <b>% presencialidad (de la materia)</b>
+        AD1 -- Actividad Dirigida: Clases de teoría          | "30  "       | 100
+        AD2 -- Actividad Dirigida: Clases prácticas          | "27  "       | 100
+        AS1 -- Actividad Supervisada: Tutorías               | "6   "       | 50
+        AA1 -- Actividad Autónoma: Estudio personal          | "60  "       | 0
+        AA2 -- Actividad Autónoma: Elaboración de trabajos   | "27  "       | 0
     }
+    --
+    <i>La presencialidad la fija la materia; aquí solo se reparten horas.</i>
     ~~
-    {[Guardar]}
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

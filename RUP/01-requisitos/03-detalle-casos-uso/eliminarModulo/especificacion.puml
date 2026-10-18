@@ -1,0 +1,59 @@
+@startuml eliminarModulo
+
+skinparam linetype polyline
+
+state MODULOS_ABIERTO
+state MODULOS_ABIERTO_SALIDA as "MODULOS_ABIERTO"
+
+MODULOS_ABIERTO -[#green]-> eliminarModulo
+note on link
+<b>Admin</b> solicita eliminar módulo
+end note
+
+state eliminarModulo as "eliminarModulo()" {
+
+    state " " as ConfirmandoEliminacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoEliminacion
+    note on link
+    [Módulo sin materias]
+    <b>Sistema</b> presenta información del módulo y advertencia de eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [Módulo con alguna materia]
+    <b>Sistema</b> presenta mensaje de bloqueo con las materias del módulo
+    end note
+
+    ConfirmandoEliminacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    ConfirmandoEliminacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar eliminación
+    end note
+}
+
+eliminarModulo -[#green]-> MODULOS_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+eliminarModulo -[#red]-> MODULOS_ABIERTO_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+eliminarModulo -[#blue]-> MODULOS_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

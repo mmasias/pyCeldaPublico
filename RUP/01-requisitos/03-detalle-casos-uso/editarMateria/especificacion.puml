@@ -17,12 +17,14 @@ state editarMateria as "editarMateria()" {
     [*] -[#green]-> EditandoDatos
     note on link
     <b>Sistema</b> presenta datos actuales de la Materia
+    <b>Sistema</b> presenta selección de Modulo del Programa, con opción sin módulo
     <b>Sistema</b> permite solicitar guardar
     end note
 
     EditandoDatos -[#green]-> [*]
     note on link
     <b>Admin</b> introduce nombre
+    <b>Admin</b> selecciona Modulo
     <b>Admin</b> solicita guardar
     end note
 }

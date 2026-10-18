@@ -6,12 +6,12 @@
 
 # pyCelda > crearActividadFormativa()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/crearActividadFormativa/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/crearActividadFormativa/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`crearActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/README.md): CRUD real e inmediato contra `ActividadFormativaRepository`. Ambos campos obligatorios (`codigo`, `nombre`) y sin `<<choice>>` -- sin patrón C->U, igual que `crearMetodologiaDocente()`: los dos datos identifican la actividad desde el alta. La salida es única, sin rama de rechazo, a `:ACTIVIDAD_FORMATIVA_ABIERTO` -- la transición lleva la nota `editarActividadFormativa()` como edición disponible desde el detalle alcanzado, no como `<<include>>` C->U. La `ActividadFormativa` se crea siempre dentro de una `Universidad` (`universidadId`).
+Traducción a clases de análisis de [`crearActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): formulario de `codigo` y `nombre`, sin patrón C→U, como [`crearCompetencia()`](../crearCompetencia/README.md). El `<<choice>>` de código repetido lo resuelve el controlador contra el repositorio antes de escribir: si el código ya lo usa otra actividad formativa del `Programa`, el formulario sigue con lo escrito y el mensaje. La actividad nace siempre dentro de un `Programa` (`programaId`).
 
 <div align=center>
 
@@ -26,21 +26,21 @@ Traducción a clases de análisis del caso de uso [`crearActividadFormativa()`](
 ### `CrearActividadFormativaView`
 
 **Responsabilidades:**
-- presenta el formulario de creación: `codigo` y `nombre`, ambos obligatorios.
-- permite solicitar crear.
+- presenta el formulario: `codigo` y `nombre`, los dos obligatorios.
+- presenta el mensaje de código repetido sin perder lo escrito.
 
 **Colaboraciones:**
-- **Entrada:** `:ACTIVIDADES_FORMATIVAS_ABIERTO` -- el `Admin` solicita crear una `ActividadFormativa` desde el listado.
+- **Entrada:** `:ACTIVIDADES_FORMATIVAS_ABIERTO`.
 - **Control:** `ActividadFormativaController`.
-- **Salida:** `:ACTIVIDAD_FORMATIVA_ABIERTO`.
+- **Salida:** `:ACTIVIDAD_FORMATIVA_ABIERTO` (ficha de la creada, desde la que se edita).
 
 ## Clases de controlador
 
 ### `ActividadFormativaController`
 
 **Responsabilidades:**
-- valida que `codigo` y `nombre` estén presentes (`validarDatosObligatorios(codigo, nombre)`).
-- crea la `ActividadFormativa` directamente en `ActividadFormativaRepository`, real e inmediato (`crearActividadFormativa(universidadId, codigo, nombre)`).
+- valida que el `codigo` no lo use otra actividad formativa del `Programa`.
+- crea la `ActividadFormativa`, real e inmediata.
 
 **Colaboraciones:**
 - **Entrada:** `CrearActividadFormativaView`.
@@ -59,17 +59,15 @@ Traducción a clases de análisis del caso de uso [`crearActividadFormativa()`](
 ### `ActividadFormativaRepository`
 
 **Responsabilidades:**
-- crea la `ActividadFormativa` (`crear(universidadId, codigo, nombre)`) -- persistencia real e inmediata, no una mutación de sesión. Al crearla puebla a 0 las filas de asociación de las `Materia`/`AsignaturaPrograma` ya existentes de esa `Universidad` (invariante de autopoblado, issue [#655](https://github.com/mmasias/pyCelda/issues/655)): efecto de persistencia, sin colaboración nueva de análisis.
+- responde si un `codigo` está en uso en el `Programa` (`codigoEnUso(programaId, codigo)`).
+- crea la `ActividadFormativa` (`crear(programaId, codigo, nombre)`). Al crearla puebla a 0 las filas de asociación de las `Materia`/`AsignaturaPrograma` ya existentes de ese `Programa` (invariante de autopoblado): efecto de persistencia, sin colaboración nueva de análisis.
 
 **Colaboraciones:**
 - **Entrada:** `ActividadFormativaController`.
-- **Salida:** gestiona `ActividadFormativa`.
+- **Salida:** gestiona `ActividadFormativa` y sus dos clases de asociación (`ActividadFormativaMateria`, `ActividadFormativaAsignaturaPrograma`).
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/wireframes.puml) -- fuente de verdad de el formulario y la salida única sin rama de rechazo..
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : crearActividadFormativa()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo de `Universidad` (`Universidad *-- ActividadFormativa`).
-- [`crearMetodologiaDocente()`](../crearMetodologiaDocente/README.md) -- clúster plantilla.
-- [`editarActividadFormativa()`](../editarActividadFormativa/README.md) -- edición disponible desde el detalle alcanzado tras crear.
-- [`crearAsignatura()`](../crearAsignatura/README.md) -- contraste: creación con patrón C->U.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/wireframes.puml) -- fuente de verdad.
+- [`crearCompetencia()`](../crearCompetencia/README.md) -- patrón de origen.
+- [`editarActividadFormativa()`](../editarActividadFormativa/README.md) -- edición disponible desde la ficha alcanzada tras crear.

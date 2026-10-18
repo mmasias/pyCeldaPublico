@@ -3,11 +3,11 @@
 skinparam linetype polyline
 
 state METODOLOGIAS_DOCENTES_ABIERTO
-state METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA as "METODOLOGIAS_DOCENTES_ABIERTO"
+state METODOLOGIAS_DOCENTES_ABIERTO_SALIDA as "METODOLOGIAS_DOCENTES_ABIERTO"
 
 METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> eliminarMetodologiaDocente
 note on link
-<b>Admin</b> solicita eliminar MetodologiaDocente
+<b>Admin / DirectorPrograma</b> solicita eliminar metodología docente
 end note
 
 state eliminarMetodologiaDocente as "eliminarMetodologiaDocente()" {
@@ -19,39 +19,39 @@ state eliminarMetodologiaDocente as "eliminarMetodologiaDocente()" {
 
     c -[#green]-> ConfirmandoEliminacion
     note on link
-    [MetodologiaDocente sin Materias asociadas]
-    <b>Sistema</b> presenta información de la MetodologiaDocente y advertencia de eliminación
+    [MetodologiaDocente sin asignar a ninguna Materia ni AsignaturaPrograma]
+    <b>Sistema</b> presenta información de la metodología docente y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
     c -[#red]-> [*]
     note on link
-    [MetodologiaDocente con Materias asociadas]
-    <b>Sistema</b> presenta mensaje de bloqueo por uso en Materias
+    [MetodologiaDocente asignada a alguna Materia o AsignaturaPrograma]
+    <b>Sistema</b> presenta mensaje de bloqueo con las Materias y AsignaturaPrograma que la tienen asignada
     end note
 
     ConfirmandoEliminacion -[#green]-> [*]
     note on link
-    <b>Admin</b> solicita confirmar eliminación
+    <b>Admin / DirectorPrograma</b> solicita confirmar eliminación
     end note
 
     ConfirmandoEliminacion -[#blue]-> [*]
     note on link
-    <b>Admin</b> solicita cancelar eliminación
+    <b>Admin / DirectorPrograma</b> solicita cancelar eliminación
     end note
 }
 
-eliminarMetodologiaDocente -[#green]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+eliminarMetodologiaDocente -[#green]-> METODOLOGIAS_DOCENTES_ABIERTO_SALIDA
 note on link
 lista actualizada
 end note
 
-eliminarMetodologiaDocente -[#red]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+eliminarMetodologiaDocente -[#red]-> METODOLOGIAS_DOCENTES_ABIERTO_SALIDA
 note on link
 bloqueada, sin cambios
 end note
 
-eliminarMetodologiaDocente -[#blue]-> METODOLOGIAS_DOCENTES_ABIERTOS_SALIDA
+eliminarMetodologiaDocente -[#blue]-> METODOLOGIAS_DOCENTES_ABIERTO_SALIDA
 note on link
 cancelada, sin cambios
 end note

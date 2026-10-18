@@ -1,0 +1,33 @@
+@startuml asociarCompetenciaAMateria-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbierto
+rectangle #CDEBA5 ":MATERIA_ABIERTO" as MateriaAbiertoSalida
+
+package asociarCompetenciaAMateria as "asociarCompetenciaAMateria()" {
+    rectangle #629EF9 AsociarCompetenciaAMateriaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Competencia
+    rectangle #F2AC4E CompetenciaRepository
+    rectangle #F2AC4E Materia
+}
+
+MateriaAbierto --> AsociarCompetenciaAMateriaView: <font size=8>asociarCompetenciaAMateria(materiaId)
+
+AsociarCompetenciaAMateriaView --> CompetenciaController: <font size=8>cargarDisponibles(materiaId) : List<Competencia>
+
+CompetenciaController --> CompetenciaRepository: <font size=8>listarDisponiblesParaMateria(materia) : List<Competencia>
+
+AsociarCompetenciaAMateriaView --> CompetenciaController: <font size=8>asociar(materiaId, competenciaId)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>asociarAMateria(materiaId, competenciaId)
+
+CompetenciaRepository -- Competencia
+
+CompetenciaRepository -- Materia
+
+AsociarCompetenciaAMateriaView --> MateriaAbiertoSalida: <font size=8>Competencia asociada
+
+@enduml

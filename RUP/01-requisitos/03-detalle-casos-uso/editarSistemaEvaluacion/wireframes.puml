@@ -3,10 +3,12 @@
     <b>EDITAR SISTEMA DE EVALUACIÓN</b>
     ====
     {
+        <b>Código:</b>
+        {"E1  " | <i>(el de la memoria verificada)</i>}
         <b>Tipo (*):</b>
         ^Evaluación continua^
         <b>Descripción:</b>
-        "Incluye prácticas de laboratorio y entregas semanales"
+        "Prueba Parcial"
         <b>Ponderación mínima (*):</b>
         "30  " %
         <b>Ponderación máxima (*):</b>

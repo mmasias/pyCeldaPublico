@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`asociarMetodologiaDocenteAMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/README.md): patrón C→U, sin `<<choice>>` -- crea real e inmediato la asociación `MetodologiaMateria` entre una `Materia` y una `MetodologiaDocente` del catálogo institucional, con `descripcionPropia` vacía por defecto (se completa después en [`editarAsociacionMetodologiaDocenteMateria()`](../editarAsociacionMetodologiaDocenteMateria/README.md)).
+Traducción a clases de análisis del caso de uso [`asociarMetodologiaDocenteAMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/README.md): patrón C→U, sin `<<choice>>` -- crea real e inmediato la asociación `MetodologiaMateria` entre una `Materia` y una `MetodologiaDocente` del catálogo del `Programa` de la `Materia`, con `descripcionPropia` vacía por defecto (se completa después en [`editarAsociacionMetodologiaDocenteMateria()`](../editarAsociacionMetodologiaDocenteMateria/README.md)).
 
 <div align=center>
 
@@ -26,7 +26,7 @@ Traducción a clases de análisis del caso de uso [`asociarMetodologiaDocenteAMa
 ### `AsociarMetodologiaDocenteAMateriaView`
 
 **Responsabilidades:**
-- presenta la selección de `MetodologiaDocente` del catálogo institucional todavía no asociadas a esta `Materia`.
+- presenta la selección de `MetodologiaDocente` del catálogo del `Programa` de la `Materia` todavía no asociadas a ella.
 - ofrece la navegación a solicitar la asociación.
 
 **Colaboraciones:**
@@ -39,7 +39,8 @@ Traducción a clases de análisis del caso de uso [`asociarMetodologiaDocenteAMa
 ### `MateriaController`
 
 **Responsabilidades:**
-- lista las `MetodologiaDocente` del catálogo todavía no asociadas a la `Materia` (`cargarMetodologiasDocentesDisponibles(materiaId)`).
+- lista las `MetodologiaDocente` del catálogo del `Programa` de la `Materia` todavía no asociadas a ella (`cargarMetodologiasDocentesDisponibles(materiaId)`).
+- exige que la `MetodologiaDocente` elegida sea del mismo `Programa` que la `Materia`; la de otro `Programa` no existe para ella (404).
 - crea real e inmediata la asociación `MetodologiaMateria` (`asociarMetodologiaDocente(materiaId, metodologiaDocenteId)`).
 
 **Colaboraciones:**
@@ -51,7 +52,7 @@ Traducción a clases de análisis del caso de uso [`asociarMetodologiaDocenteAMa
 ### `MetodologiaDocente`
 
 **Responsabilidades:**
-- porta `codigo`, `descripcion` -- el catálogo institucional del que se elige.
+- porta `codigo`, `descripcion` -- el catálogo del `Programa` del que se elige (`Programa *-- MetodologiaDocente`, issue [#772](https://github.com/mmasias/pyCelda/issues/772); hasta #772, las habilitadas en el `Programa` de un catálogo institucional de `Universidad`).
 
 **Colaboraciones:**
 - **Entrada:** listada por `MetodologiaDocenteRepository`.
@@ -59,7 +60,8 @@ Traducción a clases de análisis del caso de uso [`asociarMetodologiaDocenteAMa
 ### `MetodologiaDocenteRepository`
 
 **Responsabilidades:**
-- lista las `MetodologiaDocente` del catálogo institucional todavía no asociadas a una `Materia` (`listarDisponiblesParaMateria(materiaId)`).
+- lista las `MetodologiaDocente` del `Programa` de una `Materia` todavía no asociadas a ella (`listarDisponiblesParaMateria(materiaId)`); una `Materia` sin `Programa` no tiene catálogo del que elegir.
+- devuelve la `MetodologiaDocente` solo si es del `Programa` indicado (`exigirMetodologiaDelPrograma(programaId, metodologiaDocenteId)`); si no existe o es de otro `Programa`, 404 uniforme.
 
 **Colaboraciones:**
 - **Entrada:** `MateriaController`.
@@ -81,6 +83,9 @@ Traducción a clases de análisis del caso de uso [`asociarMetodologiaDocenteAMa
 **Colaboraciones:**
 - **Entrada:** `MateriaController`.
 - **Salida:** gestiona `MetodologiaMateria`.
+
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: la colaboración es la misma con `Admin` como iniciador; la única diferencia es que no se comprueba que el `Programa` de la `Materia` sea del actor. La metodología sigue teniendo que ser del `Programa` de la `Materia`.
+
 
 ## Referencias
 

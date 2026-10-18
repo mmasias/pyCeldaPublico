@@ -38,8 +38,10 @@
 
 </div>
 
+**`codigo` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: el detalle muestra también el código del sistema en la memoria verificada (p. ej. `E1`), o `--` si aún no lo tiene; `descripcion` es la denominación literal de la memoria (ver [`crearSistemaEvaluacion()`](../crearSistemaEvaluacion/README.md)).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMAS_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : abrirSistemaEvaluacion()`
 - [actoresCasosUsoAdminOperativa.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminOperativa.puml) -- catálogo de casos de uso de `Admin` sobre `SistemaEvaluacion`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `SistemaEvaluacion{tipo, descripcion, ponderacionMinima, ponderacionMaxima}`
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `SistemaEvaluacion{codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima}`

@@ -1,0 +1,32 @@
+@startuml eliminarModulo-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MODULOS_ABIERTO" as ModulosAbierto
+rectangle #CDEBA5 ":MODULOS_ABIERTO" as ModulosAbiertoSalida
+
+package eliminarModulo as "eliminarModulo()" {
+    rectangle #629EF9 EliminarModuloView
+    rectangle #b5bd68 ModuloController
+    rectangle #F2AC4E Modulo
+    rectangle #F2AC4E ModuloRepository
+}
+
+ModulosAbierto --> EliminarModuloView: <font size=8>eliminarModulo(moduloId)
+
+EliminarModuloView --> ModuloController: <font size=8>cargarModulo(moduloId) : Modulo (con nº de materias)
+
+EliminarModuloView --> ModuloController: <font size=8>eliminar(moduloId)
+
+ModuloController --> Modulo: <font size=8>materias : List<Materia>
+
+ModuloController --> ModuloRepository: <font size=8>eliminar(modulo)
+
+ModuloRepository -- Modulo
+
+EliminarModuloView ..[#green]> ModulosAbiertoSalida: <font size=8>lista actualizada
+EliminarModuloView ..[#red]> ModulosAbiertoSalida: <font size=8>bloqueada, sin cambios -- el módulo tiene materias
+EliminarModuloView ..[#blue]> ModulosAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

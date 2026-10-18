@@ -19,14 +19,16 @@ state importarContenidoDeGuiaHermana as "importarContenidoDeGuiaHermana()" {
 
     c -[#red]-> [*]
     note on link
-    [ninguna AsignaturaPrograma hermana tiene Guia Aprobada en el CursoAcademico activo]
-    <b>Sistema</b> no ofrece el control: ninguna asignatura hermana tiene guía aprobada en el CursoAcademico activo
+    [ninguna AsignaturaPrograma hermana tiene Guia importable en el CursoAcademico activo]
+    <b>Sistema</b> no ofrece el control: ninguna asignatura hermana tiene guía aprobada, o en revisión que el Profesor también imparta
     end note
 
     c -[#green]-> SolicitandoOrigen
     note on link
-    [al menos una AsignaturaPrograma hermana tiene Guia Aprobada en el CursoAcademico activo]
-    <b>Sistema</b> presenta las guías Aprobada de asignaturas hermanas del CursoAcademico activo
+    [al menos una AsignaturaPrograma hermana tiene Guia importable en el CursoAcademico activo]
+    <i>Guia importable: Aprobada, o EnRevision de una AsignaturaPrograma que el Profesor también imparte</i>
+    <b>Sistema</b> presenta las guías importables de asignaturas hermanas del CursoAcademico activo
+    <b>Sistema</b> muestra el estado de cada guía origen y su fecha
     end note
 
     SolicitandoOrigen -[#green]-> [*]

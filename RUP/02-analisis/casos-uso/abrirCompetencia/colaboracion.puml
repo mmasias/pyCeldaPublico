@@ -1,0 +1,30 @@
+@startuml abrirCompetencia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":COMPETENCIAS_ABIERTO" as CompetenciasAbierto
+rectangle #CDEBA5 ":COMPETENCIA_ABIERTO" as CompetenciaAbiertoSalida
+
+package abrirCompetencia as "abrirCompetencia()" {
+    rectangle #629EF9 AbrirCompetenciaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Competencia
+    rectangle #F2AC4E CompetenciaRepository
+}
+
+CompetenciasAbierto --> AbrirCompetenciaView: <font size=8>abrirCompetencia(competenciaId)
+
+AbrirCompetenciaView --> CompetenciaController: <font size=8>cargarCompetencia(competenciaId) : Competencia
+
+CompetenciaController --> CompetenciaRepository: <font size=8>obtener(competenciaId) : Competencia
+
+AbrirCompetenciaView --> CompetenciaController: <font size=8>cargarAsignaciones(competenciaId) : (List<Materia>, List<AsignaturaPrograma>)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>asignaciones(competenciaId)
+
+CompetenciaRepository -- Competencia
+
+AbrirCompetenciaView --> CompetenciaAbiertoSalida: <font size=8>presenta la competencia y su distribución
+
+@enduml

@@ -46,8 +46,11 @@ Bajada a diseño del caso de análisis [`eliminarSistemaEvaluacion()`](/RUP/02-a
 - **`204 No Content` para el `DELETE`**: borrado físico, no hay entidad que devolver -- la Vista refresca el listado.
 - **La rama "cancelada" no genera llamada HTTP**: la cancelación cierra el diálogo en el cliente -- se modela como rama del `alt` para reflejar las tres salidas de Análisis (verde/roja/azul), pero sin tocar el backend.
 - **`404` si el identificador no existe** -- guardia de Router sobre el `None` del repositorio.
-- **Autorización de `Admin`: `Depends(require_admin)`** -- especialmente relevante por ser endpoint de borrado (historial IDOR #86/#96).
+- **Autorización de `Admin`: `Depends(require_admin)`** -- especialmente relevante por ser endpoint de borrado (historial IDOR #86/#96). *(superado por #755: `Admin` o `DirectorPrograma`, ver más abajo)*
 - **Sin capa Service**: Router delgado -> Repository.
+
+**Actor `DirectorPrograma` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: mismo endpoint, que ahora admite los dos actores (`get_current_admin_email_opcional` + `get_current_director_programa_id_opcional`, helper `_autorizar_materia`): `Admin` sobre cualquier materia; el Director solo sobre las de sus programas (404 en otra, mismo criterio que `_verificar_materia_del_director`); ninguno de los dos, 403. Un path no admite dos guardas, de ahí el endpoint compartido, como `descargarGuiaPDF()`.
+
 
 ## Referencias
 

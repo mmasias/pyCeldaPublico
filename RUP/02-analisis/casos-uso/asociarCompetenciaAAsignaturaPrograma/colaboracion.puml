@@ -1,0 +1,35 @@
+@startuml asociarCompetenciaAAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package asociarCompetenciaAAsignaturaPrograma as "asociarCompetenciaAAsignaturaPrograma()" {
+    rectangle #629EF9 AsociarCompetenciaAAsignaturaProgramaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Competencia
+    rectangle #F2AC4E CompetenciaRepository
+    rectangle #F2AC4E AsignaturaPrograma
+}
+
+AsignaturaProgramaAbierto --> AsociarCompetenciaAAsignaturaProgramaView: <font size=8>asociarCompetenciaAAsignaturaPrograma(asignaturaProgramaId)
+
+AsociarCompetenciaAAsignaturaProgramaView --> CompetenciaController: <font size=8>cargarDisponibles(asignaturaProgramaId) : List<Competencia>
+
+CompetenciaController --> CompetenciaRepository: <font size=8>listarDisponiblesParaAsignaturaPrograma(asignaturaPrograma) : List<Competencia>
+
+AsociarCompetenciaAAsignaturaProgramaView --> CompetenciaController: <font size=8>asociar(asignaturaProgramaId, competenciaId)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>estaEnLaMateria(materiaId, competenciaId) : boolean
+
+CompetenciaController --> CompetenciaRepository: <font size=8>asociarAAsignaturaPrograma(asignaturaProgramaId, competenciaId)
+
+CompetenciaRepository -- Competencia
+
+CompetenciaRepository -- AsignaturaPrograma
+
+AsociarCompetenciaAAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>Competencia asociada
+
+@enduml

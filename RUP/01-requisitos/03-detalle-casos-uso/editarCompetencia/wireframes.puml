@@ -1,0 +1,20 @@
+@startsalt editarCompetencia-wireframe
+{
+    <b>EDITAR COMPETENCIA</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "CE7"
+        <b>Tipo (*):</b>
+        ^Específica^
+        <b>Descripción (*):</b>
+        "Conocimiento y aplicación de los principios fundamentales y técnicas
+        básicas de la programación paralela, concurrente, distribuida y de
+        tiempo real."
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

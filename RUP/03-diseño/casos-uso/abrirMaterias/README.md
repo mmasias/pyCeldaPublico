@@ -58,6 +58,8 @@ Este `secuencia.puml` contiene **dos diagramas**: el primero (`abrirMaterias-dis
 - **`[Eliminar]` deshabilitado en la variante Admin**: el wireframe lo ofrece, pero `eliminarMateria()` no forma parte de esta rebanada -- el botón se renderiza con `title="Fuera de alcance de esta rebanada"` para no desviar el wireframe.
 - **Sin capa Service**: Router delgado -> Repository, sin filtro post-consulta.
 
+**Módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: `MateriaResponse` gana `modulo_id`, `modulo_codigo`, `modulo_nombre` (propiedades de `Materia` sobre la relación `modulo`), en las listas de las dos vistas. La agrupación la hace el cliente (`agruparPorModulo()` en `frontend/src/modulo.ts`); sin endpoint nuevo.
+
 ## Referencias
 
 - [`abrirMaterias()` en Análisis](/RUP/02-analisis/casos-uso/abrirMaterias/README.md) -- diagrama de colaboración origen, con ambas variantes.

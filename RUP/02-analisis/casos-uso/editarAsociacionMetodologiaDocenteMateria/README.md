@@ -66,6 +66,9 @@ Traducción a clases de análisis del caso de uso [`editarAsociacionMetodologiaD
 - **Entrada:** `MateriaController`.
 - **Salida:** gestiona `MetodologiaMateria`.
 
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: la colaboración es la misma con `Admin` como iniciador; la única diferencia es que no se comprueba que el `Programa` de la `Materia` sea del actor.
+
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarAsociacionMetodologiaDocenteMateria/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarAsociacionMetodologiaDocenteMateria/wireframes.puml) -- fuente de verdad del formulario.

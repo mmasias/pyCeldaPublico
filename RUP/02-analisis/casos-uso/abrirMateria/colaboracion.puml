@@ -24,6 +24,8 @@ AbrirMateriaView --> MateriaController: <font size=8>cargarMateria(materiaId) : 
 
 MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
 
+MateriaController --> Materia: <font size=8>comprobacionHorasEcts() : ComprobacionHorasEcts
+
 AbrirMateriaView --> MateriaController: <font size=8>listarMetodologiasDocentesAsociadas(materiaId) : List<MetodologiaMateria>
 
 MateriaController --> MetodologiaMateriaRepository: <font size=8>listarDe(materiaId) : List<MetodologiaMateria>
@@ -43,7 +45,7 @@ Materia -- MetodologiaMateria
 Materia -- ResultadoAprendizaje
 Materia -- AsignaturaPrograma
 
-AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra Metodologias Docentes/Resultados de Aprendizaje asociados y AsignaturaPrograma de la Materia
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra ECTS y código RUCT, Metodologias Docentes/Resultados de Aprendizaje asociados, AsignaturaPrograma\nde la Materia y comprobación de horas frente a 25 h por ECTS
 
 @enduml
 
@@ -70,6 +72,8 @@ AbrirMateriaView --> MateriaController: <font size=8>cargarMateria(materiaId) : 
 
 MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
 
+MateriaController --> Materia: <font size=8>comprobacionHorasEcts() : ComprobacionHorasEcts
+
 AbrirMateriaView --> MateriaController: <font size=8>listarAsignaturasPrograma(materiaId) : List<AsignaturaPrograma>
 
 MateriaController --> AsignaturaProgramaRepository: <font size=8>listarDeLaMateria(materiaId) : List<AsignaturaPrograma>
@@ -77,6 +81,6 @@ MateriaController --> AsignaturaProgramaRepository: <font size=8>listarDeLaMater
 MateriaRepository -- Materia
 AsignaturaProgramaRepository -- AsignaturaPrograma
 
-AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra datos de la Materia y su tabla de AsignaturasPrograma, con [Editar]
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra datos de la Materia (con ECTS y código RUCT), su tabla de AsignaturasPrograma\ny la comprobación de horas frente a 25 h por ECTS, con [Editar]
 
 @enduml

@@ -1,0 +1,32 @@
+@startuml eliminarCompetencia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":COMPETENCIAS_ABIERTO" as CompetenciasAbierto
+rectangle #CDEBA5 ":COMPETENCIAS_ABIERTO" as CompetenciasAbiertoSalida
+
+package eliminarCompetencia as "eliminarCompetencia()" {
+    rectangle #629EF9 EliminarCompetenciaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Competencia
+    rectangle #F2AC4E CompetenciaRepository
+}
+
+CompetenciasAbierto --> EliminarCompetenciaView: <font size=8>eliminarCompetencia(competenciaId)
+
+EliminarCompetenciaView --> CompetenciaController: <font size=8>cargarAsignaciones(competenciaId) : (List<Materia>, List<AsignaturaPrograma>)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>asignaciones(competenciaId)
+
+EliminarCompetenciaView --> CompetenciaController: <font size=8>eliminar(competenciaId)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>eliminar(competencia)
+
+CompetenciaRepository -- Competencia
+
+EliminarCompetenciaView ..[#green]> CompetenciasAbiertoSalida: <font size=8>lista actualizada
+EliminarCompetenciaView ..[#red]> CompetenciasAbiertoSalida: <font size=8>bloqueada, sin cambios -- asignada a Materia o AsignaturaPrograma
+EliminarCompetenciaView ..[#blue]> CompetenciasAbiertoSalida: <font size=8>cancelada, sin cambios
+
+@enduml

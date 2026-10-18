@@ -20,11 +20,21 @@ package "Estructura curricular" {
     codigo
     nombre
     estado
+    codigoRuct
+    denominacionOficial
   }
   class Materia {
     nombre
+    codigoRuct
+    ects
+  }
+  class Modulo {
+    codigo
+    nombre
+    descripcion
   }
   class SistemaEvaluacion {
+    codigo
     tipo
     descripcion
     ponderacionMinima
@@ -43,10 +53,10 @@ package "Estructura curricular" {
   }
   class ActividadFormativaMateria {
     horas
+    porcentajePresencialidad
   }
   class ActividadFormativaAsignaturaPrograma {
     horas
-    porcentajePresencialidad
   }
   class Asignatura {
     codigo
@@ -72,6 +82,11 @@ package "Estructura curricular" {
     tipo
     descripcion
   }
+  class Competencia {
+    codigo
+    tipo
+    descripcion
+  }
   class Requisito {
     tipo
   }
@@ -85,13 +100,12 @@ package "Estructura curricular" {
   Facultad *-- Programa
   ProgramaPadre o-- Programa
   Programa *-- Materia
-  Programa o-- MetodologiaDocente
+  Programa *-- MetodologiaDocente
   Materia *-- AsignaturaPrograma
   Materia *-- SistemaEvaluacion
   Materia o-- MetodologiaDocente
   (Materia, MetodologiaDocente) .. MetodologiaMateria
-  Universidad *-- MetodologiaDocente
-  Universidad *-- ActividadFormativa
+  Programa *-- ActividadFormativa
   Materia o-- ActividadFormativa
   (Materia, ActividadFormativa) .. ActividadFormativaMateria
   AsignaturaPrograma o-- ActividadFormativa
@@ -100,6 +114,11 @@ package "Estructura curricular" {
   Programa *-d- ResultadoAprendizaje
   Materia o-u- ResultadoAprendizaje
   AsignaturaPrograma o- ResultadoAprendizaje
+  Programa *-- Competencia
+  Materia o-- Competencia
+  AsignaturaPrograma o-- Competencia
+  Programa *-- Modulo
+  Modulo o-- Materia
   AsignaturaPrograma o-r- MetodologiaDocente
   AsignaturaPrograma -> AsignaturaPrograma : <sub>requiere</sub>
   'AsignaturaPrograma -[hidden]r- Requisito

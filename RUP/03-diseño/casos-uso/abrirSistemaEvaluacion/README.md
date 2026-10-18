@@ -34,7 +34,7 @@ Bajada a diseño del caso de análisis [`abrirSistemaEvaluacion()`](/RUP/02-anal
 
 ## Participantes
 
-- **Vista**: `SistemaEvaluacion` (React, ruta `/admin/sistemas-evaluacion/:id`) -- pide `GET /api/v1/sistemas-evaluacion/{sistema_evaluacion_id}`; muestra `tipo`, `descripcion`, `ponderacion_minima`, `ponderacion_maxima`; botones `[Editar]` y `[Volver al listado]`.
+- **Vista**: `SistemaEvaluacion` (React, ruta `/admin/sistemas-evaluacion/:id`) -- pide `GET /api/v1/sistemas-evaluacion/{sistema_evaluacion_id}`; muestra `codigo` (`--` si es nulo), `tipo`, `descripcion`, `ponderacion_minima`, `ponderacion_maxima`; botones `[Editar]` y `[Volver al listado]`.
 - **API**: `routers/sistema_evaluacion.py::obtener_sistema_evaluacion(sistema_evaluacion_id)` -- función suelta, sin capa Service.
 - **Modelo**: ninguno con lógica propia invocada -- `SistemaEvaluacion` solo porta los datos presentados.
 - **Repositorio**: `SistemaEvaluacionRepository.obtener(sistema_evaluacion_id)` -- `SELECT` por identificador, método ya existente reutilizado.
@@ -45,6 +45,8 @@ Bajada a diseño del caso de análisis [`abrirSistemaEvaluacion()`](/RUP/02-anal
 - **`materia_id` en la respuesta**: la Vista necesita saber a qué `Materia` volver (`[Volver al listado]`) sin mantener estado de navegación -- `SistemaEvaluacionResponse` lo expone; ya vive en el modelo.
 - **`404` si el identificador no existe** -- guardia de Router sobre el `None` del repositorio.
 - **Sin capa Service**: Router delgado -> Repository.
+
+**`codigo` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: columna `sistemas_evaluacion.codigo VARCHAR(20) NULL` (esquema versión 4), el código de la memoria (p. ej. `E1`). En `_DatosSistemaEvaluacion` (base de `SistemaEvaluacionCreate`/`Update`) es `str | None`; un validador recorta espacios, aplica `validar_longitud(valor, 20, "El código")` y convierte el vacío en `None`. Sin unicidad: no hay restricción por `Materia` ni por `Programa`. `SistemaEvaluacionResponse` lo expone como `codigo: str | None`. `descripcion` no cambia de tipo; cambia su significado (denominación literal de la memoria).
 
 ## Referencias
 

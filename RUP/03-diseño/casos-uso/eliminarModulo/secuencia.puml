@@ -1,0 +1,31 @@
+@startuml eliminarModulo-diseño
+title Diagrama de Secuencia - Eliminar Modulo
+
+actor "Admin" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ModuloRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita eliminar un módulo
+activate Vista
+Vista -> API: GET /api/v1/admin/modulos/{modulo_id}
+API --> Vista: 200 OK (ModuloResponse con num_materias)
+alt num_materias > 0
+  Vista --> Actor: presenta el bloqueo, sin cambios
+else sin materias -- el actor confirma
+  Actor -> Vista: confirma
+  Vista -> API: DELETE /api/v1/admin/modulos/{modulo_id}
+  activate API
+  note right of API: reverifica modulo.materias;\n409 con sus nombres si las hay
+  API -> Repo: eliminar(modulo)
+  Repo -> DB: DELETE FROM modulos WHERE id = :modulo_id
+  API --> Vista: 204 No Content
+  deactivate API
+  Vista --> Actor: presenta la lista actualizada
+else el actor cancela
+  Vista --> Actor: vuelve al listado, sin llamada al backend
+end
+deactivate Vista
+
+@enduml

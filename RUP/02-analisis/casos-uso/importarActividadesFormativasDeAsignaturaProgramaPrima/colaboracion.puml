@@ -27,7 +27,7 @@ ImportarActividadesFormativasDeAsignaturaProgramaPrimaView --> AsignaturaProgram
 
 AsignaturaProgramaController --> AsignaturaProgramaController: <font size=8>validarPrima(destino, origen) : boolean [revalidacion server-side del origen]
 
-AsignaturaProgramaController --> ActividadFormativaAsignaturaPrograma: <font size=8>actualizar(horas, porcentajePresencialidad) [in place, 10 filas]
+AsignaturaProgramaController --> ActividadFormativaAsignaturaPrograma: <font size=8>actualizar(horas) [in place, una fila por actividad del catálogo]
 
 AsignaturaProgramaController --> ActividadFormativaAsignaturaProgramaRepository: <font size=8>actualizarLote(actividadesFormativasAsignaturaPrograma)
 

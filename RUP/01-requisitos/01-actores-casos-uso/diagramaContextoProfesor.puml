@@ -80,7 +80,7 @@ PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : eliminarSesion
 ' hallado en la auditoria del issue #605: endpoint y boton reales sin reflejo en el diagrama.
 PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : duplicarSesion()
 ' importarPlanificacionDocenteDeGuiaHermana(): reemplaza al completo la planificación
-' docente de la guía con la de una guía Aprobada de una AsignaturaPrograma hermana (mismo
+' docente de la guía con la de una guía importable de una AsignaturaPrograma hermana (mismo
 ' asignatura_id + Asignatura.codigo, FK del issue #181). Self-loop; <<choice>> de
 ' salvaguarda estructural con botón condicional (molde descargarGuiaPDF()). Issue #184.
 PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : importarPlanificacionDocenteDeGuiaHermana()
@@ -105,9 +105,11 @@ REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : crearR
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : abrirReferenciaBibliografica()
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()
 ' importarBibliografiaDeGuiaHermana(): reemplaza al completo la bibliografía de la guía
-' con la de una guía Aprobada de una AsignaturaPrograma hermana (mismo asignatura_id +
+' con la de una guía importable de una AsignaturaPrograma hermana (mismo asignatura_id +
 ' Asignatura.codigo, FK del issue #181). Self-loop; <<choice>> de salvaguarda estructural
 ' con botón condicional (molde descargarGuiaPDF()). Issue #184.
+' Guía importable (issue #740): Aprobada, o EnRevision si el Profesor también
+' imparte el origen; vale para las tres importaciones de guía hermana.
 REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : importarBibliografiaDeGuiaHermana()
 REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : editarReferenciaBibliografica()
 REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : abrirReferenciasBibliograficas()
@@ -117,7 +119,7 @@ REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()
 
 ' importarContenidoDeGuiaHermana() (issue #409): reemplaza el contenido (temario)
-' de la guía con el de una guía Aprobada de una AsignaturaPrograma hermana (mismo
+' de la guía con el de una guía importable de una AsignaturaPrograma hermana (mismo
 ' asignatura_id + Asignatura.codigo, FK del issue #181) -- tercer campo
 ' importable, familia del issue #184. A diferencia de bibliografía/planificación
 ' docente, contenido es un campo escalar de la propia Guia -- self-loop directo

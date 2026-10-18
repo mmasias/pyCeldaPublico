@@ -1,0 +1,37 @@
+@startuml editarCompetencia-diseño
+title Diagrama de Secuencia - Editar Competencia
+
+actor "Admin / DirectorPrograma" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CompetenciaRepository" as Repo
+participant "Competencia" as Modelo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita editar la competencia
+activate Vista
+Vista -> API: GET /api/v1/competencias/{competencia_id}
+API --> Vista: 200 OK (CompetenciaResponse)
+Vista --> Actor: presenta formulario con los datos actuales
+Actor -> Vista: cambia los campos y confirma
+Vista -> API: PUT /api/v1/competencias/{competencia_id} (CompetenciaUpdate)
+activate API
+note right of API: misma validación de forma que crear (422)
+API -> Repo: codigo_en_uso(programa_id, codigo, salvo_id=competencia_id)
+activate Repo
+Repo --> API: boolean
+alt código ya usado por otra competencia del Programa
+  API --> Vista: 409 Conflict
+  Vista --> Actor: presenta el mensaje, el formulario conserva lo escrito
+else código libre
+  API -> Modelo: actualizar(codigo, tipo, descripcion)
+  API -> Repo: actualizar(competencia)
+  Repo -> DB: UPDATE competencias SET ... WHERE id = :competencia_id
+  API --> Vista: 200 OK (CompetenciaResponse)
+  Vista --> Actor: vuelve a la ficha
+end
+deactivate Repo
+deactivate API
+deactivate Vista
+
+@enduml

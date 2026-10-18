@@ -4,10 +4,14 @@
     ====
     {#
         <b>Nombre | <b>Asignaturas | . | .
-        Programación | 2 | [Abrir] | [Eliminar]
+        <b>🧱 M1 -- Formación básica</b> | . | . | .
         Matemáticas | 3 | [Abrir] | [Eliminar]
+        <b>🧱 M2 -- Común a la rama de informática</b> | . | . | .
+        Programación | 2 | [Abrir] | [Eliminar]
         Bases de Datos | 2 | [Abrir] | [Eliminar]
         Ingeniería del Software | 1 | [Abrir] | [Eliminar]
+        <b>🧱 Sin módulo</b> | . | . | .
+        Prácticas externas | 1 | [Abrir] | [Eliminar]
     }
     ====
     [ <b>+ Crear Materia</b> ]

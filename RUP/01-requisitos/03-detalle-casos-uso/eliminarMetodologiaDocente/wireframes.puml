@@ -2,15 +2,20 @@
 {
     <b>ELIMINAR METODOLOGÍA DOCENTE</b>
     ====
-    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    <color:red><b>⛔ No se puede eliminar</b></color>
     ====
-    <b>MD1 -- Método expositivo</b>
-
-    Esta metodología docente está en uso en materias del catálogo.
-
-    <i>Retira su asociación de las materias antes de eliminarla.</i>
+    <b>MD3</b>
+    <i>Resolución de ejercicios</i>
+    --
+    Esta metodología docente está asignada a:
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Programación | Programación I
+        . | Programación II
+    }
+    <i>Retira su asociación antes de eliminarla.</i>
     ====
-    [ <b>Volver al listado</b> ]
+    [ Volver a las <b>metodologías docentes</b> ]
 }
 @endsalt
 
@@ -18,10 +23,10 @@
 {
     <b>ELIMINAR METODOLOGÍA DOCENTE</b>
     ====
-    <b>MD7 -- Trabajo autónomo</b>
+    <b>MD5</b>
+    <i>Aprendizaje orientado a proyectos</i>
 
-    <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin materias asociadas.
+    Esta acción no se puede deshacer. Sin asignaciones a materias ni a asignaturas del programa.
     ====
     {[Confirmar eliminación] | [Cancelar]}
 }

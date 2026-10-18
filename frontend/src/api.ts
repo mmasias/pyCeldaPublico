@@ -9,6 +9,24 @@ export class ApiError extends Error {
   }
 }
 
+// El `detail` de un error del backend puede ser un texto (HTTPException) o, en
+// los 422 de validación automática de Pydantic, una lista de objetos
+// {loc, msg, type}. Se convierte siempre en un texto legible: sin esto, la
+// pantalla mostraba "[object Object]". Pydantic antepone "Value error, " a los
+// mensajes de los validadores propios; se quita para que el usuario vea solo
+// el mensaje en castellano.
+function mensajeDeError(detail: unknown, status: number): string {
+  if (typeof detail === "string") return detail;
+  if (Array.isArray(detail)) {
+    const mensajes = detail
+      .map((d) => (d && typeof d === "object" && "msg" in d ? String(d.msg) : ""))
+      .map((m) => m.replace(/^Value error, /, ""))
+      .filter((m) => m !== "");
+    if (mensajes.length > 0) return mensajes.join(" · ");
+  }
+  return `Error inesperado (HTTP ${status})`;
+}
+
 export interface PonderacionEvaluacion {
   id: number;
   guia_id: number;
@@ -48,10 +66,15 @@ export interface AsignaturaProgramaDeGuiaResponse {
   programa_nombre: string | null;
   contenido: string;
   resultados_aprendizaje: ResultadoAprendizajeResponse[];
+  // #761: solo lectura, como los RA.
+  competencias: CompetenciaResponse[];
   metodologias_docentes: MetodologiaDocenteResponse[];
   // Solo lectura -- discussion #227. Se edita desde
   // editarActividadesFormativasAsignaturaPrograma(), no desde aquí.
   actividades_formativas: ActividadFormativaAsignaturaProgramaResponse[];
+  // #768: todos los sistemas de evaluación de la Materia, también los que la
+  // guía aún no usa (medidor de la evaluación).
+  sistemas_evaluacion: SistemaEvaluacionResponse[];
 }
 
 export interface ResumenCompletitudResponse {
@@ -128,29 +151,44 @@ export interface CursoAcademico {
 async function get<T>(ruta: string): Promise<T> {
   const res = await fetch(`${API_BASE}${ruta}`, { credentials: "include" });
   if (!res.ok) {
-    const body = (await res.json().catch(() => null)) as { detail?: string } | null;
-    throw new ApiError(res.status, body?.detail ?? `HTTP ${res.status}`);
+    const body = (await res.json().catch(() => null)) as { detail?: unknown } | null;
+    throw new ApiError(res.status, mensajeDeError(body?.detail, res.status));
   }
   return (await res.json()) as T;
 }
+
+/** Evento de window que se emite tras cada escritura correcta: quien muestra
+ * datos derivados de una guía que puede haber cambiado (su estado, en
+ * useRolEnGuia) los vuelve a pedir. */
+export const EVENTO_ESCRITURA = "pycelda:escritura";
 
 async function enviar<T>(
   metodo: "POST" | "PUT" | "DELETE",
   ruta: string,
   cuerpo?: unknown,
 ): Promise<T> {
-  const res = await fetch(`${API_BASE}${ruta}`, {
-    method: metodo,
-    credentials: "include",
-    headers: cuerpo !== undefined ? { "Content-Type": "application/json" } : undefined,
-    body: cuerpo !== undefined ? JSON.stringify(cuerpo) : undefined,
-  });
-  if (!res.ok) {
-    const body = (await res.json().catch(() => null)) as { detail?: string } | null;
-    throw new ApiError(res.status, body?.detail ?? `HTTP ${res.status}`);
+  // Cualquier escritura puede cambiar una guía: no se reutiliza ninguna
+  // respuesta de abrirGuia() pedida antes ni durante la escritura.
+  guiasRecientes.clear();
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${ruta}`, {
+      method: metodo,
+      credentials: "include",
+      headers: cuerpo !== undefined ? { "Content-Type": "application/json" } : undefined,
+      body: cuerpo !== undefined ? JSON.stringify(cuerpo) : undefined,
+    });
+  } finally {
+    // También con un error de red: la escritura pudo llegar al servidor.
+    guiasRecientes.clear();
   }
-  if (res.status === 204) return undefined as T;
-  return (await res.json()) as T;
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { detail?: unknown } | null;
+    throw new ApiError(res.status, mensajeDeError(body?.detail, res.status));
+  }
+  const datos = res.status === 204 ? (undefined as T) : ((await res.json()) as T);
+  window.dispatchEvent(new Event(EVENTO_ESCRITURA));
+  return datos;
 }
 
 async function post<T>(ruta: string, cuerpo?: unknown): Promise<T> {
@@ -165,8 +203,41 @@ async function del(ruta: string): Promise<void> {
   await enviar<void>("DELETE", ruta);
 }
 
+// #740, puntos 2 y 20: en una pantalla de la guía, la página, su cabecera, el
+// aviso de estado y la línea de la asignatura piden la guía cada uno por su
+// cuenta (la planificación docente, tres veces en cada carga). Las peticiones
+// de una misma guía se comparten mientras están en curso y hasta
+// GUIA_REUTILIZABLE_MS después de llegar la respuesta; cualquier escritura
+// (enviar) las descarta, así que tras guardar se vuelve a pedir. Un error no
+// se reutiliza.
+const GUIA_REUTILIZABLE_MS = 2000;
+const guiasRecientes = new Map<
+  number,
+  { promesa: Promise<AbrirGuiaResponse>; respondidaEn: number | null }
+>();
+
 export async function abrirGuia(guiaId: number): Promise<AbrirGuiaResponse> {
-  return get<AbrirGuiaResponse>(`/api/v1/guias/${guiaId}`);
+  const reciente = guiasRecientes.get(guiaId);
+  if (
+    reciente !== undefined &&
+    (reciente.respondidaEn === null || Date.now() - reciente.respondidaEn < GUIA_REUTILIZABLE_MS)
+  ) {
+    return reciente.promesa;
+  }
+  const entrada: { promesa: Promise<AbrirGuiaResponse>; respondidaEn: number | null } = {
+    promesa: get<AbrirGuiaResponse>(`/api/v1/guias/${guiaId}`),
+    respondidaEn: null,
+  };
+  guiasRecientes.set(guiaId, entrada);
+  entrada.promesa.then(
+    () => {
+      entrada.respondidaEn = Date.now();
+    },
+    () => {
+      if (guiasRecientes.get(guiaId) === entrada) guiasRecientes.delete(guiaId);
+    },
+  );
+  return entrada.promesa;
 }
 
 export async function listarGuiasDelPrograma(
@@ -348,8 +419,8 @@ export async function descargarGuiaPDF(guiaId: number): Promise<Blob> {
     credentials: "include",
   });
   if (!res.ok) {
-    const body = (await res.json().catch(() => null)) as { detail?: string } | null;
-    throw new ApiError(res.status, body?.detail ?? `HTTP ${res.status}`);
+    const body = (await res.json().catch(() => null)) as { detail?: unknown } | null;
+    throw new ApiError(res.status, mensajeDeError(body?.detail, res.status));
   }
   return res.blob();
 }
@@ -357,6 +428,8 @@ export async function descargarGuiaPDF(guiaId: number): Promise<Blob> {
 export interface SistemaEvaluacionResponse {
   id: number;
   materia_id: number;
+  // Código de la memoria (#772, p. ej. E1); null en los anteriores a la importación.
+  codigo: string | null;
   tipo: string;
   descripcion: string;
   ponderacion_minima: number;
@@ -383,6 +456,7 @@ export async function listarSistemasEvaluacionDeGuia(
 // colisiona y usa el path natural.
 
 export interface SistemaEvaluacionCreate {
+  codigo?: string;
   tipo: string;
   descripcion?: string;
   ponderacion_minima: number;
@@ -560,7 +634,9 @@ export interface GuiaHermanaImportable {
   programa_codigo: string;
   asignatura_codigo: string;
   asignatura_programa_nombre: string;
-  fecha_aprobacion: string | null;
+  // "Aprobada" o "EnRevision" (issue #740) y la fecha de su última transición.
+  estado: string;
+  fecha_estado: string | null;
   n_referencias: number;
   n_sesiones: number;
 }
@@ -623,6 +699,7 @@ export async function obtenerSesion(): Promise<SesionResponse> {
 }
 
 export async function cerrarSesion(): Promise<void> {
+  guiasRecientes.clear();
   await fetch(`${API_BASE}/auth/logout`, { method: "POST", credentials: "include" });
 }
 
@@ -651,6 +728,9 @@ export interface ProgramaResponse {
   nombre: string;
   estado: string;
   facultad_id: number | null;
+  // Identidad RUCT (#772): solo lectura, la escribe la importación.
+  codigo_ruct: string | null;
+  denominacion_oficial: string | null;
   // Issue #492: real solo en obtenerProgramaAdmin() -- el resto de sitios que
   // devuelven ProgramaResponse (vista propia del Director, listado de
   // Facultad) llegan a [] sin significado, mismo criterio que
@@ -694,14 +774,32 @@ export interface MateriaResponse {
   programa_id: number | null;
   // Issue #487: real solo en listarMateriasDeProgramaAdmin().
   num_asignaturas_programa: number;
+  // Módulo del programa (#762), opcional.
+  modulo_id: number | null;
+  modulo_codigo: string | null;
+  modulo_nombre: string | null;
+  // Identidad RUCT (#772): solo lectura, la escribe la importación.
+  codigo_ruct: string | null;
+  ects: number | null;
+}
+
+/** Horas de la materia frente a 25 h por ECTS (#772): informativo. */
+export interface ComprobacionHorasEcts {
+  ects: number;
+  horas_esperadas: number;
+  horas_materia: number;
+  cuadra: boolean;
+  diferencia: number;
 }
 
 export interface MetodologiaDocenteResponse {
   id: number;
-  // Issue #655: el catálogo es por Universidad.
-  universidad_id: number;
+  // #772: el catálogo es del Programa.
+  programa_id: number;
   codigo: string;
   descripcion: string;
+  // Solo en la lista del programa: cuántas asignaturas la usan.
+  numero_asignaturas?: number | null;
 }
 
 export interface MetodologiaMateriaResponse {
@@ -725,14 +823,17 @@ export interface ActividadFormativaMateriaResponse {
   codigo: string;
   nombre: string;
   horas: number;
+  porcentaje_presencialidad: number;
 }
 
 export interface MateriaDetalleResponse extends MateriaResponse {
   metodologias_docentes: MetodologiaMateriaResponse[];
   resultados_aprendizaje: ResultadoAprendizajeResponse[];
+  competencias: CompetenciaResponse[];
   asignaturas_programa: AsignaturaProgramaResponse[];
   sistemas_evaluacion: SistemaEvaluacionResponse[];
   actividades_formativas: ActividadFormativaMateriaResponse[];
+  comprobacion_horas_ects: ComprobacionHorasEcts | null;
 }
 
 export async function listarProgramas(): Promise<ProgramaResponse[]> {
@@ -776,6 +877,13 @@ export async function listarMisAsignaturasPrograma(): Promise<AsignaturaPrograma
   return get<AsignaturaProgramaParaProfesorResponse[]>("/api/v1/mis-asignaturas-programa");
 }
 
+// #740.11: semestre que Admin ha activado en el curso vigente; null si no hay
+// ninguno. Inicio filtra "Mis guías" con él.
+export async function obtenerMiSemestreActivo(): Promise<number | null> {
+  const r = await get<{ semestre_activo: number | null }>("/api/v1/mi-semestre-activo");
+  return r.semestre_activo;
+}
+
 export async function listarMaterias(programaId: number): Promise<MateriaResponse[]> {
   return get<MateriaResponse[]>(`/api/v1/programas/${programaId}/materias`);
 }
@@ -785,12 +893,12 @@ export async function obtenerMateria(materiaId: number): Promise<MateriaDetalleR
 }
 
 // --- ActividadFormativa a nivel Materia (discussion #227) --------------------
-// Catálogo institucional seed-estático, sin CRUD -- solo el reparto de horas
-// de la materia, en rejilla, un submit.
+// Reparto de horas y presencialidad de la materia (#772), en rejilla, un submit.
 
 export interface ActividadFormativaMateriaItem {
   actividad_formativa_id: number;
   horas: number;
+  porcentaje_presencialidad: number;
 }
 
 export async function obtenerActividadesFormativasMateria(
@@ -827,6 +935,124 @@ export async function consultarEstadoActividadesFormativasMateria(
 ): Promise<DiscrepanciaActividadFormativaResponse[]> {
   return get<DiscrepanciaActividadFormativaResponse[]>(
     `/api/v1/materias/${materiaId}/actividades-formativas/validacion`,
+  );
+}
+
+// #755: las mismas tres para Admin (paridad con el Director, como #599).
+export async function obtenerActividadesFormativasMateriaAdmin(
+  materiaId: number,
+): Promise<ActividadFormativaMateriaResponse[]> {
+  return get<ActividadFormativaMateriaResponse[]>(
+    `/api/v1/admin/materias/${materiaId}/actividades-formativas`,
+  );
+}
+
+export async function editarActividadesFormativasMateriaAdmin(
+  materiaId: number,
+  actividades: ActividadFormativaMateriaItem[],
+): Promise<ActividadFormativaMateriaResponse[]> {
+  return put<ActividadFormativaMateriaResponse[]>(
+    `/api/v1/admin/materias/${materiaId}/actividades-formativas`,
+    { actividades },
+  );
+}
+
+export async function consultarEstadoActividadesFormativasMateriaAdmin(
+  materiaId: number,
+): Promise<DiscrepanciaActividadFormativaResponse[]> {
+  return get<DiscrepanciaActividadFormativaResponse[]>(
+    `/api/v1/admin/materias/${materiaId}/actividades-formativas/validacion`,
+  );
+}
+
+// #755: las de metodologías docentes y resultados de aprendizaje de la materia
+// para Admin (paridad con el Director).
+export async function listarMetodologiasDocentesDisponiblesMateriaAdmin(
+  materiaId: number,
+): Promise<MetodologiaDocenteResponse[]> {
+  return get<MetodologiaDocenteResponse[]>(
+    `/api/v1/admin/materias/${materiaId}/metodologias-docentes/disponibles`,
+  );
+}
+
+export async function asociarMetodologiaDocenteMateriaAdmin(
+  materiaId: number,
+  metodologiaDocenteId: number,
+): Promise<MetodologiaMateriaResponse> {
+  return post<MetodologiaMateriaResponse>(
+    `/api/v1/admin/materias/${materiaId}/metodologias-docentes`,
+    { metodologia_docente_id: metodologiaDocenteId },
+  );
+}
+
+export async function obtenerAsociacionMetodologiaDocenteMateriaAdmin(
+  materiaId: number,
+  metodologiaDocenteId: number,
+): Promise<MetodologiaMateriaResponse> {
+  return get<MetodologiaMateriaResponse>(
+    `/api/v1/admin/materias/${materiaId}/metodologias-docentes/${metodologiaDocenteId}`,
+  );
+}
+
+export async function editarAsociacionMetodologiaDocenteMateriaAdmin(
+  materiaId: number,
+  metodologiaDocenteId: number,
+  descripcionPropia: string,
+): Promise<MetodologiaMateriaResponse> {
+  return put<MetodologiaMateriaResponse>(
+    `/api/v1/admin/materias/${materiaId}/metodologias-docentes/${metodologiaDocenteId}`,
+    { descripcion_propia: descripcionPropia },
+  );
+}
+
+export async function puedeDesasociarMetodologiaDocenteMateriaAdmin(
+  materiaId: number,
+  metodologiaDocenteId: number,
+): Promise<string[]> {
+  return get<string[]>(
+    `/api/v1/admin/materias/${materiaId}/metodologias-docentes/${metodologiaDocenteId}/puede-desasociarse`,
+  );
+}
+
+export async function desasociarMetodologiaDocenteMateriaAdmin(
+  materiaId: number,
+  metodologiaDocenteId: number,
+): Promise<void> {
+  return del(`/api/v1/admin/materias/${materiaId}/metodologias-docentes/${metodologiaDocenteId}`);
+}
+
+export async function listarResultadosAprendizajeDisponiblesMateriaAdmin(
+  materiaId: number,
+): Promise<ResultadoAprendizajeResponse[]> {
+  return get<ResultadoAprendizajeResponse[]>(
+    `/api/v1/admin/materias/${materiaId}/resultados-aprendizaje/disponibles`,
+  );
+}
+
+export async function asociarResultadoAprendizajeMateriaAdmin(
+  materiaId: number,
+  resultadoAprendizajeId: number,
+): Promise<void> {
+  return post<void>(`/api/v1/admin/materias/${materiaId}/resultados-aprendizaje`, {
+    resultado_aprendizaje_id: resultadoAprendizajeId,
+  });
+}
+
+export async function puedeDesasociarResultadoAprendizajeMateriaAdmin(
+  materiaId: number,
+  resultadoAprendizajeId: number,
+): Promise<string[]> {
+  return get<string[]>(
+    `/api/v1/admin/materias/${materiaId}/resultados-aprendizaje/${resultadoAprendizajeId}/puede-desasociarse`,
+  );
+}
+
+export async function desasociarResultadoAprendizajeMateriaAdmin(
+  materiaId: number,
+  resultadoAprendizajeId: number,
+): Promise<void> {
+  return del(
+    `/api/v1/admin/materias/${materiaId}/resultados-aprendizaje/${resultadoAprendizajeId}`,
   );
 }
 
@@ -878,9 +1104,16 @@ export async function editarResultadoAprendizaje(
   );
 }
 
+// Materias y asignaturas del programa a las que está asignado un resultado de
+// aprendizaje, con su id para enlazarlas (#740, punto 9).
+export interface AsignacionResultadoAprendizaje {
+  id: number;
+  nombre: string;
+}
+
 export interface ResultadoAprendizajeAsignacionesResponse {
-  materias: string[];
-  asignaturas_programa: string[];
+  materias: AsignacionResultadoAprendizaje[];
+  asignaturas_programa: AsignacionResultadoAprendizaje[];
 }
 
 export async function obtenerAsignacionesResultadoAprendizaje(
@@ -893,6 +1126,149 @@ export async function obtenerAsignacionesResultadoAprendizaje(
 
 export async function eliminarResultadoAprendizaje(resultadoId: number): Promise<void> {
   return del(`/api/v1/resultados-aprendizaje/${resultadoId}`);
+}
+
+// --- Competencias (#761) -----------------------------------------------------
+// Admin y DirectorPrograma usan los mismos endpoints: el backend autoriza según
+// la sesión (Admin sobre cualquier programa, el director sobre los suyos).
+
+export const TIPOS_COMPETENCIA = ["Básica", "General", "Transversal", "Específica"] as const;
+
+export interface CompetenciaResponse {
+  id: number;
+  programa_id: number;
+  codigo: string;
+  tipo: string;
+  descripcion: string;
+  numero_asignaturas: number | null;
+}
+
+export interface CompetenciaDatos {
+  codigo: string;
+  tipo: string;
+  descripcion: string;
+}
+
+export interface CompetenciaAsignacionesResponse {
+  materias: { id: number; nombre: string }[];
+  asignaturas_programa: { id: number; nombre: string }[];
+}
+
+export async function listarCompetencias(programaId: number): Promise<CompetenciaResponse[]> {
+  return get<CompetenciaResponse[]>(`/api/v1/programas/${programaId}/competencias`);
+}
+
+export async function crearCompetencia(
+  programaId: number,
+  datos: CompetenciaDatos,
+): Promise<CompetenciaResponse> {
+  return post<CompetenciaResponse>(`/api/v1/programas/${programaId}/competencias`, datos);
+}
+
+export async function obtenerCompetencia(competenciaId: number): Promise<CompetenciaResponse> {
+  return get<CompetenciaResponse>(`/api/v1/competencias/${competenciaId}`);
+}
+
+export async function editarCompetencia(
+  competenciaId: number,
+  datos: CompetenciaDatos,
+): Promise<CompetenciaResponse> {
+  return put<CompetenciaResponse>(`/api/v1/competencias/${competenciaId}`, datos);
+}
+
+export async function obtenerAsignacionesCompetencia(
+  competenciaId: number,
+): Promise<CompetenciaAsignacionesResponse> {
+  return get<CompetenciaAsignacionesResponse>(`/api/v1/competencias/${competenciaId}/asignaciones`);
+}
+
+export async function eliminarCompetencia(competenciaId: number): Promise<void> {
+  return del(`/api/v1/competencias/${competenciaId}`);
+}
+
+export async function listarCompetenciasDisponiblesMateria(
+  materiaId: number,
+): Promise<CompetenciaResponse[]> {
+  return get<CompetenciaResponse[]>(`/api/v1/materias/${materiaId}/competencias/disponibles`);
+}
+
+export async function asociarCompetenciaMateria(materiaId: number, competenciaId: number): Promise<void> {
+  await post<void>(`/api/v1/materias/${materiaId}/competencias`, { competencia_id: competenciaId });
+}
+
+export async function puedeDesasociarCompetenciaMateria(
+  materiaId: number,
+  competenciaId: number,
+): Promise<string[]> {
+  return get<string[]>(
+    `/api/v1/materias/${materiaId}/competencias/${competenciaId}/puede-desasociarse`,
+  );
+}
+
+export async function desasociarCompetenciaMateria(materiaId: number, competenciaId: number): Promise<void> {
+  return del(`/api/v1/materias/${materiaId}/competencias/${competenciaId}`);
+}
+
+export async function listarCompetenciasDisponiblesAsignaturaPrograma(
+  asignaturaProgramaId: number,
+): Promise<CompetenciaResponse[]> {
+  return get<CompetenciaResponse[]>(
+    `/api/v1/asignaturas-programa/${asignaturaProgramaId}/competencias/disponibles`,
+  );
+}
+
+export async function asociarCompetenciaAsignaturaPrograma(
+  asignaturaProgramaId: number,
+  competenciaId: number,
+): Promise<void> {
+  await post<void>(`/api/v1/asignaturas-programa/${asignaturaProgramaId}/competencias`, {
+    competencia_id: competenciaId,
+  });
+}
+
+export async function desasociarCompetenciaAsignaturaPrograma(
+  asignaturaProgramaId: number,
+  competenciaId: number,
+): Promise<void> {
+  return del(`/api/v1/asignaturas-programa/${asignaturaProgramaId}/competencias/${competenciaId}`);
+}
+
+// --- Módulos (#762) ------------------------------------------------------------
+// Los gestiona solo Admin; el director los ve en la lista de materias.
+
+export interface ModuloResponse {
+  id: number;
+  programa_id: number;
+  codigo: string;
+  nombre: string;
+  descripcion: string;
+  num_materias: number;
+}
+
+export interface ModuloDatos {
+  codigo: string;
+  nombre: string;
+  descripcion: string;
+}
+
+export async function listarModulos(programaId: number): Promise<ModuloResponse[]> {
+  return get<ModuloResponse[]>(`/api/v1/programas/${programaId}/modulos`);
+}
+
+export async function crearModuloAdmin(programaId: number, datos: ModuloDatos): Promise<ModuloResponse> {
+  return post<ModuloResponse>(`/api/v1/admin/programas/${programaId}/modulos`, datos);
+}
+
+export async function obtenerModuloAdmin(moduloId: number): Promise<ModuloResponse> {
+  return get<ModuloResponse>(`/api/v1/admin/modulos/${moduloId}`);
+}
+
+export async function editarModuloAdmin(moduloId: number, datos: ModuloDatos): Promise<ModuloResponse> {
+  return put<ModuloResponse>(`/api/v1/admin/modulos/${moduloId}`, datos);
+}
+
+export async function eliminarModuloAdmin(moduloId: number): Promise<void> {
+  return del(`/api/v1/admin/modulos/${moduloId}`);
 }
 
 export async function listarMetodologiasDocentesDisponiblesMateria(
@@ -993,13 +1369,17 @@ export interface ActividadFormativaAsignaturaProgramaResponse {
   codigo: string;
   nombre: string;
   horas: number;
+  // De la Materia (#772): solo lectura en la AsignaturaPrograma.
   porcentaje_presencialidad: number;
 }
 
 export interface AsignaturaProgramaDetalleResponse extends AsignaturaProgramaResponse {
+  // Código del catálogo institucional (Asignatura padre); null si no está vinculada.
+  asignatura_codigo: string | null;
   profesorado: Profesor[];
   metodologias_docentes: MetodologiaDocenteResponse[];
   resultados_aprendizaje: ResultadoAprendizajeResponse[];
+  competencias: CompetenciaResponse[];
   actividades_formativas: ActividadFormativaAsignaturaProgramaResponse[];
 }
 
@@ -1033,7 +1413,6 @@ export async function obtenerAsignaturaPrograma(
 export interface ActividadFormativaAsignaturaProgramaItem {
   actividad_formativa_id: number;
   horas: number;
-  porcentaje_presencialidad: number;
 }
 
 export async function obtenerActividadesFormativasAsignaturaPrograma(
@@ -1168,49 +1547,6 @@ export async function desasociarMetodologiaDocenteAsignaturaPrograma(
   return del(
     `/api/v1/asignaturas-programa/${asignaturaProgramaId}/metodologias-docentes/${metodologiaDocenteId}`,
   );
-}
-
-// --- MetodologiaDocente de un Programa (issue #526) -----------------------------
-
-export async function listarMetodologiasDocentesPrograma(
-  programaId: number,
-): Promise<MetodologiaDocenteResponse[]> {
-  return get<MetodologiaDocenteResponse[]>(`/api/v1/programas/${programaId}/metodologias-docentes`);
-}
-
-export async function listarMetodologiasDocentesDisponiblesPrograma(
-  programaId: number,
-): Promise<MetodologiaDocenteResponse[]> {
-  return get<MetodologiaDocenteResponse[]>(
-    `/api/v1/programas/${programaId}/metodologias-docentes/disponibles`,
-  );
-}
-
-export async function asociarMetodologiaDocentePrograma(
-  programaId: number,
-  metodologiaDocenteId: number,
-): Promise<void> {
-  return post<void>(`/api/v1/programas/${programaId}/metodologias-docentes`, {
-    metodologia_docente_id: metodologiaDocenteId,
-  });
-}
-
-/** Nombres de las Materia del Programa que usan la MetodologiaDocente -- [] = se
- * puede desasociar. */
-export async function puedeDesasociarMetodologiaDocentePrograma(
-  programaId: number,
-  metodologiaDocenteId: number,
-): Promise<string[]> {
-  return get<string[]>(
-    `/api/v1/programas/${programaId}/metodologias-docentes/${metodologiaDocenteId}/puede-desasociarse`,
-  );
-}
-
-export async function desasociarMetodologiaDocentePrograma(
-  programaId: number,
-  metodologiaDocenteId: number,
-): Promise<void> {
-  return del(`/api/v1/programas/${programaId}/metodologias-docentes/${metodologiaDocenteId}`);
 }
 
 export async function listarResultadosAprendizajeDisponiblesAsignaturaPrograma(
@@ -1370,13 +1706,23 @@ export interface MetodologiaDocenteUpdate {
   descripcion: string;
 }
 
-// Issue #655: listar/crear van anidados bajo la Universidad (backend); la pantalla
-// se queda en ruta plana con selector -- anidar es cosa del backend.
+// #772: catálogo del Programa, para Admin y Director (mismo patrón que Competencia).
 export async function listarMetodologiasDocentes(
-  universidadId: number,
+  programaId: number,
 ): Promise<MetodologiaDocenteResponse[]> {
-  return get<MetodologiaDocenteResponse[]>(
-    `/api/v1/universidades/${universidadId}/metodologias-docentes`,
+  return get<MetodologiaDocenteResponse[]>(`/api/v1/programas/${programaId}/metodologias-docentes`);
+}
+
+export interface MetodologiaDocenteAsignacionesResponse {
+  materias: { id: number; nombre: string }[];
+  asignaturas_programa: { id: number; nombre: string }[];
+}
+
+export async function obtenerAsignacionesMetodologiaDocente(
+  metodologiaDocenteId: number,
+): Promise<MetodologiaDocenteAsignacionesResponse> {
+  return get<MetodologiaDocenteAsignacionesResponse>(
+    `/api/v1/metodologias-docentes/${metodologiaDocenteId}/asignaciones`,
   );
 }
 
@@ -1387,13 +1733,10 @@ export async function obtenerMetodologiaDocente(
 }
 
 export async function crearMetodologiaDocente(
-  universidadId: number,
+  programaId: number,
   datos: MetodologiaDocenteCreate,
 ): Promise<MetodologiaDocenteResponse> {
-  return post<MetodologiaDocenteResponse>(
-    `/api/v1/universidades/${universidadId}/metodologias-docentes`,
-    datos,
-  );
+  return post<MetodologiaDocenteResponse>(`/api/v1/programas/${programaId}/metodologias-docentes`, datos);
 }
 
 export async function editarMetodologiaDocente(
@@ -1412,13 +1755,13 @@ export async function eliminarMetodologiaDocente(metodologiaDocenteId: number): 
   return del(`/api/v1/metodologias-docentes/${metodologiaDocenteId}`);
 }
 
-// --- ActividadFormativa (catálogo Admin por Universidad, issue #655: auth require_admin) ---
-// Mismo patrón que MetodologiaDocente: listar/crear anidados bajo la Universidad,
+// --- ActividadFormativa (catálogo del Programa, #772: Admin y Director) -------
+// Mismo patrón que MetodologiaDocente: listar/crear anidados bajo el Programa,
 // item por id plano.
 
 export interface ActividadFormativaResponse {
   id: number;
-  universidad_id: number;
+  programa_id: number;
   codigo: string;
   nombre: string;
 }
@@ -1434,11 +1777,9 @@ export interface ActividadFormativaUpdate {
 }
 
 export async function listarActividadesFormativas(
-  universidadId: number,
+  programaId: number,
 ): Promise<ActividadFormativaResponse[]> {
-  return get<ActividadFormativaResponse[]>(
-    `/api/v1/universidades/${universidadId}/actividades-formativas`,
-  );
+  return get<ActividadFormativaResponse[]>(`/api/v1/programas/${programaId}/actividades-formativas`);
 }
 
 export async function obtenerActividadFormativa(
@@ -1448,13 +1789,10 @@ export async function obtenerActividadFormativa(
 }
 
 export async function crearActividadFormativa(
-  universidadId: number,
+  programaId: number,
   datos: ActividadFormativaCreate,
 ): Promise<ActividadFormativaResponse> {
-  return post<ActividadFormativaResponse>(
-    `/api/v1/universidades/${universidadId}/actividades-formativas`,
-    datos,
-  );
+  return post<ActividadFormativaResponse>(`/api/v1/programas/${programaId}/actividades-formativas`, datos);
 }
 
 export async function editarActividadFormativa(
@@ -1534,22 +1872,25 @@ export async function listarProfesoresDisponiblesParaDirigirPrograma(
 // solo cambia el namespace de autorización.
 
 export interface MateriaAdminDetalleResponse extends MateriaResponse {
-  // las mismas colecciones que MateriaDetalleResponse, en solo lectura (Admin
-  // ve, no gestiona: eso es de DirectorPrograma), más sistemas_evaluacion, entidad
-  // propia de la Materia que MateriaDetalleResponse nunca expuso aquí
+  // las mismas colecciones que MateriaDetalleResponse; desde #755 Admin también
+  // las gestiona (espejo del DirectorPrograma)
   metodologias_docentes: MetodologiaMateriaResponse[];
   resultados_aprendizaje: ResultadoAprendizajeResponse[];
+  competencias: CompetenciaResponse[];
   asignaturas_programa: AsignaturaProgramaResponse[];
   sistemas_evaluacion: SistemaEvaluacionResponse[];
   actividades_formativas: ActividadFormativaMateriaResponse[];
+  comprobacion_horas_ects: ComprobacionHorasEcts | null;
 }
 
 export interface MateriaAdminCreate {
   nombre: string;
+  modulo_id: number | null;
 }
 
 export interface MateriaAdminUpdate {
   nombre: string;
+  modulo_id: number | null;
 }
 
 export async function listarMateriasDeProgramaAdmin(

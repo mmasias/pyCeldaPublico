@@ -14,13 +14,13 @@
 - **Proyecto**: pyCelda
 - **Fase RUP**: Elaboración
 - **Disciplina**: Diseño
-- **Versión**: 1.0
-- **Fecha**: 2026-09-04
-- **Autor**: Claude Sonnet 5 (vía Claude Code)
+- **Versión**: 2.0
+- **Fecha**: 2026-10-17
+- **Autor**: Claude (vía Claude Code)
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`editarActividadesFormativasAsignaturaPrograma()`](/RUP/02-analisis/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md): mismo patrón que [`editarActividadesFormativasMateria()`](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md) sobre la asociación `ActividadFormativaAsignaturaPrograma`, con `porcentaje_presencialidad` (rango 0-100) además de `horas`. `GET` + `PUT` sobre la misma URL; `<<choice>>` de validación de entrada = `422` sin persistir.
+Bajada a diseño del caso de análisis [`editarActividadesFormativasAsignaturaPrograma()`](/RUP/02-analisis/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md): mismo patrón que [`editarActividadesFormativasMateria()`](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md) sobre la asociación `ActividadFormativaAsignaturaPrograma`, solo con `horas`. La respuesta añade a cada fila el `porcentaje_presencialidad` de la `Materia` de la asignatura, de solo lectura (issue [#772](https://github.com/mmasias/pyCelda/issues/772)). `GET` + `PUT` sobre la misma URL; `<<choice>>` de validación de entrada = `422` sin persistir.
 
 ## Diagrama de secuencia de diseño
 
@@ -34,39 +34,37 @@ Bajada a diseño del caso de análisis [`editarActividadesFormativasAsignaturaPr
 
 ## Participantes
 
-- **Vista**: `EditarActividadesFormativasAsignaturaProgramaView` (React) -- rejilla de 10 filas, `codigo`/`nombre` de solo lectura, `horas` y `porcentaje_presencialidad` editables; `GET` + `PUT /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas`. Vive en la pantalla de detalle de `AsignaturaPrograma` ([`abrirAsignaturaPrograma()`](/RUP/03-diseño/casos-uso/abrirAsignaturaPrograma/README.md)).
-- **API**: `routers/asignatura_programa.py::listar_actividades_formativas(asignatura_programa_id)` / `::editar_actividades_formativas(asignatura_programa_id, datos)` -- auth `get_current_director_programa_id` + `_verificar_asignatura_programa_del_director`.
-- **Modelo**: `ActividadFormativaAsignaturaPrograma.actualizar(horas, porcentaje_presencialidad)`.
-- **Repositorio**: `ActividadFormativaAsignaturaProgramaRepository.listar_de(asignatura_programa_id)` / `.actualizar_lote(filas)`.
+- **Vista**: `EditarActividadesFormativasAsignaturaPrograma` (React) -- rejilla con una fila por actividad del catálogo del programa, `codigo`/`nombre` de solo lectura, `horas` editable, columna "% presencialidad (de la materia)" de solo lectura; `GET` + `PUT /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas`. Se entra desde la ficha de `AsignaturaPrograma` ([`abrirAsignaturaPrograma()`](/RUP/03-diseño/casos-uso/abrirAsignaturaPrograma/README.md)).
+- **API**: `routers/asignatura_programa.py::listar_actividades_formativas_asignatura_programa(asignatura_programa_id)` / `::editar_actividades_formativas_asignatura_programa(asignatura_programa_id, datos)` -- auth `get_current_director_programa_id` + `_verificar_asignatura_programa_del_director`; `_materia_id_de()` para leer la presencialidad.
+- **Modelo**: `ActividadFormativaAsignaturaPrograma.actualizar(horas)`.
+- **Repositorio**: `ActividadFormativaAsignaturaProgramaRepository.listar_de(asignatura_programa_id)` / `.guardar()`; `presencialidad_de_la_materia(db, materia_id)` y `serializar_actividades_formativas_asignatura_programa(db, materia_id, filas)` en `repositories/actividad_formativa.py`.
 
 ## Contrato de endpoint
 
 ### GET `/api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas`
 
-**Response (200 OK):** lista de 10 objetos `{ actividad_formativa_id, codigo, nombre, horas, porcentaje_presencialidad }`, ordenados por `codigo`.
+**Response (200 OK):** lista de `{ actividad_formativa_id, codigo, nombre, horas, porcentaje_presencialidad }`, una por actividad del catálogo del `Programa`, en orden de alta. `porcentaje_presencialidad` es el de la `Materia` (0 si no tiene fila, caso que el autopoblado impide).
 
 **Response (404 Not Found):** `AsignaturaPrograma` inexistente o no dirigida por el `DirectorPrograma`.
 
 ### PUT `/api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas`
 
-**Request body:** `{ "actividades": [ { "actividad_formativa_id": int, "horas": number, "porcentaje_presencialidad": number }, ... ] }`.
+**Request body:** `{ "actividades": [ { "actividad_formativa_id": int, "horas": number }, ... ] }`. Un `porcentaje_presencialidad` en una fila se ignora (no forma parte de `ActividadFormativaAsignaturaProgramaItem`).
 
-**Response (200 OK):** la lista actualizada.
+**Response (200 OK):** la lista actualizada, mismo shape que el `GET`.
 
-**Response (422 Unprocessable Entity):**
-```json
-{ "detail": "porcentaje_presencialidad debe estar entre 0 y 100" }
-```
-o `horas` negativa, o `actividad_formativa_id` fuera de catálogo / duplicado. Nada se persiste.
+**Response (422 Unprocessable Entity):** `horas` negativa (Pydantic), o `actividad_formativa_id` fuera de catálogo / duplicado (router). Nada se persiste.
 
 **Response (404 Not Found):** `AsignaturaPrograma` inexistente o ajena.
 
 ## Decisiones de diseño
 
-- **`porcentaje_presencialidad` es `Numeric(5, 2)`** con validación de rango `[0, 100]` en el schema (Pydantic `ge=0, le=100`) y cinturón en el modelo. Es el único campo del clúster con cota -- se corresponde con un porcentaje real del formulario oficial.
-- **Mismas decisiones de forma que `editarActividadesFormativasMateria()`**: URL de colección sin id de fila, `PUT` transaccional con `rollback` en `422`, sin `HistorialCambio`, la regla `AfM = Σ AfAdM` fuera de este endpoint.
-- **Nivel consumido por el render de la `Guia`**: `render/guia_docente.py` deja de usar la constante `_ACTIVIDADES_FORMATIVAS` y lee `guia.asignatura_programa` -> filas `ActividadFormativaAsignaturaPrograma` (las 10, con `horas` y `porcentaje_presencialidad`) para la sección 4 del formulario oficial. Ese cambio del render va en el PR posterior (junto al medidor), sobre tablas ya pobladas en producción -- ver fichas de Desarrollo de `descargarGuiaPDF()` / `previsualizarGuia()`.
-- **Tabla nueva `actividades_formativas_asignatura_programa`** (`asignatura_programa_id` PK/FK, `actividad_formativa_id` PK/FK, `horas`, `porcentaje_presencialidad`). Autopoblado a 0 al crear la `AsignaturaPrograma` (`crear()` del repositorio, `seed_programa.py`, backfill de migración) -- ver [modelo de datos](/RUP/03-diseño/modelo-datos/README.md).
+- **Presencialidad en la respuesta, no en la tabla**: `ActividadFormativaAsignaturaProgramaResponse` conserva `porcentaje_presencialidad` para que la Vista, la ficha de la asignatura y `abrirGuia()` sigan recibiendo la misma forma; el valor sale de `ActividadFormativaMateria` vía `serializar_actividades_formativas_asignatura_programa()`, compartido con `routers/guia.py`.
+- **Ignorar, no rechazar, la presencialidad del body**: un cliente antiguo que la siga enviando no recibe `422`; simplemente no tiene efecto.
+- **Mismas decisiones de forma que `editarActividadesFormativasMateria()`**: URL de colección sin id de fila, `PUT` transaccional, sin `HistorialCambio`, la regla `AfM = Σ AfAdM` fuera de este endpoint.
+- **Nivel consumido por el render de la `Guia`**: `render/guia_docente.py` lee las filas `ActividadFormativaAsignaturaPrograma` de `guia.asignatura_programa` para las horas de la sección 4, y la presencialidad de `materia.actividades_formativas` -- ver fichas de Desarrollo de `descargarGuiaPDF()` / `previsualizarGuia()`.
+- **Tabla `actividades_formativas_asignatura_programa`** (`asignatura_programa_id` PK/FK, `actividad_formativa_id` PK/FK, `horas`). Autopoblado a 0 al crear la `AsignaturaPrograma` (`crear()` del repositorio, `seed_programa.py`) y al crear una actividad del programa -- ver [modelo de datos](/RUP/03-diseño/modelo-datos/README.md).
+- **Histórico**: hasta #772 la tabla tenía también `porcentaje_presencialidad` (`Numeric(5, 2)`, rango 0-100 en el schema) y el `PUT` lo editaba; la migración `migrar_catalogos_por_programa.py` lo movió a `actividades_formativas_materia`.
 
 **Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: endpoint espejo bajo `/api/v1/admin/...` (`GET`/`PUT /api/v1/admin/asignaturas-programa/{id}/actividades-formativas`), autenticado con `require_admin` en vez de `get_current_director_programa_id` + comprobación de propiedad; reutiliza sin cambios los mismos métodos de repositorio. La secuencia es idéntica con `Admin` como actor.
 
@@ -74,4 +72,4 @@ o `horas` negativa, o `actividad_formativa_id` fuera de catálogo / duplicado. N
 
 - [`editarActividadesFormativasAsignaturaPrograma()` en Análisis](/RUP/02-analisis/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md).
-- [`editarActividadesFormativasMateria()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md) -- el mismo patrón un nivel arriba.
+- [`editarActividadesFormativasMateria()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md) -- el mismo patrón un nivel arriba, donde se edita la presencialidad.

@@ -10,40 +10,42 @@ database "Base de Datos" as DB
 
 DirectorPrograma -> Vista: solicita editar las actividades formativas de la Materia
 activate Vista
+Vista -> API: GET /api/v1/materias/{materia_id}
+note right of API: ects de la Materia para el total frente\na 25 h por ECTS (cálculo de la Vista)
+API --> Vista: 200 OK (MateriaDetalleResponse)
 Vista -> API: GET /api/v1/materias/{materia_id}/actividades-formativas
 activate API
 API -> Repo: listar_de(materia_id)
 activate Repo
-Repo -> DB: SELECT afm.*, af.codigo, af.nombre FROM actividades_formativas_materia afm\nJOIN actividades_formativas af ON af.id = afm.actividad_formativa_id\nWHERE afm.materia_id = :materia_id ORDER BY af.codigo
+Repo -> DB: SELECT afm.*, af.codigo, af.nombre FROM actividades_formativas_materia afm\nJOIN actividades_formativas af ON af.id = afm.actividad_formativa_id\nWHERE afm.materia_id = :materia_id ORDER BY af.id
 activate DB
-DB --> Repo: 10 filas (codigo/nombre + horas)
+DB --> Repo: una fila por actividad del catálogo del Programa
 deactivate DB
 Repo --> API: lista de ActividadFormativaMateria
 deactivate Repo
 API --> Vista: 200 OK (lista de ActividadFormativaMateriaResponse)
 deactivate API
-Vista --> DirectorPrograma: presenta la rejilla de 10 filas (codigo/nombre solo lectura, horas editable)
+Vista --> DirectorPrograma: presenta la rejilla (codigo/nombre solo lectura,\nhoras y presencialidad editables, total frente a 25 h por ECTS)
 
-DirectorPrograma -> Vista: teclea las horas y guarda
-Vista -> API: PUT /api/v1/materias/{materia_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas})
+DirectorPrograma -> Vista: teclea horas y presencialidad y guarda
+Vista -> API: PUT /api/v1/materias/{materia_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas, porcentaje_presencialidad})
 activate API
-alt algún horas < 0 o actividad_formativa_id fuera de catálogo
+alt horas < 0, presencialidad fuera de 0-100, o actividad_formativa_id fuera de catálogo o duplicado
     API --> Vista: 422 Unprocessable Entity (no se persiste nada)
-    Vista --> DirectorPrograma: presenta mensaje de horas no válidas
-else todas las horas válidas
+    Vista --> DirectorPrograma: presenta mensaje de valores no válidos
+else todos los valores válidos
     loop por cada fila del body
-        API -> AFM: actualizar(horas)
+        API -> AFM: actualizar(horas, porcentaje_presencialidad)
         activate AFM
-        note right of AFM: única columna editable\n(las 10 filas ya existen, autopobladas a 0)
+        note right of AFM: sin porcentaje_presencialidad en la fila,\nse conserva el que tenía
         deactivate AFM
     end
-    API -> Repo: actualizar_lote(actividades_formativas_materia)
+    API -> Repo: guardar()
     activate Repo
-    Repo -> DB: UPDATE actividades_formativas_materia SET horas = ...\n(una sentencia por fila, misma transacción)
+    Repo -> DB: UPDATE actividades_formativas_materia SET horas, porcentaje_presencialidad ...\n(misma transacción)
     activate DB
     DB --> Repo: ok
     deactivate DB
-    Repo --> API: lista de ActividadFormativaMateria
     deactivate Repo
     API --> Vista: 200 OK (lista actualizada)
     Vista --> DirectorPrograma: reparto guardado

@@ -6,7 +6,7 @@
 
 # pyCelda > abrirMetodologiasDocentes()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirMetodologiasDocentes/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirMetodologiasDocentes/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirMetodologiasDocentes/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirMetodologiasDocentes/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,15 +31,25 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Admin`|
-|**Objetivo**|Consultar el listado de `MetodologiaDocente` del catálogo institucional|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Consultar el catálogo de `MetodologiaDocente` de un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Subfunción|
 
 </div>
 
+Mismo patrón lista/detalle que [`abrirCompetencias()`](../abrirCompetencias/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): `Programa *-- MetodologiaDocente`, catálogo propio del programa con el código y la descripción literales de su memoria verificada. Pestaña **🧩 Metodologías** del programa, tras **🧭 Competencias**, en las dos vistas (`/programas/:id/metodologias-docentes` y `/admin/programas/:id/metodologias-docentes`); misma pantalla para los dos actores. Sin columna de tipo: la metodología solo tiene código y descripción.
+
+**Columna "Nº de Asign."**: número de `AsignaturaPrograma` del programa (todas sus materias) que tienen asignada la metodología. Solo informativa, como en `Competencia`: con 0, la celda se presenta con fondo rojo suave, sin bloqueo. Un programa sin metodologías presenta el aviso "Este programa no tiene metodologías docentes." en lugar de la tabla.
+
+**Absorbe a `abrirMetodologiasDocentesPrograma()`**: hasta #772 había dos listados, el catálogo institucional de la `Universidad` (este caso de uso, con selector de `Universidad`, solo `Admin`, desde `SISTEMA_DISPONIBLE`) y el subconjunto habilitado en cada `Programa` (`abrirMetodologiasDocentesPrograma()`, con `asociarMetodologiaDocenteAPrograma()`/`desasociarMetodologiaDocentePrograma()`, issues [#526](https://github.com/mmasias/pyCelda/issues/526)/[#527](https://github.com/mmasias/pyCelda/issues/527)). Con el catálogo en el `Programa` el paso de habilitación desaparece y queda un único listado, dentro del programa.
+
+Códigos y textos de los wireframes ilustrativos: cada programa tiene los de su memoria (en las memorias, el mismo código MD2 puede significar cosas distintas según el programa).
+
 ## Referencias
 
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()`
-- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `MetodologiaDocente`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Universidad *-- MetodologiaDocente`: catálogo institucional, mismo patrón que `Asignatura`, no composición navegable como `Facultad`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()` (misma pantalla conceptual, rutas `/admin/...`)
+- [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) y [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- package `MetodologiaDocente`
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-- MetodologiaDocente`
+- Issue [#772](https://github.com/mmasias/pyCelda/issues/772) -- catálogo por programa

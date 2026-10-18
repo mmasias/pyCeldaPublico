@@ -42,6 +42,8 @@ Caso de uso reutilizado por `DirectorPrograma` (`DirectorPrograma --|> Profesor`
 
 **Retocado el wireframe al cerrar la tanda #486/#487/#488/#492 (issue [#496](https://github.com/mmasias/pyCelda/issues/496)), sin tocar la especificación**: el listado gana la columna "Asignaturas" -- contador derivado del número de `AsignaturaPrograma` de cada `Materia`, issue [#487](https://github.com/mmasias/pyCelda/issues/487).
 
+**Agrupación por módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: si alguna `Materia` del `Programa` tiene `Modulo`, el listado se agrupa por módulo (cabecera `código -- nombre`) y deja al final el grupo **Sin módulo** con las materias que aún no tienen. Si ninguna materia tiene módulo (también cuando el programa tiene módulos aún vacíos), el listado es la tabla plana de siempre. Igual en las dos vistas: el `DirectorPrograma` ve la agrupación, pero no gestiona los módulos.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()`

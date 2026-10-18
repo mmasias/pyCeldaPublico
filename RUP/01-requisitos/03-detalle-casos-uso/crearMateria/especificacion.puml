@@ -17,12 +17,14 @@ state crearMateria as "crearMateria()" {
     [*] -[#green]-> SolicitandoDatos
     note on link
     <b>Sistema</b> presenta solicitud de nombre de la Materia
+    <b>Sistema</b> presenta selección de Modulo del Programa, con opción sin módulo
     <b>Sistema</b> permite solicitar crear
     end note
 
     SolicitandoDatos -[#green]-> [*]
     note on link
     <b>Admin</b> introduce nombre
+    <b>Admin</b> selecciona Modulo
     <b>Admin</b> solicita crear
     end note
 }

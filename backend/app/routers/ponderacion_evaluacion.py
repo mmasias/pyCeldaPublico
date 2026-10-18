@@ -7,6 +7,7 @@ from app.core.auth import (
     get_current_rol,
 )
 from app.core.database import get_db
+from app.models.historial_cambio import HistorialCambio
 from app.models.ponderacion_evaluacion import PonderacionEvaluacion
 from app.repositories.asignatura_programa import AsignaturaProgramaRepository
 from app.repositories.guia import GuiaRepository
@@ -14,6 +15,8 @@ from app.repositories.materia import MateriaRepository
 from app.repositories.ponderacion_evaluacion import PonderacionEvaluacionRepository
 from app.repositories.sistema_evaluacion import SistemaEvaluacionRepository
 from app.routers.guia import (
+    _resumen_contenido,
+    aplicar_regla_de_estado_por_escritura,
     aplicar_transicion_por_correccion_del_director,
     autorizar_escritura_guia,
 )
@@ -183,7 +186,45 @@ def editar_ponderacion_evaluacion(
             detail="La ponderación supera el máximo del sistema de evaluación",
         )
 
-    if como_director:
+    # Guardar sin cambios no es una edición: no toca la guía ni su estado.
+    if (
+        ponderacion.sistema_evaluacion_id == datos.sistema_evaluacion_id
+        and ponderacion.descripcion == datos.descripcion
+        and float(ponderacion.ponderacion) == float(datos.ponderacion)
+    ):
+        return ponderacion
+
+    # Un instrumento ya vinculado forma parte de la guía: editarlo aplica la
+    # regla de estado de Guardar borrador y deja rastro en el historial. Uno
+    # pendiente (sin vincular) se confirma al guardar el borrador.
+    if ponderacion.vinculada:
+        aplicar_regla_de_estado_por_escritura(
+            db, guia, como_director, director_programa_id, profesor_id
+        )
+        # valor_anterior/valor_nuevo son cortos (String(50)) y llevan
+        # descripción y peso; el cambio de sistema de evaluación va en el
+        # comentario para que no se pierda (#740, punto 4).
+        comentario = "instrumento de evaluación editado"
+        if ponderacion.sistema_evaluacion_id != datos.sistema_evaluacion_id:
+            comentario += (
+                f"; sistema: {ponderacion.sistema_evaluacion.codigo or ponderacion.sistema_evaluacion.etiqueta()}"
+                f" -> {sistema.codigo or sistema.etiqueta()}"
+            )
+        db.add(
+            HistorialCambio.registrar(
+                guia_id=guia.id,
+                autor_id=director_programa_id if como_director else profesor_id,
+                campo="ponderaciones_evaluacion",
+                valor_anterior=_resumen_contenido(
+                    f"{ponderacion.descripcion} ({float(ponderacion.ponderacion):g}%)"
+                ),
+                valor_nuevo=_resumen_contenido(
+                    f"{datos.descripcion} ({float(datos.ponderacion):g}%)"
+                ),
+                comentario=comentario[:200],
+            )
+        )
+    elif como_director:
         aplicar_transicion_por_correccion_del_director(db, guia, director_programa_id)
     ponderacion.actualizar(
         datos.sistema_evaluacion_id, datos.descripcion, datos.ponderacion

@@ -1,0 +1,19 @@
+@startsalt crearModulo-wireframe
+{
+    <b>CREAR MÓDULO</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "          "
+        <b>Nombre (*):</b>
+        "                                        "
+        <b>Descripción:</b>
+        "                                                  "
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear] | [Cancelar]}
+}
+@endsalt

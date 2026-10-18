@@ -21,6 +21,6 @@ ActividadFormativaController --> ActividadFormativaRepository: <font size=8>obte
 
 ActividadFormativaRepository -- ActividadFormativa
 
-AbrirActividadFormativaView --> ActividadFormativaAbiertoSalida: <font size=8>muestra datos de la ActividadFormativa
+AbrirActividadFormativaView --> ActividadFormativaAbiertoSalida: <font size=8>presenta la actividad formativa
 
 @enduml

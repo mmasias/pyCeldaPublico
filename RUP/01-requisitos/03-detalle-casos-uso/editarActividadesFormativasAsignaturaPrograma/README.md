@@ -32,17 +32,21 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`DirectorPrograma`, `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))|
-|**Objetivo**|Editar las `horas` y el `porcentajePresencialidad` del reparto de las 10 `ActividadFormativa` de una `AsignaturaPrograma` (`ActividadFormativaAsignaturaPrograma`)|
+|**Objetivo**|Editar las `horas` del reparto de las actividades formativas de una `AsignaturaPrograma` (`ActividadFormativaAsignaturaPrograma`)|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Mismo caso de uso que [`editarActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md) un escalón más abajo en la cascada `Materia` -> `AsignaturaPrograma`, con **un campo más**: además de `horas` (decimales), cada actividad formativa lleva `porcentajePresencialidad` en rango **0-100** (con validación). El `DirectorPrograma` teclea los 10 pares (`horas`, `%`) en una rejilla y guarda de una sola vez. Las 10 filas están siempre presentes, autopobladas a 0 al crear la `AsignaturaPrograma`; sin `asociar`/`desasociar`. `codigo`/`nombre` de cada `ActividadFormativa` de solo lectura (catálogo institucional).
+Mismo caso de uso que [`editarActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md) un escalón más abajo en la cascada `Materia` -> `AsignaturaPrograma`, **solo con `horas`** (decimales). El `DirectorPrograma` teclea las horas de cada actividad formativa en una rejilla y guarda de una sola vez. La rejilla tiene una fila por cada `ActividadFormativa` del catálogo del `Programa` de la asignatura, siempre presente: se crea a 0 al dar de alta la `AsignaturaPrograma` o la actividad (invariante de autopoblado); sin `asociar`/`desasociar`. `codigo`/`nombre` de cada actividad de solo lectura (catálogo del `Programa`).
 
-`<<choice>>` tras la entrada de datos: rojo si alguna `horas` es negativa o algún `porcentajePresencialidad` cae fuera de `[0, 100]` -- rechaza el guardado completo y vuelve a `ASIGNATURA_PROGRAMA_ABIERTO` sin escribir nada. Verde persiste las 10 filas.
+**Presencialidad de solo lectura, la de la `Materia`** (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): la rejilla presenta, junto a las horas, el porcentaje de presencialidad que la `Materia` fija para cada actividad ([`editarActividadesFormativasMateria()`](../editarActividadesFormativasMateria/README.md)). No se edita aquí: la memoria lo fija por materia, y con la presencialidad en la asignatura cada `AsignaturaPrograma` podía declarar una distinta. Hasta #772 esta rejilla editaba `horas` y `porcentajePresencialidad` y el `<<choice>>` validaba también el rango 0-100.
 
-Es este nivel (`AsignaturaPrograma`) el que consume el render de la `Guia`: `descargarGuiaPDF()`/`previsualizarGuia()` pintan las 10 filas de `(AsignaturaPrograma, ActividadFormativa)` con sus `horas` y `%` en la sección 4 del formulario oficial. El `Profesor` **no** ve ni edita esta tabla en ninguna pantalla -- solo aparece en el render de su guía, igual que las metodologías docentes y los resultados de aprendizaje.
+`<<choice>>` tras la entrada de datos: rojo si alguna `horas` es negativa -- rechaza el guardado completo y vuelve a `ASIGNATURA_PROGRAMA_ABIERTO` sin escribir nada. Verde persiste todas las filas.
+
+Es este nivel (`AsignaturaPrograma`) el que consume el render de la `Guia` para las horas: `descargarGuiaPDF()`/`previsualizarGuia()` pintan las filas de `(AsignaturaPrograma, ActividadFormativa)` con sus `horas` y, al lado, la presencialidad de la `Materia`, en la sección 4 del formulario oficial. El `Profesor` **no** edita esta tabla: la ve de solo lectura en [`abrirGuia()`](../abrirGuia/README.md) y en el render de su guía, igual que las metodologías docentes y los resultados de aprendizaje.
+
+La misma pantalla ofrece copiar las horas de una asignatura prima de la misma materia ([`importarActividadesFormativasDeAsignaturaProgramaPrima()`](../importarActividadesFormativasDeAsignaturaProgramaPrima/README.md)).
 
 Retoca [`abrirAsignaturaPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/README.md): la pantalla de detalle de `AsignaturaPrograma` gana la sección "Actividades formativas" con la rejilla y el botón de entrada, sin tocar su especificación.
 
@@ -52,7 +56,7 @@ Retoca [`abrirAsignaturaPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/abr
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarActividadesFormativasAsignaturaPrograma()` (verde y rojo al mismo estado)
 - [actoresCasosUsoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoDirectorPrograma.puml) -- catálogo de casos de uso de `DirectorPrograma` sobre `AsignaturaPrograma`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativaAsignaturaPrograma{horas, porcentajePresencialidad}`, `(AsignaturaPrograma, ActividadFormativa) .. ActividadFormativaAsignaturaPrograma`
-- [`editarActividadesFormativasMateria()`](../editarActividadesFormativasMateria/README.md) -- el mismo reparto en el nivel `Materia`, contra el que se contrasta la regla `AfM = Σ AfAdM`
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativaAsignaturaPrograma{horas}`, `(AsignaturaPrograma, ActividadFormativa) .. ActividadFormativaAsignaturaPrograma`; la presencialidad en `ActividadFormativaMateria{horas, porcentajePresencialidad}`
+- [`editarActividadesFormativasMateria()`](../editarActividadesFormativasMateria/README.md) -- el mismo reparto en el nivel `Materia`, contra el que se contrasta la regla `AfM = Σ AfAdM`, y donde se edita la presencialidad
 - [`descargarGuiaPDF()`](../descargarGuiaPDF/README.md) / [`previsualizarGuia()`](../previsualizarGuia/README.md) -- consumidores del reparto en el render de la guía
-- [Discussion #227](https://github.com/mmasias/pyCelda/discussions/227) -- requerimiento de las actividades formativas
+- [Discussion #227](https://github.com/mmasias/pyCelda/discussions/227) -- requerimiento de las actividades formativas; issue [#772](https://github.com/mmasias/pyCelda/issues/772) -- presencialidad en la `Materia`

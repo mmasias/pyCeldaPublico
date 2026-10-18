@@ -7,14 +7,15 @@ state METODOLOGIA_DOCENTE_ABIERTO
 
 METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> abrirMetodologiaDocente
 note on link
-<b>Admin</b> solicita abrir MetodologiaDocente
+<b>Admin / DirectorPrograma</b> solicita abrir metodología docente
 end note
 
 state abrirMetodologiaDocente as "abrirMetodologiaDocente()" {
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> muestra datos de la MetodologiaDocente
+    <b>Sistema</b> muestra datos de la metodología docente
+    <b>Sistema</b> muestra materias y asignaturas del Programa que tienen asignada la metodología docente
     end note
 }
 

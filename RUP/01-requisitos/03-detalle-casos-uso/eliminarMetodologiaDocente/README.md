@@ -6,7 +6,7 @@
 
 # pyCelda > eliminarMetodologiaDocente()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/eliminarMetodologiaDocente/README.md)|[Diseño](/RUP/03-diseño/casos-uso/eliminarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/eliminarMetodologiaDocente/README.md)|[Diseño](/RUP/03-diseño/casos-uso/eliminarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -19,7 +19,7 @@
 
 <div align=center>
 
-|Bloqueada (en uso)|Confirmación (sin uso)|
+|Bloqueada (asignada)|Confirmación (sin asignar)|
 |:-:|:-:|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/wireframe-confirmacion.svg)|
 ||<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
@@ -32,17 +32,20 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Admin`|
-|**Objetivo**|Eliminar una `MetodologiaDocente` del catálogo institucional, siempre que ninguna `Materia` la tenga asociada|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Eliminar una `MetodologiaDocente` del catálogo del `Programa`, siempre que no esté asignada a ninguna `Materia` ni `AsignaturaPrograma`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()`/`eliminarProfesor()`. El "en uso" de la pantalla bloqueada es deliberadamente genérico, sin listar materias concretas: `Materia` (y su asociación `MetodologiaMateria` con `MetodologiaDocente`) no está en el seed extraído (ver [`docs/scripts/README.md`](/docs/scripts/README.md)), así que no hay nombres reales de materia que mostrar todavía -- MD1-MD7 sí son datos reales (guía canónica `GII__IYA003`), pero qué materia usa cada una no lo es. Elección de MD1/MD7 para bloqueada/confirmación es ilustrativa, no una afirmación sobre uso real de cada código.
+Borrado físico bloqueado relacionalmente, mismo patrón que [`eliminarCompetencia()`](../eliminarCompetencia/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): basta una asignación en cualquiera de los dos niveles de la cascada para bloquear. El mensaje de bloqueo nombra las `Materia` y `AsignaturaPrograma` concretas, en las mismas dos columnas que la Distribución de la ficha. El servidor vuelve a comprobarlo al borrar (409 con los nombres).
+
+Hasta #772 el bloqueo solo miraba las `Materia` y el mensaje era genérico ("en uso en materias del catálogo"), sin nombres. Códigos y textos de los wireframes ilustrativos.
 
 ## Referencias
 
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()`
-- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `MetodologiaDocente`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia o-- MetodologiaDocente` vía `MetodologiaMateria` (origen de la regla de bloqueo)
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()` (misma pantalla conceptual, rutas `/admin/...`)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia o-- MetodologiaDocente` vía `MetodologiaMateria`, `AsignaturaPrograma o-- MetodologiaDocente` (origen de la regla de bloqueo)
+- Issue [#772](https://github.com/mmasias/pyCelda/issues/772)

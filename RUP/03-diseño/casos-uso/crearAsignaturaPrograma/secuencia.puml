@@ -71,6 +71,10 @@ AsignaturaProgramaRepo -> DB: INSERT INTO asignaturas_programa (materia_id, asig
 activate DB
 DB --> AsignaturaProgramaRepo: id nueva fila
 deactivate DB
+AsignaturaProgramaRepo -> DB: INSERT filas a 0 (horas) en actividades_formativas_asignatura_programa,\nuna por ActividadFormativa del catálogo del Programa (autopoblado)
+activate DB
+DB --> AsignaturaProgramaRepo: ok
+deactivate DB
 AsignaturaProgramaRepo --> API: AsignaturaPrograma (estado Vigente)
 deactivate AsignaturaProgramaRepo
 

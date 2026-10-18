@@ -43,15 +43,15 @@ CursoAcademico --> Guia
 ' Categoría 2 -- catálogos asignados en cascada: existen con independencia de
 ' dónde se usan: la misma entrada puede asignarse en varios sitios.
 class "Asignatura" as Asignatura #A9CCE3
-class "Metodología docente" as MetodologiaDocente #A9CCE3
+' #772: catálogos del programa, como el resultado de aprendizaje y la competencia.
+class "Metodología docente" as MetodologiaDocente #A9DFBF
 class "Resultado de aprendizaje" as ResultadoAprendizaje #A9DFBF
 ' #761: catálogo del programa, mismo reparto que el resultado de aprendizaje.
 class "Competencia" as Competencia #A9DFBF
-class "Actividad formativa" as ActividadFormativa #A9CCE3
+class "Actividad formativa" as ActividadFormativa #A9DFBF
 class "Profesor" as Profesor #A9CCE3
 
 Asignatura ..> AsignaturaPrograma
-MetodologiaDocente ..> Programa
 MetodologiaDocente ..> Materia
 MetodologiaDocente ..> AsignaturaPrograma
 ResultadoAprendizaje ..> Materia

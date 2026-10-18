@@ -76,7 +76,6 @@ Recuento actual (verificado contra las carpetas, issue [#662](https://github.com
 |[`abrirFacultades()`](abrirFacultades/README.md)|Hecho|
 |[`abrirMetodologiaDocente()`](abrirMetodologiaDocente/README.md)|Hecho|
 |[`abrirMetodologiasDocentes()`](abrirMetodologiasDocentes/README.md)|Hecho|
-|[`abrirMetodologiasDocentesPrograma()`](abrirMetodologiasDocentesPrograma/README.md)|Hecho|
 |[`abrirInicio()`](abrirInicio/README.md)|Hecho -- sin endpoint propio; compone `abrirAsignaturasPrograma()`/`abrirProgramas()` (endpoints `_opcional` -> `[]`); discussion #274|
 |[`abrirPanelAdministracion()`](abrirPanelAdministracion/README.md)|Hecho -- sin endpoint de backend (menú resuelto en el cliente, sin fetch)|
 |[`abrirPlanificacionDocente()`](abrirPlanificacionDocente/README.md)|Hecho|
@@ -145,8 +144,30 @@ Existían como carpeta con ficha pero no figuraban en este índice (sincronizado
 |[`restaurarCopiaSeguridad()`](restaurarCopiaSeguridad/README.md)|Hecho|
 |[`consultarHistorialCambios()`](consultarHistorialCambios/README.md)|Hecho|
 |[`importarContenidoDeGuiaHermana()`](importarContenidoDeGuiaHermana/README.md)|Hecho|
-|[`asociarMetodologiaDocenteAPrograma()`](asociarMetodologiaDocenteAPrograma/README.md)|Hecho|
-|[`desasociarMetodologiaDocentePrograma()`](desasociarMetodologiaDocentePrograma/README.md)|Hecho|
 |[`duplicarSesion()`](duplicarSesion/README.md)|Hecho|
 |[`editarTextoSistemaEvaluacion()`](editarTextoSistemaEvaluacion/README.md)|Hecho|
 |[`importarActividadesFormativasDeAsignaturaProgramaPrima()`](importarActividadesFormativasDeAsignaturaProgramaPrima/README.md)|Hecho|
+
+## Competencia y Módulo (issues [#761](https://github.com/mmasias/pyCelda/issues/761), [#762](https://github.com/mmasias/pyCelda/issues/762))
+
+13 fichas nuevas (recuentos de este documento sin recalcular): 9 de `Competencia`, actores `Admin` y `DirectorPrograma`; 4 de `Modulo`, solo `Admin`.
+
+|Caso|Estado|
+|-|-|
+|[`abrirCompetencias()`](abrirCompetencias/README.md)|Hecho|
+|[`abrirCompetencia()`](abrirCompetencia/README.md)|Hecho|
+|[`crearCompetencia()`](crearCompetencia/README.md)|Hecho|
+|[`editarCompetencia()`](editarCompetencia/README.md)|Hecho|
+|[`eliminarCompetencia()`](eliminarCompetencia/README.md)|Hecho|
+|[`asociarCompetenciaAMateria()`](asociarCompetenciaAMateria/README.md)|Hecho|
+|[`desasociarCompetenciaAMateria()`](desasociarCompetenciaAMateria/README.md)|Hecho|
+|[`asociarCompetenciaAAsignaturaPrograma()`](asociarCompetenciaAAsignaturaPrograma/README.md)|Hecho|
+|[`desasociarCompetenciaAsignaturaPrograma()`](desasociarCompetenciaAsignaturaPrograma/README.md)|Hecho|
+|[`abrirModulos()`](abrirModulos/README.md)|Hecho|
+|[`crearModulo()`](crearModulo/README.md)|Hecho|
+|[`editarModulo()`](editarModulo/README.md)|Hecho|
+|[`eliminarModulo()`](eliminarModulo/README.md)|Hecho|
+
+## Catálogos de `MetodologiaDocente` y `ActividadFormativa` por `Programa` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))
+
+3 fichas retiradas, ninguna nueva: 131 carpetas con ficha tras el #772 (verificado contra las carpetas). Se retiran `asociarMetodologiaDocenteAPrograma()` y `desasociarMetodologiaDocentePrograma()` (desaparece la habilitación de una metodología del catálogo de `Universidad` en el `Programa`) y `abrirMetodologiasDocentesPrograma()`, absorbido por [`abrirMetodologiasDocentes()`](abrirMetodologiasDocentes/README.md). Los CRUD de `MetodologiaDocente` y `ActividadFormativa` pasan a catálogo del `Programa`, actores `Admin` y `DirectorPrograma`. Retocadas sin caso de uso nuevo: [`crearSistemaEvaluacion()`](crearSistemaEvaluacion/README.md), [`editarSistemaEvaluacion()`](editarSistemaEvaluacion/README.md) y [`abrirSistemaEvaluacion()`](abrirSistemaEvaluacion/README.md) (`codigo`), [`abrirPrograma()`](abrirPrograma/README.md) y [`abrirMateria()`](abrirMateria/README.md) (identidad RUCT de solo lectura; en la materia, además, presencialidad y comprobación de horas frente a 25 h × ECTS).

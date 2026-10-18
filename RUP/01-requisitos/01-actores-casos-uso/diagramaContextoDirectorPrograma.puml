@@ -22,7 +22,12 @@ state MATERIAS_ABIERTO
 state MATERIA_ABIERTO
 state RESULTADOS_APRENDIZAJE_ABIERTO
 state RESULTADO_APRENDIZAJE_ABIERTO
-state METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO
+state COMPETENCIAS_ABIERTO
+state COMPETENCIA_ABIERTO
+state METODOLOGIAS_DOCENTES_ABIERTO
+state METODOLOGIA_DOCENTE_ABIERTO
+state ACTIVIDADES_FORMATIVAS_ABIERTO
+state ACTIVIDAD_FORMATIVA_ABIERTO
 state ASIGNATURA_PROGRAMA_ABIERTO
 state GUIAS_DEL_PROGRAMA_ABIERTO
 state PLANIFICACION_DOCENTE_ABIERTO
@@ -155,8 +160,11 @@ MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarMetodologiaDocenteMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : editarAsociacionMetodologiaDocenteMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarResultadoAprendizajeAMateria()
 MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarResultadoAprendizajeAMateria()
+' #761: Competencia, mismo reparto en cascada que ResultadoAprendizaje.
+MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarCompetenciaAMateria()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarCompetenciaAMateria()
 ' editarActividadesFormativasMateria(): un solo self-loop -- exito y fallo (algun
-' valor de horas negativo, no se guarda nada) vuelven ambos a MATERIA_ABIERTO,
+' valor de horas negativo o presencialidad fuera de 0-100, #772, no se guarda nada) vuelven ambos a MATERIA_ABIERTO,
 ' misma que el estado de partida. La regla AfM = ΣAfAdM NO valida aqui: es blanda,
 ' vive en consultarEstadoActividadesFormativasMateria() (medidor, discussion #227).
 MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()
@@ -164,6 +172,10 @@ MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()
 ' solo lectura, compuesto desde abrirMateria() -- mismo patron que previsualizarGuia()
 ' sobre GUIA_ABIERTO. Sin <<choice>>: presenta el estado, no bloquea nada.
 MATERIA_ABIERTO --> MATERIA_ABIERTO : consultarEstadoActividadesFormativasMateria()
+' #755: espejo de Admin en los sistemas de evaluacion (con guarda de rango en crear/editar).
+MATERIA_ABIERTO --> MATERIA_ABIERTO : crearSistemaEvaluacion()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : editarSistemaEvaluacion()
+MATERIA_ABIERTO --> MATERIA_ABIERTO : eliminarSistemaEvaluacion()
 MATERIA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()
 MATERIAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 
@@ -175,22 +187,17 @@ MATERIAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 ' Profesor no ve las AF" revertido tras uso real). Admin gana los mismos dos retornos
 ' en diagramaContextoAdmin.puml -- pantallas de frontend distintas (AsignaturaPrograma.tsx
 ' -> Materia.tsx vs AsignaturaProgramaAdmin.tsx -> MateriaAdmin.tsx), misma navegacion.
-' --- MetodologiaDocente del Programa: pantalla propia del Director (issue #638);
-' Admin tiene pantalla propia desde #640/#641 (METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO
-' en diagramaContextoAdmin; distinto del catalogo global METODOLOGIAS_DOCENTES_ABIERTO) ---
-PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : abrirMetodologiasDocentesPrograma()
-METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAPrograma()
-METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO : desasociarMetodologiaDocentePrograma()
-METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()
 MATERIA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarResultadoAprendizajeAAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarResultadoAprendizajeAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarCompetenciaAAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarCompetenciaAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarMetodologiaDocenteAAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarMetodologiaDocenteAsignaturaPrograma()
 ' editarActividadesFormativasAsignaturaPrograma(): self-loop unico -- exito y fallo
-' (horas negativas o presencialidad fuera de 0-100, no se guarda nada) vuelven a
+' (horas negativas, no se guarda nada; la presencialidad vive en la Materia desde #772) vuelven a
 ' ASIGNATURA_PROGRAMA_ABIERTO. Este nivel es el que consume el render de la Guia.
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarActividadesFormativasAsignaturaPrograma()
 ' importarActividadesFormativasDeAsignaturaProgramaPrima(): self-loop unico (issue #529) -- copia el reparto de una
@@ -211,6 +218,41 @@ RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : eliminarResu
 RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()
 RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()
 RESULTADOS_APRENDIZAJE_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' --- Competencia (#761): catalogo propio de Programa (Programa *-- Competencia), mismo
+' patron lista/detalle que ResultadoAprendizaje y compartido con Admin. Sin estados de
+' Modulo: el Director ve el modulo de cada materia en MATERIAS_ABIERTO/MATERIA_ABIERTO,
+' pero no lo gestiona (#762) ---
+PROGRAMA_ABIERTO --> COMPETENCIAS_ABIERTO : abrirCompetencias()
+COMPETENCIAS_ABIERTO --> COMPETENCIA_ABIERTO : crearCompetencia()
+COMPETENCIAS_ABIERTO --> COMPETENCIA_ABIERTO : abrirCompetencia()
+COMPETENCIAS_ABIERTO --> COMPETENCIAS_ABIERTO : eliminarCompetencia()
+COMPETENCIA_ABIERTO --> COMPETENCIA_ABIERTO : editarCompetencia()
+COMPETENCIA_ABIERTO --> COMPETENCIAS_ABIERTO : abrirCompetencias()
+COMPETENCIAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+' --- MetodologiaDocente y ActividadFormativa (#772): catalogos propios de Programa
+' (Programa *-- MetodologiaDocente, Programa *-- ActividadFormativa), mismo patron
+' lista/detalle que Competencia y compartidos con Admin (mismos estados en
+' diagramaContextoAdmin). Sustituyen a METODOLOGIAS_DOCENTES_PROGRAMA_ABIERTO (#638),
+' retirado con abrirMetodologiasDocentesPrograma() -- absorbido por
+' abrirMetodologiasDocentes() -- y asociar/desasociarMetodologiaDocente(A)Programa(),
+' sin objeto al desaparecer la habilitacion del catalogo de Universidad ---
+PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : crearMetodologiaDocente()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : abrirMetodologiaDocente()
+METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()
+METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()
+METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()
+METODOLOGIAS_DOCENTES_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
+
+PROGRAMA_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : crearActividadFormativa()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : eliminarActividadFormativa()
+ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()
+ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()
+ACTIVIDADES_FORMATIVAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 
 ' --- Revision de guias del programa: la entrada hace el mismo papel que un abrirXs()
 ' plural. Reutiliza GUIA_ABIERTO (heredado de Profesor) para revisar contenido antes

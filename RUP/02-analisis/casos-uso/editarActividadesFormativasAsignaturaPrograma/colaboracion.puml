@@ -11,6 +11,7 @@ package editarActividadesFormativasAsignaturaPrograma as "editarActividadesForma
     rectangle #b5bd68 AsignaturaProgramaController
     rectangle #F2AC4E ActividadFormativaAsignaturaPrograma
     rectangle #F2AC4E ActividadFormativaAsignaturaProgramaRepository
+    rectangle #F2AC4E ActividadFormativaMateria
 }
 
 AsignaturaProgramaAbierto --> EditarActividadesFormativasAsignaturaProgramaView: <font size=8>editarActividadesFormativasAsignaturaPrograma(asignaturaProgramaId)
@@ -19,14 +20,16 @@ EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaControll
 
 AsignaturaProgramaController --> ActividadFormativaAsignaturaProgramaRepository: <font size=8>listarDe(asignaturaProgramaId) : lista de ActividadFormativaAsignaturaPrograma
 
-EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>guardarActividadesFormativas(asignaturaProgramaId, reparto)
+AsignaturaProgramaController --> ActividadFormativaMateria: <font size=8>porcentajePresencialidad (de la Materia, solo lectura)
 
-AsignaturaProgramaController --> ActividadFormativaAsignaturaPrograma: <font size=8>actualizar(horas, porcentajePresencialidad)
+EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>guardarActividadesFormativas(asignaturaProgramaId, repartoHoras)
+
+AsignaturaProgramaController --> ActividadFormativaAsignaturaPrograma: <font size=8>actualizar(horas)
 
 AsignaturaProgramaController --> ActividadFormativaAsignaturaProgramaRepository: <font size=8>actualizarLote(actividadesFormativasAsignaturaPrograma)
 
 ActividadFormativaAsignaturaProgramaRepository -- ActividadFormativaAsignaturaPrograma
 
-EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>reparto guardado (o valor no válido: horas negativas / presencialidad fuera de 0-100, no se guarda nada)
+EditarActividadesFormativasAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>reparto guardado (o horas negativas, no se guarda nada)
 
 @enduml

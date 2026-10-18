@@ -6,16 +6,16 @@ pyCelda gestiona el catálogo académico de la institución (universidades, facu
 
 - En la estructura académica:
   - Crear universidades y facultades.
-  - En cada programa: crear, editar el nombre, dar de baja (desde **Editar**), nombrar directores y gestionar sus metodologías docentes, sus resultados de aprendizaje, sus competencias y sus módulos.
-- Gestionar el catálogo institucional de asignaturas, el de metodologías docentes y el de actividades formativas: crear, editar, dar de baja.
+  - En cada programa: crear, editar el nombre, dar de baja (desde **Editar**), nombrar directores y gestionar sus catálogos de metodologías docentes, actividades formativas, resultados de aprendizaje y competencias, y sus módulos.
+- Gestionar el catálogo institucional de asignaturas: crear, editar, dar de baja.
 - En las materias de un programa:
   - Crearlas y asignarles su módulo.
   - Asociar o quitar resultados de aprendizaje, competencias y metodologías docentes.
-  - Editar las horas de sus actividades formativas.
+  - Editar las horas y la presencialidad de sus actividades formativas.
   - Crear, editar o eliminar sus sistemas de evaluación.
 - En las asignaturas de un programa:
   - Crear, editar y dar de baja.
-  - Editar sus resultados de aprendizaje, competencias, metodologías y actividades formativas.
+  - Editar sus resultados de aprendizaje, competencias, metodologías y las horas de sus actividades formativas.
   - Asignar o desasignar profesorado.
 - Gestionar el profesorado: crear, editar, dar de baja, y nombrar o quitar director de programa.
 - Consultar el estado de las guías docentes de un programa, previsualizarlas y descargar su PDF.
@@ -33,7 +33,7 @@ Para el mapa completo de qué depende de qué y quién gestiona cada bloque del 
 
 1. [Entrar y el panel de administración](entrarYElPanel.md)
 2. [Estructura académica](estructuraAcademica.md)
-3. [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md)
+3. [Catálogo de asignaturas](catalogoDeAsignaturasYMetodologias.md)
 4. [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md)
 5. [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)
 6. [Profesores](profesores.md)

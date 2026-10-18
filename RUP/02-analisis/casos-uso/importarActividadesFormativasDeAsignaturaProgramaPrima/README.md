@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`importarActividadesFormativasDeAsignaturaProgramaPrima()`](/RUP/01-requisitos/03-detalle-casos-uso/importarActividadesFormativasDeAsignaturaProgramaPrima/README.md): el `DirectorPrograma` copia el reparto de las 10 `ActividadFormativaAsignaturaPrograma` de una `AsignaturaPrograma` **prima** (misma `Materia`, issue [#529](https://github.com/mmasias/pyCelda/issues/529)) sobre la `AsignaturaPrograma` que tiene abierta. Reemplazo total **in place** (`actualizar(horas, porcentajePresencialidad)`, sin borrar y recrear), real e inmediato, sin efecto sobre ninguna `Guia` y sin `HistorialCambio`. Las candidatas excluyen la propia y las primas sin configurar (10 filas a 0), y se ordenan por proximidad de créditos.
+Traducción a clases de análisis del caso de uso [`importarActividadesFormativasDeAsignaturaProgramaPrima()`](/RUP/01-requisitos/03-detalle-casos-uso/importarActividadesFormativasDeAsignaturaProgramaPrima/README.md): el `DirectorPrograma` copia las horas de las `ActividadFormativaAsignaturaPrograma` de una `AsignaturaPrograma` **prima** (misma `Materia`, issue [#529](https://github.com/mmasias/pyCelda/issues/529)) sobre la `AsignaturaPrograma` que tiene abierta. Reemplazo total **in place** (`actualizar(horas)`, sin borrar y recrear; desde el issue [#772](https://github.com/mmasias/pyCelda/issues/772) solo horas, la presencialidad es de la `Materia` común), real e inmediato, sin efecto sobre ninguna `Guia` y sin `HistorialCambio`. Las candidatas excluyen la propia y las primas sin configurar (todas las filas a 0), y se ordenan por proximidad de créditos.
 
 <div align=center>
 
@@ -42,7 +42,7 @@ Traducción a clases de análisis del caso de uso [`importarActividadesFormativa
 **Responsabilidades:**
 - `listarPrimasImportables(asignaturaProgramaId)`: primas con alguna hora configurada, ordenadas por `abs(ects_prima - ects_destino)` y luego por nombre.
 - `validarPrima(destino, origen)`: revalidación server-side; el origen debe estar entre las primas configuradas de la destino, y si no, 404 uniforme. El id del cliente nunca se confía.
-- `importarActividadesFormativas(asignaturaProgramaId, origenAsignaturaProgramaId)`: actualiza in place las 10 filas de la destino con los valores del origen, en un solo commit.
+- `importarActividadesFormativas(asignaturaProgramaId, origenAsignaturaProgramaId)`: actualiza in place las filas de la destino con las horas del origen, en un solo commit.
 
 **Colaboraciones:**
 - **Entrada:** `ImportarActividadesFormativasDeAsignaturaProgramaPrimaView`.
@@ -63,12 +63,12 @@ Traducción a clases de análisis del caso de uso [`importarActividadesFormativa
 ### `ActividadFormativaAsignaturaPrograma`
 
 **Responsabilidades:**
-- `actualizar(horas, porcentajePresencialidad)`: la misma operación que usa `editarActividadesFormativasAsignaturaPrograma()`.
+- `actualizar(horas)`: la misma operación que usa `editarActividadesFormativasAsignaturaPrograma()`.
 
 ### `ActividadFormativaAsignaturaProgramaRepository`
 
 **Responsabilidades:**
-- `listarDe(asignaturaProgramaId)`: las 10 filas, en orden AF1..AF10; `actualizarLote(...)` persiste el resultado.
+- `listarDe(asignaturaProgramaId)`: una fila por actividad del catálogo del `Programa`, en orden de alta; `actualizarLote(...)` persiste el resultado.
 
 ## Referencias
 

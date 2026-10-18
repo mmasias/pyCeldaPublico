@@ -1,0 +1,27 @@
+@startsalt desasociarCompetenciaAMateria-wireframe-bloqueada
+{
+    <b>DESASOCIAR COMPETENCIA</b>
+    ====
+    <color:red><b>⛔ No se puede desasociar</b></color>
+    ====
+    <b>CE7</b> (Programación)
+
+    En uso en estas asignaturas de programa: "Programación II", "Sistemas operativos".
+
+    <i>Quítala primero de esas asignaturas de programa.</i>
+    ====
+    [ Volver a <b>Programación</b> ]
+}
+@endsalt
+
+@startsalt desasociarCompetenciaAMateria-wireframe-confirmacion
+{
+    <b>DESASOCIAR COMPETENCIA</b>
+    ====
+    <b>CG1</b> (Programación)
+
+    Ninguna asignatura de programa de esta materia la usa.
+    ====
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

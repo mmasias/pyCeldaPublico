@@ -1,0 +1,30 @@
+@startuml crearModulo-diseño
+title Diagrama de Secuencia - Crear Modulo
+
+actor "Admin" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ModuloRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita crear un módulo
+activate Vista
+Vista --> Actor: presenta formulario (código, nombre, descripción)
+Actor -> Vista: completa y confirma
+Vista -> API: POST /api/v1/admin/programas/{programa_id}/modulos (ModuloCreate)
+activate API
+note right of API: require_admin. ModuloCreate: código y nombre no vacíos,\ndescripción opcional recortada (422). Programa inexistente: 404
+API -> Repo: codigo_en_uso(programa_id, codigo)
+alt código ya usado en el Programa
+  API --> Vista: 409 Conflict
+  Vista --> Actor: presenta el mensaje, conserva lo escrito
+else libre
+  API -> Repo: crear(programa_id, codigo, nombre, descripcion)
+  Repo -> DB: INSERT INTO modulos ...
+  API --> Vista: 201 Created (ModuloResponse)
+  Vista --> Actor: vuelve al listado actualizado
+end
+deactivate API
+deactivate Vista
+
+@enduml

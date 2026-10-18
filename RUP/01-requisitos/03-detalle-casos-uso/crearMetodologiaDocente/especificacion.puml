@@ -7,28 +7,36 @@ state METODOLOGIA_DOCENTE_ABIERTO
 
 METODOLOGIAS_DOCENTES_ABIERTO -[#green]-> crearMetodologiaDocente
 note on link
-<b>Admin</b> solicita crear MetodologiaDocente
+<b>Admin / DirectorPrograma</b> solicita crear metodología docente
 end note
 
 state crearMetodologiaDocente as "crearMetodologiaDocente()" {
 
-    state " " as SolicitandoDatos
+    state " " as Datos
+    state c <<choice>>
 
-    [*] -[#green]-> SolicitandoDatos
+    [*] -[#green]-> Datos
     note on link
-    <b>Sistema</b> presenta solicitud de datos de la MetodologiaDocente
-    <b>Sistema</b> muestra selector de Universidad
-    <b>Sistema</b> muestra código
-    <b>Sistema</b> muestra descripción
+    <b>Sistema</b> presenta solicitud de datos de la metodología docente
     <b>Sistema</b> permite solicitar crear
     end note
 
-    SolicitandoDatos -[#green]-> [*]
+    Datos -[#green]-> c
     note on link
-    <b>Admin</b> elige Universidad
-    <b>Admin</b> introduce código
-    <b>Admin</b> introduce descripción
-    <b>Admin</b> solicita crear
+    <b>Admin / DirectorPrograma</b> introduce código
+    <b>Admin / DirectorPrograma</b> introduce descripción
+    <b>Admin / DirectorPrograma</b> solicita crear
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [código no usado por otra metodología docente del Programa, sin distinguir mayúsculas]
+    end note
+
+    c -[#red]-> Datos
+    note on link
+    [código ya usado por otra metodología docente del Programa, sin distinguir mayúsculas]
+    <b>Sistema</b> presenta mensaje de código repetido
     end note
 }
 

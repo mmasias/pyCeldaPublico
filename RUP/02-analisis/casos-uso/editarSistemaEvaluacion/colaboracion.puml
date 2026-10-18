@@ -21,9 +21,9 @@ SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>obtene
 
 EditarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>validarDatosObligatorios(tipo, ponderacionMinima, ponderacionMaxima) : boolean
 
-EditarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>guardarCambios(sistemaEvaluacionId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : boolean
+EditarSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>guardarCambios(sistemaEvaluacionId, codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : boolean
 
-SistemaEvaluacionController --> SistemaEvaluacion: <font size=8>actualizar(tipo, descripcion, ponderacionMinima, ponderacionMaxima)
+SistemaEvaluacionController --> SistemaEvaluacion: <font size=8>actualizar(codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima)
 
 SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>editar(sistemaEvaluacion)
 

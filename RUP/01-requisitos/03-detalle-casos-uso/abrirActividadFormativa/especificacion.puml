@@ -7,14 +7,14 @@ state ACTIVIDAD_FORMATIVA_ABIERTO
 
 ACTIVIDADES_FORMATIVAS_ABIERTO -[#green]-> abrirActividadFormativa
 note on link
-<b>Admin</b> solicita abrir ActividadFormativa
+<b>Admin / DirectorPrograma</b> solicita abrir actividad formativa
 end note
 
 state abrirActividadFormativa as "abrirActividadFormativa()" {
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> muestra datos de la ActividadFormativa
+    <b>Sistema</b> muestra código y nombre de la actividad formativa
     end note
 }
 

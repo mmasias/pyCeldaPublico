@@ -17,11 +17,9 @@ ActividadFormativaAbierto --> EditarActividadFormativaView: <font size=8>editarA
 
 EditarActividadFormativaView --> ActividadFormativaController: <font size=8>cargarActividadFormativa(actividadFormativaId) : ActividadFormativa
 
-ActividadFormativaController --> ActividadFormativaRepository: <font size=8>obtener(actividadFormativaId) : ActividadFormativa
+EditarActividadFormativaView --> ActividadFormativaController: <font size=8>editarActividadFormativa(actividadFormativaId, codigo, nombre) : ActividadFormativa
 
-EditarActividadFormativaView --> ActividadFormativaController: <font size=8>validarDatosObligatorios(codigo, nombre) : boolean
-
-EditarActividadFormativaView --> ActividadFormativaController: <font size=8>guardarCambios(actividadFormativaId, codigo, nombre) : boolean
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>codigoEnUso(programaId, codigo, salvo=actividadFormativaId) : boolean
 
 ActividadFormativaController --> ActividadFormativa: <font size=8>actualizar(codigo, nombre)
 
@@ -29,6 +27,7 @@ ActividadFormativaController --> ActividadFormativaRepository: <font size=8>edit
 
 ActividadFormativaRepository -- ActividadFormativa
 
-EditarActividadFormativaView --> ActividadFormativaAbiertoSalida: <font size=8>datos actualizados
+EditarActividadFormativaView ..[#green]> ActividadFormativaAbiertoSalida: <font size=8>ActividadFormativa guardada
+EditarActividadFormativaView ..[#red]> EditarActividadFormativaView: <font size=8>código repetido, formulario con lo escrito
 
 @enduml

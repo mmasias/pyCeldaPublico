@@ -1,19 +1,16 @@
 @startsalt abrirActividadesFormativas-wireframe
 {
-    <b>ACTIVIDADES FORMATIVAS</b>
+    <b>🏋️ ACTIVIDADES FORMATIVAS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
     ====
-    <b>Universidad:</b> ^Universidad Europea del Atlántico (UNEATLANTICO)^
     {#
-        <b>Código | <b>Nombre | . | .
-        AF1 | Clases expositivas | [Abrir] | [Eliminar]
-        AF2 | Clases prácticas | [Abrir] | [Eliminar]
-        AF3 | Clases prácticas (laboratorio) | [Abrir] | [Eliminar]
-        AF4 | Seminarios y talleres | [Abrir] | [Eliminar]
-        AF5 | Supervisión de actividades | [Abrir] | [Eliminar]
-        AF6 | Tutorías (individual / en grupo) | [Abrir] | [Eliminar]
-        AF7 | Preparación de clases | [Abrir] | [Eliminar]
+        <b>Nombre | <b>Código | . | .
+        Actividad Dirigida: Clases de teoría | AD1 | [Abrir] | [Eliminar]
+        Actividad Dirigida: Clases prácticas | AD2 | [Abrir] | [Eliminar]
+        Actividad Supervisada: Tutorías | AS1 | [Abrir] | [Eliminar]
+        Actividad Autónoma: Estudio personal | AA1 | [Abrir] | [Eliminar]
+        Actividad Autónoma: Elaboración de trabajos | AA2 | [Abrir] | [Eliminar]
     }
     ====
-    [ <b>+ Crear Actividad Formativa</b> ]
+    [ <b>+ Crear actividad formativa</b> ]
 }
 @endsalt

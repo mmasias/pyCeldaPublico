@@ -101,10 +101,12 @@ Traducción a clases de análisis del caso de uso [`abrirAsignaturaPrograma()`](
 
 **Ninguna de las tres listas lleva `[Editar]` por fila**: decisión ya cerrada en Requisitos (discussion [#33](https://github.com/mmasias/pyCelda/discussions/33)) -- ninguna de las tres relaciones tiene atributo propio que editar, solo `[Quitar]`.
 
+**Competencias (issue [#761](https://github.com/mmasias/pyCelda/issues/761))**: la ficha añade las `Competencia` asignadas a la asignatura.
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframes.puml) -- fuente de verdad del contenido presentado.
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()`, `MATERIA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `AsignaturaPrograma{nombre, curso, caracter, idioma, ects, semestreDefault, contenido, requisitosPrevios, estado}`, `AsignaturaPrograma -- Profesor`, `AsignaturaPrograma o-r- MetodologiaDocente`, `AsignaturaPrograma o- ResultadoAprendizaje`.
 - [`editarAsignaturaPrograma()`](../editarAsignaturaPrograma/README.md) -- edición de los datos propios que este caso de uso presenta de solo lectura.
-- [`editarActividadesFormativasAsignaturaPrograma()`](../editarActividadesFormativasAsignaturaPrograma/README.md) -- el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)) añade una cuarta colección (las 10 `ActividadFormativaAsignaturaPrograma`, con `horas` y `porcentajePresencialidad`); la fusión en `abrirAsignaturaPrograma()` y el cambio de `AsignaturaProgramaDetalleResponse` se detallan al construir el clúster (audit del agregado `AsignaturaPrograma`).
+- [`editarActividadesFormativasAsignaturaPrograma()`](../editarActividadesFormativasAsignaturaPrograma/README.md) -- el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)) añade una cuarta colección (las `ActividadFormativaAsignaturaPrograma`, una por actividad del catálogo del `Programa`, con `horas`; desde el issue [#772](https://github.com/mmasias/pyCelda/issues/772) el `porcentajePresencialidad` que se presenta junto a cada fila es el de la `Materia`, `ActividadFormativaMateria`); la fusión en `abrirAsignaturaPrograma()` y el cambio de `AsignaturaProgramaDetalleResponse` se detallan al construir el clúster (audit del agregado `AsignaturaPrograma`).

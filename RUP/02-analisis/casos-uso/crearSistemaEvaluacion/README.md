@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`crearSistemaEvaluacion()`](/RUP/01-requisitos/03-detalle-casos-uso/crearSistemaEvaluacion/README.md): CRUD real e inmediato contra `SistemaEvaluacionRepository` -- los cuatro campos (`tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima`) se piden de una vez en el alta, sin patrón C->U. `descripcion` es opcional (default `""`, mismo patrón que `MetodologiaMateria.descripcionPropia`); `tipo`, `ponderacionMinima` y `ponderacionMaxima` son obligatorios. La coherencia del rango (`0 <= ponderacionMinima <= ponderacionMaxima <= 100`) es validación de forma de la Vista, no una regla de negocio del controlador -- Requisitos no documenta ninguna invariante adicional y el backend no la exige. La salida es única, sin rama de rechazo, a `:SISTEMA_EVALUACION_ABIERTO` -- la transición lleva la nota `editarSistemaEvaluacion()` como edición disponible desde el detalle alcanzado, no como `<<include>>` C->U (mismo criterio que `crearMetodologiaDocente()`).
+Traducción a clases de análisis del caso de uso [`crearSistemaEvaluacion()`](/RUP/01-requisitos/03-detalle-casos-uso/crearSistemaEvaluacion/README.md): CRUD real e inmediato contra `SistemaEvaluacionRepository` -- los cinco campos (`codigo`, `tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima`) se piden de una vez en el alta, sin patrón C->U. `codigo` y `descripcion` son opcionales (`descripcion` con default `""`, mismo patrón que `MetodologiaMateria.descripcionPropia`; `codigo` nulo si viene vacío); `tipo`, `ponderacionMinima` y `ponderacionMaxima` son obligatorios. La coherencia del rango (`0 <= ponderacionMinima <= ponderacionMaxima <= 100`) es validación de forma de la Vista, no una regla de negocio del controlador -- Requisitos no documenta ninguna invariante adicional y el backend no la exige. La salida es única, sin rama de rechazo, a `:SISTEMA_EVALUACION_ABIERTO` -- la transición lleva la nota `editarSistemaEvaluacion()` como edición disponible desde el detalle alcanzado, no como `<<include>>` C->U (mismo criterio que `crearMetodologiaDocente()`).
 
 <div align=center>
 
@@ -26,7 +26,7 @@ Traducción a clases de análisis del caso de uso [`crearSistemaEvaluacion()`](/
 ### `CrearSistemaEvaluacionView`
 
 **Responsabilidades:**
-- presenta el formulario de creación: `tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima` -- `tipo` selector de lista fija (`"Evaluación continua"`/`"Evaluación final"`, issue [#14](https://github.com/mmasias/pyCelda/issues/14)), `descripcion` opcional, `tipo`/`ponderacionMinima`/`ponderacionMaxima` obligatorios según el wireframe.
+- presenta el formulario de creación: `codigo`, `tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima` -- `tipo` selector de lista fija (`"Evaluación continua"`/`"Evaluación final"`, issue [#14](https://github.com/mmasias/pyCelda/issues/14)), `codigo` y `descripcion` opcionales, `tipo`/`ponderacionMinima`/`ponderacionMaxima` obligatorios según el wireframe.
 - valida la coherencia del rango `0 <= mínima <= máxima <= 100` antes de solicitar crear (validación de forma, no de negocio).
 - permite solicitar crear.
 
@@ -41,7 +41,7 @@ Traducción a clases de análisis del caso de uso [`crearSistemaEvaluacion()`](/
 
 **Responsabilidades:**
 - valida que `tipo`, `ponderacionMinima` y `ponderacionMaxima` estén presentes (`validarDatosObligatorios(tipo, ponderacionMinima, ponderacionMaxima)`).
-- crea el `SistemaEvaluacion` directamente en `SistemaEvaluacionRepository`, real e inmediato (`crearSistemaEvaluacion(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima)`).
+- crea el `SistemaEvaluacion` directamente en `SistemaEvaluacionRepository`, real e inmediato (`crearSistemaEvaluacion(materiaId, codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima)`).
 
 **Colaboraciones:**
 - **Entrada:** `CrearSistemaEvaluacionView`.
@@ -52,7 +52,7 @@ Traducción a clases de análisis del caso de uso [`crearSistemaEvaluacion()`](/
 ### `SistemaEvaluacion`
 
 **Responsabilidades:**
-- porta `tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima` desde el momento de crearse, ligado a su `Materia` por composición.
+- porta `codigo`, `tipo`, `descripcion`, `ponderacionMinima`, `ponderacionMaxima` desde el momento de crearse, ligado a su `Materia` por composición.
 
 **Colaboraciones:**
 - **Entrada:** creado por `SistemaEvaluacionRepository`.
@@ -60,11 +60,18 @@ Traducción a clases de análisis del caso de uso [`crearSistemaEvaluacion()`](/
 ### `SistemaEvaluacionRepository`
 
 **Responsabilidades:**
-- crea el `SistemaEvaluacion` bajo la `Materia` (`crear(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima)`) -- persistencia real e inmediata.
+- crea el `SistemaEvaluacion` bajo la `Materia` (`crear(materiaId, codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima)`) -- persistencia real e inmediata.
 
 **Colaboraciones:**
 - **Entrada:** `SistemaEvaluacionController`.
 - **Salida:** gestiona `SistemaEvaluacion`.
+
+**Actor `DirectorPrograma` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: misma colaboración, con la comprobación de que la `Materia` pertenece a un programa que dirige.
+
+**Guarda de rango (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: crear un sistema o cambiar su rango se rechaza (409) si alguna `Guia` del curso activo En revisión o Aprobada de la `Materia` dejaría de cumplir la regla de `Guia.bloqueo_ponderaciones()` para ese sistema -- suma de sus `PonderacionEvaluacion` vinculadas en [mínima, máxima]; un sistema nuevo cuenta como 0 %. Las guías en Borrador o Rechazada no cuentan: se revalidan en `enviarGuiaARevision()`. Sin esta guarda, estrechar un rango invalidaba en silencio guías ya validadas.
+
+
+**`codigo` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: `SistemaEvaluacion` gana `codigo`, el de la memoria verificada (p. ej. `E1`), opcional; vacío se guarda como nulo, sin unicidad que comprobar. `descripcion` pasa a ser la denominación literal de la memoria: la clase no cambia de forma, cambia el significado del dato.
 
 ## Referencias
 

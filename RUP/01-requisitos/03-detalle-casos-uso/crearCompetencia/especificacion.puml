@@ -1,0 +1,50 @@
+@startuml crearCompetencia
+
+skinparam linetype polyline
+
+state COMPETENCIAS_ABIERTO
+state COMPETENCIA_ABIERTO
+
+COMPETENCIAS_ABIERTO -[#green]-> crearCompetencia
+note on link
+<b>Admin / DirectorPrograma</b> solicita crear competencia
+end note
+
+state crearCompetencia as "crearCompetencia()" {
+
+    state " " as Datos
+    state c <<choice>>
+
+    [*] -[#green]-> Datos
+    note on link
+    <b>Sistema</b> presenta solicitud de datos de la competencia
+    <b>Sistema</b> presenta selección de tipo (Básica, General, Transversal, Específica)
+    <b>Sistema</b> permite solicitar crear
+    end note
+
+    Datos -[#green]-> c
+    note on link
+    <b>Admin / DirectorPrograma</b> introduce código
+    <b>Admin / DirectorPrograma</b> selecciona tipo
+    <b>Admin / DirectorPrograma</b> introduce descripción
+    <b>Admin / DirectorPrograma</b> solicita crear
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [código no usado por otra competencia del Programa, sin distinguir mayúsculas]
+    end note
+
+    c -[#red]-> Datos
+    note on link
+    [código ya usado por otra competencia del Programa, sin distinguir mayúsculas]
+    <b>Sistema</b> presenta mensaje de código repetido
+    end note
+}
+
+crearCompetencia -[#green]-> COMPETENCIA_ABIERTO
+note on link
+editarCompetencia()
+end note
+
+@enduml

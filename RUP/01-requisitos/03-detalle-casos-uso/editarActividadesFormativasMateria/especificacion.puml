@@ -17,26 +17,28 @@ state editarActividadesFormativasMateria as "editarActividadesFormativasMateria(
 
     [*] -[#green]-> EditandoReparto
     note on link
-    <b>Sistema</b> presenta las 10 actividades formativas con sus horas actuales
+    <b>Sistema</b> presenta las actividades formativas del catálogo del Programa con sus horas y su presencialidad actuales
+    <b>Sistema</b> muestra el total de horas frente a 25 h por ECTS de la Materia
     <b>Sistema</b> permite solicitar guardar
     end note
 
     EditandoReparto -[#green]-> c
     note on link
     <b>DirectorPrograma</b> introduce las horas de cada actividad formativa
+    <b>DirectorPrograma</b> introduce el porcentaje de presencialidad de cada actividad formativa
     <b>DirectorPrograma</b> solicita guardar
     end note
 
     c -[#green]-> [*]
     note on link
-    [horas >= 0 en las 10 actividades formativas]
+    [horas >= 0 y presencialidad entre 0 y 100 en todas las actividades formativas]
     <b>Sistema</b> presenta el reparto guardado
     end note
 
     c -[#red]-> [*]
     note on link
-    [alguna hora negativa]
-    <b>Sistema</b> presenta mensaje de horas no válidas (valor negativo)
+    [alguna hora negativa o alguna presencialidad fuera de 0-100]
+    <b>Sistema</b> presenta mensaje de valores no válidos
     end note
 }
 
@@ -44,7 +46,7 @@ editarActividadesFormativasMateria -[#green]-> MATERIA_ABIERTO_SALIDA
 
 editarActividadesFormativasMateria -[#red]-> MATERIA_ABIERTO_SALIDA
 note on link
-algún valor de horas no válido, no se guarda nada
+algún valor no válido, no se guarda nada
 end note
 
 @enduml

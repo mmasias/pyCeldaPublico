@@ -5,6 +5,8 @@
     {
         <b>Nombre (*):</b>
         "Programación"
+        <b>Módulo:</b>
+        ^M2 -- Común a la rama de informática^
         --
         <i>(*) Campo obligatorio</i>
     }

@@ -1,0 +1,33 @@
+@startuml editarCompetencia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":COMPETENCIA_ABIERTO" as CompetenciaAbierto
+rectangle #CDEBA5 ":COMPETENCIA_ABIERTO" as CompetenciaAbiertoSalida
+
+package editarCompetencia as "editarCompetencia()" {
+    rectangle #629EF9 EditarCompetenciaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Competencia
+    rectangle #F2AC4E CompetenciaRepository
+}
+
+CompetenciaAbierto --> EditarCompetenciaView: <font size=8>editarCompetencia(competenciaId)
+
+EditarCompetenciaView --> CompetenciaController: <font size=8>cargarCompetencia(competenciaId) : Competencia
+
+EditarCompetenciaView --> CompetenciaController: <font size=8>editarCompetencia(competenciaId, codigo, tipo, descripcion) : Competencia
+
+CompetenciaController --> CompetenciaRepository: <font size=8>codigoEnUso(programaId, codigo, salvo=competenciaId) : boolean
+
+CompetenciaController --> Competencia: <font size=8>actualizar(codigo, tipo, descripcion)
+
+CompetenciaController --> CompetenciaRepository: <font size=8>actualizar(competencia)
+
+CompetenciaRepository -- Competencia
+
+EditarCompetenciaView ..[#green]> CompetenciaAbiertoSalida: <font size=8>Competencia guardada
+EditarCompetenciaView ..[#red]> EditarCompetenciaView: <font size=8>código repetido, formulario con lo escrito
+
+@enduml

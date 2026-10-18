@@ -15,14 +15,16 @@ package consultarEstadoActividadesFormativasMateria as "consultarEstadoActividad
 
 MateriaAbierto --> ConsultarEstadoActividadesFormativasMateriaView: <font size=8>consultarEstadoActividadesFormativasMateria(materiaId)
 
-ConsultarEstadoActividadesFormativasMateriaView --> MateriaController: <font size=8>cargarEstadoActividadesFormativas(materiaId) : lista de discrepancias
+ConsultarEstadoActividadesFormativasMateriaView --> MateriaController: <font size=8>cargarEstadoActividadesFormativas(materiaId) : discrepancias y comprobación por ECTS
 
 MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
 
 MateriaController --> Materia: <font size=8>discrepanciasActividadesFormativas() : lista de discrepancias
 
+MateriaController --> Materia: <font size=8>comprobacionHorasEcts() : comprobación o nada (sin ECTS)
+
 MateriaRepository -- Materia
 
-ConsultarEstadoActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>presenta las 10 actividades formativas con horas de la materia, Σ de las AsignaturaPrograma y las que no cuadran
+ConsultarEstadoActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>presenta horas de la materia, Σ de las AsignaturaPrograma, las que no cuadran y el total frente a 25 h por ECTS
 
 @enduml

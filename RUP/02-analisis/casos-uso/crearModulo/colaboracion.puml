@@ -1,0 +1,29 @@
+@startuml crearModulo-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":MODULOS_ABIERTO" as ModulosAbierto
+rectangle #CDEBA5 ":MODULOS_ABIERTO" as ModulosAbiertoSalida
+
+package crearModulo as "crearModulo()" {
+    rectangle #629EF9 CrearModuloView
+    rectangle #b5bd68 ModuloController
+    rectangle #F2AC4E Modulo
+    rectangle #F2AC4E ModuloRepository
+}
+
+ModulosAbierto --> CrearModuloView: <font size=8>crearModulo(programaId)
+
+CrearModuloView --> ModuloController: <font size=8>crearModulo(programaId, codigo, nombre, descripcion) : Modulo
+
+ModuloController --> ModuloRepository: <font size=8>codigoEnUso(programaId, codigo) : boolean
+
+ModuloController --> ModuloRepository: <font size=8>crear(programaId, codigo, nombre, descripcion) : Modulo
+
+ModuloRepository -- Modulo
+
+CrearModuloView ..[#green]> ModulosAbiertoSalida: <font size=8>lista actualizada
+CrearModuloView ..[#red]> CrearModuloView: <font size=8>código repetido, formulario con lo escrito
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml abrirModulos-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
+rectangle #CDEBA5 ":MODULOS_ABIERTO" as ModulosAbiertoSalida
+
+package abrirModulos as "abrirModulos()" {
+    rectangle #629EF9 AbrirModulosView
+    rectangle #b5bd68 ModuloController
+    rectangle #F2AC4E Modulo
+    rectangle #F2AC4E ModuloRepository
+}
+
+ProgramaAbierto --> AbrirModulosView: <font size=8>abrirModulos(programaId)
+
+AbrirModulosView --> ModuloController: <font size=8>listarModulosDelPrograma(programaId) : List<Modulo>
+
+ModuloController --> ModuloRepository: <font size=8>listarDelPrograma(programaId) : List<Modulo>
+
+ModuloController --> ModuloRepository: <font size=8>contarMateriasPorModulo(programaId) : Map<id, int>
+
+ModuloRepository -- Modulo
+
+AbrirModulosView --> ModulosAbiertoSalida: <font size=8>presenta los Modulo del Programa
+
+@enduml

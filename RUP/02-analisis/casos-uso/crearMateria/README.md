@@ -59,11 +59,13 @@ Traducción a clases de análisis del caso de uso [`crearMateria()`](/RUP/01-req
 ### `MateriaRepository`
 
 **Responsabilidades:**
-- crea la `Materia` (`crear(nombre, programaId)`) -- persistencia real e inmediata, no una mutación de sesión.
+- crea la `Materia` (`crear(nombre, programaId)`) -- persistencia real e inmediata, no una mutación de sesión. En la misma operación puebla a 0 una fila `ActividadFormativaMateria` por cada `ActividadFormativa` del catálogo del `Programa` (invariante de autopoblado, issue [#772](https://github.com/mmasias/pyCelda/issues/772)): efecto de persistencia, sin colaboración nueva de análisis.
 
 **Colaboraciones:**
 - **Entrada:** `MateriaController`.
 - **Salida:** gestiona `Materia`.
+
+**Módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: el formulario añade la selección opcional del `Modulo`; el `ModuloController` comprueba que el `Modulo` elegido es del mismo `Programa` que la materia (si no, no encontrado).
 
 ## Referencias
 

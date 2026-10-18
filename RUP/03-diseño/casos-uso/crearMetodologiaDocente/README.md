@@ -6,7 +6,7 @@
 
 # pyCelda > crearMetodologiaDocente() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md)|[Análisis](/RUP/02-analisis/casos-uso/crearMetodologiaDocente/README.md)|**Diseño**|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md)|[Análisis](/RUP/02-analisis/casos-uso/crearMetodologiaDocente/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -14,13 +14,13 @@
 - **Proyecto**: pyCelda
 - **Fase RUP**: Elaboración
 - **Disciplina**: Diseño
-- **Versión**: 1.0
-- **Fecha**: 2026-08-26
-- **Autor**: GLM (vía opencode)
+- **Versión**: 2.0
+- **Fecha**: 2026-10-17
+- **Autor**: Claude (vía Claude Code)
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`crearMetodologiaDocente()`](/RUP/02-analisis/casos-uso/crearMetodologiaDocente/README.md): CRUD real e inmediato contra `MetodologiaDocenteRepository`, sin ninguna capa Service. Un único paso, sin `<<choice>>` -- ambos campos (`codigo`, `descripcion`) se piden en el alta porque los dos identifican la metodología: Requisitos cierra "sin patrón C->U", a diferencia de `crearAsignatura()` que difiere `ects`/`contenido` a la edición. La obligatoriedad se resuelve por esquema de entrada (Pydantic), no por una llamada explícita en la secuencia.
+Bajada a diseño de [`crearMetodologiaDocente()`](/RUP/02-analisis/casos-uso/crearMetodologiaDocente/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): la forma la valida Pydantic (422) y el `<<choice>>` de código repetido lo resuelve el router antes del `INSERT` (409).
 
 ## Diagrama de secuencia de diseño
 
@@ -34,22 +34,18 @@ Bajada a diseño del caso de análisis [`crearMetodologiaDocente()`](/RUP/02-ana
 
 ## Participantes
 
-- **Vista**: `CrearMetodologiaDocenteView` (React) -- formulario con selector de `Universidad` y dos campos (`codigo`, `descripcion`); al confirmar, `POST /api/v1/universidades/{universidad_id}/metodologias-docentes`.
-- **API**: `routers/metodologia_docente.py::crear_metodologia_docente(universidad_id, datos)` -- función suelta, sin capa Service; responde 404 si la `Universidad` no existe y delega en el repositorio.
-- **Modelo**: `MetodologiaDocente` (SQLAlchemy) -- sin lógica propia invocada: el Repository construye la fila directamente, no hay método de dominio que llamar.
-- **Repositorio**: `MetodologiaDocenteRepository.crear(universidad_id, codigo, descripcion)` -- persistencia real e inmediata, no una mutación de sesión.
+- **Vista**: `CrearMetodologiaDocente` (React), prop `admin`; campos en `FormularioCatalogoPrograma`, compartido con `ActividadFormativa`.
+- **API**: `routers/metodologia_docente.py::crear_metodologia_docente(programa_id, datos)`, `_rechazar_codigo_repetido()`.
+- **Schema**: `MetodologiaDocenteCreate` (`_DatosMetodologiaDocente`: no vacíos tras `strip`, `LIMITE_CODIGO` 20, `LIMITE_DESCRIPCION` 500).
+- **Repositorio**: `MetodologiaDocenteRepository.codigo_en_uso()`, `crear()`.
 
 ## Decisiones de diseño
 
-- **Sin capa Service**: la función del Router llama al repositorio directamente -- decisión ya cerrada en la discussion [#58](https://github.com/mmasias/pyCelda/discussions/58).
-- **Validación de obligatoriedad por esquema de entrada**, no por paso explícito de la secuencia: `MetodologiaDocenteCreate` (Pydantic) exige `codigo` y `descripcion` antes de que la función del Router se ejecute -- mismo mecanismo que `AsignaturaCreate` de referencia. `validarDatosObligatorios(codigo, descripcion)` de Análisis se disuelve en Pydantic, mismo hallazgo ya documentado en el diagrama de clases de Diseño (discussion [#60](https://github.com/mmasias/pyCelda/discussions/60)).
-- **`201 Created` con el objeto creado (incluido su `id`), navegando al detalle** -- sin patrón C->U no hay `<<include>>` de edición: la Vista navega a `abrirMetodologiaDocente()` de la `MetodologiaDocente` recién creada (`:METODOLOGIA_DOCENTE_ABIERTO`); la nota `editarMetodologiaDocente()` de la transición de Requisitos es la edición disponible desde ese detalle, no un salto directo al formulario.
-- **Autorización de `Admin`: `Depends(require_admin)`** -- ya disponible en `backend/app/core/auth.py`, sin nota de pendiente: toda función de `routers/metodologia_docente.py` la declara explícitamente. Especialmente relevante aquí por ser endpoint de escritura: el historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real.
+- **Autorización compartida Admin/Director** (`_autorizar_programa`/`_puede_en_programa`, importados de `routers/competencia.py`, y `_autorizar_metodologia` en `routers/metodologia_docente.py`): un mismo endpoint para los dos actores, sin espejo `/api/v1/admin/...`. Resuelve la identidad con `get_current_admin_email_opcional` y `get_current_director_programa_id_opcional`: con sesión Admin, cualquier `Programa`; sin ella, solo los que dirige el director. Fuera de eso, 404 uniforme, sin distinguir "no existe" de "no es tuyo" -- mismo criterio que `Competencia`.
+- **Unicidad doble**: el router responde 409 con mensaje legible (`_rechazar_codigo_repetido()`, comparación con `UPPER` en las dos partes); la restricción `UNIQUE (programa_id, codigo)` de la tabla queda como red de seguridad ante dos peticiones simultáneas, y `_commit_o_409()` traduce el `IntegrityError` a 409, no a 500. La restricción de la tabla distingue mayúsculas; la comprobación previa, no.
+- **Hasta #772** el catálogo era de `Universidad` (`/api/v1/universidades/{universidad_id}/metodologias-docentes`, solo `require_admin`) y el `Programa` habilitaba un subconjunto en `programas_metodologias_docentes`; ese endpoint y esa tabla desaparecen (la migración `migrar_catalogos_por_programa.py` copia a cada programa las que tenía habilitadas o en uso).
 
 ## Referencias
 
 - [`crearMetodologiaDocente()` en Análisis](/RUP/02-analisis/casos-uso/crearMetodologiaDocente/README.md) -- diagrama de colaboración origen.
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md) -- cierre explícito de "sin patrón C->U".
-- [`crearAsignatura()` en Diseño](/RUP/03-diseño/casos-uso/crearAsignatura/README.md) -- contraste: creación con `<<include>>` C->U hacia la edición.
-- [`abrirMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/abrirMetodologiaDocente/README.md) -- destino de la navegación tras crear.
-- [`editarMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/editarMetodologiaDocente/README.md) -- edición disponible desde el detalle alcanzado.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/README.md).

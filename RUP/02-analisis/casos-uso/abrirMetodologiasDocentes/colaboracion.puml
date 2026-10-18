@@ -3,7 +3,7 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
 rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_ABIERTO" as MetodologiasDocentesAbiertoSalida
 
 package abrirMetodologiasDocentes as "abrirMetodologiasDocentes()" {
@@ -13,14 +13,16 @@ package abrirMetodologiasDocentes as "abrirMetodologiasDocentes()" {
     rectangle #F2AC4E MetodologiaDocenteRepository
 }
 
-SistemaDisponible --> AbrirMetodologiasDocentesView: <font size=8>abrirMetodologiasDocentes()
+ProgramaAbierto --> AbrirMetodologiasDocentesView: <font size=8>abrirMetodologiasDocentes(programaId)
 
-AbrirMetodologiasDocentesView --> MetodologiaDocenteController: <font size=8>listarMetodologiasDocentes() : List<MetodologiaDocente>
+AbrirMetodologiasDocentesView --> MetodologiaDocenteController: <font size=8>listarMetodologiasDocentesDelPrograma(programaId) : List<MetodologiaDocente>
 
-MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>listar() : List<MetodologiaDocente>
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>listarDelPrograma(programaId) : List<MetodologiaDocente>
+
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>conteoAsignaturasDelPrograma(programaId) : Map<id, int>
 
 MetodologiaDocenteRepository -- MetodologiaDocente
 
-AbrirMetodologiasDocentesView --> MetodologiasDocentesAbiertoSalida: <font size=8>presenta listado de MetodologiaDocente
+AbrirMetodologiasDocentesView --> MetodologiasDocentesAbiertoSalida: <font size=8>presenta catálogo de MetodologiaDocente del Programa
 
 @enduml

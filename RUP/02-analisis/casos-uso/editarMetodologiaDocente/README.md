@@ -6,12 +6,12 @@
 
 # pyCelda > editarMetodologiaDocente()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`editarMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md): CRUD real e inmediato contra `MetodologiaDocenteRepository`. Sin `<<choice>>` -- `MetodologiaDocente` no tiene ninguna regla de validación cruzada documentada en el modelo de dominio, solo los obligatorios `codigo` y `descripcion`. Regla de Requisitos: el `codigo` no es editable una vez creada la metodología -- el formulario lo muestra de solo lectura y la edición reenvía su valor sin cambios. `MetodologiaDocente` gana aquí su método `actualizar(codigo, descripcion)`, mismo patrón que `Asignatura.actualizar(nombre, ects, contenido)`.
+Traducción a clases de análisis de [`editarMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): formulario de `codigo` y `descripcion`, sin patrón C→U, como en `Competencia` pero sin `tipo`. El `<<choice>>` de código repetido lo resuelve el controlador contra el repositorio antes de escribir: si el código ya lo usa otra metodología del `Programa`, el formulario sigue con lo escrito y el mensaje. Hasta #772 `codigo` no era editable (se tenía por identificador institucional fijo).
 
 <div align=center>
 
@@ -26,11 +26,11 @@ Traducción a clases de análisis del caso de uso [`editarMetodologiaDocente()`]
 ### `EditarMetodologiaDocenteView`
 
 **Responsabilidades:**
-- presenta el formulario con los datos actuales de la `MetodologiaDocente` (`codigo`, `descripcion`) -- el `codigo` de solo lectura, regla de Requisitos.
-- permite solicitar guardar.
+- presenta el formulario: `codigo` y `descripcion` (multilínea), los dos obligatorios.
+- presenta el mensaje de código repetido sin perder lo escrito.
 
 **Colaboraciones:**
-- **Entrada:** `:METODOLOGIA_DOCENTE_ABIERTO` -- el `Admin` solicita editar la `MetodologiaDocente` abierta; también es el destino del alta de [`crearMetodologiaDocente()`](../crearMetodologiaDocente/README.md).
+- **Entrada:** `:METODOLOGIA_DOCENTE_ABIERTO`.
 - **Control:** `MetodologiaDocenteController`.
 - **Salida:** `:METODOLOGIA_DOCENTE_ABIERTO`.
 
@@ -39,42 +39,32 @@ Traducción a clases de análisis del caso de uso [`editarMetodologiaDocente()`]
 ### `MetodologiaDocenteController`
 
 **Responsabilidades:**
-- recupera la `MetodologiaDocente` a editar (`cargarMetodologiaDocente(metodologiaDocenteId)`, mismo método introducido por [`abrirMetodologiaDocente()`](../abrirMetodologiaDocente/README.md)).
-- valida los obligatorios (`validarDatosObligatorios(codigo, descripcion)` -- el mismo método ya usado en crear; Análisis no distingue firmas por fase, mismo criterio que `AsignaturaController`).
-- guarda los cambios (`guardarCambios(metodologiaDocenteId, codigo, descripcion)`): sin `<<choice>>` de negocio que aplicar -- pide directamente a la `MetodologiaDocente` que se actualice y persiste.
+- valida que el `codigo` no lo use otra metodología del `Programa`, sin distinguir mayúsculas (la propia no cuenta).
+- aplica los cambios con `MetodologiaDocente.actualizar()`.
 
 **Colaboraciones:**
 - **Entrada:** `EditarMetodologiaDocenteView`.
-- **Salida:** `MetodologiaDocente`, `MetodologiaDocenteRepository`.
+- **Salida:** `MetodologiaDocenteRepository`, `MetodologiaDocente`.
 
 ## Clases de modelo
 
 ### `MetodologiaDocente`
 
 **Responsabilidades:**
-- porta `codigo` y `descripcion`.
-- se actualiza a sí misma (`actualizar(codigo, descripcion)`) -- mismo patrón que `Asignatura.actualizar(nombre, ects, contenido)`.
+- porta `codigo` y `descripcion`, los literales de la memoria del `Programa`. `actualizar()` cambia los dos a la vez.
 
 **Colaboraciones:**
-- **Entrada:** `MetodologiaDocenteController`.
-- **Salida:** persistida por `MetodologiaDocenteRepository`.
+- **Entrada:** `MetodologiaDocenteRepository`, `MetodologiaDocenteController`.
 
 ### `MetodologiaDocenteRepository`
 
 **Responsabilidades:**
-- recupera la `MetodologiaDocente` por identificador (`obtener(metodologiaDocenteId)`).
-- persiste la actualización (`editar(metodologiaDocente)`).
+- gestiona `MetodologiaDocente` y consulta sus dos tablas de asociación (`metodologias_materia`, `asignaturas_programa_metodologias_docentes`).
 
 **Colaboraciones:**
 - **Entrada:** `MetodologiaDocenteController`.
-- **Salida:** gestiona `MetodologiaDocente`.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/wireframes.puml) -- fuente de verdad del formulario, sin rama de rechazo y con el `codigo` no editable.
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `MetodologiaDocente { codigo, descripcion }`.
-- [`crearMetodologiaDocente()`](../crearMetodologiaDocente/README.md) -- el alta alcanza el detalle desde el que se edita, sin `<<include>>` C->U.
-- [`abrirMetodologiaDocente()`](../abrirMetodologiaDocente/README.md) -- mismo `MetodologiaDocenteController.cargarMetodologiaDocente(metodologiaDocenteId)`, reutilizado.
-- [`eliminarMetodologiaDocente()`](../eliminarMetodologiaDocente/README.md) -- el otro caso de uso que muta el catálogo, con `<<choice>>` bloqueante.
-- [`editarAsignatura()`](../editarAsignatura/README.md) -- mismo patrón de edición sin `<<choice>>` de negocio.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/wireframes.puml) -- fuente de verdad
+- [`editarCompetencia()`](../editarCompetencia/README.md) -- patrón de origen

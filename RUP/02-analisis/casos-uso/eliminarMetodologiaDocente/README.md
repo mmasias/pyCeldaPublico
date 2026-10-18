@@ -6,12 +6,12 @@
 
 # pyCelda > eliminarMetodologiaDocente()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/eliminarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/eliminarMetodologiaDocente/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`eliminarMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/README.md): `<<choice>>` bloqueante -- borrado físico del catálogo institucional, bloqueado si la `MetodologiaDocente` está asociada a alguna `Materia` (tabla `metodologias_materia`). A diferencia de `eliminarAsignatura()` (borrado lógico sin bloqueo, `estado` Vigente/Extinguido), aquí sí hay rama roja: el mensaje de bloqueo nombra las `Materia` asociadas. La comprobación cubre solo la asociación con `Materia`, no la de `AsignaturaPrograma`: el guard de `desasociarMetodologiaDocenteMateria()` (409 si está en uso en alguna `AsignaturaPrograma` de esa `Materia`) garantiza que una `MetodologiaDocente` nunca puede estar asociada a una `AsignaturaPrograma` sin estar también asociada a la `Materia` padre -- si `metodologias_materia` no tiene ninguna fila, `asignaturas_programa_metodologias_docentes` no puede tenerla tampoco. Mismo patrón que [`eliminarResultadoAprendizaje()`](../eliminarResultadoAprendizaje/README.md), pero con un solo nivel de la cascada que comprobar.
+Traducción a clases de análisis de [`eliminarMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): el `<<choice>>` de bloqueo se apoya en las asignaciones de la metodología (las mismas que pinta la ficha), y el controlador lo vuelve a comprobar al borrar. Hasta #772 solo bloqueaban las `Materia`.
 
 <div align=center>
 
@@ -26,21 +26,20 @@ Traducción a clases de análisis del caso de uso [`eliminarMetodologiaDocente()
 ### `EliminarMetodologiaDocenteView`
 
 **Responsabilidades:**
-- en la rama verde, presenta la información de la `MetodologiaDocente` y pide confirmar/cancelar.
-- en la rama roja, presenta el mensaje de bloqueo por uso en `Materia`, con los nombres de las materias asociadas.
+- presenta la metodología y, según las asignaciones, el bloqueo con las materias y asignaturas que la usan o la confirmación.
 
 **Colaboraciones:**
-- **Entrada:** `:METODOLOGIAS_DOCENTES_ABIERTO` -- el `Admin` solicita eliminar una `MetodologiaDocente`.
+- **Entrada:** `:METODOLOGIAS_DOCENTES_ABIERTO`.
 - **Control:** `MetodologiaDocenteController`.
-- **Salida:** `:METODOLOGIAS_DOCENTES_ABIERTO` en los tres casos -- "lista actualizada" (verde), "bloqueada, sin cambios" (rojo) o "cancelada, sin cambios" (azul).
+- **Salida:** `:METODOLOGIAS_DOCENTES_ABIERTO` (tres ramas).
 
 ## Clases de controlador
 
 ### `MetodologiaDocenteController`
 
 **Responsabilidades:**
-- aplica el `<<choice>>`: pregunta si la `MetodologiaDocente` está asociada a alguna `Materia` (`puedeEliminar(metodologiaDocenteId)`).
-- si no está bloqueada y el `Admin` confirma, elimina real e inmediato (`eliminar(metodologiaDocenteId)`) -- borrado físico, sin `estado` propio que mutar.
+- carga las asignaciones.
+- rechaza el borrado si la metodología está asignada a alguna `Materia` o `AsignaturaPrograma` (409 con los nombres); si no, la borra.
 
 **Colaboraciones:**
 - **Entrada:** `EliminarMetodologiaDocenteView`.
@@ -51,26 +50,20 @@ Traducción a clases de análisis del caso de uso [`eliminarMetodologiaDocente()
 ### `MetodologiaDocente`
 
 **Responsabilidades:**
-- porta `codigo` y `descripcion` -- la información presentada antes de confirmar.
+- porta `codigo` y `descripcion`, los literales de la memoria del `Programa`.
 
 **Colaboraciones:**
-- **Entrada:** recuperada por `MetodologiaDocenteRepository`.
-- **Salida:** eliminada físicamente por `MetodologiaDocenteRepository`.
+- **Entrada:** gestionada por `MetodologiaDocenteRepository`.
 
 ### `MetodologiaDocenteRepository`
 
 **Responsabilidades:**
-- responde con los nombres de las `Materia` asociadas (`nombresMateriasAsociadas(metodologiaDocenteId)`) -- lista vacía significa que puede eliminarse; los nombres alimentan el mensaje de la rama roja. Suficiente por sí sola: el guard de `desasociarMetodologiaDocenteMateria()` impide que exista asociación a `AsignaturaPrograma` sin la `Materia` padre.
-- elimina la `MetodologiaDocente` (`eliminar(metodologiaDocenteId)`) -- borrado físico.
+- gestiona `MetodologiaDocente` y consulta sus dos tablas de asociación (`metodologias_materia`, `asignaturas_programa_metodologias_docentes`).
 
 **Colaboraciones:**
 - **Entrada:** `MetodologiaDocenteController`.
-- **Salida:** gestiona `MetodologiaDocente`.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/wireframes.puml) -- fuente de verdad del `<<choice>>` bloqueante por uso en Materias.
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Materia o-- MetodologiaDocente`, `AsignaturaPrograma o-- MetodologiaDocente` (cascada en dos pasos cuya primera tabla basta como chequeo).
-- [`eliminarResultadoAprendizaje()`](../eliminarResultadoAprendizaje/README.md) -- mismo patrón de `<<choice>>` bloqueante con borrado físico; allí la comprobación cubre los dos niveles de la cascada.
-- [`eliminarAsignatura()`](../eliminarAsignatura/README.md) -- contraste: borrado lógico sin `<<choice>>`.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/wireframes.puml) -- fuente de verdad
+- [`eliminarCompetencia()`](../eliminarCompetencia/README.md) -- patrón de origen

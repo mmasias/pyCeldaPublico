@@ -6,12 +6,12 @@
 
 # pyCelda > editarActividadFormativa()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarActividadFormativa/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/README.md)|**Análisis**|[Diseño](/RUP/03-diseño/casos-uso/editarActividadFormativa/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`editarActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/README.md): CRUD real e inmediato, sin ninguna colaboración con otra entidad. El `codigo` se presenta de solo lectura (regla de Requisitos: no editable una vez creada la actividad); efectivamente solo cambia `nombre`. Sin `<<choice>>`: la única validación es de forma (`codigo` y `nombre` presentes). `ActividadFormativa` gana el método `actualizar(codigo, nombre)`.
+Traducción a clases de análisis de [`editarActividadFormativa()`](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): CRUD real e inmediato con el `<<choice>>` de código repetido de [`editarCompetencia()`](../editarCompetencia/README.md). `codigo` y `nombre` editables; la comprobación de unicidad excluye a la propia actividad (`salvo`).
 
 <div align=center>
 
@@ -26,11 +26,11 @@ Traducción a clases de análisis del caso de uso [`editarActividadFormativa()`]
 ### `EditarActividadFormativaView`
 
 **Responsabilidades:**
-- presenta los datos actuales: `codigo` (solo lectura) y `nombre`.
-- permite solicitar guardar.
+- presenta los datos actuales: `codigo` y `nombre`, los dos obligatorios.
+- presenta el mensaje de código repetido sin perder lo escrito.
 
 **Colaboraciones:**
-- **Entrada:** `:ACTIVIDAD_FORMATIVA_ABIERTO` -- el `Admin` solicita editar la `ActividadFormativa` abierta.
+- **Entrada:** `:ACTIVIDAD_FORMATIVA_ABIERTO`.
 - **Control:** `ActividadFormativaController`.
 - **Salida:** `:ACTIVIDAD_FORMATIVA_ABIERTO` con los datos actualizados.
 
@@ -40,8 +40,8 @@ Traducción a clases de análisis del caso de uso [`editarActividadFormativa()`]
 
 **Responsabilidades:**
 - carga la `ActividadFormativa` (`cargarActividadFormativa(actividadFormativaId)`).
-- valida los datos obligatorios (`validarDatosObligatorios(codigo, nombre)`).
-- guarda los cambios (`guardarCambios(actividadFormativaId, codigo, nombre)`): actualiza el modelo y persiste en el repositorio (`editar(actividadFormativa)`).
+- valida que el `codigo` no lo use otra actividad formativa del mismo `Programa`.
+- actualiza el modelo y persiste.
 
 **Colaboraciones:**
 - **Entrada:** `EditarActividadFormativaView`.
@@ -52,7 +52,7 @@ Traducción a clases de análisis del caso de uso [`editarActividadFormativa()`]
 ### `ActividadFormativa`
 
 **Responsabilidades:**
-- se actualiza a sí misma (`actualizar(codigo, nombre)`).
+- se actualiza a sí misma (`actualizar(codigo, nombre)`); su `Programa` no cambia.
 
 **Colaboraciones:**
 - **Entrada:** recuperada por `ActividadFormativaRepository`; mutada por `ActividadFormativaController`.
@@ -60,7 +60,8 @@ Traducción a clases de análisis del caso de uso [`editarActividadFormativa()`]
 ### `ActividadFormativaRepository`
 
 **Responsabilidades:**
-- recupera la `ActividadFormativa` (`obtener(actividadFormativaId)`) y persiste la editada (`editar(actividadFormativa)`).
+- responde si un `codigo` está en uso en el `Programa`, salvo la propia (`codigoEnUso(programaId, codigo, salvo)`).
+- persiste la editada (`editar(actividadFormativa)`).
 
 **Colaboraciones:**
 - **Entrada:** `ActividadFormativaController`.
@@ -68,9 +69,5 @@ Traducción a clases de análisis del caso de uso [`editarActividadFormativa()`]
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/wireframes.puml) -- fuente de verdad de el formulario de edición, con `codigo` de solo lectura..
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo de `Universidad` (`Universidad *-- ActividadFormativa`).
-- [`editarMetodologiaDocente()`](../editarMetodologiaDocente/README.md) -- clúster plantilla.
-- [`abrirActividadFormativa()`](../abrirActividadFormativa/README.md) -- detalle desde el que se edita.
-- [`editarAsignatura()`](../editarAsignatura/README.md) -- mismo patrón de carga previa + guardado sin `<<choice>>`.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/wireframes.puml) -- fuente de verdad.
+- [`editarCompetencia()`](../editarCompetencia/README.md) -- patrón de origen.

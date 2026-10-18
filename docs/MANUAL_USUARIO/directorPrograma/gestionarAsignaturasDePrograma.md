@@ -38,7 +38,7 @@ Dejar Requisitos previos vacío equivale a "No aplica" en la guía docente.
 
 ## Actividades formativas de la asignatura
 
-Tabla de solo lectura con **Actividad formativa**, **Horas** y **% presencialidad**. Pulsar **Editar reparto** abre un formulario con esos dos campos por actividad; **Guardar** confirma los nuevos valores. A diferencia del reparto a nivel de materia, aquí no hay medidor de discrepancia.
+Tabla de solo lectura con **Actividad formativa**, **Horas** y **% presencialidad**. La presencialidad es la de la materia y se edita allí; aquí solo se reparten horas. Pulsar **Editar reparto** abre un formulario con las horas de cada actividad (la presencialidad aparece al lado, sin editar); **Guardar** confirma los nuevos valores. A diferencia del reparto a nivel de materia, aquí no hay medidor de discrepancia.
 
 ---
 

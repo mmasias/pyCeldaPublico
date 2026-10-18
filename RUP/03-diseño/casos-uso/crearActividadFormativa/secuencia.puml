@@ -1,32 +1,39 @@
 @startuml crearActividadFormativa-diseño
 title Diagrama de Secuencia - Crear Actividad Formativa
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "ActividadFormativaRepository" as AFRepo
+participant "ActividadFormativaRepository" as Repo
 database "Base de Datos" as DB
 
-Admin -> Vista: completa código y nombre, confirma
+Actor -> Vista: solicita crear una actividad formativa
 activate Vista
-Vista -> API: POST /api/v1/universidades/{universidad_id}/actividades-formativas (ActividadFormativaCreate JSON)
+Vista --> Actor: presenta formulario (código, nombre)
+Actor -> Vista: completa los campos y confirma
+Vista -> API: POST /api/v1/programas/{programa_id}/actividades-formativas (ActividadFormativaCreate)
 activate API
-note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar.\n404 si la Universidad no existe
-API -> AFRepo: crear(universidad_id, codigo, nombre)
-activate AFRepo
-AFRepo -> DB: INSERT INTO actividades_formativas (universidad_id, codigo, nombre) VALUES (:universidad_id, :codigo, :nombre)
-activate DB
-DB --> AFRepo: id nueva fila
-deactivate DB
-AFRepo -> DB: INSERT filas a 0 (horas = 0) para las Materia / AsignaturaPrograma\nexistentes de la Universidad (autopoblado)
-activate DB
-DB --> AFRepo: ok
-deactivate DB
-AFRepo --> API: ActividadFormativa (con id)
-deactivate AFRepo
-API --> Vista: 201 Created (ActividadFormativaResponse JSON)
+note right of API: _autorizar_programa: Admin, o director que dirige\nel Programa; si no, 404.\nActividadFormativaCreate (Pydantic): código (máx. 10)\ny nombre (máx. 200) no vacíos; si no, 422
+API -> Repo: codigo_en_uso(programa_id, codigo)
+activate Repo
+Repo -> DB: SELECT id FROM actividades_formativas\nWHERE programa_id = :p AND UPPER(codigo) = UPPER(:c)
+DB --> Repo: fila o nada
+Repo --> API: boolean
+alt código ya usado en el Programa
+  API --> Vista: 409 Conflict ("Ya existe una actividad formativa con el código ... en este programa")
+  Vista --> Actor: presenta el mensaje, el formulario conserva lo escrito
+else código libre
+  API -> Repo: crear(programa_id, codigo, nombre)
+  Repo -> DB: INSERT INTO actividades_formativas (programa_id, codigo, nombre)
+  DB --> Repo: id
+  Repo -> DB: INSERT filas a 0 en actividades_formativas_materia (horas, porcentaje_presencialidad)\ny actividades_formativas_asignatura_programa (horas)\npara las Materia / AsignaturaPrograma existentes del Programa (autopoblado)
+  Repo -> DB: COMMIT
+  Repo --> API: ActividadFormativa
+  API --> Vista: 201 Created (ActividadFormativaResponse)
+  Vista --> Actor: navega a la ficha de la actividad formativa
+end
+deactivate Repo
 deactivate API
-Vista --> Admin: navega al detalle de la ActividadFormativa creada (sin <<include>> C->U)
 deactivate Vista
 
 @enduml

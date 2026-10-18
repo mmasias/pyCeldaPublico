@@ -46,10 +46,12 @@ Bajada a diseño del caso de análisis [`abrirAsignaturaPrograma()`](/RUP/02-ana
 - **Los tres listados firma el mismo `AsignaturaProgramaRepository`**: a diferencia de los selectores de disponibles (que consultan el agregado devuelto), aquí las tres colecciones cuelgan del agregado abierto -- Análisis ya lo asignaba así, evitando dispersar tres lecturas de una misma pantalla por tres repositorios.
 - **El profesorado es de solo lectura**: la gestión de `Profesor` en `AsignaturaPrograma` es exclusiva de `Admin` (fuera de alcance, discussion [#65](https://github.com/mmasias/pyCelda/discussions/65)) -- se lista, sin endpoint de mutación en este lote.
 
+**Competencias (issue [#761](https://github.com/mmasias/pyCelda/issues/761))**: `AsignaturaProgramaDetalleResponse` gana `competencias` (`CompetenciaRepository.listar_de_la_asignatura_programa()`), en `_detalle_asignatura_programa()`, común a las dos vistas.
+
 ## Referencias
 
 - [`abrirAsignaturaPrograma()` en Análisis](/RUP/02-analisis/casos-uso/abrirAsignaturaPrograma/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/README.md).
 - [`abrirMateria()` en Diseño](/RUP/03-diseño/casos-uso/abrirMateria/README.md) -- patrón de detalle con colecciones, sobre el agregado vecino.
 - [`editarAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarAsignaturaPrograma/README.md) -- edición de los datos propios que esta pantalla presenta.
-- [`editarActividadesFormativasAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md) -- el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)) suma la sección "Actividades formativas" (rejilla de `horas` + `porcentaje_presencialidad`); `AsignaturaProgramaDetalleResponse` gana el campo al construir el clúster, con audit del agregado `AsignaturaPrograma`.
+- [`editarActividadesFormativasAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md) -- el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)) suma la sección "Actividades formativas" (`horas` de la asignatura + `porcentaje_presencialidad` de la `Materia`, issue [#772](https://github.com/mmasias/pyCelda/issues/772), vía `serializar_actividades_formativas_asignatura_programa(db, materia_id, filas)`); `AsignaturaProgramaDetalleResponse` gana el campo al construir el clúster, con audit del agregado `AsignaturaPrograma`.

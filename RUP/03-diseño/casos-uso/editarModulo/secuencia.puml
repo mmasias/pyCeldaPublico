@@ -1,0 +1,33 @@
+@startuml editarModulo-diseño
+title Diagrama de Secuencia - Editar Modulo
+
+actor "Admin" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "ModuloRepository" as Repo
+participant "Modulo" as Modelo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita editar un módulo desde su fila
+activate Vista
+Vista -> API: GET /api/v1/admin/modulos/{modulo_id}
+API --> Vista: 200 OK (ModuloResponse)
+Vista --> Actor: presenta formulario con los datos actuales
+Actor -> Vista: cambia y confirma
+Vista -> API: PUT /api/v1/admin/modulos/{modulo_id} (ModuloUpdate)
+activate API
+API -> Repo: codigo_en_uso(programa_id, codigo, salvo_id=modulo_id)
+alt código ya usado por otro módulo del Programa
+  API --> Vista: 409 Conflict
+  Vista --> Actor: presenta el mensaje, conserva lo escrito
+else libre
+  API -> Modelo: actualizar(codigo, nombre, descripcion)
+  API -> Repo: actualizar(modulo)
+  Repo -> DB: UPDATE modulos SET ... WHERE id = :modulo_id
+  API --> Vista: 200 OK (ModuloResponse)
+  Vista --> Actor: vuelve al listado actualizado
+end
+deactivate API
+deactivate Vista
+
+@enduml

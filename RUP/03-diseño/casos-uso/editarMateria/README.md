@@ -47,6 +47,8 @@ Bajada a diseño del caso de análisis [`editarMateria()`](/RUP/02-analisis/caso
 - **`404` si el identificador no existe**, tanto en el `GET` previo como en el `PUT` -- guardia de Router sobre el `None` del repositorio.
 - **Sin capa Service**: Router delgado -> Modelo/Repository.
 
+**Módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: `MateriaUpdate` gana `modulo_id` opcional; el router solo lo aplica si viene en el cuerpo (`"modulo_id" in datos.model_fields_set`), para que un cliente que solo manda el nombre no le quite el módulo a la materia. `null` explícito lo quita. Misma validación `_validar_modulo()` (404).
+
 ## Referencias
 
 - [`editarMateria()` en Análisis](/RUP/02-analisis/casos-uso/editarMateria/README.md) -- diagrama de colaboración origen.

@@ -1,0 +1,27 @@
+@startuml desasociarCompetenciaAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Desasociar Competencia de AsignaturaPrograma
+
+actor "Admin / DirectorPrograma" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CompetenciaRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita desasociar una competencia de la asignatura
+activate Vista
+Vista --> Actor: presenta la competencia (de la ficha ya cargada) y pide confirmación
+alt el actor confirma
+  Actor -> Vista: confirma
+  Vista -> API: DELETE /api/v1/asignaturas-programa/{asignatura_programa_id}/competencias/{competencia_id}
+  activate API
+  API -> Repo: desasociar_de_asignatura_programa(asignatura_programa_id, competencia_id)
+  Repo -> DB: DELETE FROM asignaturas_programa_competencias WHERE ...
+  API --> Vista: 204 No Content
+  deactivate API
+  Vista --> Actor: presenta la ficha actualizada
+else el actor cancela
+  Vista --> Actor: vuelve a la ficha, sin llamada al backend
+end
+deactivate Vista
+
+@enduml

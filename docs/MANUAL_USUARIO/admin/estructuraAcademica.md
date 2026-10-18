@@ -30,14 +30,15 @@ Tras crearlo, la pantalla pasa directamente a editar el programa recién creado.
 
 ## Detalle de un programa
 
-Las pantallas de un programa llevan su nombre en la cabecera y, encima en pequeño, la miga **🏛️ Universidades › universidad › facultad**, cuyos pasos son enlaces para subir en la estructura. Debajo va una franja de pestañas, con la de la pantalla actual marcada (igual que en la vista del director de programa):
+Las pantallas de un programa llevan su nombre en la cabecera y, encima en pequeño, la miga **🏛️ Universidades › universidad › facultad**, cuyos pasos son enlaces para subir en la estructura. Debajo va una franja de pestañas en dos filas, con la de la pantalla actual marcada (igual que en la vista del director de programa): arriba **📋 Ficha** y **🚦 Guías**; debajo, algo más pequeñas, las de la estructura del programa.
 
-- **📋 Ficha**: su **Código** y **Estado**, los directores y una tabla de sus **Asignaturas del programa** -- ver el capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md). **✏️ Editar**, a la derecha del título **Ficha**, cambia el nombre del programa; el código no es editable una vez creado. Al pie de esa pantalla, en **Zona de riesgo**, está **🗑️ Eliminar** (ver más abajo).
+- **📋 Ficha**: su **Código**, **Estado**, **Código RUCT** y **Denominación oficial** (estos dos los carga la importación desde el RUCT y no se editan; "--" si el programa no se ha importado), los directores y una tabla de sus **Asignaturas del programa** -- ver el capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md). **✏️ Editar**, a la derecha del título **Ficha**, cambia el nombre del programa; el código no es editable una vez creado. Al pie de esa pantalla, en **Zona de riesgo**, está **🗑️ Eliminar** (ver más abajo).
 - **🧱 Módulos**: los módulos en que se agrupan las materias del programa (ver más abajo).
 - **📚 Materias**: las materias del programa -- capítulo [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md).
 - **🎯 Resultados de aprendizaje**: los resultados de aprendizaje del programa (ver más abajo).
 - **🧭 Competencias**: las competencias del programa (ver más abajo).
 - **🧩 Metodologías**: las metodologías docentes del programa (ver más abajo).
+- **🏋️ Actividades formativas**: las actividades formativas del programa (ver más abajo).
 - **🚦 Guías**: el seguimiento de sus guías docentes -- capítulo [Seguimiento de guías](seguimientoDeGuias.md).
 
 Desde el detalle del programa ya no hay un botón **Eliminar**: se llega a él desde **Editar**. Desde el listado de programas de la facultad sigue disponible la papelera **🗑️** (Eliminar) de cada fila.
@@ -48,7 +49,23 @@ Pulsar **🗑️ Eliminar** en **Zona de riesgo** de la pantalla **Editar** (des
 
 ## Metodologías docentes del programa
 
-Pulsar la pestaña **🧩 Metodologías** del programa. Aparece una tabla con **Código** y **Descripción** de las metodologías docentes asociadas al programa, con **➖** (Desasociar) en cada fila. **➕ Asociar metodología docente** permite añadir otra del catálogo institucional (ver [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md)). La pestaña **📋 Ficha** regresa al detalle. El director de programa gestiona lo mismo desde su propia pantalla.
+Cada programa tiene su propio catálogo de metodologías docentes, con el código y la descripción de su memoria; no se comparte con otros programas. Pulsar la pestaña **🧩 Metodologías** del programa. Funciona como las competencias: tabla con **Descripción**, **Código** y **Nº de Asign.** (cuántas asignaturas del programa la tienen; con fondo rojo suave si es 0), con **📂 Abrir** y la papelera **🗑️** (Eliminar) en cada fila.
+
+- **➕ Crear metodología docente**: formulario con **Código (*)** y **Descripción (*)**; se confirma con **Crear** y se abre la metodología creada. El código no puede repetirse dentro del programa, sin distinguir mayúsculas y minúsculas.
+- **📂 Abrir**: la miga **🧩 Metodologías docentes › código**, la descripción, **✏️ Editar** (mismos campos que el alta) y la **Distribución**: las materias y las asignaturas de programa que la tienen, cada una con un enlace a su ficha.
+- **🗑️** (Eliminar): si está asociada a alguna materia o asignatura de programa, la pantalla indica **⛔ No se puede eliminar** y lista dónde; si no, pide confirmación y la baja no se puede deshacer.
+
+Las metodologías se asocian a las materias y, de las de cada materia, a sus asignaturas, desde la sección de metodologías de cada una. El director de programa gestiona lo mismo desde su vista.
+
+## Actividades formativas del programa
+
+Igual que las metodologías, cada programa tiene su catálogo de actividades formativas, con el código y el nombre de su memoria. Pulsar la pestaña **🏋️ Actividades formativas** del programa: tabla con **Nombre** y **Código**, en orden de alta, con **📂 Abrir** y **🗑️** (Eliminar).
+
+- **➕ Crear actividad formativa**: **Código (*)** (único en el programa) y **Nombre (*)**. Al crearla, todas las materias y asignaturas del programa reciben su fila a 0 horas.
+- **📂 Abrir**: código, nombre y **✏️ Editar**.
+- **🗑️** (Eliminar): bloqueada con **⛔ No se puede eliminar** si alguna materia o asignatura del programa tiene horas en ella (la pantalla dice en qué materias); si no, se retira también de las materias y asignaturas, donde estaba a 0.
+
+Las horas y la presencialidad se reparten en cada materia, y las horas en cada asignatura (capítulos [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md) y [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)).
 
 ## Resultados de aprendizaje del programa
 
@@ -93,7 +110,7 @@ Esta gestión también puede hacerse en sentido inverso, desde el detalle del pr
 
 <div align=center>
 
-| [Entrar y el panel de administración](entrarYElPanel.md) | [Índice](README.md) | [Catálogo de asignaturas y metodologías](catalogoDeAsignaturasYMetodologias.md) |
+| [Entrar y el panel de administración](entrarYElPanel.md) | [Índice](README.md) | [Catálogo de asignaturas](catalogoDeAsignaturasYMetodologias.md) |
 |---|:-:|---|
 
 </div>

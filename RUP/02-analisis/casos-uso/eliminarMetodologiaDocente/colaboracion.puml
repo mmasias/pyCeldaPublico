@@ -15,18 +15,18 @@ package eliminarMetodologiaDocente as "eliminarMetodologiaDocente()" {
 
 MetodologiasDocentesAbierto --> EliminarMetodologiaDocenteView: <font size=8>eliminarMetodologiaDocente(metodologiaDocenteId)
 
-EliminarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>puedeEliminar(metodologiaDocenteId) : boolean
+EliminarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>cargarAsignaciones(metodologiaDocenteId) : (List<Materia>, List<AsignaturaPrograma>)
 
-MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>nombresMateriasAsociadas(metodologiaDocenteId) : List<String>
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>asignaciones(metodologiaDocenteId)
 
 EliminarMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>eliminar(metodologiaDocenteId)
 
-MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>eliminar(metodologiaDocenteId)
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>eliminar(metodologiaDocente)
 
 MetodologiaDocenteRepository -- MetodologiaDocente
 
 EliminarMetodologiaDocenteView ..[#green]> MetodologiasDocentesAbiertoSalida: <font size=8>lista actualizada
-EliminarMetodologiaDocenteView ..[#red]> MetodologiasDocentesAbiertoSalida: <font size=8>bloqueada, sin cambios -- asociada a Materia
+EliminarMetodologiaDocenteView ..[#red]> MetodologiasDocentesAbiertoSalida: <font size=8>bloqueada, sin cambios -- asignada a Materia o AsignaturaPrograma
 EliminarMetodologiaDocenteView ..[#blue]> MetodologiasDocentesAbiertoSalida: <font size=8>cancelada, sin cambios
 
 @enduml

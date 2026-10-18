@@ -52,7 +52,7 @@ Traducción a clases de análisis del caso de uso [`desasociarMetodologiaDocente
 
 **Responsabilidades:**
 - responde si quedaría sin `MetodologiaDocente` tras desasociar una dada (`quedaSinMetodologiasDocentesTrasDesasociar(asignaturaProgramaId, metodologiaDocenteId)`).
-- elimina real e inmediata la asociación (`desasociarMetodologiaDocente(asignaturaProgramaId, metodologiaDocenteId)`) -- no es un borrado de `MetodologiaDocente`, que sigue en el catálogo institucional y en la `Materia` si lo estaba.
+- elimina real e inmediata la asociación (`desasociarMetodologiaDocente(asignaturaProgramaId, metodologiaDocenteId)`) -- no es un borrado de `MetodologiaDocente`, que sigue en el catálogo del `Programa` (#772; antes institucional) y en la `Materia` si lo estaba.
 
 **Colaboraciones:**
 - **Entrada:** `AsignaturaProgramaController`.

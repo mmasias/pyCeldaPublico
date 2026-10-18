@@ -4,11 +4,13 @@
 
 </div>
 
-# Catálogo de asignaturas y metodologías
+# Catálogo de asignaturas
 
 ## Qué es
 
-Tres catálogos institucionales, independientes de cualquier programa concreto: las **asignaturas** (nombre, ECTS y contenido de referencia, del que parte cada asignatura de programa al crearse) las **metodologías docentes** (código y descripción, asociables luego a materias, programas y asignaturas de programa) y las **actividades formativas** (código y nombre, con horas repartidas en materias y asignaturas de programa). Las metodologías y las actividades formativas pertenecen a una universidad.
+El catálogo institucional de **asignaturas** (nombre, ECTS y contenido de referencia, del que parte cada asignatura de programa al crearse), independiente de cualquier programa concreto.
+
+Las **metodologías docentes** y las **actividades formativas** ya no son catálogos de la universidad: cada programa tiene los suyos, con el código y el texto de su memoria, y se gestionan desde las pestañas del programa (capítulo [Estructura académica](estructuraAcademica.md)).
 
 ## Asignaturas
 
@@ -33,42 +35,6 @@ Pulsar **🗑️** (Eliminar) y confirmar en **Confirmar eliminación**. Esta ac
 ### Presente en
 
 Al abrir una asignatura del catálogo, debajo de su detalle aparece la sección **Presente en**: una tabla con cada asignatura de programa que parte de ella (**Programa**, **Materia**, **Curso** -- curso y semestre por defecto tal como los devuelve la asignatura de programa, sin convertir a números romanos -- y **Carácter**), o el aviso "Esta asignatura no está en ningún programa todavía" si no la usa ninguna.
-
-## Metodologías docentes
-
-Pulsar **🧩 Metodologías docentes** en el panel de administración. Arriba aparece el selector **Universidad:** (las metodologías listadas son las de la universidad elegida). Aparece una tabla con **Código**, **Descripción** y los botones **Abrir** y **🗑️** (Eliminar) de cada una.
-
-### Crear una metodología docente
-
-1. Pulsar **➕ Crear metodología docente** (se crea en la universidad elegida en el selector).
-2. Rellenar **Código** y **Descripción**.
-3. Pulsar **Crear**.
-
-### Editar una metodología docente
-
-Pulsar **Editar** en el detalle. El **Código** no es editable una vez creada; la **Descripción** sí.
-
-### Eliminar una metodología docente
-
-Pulsar la papelera **🗑️** (Eliminar) y confirmar en **Confirmar eliminación**. Si ninguna materia, programa ni asignatura de programa la tiene asociada, la baja se aplica. Si está en uso, la eliminación queda bloqueada con el aviso **⛔ No se puede eliminar** y la lista de dónde está asignada -- hay que retirarla primero de esos sitios (desde el programa o la materia, o desde la asignatura de programa).
-
-## Actividades formativas
-
-Pulsar **🏋️ Actividades formativas** en el panel de administración. Igual que en las metodologías, el selector **Universidad:** elige cuál se lista. Aparece una tabla con **Código**, **Nombre** y los botones **📂 Abrir** y la papelera **🗑️** (Eliminar) de cada una.
-
-### Crear una actividad formativa
-
-1. Pulsar **➕ Crear actividad formativa** (el formulario ofrece **Universidad (*)**, que parte de la elegida en el selector).
-2. Rellenar **Código (*)** y **Nombre (*)**.
-3. Pulsar **Crear**.
-
-### Editar una actividad formativa
-
-Pulsar **✏️ Editar** en el detalle. El **Código** no es editable una vez creada; el **Nombre** sí.
-
-### Eliminar una actividad formativa
-
-Pulsar la papelera **🗑️** (Eliminar) y confirmar. Si alguna materia o asignatura de programa tiene horas repartidas en ella, la eliminación queda bloqueada con el aviso **⛔ No se puede eliminar** y la lista de dónde está asignada; si no, la baja se aplica y no se puede deshacer.
 
 ---
 

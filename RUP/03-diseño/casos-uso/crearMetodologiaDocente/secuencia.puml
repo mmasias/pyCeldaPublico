@@ -1,28 +1,38 @@
 @startuml crearMetodologiaDocente-diseño
 title Diagrama de Secuencia - Crear Metodología Docente
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "MetodologiaDocenteRepository" as MetodologiaRepo
+participant "MetodologiaDocenteRepository" as Repo
 database "Base de Datos" as DB
 
-Admin -> Vista: completa código y descripción, confirma
+Actor -> Vista: solicita crear una metodología docente
 activate Vista
-Vista -> API: POST /api/v1/universidades/{universidad_id}/metodologias-docentes (MetodologiaDocenteCreate JSON)
+Vista --> Actor: presenta formulario (código, descripción)
+Actor -> Vista: completa los campos y confirma
+Vista -> API: POST /api/v1/programas/{programa_id}/metodologias-docentes (MetodologiaDocenteCreate)
 activate API
-note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> MetodologiaRepo: crear(universidad_id, codigo, descripcion)
-activate MetodologiaRepo
-MetodologiaRepo -> DB: INSERT INTO metodologias_docentes (codigo, descripcion) VALUES (:codigo, :descripcion)
-activate DB
-DB --> MetodologiaRepo: id nueva fila
-deactivate DB
-MetodologiaRepo --> API: MetodologiaDocente (con id)
-deactivate MetodologiaRepo
-API --> Vista: 201 Created (MetodologiaDocenteResponse JSON)
+note right of API: _autorizar_programa: Admin, o director\nque dirige el Programa; si no, 404
+note right of API: MetodologiaDocenteCreate (Pydantic): código y descripción\nno vacíos, código <= 20, descripción <= 500; si no, 422
+API -> Repo: codigo_en_uso(programa_id, codigo)
+activate Repo
+Repo -> DB: SELECT id FROM metodologias_docentes\nWHERE programa_id = :p AND UPPER(codigo) = UPPER(:c)
+DB --> Repo: fila o nada
+Repo --> API: boolean
+alt código ya usado en el Programa
+  API --> Vista: 409 Conflict ("Ya existe una metodología docente con el código ... en este programa")
+  Vista --> Actor: presenta el mensaje, el formulario conserva lo escrito
+else código libre
+  API -> Repo: crear(programa_id, codigo, descripcion)
+  Repo -> DB: INSERT INTO metodologias_docentes ...
+  DB --> Repo: id
+  Repo --> API: MetodologiaDocente
+  API --> Vista: 201 Created (MetodologiaDocenteResponse)
+  Vista --> Actor: navega a la ficha de la metodología (<<include>> editarMetodologiaDocente())
+end
+deactivate Repo
 deactivate API
-Vista --> Admin: navega al detalle de la MetodologiaDocente creada (sin <<include>> C->U)
 deactivate Vista
 
 @enduml

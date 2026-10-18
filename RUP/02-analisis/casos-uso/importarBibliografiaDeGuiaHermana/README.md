@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`importarBibliografiaDeGuiaHermana()`](/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/README.md): el `Profesor` de una `AsignaturaPrograma` copia la bibliografía de una `Guia` en estado `Aprobada` de una `AsignaturaPrograma` hermana -- otra con `id` distinto, el mismo `asignaturaId` no nulo y el mismo `Asignatura.codigo` (issue [#184](https://github.com/mmasias/pyCelda/issues/184), sobre la FK al catálogo puesta en el [#181](https://github.com/mmasias/pyCelda/issues/181)). Copia con **reemplazo total**: borra TODAS las `ReferenciaBibliografica` de la guía destino -- las vinculadas y las que el profesor destino tecleó a mano -- y crea filas nuevas con `guiaId` = destino copiando `tipo` y `referencia`, replicando el flag `vinculada` de cada fila origen TAL CUAL -- no se fuerza a `True`. Un origen `Aprobado` por el flujo normal (`enviar -> aprobar`) tiene todas las filas vinculadas (lo garantiza la regla `c1` de `enviarGuiaARevision`), así que sus copias también; sólo un origen que llegó a `Aprobada` vía `escalarGuiaAAprobada()` (que bypasea `c1`) puede llevar candidatas `vinculada=False` que el destino heredaría. Real e inmediata -- persiste en el acto en un solo commit, a diferencia del CRUD de L8 que queda en memoria hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md). Si la guía destino estaba `Aprobada`, se degrada a `Borrador` (mismo mecanismo que `guardarBorradorGuia()` -> `Guia.confirmar_guardado()`) y la operación completa registra UNA fila de `HistorialCambio` (`campo="bibliografia"`, origen identificado en `comentario`, p.ej. "bibliografía importada desde GII / IYA003"). Autorización: relajación acotada de la regla 404-uniforme -- el `Profesor` de la `AsignaturaPrograma` destino puede LEER la bibliografía de una guía `Aprobada` de una hermana suya, sólo para listar y elegir origen; ninguna otra lectura cross-programa se abre. La previsualización del contenido fila a fila del origen antes de importar queda DIFERIDA a un refinamiento posterior: por ahora la vista informa con recuentos (referencias que trae el origen, referencias del destino que se reemplazarán).
+Traducción a clases de análisis del caso de uso [`importarBibliografiaDeGuiaHermana()`](/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/README.md): el `Profesor` de una `AsignaturaPrograma` copia la bibliografía de una `Guia` importable de una `AsignaturaPrograma` hermana -- `Aprobada`, la imparta o no quien importa, o `EnRevision` solo si el `Profesor` también imparte la `AsignaturaPrograma` de la guía origen; nunca `Borrador` ni `Rechazada` (issue [#740](https://github.com/mmasias/pyCelda/issues/740), 2026-10-09; regla completa en [Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/README.md)). La hermana es otra con `id` distinto, el mismo `asignaturaId` no nulo y el mismo `Asignatura.codigo` (issue [#184](https://github.com/mmasias/pyCelda/issues/184), sobre la FK al catálogo puesta en el [#181](https://github.com/mmasias/pyCelda/issues/181)). Copia con **reemplazo total**: borra TODAS las `ReferenciaBibliografica` de la guía destino -- las vinculadas y las que el profesor destino tecleó a mano -- y crea filas nuevas con `guiaId` = destino copiando `tipo` y `referencia`, replicando el flag `vinculada` de cada fila origen TAL CUAL -- no se fuerza a `True`. Un origen `Aprobado` por el flujo normal (`enviar -> aprobar`) o `EnRevision` tiene todas las filas vinculadas (lo garantiza la regla `c1` de `enviarGuiaARevision`), así que sus copias también; sólo un origen que llegó a `Aprobada` vía `escalarGuiaAAprobada()` (que bypasea `c1`) puede llevar candidatas `vinculada=False` que el destino heredaría. Real e inmediata -- persiste en el acto en un solo commit, a diferencia del CRUD de L8 que queda en memoria hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md). Si la guía destino estaba `Aprobada`, se degrada a `Borrador` (mismo mecanismo que `guardarBorradorGuia()` -> `Guia.confirmar_guardado()`) y la operación completa registra UNA fila de `HistorialCambio` (`campo="bibliografia"`, origen identificado en `comentario`, p.ej. "bibliografía importada desde GII / IYA003"). Autorización: relajación acotada de la regla 404-uniforme -- el `Profesor` de la `AsignaturaPrograma` destino puede LEER la bibliografía de una guía importable (`Aprobada`, o `EnRevision` de una `AsignaturaPrograma` que también imparte) de una hermana suya, sólo para listar y elegir origen y revalidarlo al importar; ninguna otra lectura cross-programa se abre. Importar es una copia, no un enlace: si después el origen se rechaza, se revoca o cambia, el destino no se entera. La previsualización del contenido fila a fila del origen antes de importar queda DIFERIDA a un refinamiento posterior: por ahora la vista informa con recuentos (referencias que trae el origen, referencias del destino que se reemplazarán).
 
 <div align=center>
 
@@ -26,11 +26,11 @@ Traducción a clases de análisis del caso de uso [`importarBibliografiaDeGuiaHe
 ### `ImportarBibliografiaDeGuiaHermanaView`
 
 **Responsabilidades:**
-- presenta el desplegable de guías origen candidatas: las guías `Aprobadas` de `AsignaturaPrograma` hermanas, cada una identificada por programa + código de `Asignatura` + nombre de la AG hermana + fecha de aprobación, con el recuento de referencias que trae y el recuento de referencias del destino que se reemplazarán.
+- presenta el desplegable de guías origen candidatas: las guías importables de `AsignaturaPrograma` hermanas, cada una identificada por programa + código de `Asignatura` + nombre de la AG hermana + estado con su fecha ("aprobada el ..." o "en revisión desde ..."), con el recuento de referencias que trae y el recuento de referencias del destino que se reemplazarán.
 - permite solicitar importar.
 
 **Colaboraciones:**
-- **Entrada:** `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO` -- el `Profesor` solicita importar la bibliografía de una guía hermana para la `Guia` que tiene abierta; si no hay ninguna guía `Aprobada` hermana, el caso de uso no se ofrece (botón ausente).
+- **Entrada:** `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO` -- el `Profesor` solicita importar la bibliografía de una guía hermana para la `Guia` que tiene abierta; si no hay ninguna guía hermana importable, el caso de uso no se ofrece (botón ausente).
 - **Control:** `ImportarBibliografiaDeGuiaHermanaController`.
 - **Salida:** `:Collaboration AbrirReferenciasBibliograficas` vía `<<include>> abrirReferenciasBibliograficas()` -- vuelve al listado, ya con la bibliografía reemplazada.
 
@@ -39,8 +39,8 @@ Traducción a clases de análisis del caso de uso [`importarBibliografiaDeGuiaHe
 ### `ImportarBibliografiaDeGuiaHermanaController`
 
 **Responsabilidades:**
-- `listarOrigenesImportables(guiaDestinoId)`: guías `Aprobadas` de hermanas con sus recuentos -- alimenta el desplegable; lista vacía = botón ausente.
-- vuelve a obtener la `Guia` origen por id (`GuiaRepository.obtener(guiaOrigenId)`) y `validarHermandad(guiaDestino, guiaOrigen)`: revalidación server-side -- comprueba que `guiaOrigen.estado == "Aprobada"` y que la `AsignaturaPrograma` de origen sigue siendo hermana de la de destino (mismo `asignaturaId` no nulo y mismo `Asignatura.codigo`). El `guiaOrigenId` del cliente nunca se confía; el detalle de la respuesta (404 uniforme si no valida) se fija en Diseño.
+- `listarOrigenesImportables(guiaDestinoId)`: guías importables de hermanas con su estado, fecha y recuentos -- alimenta el desplegable; lista vacía = botón ausente. De las candidatas `Aprobadas` o `EnRevision` del `CursoAcademico` activo, conserva las `Aprobadas` y solo las `EnRevision` cuya `AsignaturaPrograma` también imparte el `Profesor` (`AsignaturaProgramaRepository.imparte()`).
+- vuelve a obtener la `Guia` origen por id (`GuiaRepository.obtener(guiaOrigenId)`) y `validarHermandad(guiaDestino, guiaOrigen)`: revalidación server-side -- comprueba que la guía origen es importable (`Aprobada`, o `EnRevision` de una `AsignaturaPrograma` que el `Profesor` también imparte) y que la `AsignaturaPrograma` de origen sigue siendo hermana de la de destino (mismo `asignaturaId` no nulo y mismo `Asignatura.codigo`). El `guiaOrigenId` del cliente nunca se confía; el detalle de la respuesta (404 uniforme si no valida) se fija en Diseño.
 - `importarBibliografia(guiaDestinoId, guiaOrigenId)`: orquesta el reemplazo -- borra todas las `ReferenciaBibliografica` del destino, crea copias desde el origen replicando `vinculada`, degrada la guía destino si estaba `Aprobada` y registra una fila de `HistorialCambio`.
 - real e inmediato: toda la operación persiste en un solo commit.
 
@@ -63,6 +63,7 @@ Traducción a clases de análisis del caso de uso [`importarBibliografiaDeGuiaHe
 
 **Responsabilidades:**
 - `listarHermanas(asignaturaProgramaId)`: otras `AsignaturaPrograma` con el mismo `asignaturaId` y el mismo `codigo`, excluyendo la propia; `[]` si `asignaturaId` es nulo.
+- `imparte(asignaturaProgramaId, profesorId)`: si el `Profesor` imparte esa `AsignaturaPrograma` -- la misma comprobación que autoriza el destino, aplicada aquí a la guía origen `EnRevision` (issue #740).
 
 **Colaboraciones:**
 - **Entrada:** `ImportarBibliografiaDeGuiaHermanaController`.
@@ -80,7 +81,7 @@ Traducción a clases de análisis del caso de uso [`importarBibliografiaDeGuiaHe
 ### `GuiaRepository`
 
 **Responsabilidades:**
-- localiza la guía destino (`obtener(guiaDestinoId)`) y las guías `Aprobadas` de las hermanas (`listarAprobadasDe(hermanas)`).
+- localiza la guía destino (`obtener(guiaDestinoId)`) y las guías `Aprobadas` o `EnRevision` de las hermanas en el `CursoAcademico` activo (`listarImportablesDe(hermanas, cursoAcademicoId)`); el filtro de "imparte" para las `EnRevision` lo aplica el controlador, no esta consulta.
 - persiste la `Guia` tras el reemplazo -- posible cambio de `estado` (`actualizar(guia)`).
 
 **Colaboraciones:**
@@ -121,3 +122,4 @@ Traducción a clases de análisis del caso de uso [`importarBibliografiaDeGuiaHe
 - [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- mecanismo de degradado `Aprobada -> Borrador` compartido (`confirmar_guardado()`).
 - [`abrirReferenciasBibliograficas()`](../abrirReferenciasBibliograficas/README.md) -- pantalla de origen del botón y retorno tras importar.
 - [Issue #184](https://github.com/mmasias/pyCelda/issues/184) -- origen del caso de uso.
+- [Issue #740](https://github.com/mmasias/pyCelda/issues/740) -- orígenes importables: `Aprobada`, o `EnRevision` que quien importa también imparte.

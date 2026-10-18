@@ -6,7 +6,7 @@
 
 # pyCelda > editarMetodologiaDocente() > Diseño
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md)|[Análisis](/RUP/02-analisis/casos-uso/editarMetodologiaDocente/README.md)|**Diseño**|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|[Detalle](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md)|[Análisis](/RUP/02-analisis/casos-uso/editarMetodologiaDocente/README.md)|**Diseño**|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 ## Información del artefacto
@@ -14,13 +14,13 @@
 - **Proyecto**: pyCelda
 - **Fase RUP**: Elaboración
 - **Disciplina**: Diseño
-- **Versión**: 1.0
-- **Fecha**: 2026-08-26
-- **Autor**: GLM (vía opencode)
+- **Versión**: 2.0
+- **Fecha**: 2026-10-17
+- **Autor**: Claude (vía Claude Code)
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`editarMetodologiaDocente()`](/RUP/02-analisis/casos-uso/editarMetodologiaDocente/README.md): CRUD real e inmediato, `PUT /api/v1/metodologias-docentes/{metodologia_docente_id}`, sin ninguna llamada a otra entidad. Sin `alt` de negocio -- `MetodologiaDocente` no tiene ninguna regla de validación cruzada en el modelo de dominio; la única validación es de forma (`codigo` y `descripcion` obligatorios), resuelta por Pydantic. `MetodologiaDocente` gana aquí su método `actualizar(codigo, descripcion)`.
+Bajada a diseño de [`editarMetodologiaDocente()`](/RUP/02-analisis/casos-uso/editarMetodologiaDocente/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): mismo esquema de validación que crear; el código propio no cuenta como repetido (`salvo_id`).
 
 ## Diagrama de secuencia de diseño
 
@@ -34,26 +34,19 @@ Bajada a diseño del caso de análisis [`editarMetodologiaDocente()`](/RUP/02-an
 
 ## Participantes
 
-- **Vista**: `EditarMetodologiaDocenteView` (React) -- carga el formulario con `GET /api/v1/metodologias-docentes/{metodologia_docente_id}` (mismo endpoint que `abrirMetodologiaDocente()`), envía cambios con `PUT`; el `codigo` se presenta de solo lectura (regla de Requisitos: no editable una vez creada la metodología).
-- **API**: `routers/metodologia_docente.py::editar_metodologia_docente(metodologia_docente_id, datos)` -- función nueva; sin validación de negocio, solo coordina la actualización.
-- **Modelo**: `MetodologiaDocente.actualizar(codigo, descripcion)` -- método nuevo, mismo patrón que `Asignatura.actualizar(nombre, ects, contenido)`.
-- **Repositorio**: `MetodologiaDocenteRepository.obtener(metodologia_docente_id)` (reutilizado) / `.editar(metodologia_docente, codigo, descripcion)` -- método nuevo.
+- **Vista**: `EditarMetodologiaDocente` (React), prop `admin`; campos en `FormularioCatalogoPrograma`.
+- **API**: `routers/metodologia_docente.py::editar_metodologia_docente(metodologia_docente_id, datos)`.
+- **Modelo**: `MetodologiaDocente.actualizar(codigo, descripcion)`.
+- **Repositorio**: `MetodologiaDocenteRepository.codigo_en_uso()`, `actualizar()`.
 
 ## Decisiones de diseño
 
-- **Sin `alt` de negocio**: la única validación es de forma, resuelta por `MetodologiaDocenteUpdate` (Pydantic: `codigo` y `descripcion` obligatorios), mismo mecanismo ya documentado en el diagrama de clases de Diseño para `validarDatosObligatorios()`.
-- **El `codigo` viaja en `MetodologiaDocenteUpdate` aunque el formulario no lo edita**: regla de Requisitos ("el código no es editable una vez creada la metodología") resuelta en la Vista -- el campo se muestra de solo lectura y se reenvía sin cambios; el esquema de entrada no distingue campos por caso de uso, mismo criterio que `ProgramaAdminUpdate` frente al `codigo` de `Programa`.
-- **`MetodologiaDocenteRepository.editar(metodologia_docente, codigo, descripcion)` es método nuevo**: el repositorio ya existía con las queries de disponibilidad; gana aquí su método de persistencia de edición (invoca `MetodologiaDocente.actualizar(codigo, descripcion)` y persiste), mismo reparto Modelo-muta/Repository-persiste que `Asignatura.actualizar()` + `AsignaturaRepository.actualizar()`.
-- **Sin capa Service**: Router delgado -> Modelo/Repository.
-- **Reutiliza el `GET` de `abrirMetodologiaDocente()`**: mismo endpoint de carga, sin duplicar lógica de lectura.
-- **`404` si el identificador no existe**, tanto en el `GET` previo como en el `PUT` -- guardia de Router sobre el `None` del repositorio.
-- **Autorización de `Admin`: `Depends(require_admin)`** -- toda función de `routers/metodologia_docente.py` la declara explícitamente. Especialmente relevante aquí por ser endpoint de escritura: el historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real.
+- **Autorización compartida Admin/Director** (`_autorizar_programa`/`_puede_en_programa`, importados de `routers/competencia.py`, y `_autorizar_metodologia` en `routers/metodologia_docente.py`): un mismo endpoint para los dos actores, sin espejo `/api/v1/admin/...`. Resuelve la identidad con `get_current_admin_email_opcional` y `get_current_director_programa_id_opcional`: con sesión Admin, cualquier `Programa`; sin ella, solo los que dirige el director. Fuera de eso, 404 uniforme, sin distinguir "no existe" de "no es tuyo" -- mismo criterio que `Competencia`.
+- **Unicidad doble**: el router responde 409 con mensaje legible (`_rechazar_codigo_repetido()`, comparación con `UPPER` en las dos partes); la restricción `UNIQUE (programa_id, codigo)` de la tabla queda como red de seguridad ante dos peticiones simultáneas, y `_commit_o_409()` traduce el `IntegrityError` a 409, no a 500. La restricción de la tabla distingue mayúsculas; la comprobación previa, no.
+- **`codigo` editable**: hasta #772 el formulario lo presentaba de solo lectura y lo reenviaba sin cambios.
+
 
 ## Referencias
 
 - [`editarMetodologiaDocente()` en Análisis](/RUP/02-analisis/casos-uso/editarMetodologiaDocente/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md).
-- [`abrirMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/abrirMetodologiaDocente/README.md) -- mismo endpoint `GET`, reutilizado.
-- [`crearMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/crearMetodologiaDocente/README.md) -- el alta alcanza el detalle desde el que se edita.
-- [`eliminarMetodologiaDocente()` en Diseño](/RUP/03-diseño/casos-uso/eliminarMetodologiaDocente/README.md) -- el otro caso de uso que muta el catálogo, con `<<choice>>` bloqueante.
-- [`editarAsignatura()` en Diseño](/RUP/03-diseño/casos-uso/editarAsignatura/README.md) -- mismo patrón de `GET` previo + `PUT` sin `alt` de negocio.

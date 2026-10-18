@@ -1,0 +1,24 @@
+@startuml abrirModulos
+
+skinparam linetype polyline
+
+state PROGRAMA_ABIERTO
+state MODULOS_ABIERTO
+
+PROGRAMA_ABIERTO -[#green]-> abrirModulos
+note on link
+<b>Admin</b> solicita abrir módulos
+end note
+
+state abrirModulos as "abrirModulos()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta listado de módulos del Programa
+    <b>Sistema</b> muestra número de materias de cada módulo
+    end note
+}
+
+abrirModulos -[#green]-> MODULOS_ABIERTO
+
+@enduml

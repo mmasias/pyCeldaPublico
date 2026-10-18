@@ -14,7 +14,7 @@ state abrirMaterias as "abrirMaterias()" {
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> presenta listado de Materias
+    <b>Sistema</b> presenta listado de Materias agrupado por Modulo, si alguna Materia tiene módulo
     end note
 }
 

@@ -1,0 +1,31 @@
+@startuml crearCompetencia-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":COMPETENCIAS_ABIERTO" as CompetenciasAbierto
+rectangle #CDEBA5 ":Collaboration EditarCompetencia" as EditarCompetencia
+rectangle #CDEBA5 ":COMPETENCIA_ABIERTO" as CompetenciaAbiertoSalida
+
+package crearCompetencia as "crearCompetencia()" {
+    rectangle #629EF9 CrearCompetenciaView
+    rectangle #b5bd68 CompetenciaController
+    rectangle #F2AC4E Competencia
+    rectangle #F2AC4E CompetenciaRepository
+}
+
+CompetenciasAbierto --> CrearCompetenciaView: <font size=8>crearCompetencia(programaId)
+
+CrearCompetenciaView --> CompetenciaController: <font size=8>crearCompetencia(programaId, codigo, tipo, descripcion) : Competencia
+
+CompetenciaController --> CompetenciaRepository: <font size=8>codigoEnUso(programaId, codigo) : boolean
+
+CompetenciaController --> CompetenciaRepository: <font size=8>crear(programaId, codigo, tipo, descripcion) : Competencia
+
+CompetenciaRepository -- Competencia
+
+CrearCompetenciaView ..> EditarCompetencia: <font size=8> <<include>> editarCompetencia()
+CrearCompetenciaView ..[#green]> CompetenciaAbiertoSalida: <font size=8>Competencia creada
+CrearCompetenciaView ..[#red]> CrearCompetenciaView: <font size=8>código repetido, formulario con lo escrito
+
+@enduml

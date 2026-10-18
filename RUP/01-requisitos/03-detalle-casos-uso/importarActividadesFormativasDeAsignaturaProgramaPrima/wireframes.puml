@@ -9,6 +9,6 @@
         Estructuras de datos       | 7.5         | 187.5                | {[Importar de esta]}
     }
     --
-    <color:red>Esto reemplazará todas las horas y porcentajes actuales de esta asignatura, incluidos los que hayas tecleado.</color>
+    <color:red>Esto reemplazará todas las horas actuales de esta asignatura, incluidas las que hayas tecleado.</color>
 }
 @endsalt

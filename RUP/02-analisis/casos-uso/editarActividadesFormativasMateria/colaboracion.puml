@@ -19,14 +19,14 @@ EditarActividadesFormativasMateriaView --> MateriaController: <font size=8>carga
 
 MateriaController --> ActividadFormativaMateriaRepository: <font size=8>listarDe(materiaId) : lista de ActividadFormativaMateria
 
-EditarActividadesFormativasMateriaView --> MateriaController: <font size=8>guardarActividadesFormativas(materiaId, repartoHoras)
+EditarActividadesFormativasMateriaView --> MateriaController: <font size=8>guardarActividadesFormativas(materiaId, reparto)
 
-MateriaController --> ActividadFormativaMateria: <font size=8>actualizar(horas)
+MateriaController --> ActividadFormativaMateria: <font size=8>actualizar(horas, porcentajePresencialidad)
 
 MateriaController --> ActividadFormativaMateriaRepository: <font size=8>actualizarLote(actividadesFormativasMateria)
 
 ActividadFormativaMateriaRepository -- ActividadFormativaMateria
 
-EditarActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>reparto guardado (o valor de horas no válido, no se guarda nada)
+EditarActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>reparto guardado (o algún valor no válido, no se guarda nada)
 
 @enduml

@@ -34,18 +34,21 @@ Bajada a diseño del caso de análisis [`asociarMetodologiaDocenteAMateria()`](/
 
 ## Participantes
 
-- **Vista**: `AsociarMetodologiaDocenteAMateriaView` (React) -- selector de `MetodologiaDocente` del catálogo institucional aún no asociadas; pide `GET .../disponibles` y `POST /api/v1/materias/{materia_id}/metodologias-docentes`.
+- **Vista**: `AsociarMetodologiaDocenteAMateriaView` (React) -- selector de `MetodologiaDocente` del catálogo del `Programa` de la `Materia` aún no asociadas; pide `GET .../disponibles` y `POST /api/v1/materias/{materia_id}/metodologias-docentes`.
 - **API**: `routers/materia.py::listar_metodologias_docentes_disponibles(materia_id)` / `::asociar_metodologia_docente(materia_id, datos)` -- funciones sueltas del módulo nuevo de `Materia`.
 - **Modelo**: `MetodologiaMateria` nace con `descripcion_propia` vacía -- sin método invocado; `MetodologiaDocente` solo porta `codigo`/`descripcion` para el selector.
-- **Repositorio**: `MetodologiaDocenteRepository.listar_disponibles_para_materia(materia_id)` -- el filtro "no asociadas aún" vive en la consulta; `MetodologiaMateriaRepository.crear(materia_id, metodologia_docente_id)` -- `INSERT` inmediato.
+- **Repositorio**: `MetodologiaDocenteRepository.listar_disponibles_para_materia(materia_id)` -- el filtro "del `Programa` de la `Materia` y no asociadas aún" vive en la consulta; `exigir_metodologia_del_programa(db, programa_id, metodologia_docente_id)` (función del módulo) -- revalida el id del cuerpo; `MetodologiaMateriaRepository.crear(materia_id, metodologia_docente_id)` -- `INSERT` inmediato.
 
 ## Decisiones de diseño
 
-- **El filtro de disponibles vive en el Repository, no en el Modelo**: Análisis asigna `listarDisponiblesParaMateria(materiaId)` a `MetodologiaDocenteRepository` -- un `LEFT JOIN ... WHERE mm.id IS NULL` resuelve "catálogo institucional menos las ya asociadas" en una consulta; no hay regla de negocio que justifique un método de Modelo.
+- **El filtro de disponibles vive en el Repository, no en el Modelo**: Análisis asigna `listarDisponiblesParaMateria(materiaId)` a `MetodologiaDocenteRepository` -- un `LEFT JOIN ... WHERE mm.materia_id IS NULL` filtrado por `md.programa_id` resuelve "catálogo del `Programa` menos las ya asociadas" en una consulta; no hay regla de negocio que justifique un método de Modelo.
 - **Dos Repository, uno por tabla**: el listado consulta `metodologias_docentes` (dominio de `MetodologiaDocenteRepository`), la asociación inserta en `metodologias_materia` (dominio de `MetodologiaMateriaRepository`) -- cada repositorio persiste una sola tabla, sin cruzar responsabilidades.
 - **`MetodologiaMateriaCreate` solo transporta `metodologia_docente_id`**: `materia_id` va en la URL y `descripcion_propia` nace vacía por defecto -- quien la completa después es `editarAsociacionMetodologiaDocenteMateria()`.
 - **201 Created**: devuelve la asociación creada con su contenido (útil para que la Vista la pinte sin recargar).
-- **Filtro por `Universidad` en disponibles y 409 en el `POST`** (issue [#655](https://github.com/mmasias/pyCelda/issues/655)): el catálogo es por `Universidad`, así que `disponibles` ofrece solo las `MetodologiaDocente` de la `Universidad` del `Programa` de la `Materia` (una `Materia` sin `Programa` conserva el comportamiento sin filtro). El `POST` revalida con `exigir_metodologia_de_la_universidad()`: una `MetodologiaDocente` de otra `Universidad` devuelve 409 (`La MetodologiaDocente pertenece a otra Universidad -- no se puede asociar`) -- el endpoint no confía en que el cliente solo ofrezca opciones válidas.
+- **Filtro por `Programa` en disponibles y 404 en el `POST`** (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): el catálogo es del `Programa` (`Programa *-- MetodologiaDocente`), así que `disponibles` ofrece solo las `MetodologiaDocente` del `Programa` de la `Materia`; una `Materia` sin `Programa` no tiene catálogo y no ofrece nada. El `POST` revalida con `exigir_metodologia_del_programa()`: una `MetodologiaDocente` inexistente o de otro `Programa` devuelve 404 uniforme (`MetodologiaDocente no encontrada`, IDOR, mismo criterio que `Competencia`) -- el endpoint no confía en que el cliente solo ofrezca opciones válidas. Hasta #772 `disponibles` ofrecía las habilitadas en el `Programa` (issues [#526](https://github.com/mmasias/pyCelda/issues/526)/[#527](https://github.com/mmasias/pyCelda/issues/527)) de un catálogo institucional de `Universidad`, y el `POST` respondía 409 a una metodología de otra `Universidad` (issue [#655](https://github.com/mmasias/pyCelda/issues/655)).
+
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: endpoint espejo bajo `/api/v1/admin/materias/{id}/...`, autenticado con `require_admin` en vez de `get_current_director_programa_id` + comprobación de propiedad (`_obtener_materia_o_404`); mismo cuerpo y mismos repositorios. La secuencia es idéntica con `Admin` como actor.
+
 
 ## Referencias
 

@@ -1,0 +1,59 @@
+@startuml desasociarCompetenciaAMateria
+
+skinparam linetype polyline
+
+state MATERIA_ABIERTO
+state MATERIA_ABIERTO_SALIDA as "MATERIA_ABIERTO"
+
+MATERIA_ABIERTO -[#green]-> desasociarCompetenciaAMateria
+note on link
+<b>Admin / DirectorPrograma</b> solicita desasociar Competencia de Materia
+end note
+
+state desasociarCompetenciaAMateria as "desasociarCompetenciaAMateria()" {
+
+    state " " as ConfirmandoDesasociacion
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoDesasociacion
+    note on link
+    [Competencia sin AsignaturaPrograma de la Materia que la use]
+    <b>Sistema</b> presenta información de la asociación y advertencia de desasociación
+    <b>Sistema</b> permite solicitar confirmar/cancelar desasociación
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [Competencia con alguna AsignaturaPrograma de la Materia que la use]
+    <b>Sistema</b> presenta mensaje de bloqueo con las AsignaturaPrograma de la Materia que la usan
+    end note
+
+    ConfirmandoDesasociacion -[#green]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> solicita confirmar desasociación
+    end note
+
+    ConfirmandoDesasociacion -[#blue]-> [*]
+    note on link
+    <b>Admin / DirectorPrograma</b> solicita cancelar desasociación
+    end note
+}
+
+desasociarCompetenciaAMateria -[#green]-> MATERIA_ABIERTO_SALIDA
+note on link
+lista actualizada
+end note
+
+desasociarCompetenciaAMateria -[#red]-> MATERIA_ABIERTO_SALIDA
+note on link
+bloqueada, sin cambios
+end note
+
+desasociarCompetenciaAMateria -[#blue]-> MATERIA_ABIERTO_SALIDA
+note on link
+cancelada, sin cambios
+end note
+
+@enduml

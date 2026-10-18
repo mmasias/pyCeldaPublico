@@ -10,7 +10,7 @@ database "Base de Datos" as DB
 
 Admin -> Vista: solicita crear un SistemaEvaluacion de la Materia
 activate Vista
-Vista --> Admin: presenta formulario (tipo, descripción, ponderación mín/máx)
+Vista --> Admin: presenta formulario (código, tipo, descripción, ponderación mín/máx)
 Admin -> Vista: completa los campos y confirma
 note right of Vista: 0 <= mínima <= máxima <= 100 se valida\naquí, antes de enviar -- validación\nde forma, el backend no la exige
 Vista -> API: POST /api/v1/materias/{materia_id}/sistemas-evaluacion (SistemaEvaluacionCreate JSON)
@@ -25,7 +25,7 @@ deactivate DB
 MateriaRepo --> API: Materia
 deactivate MateriaRepo
 
-API -> SistemaRepo: crear(materia_id, tipo, descripcion, ponderacion_minima, ponderacion_maxima)
+API -> SistemaRepo: crear(materia_id, tipo, descripcion, ponderacion_minima, ponderacion_maxima, codigo)
 activate SistemaRepo
 SistemaRepo -> DB: INSERT INTO sistemas_evaluacion (materia_id, ...) ...
 activate DB

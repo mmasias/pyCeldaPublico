@@ -1,28 +1,36 @@
 @startuml abrirMetodologiaDocente-diseño
 title Diagrama de Secuencia - Abrir Metodología Docente
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "MetodologiaDocenteRepository" as MetodologiaRepo
+participant "MetodologiaDocenteRepository" as Repo
 database "Base de Datos" as DB
 
-Admin -> Vista: solicita abrir una MetodologiaDocente del listado
+Actor -> Vista: solicita abrir una metodología docente
 activate Vista
 Vista -> API: GET /api/v1/metodologias-docentes/{metodologia_docente_id}
 activate API
-note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> MetodologiaRepo: obtener(metodologia_docente_id)
-activate MetodologiaRepo
-MetodologiaRepo -> DB: SELECT ... FROM metodologias_docentes WHERE id = :metodologia_docente_id
-activate DB
-DB --> MetodologiaRepo: fila MetodologiaDocente
-deactivate DB
-MetodologiaRepo --> API: MetodologiaDocente (404 si None)
-deactivate MetodologiaRepo
-API --> Vista: 200 OK (MetodologiaDocenteResponse JSON)
+note right of API: _autorizar_metodologia: por el Programa\nde la metodología; si no, 404
+API -> Repo: obtener(metodologia_docente_id)
+activate Repo
+Repo -> DB: SELECT ... FROM metodologias_docentes WHERE id = :metodologia_docente_id
+DB --> Repo: fila
+Repo --> API: MetodologiaDocente
+deactivate Repo
+API --> Vista: 200 OK (MetodologiaDocenteResponse)
 deactivate API
-Vista --> Admin: muestra datos de la MetodologiaDocente y la navegación a su edición
+Vista -> API: GET /api/v1/metodologias-docentes/{metodologia_docente_id}/asignaciones
+activate API
+API -> Repo: asignaciones(metodologia_docente_id)
+activate Repo
+Repo -> DB: SELECT materias.id, nombre ... JOIN metodologias_materia\nSELECT asignaturas_programa.id, nombre ... JOIN asignaturas_programa_metodologias_docentes
+DB --> Repo: filas
+Repo --> API: (materias, asignaturas_programa)
+deactivate Repo
+API --> Vista: 200 OK (MetodologiaDocenteAsignacionesResponse)
+deactivate API
+Vista --> Actor: presenta la metodología docente y su distribución
 deactivate Vista
 
 @enduml

@@ -1,3 +1,5 @@
+from datetime import UTC, datetime
+
 from fastapi import APIRouter, Depends, HTTPException, Response
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
@@ -11,7 +13,15 @@ from app.core.auth import (
     get_current_rol,
 )
 from app.core.database import get_db
-from app.models.guia import LIMITE_CONTENIDO_GUIA, MARCADOR_TABLA, Guia
+from app.models.guia import (
+    CAMPO_CORRECCION_DIRECTOR,
+    COMENTARIO_CORRECCION_DIRECTOR,
+    COMENTARIO_EDICION_PROFESOR,
+    COMENTARIOS_RESERVADOS,
+    LIMITE_CONTENIDO_GUIA,
+    MARCADOR_TABLA,
+    Guia,
+)
 from app.models.historial_cambio import HistorialCambio
 from app.render.guia_docente import render_html, render_pdf
 from app.repositories.actividad_formativa import (
@@ -20,6 +30,7 @@ from app.repositories.actividad_formativa import (
 from app.repositories.asignatura_programa import AsignaturaProgramaRepository
 from app.repositories.curso_academico import CursoAcademicoRepository
 from app.repositories.programa import ProgramaRepository
+from app.repositories.competencia import ordenadas
 from app.repositories.guia import GuiaRepository
 from app.repositories.ponderacion_evaluacion import PonderacionEvaluacionRepository
 from app.repositories.referencia_bibliografica import ReferenciaBibliograficaRepository
@@ -115,19 +126,75 @@ def autorizar_escritura_guia(
     raise HTTPException(status_code=404, detail=detalle)
 
 
+def aplicar_regla_de_estado_por_escritura(
+    db: Session,
+    guia,
+    como_director: bool,
+    director_programa_id: int | None,
+    profesor_id: int | None,
+) -> None:
+    """Cierre común de toda escritura que modifica el contenido de una Guia
+    (Guardar borrador, importaciones, sesiones genéricas, y las escrituras
+    inmediatas sobre contenido ya vinculado: editar un instrumento, una
+    referencia o una sesión vinculados, duplicar una sesión, texto de
+    convocatorias). Director: transición de la corrección excepcional (#612)
+    o, si no la hay, fila de corrección (#731). Profesor: confirmar_guardado(),
+    que devuelve una Aprobada a Borrador; ese paso deja su fila de estado
+    (#731). Todas las filas llevan la misma fecha que fecha_ultima_modificacion,
+    de la que depende ultima_actualizacion_rol. NO hace commit."""
+    ahora = datetime.now(UTC)
+    if como_director:
+        aplicar_transicion_por_correccion_del_director(
+            db, guia, director_programa_id, fecha=ahora, marcar_correccion=True
+        )
+    elif guia.estado == "Aprobada":
+        db.add(
+            HistorialCambio.registrar(
+                guia_id=guia.id,
+                autor_id=profesor_id,
+                campo="estado",
+                valor_anterior="Aprobada",
+                valor_nuevo="Borrador",
+                comentario=COMENTARIO_EDICION_PROFESOR,
+                fecha=ahora,
+            )
+        )
+    guia.confirmar_guardado(ahora)
+
+
 def aplicar_transicion_por_correccion_del_director(
-    db: Session, guia, director_programa_id: int
+    db: Session,
+    guia,
+    director_programa_id: int,
+    fecha: datetime | None = None,
+    marcar_correccion: bool = False,
 ) -> None:
     """Regla de transición de estado de #612: Aprobada -> Borrador
     (revocar_aprobacion) y EnRevision -> Rechazada (rechazar), con fila de
     HistorialCambio campo="estado" y autor real del Director. Borrador y
-    Rechazada se mantienen. NO hace commit: se invoca justo antes de la
-    escritura del contenido, que commitea ambas cosas en una transacción."""
+    Rechazada se mantienen; con `marcar_correccion` (escrituras que modifican
+    la guía, no altas pendientes) dejan una fila CAMPO_CORRECCION_DIRECTOR para
+    que "Última actualización" se atribuya al Director (#731). NO hace commit:
+    se invoca junto a la escritura del contenido, que commitea todo en una
+    transacción."""
     estado_anterior = guia.estado
     if estado_anterior == "Aprobada":
         guia.revocar_aprobacion()
     elif estado_anterior == "EnRevision":
         guia.rechazar()
+    elif marcar_correccion:
+        db.add(
+            HistorialCambio.registrar(
+                guia_id=guia.id,
+                autor_id=director_programa_id,
+                campo=CAMPO_CORRECCION_DIRECTOR,
+                valor_anterior=estado_anterior,
+                valor_nuevo=estado_anterior,
+                comentario=COMENTARIO_CORRECCION_DIRECTOR,
+                fecha=fecha,
+            )
+        )
+        return
     else:
         return
     db.add(
@@ -137,7 +204,8 @@ def aplicar_transicion_por_correccion_del_director(
             campo="estado",
             valor_anterior=estado_anterior,
             valor_nuevo=guia.estado,
-            comentario="corrección directa del Director",
+            comentario=COMENTARIO_CORRECCION_DIRECTOR,
+            fecha=fecha,
         )
     )
 
@@ -179,14 +247,20 @@ def abrir_guia(
             programa_nombre=guia.asignatura_programa.programa_nombre,
             contenido=guia.asignatura_programa.contenido,
             resultados_aprendizaje=guia.asignatura_programa.resultados_aprendizaje,
+            # #761: solo lectura, como los RA. La zona del PDF está pendiente
+            # de especificar en la plantilla.
+            competencias=ordenadas(guia.asignatura_programa.competencias),
             metodologias_docentes=guia.asignatura_programa.metodologias_docentes,
             # Solo lectura -- discussion #227. Ya viene precargado por
             # GuiaRepository.obtener() (lo necesita el render), sin consulta
             # nueva; codigo/nombre se aplanan a mano porque viven en la
             # ActividadFormativa anidada, no en la propia fila de asociación.
             actividades_formativas=serializar_actividades_formativas_asignatura_programa(
-                guia.asignatura_programa.actividades_formativas
+                db,
+                guia.asignatura_programa.materia_id,
+                guia.asignatura_programa.actividades_formativas,
             ),
+            sistemas_evaluacion=guia.asignatura_programa.materia.listar_sistemas_evaluacion(),
         )
         if guia.asignatura_programa is not None
         else None
@@ -273,9 +347,6 @@ def guardar_borrador_guia(
             ),
         )
 
-    if como_director:
-        aplicar_transicion_por_correccion_del_director(db, guia, director_programa_id)
-
     a_vincular, a_desvincular = guia.sincronizar_ponderaciones(
         datos.ids_ponderaciones_final
     )
@@ -339,7 +410,9 @@ def guardar_borrador_guia(
                 )
             )
 
-    guia.confirmar_guardado()
+    aplicar_regla_de_estado_por_escritura(
+        db, guia, como_director, director_programa_id, profesor_id
+    )
     return guia_repo.actualizar(guia)
 
 
@@ -419,6 +492,16 @@ def aprobar_guia(
     return guia_repo.actualizar(guia)
 
 
+def _rechazar_comentario_reservado(comentario: str | None) -> None:
+    """#731: los comentarios fijos de las filas de autoría no pueden llegar
+    como texto libre de un rechazo o una revocación; si no, la fila del
+    Director se leería como edición del Profesor."""
+    if comentario is not None and comentario.strip() in COMENTARIOS_RESERVADOS:
+        raise HTTPException(
+            status_code=422, detail="Ese comentario está reservado; escribe otro"
+        )
+
+
 @router.post("/guias/{guia_id}/rechazar", response_model=GuiaResponse)
 def rechazar_guia(
     guia_id: int,
@@ -432,6 +515,8 @@ def rechazar_guia(
         guia.programa_id, director_programa_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
+
+    _rechazar_comentario_reservado(datos.comentario)
 
     estado_anterior = guia.estado
     guia.rechazar()
@@ -491,6 +576,8 @@ def revocar_aprobacion_guia(
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
+    _rechazar_comentario_reservado(datos.comentario)
+
     estado_anterior = guia.estado
     guia.revocar_aprobacion()
 
@@ -532,21 +619,26 @@ def editar_texto_sistema_evaluacion(
     guia_id: int,
     datos: EditarTextoSistemaEvaluacionRequest,
     db: Session = Depends(get_db),
-    profesor_id: int = Depends(get_current_profesor_id),
+    _rol: dict[str, str] = Depends(get_current_rol),
+    profesor_id: int | None = Depends(get_current_profesor_id_opcional),
+    director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
 ) -> GuiaResponse:
     """issue #610: guardado propio del texto de convocatorias, independiente
-    de guardar_borrador_guia. Mismo dueño que el resto de "Gestionar
-    evaluación" (Profesor que imparte); Admin/Director quedan fuera (#601)."""
+    de guardar_borrador_guia. Escribe el Profesor que imparte o, como
+    corrección excepcional (#612, issue #707), el DirectorPrograma que dirige
+    el programa de la Guia: en ese caso aplica la transición de estado
+    (Aprobada -> Borrador, EnRevision -> Rechazada) en la misma transacción.
+    Registra HistorialCambio campo="texto_sistema_evaluacion" con el autor
+    real. Admin queda fuera. 404 uniforme si ninguna identidad tiene derecho."""
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
-    if (
-        guia is None
-        or guia.asignatura_programa_id is None
-        or not AsignaturaProgramaRepository(db).imparte(
-            guia.asignatura_programa_id, profesor_id
-        )
-    ):
+    if guia is None:
         raise HTTPException(status_code=404, detail="Guia no encontrada")
+
+    como_director = autorizar_escritura_guia(
+        db, guia, profesor_id, director_programa_id
+    )
+    autor_id = director_programa_id if como_director else profesor_id
 
     if datos.texto.count(MARCADOR_TABLA) != 1:
         raise HTTPException(
@@ -554,7 +646,26 @@ def editar_texto_sistema_evaluacion(
             detail=f"El texto debe contener el marcador {MARCADOR_TABLA} exactamente una vez",
         )
 
+    # Guardar sin cambios no es una edición: no toca la guía ni su estado.
+    if (guia.texto_sistema_evaluacion or "") == datos.texto:
+        return guia
+
+    aplicar_regla_de_estado_por_escritura(
+        db, guia, como_director, director_programa_id, profesor_id
+    )
+
+    texto_anterior = guia.texto_sistema_evaluacion or ""
     guia.texto_sistema_evaluacion = datos.texto
+    db.add(
+        HistorialCambio.registrar(
+            guia_id=guia.id,
+            autor_id=autor_id,
+            campo="texto_sistema_evaluacion",
+            valor_anterior=_resumen_contenido(texto_anterior),
+            valor_nuevo=_resumen_contenido(datos.texto),
+            comentario="texto de convocatorias editado",
+        )
+    )
     return guia_repo.actualizar(guia)
 
 

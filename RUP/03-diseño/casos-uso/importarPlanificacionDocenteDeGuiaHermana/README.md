@@ -20,7 +20,7 @@
 
 ## Propósito
 
-Bajada a diseño de [`importarPlanificacionDocenteDeGuiaHermana()`](/RUP/02-analisis/casos-uso/importarPlanificacionDocenteDeGuiaHermana/README.md) (issue [#184](https://github.com/mmasias/pyCelda/issues/184)). Gemelo de [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) sobre `Sesion` en vez de `ReferenciaBibliografica`. **Toda la ficha de Diseño del gemelo aplica** -- endpoints en el mismo router `importar_guia_hermana.py`, mismo `GET /importables` compartido, misma autorización, mismo patrón de un-solo-commit y borrado vía ORM. A continuación solo lo específico.
+Bajada a diseño de [`importarPlanificacionDocenteDeGuiaHermana()`](/RUP/02-analisis/casos-uso/importarPlanificacionDocenteDeGuiaHermana/README.md) (issue [#184](https://github.com/mmasias/pyCelda/issues/184)). Gemelo de [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md) sobre `Sesion` en vez de `ReferenciaBibliografica`. **Toda la ficha de Diseño del gemelo aplica** -- endpoints en el mismo router `importar_guia_hermana.py`, mismo `GET /importables` compartido, mismos orígenes importables (`Aprobada`, o `EnRevision` que el profesor también imparte, issue [#740](https://github.com/mmasias/pyCelda/issues/740)), misma autorización, mismo patrón de un-solo-commit y borrado vía ORM. A continuación solo lo específico.
 
 ## Diagrama de secuencia de diseño
 
@@ -37,7 +37,7 @@ Bajada a diseño de [`importarPlanificacionDocenteDeGuiaHermana()`](/RUP/02-anal
 - **Endpoint**: `POST /api/v1/guias/{guia_id}/importar-planificacion-docente`, body `{origen_guia_id: int}`, respuesta `GuiaResponse`.
 - **`SesionRepository.reemplazar_desde(guia_destino, sesiones_origen)`**: borra vía ORM todas las `Sesion` del destino y crea copias `sorted(sesiones_origen, key=numero)` con `numero = 1..N` **en persistencia** -- a diferencia de [`eliminarSesion()`](/RUP/03-diseño/casos-uso/eliminarSesion/README.md), donde la renumeración es solo posicional; aquí las filas son nuevas y `1..N` es su valor de alta. Replica `tipo`, `descripcion` y `vinculada` fila a fila. **No toca `Guia.sesiones_minimas`** del destino (config de su propia `AsignaturaPrograma`, umbral de la regla `c3` de `enviarGuiaARevision()`, discussion [#206](https://github.com/mmasias/pyCelda/discussions/206)).
 - **`HistorialCambio`**: `campo="planificacion_docente"`, `comentario="planificación docente importada desde {programa} / {codigo}"`.
-- **Vista**: `ImportarPlanificacionDocenteDeGuiaHermana.tsx` (ruta `/guias/:guiaId/importar-planificacion-docente`); botón en `PlanificacionDocente.tsx`; al confirmar, `limpiarExcluidos(claveSesionesExcluidas(guiaId))`.
+- **Vista**: `ImportarPlanificacionDocenteDeGuiaHermana.tsx` (ruta `/guias/:guiaId/importar-planificacion-docente`); botón en `PlanificacionDocente.tsx`; opciones rotuladas con `textoEstadoHermana()` y lista vacía con `SIN_HERMANAS_IMPORTABLES` (`frontend/src/guiaHermana.ts`); al confirmar, `limpiarExcluidos(claveSesionesExcluidas(guiaId))`.
 - **Divergencia lateral registrada** (no la resuelve este CU): el Modelo declara `Guia *-- PlanificacionDocente *-- Sesion`; el código aplana `Sesion.guia_id` directo. `reemplazar_desde` opera sobre `Sesion.guia_id` como el resto del código -- no añade lógica que dependa de una `PlanificacionDocente` intermedia.
 
 ## Referencias

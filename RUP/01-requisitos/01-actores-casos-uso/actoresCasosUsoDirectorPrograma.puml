@@ -51,9 +51,6 @@ package Acceso {
 package Programa {
   usecase abrirProgramas as "abrirProgramas()"
   usecase abrirPrograma as "abrirPrograma()"
-  usecase abrirMetodologiasDocentesPrograma as "abrirMetodologiasDocentesPrograma()"
-  usecase asociarMetodologiaDocenteAPrograma as "asociarMetodologiaDocenteAPrograma()"
-  usecase desasociarMetodologiaDocentePrograma as "desasociarMetodologiaDocentePrograma()"
 }
 
 UsuarioNoLogueado -- iniciarSesion
@@ -68,8 +65,15 @@ package Materia {
   usecase editarAsociacionMetodologiaDocenteMateria as "editarAsociacionMetodologiaDocenteMateria()"
   usecase asociarResultadoAprendizajeAMateria as "asociarResultadoAprendizajeAMateria()"
   usecase desasociarResultadoAprendizajeAMateria as "desasociarResultadoAprendizajeAMateria()"
+  ' #761: Competencia, mismo reparto que ResultadoAprendizaje.
+  usecase asociarCompetenciaAMateria as "asociarCompetenciaAMateria()"
+  usecase desasociarCompetenciaAMateria as "desasociarCompetenciaAMateria()"
   usecase editarActividadesFormativasMateria as "editarActividadesFormativasMateria()"
   usecase consultarEstadoActividadesFormativasMateria as "consultarEstadoActividadesFormativasMateria()"
+  ' #755: espejo de Admin en los sistemas de evaluacion de la materia.
+  usecase crearSistemaEvaluacion as "crearSistemaEvaluacion()"
+  usecase editarSistemaEvaluacion as "editarSistemaEvaluacion()"
+  usecase eliminarSistemaEvaluacion as "eliminarSistemaEvaluacion()"
 }
 
 package ResultadoAprendizaje {
@@ -80,11 +84,45 @@ package ResultadoAprendizaje {
   usecase editarResultadoAprendizaje as "editarResultadoAprendizaje()"
 }
 
+' #761: catálogo de Competencia del Programa, mismo patrón que ResultadoAprendizaje
+' y compartido con Admin. Sin package Modulo: el DirectorPrograma ve el módulo de
+' cada materia en abrirMaterias()/abrirMateria(), pero no lo gestiona (#762).
+package Competencia {
+  usecase abrirCompetencias as "abrirCompetencias()"
+  usecase crearCompetencia as "crearCompetencia()"
+  usecase abrirCompetencia as "abrirCompetencia()"
+  usecase eliminarCompetencia as "eliminarCompetencia()"
+  usecase editarCompetencia as "editarCompetencia()"
+}
+
+' #772: catálogos de MetodologiaDocente y ActividadFormativa del Programa, mismo
+' patrón que Competencia y compartidos con Admin. Sustituyen a
+' abrirMetodologiasDocentesPrograma()/asociarMetodologiaDocenteAPrograma()/
+' desasociarMetodologiaDocentePrograma(), retirados: ya no hay habilitación de una
+' metodología del catálogo de Universidad, la metodología pertenece al Programa.
+package MetodologiaDocente {
+  usecase abrirMetodologiasDocentes as "abrirMetodologiasDocentes()"
+  usecase crearMetodologiaDocente as "crearMetodologiaDocente()"
+  usecase abrirMetodologiaDocente as "abrirMetodologiaDocente()"
+  usecase eliminarMetodologiaDocente as "eliminarMetodologiaDocente()"
+  usecase editarMetodologiaDocente as "editarMetodologiaDocente()"
+}
+
+package ActividadFormativa {
+  usecase abrirActividadesFormativas as "abrirActividadesFormativas()"
+  usecase crearActividadFormativa as "crearActividadFormativa()"
+  usecase abrirActividadFormativa as "abrirActividadFormativa()"
+  usecase eliminarActividadFormativa as "eliminarActividadFormativa()"
+  usecase editarActividadFormativa as "editarActividadFormativa()"
+}
+
 package AsignaturaPrograma {
   usecase abrirAsignaturaPrograma as "abrirAsignaturaPrograma()"
   usecase editarAsignaturaPrograma as "editarAsignaturaPrograma()"
   usecase asociarResultadoAprendizajeAAsignaturaPrograma as "asociarResultadoAprendizajeAAsignaturaPrograma()"
   usecase desasociarResultadoAprendizajeAsignaturaPrograma as "desasociarResultadoAprendizajeAsignaturaPrograma()"
+  usecase asociarCompetenciaAAsignaturaPrograma as "asociarCompetenciaAAsignaturaPrograma()"
+  usecase desasociarCompetenciaAsignaturaPrograma as "desasociarCompetenciaAsignaturaPrograma()"
   usecase asociarMetodologiaDocenteAAsignaturaPrograma as "asociarMetodologiaDocenteAAsignaturaPrograma()"
   usecase desasociarMetodologiaDocenteAsignaturaPrograma as "desasociarMetodologiaDocenteAsignaturaPrograma()"
   usecase editarActividadesFormativasAsignaturaPrograma as "editarActividadesFormativasAsignaturaPrograma()"
@@ -107,9 +145,6 @@ package Revision {
 
 abrirProgramas -- DirectorPrograma
 abrirPrograma -- DirectorPrograma
-DirectorPrograma -- abrirMetodologiasDocentesPrograma
-DirectorPrograma -- asociarMetodologiaDocenteAPrograma
-DirectorPrograma -- desasociarMetodologiaDocentePrograma
 
 DirectorPrograma -- abrirAsignaturasPrograma
 
@@ -120,8 +155,13 @@ desasociarMetodologiaDocenteMateria -- DirectorPrograma
 editarAsociacionMetodologiaDocenteMateria -- DirectorPrograma
 asociarResultadoAprendizajeAMateria -- DirectorPrograma
 desasociarResultadoAprendizajeAMateria -- DirectorPrograma
+asociarCompetenciaAMateria -- DirectorPrograma
+desasociarCompetenciaAMateria -- DirectorPrograma
 editarActividadesFormativasMateria -- DirectorPrograma
 consultarEstadoActividadesFormativasMateria -- DirectorPrograma
+crearSistemaEvaluacion -- DirectorPrograma
+editarSistemaEvaluacion -- DirectorPrograma
+eliminarSistemaEvaluacion -- DirectorPrograma
 
 DirectorPrograma -- abrirResultadosAprendizaje
 DirectorPrograma -- crearResultadoAprendizaje
@@ -129,9 +169,29 @@ DirectorPrograma -- abrirResultadoAprendizaje
 DirectorPrograma -- eliminarResultadoAprendizaje
 DirectorPrograma -- editarResultadoAprendizaje
 
+DirectorPrograma -- abrirCompetencias
+DirectorPrograma -- crearCompetencia
+DirectorPrograma -- abrirCompetencia
+DirectorPrograma -- eliminarCompetencia
+DirectorPrograma -- editarCompetencia
+
+abrirMetodologiasDocentes -- DirectorPrograma
+crearMetodologiaDocente -- DirectorPrograma
+abrirMetodologiaDocente -- DirectorPrograma
+eliminarMetodologiaDocente -- DirectorPrograma
+editarMetodologiaDocente -- DirectorPrograma
+
+abrirActividadesFormativas -- DirectorPrograma
+crearActividadFormativa -- DirectorPrograma
+abrirActividadFormativa -- DirectorPrograma
+eliminarActividadFormativa -- DirectorPrograma
+editarActividadFormativa -- DirectorPrograma
+
 DirectorPrograma -- editarAsignaturaPrograma
 DirectorPrograma -- asociarResultadoAprendizajeAAsignaturaPrograma
 DirectorPrograma -- desasociarResultadoAprendizajeAsignaturaPrograma
+DirectorPrograma -- asociarCompetenciaAAsignaturaPrograma
+DirectorPrograma -- desasociarCompetenciaAsignaturaPrograma
 DirectorPrograma -- asociarMetodologiaDocenteAAsignaturaPrograma
 DirectorPrograma -- desasociarMetodologiaDocenteAsignaturaPrograma
 DirectorPrograma -- editarActividadesFormativasAsignaturaPrograma

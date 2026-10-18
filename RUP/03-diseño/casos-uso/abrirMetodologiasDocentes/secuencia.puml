@@ -1,28 +1,30 @@
 @startuml abrirMetodologiasDocentes-diseño
 title Diagrama de Secuencia - Abrir Metodologías Docentes
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "MetodologiaDocenteRepository" as MetodologiaRepo
+participant "MetodologiaDocenteRepository" as Repo
 database "Base de Datos" as DB
 
-Admin -> Vista: solicita abrir Metodologías Docentes
+Actor -> Vista: solicita abrir las metodologías docentes del Programa
 activate Vista
-Vista -> API: GET /api/v1/universidades/{universidad_id}/metodologias-docentes
+Vista -> API: GET /api/v1/programas/{programa_id}/metodologias-docentes
 activate API
-note right of API: listado completo, sin filtro por quien llama\n(ninguna MetodologiaDocente es "propia" del Admin).\nDepends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> MetodologiaRepo: listar_de_la_universidad(universidad_id)
-activate MetodologiaRepo
-MetodologiaRepo -> DB: SELECT * FROM metodologias_docentes
-activate DB
-DB --> MetodologiaRepo: filas MetodologiaDocente
-deactivate DB
-MetodologiaRepo --> API: List[MetodologiaDocente]
-deactivate MetodologiaRepo
-API --> Vista: 200 OK (List[MetodologiaDocenteResponse] JSON)
+note right of API: _autorizar_programa: Admin, o director\nque dirige el Programa; si no, 404
+API -> Repo: conteo_asignaturas_del_programa(programa_id)
+activate Repo
+Repo -> DB: SELECT metodologia_docente_id, COUNT(asignatura_programa_id)\nFROM asignaturas_programa_metodologias_docentes JOIN asignaturas_programa\nJOIN materias WHERE materias.programa_id = :programa_id GROUP BY metodologia_docente_id
+DB --> Repo: filas (id, n)
+Repo --> API: dict[id, n]
+API -> Repo: listar_del_programa(programa_id)
+Repo -> DB: SELECT ... FROM metodologias_docentes WHERE programa_id = :programa_id
+DB --> Repo: filas MetodologiaDocente
+Repo --> API: List[MetodologiaDocente] en orden natural de código
+deactivate Repo
+API --> Vista: 200 OK (List[MetodologiaDocenteResponse] con numero_asignaturas)
 deactivate API
-Vista --> Admin: presenta el listado de Metodologías Docentes
+Vista --> Actor: presenta el catálogo
 deactivate Vista
 
 @enduml

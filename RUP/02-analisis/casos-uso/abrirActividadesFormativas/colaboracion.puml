@@ -3,7 +3,7 @@ skinparam linetype polyline
 
 left to right direction
 
-rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":PROGRAMA_ABIERTO" as ProgramaAbierto
 rectangle #CDEBA5 ":ACTIVIDADES_FORMATIVAS_ABIERTO" as ActividadesFormativasAbiertoSalida
 
 package abrirActividadesFormativas as "abrirActividadesFormativas()" {
@@ -13,14 +13,14 @@ package abrirActividadesFormativas as "abrirActividadesFormativas()" {
     rectangle #F2AC4E ActividadFormativaRepository
 }
 
-SistemaDisponible --> AbrirActividadesFormativasView: <font size=8>abrirActividadesFormativas()
+ProgramaAbierto --> AbrirActividadesFormativasView: <font size=8>abrirActividadesFormativas(programaId)
 
-AbrirActividadesFormativasView --> ActividadFormativaController: <font size=8>listarActividadesFormativas(universidadId) : List<ActividadFormativa>
+AbrirActividadesFormativasView --> ActividadFormativaController: <font size=8>listarActividadesFormativasDelPrograma(programaId) : List<ActividadFormativa>
 
-ActividadFormativaController --> ActividadFormativaRepository: <font size=8>listarDeLaUniversidad(universidadId) : List<ActividadFormativa>
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>listarDelPrograma(programaId) : List<ActividadFormativa>
 
 ActividadFormativaRepository -- ActividadFormativa
 
-AbrirActividadesFormativasView --> ActividadesFormativasAbiertoSalida: <font size=8>presenta listado de ActividadFormativa
+AbrirActividadesFormativasView --> ActividadesFormativasAbiertoSalida: <font size=8>presenta catálogo de ActividadFormativa del Programa
 
 @enduml

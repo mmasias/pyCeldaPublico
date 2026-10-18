@@ -1,0 +1,37 @@
+@startuml crearCompetencia-diseño
+title Diagrama de Secuencia - Crear Competencia
+
+actor "Admin / DirectorPrograma" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CompetenciaRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita crear una competencia
+activate Vista
+Vista --> Actor: presenta formulario (código, tipo, descripción)
+Actor -> Vista: completa los campos y confirma
+Vista -> API: POST /api/v1/programas/{programa_id}/competencias (CompetenciaCreate)
+activate API
+note right of API: CompetenciaCreate (Pydantic): código y descripción\nno vacíos, tipo en TIPOS_COMPETENCIA; si no, 422
+API -> Repo: codigo_en_uso(programa_id, codigo)
+activate Repo
+Repo -> DB: SELECT id FROM competencias WHERE programa_id = :p AND codigo = :c
+DB --> Repo: fila o nada
+Repo --> API: boolean
+alt código ya usado en el Programa
+  API --> Vista: 409 Conflict ("Ya existe una competencia con el código ...")
+  Vista --> Actor: presenta el mensaje, el formulario conserva lo escrito
+else código libre
+  API -> Repo: crear(programa_id, codigo, tipo, descripcion)
+  Repo -> DB: INSERT INTO competencias ...
+  DB --> Repo: id
+  Repo --> API: Competencia
+  API --> Vista: 201 Created (CompetenciaResponse)
+  Vista --> Actor: navega a la ficha de la competencia (<<include>> editarCompetencia())
+end
+deactivate Repo
+deactivate API
+deactivate Vista
+
+@enduml

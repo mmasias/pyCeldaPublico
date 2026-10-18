@@ -6,7 +6,7 @@
 
 # pyCelda > abrirActividadFormativa()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirActividadFormativa/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirActividadFormativa/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/abrirActividadFormativa/README.md)|[Diseño](/RUP/03-diseño/casos-uso/abrirActividadFormativa/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,15 +31,20 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Admin`|
-|**Objetivo**|Consultar el detalle de una `ActividadFormativa` concreta|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Consultar una `ActividadFormativa` del catálogo de un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Subfunción|
 
 </div>
 
+Ficha de solo lectura con `codigo` y `nombre` (issue [#772](https://github.com/mmasias/pyCelda/issues/772)), dentro de la pestaña **🏋️ Actividades formativas** del programa. A diferencia de [`abrirCompetencia()`](../abrirCompetencia/README.md), la ficha **no presenta distribución** por materias ni asignaturas: no hay asignación que mostrar, porque toda `Materia` y toda `AsignaturaPrograma` del programa tiene siempre una fila para cada actividad (invariante de autopoblado). Las horas, y la presencialidad de la `Materia`, se consultan y editan desde cada materia y cada asignatura; la ficha lo indica.
+
+**Histórico**: hasta #772 la ficha era de una actividad del catálogo institucional de la `Universidad`, solo para `Admin`.
+
 ## Referencias
 
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()`
-- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `ActividadFormativa`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`, catálogo institucional de `Universidad`
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()` (misma pantalla conceptual, rutas `/admin/...`)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-- ActividadFormativa`
+- Issue [#772](https://github.com/mmasias/pyCelda/issues/772)

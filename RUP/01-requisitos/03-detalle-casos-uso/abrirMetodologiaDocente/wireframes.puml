@@ -1,10 +1,17 @@
 @startsalt abrirMetodologiaDocente-wireframe
 {
-    <b>MD1</b>
+    <b>METODOLOGÍAS DOCENTES > MD3</b>
     ====
-    <b>Código:</b> MD1
-    <b>Descripción:</b> Método expositivo
+    <b>Descripción:</b>
+    "Resolución de ejercicios"
     ====
-    {[Editar] | [Volver al listado]}
+    <b>Distribución</b>
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Programación | Programación I
+        . | Programación II
+    }
+    ====
+    {[Editar]}
 }
 @endsalt

@@ -69,7 +69,7 @@ No valida ni muta nada en ninguna de las dos -- caso de uso de solo lectura en a
 ### `Programa`
 
 **Responsabilidades:**
-- porta `codigo` y `estado`.
+- porta `codigo`, `estado`, `codigoRuct` y `denominacionOficial` (estos dos, de solo lectura, issue #772).
 
 **Colaboraciones:**
 - **Entrada:** `ProgramaController`, vía `ProgramaRepository`.
@@ -117,6 +117,8 @@ No valida ni muta nada en ninguna de las dos -- caso de uso de solo lectura en a
 - **Entrada:** `ProgramaController`.
 - **Salida:** gestiona `AsignaturaPrograma`.
 
+**Identidad RUCT (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: `Programa` porta además `codigoRuct` y `denominacionOficial`, de solo lectura (los escribe la importación del RUCT). La variante Admin de `AbrirProgramaView` presenta los dos; la variante `DirectorPrograma` presenta `codigoRuct` si existe, con `denominacionOficial` como texto emergente. Sin colaboración nueva: llegan con la misma `cargarPrograma(programaId)`.
+
 ## Simplificación fuera de alcance de esta rebanada
 
 **`[Abrir]` por fila (variante Admin)**: la variante Admin de `abrirAsignaturaPrograma()` no se construye en esta rebanada -- el botón se muestra deshabilitado.
@@ -126,7 +128,7 @@ No valida ni muta nada en ninguna de las dos -- caso de uso de solo lectura en a
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/wireframes.puml) -- fuente de verdad del contenido presentado, ya divergido en dos bloques.
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()`, y ahora también `PROGRAMA_ABIERTO --> GUIA_ABIERTO : abrirGuia()` / `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : notificarGuiasActualizadas()`.
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()`, `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : crearAsignaturaPrograma()/eliminarAsignaturaPrograma()`.
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa{codigo, estado}`, `Programa, Asignatura .. AsignaturaPrograma`, `Guia` como clase de asociación de `(AsignaturaPrograma, CursoAcademico)`.
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa{codigo, estado, codigoRuct, denominacionOficial}`, `Programa, Asignatura .. AsignaturaPrograma`, `Guia` como clase de asociación de `(AsignaturaPrograma, CursoAcademico)`.
 - [`abrirProgramas()`](../abrirProgramas/README.md) -- listado del que se alcanza este caso de uso, en ambas variantes.
 - [`abrirMaterias()`](../abrirMaterias/README.md) / [`abrirAsignaturaPrograma()`](../abrirAsignaturaPrograma/README.md) / [`abrirResultadosAprendizaje()`](../abrirResultadosAprendizaje/README.md) / [`abrirAsignaturasPrograma()`](../abrirAsignaturasPrograma/README.md) -- destinos hijos propios de `DirectorPrograma`, alcanzados desde este mismo `PROGRAMA_ABIERTO` sin necesitar mostrarse aquí (mismo criterio que `abrirMateria()` no muestra `SistemasEvaluacion`).
 - [`crearAsignaturaPrograma()`](../crearAsignaturaPrograma/README.md) / [`eliminarAsignaturaPrograma()`](../eliminarAsignaturaPrograma/README.md) -- acciones exclusivas de la variante Admin, sin cambio.

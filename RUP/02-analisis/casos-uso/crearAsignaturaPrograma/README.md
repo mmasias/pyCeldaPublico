@@ -98,7 +98,7 @@ Traducción a clases de análisis del caso de uso [`crearAsignaturaPrograma()`](
 ### `AsignaturaProgramaRepository`
 
 **Responsabilidades:**
-- crea la `AsignaturaPrograma` (`crear(materiaId, nombre, curso, caracter, idioma, ects, semestreDefault, contenido)`) -- persistencia real e inmediata.
+- crea la `AsignaturaPrograma` (`crear(materiaId, nombre, curso, caracter, idioma, ects, semestreDefault, contenido)`) -- persistencia real e inmediata. En la misma operación puebla a 0 una fila `ActividadFormativaAsignaturaPrograma` por cada `ActividadFormativa` del catálogo del `Programa` de la `Materia` (invariante de autopoblado, issue [#772](https://github.com/mmasias/pyCelda/issues/772)): efecto de persistencia, sin colaboración nueva de análisis.
 
 **Colaboraciones:**
 - **Entrada:** `AsignaturaProgramaController`.

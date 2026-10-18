@@ -138,6 +138,8 @@ Programa (titulación). `codigo` es identificador de catálogo (ej. GII).
 | `estado` | String(20) | no | 'Vigente' | -- | {Vigente, Extinguido} | -- |
 | `facultad_id` | Integer | sí | -- | FK -> facultades.id | -- | -- |
 | `programa_padre_id` | Integer | sí | -- | FK -> programas_padre.id | -- | -- |
+| `codigo_ruct` | String(20) | sí | -- | unique | -- | código RUCT de la memoria; lo escribe la importación (#772) |
+| `denominacion_oficial` | String(300) | sí | -- | -- | -- | denominación del RUCT; la escribe la importación (#772) |
 
 #### `materias`
 
@@ -148,6 +150,9 @@ Agrupación de asignaturas dentro del plan de un programa.
 | `id` | Integer | no | -- | PK | -- | -- |
 | `nombre` | String(200) | no | -- | -- | -- | -- |
 | `programa_id` | Integer | sí | -- | FK -> programas.id | -- | nullable a nivel de columna; en la práctica siempre presente |
+| `modulo_id` | Integer | sí | -- | FK -> modulos.id | -- | nullable: 0..1 (#762); el módulo debe ser del mismo programa (validado en el router) |
+| `codigo_ruct` | String(20) | sí | -- | -- | -- | codMateria del RUCT, único por programa; lo escribe la importación (#772) |
+| `ects` | Numeric(5, 1) | sí | -- | -- | -- | ECTS aprobados en la memoria; los escribe la importación (#772) |
 
 #### `asignaturas`
 
@@ -190,20 +195,21 @@ Categoría de evaluación de una materia, con su rango de ponderación.
 |---|---|---|---|---|---|---|
 | `id` | Integer | no | -- | PK | -- | -- |
 | `materia_id` | Integer | no | -- | FK -> materias.id | -- | -- |
+| `codigo` | String(20) | sí | -- | -- | -- | código de la memoria (E1...), NULL en los previos a la importación (#772) |
 | `tipo` | String(50) | no | -- | -- | {Evaluación continua, Evaluación final} | -- |
-| `descripcion` | String(200) | no | -- | -- | -- | -- |
+| `descripcion` | String(300) | no | -- | -- | -- | -- |
 | `ponderacion_minima` | Numeric(5, 2) | no | -- | -- | -- | -- |
 | `ponderacion_maxima` | Numeric(5, 2) | no | -- | -- | -- | -- |
 
 #### `metodologias_docentes`
 
-Catálogo institucional de metodologías docentes (MD1-MD7).
+Catálogo de metodologías docentes de un programa, con el código y la descripción de su memoria (#772).
 
 | columna | tipo | nulable | default | clave | dominio | nota |
 |---|---|---|---|---|---|---|
 | `id` | Integer | no | -- | PK | -- | -- |
-| `universidad_id` | Integer | no | -- | FK -> universidades.id | -- | -- |
-| `codigo` | String(20) | no | -- | -- | -- | -- |
+| `programa_id` | Integer | no | -- | FK -> programas.id | -- | -- |
+| `codigo` | String(20) | no | -- | -- | -- | único por programa (UNIQUE programa_id, codigo), #772 |
 | `descripcion` | String(500) | no | -- | -- | -- | -- |
 
 #### `metodologias_materia`
@@ -215,15 +221,6 @@ Asociación (Materia, MetodologiaDocente) con descripción propia opcional.
 | `materia_id` | Integer | no | -- | PK,FK -> materias.id | -- | -- |
 | `metodologia_docente_id` | Integer | no | -- | PK,FK -> metodologias_docentes.id | -- | -- |
 | `descripcion_propia` | Text | no | '' | -- | -- | -- |
-
-#### `programas_metodologias_docentes`
-
-Unión N:M Programa-MetodologiaDocente: catálogo que el Programa habilita a sus Materia (cascada Universidad -> Programa -> Materia -> AsignaturaPrograma).
-
-| columna | tipo | nulable | default | clave | dominio | nota |
-|---|---|---|---|---|---|---|
-| `programa_id` | Integer | no | -- | PK,FK -> programas.id | -- | -- |
-| `metodologia_docente_id` | Integer | no | -- | PK,FK -> metodologias_docentes.id | -- | -- |
 
 #### `resultados_aprendizaje`
 
@@ -273,13 +270,55 @@ Unión N:M AsignaturaPrograma-Profesor: profesorado asignado como plantilla esta
 | `asignatura_programa_id` | Integer | no | -- | PK,FK -> asignaturas_programa.id | -- | -- |
 | `profesor_id` | Integer | no | -- | PK,FK -> profesores.id | -- | -- |
 
+#### `competencias`
+
+Competencia del catálogo de un programa (código + tipo + descripción), #761.
+
+| columna | tipo | nulable | default | clave | dominio | nota |
+|---|---|---|---|---|---|---|
+| `id` | Integer | no | -- | PK | -- | -- |
+| `programa_id` | Integer | no | -- | FK -> programas.id | -- | -- |
+| `codigo` | String(20) | no | -- | -- | -- | único por programa (UNIQUE programa_id, codigo) |
+| `tipo` | String(20) | no | -- | -- | {Básica, General, Transversal, Específica} | -- |
+| `descripcion` | String(2000) | no | -- | -- | -- | -- |
+
+#### `materias_competencias`
+
+Unión N:M Materia-Competencia (reparto en cascada Programa->Materia).
+
+| columna | tipo | nulable | default | clave | dominio | nota |
+|---|---|---|---|---|---|---|
+| `materia_id` | Integer | no | -- | PK,FK -> materias.id | -- | -- |
+| `competencia_id` | Integer | no | -- | PK,FK -> competencias.id | -- | -- |
+
+#### `asignaturas_programa_competencias`
+
+Unión N:M AsignaturaPrograma-Competencia (subconjunto de las de su materia).
+
+| columna | tipo | nulable | default | clave | dominio | nota |
+|---|---|---|---|---|---|---|
+| `asignatura_programa_id` | Integer | no | -- | PK,FK -> asignaturas_programa.id | -- | -- |
+| `competencia_id` | Integer | no | -- | PK,FK -> competencias.id | -- | -- |
+
+#### `modulos`
+
+Módulo del plan de un programa: agrupa materias (0..1 por materia), #762.
+
+| columna | tipo | nulable | default | clave | dominio | nota |
+|---|---|---|---|---|---|---|
+| `id` | Integer | no | -- | PK | -- | -- |
+| `programa_id` | Integer | no | -- | FK -> programas.id | -- | -- |
+| `codigo` | String(20) | no | -- | -- | -- | único por programa (UNIQUE programa_id, codigo) |
+| `nombre` | String(200) | no | -- | -- | -- | -- |
+| `descripcion` | String(2000) | no | '' | -- | -- | -- |
+
 #### `actividades_formativas`
 
 | columna | tipo | nulable | default | clave | dominio | nota |
 |---|---|---|---|---|---|---|
 | `id` | Integer | no | -- | PK | -- | -- |
-| `universidad_id` | Integer | no | -- | FK -> universidades.id | -- | -- |
-| `codigo` | String(10) | no | -- | -- | -- | -- |
+| `programa_id` | Integer | no | -- | FK -> programas.id | -- | -- |
+| `codigo` | String(10) | no | -- | -- | -- | único por programa (UNIQUE programa_id, codigo), #772 |
 | `nombre` | String(200) | no | -- | -- | -- | -- |
 
 #### `actividades_formativas_materia`
@@ -289,6 +328,7 @@ Unión N:M AsignaturaPrograma-Profesor: profesorado asignado como plantilla esta
 | `materia_id` | Integer | no | -- | PK,FK -> materias.id | -- | -- |
 | `actividad_formativa_id` | Integer | no | -- | PK,FK -> actividades_formativas.id | -- | -- |
 | `horas` | Numeric(6, 2) | no | 0 | -- | -- | -- |
+| `porcentaje_presencialidad` | Numeric(5, 2) | no | 0 | -- | -- | 0-100; vive en la Materia desde #772 (antes en la AsignaturaPrograma) |
 
 #### `actividades_formativas_asignatura_programa`
 
@@ -297,7 +337,6 @@ Unión N:M AsignaturaPrograma-Profesor: profesorado asignado como plantilla esta
 | `asignatura_programa_id` | Integer | no | -- | PK,FK -> asignaturas_programa.id | -- | -- |
 | `actividad_formativa_id` | Integer | no | -- | PK,FK -> actividades_formativas.id | -- | -- |
 | `horas` | Numeric(6, 2) | no | 0 | -- | -- | -- |
-| `porcentaje_presencialidad` | Numeric(5, 2) | no | 0 | -- | -- | -- |
 
 #### `cursos_academicos`
 

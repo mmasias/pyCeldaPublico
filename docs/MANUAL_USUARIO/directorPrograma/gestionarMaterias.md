@@ -20,7 +20,7 @@ Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Si alguna m
 
 ## Detalle de una materia
 
-Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparece el **Módulo** de la materia (código y nombre, o "Sin módulo") y, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
+Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparecen el **Módulo** de la materia (código y nombre, o "Sin módulo"), sus **ECTS** y su **Código RUCT** si se han importado de la memoria (solo lectura) y, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
 
 ## Metodologías docentes
 
@@ -29,7 +29,7 @@ Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz espec
 ### Asociar una metodología docente
 
 1. Pulsar **➕ Asociar metodología docente**.
-2. Elegir la metodología de la lista desplegable -- solo aparecen las que la materia todavía no tiene.
+2. Elegir la metodología de la lista desplegable -- solo aparecen las del catálogo del programa (pestaña **🧩 Metodologías**) que la materia todavía no tiene.
 3. Pulsar **Asociar**.
 
 Si no queda ninguna metodología disponible para asociar, la pantalla lo indica y solo ofrece volver atrás.
@@ -52,15 +52,17 @@ Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo
 
 ## Actividades formativas de la materia
 
-Tabla de solo lectura con **Actividad formativa** y **Horas**. Pulsar **Editar reparto** abre un formulario con un campo de horas por actividad; **Guardar** confirma los nuevos valores.
+Tabla de solo lectura con **Actividad formativa**, **Horas** y **Presencialidad (%)**: la memoria fija las dos por materia (las asignaturas solo reparten horas). Pulsar **Editar reparto** abre un formulario con los dos campos por actividad (horas mínimo 0, presencialidad de 0 a 100) y el **Total** de horas; si la materia tiene sus ECTS de la memoria, junto al total aparecen las horas que corresponden a 25 h por ECTS y si cuadran. **Guardar** confirma los nuevos valores.
+
+Si la materia tiene ECTS, bajo la tabla una línea compara sus horas con las que corresponden (25 h por ECTS): **OK** o **Discrepancia** con la diferencia. Es informativa: no impide guardar ni reparte nada entre las asignaturas.
 
 Debajo, la tabla **Estado de las actividades formativas** compara, por actividad, las horas de la materia con la suma de las de sus asignaturas: **OK** si cuadran o **Discrepancia** con la diferencia. Es solo informativa: no impide guardar.
 
 ## Sistemas de evaluación
 
-Tabla con **Tipo**, **Descripción**, **Ponderación mínima** y **Ponderación máxima** de cada sistema, con **✏️ Editar** y **🗑️** (Eliminar) en cada fila.
+Tabla con **Código**, **Tipo**, **Descripción**, **Ponderación mínima** y **Ponderación máxima** de cada sistema, con **✏️ Editar** y **🗑️** (Eliminar) en cada fila. En los títulos cuya memoria publica el RUCT con sistemas por materia, los carga la importación tal como figuran en ella (código, denominación y horquilla); en ese caso conviene no cambiarlos a mano, porque la guía tiene que nombrarlos como la memoria.
 
-- **➕ Crear sistema de evaluación**: elegir el **Tipo** (**Evaluación continua** o **Evaluación final**), la **Descripción** opcional y las ponderaciones mínima y máxima en porcentaje (0 ≤ mínima ≤ máxima ≤ 100), y pulsar **Crear**.
+- **➕ Crear sistema de evaluación**: el **Código** de la memoria (p. ej. E1, opcional), el **Tipo** (**Evaluación continua** o **Evaluación final**), la **Descripción** (la denominación de la memoria, p. ej. "Prueba Parcial") y las ponderaciones mínima y máxima en porcentaje (0 ≤ mínima ≤ máxima ≤ 100), y pulsar **Crear**.
 - **✏️ Editar**: los mismos campos. **Guardar** vuelve a la materia.
 - **🗑️**: pide confirmación. Si el sistema se usa en la evaluación de alguna guía, queda bloqueado y la pantalla dice en qué asignaturas.
 

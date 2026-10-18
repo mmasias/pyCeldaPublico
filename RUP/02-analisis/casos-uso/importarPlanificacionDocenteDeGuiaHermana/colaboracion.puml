@@ -28,7 +28,9 @@ ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font si
 
 ImportarPlanificacionDocenteDeGuiaHermanaController --> AsignaturaProgramaRepository: <font size=8>listarHermanas(asignaturaProgramaId) : lista de AsignaturaPrograma
 
-ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>listarAprobadasDe(hermanas) : lista de Guia
+ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>listarImportablesDe(hermanas, cursoAcademicoId) : lista de Guia [Aprobada o EnRevision]
+
+ImportarPlanificacionDocenteDeGuiaHermanaController --> AsignaturaProgramaRepository: <font size=8>imparte(asignaturaProgramaOrigenId, profesorId) : boolean [solo para origen EnRevision]
 
 ImportarPlanificacionDocenteDeGuiaHermanaController --> GuiaRepository: <font size=8>obtener(guiaOrigenId) : Guia [revalidacion server-side del origen]
 

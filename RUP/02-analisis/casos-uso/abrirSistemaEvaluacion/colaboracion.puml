@@ -21,6 +21,6 @@ SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>obtene
 
 SistemaEvaluacionRepository -- SistemaEvaluacion
 
-AbrirSistemaEvaluacionView --> SistemaEvaluacionAbiertoSalida: <font size=8>muestra tipo, descripción y ponderaciones
+AbrirSistemaEvaluacionView --> SistemaEvaluacionAbiertoSalida: <font size=8>muestra código, tipo, descripción y ponderaciones
 
 @enduml

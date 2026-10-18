@@ -16,7 +16,7 @@ state asociarMetodologiaDocenteAMateria as "asociarMetodologiaDocenteAMateria()"
 
     [*] -[#green]-> SolicitandoDatos
     note on link
-    <b>Sistema</b> presenta selección de MetodologiaDocente del catálogo institucional
+    <b>Sistema</b> presenta selección de MetodologiaDocente del catálogo del Programa aún no asociadas a la Materia
     <b>Sistema</b> permite solicitar asociar
     end note
 

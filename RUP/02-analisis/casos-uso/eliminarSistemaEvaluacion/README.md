@@ -67,6 +67,9 @@ Traducción a clases de análisis del caso de uso [`eliminarSistemaEvaluacion()`
 - **Entrada:** `SistemaEvaluacionController`.
 - **Salida:** gestiona `SistemaEvaluacion`.
 
+**Actor `DirectorPrograma` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: misma colaboración, con la comprobación de que la `Materia` pertenece a un programa que dirige.
+
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/wireframes.puml) -- fuente de verdad del `<<choice>>` bloqueante por `PonderacionEvaluacion` asociadas.

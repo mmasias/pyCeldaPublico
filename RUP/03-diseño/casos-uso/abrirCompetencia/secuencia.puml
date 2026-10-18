@@ -1,0 +1,36 @@
+@startuml abrirCompetencia-diseño
+title Diagrama de Secuencia - Abrir Competencia
+
+actor "Admin / DirectorPrograma" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CompetenciaRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita abrir una competencia
+activate Vista
+Vista -> API: GET /api/v1/competencias/{competencia_id}
+activate API
+note right of API: _autorizar_competencia: por el Programa\nde la competencia; si no, 404
+API -> Repo: obtener(competencia_id)
+activate Repo
+Repo -> DB: SELECT ... FROM competencias WHERE id = :competencia_id
+DB --> Repo: fila
+Repo --> API: Competencia
+deactivate Repo
+API --> Vista: 200 OK (CompetenciaResponse)
+deactivate API
+Vista -> API: GET /api/v1/competencias/{competencia_id}/asignaciones
+activate API
+API -> Repo: asignaciones(competencia_id)
+activate Repo
+Repo -> DB: SELECT materias.id, nombre ... JOIN materias_competencias\nSELECT asignaturas_programa.id, nombre ... JOIN asignaturas_programa_competencias
+DB --> Repo: filas
+Repo --> API: (materias, asignaturas_programa)
+deactivate Repo
+API --> Vista: 200 OK (CompetenciaAsignacionesResponse)
+deactivate API
+Vista --> Actor: presenta la competencia y su distribución
+deactivate Vista
+
+@enduml

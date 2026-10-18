@@ -1,0 +1,15 @@
+@startsalt abrirCompetencias-wireframe
+{
+    <b>COMPETENCIAS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    ====
+    {#
+        <b>Descripción | <b>Tipo | <b>Código | <b>Nº de Asign. | . | .
+        Que los estudiantes hayan demostrado poseer y comprender... | Básica | CB1 | 4 | [Abrir] | [Eliminar]
+        Capacidad para concebir, redactar, organizar, planificar... | General | CG1 | 6 | [Abrir] | [Eliminar]
+        Capacidad de trabajo en equipo interdisciplinar... | Transversal | CT2 | 0 | [Abrir] | [Eliminar]
+        Conocimiento y aplicación de los principios fundamentales... | Específica | CE7 | 2 | [Abrir] | [Eliminar]
+    }
+    ====
+    [ <b>+ Crear competencia</b> ]
+}
+@endsalt

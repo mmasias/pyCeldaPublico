@@ -26,6 +26,13 @@
     }
     [ <b>+ Asociar Resultado de Aprendizaje</b> ]
     ====
+    <b>Competencias asociadas:</b>
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | .
+        CE7 | Específica | Conocimiento y aplicación de los principios... | [Quitar]
+    }
+    [ <b>+ Asociar competencia</b> ]
+    ====
     <b>Metodologías docentes asociadas:</b>
     {#
         <b>Código | <b>Descripción | .
@@ -35,10 +42,10 @@
     ====
     <b>Actividades formativas:</b>
     {#
-        <b>Actividad formativa | <b>Horas | <b>% presencialidad
-        Clases expositivas | 30 | 100
-        Clases prácticas | 15 | 100
-        ... (las 10, siempre) | |
+        <b>Actividad formativa | <b>Horas | <b>% presencialidad (de la materia)
+        Actividad Dirigida: Clases de teoría | 30 | 100
+        Actividad Dirigida: Clases prácticas | 27 | 100
+        ... (todas las del catálogo del programa, siempre) | |
     }
     [ <b>Editar reparto</b> ]
     ====

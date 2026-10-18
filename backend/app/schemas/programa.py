@@ -24,6 +24,9 @@ class ProgramaResponse(BaseModel):
     nombre: str
     estado: str
     facultad_id: int | None
+    # Identidad RUCT (#772): solo lectura, la escribe la importación.
+    codigo_ruct: str | None = None
+    denominacion_oficial: str | None = None
     # Issue #492: Directores de Programa, resueltos vía DirectorPrograma.email ->
     # Profesor.email (nunca DirectorPrograma.id, detalle interno -- ver
     # docstring de app/models/director_programa.py). Default []: solo
@@ -48,6 +51,8 @@ class ProgramaResponse(BaseModel):
             nombre=programa.nombre,
             estado=programa.estado,
             facultad_id=programa.facultad_id,
+            codigo_ruct=programa.codigo_ruct,
+            denominacion_oficial=programa.denominacion_oficial,
             directores=directores or [],
         )
 

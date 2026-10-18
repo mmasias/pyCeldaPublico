@@ -19,8 +19,12 @@ AbrirMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>carga
 
 MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>obtener(metodologiaDocenteId) : MetodologiaDocente
 
+AbrirMetodologiaDocenteView --> MetodologiaDocenteController: <font size=8>cargarAsignaciones(metodologiaDocenteId) : (List<Materia>, List<AsignaturaPrograma>)
+
+MetodologiaDocenteController --> MetodologiaDocenteRepository: <font size=8>asignaciones(metodologiaDocenteId)
+
 MetodologiaDocenteRepository -- MetodologiaDocente
 
-AbrirMetodologiaDocenteView --> MetodologiaDocenteAbiertoSalida: <font size=8>muestra datos de la MetodologiaDocente
+AbrirMetodologiaDocenteView --> MetodologiaDocenteAbiertoSalida: <font size=8>presenta la metodología docente y su distribución
 
 @enduml

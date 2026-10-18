@@ -15,18 +15,18 @@ package eliminarActividadFormativa as "eliminarActividadFormativa()" {
 
 ActividadesFormativasAbierto --> EliminarActividadFormativaView: <font size=8>eliminarActividadFormativa(actividadFormativaId)
 
-EliminarActividadFormativaView --> ActividadFormativaController: <font size=8>puedeEliminar(actividadFormativaId) : boolean
-
-ActividadFormativaController --> ActividadFormativaRepository: <font size=8>nombresMateriasAsociadas(actividadFormativaId) : List<String>
+EliminarActividadFormativaView --> ActividadFormativaController: <font size=8>cargarActividadFormativa(actividadFormativaId) : ActividadFormativa
 
 EliminarActividadFormativaView --> ActividadFormativaController: <font size=8>eliminar(actividadFormativaId)
+
+ActividadFormativaController --> ActividadFormativaRepository: <font size=8>nombresMateriasAsociadas(actividadFormativaId) : List<String>
 
 ActividadFormativaController --> ActividadFormativaRepository: <font size=8>eliminar(actividadFormativaId)
 
 ActividadFormativaRepository -- ActividadFormativa
 
 EliminarActividadFormativaView ..[#green]> ActividadesFormativasAbiertoSalida: <font size=8>lista actualizada
-EliminarActividadFormativaView ..[#red]> ActividadesFormativasAbiertoSalida: <font size=8>bloqueada, sin cambios -- horas asignadas en Materia/AsignaturaPrograma
+EliminarActividadFormativaView ..[#red]> ActividadesFormativasAbiertoSalida: <font size=8>bloqueada, sin cambios -- con horas en alguna Materia o AsignaturaPrograma
 EliminarActividadFormativaView ..[#blue]> ActividadesFormativasAbiertoSalida: <font size=8>cancelada, sin cambios
 
 @enduml

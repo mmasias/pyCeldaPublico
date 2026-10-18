@@ -54,7 +54,7 @@ La tabla muestra **Código** y **Descripción**, con **➖** (Quitar) en cada fi
 
 ## Actividades formativas
 
-La tabla muestra, por cada actividad formativa, las **Horas** y el **% presencialidad**. **Editar reparto** abre un formulario con una fila por actividad (**Horas**, mínimo 0, y **% presencialidad**, de 0 a 100) y se confirma con **Guardar**.
+La tabla muestra, por cada actividad formativa, las **Horas** y el **% presencialidad**, que es el de la materia (se edita en la materia). **Editar reparto** abre un formulario con las **Horas** de cada actividad (mínimo 0) y se confirma con **Guardar**.
 
 ## Profesorado de una asignatura de programa
 

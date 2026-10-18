@@ -61,6 +61,8 @@ Este `secuencia.puml` contiene **dos diagramas**: el primero (`abrirPrograma-dis
 - **Admin -- filas planas, sin profesorado ni estado de `Guia`**: a diferencia del listado de `Guia` que ahora consume `DirectorPrograma`, la variante Admin sigue usando `AsignaturaProgramaResponse` sobre su propia tabla de `AsignaturaPrograma` -- `Admin` no gestiona `Guia` ni profesorado desde esta pantalla; añadirlo sería acarrear joins que nadie pinta.
 - **`[Abrir]` por fila deshabilitado (Admin)**: la variante Admin de `abrirAsignaturaPrograma()` no se construye en esta rebanada -- el botón se renderiza con `title="Fuera de alcance de esta rebanada"`.
 
+**Identidad RUCT (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: columnas `programas.codigo_ruct VARCHAR(20) NULL UNIQUE` y `programas.denominacion_oficial VARCHAR(300) NULL` (esquema versión 4), de solo lectura: no están en `ProgramaCreate`/`ProgramaUpdate`, las escribe la importación del RUCT. Sin endpoint nuevo: `ProgramaResponse.desde_programa()` las copia en la variante Admin, y `ProgramaDetalleResponse` hereda los dos campos de `ProgramaResponse` para la variante `DirectorPrograma`. `ProgramaAdmin.tsx` pinta `Código RUCT` y `Denominación oficial` bajo `Estado` (`--` si son nulos); `Programa.tsx` pinta `Código RUCT` solo si existe, con `denominacion_oficial` en el atributo `title`. La variante `DirectorPrograma` (`routers/programa.py::obtener_programa()`) construye `ProgramaDetalleResponse` campo a campo y copia también `codigo_ruct` y `denominacion_oficial` (corregido en la revisión de #772, commit `24c6eb16`).
+
 ## Referencias
 
 - [`abrirPrograma()` en Análisis](/RUP/02-analisis/casos-uso/abrirPrograma/README.md) -- diagrama de colaboración origen, con ambas variantes.

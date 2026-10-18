@@ -1,47 +1,37 @@
 @startuml editarActividadFormativa-diseño
 title Diagrama de Secuencia - Editar Actividad Formativa
 
-actor "Admin" as Admin
+actor "Admin / DirectorPrograma" as Actor
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
-participant "ActividadFormativaRepository" as AFRepo
-participant "ActividadFormativa" as AF
+participant "ActividadFormativaRepository" as Repo
+participant "ActividadFormativa" as Modelo
 database "Base de Datos" as DB
 
-Admin -> Vista: abre la ActividadFormativa a editar
+Actor -> Vista: solicita editar la actividad formativa
 activate Vista
 Vista -> API: GET /api/v1/actividades-formativas/{actividad_formativa_id}
+API --> Vista: 200 OK (ActividadFormativaResponse)
+Vista --> Actor: presenta formulario con los datos actuales
+Actor -> Vista: cambia los campos y confirma
+Vista -> API: PUT /api/v1/actividades-formativas/{actividad_formativa_id} (ActividadFormativaUpdate)
 activate API
-note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
-API -> AFRepo: obtener(actividad_formativa_id)
-activate AFRepo
-AFRepo -> DB: SELECT ... FROM actividades_formativas WHERE id = :actividad_formativa_id
-activate DB
-DB --> AFRepo: fila ActividadFormativa
-deactivate DB
-AFRepo --> API: ActividadFormativa (404 si None)
-deactivate AFRepo
-API --> Vista: 200 OK (ActividadFormativaResponse JSON)
+note right of API: _autorizar_actividad (404 fuera de alcance);\nmisma validación de forma que crear (422)
+API -> Repo: codigo_en_uso(programa_id, codigo, salvo_id=actividad_formativa_id)
+activate Repo
+Repo --> API: boolean
+alt código ya usado por otra actividad formativa del Programa
+  API --> Vista: 409 Conflict
+  Vista --> Actor: presenta el mensaje, el formulario conserva lo escrito
+else código libre
+  API -> Repo: editar(actividad, codigo, nombre)
+  Repo -> Modelo: actualizar(codigo, nombre)
+  Repo -> DB: UPDATE actividades_formativas SET codigo, nombre WHERE id = :actividad_formativa_id
+  API --> Vista: 200 OK (ActividadFormativaResponse)
+  Vista --> Actor: vuelve a la ficha
+end
+deactivate Repo
 deactivate API
-Vista --> Admin: muestra formulario con datos actuales (código de solo lectura)
-
-Admin -> Vista: modifica nombre, confirma
-Vista -> API: PUT /api/v1/actividades-formativas/{actividad_formativa_id} (ActividadFormativaUpdate JSON)
-activate API
-API -> AFRepo: editar(actividad, codigo, nombre)
-activate AFRepo
-AFRepo -> AF: actualizar(codigo, nombre)
-activate AF
-deactivate AF
-AFRepo -> DB: UPDATE actividades_formativas SET codigo = ..., nombre = ...
-activate DB
-DB --> AFRepo: ok
-deactivate DB
-AFRepo --> API: ActividadFormativa
-deactivate AFRepo
-API --> Vista: 200 OK (ActividadFormativaResponse JSON)
-deactivate API
-Vista --> Admin: datos actualizados
 deactivate Vista
 
 @enduml

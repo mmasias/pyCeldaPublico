@@ -1,0 +1,19 @@
+@startsalt crearCompetencia-wireframe
+{
+    <b>CREAR COMPETENCIA</b>
+    ====
+    {
+        <b>Código (*):</b>
+        "          "
+        <b>Tipo (*):</b>
+        ^Específica^
+        <b>Descripción (*):</b>
+        "                                                  "
+        "                                                  "
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Crear] | [Cancelar]}
+}
+@endsalt

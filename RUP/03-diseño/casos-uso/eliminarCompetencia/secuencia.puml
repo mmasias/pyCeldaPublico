@@ -1,0 +1,38 @@
+@startuml eliminarCompetencia-diseño
+title Diagrama de Secuencia - Eliminar Competencia
+
+actor "Admin / DirectorPrograma" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "CompetenciaRepository" as Repo
+database "Base de Datos" as DB
+
+Actor -> Vista: solicita eliminar una competencia
+activate Vista
+Vista -> API: GET /api/v1/competencias/{competencia_id} y .../asignaciones
+API --> Vista: 200 OK (competencia, asignaciones)
+alt asignada a alguna Materia o AsignaturaPrograma
+  Vista --> Actor: presenta el bloqueo con materias y asignaturas, sin cambios
+else sin asignaciones -- el actor confirma
+  Actor -> Vista: confirma
+  Vista -> API: DELETE /api/v1/competencias/{competencia_id}
+  activate API
+  API -> Repo: asignaciones(competencia_id)
+  activate Repo
+  Repo --> API: (materias, asignaturas) -- reverificado
+  alt ya asignada
+    API --> Vista: 409 Conflict ("Competencia asignada a: ...")
+  else libre
+    API -> Repo: eliminar(competencia)
+    Repo -> DB: DELETE FROM competencias WHERE id = :competencia_id
+    API --> Vista: 204 No Content
+    Vista --> Actor: presenta la lista actualizada
+  end
+  deactivate Repo
+  deactivate API
+else el actor cancela
+  Vista --> Actor: vuelve al listado, sin llamada al backend
+end
+deactivate Vista
+
+@enduml

@@ -6,7 +6,7 @@
 
 # pyCelda > editarActividadFormativa()
 
-> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/editarActividadFormativa/README.md)|[Diseño](/RUP/03-diseño/casos-uso/editarActividadFormativa/README.md)|Desarrollo|Pruebas|
+> |[🏠️](/README.md)|[DdC](/images/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.svg)|**Detalle**|[Análisis](/RUP/02-analisis/casos-uso/editarActividadFormativa/README.md)|[Diseño](/RUP/03-diseño/casos-uso/editarActividadFormativa/README.md)|Desarrollo|Pruebas|
 > |-|-|-|-|-|-|-|
 
 <div align=center>
@@ -31,17 +31,20 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`Admin`|
-|**Objetivo**|Editar la nombre de una `ActividadFormativa` del catálogo institucional|
+|**Actor**|`Admin`, `DirectorPrograma`|
+|**Objetivo**|Modificar el código o el nombre de una `ActividadFormativa` del catálogo de un `Programa`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Solo `nombre` es editable -- `código` es el identificador institucional fijo (`AF1`-`AF7`, ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)) y se fija en `crearActividadFormativa()`, no se toca después.
+Mismo formulario que [`crearActividadFormativa()`](../crearActividadFormativa/README.md), con los datos actuales y el mismo `<<choice>>` de código repetido dentro del `Programa` (excluida la propia actividad), como [`editarCompetencia()`](../editarCompetencia/README.md) (issue [#772](https://github.com/mmasias/pyCelda/issues/772)). El `codigo` es editable: el catálogo reproduce el de la memoria del programa y corregir un código mal transcrito es un caso real. La actividad no cambia de `Programa`. Editar no toca las horas ni la presencialidad repartidas: las filas de cada `Materia` y `AsignaturaPrograma` apuntan a la actividad, no a su código.
+
+**Histórico**: hasta #772 el `codigo` no era editable una vez creada la actividad y no había `<<choice>>`; el catálogo era de la `Universidad`, solo para `Admin`.
 
 ## Referencias
 
-- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()`
-- [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` sobre `ActividadFormativa`
-- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `ActividadFormativa { codigo, nombre }`; las horas por `Materia`/`AsignaturaPrograma` (`ActividadFormativaMateria`, `ActividadFormativaAsignaturaPrograma`) son otro caso de uso (`DirectorPrograma`), fuera del alcance de este
+- [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()`
+- [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()` (misma pantalla conceptual, rutas `/admin/...`)
+- [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-- ActividadFormativa`, unicidad de `codigo` en el `Programa`
+- [`editarCompetencia()`](../editarCompetencia/README.md) -- patrón de origen

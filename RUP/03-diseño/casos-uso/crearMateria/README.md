@@ -37,7 +37,7 @@ Bajada a diseño del caso de análisis [`crearMateria()`](/RUP/02-analisis/casos
 - **Vista**: `CrearMateriaAdmin.tsx` (React, ruta `/admin/programas/{programa_id}/materias/crear`) -- formulario mínimo (`nombre`, sin selector de Programa: llega de la URL); al confirmar, `POST /api/v1/admin/programas/{programa_id}/materias`.
 - **API**: `routers/materia.py::crear_materia(programa_id, datos)` -- función suelta, sin capa Service; delega directo en el repositorio.
 - **Modelo**: `Materia` (SQLAlchemy) -- sin lógica propia invocada: el Repository construye la fila directamente; sin `estado` que fijar (`Materia` no se extingue).
-- **Repositorio**: `MateriaRepository.crear(nombre, programa_id)` -- método nuevo sobre el repositorio ya existente del hilo `Guia`/asociaciones; persistencia real e inmediata.
+- **Repositorio**: `MateriaRepository.crear(nombre, programa_id)` -- método nuevo sobre el repositorio ya existente del hilo `Guia`/asociaciones; persistencia real e inmediata. Llama a `poblar_actividades_formativas_materia()` (`repositories/actividad_formativa.py`) antes del `COMMIT`.
 
 ## Decisiones de diseño
 
@@ -46,6 +46,9 @@ Bajada a diseño del caso de análisis [`crearMateria()`](/RUP/02-analisis/casos
 - **`201 Created` con el objeto creado (incluido su `id`)**, no `204 No Content` -- la Vista navega de inmediato a `editarMateria()` (`<<include>>` cerrado en Análisis) y necesita ese `id`.
 - **Autorización de `Admin`: `Depends(require_admin)`** -- ya disponible en `backend/app/core/auth.py`. Especialmente relevante aquí por ser endpoint de escritura: el historial de bugs de autorización del proyecto (IDOR #86/#96) hace que dejarlo implícito sea un hueco real.
 - **Sin capa Service**: Router delgado -> Repository, sin validación post-consulta.
+- **Invariante de autopoblado en el propio `crear()`** (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): la `Materia` nace con una fila `actividades_formativas_materia` a 0 (`horas`, `porcentaje_presencialidad`) por cada `ActividadFormativa` del catálogo de su `Programa`, en orden de alta. Lógica de aplicación, no trigger de BD; idempotente (se salta las que ya existan). Con el catálogo vacío no crea nada y no falla. Hasta #772 el catálogo era el de la `Universidad`.
+
+**Módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: `MateriaCreate` gana `modulo_id` opcional; `routers/materia.py::_validar_modulo()` responde 404 si el módulo no existe o es de otro `Programa`, y `MateriaRepository.crear()` lo recibe. La respuesta lleva `modulo_id`, `modulo_codigo`, `modulo_nombre`.
 
 ## Referencias
 

@@ -31,14 +31,17 @@
 
 |Atributo|Valor|
 |-|-|
-|**Actor**|`DirectorPrograma`|
+|**Actor**|`DirectorPrograma`, `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))|
 |**Objetivo**|Editar `descripcionPropia` de la asociación entre una `Materia` y una `MetodologiaDocente`|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
 </div>
 
-Único campo editable: `descripcionPropia` de `MetodologiaMateria`. `codigo` y `descripcion` de la `MetodologiaDocente` se muestran de solo lectura (pertenecen al catálogo institucional, se editan desde [`editarMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md), no desde aquí). Patrón catálogo+override, mismo que `nombre`/`ects` en `AsignaturaPrograma` o `semestre` en `Guia`: vacío por defecto (usa la descripción canónica), y este caso de uso es donde el director registra el matiz si lo necesita.
+Único campo editable: `descripcionPropia` de `MetodologiaMateria`. `codigo` y `descripcion` de la `MetodologiaDocente` se muestran de solo lectura (pertenecen al catálogo del `Programa` (#772; antes institucional), se editan desde [`editarMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md), no desde aquí). Patrón catálogo+override, mismo que `nombre`/`ects` en `AsignaturaPrograma` o `semestre` en `Guia`: vacío por defecto (usa la descripción canónica), y este caso de uso es donde el director registra el matiz si lo necesita.
+
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
+
 
 ## Referencias
 

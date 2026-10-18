@@ -18,6 +18,10 @@ MateriaRepo -> DB: INSERT INTO materias (nombre, programa_id)\nVALUES (:nombre, 
 activate DB
 DB --> MateriaRepo: id nueva fila
 deactivate DB
+MateriaRepo -> DB: INSERT filas a 0 en actividades_formativas_materia\n(horas, porcentaje_presencialidad), una por ActividadFormativa\ndel catálogo del Programa (autopoblado)
+activate DB
+DB --> MateriaRepo: ok
+deactivate DB
 MateriaRepo --> API: Materia (con id)
 deactivate MateriaRepo
 API --> Vista: 201 Created (MateriaResponse JSON)

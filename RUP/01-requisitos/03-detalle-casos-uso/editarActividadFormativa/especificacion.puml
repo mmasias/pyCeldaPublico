@@ -7,24 +7,36 @@ state ACTIVIDAD_FORMATIVA_ABIERTO_SALIDA as "ACTIVIDAD_FORMATIVA_ABIERTO"
 
 ACTIVIDAD_FORMATIVA_ABIERTO -[#green]-> editarActividadFormativa
 note on link
-<b>Admin</b> solicita editar ActividadFormativa
+<b>Admin / DirectorPrograma</b> solicita editar actividad formativa
 end note
 
 state editarActividadFormativa as "editarActividadFormativa()" {
 
-    state " " as EditandoDatos
+    state " " as Datos
+    state c <<choice>>
 
-    [*] -[#green]-> EditandoDatos
+    [*] -[#green]-> Datos
     note on link
-    <b>Sistema</b> presenta datos actuales de la ActividadFormativa
-    <b>Sistema</b> muestra código
+    <b>Sistema</b> presenta datos actuales de la actividad formativa
     <b>Sistema</b> permite solicitar guardar
     end note
 
-    EditandoDatos -[#green]-> [*]
+    Datos -[#green]-> c
     note on link
-    <b>Admin</b> introduce nombre
-    <b>Admin</b> solicita guardar
+    <b>Admin / DirectorPrograma</b> introduce código
+    <b>Admin / DirectorPrograma</b> introduce nombre
+    <b>Admin / DirectorPrograma</b> solicita guardar
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [código no usado por otra actividad formativa del Programa, sin distinguir mayúsculas]
+    end note
+
+    c -[#red]-> Datos
+    note on link
+    [código ya usado por otra actividad formativa del Programa, sin distinguir mayúsculas]
+    <b>Sistema</b> presenta mensaje de código repetido
     end note
 }
 

@@ -1,0 +1,17 @@
+@startsalt asociarCompetenciaAMateria-wireframe
+{
+    <b>ASOCIAR COMPETENCIA</b>
+    ====
+    <b>Programación</b>
+    --
+    {
+        <b>Competencia (*):</b>
+        ^CE7 -- Conocimiento y aplicación de los principios fundamentales y...^
+        <i>Conocimiento y aplicación de los principios fundamentales y técnicas básicas de la programación paralela, concurrente, distribuida y de tiempo real.</i>
+        --
+        <i>(*) Campo obligatorio</i>
+    }
+    ~~
+    {[Asociar]}
+}
+@endsalt

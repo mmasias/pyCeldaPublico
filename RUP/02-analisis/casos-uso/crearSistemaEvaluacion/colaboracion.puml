@@ -17,9 +17,9 @@ SistemasEvaluacionAbierto --> CrearSistemaEvaluacionView: <font size=8>crearSist
 
 CrearSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>validarDatosObligatorios(tipo, ponderacionMinima, ponderacionMaxima) : boolean
 
-CrearSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>crearSistemaEvaluacion(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
+CrearSistemaEvaluacionView --> SistemaEvaluacionController: <font size=8>crearSistemaEvaluacion(materiaId, codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
 
-SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>crear(materiaId, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
+SistemaEvaluacionController --> SistemaEvaluacionRepository: <font size=8>crear(materiaId, codigo, tipo, descripcion, ponderacionMinima, ponderacionMaxima) : SistemaEvaluacion
 
 SistemaEvaluacionRepository -- SistemaEvaluacion
 
