@@ -292,8 +292,6 @@ def abrir_guia(
         instrumento_extraordinario=guia.instrumento_extraordinario,
         porcentaje_recuperable=guia.porcentaje_recuperable,
         texto_convocatorias=guia.texto_convocatorias,
-        instrumento_extraordinario_sugerido=guia.instrumento_extraordinario_sugerido,
-        porcentaje_recuperable_sugerido=guia.porcentaje_recuperable_sugerido,
         sesiones_minimas=guia.sesiones_minimas,
         fecha_creacion=guia.fecha_creacion,
         fecha_ultima_modificacion=guia.fecha_ultima_modificacion,

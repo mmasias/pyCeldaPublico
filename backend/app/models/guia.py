@@ -1,4 +1,3 @@
-import math
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
@@ -7,7 +6,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base, DateTimeUTC
 from app.models.plantilla_evaluacion import (
-    LIMITE_INSTRUMENTO_EXTRAORDINARIO,
     componer_texto_convocatorias,
     es_plantilla,
     plantilla_por_caracter,
@@ -208,48 +206,6 @@ class Guia(Base):
         if not faltan:
             return None
         return f"Convocatoria extraordinaria sin concretar: falta {' y '.join(faltan)}"
-
-    def _instrumentos_evaluacion_final(self) -> list["PonderacionEvaluacion"]:
-        return [
-            p
-            for p in self.ponderaciones
-            if p.vinculada
-            and p.sistema_evaluacion is not None
-            and (p.sistema_evaluacion.tipo or "").strip().lower() == "evaluación final"
-        ]
-
-    @property
-    def instrumento_extraordinario_sugerido(self) -> str | None:
-        """Propuesta para el instrumento: los instrumentos vinculados de los
-        sistemas de tipo "Evaluación final", en una redacción que no depende
-        del género de su nombre. None si no hay ninguno."""
-        nombres = [p.descripcion for p in self._instrumentos_evaluacion_final()]
-        if not nombres:
-            return None
-        if len(nombres) == 1:
-            propuesta = f"la prueba de evaluación final ({nombres[0]})"
-        else:
-            propuesta = (
-                "las pruebas de evaluación final ("
-                + ", ".join(nombres[:-1])
-                + f" y {nombres[-1]})"
-            )
-        # Que la propuesta se pueda guardar tal cual: sin los nombres si no cabe.
-        if len(propuesta) > LIMITE_INSTRUMENTO_EXTRAORDINARIO:
-            return propuesta.split(" (")[0]
-        return propuesta
-
-    @property
-    def porcentaje_recuperable_sugerido(self) -> int | None:
-        """Propuesta para el porcentaje: la suma de los instrumentos de
-        evaluación final, redondeada a entero. None si no hay ninguno."""
-        instrumentos = self._instrumentos_evaluacion_final()
-        if not instrumentos:
-            return None
-        # Redondeo aritmético (50,5 -> 51), no el del banquero de round().
-        suma = math.floor(sum(float(p.ponderacion) for p in instrumentos) + 0.5)
-        # Solo si se puede guardar tal cual (1-100).
-        return suma if 1 <= suma <= 100 else None
 
     def _ultimo_cambio_historial(self) -> "HistorialCambio | None":
         # Solo las filas que dicen quién tocó la guía cuentan para la autoría:

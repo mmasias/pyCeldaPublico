@@ -467,8 +467,6 @@ def test_enviar_guia_a_revision_rechaza_si_la_extraordinaria_no_esta_concretada(
 
     abierta = client.get(f"/api/v1/guias/{guia_vinculada.id}").json()
     assert abierta["resumen_completitud"]["convocatoria_ok"] is False
-    assert abierta["instrumento_extraordinario_sugerido"] == "la prueba de evaluación final (Examen final)"
-    assert abierta["porcentaje_recuperable_sugerido"] == 100
 
 
 def test_enviar_guia_a_revision_plantilla_sin_campos_no_exige_la_extraordinaria(

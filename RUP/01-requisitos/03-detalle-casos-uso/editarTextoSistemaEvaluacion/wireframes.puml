@@ -8,8 +8,8 @@
         Instrumento de la convocatoria extraordinaria: | "la prueba de evaluación final (Examen final)"
         Porcentaje recuperable en la extraordinaria: | {"50" | %}
     }
-    {
-        Según los instrumentos de evaluación final guardados: la prueba de evaluación final (Examen final), 50 %. | [Usar esta propuesta]
+    {+
+        <b>PROPUESTA:</b> <i>Según los instrumentos de evaluación final de la lista: la prueba de evaluación final (Examen final), 50 %.</i> | [Usar esta propuesta]
     }
     ====
     {+

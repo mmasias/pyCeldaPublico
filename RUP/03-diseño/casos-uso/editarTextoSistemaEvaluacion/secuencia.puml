@@ -12,7 +12,7 @@ Profesor -> Vista: abre "Gestionar evaluación"
 activate Vista
 Vista -> API: GET /api/v1/plantillas-evaluacion
 API --> Vista: las cinco plantillas (código, nombre, texto, usa_campos_extraordinaria)
-note right of Vista: la plantilla aplicada, los campos y las propuestas\nllegan en el GET de la guía que ya hace la pantalla
+note right of Vista: la plantilla aplicada y los campos llegan en el GET de la guía\nque ya hace la pantalla; la propuesta la calcula proponerConvocatoria()\nsobre la lista de instrumentos de la pantalla
 Profesor -> Vista: elige plantilla, rellena instrumento y porcentaje (o usa la propuesta) y guarda
 note right of Vista: componerTextoConvocatorias() muestra el texto resultante\nantes de guardar; porcentaje fuera de 1-100 deshabilita "Guardar"
 Vista -> API: PUT /api/v1/guias/{guia_id}/texto-sistema-evaluacion\n{plantilla, instrumento_extraordinario, porcentaje_recuperable}

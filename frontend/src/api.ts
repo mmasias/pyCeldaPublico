@@ -107,10 +107,6 @@ export interface AbrirGuiaResponse extends GuiaResponse {
   sesiones: Sesion[];
   // Umbral de la regla c3 (discussion #206), para el medidor "N / M sesiones".
   sesiones_minimas: number;
-  // #791: propuestas para los campos de la convocatoria extraordinaria, a
-  // partir de los instrumentos de evaluación final.
-  instrumento_extraordinario_sugerido: string | null;
-  porcentaje_recuperable_sugerido: number | null;
   // Banner: no null cuando la guía volvió a EnRevisión porque Admin cambió el
   // profesorado de la AsignaturaPrograma (issue #254).
   comentario_revision_por_profesorado: string | null;
