@@ -1,3 +1,5 @@
+import pytest
+
 from app.core.auth import get_current_profesor_id
 from app.main import app
 from app.models.sistema_evaluacion import SistemaEvaluacion
@@ -414,3 +416,69 @@ def test_enviar_guia_a_revision_permitido_al_alcanzar_sesiones_minimas(
     resp = client.post(f"/api/v1/guias/{guia_vinculada.id}/enviar-a-revision")
     assert resp.status_code == 200
     assert resp.json()["estado"] == "EnRevision"
+
+
+def _guia_lista_para_enviar(client, db_session, guia, materia):
+    """Cumple c1-c3: un instrumento al 100 % y una sesión, guardados."""
+    sistema = SistemaEvaluacion(
+        materia_id=materia.id,
+        tipo="Evaluación final",
+        descripcion="Único",
+        ponderacion_minima=0,
+        ponderacion_maxima=100,
+    )
+    db_session.add(sistema)
+    db_session.commit()
+    id1 = client.post(
+        f"/api/v1/guias/{guia.id}/ponderaciones-evaluacion",
+        json={"sistema_evaluacion_id": sistema.id, "descripcion": "Examen final", "ponderacion": 100},
+    ).json()["id"]
+    sid = client.post(
+        f"/api/v1/guias/{guia.id}/sesiones",
+        json={"tipo": "CLASE_TEORICA", "descripcion": "S1"},
+    ).json()["id"]
+    client.put(
+        f"/api/v1/guias/{guia.id}/borrador",
+        json={"ids_ponderaciones_final": [id1], "ids_referencias_final": [], "ids_sesiones_final": [sid]},
+    )
+
+
+@pytest.mark.parametrize(
+    "instrumento, porcentaje, motivo",
+    [
+        (None, None, "falta el instrumento y el porcentaje recuperable"),
+        (None, 50, "falta el instrumento"),
+        ("la prueba final", None, "falta el porcentaje recuperable"),
+    ],
+)
+def test_enviar_guia_a_revision_rechaza_si_la_extraordinaria_no_esta_concretada(
+    client, db_session, guia_vinculada, materia, instrumento, porcentaje, motivo
+):
+    """Regla c4 (#791): con una plantilla que tiene los campos de la
+    convocatoria extraordinaria, los dos tienen que estar rellenos."""
+    _guia_lista_para_enviar(client, db_session, guia_vinculada, materia)
+    guia_vinculada.instrumento_extraordinario = instrumento
+    guia_vinculada.porcentaje_recuperable = porcentaje
+    db_session.commit()
+
+    resp = client.post(f"/api/v1/guias/{guia_vinculada.id}/enviar-a-revision")
+    assert resp.status_code == 422
+    assert resp.json()["detail"] == f"Convocatoria extraordinaria sin concretar: {motivo}"
+
+    abierta = client.get(f"/api/v1/guias/{guia_vinculada.id}").json()
+    assert abierta["resumen_completitud"]["convocatoria_ok"] is False
+    assert abierta["instrumento_extraordinario_sugerido"] == "la prueba de evaluación final (Examen final)"
+    assert abierta["porcentaje_recuperable_sugerido"] == 100
+
+
+def test_enviar_guia_a_revision_plantilla_sin_campos_no_exige_la_extraordinaria(
+    client, db_session, guia_vinculada, materia
+):
+    _guia_lista_para_enviar(client, db_session, guia_vinculada, materia)
+    guia_vinculada.plantilla_evaluacion_elegida = "practicas_externas"
+    guia_vinculada.instrumento_extraordinario = None
+    guia_vinculada.porcentaje_recuperable = None
+    db_session.commit()
+
+    resp = client.post(f"/api/v1/guias/{guia_vinculada.id}/enviar-a-revision")
+    assert resp.status_code == 200

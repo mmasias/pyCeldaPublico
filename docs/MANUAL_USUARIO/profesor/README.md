@@ -7,7 +7,7 @@ pyCelda gestiona la guía docente de las asignaturas: temario, evaluación, bibl
 - Ver de un vistazo sus asignaturas y el estado de la guía de cada una.
 - En la guía docente de sus asignaturas:
   - Redactar el contenido.
-  - Crear, editar y eliminar los instrumentos de evaluación de cada guía (exámenes, trabajos, prácticas...), comprobar que la suma de ponderaciones cumple las reglas de la asignatura y editar el texto de convocatorias del apartado 5 de la guía.
+  - Crear, editar y eliminar los instrumentos de evaluación de cada guía (exámenes, trabajos, prácticas...), comprobar que la suma de ponderaciones cumple las reglas de la asignatura y elegir la plantilla del texto de convocatorias del apartado 5 de la guía, con el instrumento y el porcentaje de la convocatoria extraordinaria.
   - Crear, editar y eliminar la bibliografía de cada guía, o importarla directamente de una guía ya aprobada de la misma asignatura en otro programa.
   - Crear, editar y eliminar las sesiones de la planificación docente (el cronograma de clases), arrancarla de golpe con una plantilla genérica, o importarla de una guía hermana o desde texto.
 - Enviar la guía a revisión, previsualizar el documento oficial y descargar el PDF una vez aprobada.

@@ -239,6 +239,7 @@ GUIAS_DEL_PROGRAMA_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 ' (discussion #218 P3; Admin alineado en #263/#238).
 GUIAS_DEL_PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : previsualizarGuia()
 GUIAS_DEL_PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : descargarGuiaPDF()
+GUIAS_DEL_PROGRAMA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : descargarPlanificacionDocentePDF()
 ' descargarGuiaPDF() desde GUIA_ABIERTO se conserva por el flujo de #6
 ' (localizar -> abrir -> descargar -> reabrir); #262 lo invoca ademas desde la lista.
 GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()

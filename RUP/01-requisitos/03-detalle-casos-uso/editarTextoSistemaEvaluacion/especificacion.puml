@@ -13,45 +13,49 @@ end note
 
 state editarTextoSistemaEvaluacion as "editarTextoSistemaEvaluacion()" {
 
-    state " " as EditandoTexto
+    state " " as EligiendoPlantilla
     state c <<choice>>
 
-    [*] -[#green]-> EditandoTexto
+    [*] -[#green]-> EligiendoPlantilla
     note on link
-    <b>Sistema</b> presenta el texto actual de convocatorias en un área de texto
-    <b>Sistema</b> ofrece tres plantillas (asignatura normal, prácticas externas, prácticas de laboratorio) que rellenan el área de texto sin guardar
+    <b>Sistema</b> presenta la plantilla aplicada (la elegida o la del carácter de la asignatura)
+    <b>Sistema</b> presenta el instrumento y el porcentaje de la convocatoria extraordinaria, si la plantilla los tiene
+    <b>Sistema</b> presenta la propuesta de instrumento y de porcentaje según los instrumentos de evaluación final
+    <b>Sistema</b> presenta el texto resultante, no editable
     <b>Sistema</b> permite solicitar guardar
     end note
 
-    EditandoTexto -[#green]-> c
+    EligiendoPlantilla -[#green]-> c
     note on link
-    <b>Profesor</b> o <b>DirectorPrograma</b> edita el texto, o elige una plantilla y la ajusta
+    <b>Profesor</b> o <b>DirectorPrograma</b> elige la plantilla
+    <b>Profesor</b> o <b>DirectorPrograma</b> introduce el instrumento y el porcentaje, o usa la propuesta
     <b>Profesor</b> o <b>DirectorPrograma</b> solicita guardar
     end note
 
     c -[#green]-> [*]
     note on link
-    [el texto contiene el marcador [TABLA] exactamente una vez]
-    [lo edita el DirectorPrograma y la guía está Aprobada] <b>Sistema</b> devuelve la guía a Borrador
-    [lo edita el DirectorPrograma y la guía está EnRevision] <b>Sistema</b> pasa la guía a Rechazada
-    <b>Sistema</b> persiste el texto y registra el cambio en el historial
+    [plantilla conocida, porcentaje vacío o entre 1 y 100, instrumento de 300 caracteres como máximo]
+    [lo guarda el Profesor y la guía está Aprobada] <b>Sistema</b> devuelve la guía a Borrador
+    [lo guarda el DirectorPrograma y la guía está Aprobada] <b>Sistema</b> devuelve la guía a Borrador
+    [lo guarda el DirectorPrograma y la guía está EnRevision] <b>Sistema</b> pasa la guía a Rechazada
+    <b>Sistema</b> persiste la plantilla y los datos y registra el cambio en el historial
     end note
 
     c -[#red]-> [*]
     note on link
-    [el marcador [TABLA] aparece cero veces o más de una]
-    <b>Sistema</b> presenta mensaje de rechazo: el texto debe contener el marcador [TABLA] exactamente una vez
+    [plantilla desconocida, porcentaje fuera de 1-100 o instrumento demasiado largo]
+    <b>Sistema</b> presenta mensaje de rechazo
     end note
 }
 
 editarTextoSistemaEvaluacion -[#green]-> PONDERACIONES_EVALUACION_ABIERTO_SALIDA
 note on link
-texto actualizado
+texto de convocatorias actualizado
 end note
 
 editarTextoSistemaEvaluacion -[#red]-> PONDERACIONES_EVALUACION_ABIERTO_SALIDA
 note on link
-marcador [TABLA] ausente o repetido, sin cambios
+datos inválidos, sin cambios
 end note
 
 @enduml

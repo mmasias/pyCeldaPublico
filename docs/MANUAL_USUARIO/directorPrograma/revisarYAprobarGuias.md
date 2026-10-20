@@ -31,9 +31,9 @@ A continuación, la **barra de trabajo**, con el mismo fondo que la franja de pe
 - **En revisión**: **✅ Aprobar** o **❌ Rechazar**.
 - **Borrador** o **Rechazada**: **⏫ Escalar a aprobada**.
 - **Aprobada**: **↩️ Revocar aprobación**.
-- En cualquier estado, para ver el documento: **👁️ Previsualizar**, o **⬇️ Descargar PDF** si la guía está aprobada.
+- En cualquier estado, para ver el documento: **👁️ Previsualizar**, o **⬇️ Descargar PDF** si la guía está aprobada. La planificación docente se descarga aparte, con **⬇️ Descargar planificación** en su sección.
 
-Justo debajo de la barra, el **Resumen de completitud**, con el rótulo a la izquierda y un criterio por línea a su derecha: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
+Justo debajo de la barra, el **Resumen de completitud**, con el rótulo a la izquierda y un criterio por línea a su derecha: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo y si la convocatoria extraordinaria está concretada. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
 
 Después, si hay algo que guardar, el recuadro de la corrección excepcional (ver más abajo), y el contenido de la guía: temario, evaluación, bibliografía, planificación docente e información adicional. Editarlos es tarea del profesorado, salvo esa corrección excepcional.
 
@@ -72,7 +72,7 @@ Desde **🔧 Gestionar evaluación**, **🔧 Gestionar bibliografía** y **🔧 
 
 A diferencia del temario, aquí el estado cambia en el momento, sin esperar a **💾 Guardar borrador**: crear un elemento o editar uno que ya forma parte de la guía devuelve a **Borrador** una guía **Aprobada** y pasa a **Rechazada** una **En revisión**. Lo creado queda como **Vinculada: No** hasta pulsar **💾 Guardar borrador** en el recuadro de la guía, y lo eliminado no se hace definitivo hasta entonces. Un aviso en ámbar bajo el título, y en los formularios de editar, recuerda la consecuencia: "⚠️ Esta guía está en revisión: si guardas un cambio como corrección del director, quedará rechazada." (o, si está aprobada, que volverá a borrador). Si el director también imparte esa asignatura, sus cambios cuentan como del profesor: una guía en revisión no se rechaza y ese aviso no aparece.
 
-El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en el campo "Texto de convocatorias" y con **💾 Guardar texto**. Debe contener el marcador `[TABLA]` exactamente una vez, y aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
+El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en la sección "Texto de convocatorias", eligiendo la plantilla y completando el instrumento y el porcentaje de la convocatoria extraordinaria, con **💾 Guardar texto de convocatorias**. El texto en sí no se edita. Aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
 
 El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor: en sus pantallas no aparecen esos botones. Si el director también imparte la asignatura, en la planificación y la bibliografía sí los tiene, como profesor; para importar el temario de una guía hermana tiene que entrar en la guía como profesor, desde su **Inicio**. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
 

@@ -90,6 +90,7 @@ package "Documento de la guía" {
   usecase reabrirGuiaPorIncidencia as "reabrirGuiaPorIncidencia()"
   usecase descargarGuiaPDF as "descargarGuiaPDF()"
   usecase previsualizarGuia as "previsualizarGuia()"
+  usecase descargarPlanificacionDocentePDF as "descargarPlanificacionDocentePDF()"
 }
 
 ' issue #308 -- sin CRUD: CopiaSeguridad no es entidad de modeloDominio.puml,
@@ -158,6 +159,7 @@ Admin --- abrirGuia
 Admin -- generarGuiasPDF
 Admin -- descargarGuiaPDF
 Admin -- previsualizarGuia
+Admin -- descargarPlanificacionDocentePDF
 Admin -- reabrirGuiaPorIncidencia
 
 Admin -- consultarCopiasSeguridad

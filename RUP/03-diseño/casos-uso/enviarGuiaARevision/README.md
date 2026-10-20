@@ -20,7 +20,7 @@
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`enviarGuiaARevision()`](/RUP/02-analisis/casos-uso/enviarGuiaARevision/README.md): tres comprobaciones en cascada sobre la `Guia` ya vinculada -- nunca materializa ni vincula nada él mismo, eso ya lo hizo [`guardarBorradorGuia()`](/RUP/03-diseño/casos-uso/guardarBorradorGuia/README.md) antes. Primero, una **precondición** (`c1`): si queda algo pendiente-sin-vincular (`PonderacionEvaluacion`, `ReferenciaBibliografica` o `Sesion`), rechaza pidiendo guardar primero, sin llegar a validar nada más. Si no hay pendientes, valida contra lo ya vinculado las reglas agregadas del dominio: rango por **todos** los `SistemaEvaluacion` de la materia y suma total exactamente 100% (`Guia.bloqueo_ponderaciones()`, `c2`); y planificación docente con al menos `Guia.sesiones_minimas` `Sesion` vinculadas (`Guia.planificacion_docente_completa()`, `c3`). Ambas son Fat Model. Si las tres pasan, transiciona la `Guia` a `EnRevision` y persiste solo la `Guia`.
+Bajada a diseño del caso de análisis [`enviarGuiaARevision()`](/RUP/02-analisis/casos-uso/enviarGuiaARevision/README.md): comprobaciones en cascada sobre la `Guia` ya vinculada -- nunca materializa ni vincula nada él mismo, eso ya lo hizo [`guardarBorradorGuia()`](/RUP/03-diseño/casos-uso/guardarBorradorGuia/README.md) antes. Primero, una **precondición** (`c1`): si queda algo pendiente-sin-vincular (`PonderacionEvaluacion`, `ReferenciaBibliografica` o `Sesion`), rechaza pidiendo guardar primero, sin llegar a validar nada más. Si no hay pendientes, valida contra lo ya vinculado las reglas agregadas del dominio: rango por **todos** los `SistemaEvaluacion` de la materia y suma total exactamente 100% (`Guia.bloqueo_ponderaciones()`, `c2`); y planificación docente con al menos `Guia.sesiones_minimas` `Sesion` vinculadas (`Guia.planificacion_docente_completa()`, `c3`). Ambas son Fat Model. Si las tres pasan, transiciona la `Guia` a `EnRevision` y persiste solo la `Guia`.
 
 ## Diagrama de secuencia de diseño
 
@@ -35,8 +35,8 @@ Bajada a diseño del caso de análisis [`enviarGuiaARevision()`](/RUP/02-analisi
 ## Participantes
 
 - **Vista**: `EnviarGuiaARevisionView` (React) -- un único paso, sin formulario; pide `POST /api/v1/guias/{guia_id}/enviar-a-revision`.
-- **API**: `routers/guia.py::enviar_guia_a_revision(guia_id)` -- función suelta, sin capa Service; encadena la precondición `c1` y las validaciones de negocio `c2`/`c3` antes de decidir.
-- **Modelo**: `Guia.bloqueo_ponderaciones()` (`c2`) -- devuelve el motivo concreto (`str`) del primer incumplimiento de rango por `SistemaEvaluacion` o de suma total, o `None` si puede enviarse; `puede_enviarse_a_revision()` sigue existiendo como `bloqueo_ponderaciones() is None`, pero el router ya no la llama. `Guia.planificacion_docente_completa()` (`c3`) -- `sesiones_vinculadas_count() >= self.sesiones_minimas`; `Guia.enviar_a_revision()` -- aplica `Borrador -> EnRevision` / `Rechazada -> EnRevision` sobre sí misma.
+- **API**: `routers/guia.py::enviar_guia_a_revision(guia_id)` -- función suelta, sin capa Service; encadena la precondición `c1` y las validaciones de negocio `c2`/`c3`/`c4` antes de decidir.
+- **Modelo**: `Guia.bloqueo_convocatoria()` (`c4`, #791) -- motivo concreto si la plantilla de convocatorias tiene los campos de la convocatoria extraordinaria y falta alguno, o `None`. `Guia.bloqueo_ponderaciones()` (`c2`) -- devuelve el motivo concreto (`str`) del primer incumplimiento de rango por `SistemaEvaluacion` o de suma total, o `None` si puede enviarse; `puede_enviarse_a_revision()` sigue existiendo como `bloqueo_ponderaciones() is None`, pero el router ya no la llama. `Guia.planificacion_docente_completa()` (`c3`) -- `sesiones_vinculadas_count() >= self.sesiones_minimas`; `Guia.enviar_a_revision()` -- aplica `Borrador -> EnRevision` / `Rechazada -> EnRevision` sobre sí misma.
 - **Repositorio**: `GuiaRepository.obtener(guia_id)` / `.actualizar(guia)`; `PonderacionEvaluacionRepository.existe_pendiente_de(guia_id)`, `ReferenciaBibliograficaRepository.existe_pendiente_de(guia_id)`, `SesionRepository.existe_pendiente_de(guia_id)` -- estos tres, la precondición `c1`.
 
 ## Decisiones de diseño
@@ -50,7 +50,7 @@ Bajada a diseño del caso de análisis [`enviarGuiaARevision()`](/RUP/02-analisi
 
 ## Referencias
 
-- [`enviarGuiaARevision()` en Análisis](/RUP/02-analisis/casos-uso/enviarGuiaARevision/README.md) -- diagrama de colaboración origen, con las tres comprobaciones `c1`/`c2`/`c3`.
+- [`enviarGuiaARevision()` en Análisis](/RUP/02-analisis/casos-uso/enviarGuiaARevision/README.md) -- diagrama de colaboración origen, con las comprobaciones `c1`/`c2`/`c3`/`c4`.
 - [Discussion #206](https://github.com/mmasias/pyCelda/discussions/206) -- origen de la regla `c3` (planificación docente mínima) y del `sesiones_minimas` configurable.
 - [Issue #208](https://github.com/mmasias/pyCelda/issues/208) -- `bloqueo_ponderaciones()` recorre todos los `SistemaEvaluacion` de la materia y devuelve el motivo concreto, en vez de un `boolean` genérico.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/README.md).

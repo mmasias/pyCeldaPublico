@@ -15,9 +15,9 @@
 
 ## Código
 
-- **Router**: [`routers/guia.py`](/backend/app/routers/guia.py) -- `enviar_guia_a_revision(guia_id)` (`c1` 409, `c2` 422, `c3` 422)
+- **Router**: [`routers/guia.py`](/backend/app/routers/guia.py) -- `enviar_guia_a_revision(guia_id)` (`c1` 409, `c2` 422, `c3` 422, `c4` 422)
 - **Repositorio**: [`repositories/guia.py`](/backend/app/repositories/guia.py), [`repositories/ponderacion_evaluacion.py`](/backend/app/repositories/ponderacion_evaluacion.py), [`repositories/referencia_bibliografica.py`](/backend/app/repositories/referencia_bibliografica.py), [`repositories/sesion.py`](/backend/app/repositories/sesion.py) -- los cuatro con `existe_pendiente_de(guia_id)` (Bloque 2 de #206 añade `Sesion`)
-- **Modelo**: [`models/guia.py`](/backend/app/models/guia.py) -- `bloqueo_ponderaciones()` (`c2`, issue #208), `planificacion_docente_completa()` / `sesiones_vinculadas_count()` (`c3`, Bloque 3 de #206), `enviar_a_revision()`
+- **Modelo**: [`models/guia.py`](/backend/app/models/guia.py) -- `bloqueo_ponderaciones()` (`c2`, issue #208), `planificacion_docente_completa()` / `sesiones_vinculadas_count()` (`c3`, Bloque 3 de #206), `bloqueo_convocatoria()` (`c4`, #791), `enviar_a_revision()`
 - **Tests**: [`tests/test_enviar_guia_a_revision.py`](/backend/tests/test_enviar_guia_a_revision.py)
 
 ## Contrato de endpoint
@@ -49,6 +49,12 @@ El motivo concreto lo arma `Guia.bloqueo_ponderaciones()` (issue #208): recorre 
 ```json
 { "detail": "Planificación docente incompleta: 18 de 25 sesiones" }
 ```
+
+**Response (422 Unprocessable Entity, `c4` -- convocatoria extraordinaria sin concretar, #791):**
+```json
+{ "detail": "Convocatoria extraordinaria sin concretar: falta el instrumento y el porcentaje recuperable" }
+```
+Variantes: "falta el instrumento" o "falta el porcentaje recuperable" si solo falta uno. No aplica si la plantilla de la guía no tiene esos campos (prácticas externas, Trabajo Fin de Grado/Máster, recuperación por partes).
 
 ## Referencias
 

@@ -1,3 +1,5 @@
+import re
+import unicodedata
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Response
@@ -19,11 +21,18 @@ from app.models.guia import (
     COMENTARIO_EDICION_PROFESOR,
     COMENTARIOS_RESERVADOS,
     LIMITE_CONTENIDO_GUIA,
-    MARCADOR_TABLA,
     Guia,
 )
 from app.models.historial_cambio import HistorialCambio
-from app.render.guia_docente import render_html, render_pdf
+from app.models.plantilla_evaluacion import (
+    CODIGOS_PLANTILLA,
+    LIMITE_INSTRUMENTO_EXTRAORDINARIO,
+    MARCADORES,
+    listar_plantillas,
+    nombre_plantilla,
+    usa_campos_extraordinaria,
+)
+from app.render.guia_docente import render_html, render_pdf, render_planificacion_docente_pdf
 from app.repositories.actividad_formativa import (
     serializar_actividades_formativas_asignatura_programa,
 )
@@ -41,6 +50,7 @@ from app.schemas.guia import (
     EditarTextoSistemaEvaluacionRequest,
     GuardarBorradorRequest,
     GuiaResponse,
+    PlantillaEvaluacionResponse,
     GuiaResumenResponse,
     NotificacionResponse,
     RechazarGuiaRequest,
@@ -268,6 +278,7 @@ def abrir_guia(
     )
 
     bloqueo_ponderaciones = guia.bloqueo_ponderaciones()
+    bloqueo_convocatoria = guia.bloqueo_convocatoria()
 
     return AbrirGuiaResponse(
         id=guia.id,
@@ -277,7 +288,12 @@ def abrir_guia(
         # guia.asignatura_programa.contenido -- ese sigue siendo la referencia
         # estructural del DirectorPrograma (discussion #191).
         contenido=guia.contenido,
-        texto_sistema_evaluacion=guia.texto_sistema_evaluacion,
+        plantilla_evaluacion=guia.plantilla_evaluacion,
+        instrumento_extraordinario=guia.instrumento_extraordinario,
+        porcentaje_recuperable=guia.porcentaje_recuperable,
+        texto_convocatorias=guia.texto_convocatorias,
+        instrumento_extraordinario_sugerido=guia.instrumento_extraordinario_sugerido,
+        porcentaje_recuperable_sugerido=guia.porcentaje_recuperable_sugerido,
         sesiones_minimas=guia.sesiones_minimas,
         fecha_creacion=guia.fecha_creacion,
         fecha_ultima_modificacion=guia.fecha_ultima_modificacion,
@@ -307,6 +323,8 @@ def abrir_guia(
             motivo_ponderaciones=bloqueo_ponderaciones,
             planificacion_docente_ok=guia.planificacion_docente_completa(),
             sesiones_vinculadas=guia.sesiones_vinculadas_count(),
+            convocatoria_ok=bloqueo_convocatoria is None,
+            motivo_convocatoria=bloqueo_convocatoria,
         ),
     )
 
@@ -460,6 +478,10 @@ def enviar_guia_a_revision(
             ),
         )
 
+    bloqueo_convocatoria = guia.bloqueo_convocatoria()
+    if bloqueo_convocatoria is not None:
+        raise HTTPException(status_code=422, detail=bloqueo_convocatoria)
+
     guia.enviar_a_revision()
     return guia_repo.actualizar(guia)
 
@@ -595,6 +617,25 @@ def revocar_aprobacion_guia(
     return guia_repo.actualizar(guia)
 
 
+@router.get("/plantillas-evaluacion", response_model=list[PlantillaEvaluacionResponse])
+def listar_plantillas_evaluacion(
+    _rol: dict[str, str] = Depends(get_current_rol),
+) -> list[dict]:
+    """issue #791: las plantillas del texto de convocatorias, para que la
+    pantalla muestre el texto de la que se elige antes de guardarla."""
+    return listar_plantillas()
+
+
+def _resumen_plantilla(guia: Guia) -> str:
+    porcentaje = (
+        f"{guia.porcentaje_recuperable} %" if guia.porcentaje_recuperable is not None else "-"
+    )
+    return _resumen_contenido(
+        f"{nombre_plantilla(guia.plantilla_evaluacion)}; {porcentaje}; "
+        f"{guia.instrumento_extraordinario or '-'}"
+    )
+
+
 @router.put("/guias/{guia_id}/texto-sistema-evaluacion", response_model=GuiaResponse)
 def editar_texto_sistema_evaluacion(
     guia_id: int,
@@ -604,12 +645,12 @@ def editar_texto_sistema_evaluacion(
     profesor_id: int | None = Depends(get_current_profesor_id_opcional),
     director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
 ) -> GuiaResponse:
-    """issue #610: guardado propio del texto de convocatorias, independiente
-    de guardar_borrador_guia. Escribe el Profesor que imparte o, como
-    corrección excepcional (#612, issue #707), el DirectorPrograma que dirige
-    el programa de la Guia: en ese caso aplica la transición de estado
-    (Aprobada -> Borrador, EnRevision -> Rechazada) en la misma transacción.
-    Registra HistorialCambio campo="texto_sistema_evaluacion" con el autor
+    """issue #791 (antes #610): el texto de convocatorias no se edita; se elige
+    la plantilla y se rellenan sus dos campos (instrumento de la convocatoria
+    extraordinaria y porcentaje recuperable). Escribe el Profesor que imparte o,
+    como corrección excepcional (#612, #707), el DirectorPrograma que dirige el
+    programa de la Guia, con la regla de estado común de las escrituras sobre
+    la guía. Registra HistorialCambio campo="plantilla_evaluacion" con el autor
     real. Admin queda fuera. 404 uniforme si ninguna identidad tiene derecho."""
     guia_repo = GuiaRepository(db)
     guia = guia_repo.obtener(guia_id)
@@ -621,29 +662,59 @@ def editar_texto_sistema_evaluacion(
     )
     autor_id = director_programa_id if como_director else profesor_id
 
-    if datos.texto.count(MARCADOR_TABLA) != 1:
+    if datos.plantilla not in CODIGOS_PLANTILLA:
+        raise HTTPException(status_code=422, detail="Plantilla desconocida")
+    instrumento = (datos.instrumento_extraordinario or "").strip() or None
+    porcentaje = datos.porcentaje_recuperable
+    if instrumento is not None and len(instrumento) > LIMITE_INSTRUMENTO_EXTRAORDINARIO:
         raise HTTPException(
             status_code=422,
-            detail=f"El texto debe contener el marcador {MARCADOR_TABLA} exactamente una vez",
+            detail=(
+                "El instrumento de la convocatoria extraordinaria no puede superar "
+                f"{LIMITE_INSTRUMENTO_EXTRAORDINARIO} caracteres"
+            ),
         )
+    # Va dentro de una frase de la plantilla: una sola línea y sin los
+    # marcadores, que romperían la composición y el render.
+    if instrumento is not None and (
+        len(instrumento.splitlines()) > 1 or any(m in instrumento for m in MARCADORES)
+    ):
+        raise HTTPException(
+            status_code=422,
+            detail=(
+                "El instrumento de la convocatoria extraordinaria tiene que ir en una "
+                "sola línea y sin marcadores entre corchetes"
+            ),
+        )
+    # Una plantilla sin los campos de la convocatoria extraordinaria no los
+    # guarda: no quedan datos que no se ven.
+    if not usa_campos_extraordinaria(datos.plantilla):
+        instrumento = None
+        porcentaje = None
 
     # Guardar sin cambios no es una edición: no toca la guía ni su estado.
-    if (guia.texto_sistema_evaluacion or "") == datos.texto:
+    if (
+        guia.plantilla_evaluacion == datos.plantilla
+        and guia.instrumento_extraordinario == instrumento
+        and guia.porcentaje_recuperable == porcentaje
+    ):
         return guia
 
     aplicar_regla_de_estado_por_escritura(
         db, guia, como_director, director_programa_id, profesor_id
     )
 
-    texto_anterior = guia.texto_sistema_evaluacion or ""
-    guia.texto_sistema_evaluacion = datos.texto
+    resumen_anterior = _resumen_plantilla(guia)
+    guia.plantilla_evaluacion_elegida = datos.plantilla
+    guia.instrumento_extraordinario = instrumento
+    guia.porcentaje_recuperable = porcentaje
     db.add(
         HistorialCambio.registrar(
             guia_id=guia.id,
             autor_id=autor_id,
-            campo="texto_sistema_evaluacion",
-            valor_anterior=_resumen_contenido(texto_anterior),
-            valor_nuevo=_resumen_contenido(datos.texto),
+            campo="plantilla_evaluacion",
+            valor_anterior=resumen_anterior,
+            valor_nuevo=_resumen_plantilla(guia),
             comentario="texto de convocatorias editado",
         )
     )
@@ -679,6 +750,46 @@ def descargar_guia_pdf(
     # leen en vivo de guia.asignatura_programa (P1 = B, deuda en #219).
     return Response(
         content=render_pdf(guia, db), media_type="application/pdf"
+    )
+
+
+def _parte_nombre_fichero(texto: str) -> str:
+    """"Programación I" -> "Programacion-I": ASCII, sin espacios."""
+    sin_acentos = unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode()
+    return re.sub(r"[^A-Za-z0-9]+", "-", sin_acentos).strip("-")
+
+
+@router.get("/guias/{guia_id}/planificacion-docente/pdf")
+def descargar_planificacion_docente_pdf(
+    guia_id: int,
+    db: Session = Depends(get_db),
+    # Mismo acceso que descargar_guia_pdf(): Profesor que imparte, Director
+    # del programa o Admin; 404 uniforme.
+    profesor_id: int | None = Depends(get_current_profesor_id_opcional),
+    director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
+    admin_email: str | None = Depends(get_current_admin_email_opcional),
+) -> Response:
+    """descargarPlanificacionDocentePDF(): PDF propio de la planificación
+    docente, en cualquier estado (marca de agua en Borrador y Rechazada). Se
+    renderiza en cada descarga, sin almacenar nada."""
+    guia = GuiaRepository(db).obtener(guia_id)
+    if guia is None or not (
+        admin_email is not None
+        or _tiene_acceso_a_guia(db, guia, profesor_id, director_programa_id)
+    ):
+        raise HTTPException(status_code=404, detail="Guia no encontrada")
+
+    partes = ["Planificacion"]
+    if guia.asignatura_programa is not None:
+        if guia.asignatura_programa.programa_codigo:
+            partes.append(guia.asignatura_programa.programa_codigo)
+        partes.append(guia.asignatura_programa.nombre)
+    partes.append(str(guia.curso_academico))
+    nombre = "_".join(p for p in (_parte_nombre_fichero(x) for x in partes) if p)
+    return Response(
+        content=render_planificacion_docente_pdf(guia, db),
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{nombre}.pdf"'},
     )
 
 

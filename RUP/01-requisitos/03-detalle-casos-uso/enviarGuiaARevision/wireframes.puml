@@ -68,3 +68,17 @@
     [ <b>Volver a la guía</b> ]
 }
 @endsalt
+
+@startsalt enviarGuiaARevision-wireframe-error-convocatoria
+{
+    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    ====
+    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
+    ====
+    <color:red><b>Convocatoria extraordinaria sin concretar: falta el instrumento y el porcentaje recuperable</b></color>
+    ====
+    <i>Complétalos en el texto de convocatorias de la evaluación antes de enviar a revisión.</i>
+    ====
+    [ <b>Volver a la guía</b> ]
+}
+@endsalt

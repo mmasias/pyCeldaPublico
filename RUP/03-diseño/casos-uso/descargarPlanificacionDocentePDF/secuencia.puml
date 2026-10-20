@@ -1,0 +1,36 @@
+@startuml descargarPlanificacionDocentePDF-diseño
+title Diagrama de Secuencia - Descargar Planificación Docente en PDF
+
+actor "Profesor / DirectorPrograma / Admin" as Actor
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "GuiaRepository" as GuiaRepo
+participant "render/guia_docente.py" as Render
+database "Base de Datos" as DB
+
+Actor -> Vista: pulsa "Descargar planificación"
+activate Vista
+Vista -> API: GET /api/v1/guias/{guia_id}/planificacion-docente/pdf
+activate API
+note right of API: get_current_profesor_id_opcional,\nget_current_director_programa_id_opcional,\nget_current_admin_email_opcional
+API -> GuiaRepo: obtener(guia_id)
+GuiaRepo -> DB: SELECT ... FROM guias WHERE id = :guia_id
+GuiaRepo --> API: Guia (o None)
+
+alt Guia inexistente, o ni Admin ni _tiene_acceso_a_guia()
+    API --> Vista: 404 Not Found ("Guia no encontrada")
+    Vista --> Actor: presenta el error junto al botón
+else acceso concedido
+    API -> Render: render_planificacion_docente_pdf(guia, db)
+    activate Render
+    Render -> Render: _contexto_planificacion(): Sesion vinculadas por numero,\nclase de fila por tipo, no_oficial si Borrador o Rechazada
+    Render -> Render: planificacion_docente.html -> WeasyPrint
+    Render --> API: bytes del PDF
+    deactivate Render
+    API --> Vista: 200 OK application/pdf\nContent-Disposition: attachment; filename="Planificacion_GII_Programacion-I_2026-2027.pdf"
+    Vista --> Actor: descarga el fichero con ese nombre
+end
+deactivate API
+deactivate Vista
+
+@enduml

@@ -14,6 +14,7 @@
 |---|---|
 |[**Abrir**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 |[**Previsualizar guía**](previsualizarGuia.md)|<sub>previsualizarGuia()</sub>|
+|[**Descargar planificación**](descargarPlanificacionDocentePDF.md)|<sub>descargarPlanificacionDocentePDF()</sub>|
 |[**Abrir programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
 
 </div>

@@ -23,6 +23,7 @@
 |:-:|:-:|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-exito.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error.svg)|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error-items-sin-guardar.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error-planificacion.svg)|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error-convocatoria.svg)||
 ||<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
 
 </div>
@@ -34,7 +35,7 @@
 |Atributo|Valor|
 |-|-|
 |**Actor**|`Profesor`|
-|**Objetivo**|Enviar la `Guia` de una `AsignaturaPrograma` a revisión del director de programa, exigiendo, en cascada: que no queden ítems sin guardar (`c1`); que las `PonderacionEvaluacion` cumplan el rango por `SistemaEvaluacion` y sumen exactamente 100% (`c2`); y que la planificación docente tenga al menos `sesiones_minimas` `Sesion` vinculadas (`c3`)|
+|**Objetivo**|Enviar la `Guia` de una `AsignaturaPrograma` a revisión del director de programa, exigiendo, en cascada: que no queden ítems sin guardar (`c1`); que las `PonderacionEvaluacion` cumplan el rango por `SistemaEvaluacion` y sumen exactamente 100% (`c2`); que la planificación docente tenga al menos `sesiones_minimas` `Sesion` vinculadas (`c3`); y que la convocatoria extraordinaria esté concretada (`c4`)|
 |**Tipo**|Primario, esencial|
 |**Nivel**|Objetivo de usuario|
 
@@ -43,6 +44,8 @@
 **Ítems sin guardar -- alcance** (Bloque 2 de la discussion [#206](https://github.com/mmasias/pyCelda/discussions/206)): la primera comprobación (`c1`, `409`) cubre las tres colecciones de la sesión de edición de la `Guia` -- `PonderacionEvaluacion`, `ReferenciaBibliografica` **y** `Sesion`. Una `Sesion` creada o editada sin pasar por [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) bloquea el envío igual que las otras dos. El backend no contaba las sesiones hasta #206, aunque el RUP de [`crearSesion()`](../crearSesion/README.md)/[`editarSesion()`](../editarSesion/README.md) y el frontend ya asumían el patrón.
 
 **Planificación docente mínima** (`c3`, Bloque 3 de la discussion [#206](https://github.com/mmasias/pyCelda/discussions/206)): tras `c1` y `c2`, la `Guia` sólo pasa a `EnRevision` si sus `Sesion` vinculadas son al menos `Guia.sesiones_minimas` (`422`, mensaje "Planificación docente incompleta: N de M sesiones"). Regla agregada de la misma familia que la suma de ponderaciones = 100% -- la responde `Guia.planificacion_docente_completa()` (Fat Model). El umbral es config de la [`AsignaturaPrograma`](../abrirAsignaturaPrograma/README.md) editable por Admin (`sesiones_minimas`, por defecto 25, cota 1-100), con snapshot en la `Guia` al nacer -- misma familia que `semestre` y `contenido`. El medidor "N / M sesiones" en [`abrirPlanificacionDocente()`](../abrirPlanificacionDocente/README.md) y en [`abrirGuia()`](../abrirGuia/README.md) hace visible la regla mientras el `Profesor` edita, sin esperar al rechazo.
+
+**Convocatoria extraordinaria concretada** (`c4`, issue [#791](https://github.com/mmasias/pyCelda/issues/791)): tras `c3`, si la plantilla del texto de convocatorias tiene los dos campos de la convocatoria extraordinaria (asignatura normal, prácticas de laboratorio), los dos tienen que estar rellenos (`422`, "Convocatoria extraordinaria sin concretar: falta el instrumento y el porcentaje recuperable", o solo el que falte). La responde `Guia.bloqueo_convocatoria()`. Se rellenan en [`editarTextoSistemaEvaluacion()`](../editarTextoSistemaEvaluacion/README.md). Sin esta regla, el "pendiente de concretar" llegaba a las guías aprobadas.
 
 **Interacción con la importación entre guías hermanas** (issue [#184](https://github.com/mmasias/pyCelda/issues/184)): al importar bibliografía o planificación docente de una guía hermana, las filas copiadas replican el flag `vinculada` **del origen** fila a fila. Un origen `Aprobado` por el flujo normal tiene todas las filas vinculadas (lo garantiza `c1` de arriba), así que sus copias también -- sin efecto sobre este caso de uso. Pero si el origen llegó a `Aprobada` vía [`escalarGuiaAAprobada()`](../escalarGuiaAAprobada/README.md) (que bypasea `c1`) arrastrando candidatas `vinculada=False`, el destino las hereda y **`c1` bloquea su envío** hasta que el `Profesor` las resuelva -- vincularlas vía [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) o borrarlas. Consecuencia real y correcta, no un defecto: viene de la escalación del origen, no de "cualquier guía Aprobada". `c3` sigue midiendo contra `Guia.sesiones_minimas` del destino, que la importación no toca: importar la planificación de una hermana con más sesiones no garantiza cumplir el umbral propio si éste es mayor.
 

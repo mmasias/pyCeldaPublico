@@ -464,6 +464,9 @@ package Modelo {
     semestre
     contenido
     sesiones_minimas
+    plantilla_evaluacion
+    instrumento_extraordinario
+    porcentaje_recuperable
     fecha_creacion
     fecha_ultima_modificacion
     fecha_generacion_pdf
@@ -480,6 +483,8 @@ package Modelo {
     +puede_enviarse_a_revision()
     +sesiones_vinculadas_count()
     +planificacion_docente_completa()
+    +bloqueo_convocatoria()
+    +texto_convocatorias()
     +enviar_a_revision()
     +regenerar_pdf()
     +tiene_pdf_generado()

@@ -16,6 +16,7 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
     state c1 <<choice>>
     state c2 <<choice>>
     state c3 <<choice>>
+    state c4 <<choice>>
 
     [*] -[#green]-> c1
 
@@ -35,10 +36,18 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
 
     c2 -[#green]-> c3
 
-    c3 -[#green]-> [*]
+    c3 -[#green]-> c4
+
+    c4 -[#green]-> [*]
     note on link
-    [Guia con sesiones vinculadas mayor o igual que sesionesMinimas]
+    [plantilla de convocatorias sin campos, o con el instrumento y el porcentaje de la convocatoria extraordinaria rellenos]
     <b>Sistema</b> presenta guía enviada a revisión
+    end note
+
+    c4 -[#red]-> [*]
+    note on link
+    [plantilla de convocatorias con el instrumento o el porcentaje de la convocatoria extraordinaria sin rellenar]
+    <b>Sistema</b> presenta error de convocatoria extraordinaria sin concretar
     end note
 
     c3 -[#red]-> [*]

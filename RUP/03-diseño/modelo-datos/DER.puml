@@ -161,7 +161,9 @@ package "Guía docente" {
     estado : String(20)
     semestre : Integer
     contenido : Text
-    texto_sistema_evaluacion : Text
+    plantilla_evaluacion : String(30)
+    instrumento_extraordinario : String(300)
+    porcentaje_recuperable : Integer
     sesiones_minimas : Integer
     programa_id : Integer <<FK lógica>>
     asignatura_programa_id : Integer <<FK>>

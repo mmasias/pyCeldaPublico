@@ -54,6 +54,10 @@ GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
 ' cualquier estado, aviso si no Aprobada -- misma plantilla que descargarGuiaPDF(),
 ' salida HTML. Sin <<choice>> (disponible en todos los estados). Discussion #218.
 GUIA_ABIERTO --> GUIA_ABIERTO : previsualizarGuia()
+' descargarPlanificacionDocentePDF(): PDF propio de la planificacion docente, en
+' cualquier estado (marca de agua en Borrador/Rechazada). Tambien desde la
+' pantalla de planificacion.
+GUIA_ABIERTO --> GUIA_ABIERTO : descargarPlanificacionDocentePDF()
 
 ' PonderacionEvaluacion: mismo patrón lista/detalle completo que ReferenciaBibliografica
 GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
@@ -95,6 +99,7 @@ PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : importarPlanif
 ' ya hay sesiones) con botón condicional (solo en el empty-state). Familia del
 ' issue #184, sin lectura cross-programa. Verbo generar (precedente generarGuiasPDF()).
 PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : generarPlanificacionDocenteGenerica()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : descargarPlanificacionDocentePDF()
 PLANIFICACION_DOCENTE_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 
 ' ReferenciaBibliografica: patrón lista/detalle completo (a diferencia de

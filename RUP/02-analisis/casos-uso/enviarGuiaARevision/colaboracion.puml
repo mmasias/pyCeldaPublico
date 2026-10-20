@@ -29,6 +29,7 @@ GuiaController --> SesionRepository: <font size=8>existePendienteDe(guiaId) : bo
 
 GuiaController --> Guia: <font size=8>bloqueoPonderaciones() : String
 GuiaController --> Guia: <font size=8>planificacionDocenteCompleta() : boolean
+GuiaController --> Guia: <font size=8>bloqueoConvocatoria() : String
 
 GuiaRepository -- Guia
 
@@ -39,5 +40,6 @@ EnviarGuiaARevisionView --> AsignaturasProgramaAbiertoSalida: <font size=8>envia
 EnviarGuiaARevisionView ..[#red]> GuiaAbiertoSalida: <font size=8>hay ítems sin guardar -- guarda el borrador primero
 EnviarGuiaARevisionView ..[#red]> GuiaAbiertoSalida: <font size=8>rango por SistemaEvaluacion o suma total incorrectos
 EnviarGuiaARevisionView ..[#red]> GuiaAbiertoSalida: <font size=8>planificación docente incompleta
+EnviarGuiaARevisionView ..[#red]> GuiaAbiertoSalida: <font size=8>convocatoria extraordinaria sin concretar
 
 @enduml

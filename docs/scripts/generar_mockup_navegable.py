@@ -78,6 +78,7 @@ LABELS = {
     "importarContenidoDeGuiaHermana": "Importar contenido de guía hermana",
     "notificarGuiasActualizadas": "Notificar guías actualizadas",
     "previsualizarGuia": "Previsualizar guía",
+    "descargarPlanificacionDocentePDF": "Descargar planificación",
     "quitarDirectorPrograma": "Quitar director de programa",
     "activarCursoAcademico": "Activar curso académico",
     "activarSemestre": "Activar semestre",
@@ -118,6 +119,7 @@ WIREFRAME_LABELS = {
     "wireframe-semestre-bloqueado.svg": "Semestre bloqueado",
     "wireframe-error-items-sin-guardar.svg": "Error: ítems sin guardar",
     "wireframe-error-planificacion.svg": "Error de planificación",
+    "wireframe-error-convocatoria.svg": "Error de convocatoria",
 }
 
 # Etiquetas dependientes de contexto: (cu_dueño_de_la_pagina, cu_destino) -> texto real

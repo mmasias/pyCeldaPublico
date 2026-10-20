@@ -1,3 +1,4 @@
+import math
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
@@ -5,6 +6,13 @@ from sqlalchemy import Column, ForeignKey, String, Table, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base, DateTimeUTC
+from app.models.plantilla_evaluacion import (
+    LIMITE_INSTRUMENTO_EXTRAORDINARIO,
+    componer_texto_convocatorias,
+    es_plantilla,
+    plantilla_por_caracter,
+    usa_campos_extraordinaria,
+)
 
 if TYPE_CHECKING:
     from app.models.asignatura_programa import AsignaturaPrograma
@@ -71,10 +79,6 @@ def _es_edicion_del_profesor(cambio: "HistorialCambio") -> bool:
 LIMITE_CONTENIDO_GUIA = 10_000
 
 
-# issue #610: marcador del texto de convocatorias donde va la tabla real.
-MARCADOR_TABLA = "[TABLA]"
-
-
 guias_profesores = Table(
     "guias_profesores",
     Base.metadata,
@@ -90,11 +94,19 @@ class Guia(Base):
     estado: Mapped[str] = mapped_column(String(20), default="Borrador")
     semestre: Mapped[int | None] = mapped_column(nullable=True)
     contenido: Mapped[str] = mapped_column(Text, default="")
-    # issue #610 (Patrón B, como contenido/ponderaciones/sesiones): texto de
-    # convocatorias del apartado 5 de la guía, con el marcador MARCADOR_TABLA
-    # donde se inserta la tabla de ponderaciones. Nace vacío en una Guia sin
-    # predecesora; activar_curso_academico() lo clona de la Guia previa.
-    texto_sistema_evaluacion: Mapped[str] = mapped_column(Text, default="")
+    # issue #791 (Patrón B, como contenido/ponderaciones/sesiones): el texto de
+    # convocatorias del apartado 5 sale de una plantilla (plantilla_evaluacion.py)
+    # con dos campos que la personalizan; nadie lo edita. NULL = la plantilla
+    # que corresponde al carácter de la AsignaturaPrograma (ver la propiedad
+    # plantilla_evaluacion). activar_curso_academico() clona los tres de la
+    # Guia previa.
+    plantilla_evaluacion_elegida: Mapped[str | None] = mapped_column(
+        "plantilla_evaluacion", String(30), nullable=True
+    )
+    instrumento_extraordinario: Mapped[str | None] = mapped_column(
+        String(300), nullable=True
+    )
+    porcentaje_recuperable: Mapped[int | None] = mapped_column(nullable=True)
     # Snapshot de AsignaturaPrograma.sesiones_minimas al nacer la Guia (como
     # semestre y contenido -- discussion #206). El mínimo de Sesion vinculadas
     # que exige planificacion_docente_completa() antes de enviar a revisión.
@@ -159,6 +171,85 @@ class Guia(Base):
     @property
     def asignatura_programa_semestre_default(self) -> int | None:
         return self.asignatura_programa.semestre_default if self.asignatura_programa else None
+
+    @property
+    def plantilla_evaluacion(self) -> str:
+        """Plantilla del texto de convocatorias que se aplica: la elegida o,
+        si no se ha elegido, la del carácter de la AsignaturaPrograma (#791).
+        Un código que ya no existe (dato tocado a mano, plantilla retirada)
+        cae también en la del carácter: la guía no deja de abrirse."""
+        if es_plantilla(self.plantilla_evaluacion_elegida):
+            return self.plantilla_evaluacion_elegida
+        return plantilla_por_caracter(
+            self.asignatura_programa.caracter if self.asignatura_programa else None
+        )
+
+    @property
+    def texto_convocatorias(self) -> str:
+        """Texto del apartado 5 con los campos sustituidos y el marcador
+        [TABLA] donde va la tabla de ponderaciones."""
+        return componer_texto_convocatorias(
+            self.plantilla_evaluacion,
+            self.instrumento_extraordinario,
+            self.porcentaje_recuperable,
+        )
+
+    def bloqueo_convocatoria(self) -> str | None:
+        """Regla c4 de enviarGuiaARevision (#791): si la plantilla tiene los
+        campos de la convocatoria extraordinaria, los dos están rellenos.
+        Motivo concreto o None si no bloquea."""
+        if not usa_campos_extraordinaria(self.plantilla_evaluacion):
+            return None
+        faltan = []
+        if not self.instrumento_extraordinario:
+            faltan.append("el instrumento")
+        if self.porcentaje_recuperable is None:
+            faltan.append("el porcentaje recuperable")
+        if not faltan:
+            return None
+        return f"Convocatoria extraordinaria sin concretar: falta {' y '.join(faltan)}"
+
+    def _instrumentos_evaluacion_final(self) -> list["PonderacionEvaluacion"]:
+        return [
+            p
+            for p in self.ponderaciones
+            if p.vinculada
+            and p.sistema_evaluacion is not None
+            and (p.sistema_evaluacion.tipo or "").strip().lower() == "evaluación final"
+        ]
+
+    @property
+    def instrumento_extraordinario_sugerido(self) -> str | None:
+        """Propuesta para el instrumento: los instrumentos vinculados de los
+        sistemas de tipo "Evaluación final", en una redacción que no depende
+        del género de su nombre. None si no hay ninguno."""
+        nombres = [p.descripcion for p in self._instrumentos_evaluacion_final()]
+        if not nombres:
+            return None
+        if len(nombres) == 1:
+            propuesta = f"la prueba de evaluación final ({nombres[0]})"
+        else:
+            propuesta = (
+                "las pruebas de evaluación final ("
+                + ", ".join(nombres[:-1])
+                + f" y {nombres[-1]})"
+            )
+        # Que la propuesta se pueda guardar tal cual: sin los nombres si no cabe.
+        if len(propuesta) > LIMITE_INSTRUMENTO_EXTRAORDINARIO:
+            return propuesta.split(" (")[0]
+        return propuesta
+
+    @property
+    def porcentaje_recuperable_sugerido(self) -> int | None:
+        """Propuesta para el porcentaje: la suma de los instrumentos de
+        evaluación final, redondeada a entero. None si no hay ninguno."""
+        instrumentos = self._instrumentos_evaluacion_final()
+        if not instrumentos:
+            return None
+        # Redondeo aritmético (50,5 -> 51), no el del banquero de round().
+        suma = math.floor(sum(float(p.ponderacion) for p in instrumentos) + 0.5)
+        # Solo si se puede guardar tal cual (1-100).
+        return suma if 1 <= suma <= 100 else None
 
     def _ultimo_cambio_historial(self) -> "HistorialCambio | None":
         # Solo las filas que dicen quién tocó la guía cuentan para la autoría:

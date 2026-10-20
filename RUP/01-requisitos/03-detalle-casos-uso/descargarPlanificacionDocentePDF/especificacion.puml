@@ -1,0 +1,36 @@
+@startuml descargarPlanificacionDocentePDF
+
+skinparam linetype polyline
+
+state GUIA_ABIERTO
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
+
+GUIA_ABIERTO -[#green]-> descargarPlanificacionDocentePDF
+note on link
+<b>Profesor</b>/<b>DirectorPrograma</b> solicita descargar la planificación docente de la Guia
+(también desde PLANIFICACION_DOCENTE_ABIERTO; <b>Admin</b>, desde GUIAS_DEL_PROGRAMA_ABIERTO)
+end note
+
+state descargarPlanificacionDocentePDF as "descargarPlanificacionDocentePDF()" {
+
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> [*]
+    note on link
+    [Guia EnRevision o Aprobada]
+    <b>Sistema</b> presenta el PDF de la planificación docente:
+    datos de la asignatura, leyenda de colores y sesiones guardadas, numeradas, con el color de su tipo
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [Guia en Borrador o Rechazada]
+    <b>Sistema</b> presenta el mismo PDF con la marca de agua "BORRADOR - NO OFICIAL"
+    end note
+}
+
+descargarPlanificacionDocentePDF -[#green]-> GUIA_ABIERTO_SALIDA
+
+@enduml

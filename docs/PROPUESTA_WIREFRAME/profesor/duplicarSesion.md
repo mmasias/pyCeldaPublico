@@ -18,6 +18,7 @@
 |[**Importar planificación docente de guía hermana**](importarPlanificacionDocenteDeGuiaHermana.md)|<sub>importarPlanificacionDocenteDeGuiaHermana()</sub>|
 |[**Importar planificación docente desde texto**](importarPlanificacionDocenteDesdeTexto.md)|<sub>importarPlanificacionDocenteDesdeTexto()</sub>|
 |[**Generar planificación docente genérica**](generarPlanificacionDocenteGenerica.md)|<sub>generarPlanificacionDocenteGenerica()</sub>|
+|[**Descargar planificación**](descargarPlanificacionDocentePDF.md)|<sub>descargarPlanificacionDocentePDF()</sub>|
 |[**Abrir guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>

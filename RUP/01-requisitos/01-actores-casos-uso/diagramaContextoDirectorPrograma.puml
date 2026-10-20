@@ -45,6 +45,7 @@ GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()
 ' previsualizarGuia(): heredado de Profesor sin cambios (DirectorPrograma --|> Profesor),
 ' misma plantilla que descargarGuiaPDF(), salida HTML, cualquier estado -- discussion #218
 GUIA_ABIERTO --> GUIA_ABIERTO : previsualizarGuia()
+GUIA_ABIERTO --> GUIA_ABIERTO : descargarPlanificacionDocentePDF()
 
 GUIA_ABIERTO --> PONDERACIONES_EVALUACION_ABIERTO : abrirPonderacionesEvaluacion()
 ' editarTextoSistemaEvaluacion() (issue #707): correccion excepcional, misma transicion de estado que el resto de #612
@@ -82,7 +83,7 @@ GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()
 GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
 
 ' === Propio de DirectorPrograma (issue #612, Parte 2 de #601): correccion excepcional ===
-' Director escribe el temario (guardarBorradorGuia()), el texto de convocatorias (editarTextoSistemaEvaluacion(), #707), las PonderacionEvaluacion, las
+' Director escribe el temario (guardarBorradorGuia()), la plantilla del texto de convocatorias (editarTextoSistemaEvaluacion(), #707, #791), las PonderacionEvaluacion, las
 ' ReferenciaBibliografica y las Sesion de las Guias de los Programas que dirige --
 ' mismas transiciones que Profesor, mismas pantallas. NO gana enviarGuiaARevision()
 ' (ya decide el estado con aprobar/rechazar/escalar/revocar), ni los atajos
@@ -97,6 +98,7 @@ PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : crearSesion()
 PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : editarSesion()
 PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : eliminarSesion()
 PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : duplicarSesion()
+PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : descargarPlanificacionDocentePDF()
 PLANIFICACION_DOCENTE_ABIERTO --> GUIA_ABIERTO : abrirGuia()
 
 ' === Propio de DirectorPrograma: el aterrizaje tras el login es INICIO_ABIERTO ===

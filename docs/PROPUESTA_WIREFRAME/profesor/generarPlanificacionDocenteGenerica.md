@@ -20,6 +20,7 @@
 |[**Duplicar sesión**](duplicarSesion.md)|<sub>duplicarSesion()</sub>|
 |[**Importar planificación docente de guía hermana**](importarPlanificacionDocenteDeGuiaHermana.md)|<sub>importarPlanificacionDocenteDeGuiaHermana()</sub>|
 |[**Importar planificación docente desde texto**](importarPlanificacionDocenteDesdeTexto.md)|<sub>importarPlanificacionDocenteDesdeTexto()</sub>|
+|[**Descargar planificación**](descargarPlanificacionDocentePDF.md)|<sub>descargarPlanificacionDocentePDF()</sub>|
 |[**Abrir guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>

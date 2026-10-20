@@ -9,7 +9,7 @@ left to right direction
 ' DirectorPrograma --|> Profesor: hereda todo el catálogo de actoresCasosUsoProfesor.puml
 ' (abrirGuia(), guardarBorradorGuia(), enviarGuiaARevision(),
 ' importarContenidoDeGuiaHermana() -- issue #409, descargarGuiaPDF(),
-' previsualizarGuia(), CRUD de PonderacionEvaluacion y de ReferenciaBibliografica,
+' previsualizarGuia(), descargarPlanificacionDocentePDF(), CRUD de PonderacionEvaluacion y de ReferenciaBibliografica,
 ' [issue #612: la escritura de guardarBorradorGuia(), editarTextoSistemaEvaluacion() (#707), CRUD de PonderacionEvaluacion/
 ' ReferenciaBibliografica y de Sesion queda abierta tambien a DirectorPrograma como
 ' correccion excepcional, con transicion de estado -- ver diagramaContextoDirectorPrograma.puml]

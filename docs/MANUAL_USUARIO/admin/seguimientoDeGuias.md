@@ -18,7 +18,7 @@ Pulsar la pestaña **🚦 Guías** del programa.
 
 Una tabla con **Asignatura**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado"), **Estado** de la guía (**Borrador**, **En revisión**, **Aprobada** o **Rechazada**) y **Última actualización**: quién hizo el último cambio y cuánto hace, en términos aproximados.
 
-Cada fila tiene un solo botón para ver el documento, según el estado: si la guía está **Aprobada** y tiene su PDF generado, **⬇️ Descargar PDF** (el oficial); en cualquier otro caso, **👁️ Previsualizar**, con la marca de no oficial. Es la misma regla que en la guía del director.
+Cada fila tiene un solo botón para ver el documento, según el estado: si la guía está **Aprobada** y tiene su PDF generado, **⬇️ Descargar PDF** (el oficial); en cualquier otro caso, **👁️ Previsualizar**, con la marca de no oficial. Es la misma regla que en la guía del director. Al lado, **⬇️ Planificación** descarga la planificación docente de la guía en PDF, en cualquier estado (con la marca "BORRADOR - NO OFICIAL" si está en borrador o rechazada).
 
 El estado se muestra con su nombre sobre un fondo de color: neutro para Borrador, ámbar para En revisión, verde para Aprobada y rojo para Rechazada.
 

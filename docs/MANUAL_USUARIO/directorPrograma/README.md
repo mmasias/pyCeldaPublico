@@ -17,7 +17,7 @@ pyCelda gestiona el catálogo académico del programa (materias, asignaturas, re
 - Ver el módulo de cada materia: la lista de materias se agrupa por módulo cuando alguna lo tiene (los módulos los gestiona Admin).
 - En las guías docentes del programa:
   - Aprobar, rechazar, escalar directamente a aprobada, y revocar una aprobación.
-  - Como corrección excepcional, editar una guía: temario, instrumentos de evaluación, texto de convocatorias, bibliografía y planificación docente.
+  - Como corrección excepcional, editar una guía: temario, instrumentos de evaluación, plantilla del texto de convocatorias, bibliografía y planificación docente.
 
 Todas las pantallas del modo académico (Director y Profesor) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Dentro de un programa, una franja de pestañas en dos filas (arriba **📋 Vista general** y **📄 Guías**; debajo **📚 Materias**, **🎯 Resultados de aprendizaje**, **🧭 Competencias**, **🧩 Metodologías**, **🏋️ Actividades formativas** y **📘 Asignaturas**) marca siempre en qué sección se está; el capítulo [Entrar y ver los programas](entrarYVerLosProgramas.md) explica cómo moverse.
 

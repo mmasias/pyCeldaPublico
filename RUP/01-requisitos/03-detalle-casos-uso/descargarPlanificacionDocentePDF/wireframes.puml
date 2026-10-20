@@ -1,0 +1,31 @@
+@startsalt descargarPlanificacionDocentePDF-wireframe
+{
+    <b>PLANIFICACIÓN DOCENTE 2026-2027</b>
+    ====
+    {#
+        ASIGNATURA | Programación I | CURSO | Primero
+        TITULACIÓN | Grado en Ingeniería Informática | SEMESTRE | Primero
+        DOCENTE | (docentes de la asignatura) | . | .
+    }
+    ====
+    {#
+        <b>#</b> | <b>Descripción</b>
+        1 | Presentación de la asignatura
+        2 | Algoritmos y programas
+        3 | Prácticas: entorno de desarrollo
+        ... | ...
+        29 | Examen final
+    }
+    {<b>Total: 29 sesiones</b> | . | Leyenda: Clase teórica, Clase práctica / de laboratorio, Clase teórico/práctica}
+}
+@endsalt
+
+@startsalt descargarPlanificacionDocentePDF-wireframe-borrador
+{
+    <color:#C0392B><b>BORRADOR - NO OFICIAL</b></color>
+    ====
+    <b>PLANIFICACIÓN DOCENTE 2026-2027</b>
+    ====
+    <i>(mismo documento, con la marca de agua diagonal en cada página)</i>
+}
+@endsalt

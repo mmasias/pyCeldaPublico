@@ -58,7 +58,7 @@ Al pulsar **Activar**, la pantalla muestra el curso y avisa: **Esta acción no s
 
 - El curso que estaba Activo pasa a **Inactivo** automáticamente (solo el de la misma universidad).
 - Se crea **una guía nueva por cada asignatura de programa activa** de la universidad, con o sin profesorado asignado, en estado **Borrador**.
-- Si la asignatura tenía guía en el curso que se desactiva, la nueva se **clona** de ella: copia sus **ponderaciones de evaluación** y su **bibliografía**, y toma su **semestre**, **contenido**, **texto del sistema de evaluación** y **sesiones mínimas**. La **planificación docente** (las sesiones) **no se clona**: cada curso se planifica desde cero.
+- Si la asignatura tenía guía en el curso que se desactiva, la nueva se **clona** de ella: copia sus **ponderaciones de evaluación** y su **bibliografía**, y toma su **contenido**, su **plantilla del texto de convocatorias** con el instrumento y el porcentaje de la convocatoria extraordinaria, y sus **sesiones mínimas**. El **semestre** sale siempre de la asignatura. La **planificación docente** (las sesiones) **no se clona**: cada curso se planifica desde cero.
 - Si no tenía guía previa, la nueva nace de los datos propios de la asignatura.
 - El profesorado de la guía nueva es el asignado en ese momento a la asignatura, no el del curso anterior.
 

@@ -12,7 +12,7 @@ El cronograma de sesiones de la asignatura: una lista numerada de las clases pre
 
 ## Cuándo se necesita
 
-Antes de poder enviar la guía a revisión, es necesario alcanzar un número mínimo de sesiones registradas (indicado en la propia pantalla, por ejemplo "mínimo 25"). Ese mínimo lo fija Admin para la asignatura.
+Antes de poder enviar la guía a revisión, es necesario alcanzar un número mínimo de sesiones registradas. Mientras la guía está en borrador o rechazada y no se llega, la propia pantalla lo indica junto al número de sesiones, por ejemplo "12 sesiones (mínimo 25)". Ese mínimo lo fija Admin para la asignatura.
 
 ## Cómo llegar
 
@@ -20,9 +20,13 @@ Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha d
 
 ## Qué muestra
 
-Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, un aviso con el total de sesiones y el mínimo exigido, en rojo si todavía no se alcanza.
+Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo.
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador.
+
+## Descargar la planificación
+
+Junto al número de sesiones, **⬇️ Descargar planificación** descarga un PDF con la planificación docente: los datos de la asignatura y las sesiones guardadas, numeradas, con el color de su tipo (sin columna de tipo), y debajo el total y la leyenda de colores. Una planificación habitual cabe en una página. El fichero se llama, por ejemplo, `Planificacion_GII_Programacion-I_2026-2027.pdf`. Está disponible en cualquier estado de la guía: en borrador o rechazada lleva la marca de agua "BORRADOR - NO OFICIAL"; en revisión o aprobada sale sin ella. Las sesiones añadidas o editadas sin guardar todavía no aparecen. El mismo botón está en la sección **Planificación docente** de la guía.
 
 ## Crear una sesión
 

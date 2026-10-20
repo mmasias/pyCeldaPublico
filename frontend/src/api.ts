@@ -52,8 +52,12 @@ export interface GuiaResponse {
   // Temario propio de la Guia (fase de impartición), editable por el Profesor
   // -- independiente de asignatura_programa.contenido (discussion #191).
   contenido: string;
-  // issue #610: texto de convocatorias del apartado 5, con [TABLA] una vez.
-  texto_sistema_evaluacion: string;
+  // #791: plantilla del texto de convocatorias del apartado 5 (la elegida o
+  // la del carácter), sus dos campos y el texto compuesto, con [TABLA] una vez.
+  plantilla_evaluacion: string;
+  instrumento_extraordinario: string | null;
+  porcentaje_recuperable: number | null;
+  texto_convocatorias: string;
   // Nullable, sin backfill (discussion #227): las guías creadas antes de
   // este campo no tienen ese dato real -- null, no una fecha inventada.
   fecha_creacion: string | null;
@@ -87,6 +91,9 @@ export interface ResumenCompletitudResponse {
   motivo_ponderaciones: string | null;
   planificacion_docente_ok: boolean;
   sesiones_vinculadas: number;
+  // c4 (#791): convocatoria extraordinaria concretada.
+  convocatoria_ok: boolean;
+  motivo_convocatoria: string | null;
 }
 
 export interface AbrirGuiaResponse extends GuiaResponse {
@@ -100,6 +107,10 @@ export interface AbrirGuiaResponse extends GuiaResponse {
   sesiones: Sesion[];
   // Umbral de la regla c3 (discussion #206), para el medidor "N / M sesiones".
   sesiones_minimas: number;
+  // #791: propuestas para los campos de la convocatoria extraordinaria, a
+  // partir de los instrumentos de evaluación final.
+  instrumento_extraordinario_sugerido: string | null;
+  porcentaje_recuperable_sugerido: number | null;
   // Banner: no null cuando la guía volvió a EnRevisión porque Admin cambió el
   // profesorado de la AsignaturaPrograma (issue #254).
   comentario_revision_por_profesorado: string | null;
@@ -365,11 +376,27 @@ export async function revocarAprobacionGuia(
   return post<GuiaResponse>(`/api/v1/guias/${guiaId}/revocar-aprobacion`, datos);
 }
 
+export interface PlantillaEvaluacion {
+  codigo: string;
+  nombre: string;
+  // Con [TABLA], [INSTRUMENTO_EXTRAORDINARIO] y [PORCENTAJE_RECUPERABLE].
+  texto: string;
+  usa_campos_extraordinaria: boolean;
+}
+
+export async function listarPlantillasEvaluacion(): Promise<PlantillaEvaluacion[]> {
+  return get<PlantillaEvaluacion[]>("/api/v1/plantillas-evaluacion");
+}
+
 export async function editarTextoSistemaEvaluacion(
   guiaId: number,
-  texto: string,
+  datos: {
+    plantilla: string;
+    instrumento_extraordinario: string | null;
+    porcentaje_recuperable: number | null;
+  },
 ): Promise<GuiaResponse> {
-  return put<GuiaResponse>(`/api/v1/guias/${guiaId}/texto-sistema-evaluacion`, { texto });
+  return put<GuiaResponse>(`/api/v1/guias/${guiaId}/texto-sistema-evaluacion`, datos);
 }
 
 export async function notificarGuiasActualizadas(
@@ -416,6 +443,23 @@ export async function descargarGuiaPDF(guiaId: number): Promise<Blob> {
     throw new ApiError(res.status, mensajeDeError(body?.detail, res.status));
   }
   return res.blob();
+}
+
+/** descargarPlanificacionDocentePDF(): el PDF y el nombre de fichero que
+ * propone el servidor (Content-Disposition). */
+export async function descargarPlanificacionDocentePDF(
+  guiaId: number,
+): Promise<{ blob: Blob; nombre: string }> {
+  const res = await fetch(`${API_BASE}/api/v1/guias/${guiaId}/planificacion-docente/pdf`, {
+    credentials: "include",
+  });
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { detail?: unknown } | null;
+    throw new ApiError(res.status, mensajeDeError(body?.detail, res.status));
+  }
+  const disposicion = res.headers.get("Content-Disposition") ?? "";
+  const nombre = /filename="([^"]+)"/.exec(disposicion)?.[1] ?? `planificacion-${guiaId}.pdf`;
+  return { blob: await res.blob(), nombre };
 }
 
 export interface SistemaEvaluacionResponse {
@@ -546,6 +590,8 @@ export interface AbrirPlanificacionDocenteResponse {
   sesiones: Sesion[];
   // Umbral de la regla c3 (discussion #206), para el medidor "N / M sesiones".
   sesiones_minimas: number;
+  // El mínimo solo se muestra en Borrador y Rechazada (descargarPlanificacionDocentePDF()).
+  estado_guia: string;
 }
 
 export async function listarSesiones(

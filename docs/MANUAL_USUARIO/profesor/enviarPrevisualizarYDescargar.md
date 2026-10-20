@@ -10,11 +10,12 @@
 
 Cuando el temario, la evaluación, la bibliografía y la planificación docente están listos, corresponde pulsar **📤 Enviar a revisión**, en la propia guía. La guía pasa a estado **En revisión**, la pantalla vuelve a **Inicio** y la guía queda a la espera de que el director de programa la apruebe o la rechace.
 
-Antes del envío se comprueban tres cosas -- si alguna falla, aparece un aviso explicando exactamente cuál:
+Antes del envío se comprueban cuatro cosas -- si alguna falla, aparece un aviso explicando exactamente cuál:
 
 - **Todo guardado**. Si hay instrumentos de evaluación, referencias o sesiones creados y todavía sin confirmar, aparece el aviso "Hay items sin guardar -- guarda el borrador primero". Corresponde pulsar **💾 Guardar borrador** antes de reintentar.
 - **Evaluación completa**. La suma de las ponderaciones de evaluación tiene que llegar exactamente al 100%, y cada sistema de evaluación tiene que quedarse dentro de su rango permitido. Si no es así, aparece un mensaje como "Falta asignar 10% en SE2 Pruebas prácticas finales (mínimo 10%, asignado 0%)" o "Sobra 5% en SE3 Actividades de evaluación continua y formativa (máximo 60%, asignado 65%)", que nombra el sistema con el código y la denominación de la memoria del título e indica exactamente dónde está el desajuste; o, si todavía no se ha creado ningún instrumento, el mensaje más genérico "Rango por sistema de evaluación o suma total incorrectos". Ver el capítulo [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) para corregirlo.
 - **Planificación docente completa**. Es necesario alcanzar el mínimo de sesiones exigido para la asignatura. Si no se llega, aparece "Planificación docente incompleta: 12 de 25 sesiones" (con los números reales). Ver el capítulo [Planificación docente y cronograma](planificacionDocenteYCronograma.md) para añadir las que falten.
+- **Convocatoria extraordinaria concretada**. Con la plantilla de asignatura normal o de prácticas de laboratorio, el texto de convocatorias necesita el instrumento y el porcentaje recuperable de la convocatoria extraordinaria. Si falta alguno, aparece "Convocatoria extraordinaria sin concretar: falta el instrumento y el porcentaje recuperable" (o solo el que falte). Se completan en **Texto de convocatorias**, al final de la pantalla de evaluación (ver [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md)).
 
 ## Previsualizar el documento oficial
 
@@ -25,6 +26,8 @@ Mientras la guía no está **Aprobada**, **👁️ Previsualizar** muestra el do
 El botón **⬇️ Descargar PDF** solo aparece mientras la guía está **Aprobada**. Al pulsarlo, el navegador descarga el documento oficial con el nombre `guia-<número>.pdf`.
 
 El PDF se genera en el momento a partir de la guía. pyCelda no guarda una copia de cada versión aprobada: si la guía vuelve a **Borrador** para editarla, el botón desaparece hasta la siguiente aprobación. Conviene descargar el PDF mientras la guía está aprobada si se necesita conservar esa versión.
+
+La planificación docente no forma parte del documento oficial: se descarga aparte, con **⬇️ Descargar planificación**, en la sección **Planificación docente** de la guía (ver [Planificación docente y cronograma](planificacionDocenteYCronograma.md#descargar-la-planificación)).
 
 ## Volver
 

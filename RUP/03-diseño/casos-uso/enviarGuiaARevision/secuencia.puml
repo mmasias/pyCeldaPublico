@@ -74,19 +74,28 @@ else c1 -- sin pendientes
       API --> Vista: 422 Unprocessable Entity ("Planificación docente incompleta: N de M sesiones")
       Vista --> Profesor: "NO SE PUEDE ENVIAR A REVISIÓN"
     else c3 -- planificación docente completa
-      API -> Guia: enviar_a_revision()
+      API -> Guia: bloqueo_convocatoria()
       activate Guia
+      Guia --> API: String motivo | null
       deactivate Guia
-      API -> GuiaRepo: actualizar(guia)
-      activate GuiaRepo
-      GuiaRepo -> DB: UPDATE guias SET estado = 'EnRevision'
-      activate DB
-      DB --> GuiaRepo: ok
-      deactivate DB
-      GuiaRepo --> API: Guia
-      deactivate GuiaRepo
-      API --> Vista: 200 OK (GuiaResponse JSON)
-      Vista --> Profesor: "GUÍA ENVIADA A REVISIÓN"
+      alt c4 -- bloqueo_convocatoria() devuelve motivo (#791)
+        API --> Vista: 422 Unprocessable Entity (detail = motivo)
+        Vista --> Profesor: "NO SE PUEDE ENVIAR A REVISIÓN"
+      else c4 -- convocatoria extraordinaria concretada o sin campos
+        API -> Guia: enviar_a_revision()
+        activate Guia
+        deactivate Guia
+        API -> GuiaRepo: actualizar(guia)
+        activate GuiaRepo
+        GuiaRepo -> DB: UPDATE guias SET estado = 'EnRevision'
+        activate DB
+        DB --> GuiaRepo: ok
+        deactivate DB
+        GuiaRepo --> API: Guia
+        deactivate GuiaRepo
+        API --> Vista: 200 OK (GuiaResponse JSON)
+        Vista --> Profesor: "GUÍA ENVIADA A REVISIÓN"
+      end
     end
   end
 end

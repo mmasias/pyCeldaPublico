@@ -82,6 +82,7 @@ package "Planificacion docente" {
 package "Documento de la guía" {
   usecase descargarGuiaPDF as "descargarGuiaPDF()"
   usecase previsualizarGuia as "previsualizarGuia()"
+  usecase descargarPlanificacionDocentePDF as "descargarPlanificacionDocentePDF()"
 }
 
 ' Perfil (issue #423): no cuelga de una Guia concreta, es el propio Profesor
@@ -100,6 +101,7 @@ importarContenidoDeGuiaHermana -- Profesor
 
 Profesor -- descargarGuiaPDF
 Profesor -- previsualizarGuia
+Profesor -- descargarPlanificacionDocentePDF
 
 abrirPonderacionesEvaluacion -- Profesor
 crearPonderacionEvaluacion -- Profesor

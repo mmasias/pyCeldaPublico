@@ -178,3 +178,11 @@ Existían como carpeta con ficha pero no figuraban en este índice (sincronizado
 ## Horas por ECTS en la asignatura y materias con optatividad (issue [#786](https://github.com/mmasias/pyCelda/issues/786))
 
 Ninguna ficha nueva ni retirada: 130 carpetas con ficha. Retocadas sin caso de uso nuevo: [`abrirAsignaturaPrograma()`](abrirAsignaturaPrograma/README.md) y [`editarActividadesFormativasAsignaturaPrograma()`](editarActividadesFormativasAsignaturaPrograma/README.md) (comprobación informativa de las horas de la asignatura frente a 25 h × ECTS, `AsignaturaPrograma.comprobacion_horas_ects()`), [`consultarEstadoActividadesFormativasMateria()`](consultarEstadoActividadesFormativasMateria/README.md) y [`abrirMateria()`](abrirMateria/README.md) (`Materia.con_optatividad()`: con optatividad, la regla `AfM = Σ AfAdM` no se compara).
+
+## Texto de convocatorias por plantilla (issue [#791](https://github.com/mmasias/pyCelda/issues/791))
+
+Ninguna ficha nueva ni retirada: 130 carpetas con ficha. Rehecha: [`editarTextoSistemaEvaluacion()`](editarTextoSistemaEvaluacion/README.md) (plantilla y dos campos en lugar de texto libre; `Guia.texto_convocatorias`, esquema versión 6). Retocada: [`enviarGuiaARevision()`](enviarGuiaARevision/README.md) (regla `c4`, `Guia.bloqueo_convocatoria()`).
+
+## Descarga de la planificación docente
+
+1 ficha nueva: 131 carpetas con ficha. [`descargarPlanificacionDocentePDF()`](descargarPlanificacionDocentePDF/README.md): PDF propio de la planificación docente, en cualquier estado de la guía (marca de agua en `Borrador` y `Rechazada`), para `Profesor`, `DirectorPrograma` y `Admin`.

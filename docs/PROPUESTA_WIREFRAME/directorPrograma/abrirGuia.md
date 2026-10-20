@@ -16,6 +16,7 @@
 |---|---|
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
 |[**Previsualizar guía**](previsualizarGuia.md)|<sub>previsualizarGuia()</sub>|
+|[**Descargar planificación**](descargarPlanificacionDocentePDF.md)|<sub>descargarPlanificacionDocentePDF()</sub>|
 |[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
 |[**Gestionar bibliografía**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
 |[**Guardar borrador**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|

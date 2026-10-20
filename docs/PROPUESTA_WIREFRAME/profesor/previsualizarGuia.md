@@ -15,6 +15,7 @@
 |Botón|CdU|
 |---|---|
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
+|[**Descargar planificación**](descargarPlanificacionDocentePDF.md)|<sub>descargarPlanificacionDocentePDF()</sub>|
 |[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
 |[**Abrir planificación docente**](abrirPlanificacionDocente.md)|<sub>abrirPlanificacionDocente()</sub>|
 |[**Gestionar bibliografía**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|

@@ -1,0 +1,31 @@
+@startuml descargarPlanificacionDocentePDF-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":GUIA_ABIERTO\n:PLANIFICACION_DOCENTE_ABIERTO\n:GUIAS_DEL_PROGRAMA_ABIERTO" as Origen
+rectangle #CDEBA5 "(mismo estado)" as Salida
+
+package descargarPlanificacionDocentePDF as "descargarPlanificacionDocentePDF()" {
+    rectangle #629EF9 DescargarPlanificacionDocenteView
+    rectangle #b5bd68 GuiaController
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+    rectangle #F2AC4E RenderizadorPlanificacionDocente
+}
+
+Origen --> DescargarPlanificacionDocenteView: <font size=8>descargarPlanificacionDocentePDF(guiaId)
+
+DescargarPlanificacionDocenteView --> GuiaController: <font size=8>descargarPlanificacion(guiaId) : documento
+
+GuiaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
+
+GuiaController --> RenderizadorPlanificacionDocente: <font size=8>renderizarPDF(guia) : documento
+
+RenderizadorPlanificacionDocente --> Guia: <font size=8>estado, Sesion vinculadas y datos de la asignatura
+
+GuiaRepository -- Guia
+
+DescargarPlanificacionDocenteView ..[#green]> Salida: <font size=8>presenta el PDF (con marca de agua en Borrador o Rechazada)
+
+@enduml

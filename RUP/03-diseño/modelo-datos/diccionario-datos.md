@@ -362,7 +362,9 @@ Guía docente: clase de asociación (AsignaturaPrograma, CursoAcademico), fase d
 | `estado` | String(20) | no | 'Borrador' | -- | {Borrador, EnRevision, Aprobada, Rechazada} | -- |
 | `semestre` | Integer | sí | -- | -- | -- | -- |
 | `contenido` | Text | no | '' | -- | -- | apartado propio de la fase de impartición (discussion #191) |
-| `texto_sistema_evaluacion` | Text | no | '' | -- | -- | -- |
+| `plantilla_evaluacion` | String(30) | sí | -- | -- | -- | -- |
+| `instrumento_extraordinario` | String(300) | sí | -- | -- | -- | -- |
+| `porcentaje_recuperable` | Integer | sí | -- | -- | -- | -- |
 | `sesiones_minimas` | Integer | no | 25 | -- | -- | snapshot de asignaturas_programa.sesiones_minimas al nacer la Guia (discussion #206), como semestre y contenido |
 | `programa_id` | Integer | sí | -- | -- | -- | FK lógica, sin FK física; denormalizado |
 | `asignatura_programa_id` | Integer | sí | -- | FK -> asignaturas_programa.id | -- | nullable: guías sin AsignaturaPrograma (huérfanas históricas / del programa dirigido) |

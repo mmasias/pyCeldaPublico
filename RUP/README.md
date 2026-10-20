@@ -26,9 +26,9 @@ Página concentradora de los artefactos RUP de pyCelda: desde aquí se llega a c
 
 |Fase|Índice|Casos de uso con ficha|
 |-|-|:-:|
-|Requisitos|[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)|133|
-|Análisis|[Análisis](/RUP/02-analisis/README.md) / [casos de uso](/RUP/02-analisis/casos-uso/README.md)|130|
-|Diseño|[Diseño](/RUP/03-diseño/README.md) / [casos de uso](/RUP/03-diseño/casos-uso/README.md)|130|
+|Requisitos|[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)|134|
+|Análisis|[Análisis](/RUP/02-analisis/README.md) / [casos de uso](/RUP/02-analisis/casos-uso/README.md)|131|
+|Diseño|[Diseño](/RUP/03-diseño/README.md) / [casos de uso](/RUP/03-diseño/casos-uso/README.md)|131|
 |Desarrollo|[Desarrollo](/RUP/04-desarrollo/README.md)|5 (muestra)|
 
 </div>
@@ -123,6 +123,7 @@ Página concentradora de los artefactos RUP de pyCelda: desde aquí se llega a c
 |desasociarResultadoAprendizajeAMateria()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/README.md)|[📃](/RUP/02-analisis/casos-uso/desasociarResultadoAprendizajeAMateria/README.md)|[📃](/RUP/03-diseño/casos-uso/desasociarResultadoAprendizajeAMateria/README.md)|—|
 |desasociarResultadoAprendizajeAsignaturaPrograma()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/README.md)|[📃](/RUP/02-analisis/casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/README.md)|[📃](/RUP/03-diseño/casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/README.md)|—|
 |descargarGuiaPDF()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/descargarGuiaPDF/README.md)|[📃](/RUP/02-analisis/casos-uso/descargarGuiaPDF/README.md)|[📃](/RUP/03-diseño/casos-uso/descargarGuiaPDF/README.md)|—|
+|descargarPlanificacionDocentePDF()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/descargarPlanificacionDocentePDF/README.md)|[📃](/RUP/02-analisis/casos-uso/descargarPlanificacionDocentePDF/README.md)|[📃](/RUP/03-diseño/casos-uso/descargarPlanificacionDocentePDF/README.md)|—|
 |duplicarSesion()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/duplicarSesion/README.md)|[📃](/RUP/02-analisis/casos-uso/duplicarSesion/README.md)|[📃](/RUP/03-diseño/casos-uso/duplicarSesion/README.md)|—|
 |editarActividadesFormativasAsignaturaPrograma()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md)|[📃](/RUP/02-analisis/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md)|[📃](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md)|—|
 |editarActividadesFormativasMateria()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/README.md)|[📃](/RUP/02-analisis/casos-uso/editarActividadesFormativasMateria/README.md)|[📃](/RUP/03-diseño/casos-uso/editarActividadesFormativasMateria/README.md)|—|

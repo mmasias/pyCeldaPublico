@@ -15,6 +15,7 @@
 |[**Editar sesión**](editarSesion.md)|<sub>editarSesion()</sub>|
 |[**Eliminar sesión**](eliminarSesion.md)|<sub>eliminarSesion()</sub>|
 |[**Duplicar sesión**](duplicarSesion.md)|<sub>duplicarSesion()</sub>|
+|[**Descargar planificación**](descargarPlanificacionDocentePDF.md)|<sub>descargarPlanificacionDocentePDF()</sub>|
 |[**Abrir guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>

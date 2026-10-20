@@ -18,6 +18,7 @@
 |[**Duplicar sesión**](duplicarSesion.md)|<sub>duplicarSesion()</sub>|
 |[**Importar planificación docente de guía hermana**](importarPlanificacionDocenteDeGuiaHermana.md)|<sub>importarPlanificacionDocenteDeGuiaHermana()</sub>|
 |[**Generar planificación docente genérica**](generarPlanificacionDocenteGenerica.md)|<sub>generarPlanificacionDocenteGenerica()</sub>|
+|[**Descargar planificación**](descargarPlanificacionDocentePDF.md)|<sub>descargarPlanificacionDocentePDF()</sub>|
 |[**Abrir guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>
