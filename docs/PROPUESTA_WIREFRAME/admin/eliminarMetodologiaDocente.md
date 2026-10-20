@@ -14,8 +14,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear Metodología Docente**](crearMetodologiaDocente.md)|<sub>crearMetodologiaDocente()</sub>|
+|[**Crear metodología docente**](crearMetodologiaDocente.md)|<sub>crearMetodologiaDocente()</sub>|
 |[**Abrir**](abrirMetodologiaDocente.md)|<sub>abrirMetodologiaDocente()</sub>|
-|[**Abrir panel administracion**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
+|[**Abrir programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
 
 </div>

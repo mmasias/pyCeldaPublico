@@ -15,7 +15,13 @@
 |[**Editar**](editarPrograma.md)|<sub>editarPrograma()</sub>|
 |[**Definir director de programa**](definirDirectorPrograma.md)|<sub>definirDirectorPrograma()</sub>|
 |[**Quitar director de programa**](quitarDirectorPrograma.md)|<sub>quitarDirectorPrograma()</sub>|
+|[**Abrir resultados de aprendizaje**](abrirResultadosAprendizaje.md)|<sub>abrirResultadosAprendizaje()</sub>|
+|[**Abrir competencias**](abrirCompetencias.md)|<sub>abrirCompetencias()</sub>|
+|[**Abrir metodologías docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
+|[**Abrir actividades formativas**](abrirActividadesFormativas.md)|<sub>abrirActividadesFormativas()</sub>|
+|[**Abrir módulos**](abrirModulos.md)|<sub>abrirModulos()</sub>|
 |[**Volver al listado**](abrirProgramas.md)|<sub>abrirProgramas()</sub>|
+|[**Eliminar programa**](eliminarPrograma.md)|<sub>eliminarPrograma()</sub>|
 |[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
 |[**Crear AsignaturaPrograma**](crearAsignaturaPrograma.md)|<sub>crearAsignaturaPrograma()</sub>|
 |[**Abrir**](abrirAsignaturaPrograma.md)|<sub>abrirAsignaturaPrograma()</sub>|

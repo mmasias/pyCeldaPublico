@@ -60,5 +60,5 @@ Bajada a diseño del caso de análisis [`descargarGuiaPDF()`](/RUP/02-analisis/c
 - [Discussion #218](https://github.com/mmasias/pyCelda/discussions/218) -- D1-D4: artefacto de archivo, motor, semántica de generación, plantilla única.
 - [Discussion #224](https://github.com/mmasias/pyCelda/discussions/224) -- v2: maquetación al formulario oficial (Frente A); botón `generarGuiaPDF()` para el usuario (Frente B).
 - [`editarPonderacionEvaluacion()` en Diseño](/RUP/03-diseño/casos-uso/editarPonderacionEvaluacion/README.md) -- mismo patrón `alt` para un `<<choice>>` de Análisis.
-- [`editarSemestreGuia()` en Diseño](/RUP/03-diseño/casos-uso/editarSemestreGuia/README.md) -- quien regenera `fecha_generacion_pdf` cuando aplica.
+- `editarSemestreGuia()` en Diseño (retirado, [#782](https://github.com/mmasias/pyCelda/issues/782)) -- quien regenera `fecha_generacion_pdf` cuando aplica.
 - [`abrirGuia()` en Diseño](/RUP/03-diseño/casos-uso/abrirGuia/README.md) -- mismo criterio de caso de uso compartido sin herencia entre `Admin` y `Profesor`.

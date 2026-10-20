@@ -18,7 +18,7 @@ DB --> Repo: Materia
 Repo --> API: Materia
 API -> Materia: comprobacion_horas_ects()
 activate Materia
-note right of Materia: sin ects -> None;\nsi no: {ects, horas_esperadas = ects × 25,\nhoras_materia = Σ horas, cuadra, diferencia}
+note right of Materia: sin ects -> None;\nsi no: {ects, horas_esperadas = ects × 25,\nhoras_materia = Σ horas, cuadra, diferencia,\nects_asignaturas, con_optatividad} (#786)
 Materia --> API: comprobación o None
 deactivate Materia
 API --> Vista: 200 OK (MateriaDetalleResponse con ects, codigo_ruct, comprobacion_horas_ects)
@@ -35,12 +35,12 @@ Repo --> API: Materia
 deactivate Repo
 API -> Materia: discrepancias_actividades_formativas()
 activate Materia
-note right of Materia: por cada ActividadFormativa del catálogo del Programa:\nhoras de la materia vs Σ horas de sus AsignaturaPrograma\n-> {codigo, nombre, horas_materia, horas_asignaturas, cuadra, diferencia}
+note right of Materia: con_optatividad() -> [] (#786: la regla no se compara);\nsi no, por cada ActividadFormativa del catálogo del Programa:\nhoras de la materia vs Σ horas de sus AsignaturaPrograma\n-> {codigo, nombre, horas_materia, horas_asignaturas, cuadra, diferencia}
 Materia --> API: lista de discrepancias
 deactivate Materia
 API --> Vista: 200 OK (lista de DiscrepanciaActividadFormativaResponse)
 deactivate API
-Vista --> DirectorPrograma: presenta el total frente a 25 h por ECTS y la tabla,\nresalta lo que no cuadra (informativo, no bloquea)
+Vista --> DirectorPrograma: presenta el total frente a 25 h por ECTS y la tabla,\nresalta lo que no cuadra (informativo, no bloquea);\ncon optatividad, la explica en lugar de la tabla
 deactivate Vista
 
 @enduml

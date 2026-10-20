@@ -27,6 +27,8 @@ class ProgramaResponse(BaseModel):
     # Identidad RUCT (#772): solo lectura, la escribe la importación.
     codigo_ruct: str | None = None
     denominacion_oficial: str | None = None
+    # Norma de la memoria (#794): "RD 1393/2007", "RD 822/2021" o None.
+    norma: str | None = None
     # Issue #492: Directores de Programa, resueltos vía DirectorPrograma.email ->
     # Profesor.email (nunca DirectorPrograma.id, detalle interno -- ver
     # docstring de app/models/director_programa.py). Default []: solo
@@ -53,6 +55,7 @@ class ProgramaResponse(BaseModel):
             facultad_id=programa.facultad_id,
             codigo_ruct=programa.codigo_ruct,
             denominacion_oficial=programa.denominacion_oficial,
+            norma=programa.norma,
             directores=directores or [],
         )
 

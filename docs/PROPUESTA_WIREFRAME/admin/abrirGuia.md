@@ -8,7 +8,7 @@
 
 <div align=center>
 
-|**Profesor**|**Revision**|
+|**Profesor**|**Revisión**|
 |---|---|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-profesor.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-revision.svg)|
 

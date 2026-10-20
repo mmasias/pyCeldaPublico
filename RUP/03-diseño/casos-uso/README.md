@@ -30,7 +30,6 @@ Recuento actual (verificado contra las carpetas, issue [#662](https://github.com
 |[`rechazarGuia()`](rechazarGuia/README.md)|Hecho|
 |[`escalarGuiaAAprobada()`](escalarGuiaAAprobada/README.md)|Hecho|
 |[`revocarAprobacionGuia()`](revocarAprobacionGuia/README.md)|Hecho|
-|[`editarSemestreGuia()`](editarSemestreGuia/README.md)|Hecho|
 |[`notificarGuiasActualizadas()`](notificarGuiasActualizadas/README.md)|Hecho -- sin endpoint que toque base de datos|
 |[`descargarGuiaPDF()`](descargarGuiaPDF/README.md)|Hecho -- render real WeasyPrint (v1, [#218](https://github.com/mmasias/pyCelda/discussions/218))|
 |[`previsualizarGuia()`](previsualizarGuia/README.md)|Hecho -- vista HTML, misma plantilla que `descargarGuiaPDF()`|
@@ -171,3 +170,11 @@ Existían como carpeta con ficha pero no figuraban en este índice (sincronizado
 ## Catálogos de `MetodologiaDocente` y `ActividadFormativa` por `Programa` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))
 
 3 fichas retiradas, ninguna nueva: 131 carpetas con ficha tras el #772 (verificado contra las carpetas). Se retiran `asociarMetodologiaDocenteAPrograma()` y `desasociarMetodologiaDocentePrograma()` (desaparece la habilitación de una metodología del catálogo de `Universidad` en el `Programa`) y `abrirMetodologiasDocentesPrograma()`, absorbido por [`abrirMetodologiasDocentes()`](abrirMetodologiasDocentes/README.md). Los CRUD de `MetodologiaDocente` y `ActividadFormativa` pasan a catálogo del `Programa`, actores `Admin` y `DirectorPrograma`. Retocadas sin caso de uso nuevo: [`crearSistemaEvaluacion()`](crearSistemaEvaluacion/README.md), [`editarSistemaEvaluacion()`](editarSistemaEvaluacion/README.md) y [`abrirSistemaEvaluacion()`](abrirSistemaEvaluacion/README.md) (`codigo`), [`abrirPrograma()`](abrirPrograma/README.md) y [`abrirMateria()`](abrirMateria/README.md) (identidad RUCT de solo lectura; en la materia, además, presencialidad y comprobación de horas frente a 25 h × ECTS).
+
+## Retirada de `editarSemestreGuia()` (issue [#782](https://github.com/mmasias/pyCelda/issues/782))
+
+1 ficha retirada, ninguna nueva: 130 carpetas con ficha (verificado contra las carpetas). Se retira `editarSemestreGuia()`: la `Guia` no puede cambiar de semestre: la referencia es la memoria del `Programa` (`AsignaturaPrograma.semestreDefault`), decisión de Calidad en [#743](https://github.com/mmasias/pyCelda/issues/743). Al activar un curso, cada `Guia` nueva toma el semestre de su `AsignaturaPrograma`, no el de la `Guia` anterior.
+
+## Horas por ECTS en la asignatura y materias con optatividad (issue [#786](https://github.com/mmasias/pyCelda/issues/786))
+
+Ninguna ficha nueva ni retirada: 130 carpetas con ficha. Retocadas sin caso de uso nuevo: [`abrirAsignaturaPrograma()`](abrirAsignaturaPrograma/README.md) y [`editarActividadesFormativasAsignaturaPrograma()`](editarActividadesFormativasAsignaturaPrograma/README.md) (comprobación informativa de las horas de la asignatura frente a 25 h × ECTS, `AsignaturaPrograma.comprobacion_horas_ects()`), [`consultarEstadoActividadesFormativasMateria()`](consultarEstadoActividadesFormativasMateria/README.md) y [`abrirMateria()`](abrirMateria/README.md) (`Materia.con_optatividad()`: con optatividad, la regla `AfM = Σ AfAdM` no se compara).

@@ -45,7 +45,7 @@ Materia -- MetodologiaMateria
 Materia -- ResultadoAprendizaje
 Materia -- AsignaturaPrograma
 
-AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra ECTS y código RUCT, Metodologias Docentes/Resultados de Aprendizaje asociados, AsignaturaPrograma\nde la Materia y comprobación de horas frente a 25 h por ECTS
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra ECTS y código RUCT, Metodologias Docentes/Resultados de Aprendizaje asociados, AsignaturaPrograma\nde la Materia y comprobación de horas frente a 25 h por ECTS (con la optatividad de la Materia)
 
 @enduml
 
@@ -81,6 +81,6 @@ MateriaController --> AsignaturaProgramaRepository: <font size=8>listarDeLaMater
 MateriaRepository -- Materia
 AsignaturaProgramaRepository -- AsignaturaPrograma
 
-AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra datos de la Materia (con ECTS y código RUCT), su tabla de AsignaturasPrograma\ny la comprobación de horas frente a 25 h por ECTS, con [Editar]
+AbrirMateriaView --> MateriaAbiertoSalida: <font size=8>muestra datos de la Materia (con ECTS y código RUCT), su tabla de AsignaturasPrograma\ny la comprobación de horas frente a 25 h por ECTS (con la optatividad de la Materia), con [Editar]
 
 @enduml

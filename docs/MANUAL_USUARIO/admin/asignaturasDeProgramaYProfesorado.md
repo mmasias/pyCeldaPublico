@@ -56,9 +56,11 @@ La tabla muestra **Código** y **Descripción**, con **➖** (Quitar) en cada fi
 
 La tabla muestra, por cada actividad formativa, las **Horas** y el **% presencialidad**, que es el de la materia (se edita en la materia). **Editar reparto** abre un formulario con las **Horas** de cada actividad (mínimo 0) y se confirma con **Guardar**.
 
+Si la asignatura tiene ECTS, bajo la tabla una línea compara sus horas con las que corresponden (25 h por ECTS): **OK** o **Discrepancia** con la diferencia, o "sin horas de actividades formativas" si aún no tiene. La misma línea aparece en el formulario de **Editar reparto** y se actualiza mientras se escriben las horas. Es informativa: no impide guardar.
+
 ## Profesorado de una asignatura de programa
 
-En el detalle de la asignatura de programa aparece una tabla con el profesorado asignado (**Nombre**, **Email**, y **➖** (Quitar) en cada fila), o el aviso de que no tiene ninguno.
+En el detalle de la asignatura de programa aparece una tabla con el profesorado asignado (**Profesor**: su nombre o, si no lo tiene registrado, su email; y **➖** (Quitar) en cada fila), o el aviso de que no tiene ninguno.
 
 ### Asignar un profesor
 

@@ -268,9 +268,8 @@ GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : escalarGuiaAAprobada()
 ' escalar -- mismo patron, abre la guia antes de decidir, no self-loop de listado
 GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : revocarAprobacionGuia()
 
-' editarSemestreGuia(): es editarX(), sigue el mismo patron que el resto de editarX()
-' del catalogo (edita dentro del detalle ya abierto, nunca desde el listado)
-GUIA_ABIERTO --> GUIA_ABIERTO : editarSemestreGuia()
+' editarSemestreGuia() retirado (#743, #782): la Guia no cambia de semestre; la referencia
+' es la memoria del Programa (AsignaturaPrograma.semestreDefault)
 
 ' notificarGuiasActualizadas(): accion sobre el conjunto completo de guias del programa,
 ' no sobre una en particular

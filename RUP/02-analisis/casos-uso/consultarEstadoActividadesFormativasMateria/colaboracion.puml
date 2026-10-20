@@ -19,12 +19,12 @@ ConsultarEstadoActividadesFormativasMateriaView --> MateriaController: <font siz
 
 MateriaController --> MateriaRepository: <font size=8>obtener(materiaId) : Materia
 
-MateriaController --> Materia: <font size=8>discrepanciasActividadesFormativas() : lista de discrepancias
+MateriaController --> Materia: <font size=8>discrepanciasActividadesFormativas() : lista de discrepancias (vacía con optatividad)
 
-MateriaController --> Materia: <font size=8>comprobacionHorasEcts() : comprobación o nada (sin ECTS)
+MateriaController --> Materia: <font size=8>comprobacionHorasEcts() : comprobación, con ectsAsignaturas y conOptatividad, o nada (sin ECTS)
 
 MateriaRepository -- Materia
 
-ConsultarEstadoActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>presenta horas de la materia, Σ de las AsignaturaPrograma, las que no cuadran y el total frente a 25 h por ECTS
+ConsultarEstadoActividadesFormativasMateriaView --> MateriaAbiertoSalida: <font size=8>presenta horas de la materia, Σ de las AsignaturaPrograma, las que no cuadran y el total frente a 25 h por ECTS;\n<font size=8>con optatividad, los ECTS de las AsignaturaPrograma frente a los de la Materia en lugar de la comparación
 
 @enduml

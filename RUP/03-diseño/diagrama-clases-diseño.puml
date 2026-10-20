@@ -71,9 +71,6 @@ package Vista {
   class RevocarAprobacionGuiaView #629EF9 {
     +revocarAprobacionGuia(guiaId, comentario)
   }
-  class EditarSemestreGuiaView #629EF9 {
-    +editarSemestreGuia(guiaId, semestre)
-  }
   class ConsultarEstadoGuiasView #629EF9 {
     +consultarEstadoGuias(programaId)
   }
@@ -313,7 +310,6 @@ package API {
     +rechazar_guia(guia_id, datos)
     +escalar_guia_a_aprobada(guia_id)
     +revocar_aprobacion_guia(guia_id, datos)
-    +editar_semestre_guia(guia_id, datos)
     +listar_guias_del_programa(programa_id)
     +notificar_guias_actualizadas(programa_id)
     +descargar_guia_pdf(guia_id)
@@ -485,7 +481,6 @@ package Modelo {
     +sesiones_vinculadas_count()
     +planificacion_docente_completa()
     +enviar_a_revision()
-    +actualizar_semestre(semestre)
     +regenerar_pdf()
     +tiene_pdf_generado()
   }
@@ -533,7 +528,10 @@ package Modelo {
     codigo_ruct
     ects
     +listar_sistemas_evaluacion()
+    +discrepancias_actividades_formativas()
     +comprobacion_horas_ects()
+    +ects_asignaturas()
+    +con_optatividad()
     +asignaturas_programa_con_metodologia_docente(metodologia_docente_id)
     +asignaturas_programa_con_resultado_aprendizaje(resultado_aprendizaje_id)
   }
@@ -586,6 +584,8 @@ package Modelo {
     facultad_id
     codigo_ruct
     denominacion_oficial
+    norma
+    +define_competencias()
     +actualizar(nombre)
     +extinguir()
   }
@@ -604,6 +604,8 @@ package Modelo {
     +actualizar(curso, caracter, idioma, semestre_default, nombre, ects, contenido)
     +actualizar_admin(materia_id, curso, caracter, sesiones_minimas)
     +sesiones_minimas_en_cota(valor)
+    +comprobacion_horas_ects()
+    +programa_define_competencias()
   }
   class Profesor #F2AC4E {
     id
@@ -873,7 +875,6 @@ AprobarGuiaView --> GuiaRouter
 RechazarGuiaView --> GuiaRouter
 EscalarGuiaAAprobadaView --> GuiaRouter
 RevocarAprobacionGuiaView --> GuiaRouter
-EditarSemestreGuiaView --> GuiaRouter
 ConsultarEstadoGuiasView --> GuiaRouter
 NotificarGuiasActualizadasView --> GuiaRouter
 DescargarGuiaPDFView --> GuiaRouter

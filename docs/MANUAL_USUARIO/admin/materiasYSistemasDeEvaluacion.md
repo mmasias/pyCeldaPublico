@@ -45,7 +45,7 @@ La tabla muestra las **Horas** y la **Presencialidad (%)** de cada actividad for
 
 Si la materia tiene ECTS, bajo la tabla una línea compara sus horas con las que corresponden: **OK** o **Discrepancia**. Es informativa.
 
-Debajo, la tabla **Estado de las actividades formativas** compara, por actividad, las horas de la materia con la suma de las de sus asignaturas: **OK** si cuadran o **Discrepancia** con la diferencia. Es solo informativa: no impide guardar. Cambiar las horas de la materia no reparte nada entre sus asignaturas; sus horas se editan en cada asignatura (capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)).
+Debajo, la tabla **Estado de las actividades formativas** compara, por actividad, las horas de la materia con la suma de las de sus asignaturas: **OK** si cuadran o **Discrepancia** con la diferencia. Es solo informativa: no impide guardar. Si la materia tiene optatividad -- sus asignaturas no suman sus ECTS (idiomas alternativos, optativas, o asignaturas de la memoria que están en otra materia) y la materia sí suma 25 h por ECTS --, esta tabla no aparece: cada asignatura lleva 25 h por ECTS y la suma de sus horas no tiene por qué coincidir con la de la materia. En su lugar, bajo la línea de horas, la pantalla dice "Materia con optatividad: sus asignaturas suman X ECTS para Y de la materia". Que cada asignatura cuadre lo dice entonces su propia línea de horas. Cambiar las horas de la materia no reparte nada entre sus asignaturas; sus horas se editan en cada asignatura (capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)).
 
 ## Sistemas de evaluación
 

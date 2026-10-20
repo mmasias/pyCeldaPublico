@@ -15,6 +15,6 @@
 |[**Crear Asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
 |[**Abrir**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|
 |[**Eliminar**](eliminarAsignatura.md)|<sub>eliminarAsignatura()</sub>|
-|[**Abrir panel administracion**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
+|[**Abrir panel de administración**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
 
 </div>

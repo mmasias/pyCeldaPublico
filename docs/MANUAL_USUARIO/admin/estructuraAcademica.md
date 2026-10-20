@@ -32,7 +32,7 @@ Tras crearlo, la pantalla pasa directamente a editar el programa recién creado.
 
 Las pantallas de un programa llevan su nombre en la cabecera y, encima en pequeño, la miga **🏛️ Universidades › universidad › facultad**, cuyos pasos son enlaces para subir en la estructura. Debajo va una franja de pestañas en dos filas, con la de la pantalla actual marcada (igual que en la vista del director de programa): arriba **📋 Ficha** y **🚦 Guías**; debajo, algo más pequeñas, las de la estructura del programa.
 
-- **📋 Ficha**: su **Código**, **Estado**, **Código RUCT** y **Denominación oficial** (estos dos los carga la importación desde el RUCT y no se editan; "--" si el programa no se ha importado), los directores y una tabla de sus **Asignaturas del programa** -- ver el capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md). **✏️ Editar**, a la derecha del título **Ficha**, cambia el nombre del programa; el código no es editable una vez creado. Al pie de esa pantalla, en **Zona de riesgo**, está **🗑️ Eliminar** (ver más abajo).
+- **📋 Ficha**: su **Código**, **Estado**, **Código RUCT**, **Denominación oficial** y **Norma** (RD 1393/2007 o RD 822/2021, la norma con la que se verificó la memoria; estos tres los carga la importación desde el RUCT y no se editan; "--" si el programa no se ha importado), los directores y una tabla de sus **Asignaturas del programa** -- ver el capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md). **✏️ Editar**, a la derecha del título **Ficha**, cambia el nombre del programa; el código no es editable una vez creado. Al pie de esa pantalla, en **Zona de riesgo**, está **🗑️ Eliminar** (ver más abajo).
 - **🧱 Módulos**: los módulos en que se agrupan las materias del programa (ver más abajo).
 - **📚 Materias**: las materias del programa -- capítulo [Materias y sistemas de evaluación](materiasYSistemasDeEvaluacion.md).
 - **🎯 Resultados de aprendizaje**: los resultados de aprendizaje del programa (ver más abajo).
@@ -100,7 +100,7 @@ El módulo de cada materia se elige al crearla o editarla, en el desplegable **M
 
 ## Directores del programa
 
-Junto al **Código** y el **Estado** del programa, la sección **Directores** lista los directores de programa ya nombrados (nombre y email de cada uno) con un botón **➖** (Quitar) en cada fila.
+Junto al **Código** y el **Estado** del programa, la sección **Directores** lista los directores de programa ya nombrados (el nombre de cada uno o, si no lo tiene registrado, su email) con un botón **➖** (Quitar) en cada fila.
 
 Si queda algún profesor de la universidad sin nombrar, aparece además un selector con esos profesores disponibles y un botón **👑 Nombrar**; si ya todos dirigen el programa, en su lugar se muestra el aviso "No hay profesores disponibles: todos ya dirigen este programa."
 

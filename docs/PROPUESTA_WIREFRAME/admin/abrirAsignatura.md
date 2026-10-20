@@ -8,9 +8,9 @@
 
 <div align=center>
 
-|**Sinprogramas**|**Vista principal**|
+|**Vista principal**|**Sin programas**|
 |---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignatura/wireframe-sinProgramas.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignatura/wireframe.svg)|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignatura/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignatura/wireframe-sinProgramas.svg)|
 
 |Botón|CdU|
 |---|---|

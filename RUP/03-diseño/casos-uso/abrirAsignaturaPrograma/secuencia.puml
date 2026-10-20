@@ -5,6 +5,7 @@ actor "DirectorPrograma" as DirectorPrograma
 participant "Vista (React)" as Vista
 participant "API (FastAPI)" as API
 participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+participant "AsignaturaPrograma" as AsignaturaPrograma
 database "Base de Datos" as DB
 
 DirectorPrograma -> Vista: solicita abrir una AsignaturaPrograma
@@ -48,9 +49,15 @@ deactivate DB
 AsignaturaProgramaRepo --> API: List[Profesor]
 deactivate AsignaturaProgramaRepo
 
-API --> Vista: 200 OK (AsignaturaProgramaDetalleResponse JSON, con las tres colecciones)
+API -> AsignaturaPrograma: comprobacion_horas_ects()
+activate AsignaturaPrograma
+note right of AsignaturaPrograma: issue #786: sin ects -> None;\nsi no: {ects, horas_esperadas = ects × 25,\nhoras_asignatura = Σ horas de actividades_formativas,\nsin_horas, cuadra, diferencia}
+AsignaturaPrograma --> API: comprobación o None
+deactivate AsignaturaPrograma
+
+API --> Vista: 200 OK (AsignaturaProgramaDetalleResponse JSON, con las tres colecciones\ny comprobacion_horas_ects)
 deactivate API
-Vista --> DirectorPrograma: muestra datos, profesorado, MetodologiaDocente y ResultadoAprendizaje
+Vista --> DirectorPrograma: muestra datos, profesorado, MetodologiaDocente y ResultadoAprendizaje,\ny las horas de la asignatura frente a 25 h por ECTS (informativo)
 deactivate Vista
 
 @enduml

@@ -64,10 +64,14 @@ export interface GuiaResponse {
 export interface AsignaturaProgramaDeGuiaResponse {
   nombre: string;
   programa_nombre: string | null;
+  // #790: sigla del programa (GII), en la miga de la guía del profesor.
+  programa_codigo: string | null;
   contenido: string;
   resultados_aprendizaje: ResultadoAprendizajeResponse[];
   // #761: solo lectura, como los RA.
   competencias: CompetenciaResponse[];
+  // #788: false en los programas RD 822, cuya memoria no define competencias.
+  programa_define_competencias: boolean;
   metodologias_docentes: MetodologiaDocenteResponse[];
   // Solo lectura -- discussion #227. Se edita desde
   // editarActividadesFormativasAsignaturaPrograma(), no desde aquí.
@@ -126,10 +130,6 @@ export interface RechazarGuiaRequest {
 
 export interface RevocarAprobacionGuiaRequest {
   comentario?: string;
-}
-
-export interface EditarSemestreGuiaRequest {
-  semestre: number;
 }
 
 export interface NotificacionResponse {
@@ -363,13 +363,6 @@ export async function revocarAprobacionGuia(
   datos: RevocarAprobacionGuiaRequest,
 ): Promise<GuiaResponse> {
   return post<GuiaResponse>(`/api/v1/guias/${guiaId}/revocar-aprobacion`, datos);
-}
-
-export async function editarSemestreGuia(
-  guiaId: number,
-  datos: EditarSemestreGuiaRequest,
-): Promise<GuiaResponse> {
-  return put<GuiaResponse>(`/api/v1/guias/${guiaId}/semestre`, datos);
 }
 
 export async function editarTextoSistemaEvaluacion(
@@ -731,6 +724,8 @@ export interface ProgramaResponse {
   // Identidad RUCT (#772): solo lectura, la escribe la importación.
   codigo_ruct: string | null;
   denominacion_oficial: string | null;
+  // Norma de la memoria (#794): "RD 1393/2007", "RD 822/2021" o null.
+  norma: string | null;
   // Issue #492: real solo en obtenerProgramaAdmin() -- el resto de sitios que
   // devuelven ProgramaResponse (vista propia del Director, listado de
   // Facultad) llegan a [] sin significado, mismo criterio que
@@ -788,6 +783,20 @@ export interface ComprobacionHorasEcts {
   ects: number;
   horas_esperadas: number;
   horas_materia: number;
+  cuadra: boolean;
+  diferencia: number;
+  // #786: con optatividad (la materia suma 25 h por ECTS y sus asignaturas no
+  // suman sus ECTS) la regla "materia = suma de asignaturas" no se compara.
+  ects_asignaturas: number;
+  con_optatividad: boolean;
+}
+
+/** Horas de la asignatura frente a 25 h por ECTS (#786): informativo. */
+export interface ComprobacionHorasEctsAsignatura {
+  ects: number;
+  horas_esperadas: number;
+  horas_asignatura: number;
+  sin_horas: boolean;
   cuadra: boolean;
   diferencia: number;
 }
@@ -1381,6 +1390,7 @@ export interface AsignaturaProgramaDetalleResponse extends AsignaturaProgramaRes
   resultados_aprendizaje: ResultadoAprendizajeResponse[];
   competencias: CompetenciaResponse[];
   actividades_formativas: ActividadFormativaAsignaturaProgramaResponse[];
+  comprobacion_horas_ects: ComprobacionHorasEctsAsignatura | null;
 }
 
 export interface AsignaturaProgramaParaEditarResponse extends AsignaturaProgramaResponse {

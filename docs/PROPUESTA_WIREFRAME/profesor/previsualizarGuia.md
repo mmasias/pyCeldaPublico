@@ -16,11 +16,11 @@
 |---|---|
 |[**Descargar guía PDF**](descargarGuiaPDF.md)|<sub>descargarGuiaPDF()</sub>|
 |[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
-|[**Abrir planificacion docente**](abrirPlanificacionDocente.md)|<sub>abrirPlanificacionDocente()</sub>|
+|[**Abrir planificación docente**](abrirPlanificacionDocente.md)|<sub>abrirPlanificacionDocente()</sub>|
 |[**Gestionar bibliografía**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
 |[**Guardar borrador**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
-|[**Importar contenido de guia hermana**](importarContenidoDeGuiaHermana.md)|<sub>importarContenidoDeGuiaHermana()</sub>|
-|[**Abrir asignaturas programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
+|[**Importar contenido de guía hermana**](importarContenidoDeGuiaHermana.md)|<sub>importarContenidoDeGuiaHermana()</sub>|
+|[**Abrir asignaturas del programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
 |[**Enviar a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
 
 </div>

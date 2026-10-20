@@ -90,7 +90,7 @@ Traducción a clases de análisis del caso de uso [`escalarGuiaAAprobada()`](/RU
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `HistorialCambio{campo, valorAnterior, valorNuevo, comentario}`, `Guia *- HistorialCambio`.
 - [`aprobarGuia()`](../aprobarGuia/README.md) -- misma familia, mismo criterio de comentario fijo sin pedir nada al actor, mismo retoque de `regenerarPDF()`.
 - [`rechazarGuia()`](../rechazarGuia/README.md) / [`revocarAprobacionGuia()`](../revocarAprobacionGuia/README.md) -- resto de la familia de decisiones sobre `Guia`; ninguna de las dos regenera PDF.
-- [`editarSemestreGuia()`](../editarSemestreGuia/README.md) -- disparador original de `regenerarPDF()`, ya no en exclusiva.
+- `editarSemestreGuia()` (retirado, [#782](https://github.com/mmasias/pyCelda/issues/782)) -- disparador original de `regenerarPDF()`, ya no en exclusiva.
 - [`descargarGuiaPDF()`](../descargarGuiaPDF/README.md) -- consumidor de `fechaGeneracionPDF`.
 - [Discussion #224](https://github.com/mmasias/pyCelda/discussions/224) -- cierre de Frente B.
 - [Issue #254](https://github.com/mmasias/pyCelda/issues/254) / [discussion #255](https://github.com/mmasias/pyCelda/discussions/255) -- `escalarAAprobada()` re-deriva `Guia -- Profesor`.

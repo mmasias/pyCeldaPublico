@@ -26,9 +26,9 @@ Página concentradora de los artefactos RUP de pyCelda: desde aquí se llega a c
 
 |Fase|Índice|Casos de uso con ficha|
 |-|-|:-:|
-|Requisitos|[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)|134|
-|Análisis|[Análisis](/RUP/02-analisis/README.md) / [casos de uso](/RUP/02-analisis/casos-uso/README.md)|131|
-|Diseño|[Diseño](/RUP/03-diseño/README.md) / [casos de uso](/RUP/03-diseño/casos-uso/README.md)|131|
+|Requisitos|[Detalle de casos de uso](/RUP/01-requisitos/03-detalle-casos-uso/README.md)|133|
+|Análisis|[Análisis](/RUP/02-analisis/README.md) / [casos de uso](/RUP/02-analisis/casos-uso/README.md)|130|
+|Diseño|[Diseño](/RUP/03-diseño/README.md) / [casos de uso](/RUP/03-diseño/casos-uso/README.md)|130|
 |Desarrollo|[Desarrollo](/RUP/04-desarrollo/README.md)|5 (muestra)|
 
 </div>
@@ -140,7 +140,6 @@ Página concentradora de los artefactos RUP de pyCelda: desde aquí se llega a c
 |editarPrograma()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarPrograma/README.md)|[📃](/RUP/02-analisis/casos-uso/editarPrograma/README.md)|[📃](/RUP/03-diseño/casos-uso/editarPrograma/README.md)|—|
 |editarReferenciaBibliografica()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarReferenciaBibliografica/README.md)|[📃](/RUP/02-analisis/casos-uso/editarReferenciaBibliografica/README.md)|[📃](/RUP/03-diseño/casos-uso/editarReferenciaBibliografica/README.md)|—|
 |editarResultadoAprendizaje()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarResultadoAprendizaje/README.md)|[📃](/RUP/02-analisis/casos-uso/editarResultadoAprendizaje/README.md)|[📃](/RUP/03-diseño/casos-uso/editarResultadoAprendizaje/README.md)|—|
-|editarSemestreGuia()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarSemestreGuia/README.md)|[📃](/RUP/02-analisis/casos-uso/editarSemestreGuia/README.md)|[📃](/RUP/03-diseño/casos-uso/editarSemestreGuia/README.md)|—|
 |editarSesion()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/README.md)|[📃](/RUP/02-analisis/casos-uso/editarSesion/README.md)|[📃](/RUP/03-diseño/casos-uso/editarSesion/README.md)|—|
 |editarSistemaEvaluacion()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarSistemaEvaluacion/README.md)|[📃](/RUP/02-analisis/casos-uso/editarSistemaEvaluacion/README.md)|[📃](/RUP/03-diseño/casos-uso/editarSistemaEvaluacion/README.md)|—|
 |editarTextoSistemaEvaluacion()|[📃](/RUP/01-requisitos/03-detalle-casos-uso/editarTextoSistemaEvaluacion/README.md)|[📃](/RUP/02-analisis/casos-uso/editarTextoSistemaEvaluacion/README.md)|[📃](/RUP/03-diseño/casos-uso/editarTextoSistemaEvaluacion/README.md)|—|

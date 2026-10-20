@@ -24,7 +24,8 @@ API -> DB: presencialidad_de_la_materia(materia_id):\nSELECT actividad_formativa
 DB --> API: presencialidad por actividad
 API --> Vista: 200 OK (lista de ActividadFormativaAsignaturaProgramaResponse,\nporcentaje_presencialidad de la Materia)
 deactivate API
-Vista --> DirectorPrograma: presenta la rejilla (horas editables,\n% presencialidad de la materia de solo lectura)
+note right of Vista: issue #786: ects de la AsignaturaPrograma (del detalle,\nGET /api/v1/asignaturas-programa/{id}) para el total\nfrente a 25 h por ECTS: comprobarHorasAsignatura(),\nrecalculado en la Vista a cada cambio de horas
+Vista --> DirectorPrograma: presenta la rejilla (horas editables,\n% presencialidad de la materia de solo lectura,\nhoras de la asignatura frente a 25 h por ECTS)
 
 DirectorPrograma -> Vista: teclea horas y guarda
 Vista -> API: PUT /api/v1/asignaturas-programa/{asignatura_programa_id}/actividades-formativas\n(lista de {actividad_formativa_id, horas})

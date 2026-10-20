@@ -13,7 +13,7 @@
 |Botón|CdU|
 |---|---|
 |[**Abrir**](abrirGuia.md)|<sub>abrirGuia()</sub>|
-|[**Notificar guias actualizadas**](notificarGuiasActualizadas.md)|<sub>notificarGuiasActualizadas()</sub>|
+|[**Notificar guías actualizadas**](notificarGuiasActualizadas.md)|<sub>notificarGuiasActualizadas()</sub>|
 |[**Abrir programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
 
 </div>

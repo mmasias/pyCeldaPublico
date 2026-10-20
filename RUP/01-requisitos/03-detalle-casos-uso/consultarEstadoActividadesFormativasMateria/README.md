@@ -19,9 +19,10 @@
 
 <div align=center>
 
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe.svg)|
-|-|
-|<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
+|Sin optatividad|Con optatividad|
+|:-:|:-:|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe-optatividad.svg)|
+|<sup>Código fuente: [wireframes.puml](wireframes.puml)</sup>|<sup>mismo fichero, segundo bloque `@startsalt`</sup>|
 
 </div>
 
@@ -46,6 +47,8 @@ Sin `<<choice>>` -- no hay rama de fallo, solo la presentación del estado. Verb
 
 **Comprobación por ECTS** (issue [#772](https://github.com/mmasias/pyCelda/issues/772)): con `Materia.ects` (dato aprobado de la memoria, que escribe la importación desde el RUCT) el medidor añade una segunda comprobación, también blanda: la suma de `horas` de la materia frente a 25 h por ECTS (`ects × 25`), con las horas esperadas, las de la materia, si cuadra y la diferencia. Sin `ects` (materia no importada del RUCT) no hay con qué comparar y la comprobación no se presenta. **No reparte nada**: el reparto proporcional automático entre las `AsignaturaPrograma` se descartó en #768, y la comprobación se hace contra la `Materia`, no contra la suma de ECTS de sus asignaturas (por optatividad no siempre coinciden). Hasta #772 no se comparaba nada con ECTS (decisión de la discussion [#227](https://github.com/mmasias/pyCelda/discussions/227), cuando `Materia` no tenía `ects`).
 
+**Materia con optatividad** (issue [#786](https://github.com/mmasias/pyCelda/issues/786)): una `Materia` tiene optatividad cuando sus horas suman 25 h por ECTS y sus `AsignaturaPrograma` no suman sus ECTS -- idiomas alternativos, optativas, o asignaturas de la memoria que el sistema tiene en otra materia. Cada `AsignaturaPrograma` lleva entonces 25 h por ECTS (la comprobación de [`abrirAsignaturaPrograma()`](../abrirAsignaturaPrograma/README.md)) y la suma de sus horas supera, o no alcanza, la de la materia por construcción: la regla `AfM = Σ AfAdM` no se cumple por diseño. En ese caso el medidor no compara por actividad ni marca discrepancias; en su lugar presenta los ECTS que suman sus asignaturas frente a los de la materia y explica que la suma de sus horas no se compara (segundo wireframe). La comprobación por ECTS de la materia se presenta igual. Sin `ects` en la `Materia` no hay optatividad que detectar y la regla se compara como siempre.
+
 **Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` ve también el medidor en su ficha de `Materia`, con la misma tabla y el mismo carácter informativo. Self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml).
 
 
@@ -58,3 +61,4 @@ Sin `<<choice>>` -- no hay rama de fallo, solo la presentación del estado. Verb
 - [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md) -- precedente del verbo `consultarEstado...()`
 - [Discussion #227](https://github.com/mmasias/pyCelda/discussions/227) -- requerimiento de las actividades formativas y decisión de la validación blanda
 - Issue [#772](https://github.com/mmasias/pyCelda/issues/772) -- `Materia.ects` y la comprobación de horas por ECTS
+- Issue [#786](https://github.com/mmasias/pyCelda/issues/786) -- materia con optatividad: la regla `AfM = Σ AfAdM` no se compara

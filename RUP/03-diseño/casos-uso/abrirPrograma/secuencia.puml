@@ -22,7 +22,7 @@ deactivate DB
 ProgramaRepo --> API: Programa (404 si None o no dirige)
 deactivate ProgramaRepo
 
-API --> Vista: 200 OK (ProgramaDetalleResponse JSON; #772: codigo_ruct y denominacion_oficial,\nhoy nulos por un defecto de obtener_programa(), ver README)
+API --> Vista: 200 OK (ProgramaDetalleResponse JSON, con codigo_ruct,\ndenominacion_oficial (#772) y norma (#794))
 deactivate API
 
 Vista -> API: GET /api/v1/programas/{programa_id}/guias
@@ -68,7 +68,7 @@ deactivate DB
 ProgramaRepo --> API: Programa (404 si None)
 deactivate ProgramaRepo
 
-API --> Vista: 200 OK (ProgramaResponse JSON, con codigo_ruct y denominacion_oficial, #772)
+API --> Vista: 200 OK (ProgramaResponse JSON, con codigo_ruct, denominacion_oficial (#772) y norma (#794))
 deactivate API
 
 Vista -> API: GET /api/v1/admin/programas/{programa_id}/asignaturas-programa

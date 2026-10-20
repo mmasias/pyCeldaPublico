@@ -16,7 +16,7 @@ Pulsar la pestaña **🚦 Guías** del programa.
 
 ## Qué muestra
 
-Una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin profesorado asignado"), **Estado** de la guía (**Borrador**, **En revisión**, **Aprobada** o **Rechazada**) y **Última actualización**: quién hizo el último cambio y cuánto hace, en términos aproximados.
+Una tabla con **Asignatura**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado"), **Estado** de la guía (**Borrador**, **En revisión**, **Aprobada** o **Rechazada**) y **Última actualización**: quién hizo el último cambio y cuánto hace, en términos aproximados.
 
 Cada fila tiene un solo botón para ver el documento, según el estado: si la guía está **Aprobada** y tiene su PDF generado, **⬇️ Descargar PDF** (el oficial); en cualquier otro caso, **👁️ Previsualizar**, con la marca de no oficial. Es la misma regla que en la guía del director.
 

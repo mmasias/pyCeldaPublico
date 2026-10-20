@@ -19,6 +19,7 @@ state editarActividadesFormativasAsignaturaPrograma as "editarActividadesFormati
     note on link
     <b>Sistema</b> presenta las actividades formativas del catálogo del Programa con sus horas actuales
     <b>Sistema</b> muestra el porcentaje de presencialidad de cada actividad formativa en la Materia
+    <b>Sistema</b> muestra el total de horas frente a 25 h por ECTS de la AsignaturaPrograma
     <b>Sistema</b> permite solicitar guardar
     end note
 

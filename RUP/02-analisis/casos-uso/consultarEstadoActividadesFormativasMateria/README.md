@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/README.md): caso de uso de **solo lectura**, sin `<<choice>>`. Presenta el estado de la regla `AfM = Σ AfAdM` de una `Materia` -- por cada `ActividadFormativa`, las `horas` de la materia frente a la suma de las `horas` de sus `AsignaturaPrograma`, con las discrepancias marcadas -- y, desde el issue [#772](https://github.com/mmasias/pyCelda/issues/772), el total de horas de la materia frente a 25 h por ECTS cuando la `Materia` tiene `ects`. Los dos cálculos viven en el modelo (`Materia.discrepanciasActividadesFormativas()` y `Materia.comprobacionHorasEcts()`, Fat Model -- mismo sitio que `Guia.bloqueo_ponderaciones()`), no en el controlador ni en un servicio. Ninguno reparte ni bloquea nada.
+Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFormativasMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/README.md): caso de uso de **solo lectura**, sin `<<choice>>`. Presenta el estado de la regla `AfM = Σ AfAdM` de una `Materia` -- por cada `ActividadFormativa`, las `horas` de la materia frente a la suma de las `horas` de sus `AsignaturaPrograma`, con las discrepancias marcadas -- y, desde el issue [#772](https://github.com/mmasias/pyCelda/issues/772), el total de horas de la materia frente a 25 h por ECTS cuando la `Materia` tiene `ects`; desde el issue [#786](https://github.com/mmasias/pyCelda/issues/786), si la `Materia` tiene optatividad la regla no se compara. Los dos cálculos viven en el modelo (`Materia.discrepanciasActividadesFormativas()` y `Materia.comprobacionHorasEcts()`, Fat Model -- mismo sitio que `Guia.bloqueo_ponderaciones()`), no en el controlador ni en un servicio. Ninguno reparte ni bloquea nada.
 
 <div align=center>
 
@@ -28,6 +28,7 @@ Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFo
 **Responsabilidades:**
 - presenta las `ActividadFormativa` del catálogo del `Programa` con `horas` de la materia, suma de las de sus `AsignaturaPrograma` y la diferencia; resalta las que no cuadran.
 - presenta, si la `Materia` tiene `ects`, sus horas frente a las esperadas (`ects × 25`) y la diferencia.
+- con optatividad (issue [#786](https://github.com/mmasias/pyCelda/issues/786)), no presenta la comparación por actividad: presenta los ECTS de sus `AsignaturaPrograma` frente a los de la `Materia` y que la suma de sus horas no se compara.
 - deja claro que el medidor es informativo -- no bloquea ningún guardado.
 - ofrece la navegación a volver a la `Materia`.
 
@@ -54,7 +55,8 @@ Traducción a clases de análisis del caso de uso [`consultarEstadoActividadesFo
 
 **Responsabilidades:**
 - calcula, por cada `ActividadFormativa`, `horas` de la materia vs `Σ horas` de sus `AsignaturaPrograma`, y marca las que no cuadran (`discrepanciasActividadesFormativas()`). Método de dominio (Fat Model), mismo patrón que `Guia.bloqueo_ponderaciones()` -- pero puramente informativo, no hay envío ni transición que bloquear.
-- compara la suma de `horas` de sus `ActividadFormativaMateria` con `ects × 25` (`comprobacionHorasEcts()`): `ects`, horas esperadas, horas de la materia, si cuadra y la diferencia; nada si no tiene `ects`.
+- compara la suma de `horas` de sus `ActividadFormativaMateria` con `ects × 25` (`comprobacionHorasEcts()`): `ects`, horas esperadas, horas de la materia, si cuadra y la diferencia, más los ECTS de sus `AsignaturaPrograma` y si tiene optatividad (#786); nada si no tiene `ects`.
+- suma los `ects` de sus `AsignaturaPrograma` (`ectsAsignaturas()`) y decide si tiene optatividad (`conOptatividad()`, #786): sus horas suman 25 h por ECTS y sus asignaturas no suman sus ECTS. Con optatividad, `discrepanciasActividadesFormativas()` devuelve una lista vacía: cada `AsignaturaPrograma` lleva 25 h por ECTS y la regla `AfM = Σ AfAdM` no se cumple por diseño, así que no se compara.
 
 **Colaboraciones:**
 - **Entrada:** `MateriaController`.

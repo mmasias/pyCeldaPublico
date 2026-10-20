@@ -12,7 +12,7 @@ El alta, edición y baja del profesorado, y el nombramiento o cese de directores
 
 ## Cómo llegar
 
-Pulsar **Profesores** en el panel de administración. Aparece una tabla con cada profesor (nombre y, debajo, su email), el número de asignaturas de programa que imparte, y los botones **Abrir** y **🗑️** (Eliminar).
+Pulsar **Profesores** en el panel de administración. Aparece una tabla con cada profesor (su nombre o, si aún no lo tiene registrado, su email), el número de asignaturas de programa que imparte, y los botones **Abrir** y **🗑️** (Eliminar).
 
 ## Crear un profesor
 

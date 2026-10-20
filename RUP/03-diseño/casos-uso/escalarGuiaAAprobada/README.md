@@ -56,5 +56,5 @@ Bajada a diseño del caso de análisis [`escalarGuiaAAprobada()`](/RUP/02-analis
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/README.md).
 - [`aprobarGuia()` en Diseño](/RUP/03-diseño/casos-uso/aprobarGuia/README.md) -- mismo criterio de comentario fijo, origen único en vez de doble; mismo retoque de `regenerar_pdf()`.
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- transición `{Borrador, Rechazada} -> Aprobada`.
-- [`editarSemestreGuia()` en Diseño](/RUP/03-diseño/casos-uso/editarSemestreGuia/README.md) -- disparador original de `regenerar_pdf()`, ya no en exclusiva.
+- `editarSemestreGuia()` en Diseño (retirado, [#782](https://github.com/mmasias/pyCelda/issues/782)) -- disparador original de `regenerar_pdf()`, ya no en exclusiva.
 - Discussion [#224](https://github.com/mmasias/pyCelda/discussions/224) -- cierre de Frente B.

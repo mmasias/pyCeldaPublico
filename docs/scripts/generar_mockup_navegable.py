@@ -38,6 +38,46 @@ LABELS = {
     "completarGestion": "Completar gestión",
     "descargarGuiaPDF": "Descargar guía PDF",
     "definirDirectorPrograma": "Definir director de programa",
+    # Nombres cuya separación automática del camelCase pierde tildes o artículos.
+    "abrirGuia": "Abrir guía",
+    "abrirAsignaturasPrograma": "Abrir asignaturas del programa",
+    "abrirMetodologiasDocentes": "Abrir metodologías docentes",
+    "abrirModulos": "Abrir módulos",
+    "abrirPanelAdministracion": "Abrir panel de administración",
+    "abrirPlanificacionDocente": "Abrir planificación docente",
+    "abrirResultadosAprendizaje": "Abrir resultados de aprendizaje",
+    "abrirSistemasEvaluacion": "Abrir sistemas de evaluación",
+    "asociarCompetenciaAAsignaturaPrograma": "Asociar competencia a la asignatura",
+    "asociarCompetenciaAMateria": "Asociar competencia a la materia",
+    "desasociarCompetenciaAsignaturaPrograma": "Desasociar competencia de la asignatura",
+    "desasociarCompetenciaAMateria": "Desasociar competencia de la materia",
+    "comprobarCopiasSeguridad": "Comprobar copias de seguridad",
+    "consultarCopiasSeguridad": "Consultar copias de seguridad",
+    "crearCopiaSeguridad": "Crear copia de seguridad",
+    "restaurarCopiaSeguridad": "Restaurar copia de seguridad",
+    "consultarEstadoActividadesFormativasMateria": "Consultar estado de actividades formativas de la materia",
+    "consultarHistorialCambios": "Consultar historial de cambios",
+    "editarActividadesFormativasAsignaturaPrograma": "Editar actividades formativas de la asignatura",
+    "editarActividadesFormativasMateria": "Editar actividades formativas de la materia",
+    "importarActividadesFormativasDeAsignaturaProgramaPrima": "Importar actividades formativas de asignatura prima",
+    "crearModulo": "Crear módulo",
+    "editarModulo": "Editar módulo",
+    "eliminarModulo": "Eliminar módulo",
+    "crearSesion": "Crear sesión",
+    "editarSesion": "Editar sesión",
+    "eliminarSesion": "Eliminar sesión",
+    "duplicarSesion": "Duplicar sesión",
+    "crearSistemaEvaluacion": "Crear sistema de evaluación",
+    "editarSistemaEvaluacion": "Editar sistema de evaluación",
+    "eliminarSistemaEvaluacion": "Eliminar sistema de evaluación",
+    "editarTextoSistemaEvaluacion": "Editar texto del sistema de evaluación",
+    "generarPlanificacionDocenteGenerica": "Generar planificación docente genérica",
+    "importarPlanificacionDocenteDeGuiaHermana": "Importar planificación docente de guía hermana",
+    "importarPlanificacionDocenteDesdeTexto": "Importar planificación docente desde texto",
+    "importarBibliografiaDeGuiaHermana": "Importar bibliografía de guía hermana",
+    "importarContenidoDeGuiaHermana": "Importar contenido de guía hermana",
+    "notificarGuiasActualizadas": "Notificar guías actualizadas",
+    "previsualizarGuia": "Previsualizar guía",
     "quitarDirectorPrograma": "Quitar director de programa",
     "activarCursoAcademico": "Activar curso académico",
     "activarSemestre": "Activar semestre",
@@ -59,6 +99,25 @@ WIREFRAME_LABELS = {
     "wireframe-activado.svg": "Activado",
     "wireframe-generada.svg": "Generada",
     "wireframe-seleccion.svg": "Selección",
+    "wireframe-admin.svg": "Admin",
+    "wireframe-profesor.svg": "Profesor",
+    "wireframe-autor.svg": "Autor",
+    "wireframe-aprobada.svg": "Aprobada",
+    "wireframe-borrador.svg": "Borrador",
+    "wireframe-revision.svg": "Revisión",
+    "wireframe-bloqueo.svg": "Bloqueo",
+    "wireframe-completo.svg": "Completo",
+    "wireframe-vacia.svg": "Vacía",
+    "wireframe-optatividad.svg": "Optatividad",
+    "wireframe-desdePrograma.svg": "Desde el programa",
+    "wireframe-porDirector.svg": "Por el director",
+    "wireframe-porDirectorPrograma.svg": "Por el director de programa",
+    "wireframe-porProfesor.svg": "Por el profesor",
+    "wireframe-sinProgramas.svg": "Sin programas",
+    "wireframe-sin-disponibles.svg": "Sin disponibles",
+    "wireframe-semestre-bloqueado.svg": "Semestre bloqueado",
+    "wireframe-error-items-sin-guardar.svg": "Error: ítems sin guardar",
+    "wireframe-error-planificacion.svg": "Error de planificación",
 }
 
 # Etiquetas dependientes de contexto: (cu_dueño_de_la_pagina, cu_destino) -> texto real
@@ -86,7 +145,9 @@ CONTEXTUAL_LABELS = {
     ("abrirPonderacionesEvaluacion", "abrirGuia"): "Volver a la guía",
     ("abrirPonderacionesEvaluacion", "abrirPonderacionEvaluacion"): "Abrir",
     ("abrirPonderacionesEvaluacion", "eliminarPonderacionEvaluacion"): "Eliminar",
-    ("abrirPonderacionesEvaluacion", "crearPonderacionEvaluacion"): "Crear Ponderación",
+    ("abrirPonderacionesEvaluacion", "crearPonderacionEvaluacion"): "Crear Instrumento",
+    ("abrirPanelAdministracion", "consultarCopiasSeguridad"): "Copias de seguridad",
+    ("abrirPanelAdministracion", "consultarHistorialCambios"): "Auditoría",
     ("abrirReferenciasBibliograficas", "abrirGuia"): "Volver a la guía",
     # Auditoría 11 ago 2026: familias abrir<Entidad>/abrir<Entidad>s con etiqueta
     # de paráfrasis del CU en vez del texto literal del botón -- mismo patrón que
@@ -138,7 +199,7 @@ CONTEXTUAL_LABELS = {
     ("abrirCursosAcademicos", "abrirCursoAcademico"): "Abrir",
     ("abrirCursosAcademicos", "activarCursoAcademico"): "Activar",
     ("abrirMetodologiaDocente", "abrirMetodologiasDocentes"): "Volver al listado",
-    ("abrirMetodologiasDocentes", "crearMetodologiaDocente"): "Crear Metodología Docente",
+    ("abrirMetodologiasDocentes", "crearMetodologiaDocente"): "Crear metodología docente",
     ("abrirMetodologiasDocentes", "abrirMetodologiaDocente"): "Abrir",
     ("abrirMetodologiasDocentes", "eliminarMetodologiaDocente"): "Eliminar",
     ("abrirSistemaEvaluacion", "abrirSistemasEvaluacion"): "Volver al listado",
@@ -164,7 +225,6 @@ CONTEXTUAL_LABELS = {
     ("abrirGuia", "rechazarGuia"): "Rechazar",
     ("abrirGuia", "escalarGuiaAAprobada"): "Escalar a aprobada",
     ("abrirGuia", "revocarAprobacionGuia"): "Revocar aprobación",
-    ("abrirGuia", "editarSemestreGuia"): "Editar semestre",
     ("abrirGuia", "consultarEstadoGuias"): "Volver al listado de guías",
     # Panel de Admin (iniciarSesion-wireframe-admin): únicos botones reales,
     # no derivables del estado destino porque SISTEMA_DISPONIBLE es un hub sin
@@ -207,7 +267,9 @@ def find_wireframes(cu):
     svg_folder = SVG_DIR / cu
     if not svg_folder.exists():
         return []
-    svgs = sorted(svg_folder.glob("wireframe*.svg"))
+    # La vista principal (wireframe.svg) primero: por orden de bytes, "wireframe-x"
+    # quedaría delante ('-' < '.').
+    svgs = sorted(svg_folder.glob("wireframe*.svg"), key=lambda s: (s.name != "wireframe.svg", s.name))
     result = []
     for svg in svgs:
         rel = f"/{svg.relative_to(REPO).as_posix()}"

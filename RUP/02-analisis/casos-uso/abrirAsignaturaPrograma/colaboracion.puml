@@ -24,6 +24,8 @@ AbrirAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>carga
 
 AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>obtener(asignaturaProgramaId) : AsignaturaPrograma
 
+AsignaturaProgramaController --> AsignaturaPrograma: <font size=8>comprobacionHorasEcts() : ComprobacionHorasEcts
+
 AbrirAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>listarMetodologiasDocentesAsociadas(asignaturaProgramaId) : List<MetodologiaDocente>
 
 AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>listarMetodologiasDocentesDe(asignaturaProgramaId) : List<MetodologiaDocente>
@@ -41,6 +43,6 @@ AsignaturaPrograma -- MetodologiaDocente
 AsignaturaPrograma -- ResultadoAprendizaje
 AsignaturaPrograma -- Profesor
 
-AbrirAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>muestra datos de la AsignaturaPrograma, su profesorado, MetodologiaDocente y ResultadoAprendizaje asociados
+AbrirAsignaturaProgramaView --> AsignaturaProgramaAbiertoSalida: <font size=8>muestra datos de la AsignaturaPrograma, su profesorado, MetodologiaDocente y ResultadoAprendizaje asociados\n<font size=8>y la comprobación de horas frente a 25 h por ECTS
 
 @enduml

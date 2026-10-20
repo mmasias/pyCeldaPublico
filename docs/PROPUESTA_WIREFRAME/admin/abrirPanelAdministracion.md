@@ -15,11 +15,10 @@
 |**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
 |[**Universidades**](abrirUniversidades.md)|<sub>abrirUniversidades()</sub>|
 |[**Asignaturas**](abrirAsignaturas.md)|<sub>abrirAsignaturas()</sub>|
-|[**Metodologías docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
 |[**Profesores**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
 |[**Cursos académicos**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
-|[**Consultar copias seguridad**](consultarCopiasSeguridad.md)|<sub>consultarCopiasSeguridad()</sub>|
-|[**Consultar historial cambios**](consultarHistorialCambios.md)|<sub>consultarHistorialCambios()</sub>|
+|[**Copias de seguridad**](consultarCopiasSeguridad.md)|<sub>consultarCopiasSeguridad()</sub>|
+|[**Auditoría**](consultarHistorialCambios.md)|<sub>consultarHistorialCambios()</sub>|
 |[**Generar guías PDF**](generarGuiasPDF.md)|<sub>generarGuiasPDF()</sub>|
 
 </div>

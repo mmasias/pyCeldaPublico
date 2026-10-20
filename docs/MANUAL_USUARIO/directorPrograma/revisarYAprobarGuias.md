@@ -18,7 +18,7 @@ Desde la franja del programa, pulsar **📄 Guías**.
 
 A la derecha del título **📄 Guías**, el selector **Curso académico**: al entrar muestra el curso vigente (marcado "(vigente)" en la lista), y permite consultar las guías de otros cursos.
 
-Debajo, una tabla con **Asignatura**, **Profesorado** (los correos asignados, o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Bajo el nombre de cada asignatura aparecen, en pequeño, su curso y semestre (por ejemplo, "(II-s1)"). Última columna, sin título: el botón **📂 Abrir**.
+Debajo, una tabla con **Asignatura**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Bajo el nombre de cada asignatura aparecen, en pequeño, su curso y semestre (por ejemplo, "(II-s1)"). Última columna, sin título: el botón **📂 Abrir**.
 
 La misma tabla, para el curso vigente, aparece también en la pestaña **📋 Vista general**.
 

@@ -46,7 +46,7 @@ A diferencia de crear o editar una referencia a mano, importar sustituye la bibl
 
 ## Volver
 
-Bajo la cabecera, el título de la pantalla es una miga: **nombre de la asignatura › Bibliografía**. Pulsar el nombre de la asignatura vuelve a la guía docente; **🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; el nombre completo se ve al pasar el ratón.
+Bajo la cabecera, el título de la pantalla es una miga: **sigla del programa · nombre de la asignatura › Bibliografía** (por ejemplo, **GII · Programación I › Bibliografía**). **GII · Programación I** es un solo enlace que vuelve a la guía docente; **🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; al pasar el ratón se ven el nombre completo del programa y el de la asignatura.
 
 ---
 

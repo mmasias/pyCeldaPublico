@@ -64,6 +64,7 @@ def obtener_programa(
         facultad_id=programa.facultad_id,
         codigo_ruct=programa.codigo_ruct,
         denominacion_oficial=programa.denominacion_oficial,
+        norma=programa.norma,
         asignaturas_programa=[
             AsignaturaProgramaResponse.model_validate(ag) for ag in asignaturas
         ],

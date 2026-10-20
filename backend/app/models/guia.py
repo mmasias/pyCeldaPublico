@@ -177,8 +177,8 @@ class Guia(Base):
     def ultima_actualizacion(self) -> datetime:
         """Máximo entre guardar-borrador (campo propio del modelo) y las filas
         de autoría de HistorialCambio -- ninguna de las dos señales por separado
-        cubre el ciclo de vida completo (enviarARevision y editarSemestreGuia no
-        tocan ninguna). Documentado como simplificación conocida, no oculta."""
+        cubre el ciclo de vida completo (enviarARevision no toca
+        ninguna). Documentado como simplificación conocida, no oculta."""
         ultimo_historial = self._ultimo_cambio_historial()
         if ultimo_historial is not None and ultimo_historial.fecha > self.fecha_ultima_modificacion:
             return ultimo_historial.fecha
@@ -394,9 +394,6 @@ class Guia(Base):
 
     def revocar_aprobacion(self) -> None:
         self.estado = "Borrador"
-
-    def actualizar_semestre(self, semestre: int) -> None:
-        self.semestre = semestre
 
     def regenerar_pdf(self) -> None:
         if self.estado == "Aprobada":

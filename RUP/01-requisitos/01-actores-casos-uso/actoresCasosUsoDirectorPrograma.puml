@@ -140,7 +140,6 @@ package Revision {
   usecase escalarGuiaAAprobada as "escalarGuiaAAprobada()"
   usecase notificarGuiasActualizadas as "notificarGuiasActualizadas()"
   usecase revocarAprobacionGuia as "revocarAprobacionGuia()"
-  usecase editarSemestreGuia as "editarSemestreGuia()"
 }
 
 abrirProgramas -- DirectorPrograma
@@ -204,7 +203,7 @@ rechazarGuia -- DirectorPrograma
 escalarGuiaAAprobada -- DirectorPrograma
 notificarGuiasActualizadas -- DirectorPrograma
 revocarAprobacionGuia -- DirectorPrograma
-editarSemestreGuia -- DirectorPrograma
+' editarSemestreGuia() retirado (#743, #782): la Guia no cambia de semestre
 
 ' Relación cruzada entre packages -- al final para no duplicar el usecase
 ' (ver actoresCasosUso*.puml). abrirInicio() (package Acceso) <<include>>

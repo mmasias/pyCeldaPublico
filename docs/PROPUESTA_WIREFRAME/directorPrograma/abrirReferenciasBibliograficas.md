@@ -15,7 +15,7 @@
 |[**Crear Referencia**](crearReferenciaBibliografica.md)|<sub>crearReferenciaBibliografica()</sub>|
 |[**Abrir**](abrirReferenciaBibliografica.md)|<sub>abrirReferenciaBibliografica()</sub>|
 |[**Eliminar**](eliminarReferenciaBibliografica.md)|<sub>eliminarReferenciaBibliografica()</sub>|
-|[**Importar bibliografia de guia hermana**](importarBibliografiaDeGuiaHermana.md)|<sub>importarBibliografiaDeGuiaHermana()</sub>|
+|[**Importar bibliografía de guía hermana**](importarBibliografiaDeGuiaHermana.md)|<sub>importarBibliografiaDeGuiaHermana()</sub>|
 |[**Volver a la guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>

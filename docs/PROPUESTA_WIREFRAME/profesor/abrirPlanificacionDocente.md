@@ -8,17 +8,19 @@
 
 <div align=center>
 
-|**Vacia**|**Vista principal**|
+|**Vista principal**|**Vacía**|
 |---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe-vacia.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe-vacia.svg)|
 
 |Botón|CdU|
 |---|---|
-|[**Crear sesion**](crearSesion.md)|<sub>crearSesion()</sub>|
-|[**Editar sesion**](editarSesion.md)|<sub>editarSesion()</sub>|
-|[**Eliminar sesion**](eliminarSesion.md)|<sub>eliminarSesion()</sub>|
-|[**Importar planificacion docente de guia hermana**](importarPlanificacionDocenteDeGuiaHermana.md)|<sub>importarPlanificacionDocenteDeGuiaHermana()</sub>|
-|[**Generar planificacion docente generica**](generarPlanificacionDocenteGenerica.md)|<sub>generarPlanificacionDocenteGenerica()</sub>|
-|[**Abrir guia**](abrirGuia.md)|<sub>abrirGuia()</sub>|
+|[**Crear sesión**](crearSesion.md)|<sub>crearSesion()</sub>|
+|[**Editar sesión**](editarSesion.md)|<sub>editarSesion()</sub>|
+|[**Eliminar sesión**](eliminarSesion.md)|<sub>eliminarSesion()</sub>|
+|[**Duplicar sesión**](duplicarSesion.md)|<sub>duplicarSesion()</sub>|
+|[**Importar planificación docente de guía hermana**](importarPlanificacionDocenteDeGuiaHermana.md)|<sub>importarPlanificacionDocenteDeGuiaHermana()</sub>|
+|[**Importar planificación docente desde texto**](importarPlanificacionDocenteDesdeTexto.md)|<sub>importarPlanificacionDocenteDesdeTexto()</sub>|
+|[**Generar planificación docente genérica**](generarPlanificacionDocenteGenerica.md)|<sub>generarPlanificacionDocenteGenerica()</sub>|
+|[**Abrir guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 
 </div>

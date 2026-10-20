@@ -21,6 +21,8 @@ pyCelda gestiona el catálogo académico del programa (materias, asignaturas, re
 
 Todas las pantallas del modo académico (Director y Profesor) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Dentro de un programa, una franja de pestañas en dos filas (arriba **📋 Vista general** y **📄 Guías**; debajo **📚 Materias**, **🎯 Resultados de aprendizaje**, **🧭 Competencias**, **🧩 Metodologías**, **🏋️ Actividades formativas** y **📘 Asignaturas**) marca siempre en qué sección se está; el capítulo [Entrar y ver los programas](entrarYVerLosProgramas.md) explica cómo moverse.
 
+Los formularios (crear, editar, eliminar, asociar y desasociar en materias, asignaturas y catálogos del programa, y rechazar o revocar la aprobación de una guía) no llevan la franja de pestañas: bajo su título, la línea **Programa: GII -- Grado en ...** indica en qué programa se está. Los formularios dentro de una guía muestran además la asignatura.
+
 Si la cuenta también imparte alguna asignatura, la gestión de esa guía propia (redactar el temario, la evaluación, la bibliografía y la planificación docente) se explica en el [manual de Profesor](../profesor/README.md), no en este.
 
 Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).

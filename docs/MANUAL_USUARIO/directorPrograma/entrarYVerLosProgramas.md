@@ -10,7 +10,7 @@
 
 El acceso es el mismo mecanismo que para el profesorado: iniciar sesión con la cuenta de correo de la universidad dada de alta por Admin, mediante el botón **🔑 Iniciar sesión** de la pantalla de entrada (**Módulo docente: Profesores y Directores de Grado**), que autentica con Google. En la esquina superior derecha del recuadro gris del logo hay un pequeño **cuadrado azul**: es el enlace a la pantalla de entrada del **módulo de administración** (el azul es el color de la barra de ese modo); para volver hay otro cuadrado, naranja, en la misma esquina de esa pantalla. Al pie de esa pantalla, en pequeño, se ve la versión de la aplicación y la de esquema (p. ej. `Versión v0.11.8 · esquema 2`). Tras iniciar sesión, la pantalla de destino es **Inicio**. Todas las pantallas del modo académico llevan una **barra naranja** fija en el borde superior de la ventana, la señal de que se está en el modo del profesorado y los directores (el modo Admin tiene una barra azul).
 
-La sesión dura 12 horas. Si al guardar en un formulario de crear o editar (resultados de aprendizaje, asignatura del programa, actividades formativas de la asignatura o de la materia, metodología de la materia, asociar una metodología o un resultado de aprendizaje a la materia, sistema de evaluación, semestre de una guía) la sesión ha caducado, el formulario no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña del formulario y se pulsa otra vez el botón. Lo mismo al importar las actividades formativas de otra asignatura y al rechazar una guía o revocar su aprobación: el motivo escrito se conserva.
+La sesión dura 12 horas. Si al guardar en un formulario de crear o editar (resultados de aprendizaje, asignatura del programa, actividades formativas de la asignatura o de la materia, metodología de la materia, asociar una metodología o un resultado de aprendizaje a la materia, sistema de evaluación) la sesión ha caducado, el formulario no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña del formulario y se pulsa otra vez el botón. Lo mismo al importar las actividades formativas de otra asignatura y al rechazar una guía o revocar su aprobación: el motivo escrito se conserva.
 
 ## Qué muestra Inicio
 
@@ -35,7 +35,7 @@ Al abrir un elemento (una materia, una asignatura, un resultado de aprendizaje, 
 
 ## La vista general
 
-**📋 Vista general** es la pestaña con la que se abre un programa. Muestra las **Guías** del curso vigente (ver el capítulo [Revisar y aprobar guías](revisarYAprobarGuias.md)) y, a la derecha del título, el **Código** y el **Estado** del programa y, si se ha importado del RUCT, su **Código RUCT** y su **Denominación oficial**.
+**📋 Vista general** es la pestaña con la que se abre un programa. Muestra las **Guías** del curso vigente (ver el capítulo [Revisar y aprobar guías](revisarYAprobarGuias.md)) y, a la derecha del título, el **Código** y el **Estado** del programa y, si se ha importado del RUCT, su **Código RUCT**, su **Denominación oficial** y su **Norma** (RD 1393/2007 o RD 822/2021, la norma con la que se verificó la memoria del título).
 
 ---
 

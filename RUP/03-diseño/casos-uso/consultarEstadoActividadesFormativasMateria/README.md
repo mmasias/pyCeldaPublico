@@ -36,7 +36,7 @@ Bajada a diseño del caso de análisis [`consultarEstadoActividadesFormativasMat
 
 - **Vista**: secciones "Actividades formativas de la materia" y "Estado de las actividades formativas" dentro de la ficha de `Materia` (React, `Materia.tsx`) -- línea "Horas de la materia: N de M (E ECTS a 25 h)" con OK o la discrepancia, y tabla con una fila por actividad del catálogo (`horas` de la materia, `Σ` de las asignaturas, estado); resalta lo que no cuadra y deja explícito que es informativo. `GET /api/v1/materias/{materia_id}` (comprobación por ECTS) y `GET /api/v1/materias/{materia_id}/actividades-formativas/validacion` (discrepancias).
 - **API**: `routers/materia.py::validar_actividades_formativas_materia(materia_id)` y `::obtener_materia(materia_id)` (con `_datos_ruct(materia)`: `codigo_ruct`, `ects`, `comprobacion_horas_ects`) -- auth `get_current_director_programa_id` + `_verificar_materia_del_director`. Solo lectura, no muta nada.
-- **Modelo**: `Materia.discrepancias_actividades_formativas()` -- recorre las `ActividadFormativaMateria` (una por actividad del catálogo del `Programa`) y, por cada una, suma las `horas` de las `ActividadFormativaAsignaturaPrograma` de sus `AsignaturaPrograma`. `Materia.comprobacion_horas_ects()` -- suma las `horas` de sus `ActividadFormativaMateria` y las compara con `ects × HORAS_POR_ECTS` (25); `None` sin `ects`.
+- **Modelo**: `Materia.discrepancias_actividades_formativas()` -- recorre las `ActividadFormativaMateria` (una por actividad del catálogo del `Programa`) y, por cada una, suma las `horas` de las `ActividadFormativaAsignaturaPrograma` de sus `AsignaturaPrograma`. `Materia.comprobacion_horas_ects()` -- suma las `horas` de sus `ActividadFormativaMateria` y las compara con `ects × HORAS_POR_ECTS` (25); `None` sin `ects`. `Materia.ects_asignaturas()` y `Materia.con_optatividad()` (#786) -- suma de `ects` de sus `AsignaturaPrograma`, y si la materia suma 25 h por ECTS sin que sus asignaturas sumen sus ECTS; con optatividad, `discrepancias_actividades_formativas()` devuelve `[]`.
 - **Repositorio**: `MateriaRepository.obtener(materia_id)` con carga anticipada de la cascada (`ActividadFormativaMateria`, `AsignaturaPrograma` -> `ActividadFormativaAsignaturaPrograma`).
 
 ## Contrato de endpoint
@@ -56,15 +56,17 @@ Bajada a diseño del caso de análisis [`consultarEstadoActividadesFormativasMat
 ```
 `diferencia = horas_asignaturas - horas_materia`; `cuadra = (diferencia == 0)`.
 
+Con optatividad (#786), `[]`: la regla no se compara.
+
 **Response (404 Not Found):** `Materia` inexistente o no dirigida por el `DirectorPrograma`.
 
 ### GET `/api/v1/materias/{materia_id}` -- campo `comprobacion_horas_ects`
 
 ```json
-{ "ects": 6.0, "horas_esperadas": 150.0, "horas_materia": 140.0, "cuadra": false, "diferencia": -10.0 }
+{ "ects": 6.0, "horas_esperadas": 150.0, "horas_materia": 140.0, "cuadra": false, "diferencia": -10.0, "ects_asignaturas": 6.0, "con_optatividad": false }
 ```
 
-`diferencia = horas_materia - horas_esperadas`, redondeado a 2 decimales; `cuadra = (diferencia == 0)`. `null` si la `Materia` no tiene `ects`.
+`diferencia = horas_materia - horas_esperadas`, redondeado a 2 decimales; `cuadra = (diferencia == 0)`. `null` si la `Materia` no tiene `ects`. `ects_asignaturas`: suma de `ects` de sus `AsignaturaPrograma`, a un decimal; `con_optatividad = (horas_materia == horas_esperadas and ects_asignaturas != ects)` (#786).
 
 ## Decisiones de diseño
 
@@ -72,6 +74,7 @@ Bajada a diseño del caso de análisis [`consultarEstadoActividadesFormativasMat
 - **Cálculo en el modelo, no en el router** (Fat Model sin Service, discussion [#58](https://github.com/mmasias/pyCelda/discussions/58)): `Materia.discrepancias_actividades_formativas()` es análoga a `Guia.bloqueo_ponderaciones()` -- la diferencia es que aquí no hay ninguna acción que bloquear, el resultado es puramente informativo. El router solo serializa.
 - **`cuadra` estricto (`diferencia == 0`)**: sin tolerancia -- `horas` es `Numeric(6, 2)`, la comparación es exacta. Si en la práctica molesta el redondeo se revisará, pero el requerimiento (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)) pide igualdad, no "aproximadamente".
 - **Comprobación por ECTS en el detalle de la `Materia`, no en `/validacion`** (#772): es un dato de la materia, no de cada actividad; viaja con `ects` y `codigo_ruct` en `_datos_ruct()` y lo reciben las dos fichas (Director y Admin) sin endpoint nuevo. Se compara contra `Materia.ects` (dato aprobado de la memoria), no contra la suma de ECTS de sus `AsignaturaPrograma`, que por optatividad puede ser mayor. No reparte nada (reparto proporcional descartado en #768). Hasta #772 no había comprobación por ECTS (la `Materia` no tenía `ects`).
+- **Materia con optatividad: la regla no se compara** (issue [#786](https://github.com/mmasias/pyCelda/issues/786)): cuando la `Materia` suma 25 h por ECTS y sus `AsignaturaPrograma` no suman sus ECTS (idiomas alternativos, optativas, o asignaturas de la memoria en otra materia), cada asignatura lleva 25 h por ECTS y la suma de sus horas difiere de la de la materia por construcción. `Materia.con_optatividad()` lo detecta; `discrepancias_actividades_formativas()` devuelve `[]` y la Vista, que solo pinta la tabla si hay filas, la omite y presenta en su lugar "Materia con optatividad: sus asignaturas suman X ECTS para Y de la materia..." con `ects_asignaturas` y `ects` de la comprobación. La condición incluye que la materia cuadre con sus ECTS: una materia que no cuadra sigue comparándose por actividad aunque sus asignaturas no sumen sus ECTS; sin `ects` no hay optatividad. Lo que dice si una asignatura de esa materia cuadra es su propia comprobación por ECTS ([`abrirAsignaturaPrograma()`](/RUP/03-diseño/casos-uso/abrirAsignaturaPrograma/README.md)).
 - **Se compone desde `abrirMateria()`**: la pantalla de detalle de `Materia` llama a este endpoint al abrir la sección; no hay navegación a una pantalla separada. Mismo patrón que `previsualizarGuia()` incrustado tras `abrirGuia()`.
 
 **Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: endpoint espejo `GET /api/v1/admin/materias/{id}/actividades-formativas/validacion`, con `require_admin`; el cálculo sigue en `Materia.discrepancias_actividades_formativas()`. La comprobación por ECTS llega en `GET /api/v1/admin/materias/{id}` (`MateriaAdminDetalleResponse`).

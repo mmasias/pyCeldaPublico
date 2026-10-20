@@ -51,6 +51,6 @@ Bajada a diseño del caso de análisis [`editarAsignaturaPrograma()`](/RUP/02-an
 
 - [`editarAsignaturaPrograma()` en Análisis](/RUP/02-analisis/casos-uso/editarAsignaturaPrograma/README.md) -- diagrama de colaboración origen, con la sección propia del `<<choice>>` (2026-08-19).
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/README.md) -- `<<choice>>` ya formalizado.
-- [`editarSemestreGuia()` en Diseño](/RUP/03-diseño/casos-uso/editarSemestreGuia/README.md) -- caso análogo de campo de semestre editable sin `HistorialCambio`.
+- `editarSemestreGuia()` en Diseño (retirado, [#782](https://github.com/mmasias/pyCelda/issues/782)) -- caso análogo de campo de semestre editable sin `HistorialCambio`.
 - [`consultarEstadoGuias()` en Diseño](/RUP/03-diseño/casos-uso/consultarEstadoGuias/README.md) -- precedente de reutilización de un Repository del hilo `Guia`.
 - [`enviarGuiaARevision()` en Diseño](/RUP/03-diseño/casos-uso/enviarGuiaARevision/README.md) -- plantilla del `alt`/`else`.

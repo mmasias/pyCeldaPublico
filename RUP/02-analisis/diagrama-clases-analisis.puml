@@ -59,9 +59,6 @@ package Vista {
   class RevocarAprobacionGuiaView #629EF9 {
     +revocarAprobacionGuia(guiaId, comentario)
   }
-  class EditarSemestreGuiaView #629EF9 {
-    +editarSemestreGuia(guiaId, semestre)
-  }
   class ConsultarEstadoGuiasView #629EF9 {
     +consultarEstadoGuias(programaId)
   }
@@ -292,7 +289,6 @@ package Controlador {
     +rechazarGuia(guiaId, comentario) : Guia
     +escalarAAprobada(guiaId) : Guia
     +revocarAprobacion(guiaId, comentario) : Guia
-    +editarSemestre(guiaId, semestre) : Guia
     +listarGuiasDelPrograma(programaId) : List<Guia>
     +notificarGuiasActualizadas(programaId) : boolean
     +descargarPDF(guiaId) : boolean
@@ -464,7 +460,6 @@ package Modelo {
     +sincronizarSesiones(idsSesionesFinal) : (aVincular, aDesvincular)
     +actualizarContenido(contenido) : valorAnterior
     +confirmarGuardado()
-    +actualizarSemestre(semestre)
     +regenerarPDF()
     +tienePDFGenerado() : boolean
   }
@@ -695,7 +690,6 @@ AprobarGuiaView --> GuiaController
 RechazarGuiaView --> GuiaController
 EscalarGuiaAAprobadaView --> GuiaController
 RevocarAprobacionGuiaView --> GuiaController
-EditarSemestreGuiaView --> GuiaController
 ConsultarEstadoGuiasView --> GuiaController
 NotificarGuiasActualizadasView --> GuiaController
 DescargarGuiaPDFView --> GuiaController

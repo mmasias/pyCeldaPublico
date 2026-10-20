@@ -16,7 +16,7 @@ Desde la franja del programa, pulsar **📘 Asignaturas**.
 
 ## Qué muestra
 
-Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesorado** (los correos del profesorado asignado, o "Sin profesorado asignado") y **Estado** (el estado de la guía docente de esa asignatura, con el mismo color que en otras listas de guías). Última columna, sin título: el botón **📂 Abrir**.
+Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado") y **Estado** (el estado de la guía docente de esa asignatura, con el mismo color que en otras listas de guías). Última columna, sin título: el botón **📂 Abrir**.
 
 ## Detalle de una asignatura de programa
 
@@ -38,7 +38,9 @@ Dejar Requisitos previos vacío equivale a "No aplica" en la guía docente.
 
 ## Actividades formativas de la asignatura
 
-Tabla de solo lectura con **Actividad formativa**, **Horas** y **% presencialidad**. La presencialidad es la de la materia y se edita allí; aquí solo se reparten horas. Pulsar **Editar reparto** abre un formulario con las horas de cada actividad (la presencialidad aparece al lado, sin editar); **Guardar** confirma los nuevos valores. A diferencia del reparto a nivel de materia, aquí no hay medidor de discrepancia.
+Tabla de solo lectura con **Actividad formativa**, **Horas** y **% presencialidad**. La presencialidad es la de la materia y se edita allí; aquí solo se reparten horas. Pulsar **Editar reparto** abre un formulario con las horas de cada actividad (la presencialidad aparece al lado, sin editar); bajo la tabla del formulario, la misma línea de horas frente a ECTS se actualiza mientras se escriben las horas, antes de guardar. **Guardar** confirma los nuevos valores.
+
+Si la asignatura tiene ECTS, bajo la tabla una línea compara sus horas con las que corresponden (25 h por ECTS), igual que en la materia: **OK** o **Discrepancia** con la diferencia, p. ej. "Horas de la asignatura: 150 de 150 (6 ECTS a 25 h) -- OK". Si la asignatura aún no tiene horas, la línea lo dice ("sin horas de actividades formativas") con las que se esperan. Es informativa: no impide guardar.
 
 ---
 

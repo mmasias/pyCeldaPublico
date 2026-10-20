@@ -30,6 +30,7 @@ package "Estructura curricular" {
     programa_padre_id : Integer <<FK>>
     codigo_ruct : String(20)
     denominacion_oficial : String(300)
+    norma : String(20)
   }
   class materias {
     id : Integer <<PK>>
@@ -259,6 +260,12 @@ actividades_formativas_asignatura_programa }--|| asignaturas_programa : reparte 
 actividades_formativas_asignatura_programa }--|| actividades_formativas : instancia de
 actividades_formativas_materia }--|| materias : reparte en
 actividades_formativas_materia }--|| actividades_formativas : instancia de
+materias ||--{ materias_resultados_aprendizaje
+resultados_aprendizaje ||--{ materias_resultados_aprendizaje
+materias ||--{ materias_competencias
+competencias ||--{ materias_competencias
+materias }--o| programas : del plan de
+materias }--o| modulos : agrupada en
 asignaturas_programa ||--{ asignaturas_programa_metodologias_docentes
 metodologias_docentes ||--{ asignaturas_programa_metodologias_docentes
 asignaturas_programa ||--{ asignaturas_programa_resultados_aprendizaje
@@ -281,12 +288,6 @@ profesores ||--{ guias_profesores
 guias }--o| asignaturas_programa : materializa
 guias }--|| cursos_academicos : cursada en
 historial_cambios }--|| guias : audita
-materias ||--{ materias_resultados_aprendizaje
-resultados_aprendizaje ||--{ materias_resultados_aprendizaje
-materias ||--{ materias_competencias
-competencias ||--{ materias_competencias
-materias }--o| programas : del plan de
-materias }--o| modulos : agrupada en
 metodologias_docentes }--|| programas : del plan de
 metodologias_materia }--|| materias
 metodologias_materia }--|| metodologias_docentes

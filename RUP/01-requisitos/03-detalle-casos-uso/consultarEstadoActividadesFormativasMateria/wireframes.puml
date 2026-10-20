@@ -20,3 +20,17 @@
     {[Volver a la materia]}
 }
 @endsalt
+
+@startsalt consultarEstadoActividadesFormativasMateria-wireframe-optatividad
+{
+    <b>ACTIVIDADES FORMATIVAS -- ESTADO DE LA MATERIA</b>
+    ====
+    <b>Programación</b> (12 ECTS)
+    --
+    <b>Horas de la materia:</b> 300 de 300 (12 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
+    <b>Materia con optatividad:</b> sus asignaturas suman 18 ECTS para 12 de la materia.
+    Cada asignatura lleva 25 h por ECTS, así que la suma de sus horas no se compara con las de la materia.
+    ~~
+    {[Volver a la materia]}
+}
+@endsalt

@@ -38,7 +38,6 @@ from app.repositories.sesion import SesionRepository
 from app.schemas.guia import (
     AbrirGuiaResponse,
     AsignaturaProgramaDeGuiaResponse,
-    EditarSemestreGuiaRequest,
     EditarTextoSistemaEvaluacionRequest,
     GuardarBorradorRequest,
     GuiaResponse,
@@ -245,11 +244,13 @@ def abrir_guia(
         AsignaturaProgramaDeGuiaResponse(
             nombre=guia.asignatura_programa.nombre,
             programa_nombre=guia.asignatura_programa.programa_nombre,
+            programa_codigo=guia.asignatura_programa.programa_codigo,
             contenido=guia.asignatura_programa.contenido,
             resultados_aprendizaje=guia.asignatura_programa.resultados_aprendizaje,
             # #761: solo lectura, como los RA. La zona del PDF está pendiente
             # de especificar en la plantilla.
             competencias=ordenadas(guia.asignatura_programa.competencias),
+            programa_define_competencias=guia.asignatura_programa.programa_define_competencias,
             metodologias_docentes=guia.asignatura_programa.metodologias_docentes,
             # Solo lectura -- discussion #227. Ya viene precargado por
             # GuiaRepository.obtener() (lo necesita el render), sin consulta
@@ -590,26 +591,6 @@ def revocar_aprobacion_guia(
         comentario=datos.comentario,
     )
     db.add(historial)
-
-    return guia_repo.actualizar(guia)
-
-
-@router.put("/guias/{guia_id}/semestre", response_model=GuiaResponse)
-def editar_semestre_guia(
-    guia_id: int,
-    datos: EditarSemestreGuiaRequest,
-    db: Session = Depends(get_db),
-    director_programa_id: int = Depends(get_current_director_programa_id),
-) -> GuiaResponse:
-    guia_repo = GuiaRepository(db)
-    guia = guia_repo.obtener(guia_id)
-    if guia is None or guia.programa_id is None or not ProgramaRepository(db).dirige(
-        guia.programa_id, director_programa_id
-    ):
-        raise HTTPException(status_code=404, detail="Guia no encontrada")
-
-    guia.actualizar_semestre(datos.semestre)
-    guia.regenerar_pdf()
 
     return guia_repo.actualizar(guia)
 

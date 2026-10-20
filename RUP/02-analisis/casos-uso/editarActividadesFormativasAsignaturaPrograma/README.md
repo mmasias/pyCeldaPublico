@@ -28,6 +28,7 @@ Traducción a clases de análisis del caso de uso [`editarActividadesFormativasA
 **Responsabilidades:**
 - presenta las `ActividadFormativa` del catálogo del `Programa` (`codigo`/`nombre` de solo lectura) con sus `horas` actuales editables.
 - presenta, de solo lectura, el `porcentajePresencialidad` de cada actividad en la `Materia` de la asignatura.
+- presenta el total de horas frente a 25 h por ECTS de la `AsignaturaPrograma`, si tiene `ects`, y lo recalcula mientras se introducen las horas, antes de guardar (informativo, issue [#786](https://github.com/mmasias/pyCelda/issues/786); mismo cálculo que `AsignaturaPrograma.comprobacionHorasEcts()` de [`abrirAsignaturaPrograma()`](../abrirAsignaturaPrograma/README.md), sobre las horas tecleadas).
 - ofrece la navegación a solicitar guardar el reparto completo.
 
 **Colaboraciones:**

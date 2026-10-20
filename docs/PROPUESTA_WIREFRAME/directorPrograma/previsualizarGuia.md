@@ -18,13 +18,13 @@
 |[**Gestionar evaluación**](abrirPonderacionesEvaluacion.md)|<sub>abrirPonderacionesEvaluacion()</sub>|
 |[**Gestionar bibliografía**](abrirReferenciasBibliograficas.md)|<sub>abrirReferenciasBibliograficas()</sub>|
 |[**Guardar borrador**](guardarBorradorGuia.md)|<sub>guardarBorradorGuia()</sub>|
-|[**Importar contenido de guia hermana**](importarContenidoDeGuiaHermana.md)|<sub>importarContenidoDeGuiaHermana()</sub>|
-|[**Abrir asignaturas programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
+|[**Importar contenido de guía hermana**](importarContenidoDeGuiaHermana.md)|<sub>importarContenidoDeGuiaHermana()</sub>|
+|[**Abrir asignaturas del programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
 |[**Enviar a revisión**](enviarGuiaARevision.md)|<sub>enviarGuiaARevision()</sub>|
+|[**Abrir planificación docente**](abrirPlanificacionDocente.md)|<sub>abrirPlanificacionDocente()</sub>|
 |[**Aprobar**](aprobarGuia.md)|<sub>aprobarGuia()</sub>|
 |[**Rechazar**](rechazarGuia.md)|<sub>rechazarGuia()</sub>|
 |[**Escalar a aprobada**](escalarGuiaAAprobada.md)|<sub>escalarGuiaAAprobada()</sub>|
 |[**Revocar aprobación**](revocarAprobacionGuia.md)|<sub>revocarAprobacionGuia()</sub>|
-|[**Editar semestre**](editarSemestreGuia.md)|<sub>editarSemestreGuia()</sub>|
 
 </div>

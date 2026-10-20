@@ -8,9 +8,9 @@
 
 <div align=center>
 
-|**Estado de error**|**Vista principal**|
+|**Vista principal**|**Estado de error**|
 |---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/wireframe-error.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/wireframe.svg)|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/wireframe-error.svg)|
 
 |Botón|CdU|
 |---|---|

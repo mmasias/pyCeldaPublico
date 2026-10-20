@@ -22,6 +22,7 @@ package "Estructura curricular" {
     estado
     codigoRuct
     denominacionOficial
+    norma
   }
   class Materia {
     nombre

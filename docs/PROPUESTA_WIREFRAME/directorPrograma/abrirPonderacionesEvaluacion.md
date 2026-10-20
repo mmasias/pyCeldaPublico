@@ -12,7 +12,8 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear Ponderación**](crearPonderacionEvaluacion.md)|<sub>crearPonderacionEvaluacion()</sub>|
+|[**Editar texto del sistema de evaluación**](editarTextoSistemaEvaluacion.md)|<sub>editarTextoSistemaEvaluacion()</sub>|
+|[**Crear Instrumento**](crearPonderacionEvaluacion.md)|<sub>crearPonderacionEvaluacion()</sub>|
 |[**Abrir**](abrirPonderacionEvaluacion.md)|<sub>abrirPonderacionEvaluacion()</sub>|
 |[**Eliminar**](eliminarPonderacionEvaluacion.md)|<sub>eliminarPonderacionEvaluacion()</sub>|
 |[**Volver a la guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|

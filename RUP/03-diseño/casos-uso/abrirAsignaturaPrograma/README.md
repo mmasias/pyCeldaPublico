@@ -36,7 +36,7 @@ Bajada a diseño del caso de análisis [`abrirAsignaturaPrograma()`](/RUP/02-ana
 
 - **Vista**: `AbrirAsignaturaProgramaView` (React) -- pide `GET /api/v1/asignaturas-programa/{asignatura_programa_id}`; presenta datos propios, profesorado, `MetodologiaDocente` y `ResultadoAprendizaje` asociados.
 - **API**: `routers/asignatura_programa.py::obtener_asignatura_programa(asignatura_programa_id)` -- función suelta.
-- **Modelo**: ninguno con lógica propia invocada -- `AsignaturaPrograma`, `MetodologiaDocente`, `ResultadoAprendizaje` y `Profesor` portan los datos presentados.
+- **Modelo**: `AsignaturaPrograma.comprobacion_horas_ects()` (#786), la única lógica propia invocada -- `AsignaturaPrograma`, `MetodologiaDocente`, `ResultadoAprendizaje` y `Profesor` portan los datos presentados.
 - **Repositorio**: `AsignaturaProgramaRepository.obtener(asignatura_programa_id)` / `.listar_metodologias_docentes_de(asignatura_programa_id)` / `.listar_resultados_aprendizaje_de(asignatura_programa_id)` / `.listar_profesorado_de(asignatura_programa_id)` -- cuatro métodos sobre el mismo agregado.
 
 ## Decisiones de diseño
@@ -48,10 +48,12 @@ Bajada a diseño del caso de análisis [`abrirAsignaturaPrograma()`](/RUP/02-ana
 
 **Competencias (issue [#761](https://github.com/mmasias/pyCelda/issues/761))**: `AsignaturaProgramaDetalleResponse` gana `competencias` (`CompetenciaRepository.listar_de_la_asignatura_programa()`), en `_detalle_asignatura_programa()`, común a las dos vistas.
 
+**Comprobación de horas por ECTS (issue [#786](https://github.com/mmasias/pyCelda/issues/786))**: `AsignaturaProgramaDetalleResponse` gana `comprobacion_horas_ects: ComprobacionHorasEctsAsignaturaResponse | None` (`ects`, `horas_esperadas`, `horas_asignatura`, `sin_horas`, `cuadra`, `diferencia`), en `_detalle_asignatura_programa()`: la reciben `GET /api/v1/asignaturas-programa/{id}` (Director) y `GET /api/v1/admin/asignaturas-programa/{id}` (Admin) sin endpoint nuevo. La calcula el modelo, `AsignaturaPrograma.comprobacion_horas_ects()`, con el criterio de `Materia.comprobacion_horas_ects()` ([`abrirMateria()`](/RUP/03-diseño/casos-uso/abrirMateria/README.md), #772): suma `horas` de `AsignaturaPrograma.actividades_formativas` y la compara con `HORAS_POR_ECTS` (25, importada de `models/materia.py`) × `ects`, redondeando a dos decimales. `None` si `ects` es 0 o nulo (no hay con qué comparar); `sin_horas` verdadero si la suma es 0, para que la Vista diga que la asignatura aún no tiene horas en lugar de dar una discrepancia por todas (títulos sin actividades formativas en el RUCT). Sin consulta adicional: las filas ya se cargan para la sección. Las Vistas (`AsignaturaPrograma.tsx`, `AsignaturaProgramaAdmin.tsx`) pintan la línea con el componente compartido `LineaHorasEcts`: "Horas de la asignatura: X de Y (N ECTS a 25 h) -- OK / Discrepancia (±d)", o "sin horas de actividades formativas (Y esperadas: N ECTS a 25 h)". Informativa: no bloquea ningún guardado.
+
 ## Referencias
 
 - [`abrirAsignaturaPrograma()` en Análisis](/RUP/02-analisis/casos-uso/abrirAsignaturaPrograma/README.md) -- diagrama de colaboración origen.
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/README.md).
-- [`abrirMateria()` en Diseño](/RUP/03-diseño/casos-uso/abrirMateria/README.md) -- patrón de detalle con colecciones, sobre el agregado vecino.
+- [`abrirMateria()` en Diseño](/RUP/03-diseño/casos-uso/abrirMateria/README.md) -- patrón de detalle con colecciones, sobre el agregado vecino; molde de la comprobación por ECTS (#772).
 - [`editarAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarAsignaturaPrograma/README.md) -- edición de los datos propios que esta pantalla presenta.
 - [`editarActividadesFormativasAsignaturaPrograma()` en Diseño](/RUP/03-diseño/casos-uso/editarActividadesFormativasAsignaturaPrograma/README.md) -- el clúster de `ActividadFormativa` (discussion [#227](https://github.com/mmasias/pyCelda/discussions/227)) suma la sección "Actividades formativas" (`horas` de la asignatura + `porcentaje_presencialidad` de la `Materia`, issue [#772](https://github.com/mmasias/pyCelda/issues/772), vía `serializar_actividades_formativas_asignatura_programa(db, materia_id, filas)`); `AsignaturaProgramaDetalleResponse` gana el campo al construir el clúster, con audit del agregado `AsignaturaPrograma`.

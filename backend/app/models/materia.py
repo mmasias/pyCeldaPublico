@@ -132,7 +132,12 @@ class Materia(Base):
         Medidor BLANDO -- informa, no bloquea ningún guardado (mismo espíritu
         que `Guia.bloqueo_ponderaciones()`, que sí bloquea; aquí no hay nada que
         bloquear). Recorre todas las filas de `self.actividades_formativas` en orden
-        canónico, no solo las que tienen horas > 0."""
+        canónico, no solo las que tienen horas > 0.
+
+        Con optatividad (#786) no se compara: cada asignatura lleva 25 h por
+        ECTS y la suma de las de la materia supera sus horas por diseño."""
+        if self.con_optatividad():
+            return []
         horas_por_actividad: dict[int, float] = {}
         for asignatura_programa in self.asignaturas_programa:
             for afag in asignatura_programa.actividades_formativas:
@@ -172,10 +177,10 @@ class Materia(Base):
         `HORAS_POR_ECTS` × `ects` (#772). Medidor blando e informativo, como
         `discrepancias_actividades_formativas()`: no reparte ni bloquea nada.
         Sin `ects` (materia sin importar del RUCT) no hay con qué comparar."""
-        if self.ects is None:
+        comprobacion = self._horas_frente_a_ects()
+        if comprobacion is None:
             return None
-        horas_esperadas = round(float(self.ects) * HORAS_POR_ECTS, 2)
-        horas_materia = round(sum(float(f.horas) for f in self.actividades_formativas), 2)
+        horas_materia, horas_esperadas = comprobacion
         diferencia = round(horas_materia - horas_esperadas, 2)
         return {
             "ects": float(self.ects),
@@ -183,4 +188,35 @@ class Materia(Base):
             "horas_materia": horas_materia,
             "cuadra": diferencia == 0,
             "diferencia": diferencia,
+            "ects_asignaturas": self.ects_asignaturas(),
+            "con_optatividad": self.con_optatividad(),
         }
+
+    def ects_asignaturas(self) -> float:
+        return round(sum(float(ap.ects or 0) for ap in self.asignaturas_programa), 1)
+
+    def con_optatividad(self) -> bool:
+        """La materia suma 25 h por ECTS y sus asignaturas no suman sus ECTS
+        (#786): optativas o idiomas alternativos, o asignaturas de la memoria
+        en otra materia. Cada asignatura recibe entonces 25 h por ECTS
+        (`repartir_horas_asignaturas.py`) y la regla AfM = Σ AfAdM no se
+        cumple por diseño. El mismo criterio usa ese script."""
+        comprobacion = self._horas_frente_a_ects()
+        ects_asignaturas = self.ects_asignaturas()
+        # Sin ECTS, sin horas o sin asignaturas con ECTS no hay reparto que
+        # comparar: el script tampoco las toca.
+        return (
+            comprobacion is not None
+            and comprobacion[1] > 0
+            and comprobacion[0] == comprobacion[1]
+            and ects_asignaturas > 0
+            and ects_asignaturas != float(self.ects)
+        )
+
+    def _horas_frente_a_ects(self) -> tuple[float, float] | None:
+        if self.ects is None:
+            return None
+        return (
+            round(sum(float(f.horas) for f in self.actividades_formativas), 2),
+            round(float(self.ects) * HORAS_POR_ECTS, 2),
+        )

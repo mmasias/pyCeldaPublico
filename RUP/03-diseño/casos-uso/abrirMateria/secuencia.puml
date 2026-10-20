@@ -50,7 +50,7 @@ deactivate DB
 AsignaturaProgramaRepo --> API: List[AsignaturaPrograma]
 deactivate AsignaturaProgramaRepo
 
-note right of API: #772: MateriaDetalleResponse lleva además codigo_ruct, ects y\ncomprobacion_horas_ects = Materia.comprobacion_horas_ects()\n(Σ horas de actividades_formativas frente a 25 h × ects; None sin ects),\nsin consulta adicional
+note right of API: #772: MateriaDetalleResponse lleva además codigo_ruct, ects y\ncomprobacion_horas_ects = Materia.comprobacion_horas_ects()\n(Σ horas de actividades_formativas frente a 25 h × ects; None sin ects),\nsin consulta adicional; #786: con ects_asignaturas y con_optatividad
 API --> Vista: 200 OK (MateriaDetalleResponse JSON, con las tres colecciones)
 deactivate API
 Vista --> DirectorPrograma: muestra MetodologiaDocente/ResultadoAprendizaje asociados y AsignaturaPrograma
@@ -91,7 +91,7 @@ deactivate DB
 AsignaturaProgramaRepo --> API: List[AsignaturaPrograma]
 deactivate AsignaturaProgramaRepo
 
-note right of API: #772: también codigo_ruct, ects y comprobacion_horas_ects\n(Materia.comprobacion_horas_ects(), mismo cálculo que la variante DirectorPrograma)
+note right of API: #772: también codigo_ruct, ects y comprobacion_horas_ects\n(Materia.comprobacion_horas_ects(), mismo cálculo que la variante DirectorPrograma,\ncon ects_asignaturas y con_optatividad, #786)
 API --> Vista: 200 OK (MateriaAdminDetalleResponse JSON, con asignaturas_programa)
 deactivate API
 Vista --> Admin: muestra datos de la Materia y la tabla "Asignaturas de esta materia"

@@ -15,7 +15,7 @@ state abrirPrograma as "abrirPrograma()" {
     [*] -[#green]-> [*]
     note on link
     <b>Sistema</b> muestra datos del Programa
-    <b>Sistema</b> muestra código RUCT y denominación oficial del Programa
+    <b>Sistema</b> muestra código RUCT, denominación oficial y norma del Programa
     end note
 }
 

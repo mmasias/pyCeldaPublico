@@ -103,6 +103,11 @@ Traducción a clases de análisis del caso de uso [`abrirAsignaturaPrograma()`](
 
 **Competencias (issue [#761](https://github.com/mmasias/pyCelda/issues/761))**: la ficha añade las `Competencia` asignadas a la asignatura.
 
+**Comprobación de horas por ECTS (issue [#786](https://github.com/mmasias/pyCelda/issues/786))**, mismo criterio que la de la `Materia` ([`abrirMateria()`](../abrirMateria/README.md), #772):
+- `AbrirAsignaturaProgramaView` presenta, bajo las actividades formativas, las horas de la asignatura frente a 25 h × `ects`: OK, la discrepancia, o que aún no tiene horas.
+- `AsignaturaPrograma` calcula la comprobación (`comprobacionHorasEcts()`): suma las `horas` de sus `ActividadFormativaAsignaturaPrograma` y la compara con `HORAS_POR_ECTS` (25) × `ects`; devuelve `ects`, horas esperadas, horas de la asignatura, si no tiene horas, si cuadra y la diferencia, o nada si la asignatura no tiene `ects`. Medidor blando: no reparte ni bloquea nada.
+- `AsignaturaProgramaController` no gana responsabilidades: recoge el resultado de `AsignaturaPrograma.comprobacionHorasEcts()` al cargar la `AsignaturaPrograma`.
+
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframes.puml) -- fuente de verdad del contenido presentado.

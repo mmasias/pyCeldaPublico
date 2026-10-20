@@ -1,7 +1,7 @@
 @startsalt abrirGuia-wireframe-profesor
 {
     <b>GUÍA DOCENTE</b>
-    <b>Programación I (GII)</b>
+    <b>GII · Programación I</b>
     ====
     {#
         <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ] neutro
@@ -160,7 +160,7 @@
     }
     [ <b>Gestionar bibliografía</b> ]
     ====
-    {[Aprobar] | [Rechazar] | [Editar semestre] | [Guardar borrador] | [Volver al listado de guías]}
+    {[Aprobar] | [Rechazar] | [Guardar borrador] | [Volver al listado de guías]}
     <i>Corrección excepcional del director: guardar una edición de contenido, evaluación, bibliografía o planificación docente sobre una guía aprobada la devuelve a borrador, y sobre una guía en revisión la rechaza. El envío a revisión sigue siendo del profesorado.</i>
 }
 @endsalt

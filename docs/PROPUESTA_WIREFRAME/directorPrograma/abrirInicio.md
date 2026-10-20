@@ -15,8 +15,8 @@
 |**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
 |[**Abrir programas**](abrirProgramas.md)|<sub>abrirProgramas()</sub>|
 |[**Abrir programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
-|[**Abrir asignaturas programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
-|[**Abrir guia**](abrirGuia.md)|<sub>abrirGuia()</sub>|
+|[**Abrir asignaturas del programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
+|[**Abrir guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
 |[**Editar perfil propio**](editarPerfilPropio.md)|<sub>editarPerfilPropio()</sub>|
 
 </div>

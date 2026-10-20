@@ -22,6 +22,7 @@ state abrirAsignaturaPrograma as "abrirAsignaturaPrograma()" {
     note on link
     <b>Sistema</b> muestra datos de la AsignaturaPrograma
     <b>Sistema</b> muestra Competencias de la AsignaturaPrograma
+    <b>Sistema</b> muestra comprobación de horas de la AsignaturaPrograma frente a 25 h por ECTS
     end note
 }
 

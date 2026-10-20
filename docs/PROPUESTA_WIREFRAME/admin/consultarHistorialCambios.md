@@ -8,12 +8,12 @@
 
 <div align=center>
 
-|**Autor**|**Vista principal**|
+|**Vista principal**|**Autor**|
 |---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/wireframe-autor.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/wireframe.svg)|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/wireframe-autor.svg)|
 
 |Botón|CdU|
 |---|---|
-|[**Abrir panel administracion**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
+|[**Abrir panel de administración**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
 
 </div>

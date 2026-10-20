@@ -56,7 +56,7 @@ Se hace desde la materia y desde la asignatura, en su sección **Competencias** 
 
 En el desplegable, cada competencia aparece con su código y el comienzo de su texto; el texto completo de la elegida se ve debajo.
 
-Las competencias de una asignatura se ven también en su guía docente, en la parte de información adicional, en solo lectura.
+Las competencias de una asignatura se ven también en su guía docente, en la parte de información adicional, en solo lectura. En los títulos cuya memoria las define (los anteriores al RD 822/2021) esa parte aparece siempre y, si la asignatura aún no tiene ninguna, el profesorado ve el aviso "Sin competencias asignadas a la asignatura": las reparte el director de programa. En las materias con una sola asignatura, la importación desde el RUCT ya se las ha dado todas. En los títulos RD 822/2021, cuya memoria no define competencias, la guía no muestra esa parte.
 
 ---
 

@@ -17,6 +17,13 @@ programas_directores_programa = Table(
     Column("director_programa_id", ForeignKey("directores_programa.id"), primary_key=True),
 )
 
+# Norma de la memoria verificada del título (#794), del campo "Nivel" de sus
+# datos básicos en el RUCT. Hoy la carga la migración de esquema 5
+# (migrar_norma_programa.py); solo lectura en la interfaz. NULL = desconocida.
+NORMA_RD_1393 = "RD 1393/2007"
+NORMA_RD_822 = "RD 822/2021"
+
+
 class Programa(Base):
     __tablename__ = "programas"
 
@@ -38,6 +45,7 @@ class Programa(Base):
     denominacion_oficial: Mapped[str | None] = mapped_column(
         String(300), nullable=True
     )
+    norma: Mapped[str | None] = mapped_column(String(20), nullable=True)
 
     directores: Mapped[list["DirectorPrograma"]] = relationship(
         secondary=programas_directores_programa
@@ -45,6 +53,12 @@ class Programa(Base):
     materias: Mapped[list["Materia"]] = relationship(
         back_populates="programa", overlaps="programa"
     )
+
+    @property
+    def define_competencias(self) -> bool:
+        """Las memorias RD 1393 definen competencias por Materia; las RD 822 no
+        (#788). Norma desconocida: como RD 1393, el formato con más que mostrar."""
+        return self.norma != NORMA_RD_822
 
     def actualizar(self, nombre: str) -> None:
         self.nombre = nombre

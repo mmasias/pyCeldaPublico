@@ -20,6 +20,7 @@ state abrirMateria as "abrirMateria()" {
     <b>Sistema</b> muestra Competencias de la Materia con su número de asignaturas
     <b>Sistema</b> muestra ActividadesFormativas de la Materia con sus horas y su presencialidad
     <b>Sistema</b> muestra comprobación de horas de la Materia frente a 25 h por ECTS
+    <b>Sistema</b> muestra optatividad de la Materia, si la Materia suma 25 h por ECTS y sus AsignaturaPrograma no suman sus ECTS
     <b>Sistema</b> muestra SistemasEvaluacion de la Materia con su código
     end note
 }

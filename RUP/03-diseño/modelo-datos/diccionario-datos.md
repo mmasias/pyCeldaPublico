@@ -140,6 +140,7 @@ Programa (titulación). `codigo` es identificador de catálogo (ej. GII).
 | `programa_padre_id` | Integer | sí | -- | FK -> programas_padre.id | -- | -- |
 | `codigo_ruct` | String(20) | sí | -- | unique | -- | código RUCT de la memoria; lo escribe la importación (#772) |
 | `denominacion_oficial` | String(300) | sí | -- | -- | -- | denominación del RUCT; la escribe la importación (#772) |
+| `norma` | String(20) | sí | -- | -- | -- | RD 1393/2007 o RD 822/2021, del campo Nivel del RUCT; la carga la migración de esquema 5; NULL = desconocida (#794) |
 
 #### `materias`
 

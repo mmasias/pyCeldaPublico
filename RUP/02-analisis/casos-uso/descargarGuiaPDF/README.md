@@ -84,7 +84,7 @@ En la rama verde, el PDF que se presenta es el render de la plantilla oficial de
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/descargarGuiaPDF/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/descargarGuiaPDF/wireframes.puml) -- fuente de verdad del `<<choice>>` y de por qué la interfaz no dispara la rama roja.
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Guia{fechaGeneracionPDF}`.
-- [`editarSemestreGuia()`](../editarSemestreGuia/README.md) -- quien regenera `fechaGeneracionPDF` cuando aplica.
+- `editarSemestreGuia()` (retirado, [#782](https://github.com/mmasias/pyCelda/issues/782)) -- quien regenera `fechaGeneracionPDF` cuando aplica.
 - [`abrirGuia()`](../abrirGuia/README.md) -- mismo criterio de caso de uso compartido sin herencia entre `Admin` y `Profesor`.
 - [`previsualizarGuia()`](../previsualizarGuia/README.md) -- comparte `RenderizadorGuiaDocente` (misma plantilla, salida HTML en vez de PDF).
 - [Discussion #218](https://github.com/mmasias/pyCelda/discussions/218) -- motor de render del v1, plantilla única para PDF y HTML.
