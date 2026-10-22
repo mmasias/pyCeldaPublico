@@ -36,3 +36,13 @@ Para el mapa completo de qué depende de qué y quién gestiona cada bloque del 
 5. [Competencias](competencias.md)
 6. [Metodologías docentes y actividades formativas](metodologiasDelPrograma.md)
 7. [Revisar y aprobar guías](revisarYAprobarGuias.md)
+
+## Estados de una guía en CELDA
+
+<div align=center>
+
+|![](https://raw.githubusercontent.com/mmasias/pyCelda/main/images/RUP/00-modelo-del-dominio/estados-entidades/guia.svg?token=GHSAT0AAAAAAEDVXSTMGADNIP4VE3WZJF362WZ2BNQ)
+|-
+|
+
+</div>
