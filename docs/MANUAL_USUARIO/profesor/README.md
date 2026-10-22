@@ -26,3 +26,13 @@ Para el mapa completo de qué depende de qué y quién gestiona cada bloque del 
 5. [Referencias bibliográficas](referenciasBibliograficas.md)
 6. [Planificación docente y cronograma](planificacionDocenteYCronograma.md)
 7. [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)
+
+## Estados de una guía en CELDA
+
+<div align=center>
+
+|![](https://raw.githubusercontent.com/mmasias/pyCelda/main/images/RUP/00-modelo-del-dominio/estados-entidades/guia.svg?token=GHSAT0AAAAAAEDVXSTMGADNIP4VE3WZJF362WZ2BNQ)
+|-
+|
+
+</div>
