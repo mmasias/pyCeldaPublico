@@ -22,7 +22,7 @@ GenerarPlanificacionDocenteGenericaView --> GenerarPlanificacionDocenteGenericaC
 
 GenerarPlanificacionDocenteGenericaController --> GuiaRepository: <font size=8>obtener(guiaId) : Guia
 
-GenerarPlanificacionDocenteGenericaController --> Guia: <font size=8>planificacionDocenteVacia() : boolean [404 uniforme si no imparte; 409 si no vacía]
+GenerarPlanificacionDocenteGenericaController --> Guia: <font size=8>planificacionDocenteVacia() : boolean [404 uniforme si no imparte; 409 si no vacía o sin mínimo]
 
 GenerarPlanificacionDocenteGenericaController --> SesionRepository: <font size=8>generarGenericas(guia, guia.sesionesMinimas) [N filas CLASE_TEORICA, descripcion vacía, vinculada=True, numero 1..N]
 

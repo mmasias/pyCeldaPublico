@@ -16,6 +16,7 @@ package activarCursoAcademico as "activarCursoAcademico()" {
     rectangle #F2AC4E Guia
     rectangle #F2AC4E PonderacionEvaluacion
     rectangle #F2AC4E ReferenciaBibliografica
+    rectangle #F2AC4E Sesion
 }
 
 CursosAcademicosAbierto --> ActivarCursoAcademicoView: <font size=8>activarCursoAcademico(cursoAcademicoId)
@@ -41,6 +42,8 @@ CursoAcademicoRepository --> Guia: <font size=8>por cada AsignaturaPrograma -- c
 Guia --> PonderacionEvaluacion: <font size=8>clona las de la Guia anterior (filas nuevas)
 
 Guia --> ReferenciaBibliografica: <font size=8>clona las de la Guia anterior (filas nuevas)
+
+Guia --> Sesion: <font size=8>clona las vinculadas de la Guia anterior\n(filas nuevas, numeradas 1..N)
 
 CursoAcademicoRepository -- CursoAcademico
 CursoAcademicoRepository -- AsignaturaPrograma

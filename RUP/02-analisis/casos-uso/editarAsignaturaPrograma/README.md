@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`editarAsignaturaPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/README.md): edita los 8 atributos propios de una vez, con un `<<choice>>` que bifurca solo la presentación del campo `semestreDefault` (bloqueado si ya existe alguna `Guia` para esta `AsignaturaPrograma`), no el caso de uso entero. Único caso de edición del catálogo, compartido por `DirectorPrograma` y `Admin` (issue [#602](https://github.com/mmasias/pyCelda/issues/602)). El 8.º atributo es `requisitosPrevios` (texto plano, discussion [#259](https://github.com/mmasias/pyCelda/discussions/259)), en la misma familia de campo de override que `contenido`.
+Traducción a clases de análisis del caso de uso [`editarAsignaturaPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/README.md): edita los 9 atributos propios de una vez, con un `<<choice>>` que bifurca solo la presentación del campo `semestreDefault` (bloqueado si ya existe alguna `Guia` para esta `AsignaturaPrograma`), no el caso de uso entero. Único caso de edición del catálogo, compartido por `DirectorPrograma` y `Admin` (issue [#602](https://github.com/mmasias/pyCelda/issues/602)). El 8.º atributo es `requisitosPrevios` (texto plano, discussion [#259](https://github.com/mmasias/pyCelda/discussions/259)), en la misma familia de campo de override que `contenido`. El 9.º es `sesionesMinimas` (umbral de la regla `c3` de [`enviarGuiaARevision()`](../enviarGuiaARevision/README.md)), que hasta el issue [#808](https://github.com/mmasias/pyCelda/issues/808) solo editaba `Admin`; cota 0-100, comprobada por la propia `AsignaturaPrograma` (`sesionesMinimasEnCota(valor)`). Las `Guia` lo leen en vivo, así que editarlo no toca ninguna `Guia`.
 
 <div align=center>
 
@@ -26,7 +26,7 @@ Traducción a clases de análisis del caso de uso [`editarAsignaturaPrograma()`]
 ### `EditarAsignaturaProgramaView`
 
 **Responsabilidades:**
-- presenta los 8 campos editables (`curso`, `caracter`, `idioma`, `semestreDefault`, `nombre`, `ects`, `contenido`, `requisitosPrevios`) con sus valores actuales.
+- presenta los 9 campos editables (`curso`, `caracter`, `sesionesMinimas`, `idioma`, `semestreDefault`, `nombre`, `ects`, `contenido`, `requisitosPrevios`) con sus valores actuales.
 - muestra `semestreDefault` bloqueado, con su motivo, cuando `semestreDefaultBloqueado` es verdadero.
 - ofrece la navegación a solicitar guardar.
 
@@ -41,7 +41,7 @@ Traducción a clases de análisis del caso de uso [`editarAsignaturaPrograma()`]
 
 **Responsabilidades:**
 - recupera la `AsignaturaPrograma` a editar y determina si `semestreDefault` está bloqueado (`obtenerParaEditar(asignaturaProgramaId)`).
-- aplica los cambios confirmados (`guardarCambios(asignaturaProgramaId, curso, caracter, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios)`).
+- aplica los cambios confirmados (`guardarCambios(asignaturaProgramaId, curso, caracter, sesionesMinimas, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios)`), tras rechazar `sesionesMinimas` fuera de cota (`sesionesMinimasEnCota(valor)`).
 
 **Colaboraciones:**
 - **Entrada:** `EditarAsignaturaProgramaView`.
@@ -52,7 +52,8 @@ Traducción a clases de análisis del caso de uso [`editarAsignaturaPrograma()`]
 ### `AsignaturaPrograma`
 
 **Responsabilidades:**
-- actualiza sus 8 atributos propios (`actualizar(curso, caracter, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios)`); aplica `semestreDefault` solo si no llega bloqueado -- protección de la invariante en el propio Modelo, no solo en la Vista.
+- actualiza sus 9 atributos propios (`actualizar(curso, caracter, sesionesMinimas, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios)`); aplica `semestreDefault` solo si no llega bloqueado -- protección de la invariante en el propio Modelo, no solo en la Vista.
+- responde si un `sesionesMinimas` está en cota 0-100 (`sesionesMinimasEnCota(valor)`).
 
 **Colaboraciones:**
 - **Entrada:** `AsignaturaProgramaController`, vía `AsignaturaProgramaRepository`.

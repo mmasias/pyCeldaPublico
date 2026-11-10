@@ -75,7 +75,7 @@ Todas viven en la capa de aplicación y están razonadas en el [README del model
 
 - `(Programa, Asignatura)` es único -- una asignatura no aparece dos veces en el mismo programa.
 - La suma de `ponderacion` de las `PonderacionEvaluacion` de una guía da 100%, y la suma por `SistemaEvaluacion` cae en su rango `[ponderacion_minima, ponderacion_maxima]`.
-- Una `Guia` no puede enviarse a revisión con menos de `guias.sesiones_minimas` `Sesion` vinculadas (regla c3 de `enviarGuiaARevision`, [discussion #206](https://github.com/mmasias/pyCelda/discussions/206)); `guias.sesiones_minimas` es un snapshot de `asignaturas_programa.sesiones_minimas` (config editable por Admin, cota 1-100) al nacer la guía.
+- Una `Guia` no puede enviarse a revisión con menos de `asignaturas_programa.sesiones_minimas` `Sesion` vinculadas (regla c3 de `enviarGuiaARevision`, [discussion #206](https://github.com/mmasias/pyCelda/discussions/206)); el mínimo es config de la asignatura (editable por Admin y DirectorPrograma, cota 0-100) y la `Guia` lo lee en vivo (`Guia.sesiones_minimas`, property; 25 si la guía no tiene asignatura). La columna `guias.sesiones_minimas`, copia tomada al nacer la guía y resincronizada por el issue [#804](https://github.com/mmasias/pyCelda/issues/804), se retiró en el esquema 7 (issue [#808](https://github.com/mmasias/pyCelda/issues/808)).
 - Los `ResultadoAprendizaje` de una `AsignaturaPrograma` son subconjunto de los de su `Materia`.
 - El `SistemaEvaluacion` de cada `PonderacionEvaluacion` pertenece a la misma `Materia` que la `AsignaturaPrograma` de la guía.
 - Un `Programa` no puede quedarse sin ningún `DirectorPrograma`.
@@ -185,7 +185,7 @@ Concreción de una asignatura en el plan de un programa (clase de asociación (P
 | `semestre_default` | Integer | no | -- | -- | -- | -- |
 | `contenido` | Text | no | '' | -- | -- | semilla del temario al nacer la Guia (discussion #191) |
 | `requisitos_previos` | Text | sí | -- | -- | -- | texto plano; render en vivo de la guía (sección 2) y editable por DirectorPrograma en editarAsignaturaPrograma; NULL normaliza la familia "No aplica" en el backfill; congelado retroactivo compartido con RA en #219 (discussion #259, ítem 2 de #217) |
-| `sesiones_minimas` | Integer | no | 25 | -- | 1-100 (validado en el router) | mínimo de Sesion vinculadas para enviar la Guia a revisión (regla c3, discussion #206); config editable por Admin |
+| `sesiones_minimas` | Integer | no | 25 | -- | 0-100 (validado en el router) | mínimo de Sesion vinculadas para enviar la Guia a revisión (regla c3, discussion #206); config editable por Admin y DirectorPrograma; la Guia lo lee en vivo (#808) |
 | `estado` | String(20) | no | 'Activo' | -- | {Activo, Extinguido} | el modelo de dominio lo describe como Vigente/Extinguido; el código nace 'Activo' |
 
 #### `sistemas_evaluacion`
@@ -365,7 +365,6 @@ Guía docente: clase de asociación (AsignaturaPrograma, CursoAcademico), fase d
 | `plantilla_evaluacion` | String(30) | sí | -- | -- | -- | -- |
 | `instrumento_extraordinario` | String(300) | sí | -- | -- | -- | -- |
 | `porcentaje_recuperable` | Integer | sí | -- | -- | -- | -- |
-| `sesiones_minimas` | Integer | no | 25 | -- | -- | snapshot de asignaturas_programa.sesiones_minimas al nacer la Guia (discussion #206), como semestre y contenido |
 | `programa_id` | Integer | sí | -- | -- | -- | FK lógica, sin FK física; denormalizado |
 | `asignatura_programa_id` | Integer | sí | -- | FK -> asignaturas_programa.id | -- | nullable: guías sin AsignaturaPrograma (huérfanas históricas / del programa dirigido) |
 | `curso_academico_id` | Integer | no | -- | FK -> cursos_academicos.id | -- | -- |

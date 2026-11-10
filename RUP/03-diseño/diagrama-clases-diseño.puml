@@ -463,7 +463,7 @@ package Modelo {
     estado
     semestre
     contenido
-    sesiones_minimas
+    /sesiones_minimas
     plantilla_evaluacion
     instrumento_extraordinario
     porcentaje_recuperable
@@ -606,7 +606,7 @@ package Modelo {
     contenido
     sesiones_minimas
     estado
-    +actualizar(curso, caracter, idioma, semestre_default, nombre, ects, contenido)
+    +actualizar(curso, caracter, sesiones_minimas, idioma, semestre_default, nombre, ects, contenido)
     +actualizar_admin(materia_id, curso, caracter, sesiones_minimas)
     +sesiones_minimas_en_cota(valor)
     +comprobacion_horas_ects()

@@ -22,19 +22,21 @@ Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesora
 
 Al abrir una asignatura, la pestaña **📘 Asignaturas** queda marcada y el título dice **📘 Asignaturas › nombre de la asignatura**; pulsar **Asignaturas** en ese título vuelve a la lista. A la derecha del título, **✏️ Editar**.
 
-Debajo, la ficha de la asignatura en dos columnas: **Materia** (un enlace a la pantalla de la materia) y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** e **Idioma**; **Estado** y **Código** (el de la asignatura en el catálogo institucional). Después, a ancho completo, el **Contenido** y los **Requisitos previos**.
+Debajo, la ficha de la asignatura en dos columnas: **Materia** (un enlace a la pantalla de la materia) y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** y **Sesiones mínimas para enviar a revisión**; **Idioma** y **Estado**; y **Código** (el de la asignatura en el catálogo institucional). Después, a ancho completo, el **Contenido** y los **Requisitos previos**.
 
 Más abajo, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Metodologías docentes asociadas** y las **Actividades formativas**, con el mismo mecanismo de asociar y quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados, competencias y metodologías que ya están en la materia y todavía no están en esta asignatura. Al final, el **Profesorado asignado**, de solo lectura: asignar o quitar profesorado lo gestiona Admin, no esta pantalla.
 
 ## Editar una asignatura de programa
 
 1. Pulsar **✏️ Editar**.
-2. Cambiar los campos que hagan falta. Los campos cortos van en una tabla de tres filas: **Nombre** y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** e **Idioma**. Curso, Carácter e Idioma son obligatorios. El Semestre por defecto es editable solo si la asignatura todavía no tiene ninguna guía creada -- en caso contrario aparece bloqueado, con una nota debajo. Debajo de la tabla, **Contenido** y **Requisitos previos**, de edición libre.
+2. Cambiar los campos que hagan falta. Los campos cortos van en una tabla de cuatro filas: **Nombre** y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** e **Idioma**; y **Sesiones mínimas**, sola. Curso, Carácter, Idioma y Sesiones mínimas son obligatorios. El Semestre por defecto es editable solo si la asignatura todavía no tiene ninguna guía creada -- en caso contrario aparece bloqueado, con una nota debajo. Debajo de la tabla, **Contenido** y **Requisitos previos**, de edición libre.
 3. Pulsar **Guardar**. En cuanto hay algún cambio, aparece también un **Guardar** arriba, con el aviso "Tienes cambios sin guardar", para no tener que bajar hasta el final del formulario.
 
 Para salir sin guardar, **Cancelar**, arriba a la derecha o al final del formulario. Si hay cambios sin guardar, pide confirmación antes de descartarlos.
 
 Dejar Requisitos previos vacío equivale a "No aplica" en la guía docente.
+
+**Sesiones mínimas** es el número mínimo de sesiones de planificación docente que debe tener la guía para poder enviarla a revisión: de 0 a 100 (0 si la asignatura no tiene sesiones, como el TFG o las prácticas). Fuera de ese rango no se guarda. El cambio se aplica al momento a todas las guías de la asignatura; como se comprueba al enviar a revisión, una guía que ya está en revisión o aprobada no se ve afectada hasta que vuelva a enviarse.
 
 ## Actividades formativas de la asignatura
 

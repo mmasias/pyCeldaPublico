@@ -167,7 +167,7 @@ def test_enviar_guia_a_revision_rechaza_si_planificacion_docente_incompleta(
     """Regla c3 (discussion #206): con c1 (nada pendiente) y c2 (ponderaciones
     OK) satisfechas, la Guia sigue sin poder enviarse si tiene menos de
     sesiones_minimas Sesion vinculadas."""
-    guia_vinculada.sesiones_minimas = 3
+    guia_vinculada.asignatura_programa.sesiones_minimas = 3
     db_session.commit()
 
     sistema = SistemaEvaluacion(
@@ -379,7 +379,7 @@ def test_enviar_guia_a_revision_sistema_sin_minimo_en_cero_no_bloquea(
 def test_enviar_guia_a_revision_permitido_al_alcanzar_sesiones_minimas(
     client, db_session, guia_vinculada, materia
 ):
-    guia_vinculada.sesiones_minimas = 2
+    guia_vinculada.asignatura_programa.sesiones_minimas = 2
     db_session.commit()
 
     sistema = SistemaEvaluacion(
@@ -480,3 +480,12 @@ def test_enviar_guia_a_revision_plantilla_sin_campos_no_exige_la_extraordinaria(
 
     resp = client.post(f"/api/v1/guias/{guia_vinculada.id}/enviar-a-revision")
     assert resp.status_code == 200
+
+
+def test_guia_sin_asignatura_programa_exige_el_minimo_por_defecto():
+    """#808: la Guia lee el mínimo de su AsignaturaPrograma; sin ella (dato
+    legado), el valor por defecto de la asignatura."""
+    from app.models.asignatura_programa import SESIONES_MINIMAS_POR_DEFECTO
+    from app.models.guia import Guia
+
+    assert Guia(estado="Borrador").sesiones_minimas == SESIONES_MINIMAS_POR_DEFECTO == 25

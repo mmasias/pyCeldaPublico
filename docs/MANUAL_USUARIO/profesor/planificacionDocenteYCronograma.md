@@ -12,7 +12,11 @@ El cronograma de sesiones de la asignatura: una lista numerada de las clases pre
 
 ## Cuándo se necesita
 
-Antes de poder enviar la guía a revisión, es necesario alcanzar un número mínimo de sesiones registradas. Mientras la guía está en borrador o rechazada y no se llega, la propia pantalla lo indica junto al número de sesiones, por ejemplo "12 sesiones (mínimo 25)". Ese mínimo lo fija Admin para la asignatura.
+Antes de poder enviar la guía a revisión, es necesario alcanzar un número mínimo de sesiones registradas. Mientras la guía está en borrador o rechazada y no se llega, la propia pantalla lo indica junto al número de sesiones, por ejemplo "12 sesiones (mínimo 25)". Ese mínimo lo fijan para la asignatura Admin o el director de programa; si lo cambian, la guía usa el nuevo desde ese momento.
+
+## Al empezar un curso académico
+
+Cuando Admin activa un curso nuevo, la guía de ese curso llega con la planificación docente heredada de la guía del curso anterior: las mismas sesiones guardadas, en el mismo orden, numeradas de nuevo desde 1. Las filas que quedaron sin guardar no pasan. Basta con revisarla y ajustar lo que haya cambiado; para enviar la guía a revisión tiene que cumplir el mínimo de sesiones vigente de la asignatura. Si la asignatura no tenía guía en el curso anterior, la planificación empieza vacía.
 
 ## Cómo llegar
 
@@ -54,7 +58,7 @@ Pensado para sesiones consecutivas parecidas -- un tema que continúa, una prác
 
 ## Arrancar la planificación de golpe
 
-Si la guía todavía no tiene ninguna sesión creada, aparece el botón **Crear N sesiones genéricas** (N es el mínimo exigido para la asignatura), en la fila de la leyenda, a la derecha. Es un atajo para no partir de una tabla completamente vacía.
+Si la guía todavía no tiene ninguna sesión creada y la asignatura exige un mínimo, aparece el botón **Crear N sesiones genéricas** (N es el mínimo exigido para la asignatura), en la fila de la leyenda, a la derecha. Es un atajo para no partir de una tabla completamente vacía.
 
 1. Pulsar **Crear N sesiones genéricas**.
 2. El botón cambia a **Crear N sesiones genéricas (pulsa de nuevo para confirmar)**. Pulsarlo otra vez confirma la creación; **Cancelar** la descarta.

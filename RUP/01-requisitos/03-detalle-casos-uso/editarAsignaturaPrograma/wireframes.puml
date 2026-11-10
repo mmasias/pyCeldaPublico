@@ -13,6 +13,9 @@
         ^Español^
         <b>Semestre por defecto (*):</b>
         ^1^
+        <b>Sesiones mínimas (*):</b>
+        "25 "
+        <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100; 0 si la asignatura no tiene sesiones).</i>
         --
         <b>Nombre:</b>
         "Programación I                                    "
@@ -46,6 +49,9 @@
         <b>Semestre por defecto:</b>
         "1  " !!disabled
         <i>Ya existen Guías creadas con este semestre por defecto -- no editable.</i>
+        <b>Sesiones mínimas (*):</b>
+        "25 "
+        <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100; 0 si la asignatura no tiene sesiones).</i>
         --
         <b>Nombre:</b>
         "Programación I                                    "

@@ -5,6 +5,7 @@ from sqlalchemy import Column, ForeignKey, String, Table, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base, DateTimeUTC
+from app.models.asignatura_programa import SESIONES_MINIMAS_POR_DEFECTO
 from app.models.plantilla_evaluacion import (
     componer_texto_convocatorias,
     es_plantilla,
@@ -105,10 +106,6 @@ class Guia(Base):
         String(300), nullable=True
     )
     porcentaje_recuperable: Mapped[int | None] = mapped_column(nullable=True)
-    # Snapshot de AsignaturaPrograma.sesiones_minimas al nacer la Guia (como
-    # semestre y contenido -- discussion #206). El mínimo de Sesion vinculadas
-    # que exige planificacion_docente_completa() antes de enviar a revisión.
-    sesiones_minimas: Mapped[int] = mapped_column(default=25)
     programa_id: Mapped[int | None] = mapped_column(nullable=True)
     asignatura_programa_id: Mapped[int | None] = mapped_column(
         ForeignKey("asignaturas_programa.id"), nullable=True
@@ -394,6 +391,17 @@ class Guia(Base):
 
     def sesiones_vinculadas_count(self) -> int:
         return len([s for s in self.sesiones if s.vinculada])
+
+    @property
+    def sesiones_minimas(self) -> int:
+        """Mínimo de Sesion vinculadas que exige planificacion_docente_completa()
+        antes de enviar a revisión (discussion #206); 0 = sin mínimo. Se lee en
+        vivo de la AsignaturaPrograma (#808): la regla c3 solo se aplica al
+        enviar, así que no hace falta una copia propia que sincronizar (era
+        la columna guias.sesiones_minimas, retirada en el esquema 7)."""
+        if self.asignatura_programa is None:
+            return SESIONES_MINIMAS_POR_DEFECTO
+        return self.asignatura_programa.sesiones_minimas
 
     def planificacion_docente_completa(self) -> bool:
         """Regla c3 de enviarGuiaARevision (discussion #206): la planificación

@@ -23,9 +23,11 @@ AsignaturaProgramaController --> GuiaRepository: <font size=8>existeAlgunaDe(asi
 
 AsignaturaProgramaController --> EditarAsignaturaProgramaView: <font size=8>AsignaturaPrograma, semestreDefaultBloqueado : boolean
 
-EditarAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>guardarCambios(asignaturaProgramaId, curso, caracter, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios) : AsignaturaPrograma
+EditarAsignaturaProgramaView --> AsignaturaProgramaController: <font size=8>guardarCambios(asignaturaProgramaId, curso, caracter, sesionesMinimas, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios) : AsignaturaPrograma
 
-AsignaturaProgramaController --> AsignaturaPrograma: <font size=8>actualizar(curso, caracter, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios)
+AsignaturaProgramaController --> AsignaturaPrograma: <font size=8>sesionesMinimasEnCota(sesionesMinimas) : boolean
+
+AsignaturaProgramaController --> AsignaturaPrograma: <font size=8>actualizar(curso, caracter, sesionesMinimas, idioma, semestreDefault, nombre, ects, contenido, requisitosPrevios)
 note right: semestreDefault se aplica solo si\nsemestreDefaultBloqueado era false
 
 AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>actualizar(asignaturaPrograma) : AsignaturaPrograma

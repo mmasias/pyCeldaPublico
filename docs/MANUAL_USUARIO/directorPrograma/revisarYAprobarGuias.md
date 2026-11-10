@@ -33,7 +33,7 @@ A continuación, la **barra de trabajo**, con el mismo fondo que la franja de pe
 - **Aprobada**: **↩️ Revocar aprobación**.
 - En cualquier estado, para ver el documento: **👁️ Previsualizar**, o **⬇️ Descargar PDF** si la guía está aprobada. La planificación docente se descarga aparte, con **⬇️ Descargar planificación** en su sección.
 
-Justo debajo de la barra, el **Resumen de completitud**, con el rótulo a la izquierda y un criterio por línea a su derecha: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo y si la convocatoria extraordinaria está concretada. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
+Justo debajo de la barra, el **Resumen de completitud**, con el rótulo a la izquierda y un criterio por línea a su derecha: si hay ítems sin guardar, si las ponderaciones de evaluación están completas y cuántas sesiones tiene la planificación docente frente al mínimo vigente de la asignatura (también en una guía ya aprobada, si el mínimo ha cambiado después) y si la convocatoria extraordinaria está concretada. Lo que falla aparece en rojo. Es informativo: no impide aprobar.
 
 Después, si hay algo que guardar, el recuadro de la corrección excepcional (ver más abajo), y el contenido de la guía: temario, evaluación, bibliografía, planificación docente e información adicional. Editarlos es tarea del profesorado, salvo esa corrección excepcional.
 

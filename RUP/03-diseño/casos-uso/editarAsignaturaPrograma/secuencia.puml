@@ -35,9 +35,9 @@ API --> Vista: 200 OK (AsignaturaProgramaParaEditarResponse JSON,\ncon semestre_
 deactivate API
 
 alt semestre_default bloqueado (existe alguna Guia)
-  Vista --> DirectorPrograma: presenta los 8 campos, semestreDefault bloqueado con su motivo
+  Vista --> DirectorPrograma: presenta los 9 campos, semestreDefault bloqueado con su motivo
 else semestre_default editable
-  Vista --> DirectorPrograma: presenta los 8 campos editables
+  Vista --> DirectorPrograma: presenta los 9 campos editables
 end
 
 DirectorPrograma -> Vista: modifica y guarda
@@ -52,21 +52,26 @@ deactivate DB
 AsignaturaProgramaRepo --> API: AsignaturaPrograma
 deactivate AsignaturaProgramaRepo
 
-API -> AsignaturaPrograma: actualizar(curso, caracter, idioma, semestre_default, nombre, ects, contenido, requisitos_previos)
-activate AsignaturaPrograma
-note right of AsignaturaPrograma: ignora semestre_default si tiene alguna Guia\n-- la protección de la invariante vive en el Modelo\n(Fat Model), no solo en la Vista.\nrequisitos_previos se normaliza (familia "No aplica" -> None)
-deactivate AsignaturaPrograma
+API -> AsignaturaPrograma: sesiones_minimas_en_cota(sesiones_minimas)
+alt sesiones_minimas fuera de 0-100
+  API --> Vista: 422 (sesiones_minimas debe estar entre 0 y 100)
+else en cota
+  API -> AsignaturaPrograma: actualizar(curso, caracter, sesiones_minimas, idioma, semestre_default, nombre, ects, contenido, requisitos_previos)
+  activate AsignaturaPrograma
+  note right of AsignaturaPrograma: ignora semestre_default si tiene alguna Guia\n-- la protección de la invariante vive en el Modelo\n(Fat Model), no solo en la Vista.\nrequisitos_previos se normaliza (familia "No aplica" -> None)
+  deactivate AsignaturaPrograma
 
-API -> AsignaturaProgramaRepo: actualizar(asignatura_programa)
-activate AsignaturaProgramaRepo
-AsignaturaProgramaRepo -> DB: UPDATE asignaturas_programa SET ...
-activate DB
-DB --> AsignaturaProgramaRepo: ok
-deactivate DB
-AsignaturaProgramaRepo --> API: AsignaturaPrograma
-deactivate AsignaturaProgramaRepo
+  API -> AsignaturaProgramaRepo: actualizar(asignatura_programa)
+  activate AsignaturaProgramaRepo
+  AsignaturaProgramaRepo -> DB: UPDATE asignaturas_programa SET ...
+  activate DB
+  DB --> AsignaturaProgramaRepo: ok
+  deactivate DB
+  AsignaturaProgramaRepo --> API: AsignaturaPrograma
+  deactivate AsignaturaProgramaRepo
 
-API --> Vista: 200 OK (AsignaturaProgramaResponse JSON)
+  API --> Vista: 200 OK (AsignaturaProgramaResponse JSON)
+end
 deactivate API
 Vista --> DirectorPrograma: datos actualizados
 deactivate Vista

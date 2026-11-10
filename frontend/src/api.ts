@@ -1442,6 +1442,7 @@ export interface AsignaturaProgramaParaEditarResponse extends AsignaturaPrograma
 export interface AsignaturaProgramaUpdate {
   curso: number;
   caracter: string;
+  sesiones_minimas: number;
   idioma: string;
   semestre_default: number;
   nombre: string;

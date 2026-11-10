@@ -66,17 +66,22 @@ Traducción a clases de análisis del caso de uso [`activarCursoAcademico()`](/R
 ### `AsignaturaPrograma`
 
 **Responsabilidades:**
-- porta `semestreDefault`/`contenido`/`sesionesMinimas`/`profesorado` -- semilla de la `Guia` nueva cuando no hay una anterior que clonar (mismas reglas de herencia que `crearAsignaturaPrograma()`); `profesorado` se lee siempre en vivo, se clone o no la `Guia` (nunca se copia del año anterior). Las `Extinguido` no reciben alta nueva -- "Extinguido bloquea altas nuevas" ([modelo del dominio](/RUP/00-modelo-del-dominio/README.md)).
+- porta `semestreDefault`/`contenido`/`sesionesMinimas`/`profesorado` -- `semestreDefault` y `profesorado` para toda `Guia` nueva; `sesionesMinimas` no se le pasa a la `Guia`: esta lo lee en vivo de su `AsignaturaPrograma` (issue [#808](https://github.com/mmasias/pyCelda/issues/808), que retira la copia al activar del issue [#806](https://github.com/mmasias/pyCelda/issues/806)) y contra él se valida la planificación heredada; `contenido`, semilla de la `Guia` nueva cuando no hay una anterior que clonar (mismas reglas de herencia que `crearAsignaturaPrograma()`); `profesorado` se lee siempre en vivo, se clone o no la `Guia` (nunca se copia del año anterior). Las `Extinguido` no reciben alta nueva -- "Extinguido bloquea altas nuevas" ([modelo del dominio](/RUP/00-modelo-del-dominio/README.md)).
 
 ### `Guia`
 
 **Responsabilidades:**
-- nace siempre `estado="Borrador"`, con `cursoAcademicoId` del curso recién activado. Si existe una `Guia` de la misma `AsignaturaPrograma` en el curso que queda desactivado, clona `semestre`/`contenido`/`plantillaEvaluacion`/`instrumentoExtraordinario`/`porcentajeRecuperable`/`sesionesMinimas` de ella (#791); si no, `semestre`/`contenido`/`sesionesMinimas` los toma de `AsignaturaPrograma`, la plantilla queda sin elegir (se aplica la del carácter) y los dos campos vacíos. `fechaCreacion`/`fechaUltimaModificacion`/`fechaGeneracionPdf`/`historial` nacen siempre frescos -- nunca clonados (ninguna columna nacida después del cierre original del contrato en discussion [#47](https://github.com/mmasias/pyCelda/discussions/47) lo cambia, reverificado en discussion [#430](https://github.com/mmasias/pyCelda/discussions/430)).
+- nace siempre `estado="Borrador"`, con `cursoAcademicoId` del curso recién activado. Si existe una `Guia` de la misma `AsignaturaPrograma` en el curso que queda desactivado, clona `contenido`/`plantillaEvaluacion`/`instrumentoExtraordinario`/`porcentajeRecuperable` de ella (#791); si no, `contenido` lo toma de `AsignaturaPrograma`; `semestre` (#743) sale siempre de `AsignaturaPrograma` y `sesionesMinimas` no es atributo propio (lo lee en vivo de ella, issue [#808](https://github.com/mmasias/pyCelda/issues/808)); la plantilla queda sin elegir (se aplica la del carácter) y los dos campos vacíos. `fechaCreacion`/`fechaUltimaModificacion`/`fechaGeneracionPdf`/`historial` nacen siempre frescos -- nunca clonados (ninguna columna nacida después del cierre original del contrato en discussion [#47](https://github.com/mmasias/pyCelda/discussions/47) lo cambia, reverificado en discussion [#430](https://github.com/mmasias/pyCelda/discussions/430)).
 
 ### `PonderacionEvaluacion` / `ReferenciaBibliografica`
 
 **Responsabilidades:**
 - si hay `Guia` anterior que clonar, cada `PonderacionEvaluacion`/`ReferenciaBibliografica` vinculada al efecto se copia como fila nueva (mismo campo `vinculada` replicado, no forzado) -- copias reales, no referencias compartidas. Si no hay `Guia` anterior, la nueva nace sin ninguna.
+
+### `Sesion`
+
+**Responsabilidades:**
+- si hay `Guia` anterior que clonar, cada `Sesion` vinculada se copia como fila nueva (`tipo` y `descripcion`, `vinculada=True`, `numero` renumerado `1..N` en su orden); las no vinculadas (pendientes de la lista de trabajo) no se copian (issue [#808](https://github.com/mmasias/pyCelda/issues/808)). Si no hay `Guia` anterior, la nueva nace sin ninguna.
 
 ### `HistorialCambio`
 
@@ -88,7 +93,7 @@ Traducción a clases de análisis del caso de uso [`activarCursoAcademico()`](/R
 
 ## Fuera de alcance de esta rebanada
 
-`Sesion` (planificación docente real, no confundir con `sesionesMinimas`) **nunca se clona** -- ni la especificación ni el cierre de discussion #430 la incluyen en el contrato: cada curso académico replanifica desde cero. `activarSemestre()` (`CursoAcademico.semestreActivo`) tampoco está en el alcance de este caso de uso.
+`Sesion` (planificación docente real, no confundir con `sesionesMinimas`) no se clonaba hasta el issue [#808](https://github.com/mmasias/pyCelda/issues/808) -- ni la especificación ni el cierre de discussion #430 la incluían en el contrato: cada curso académico replanificaba desde cero. #808 cambia esa decisión y la mete en el contrato (ver `Sesion` arriba). `activarSemestre()` (`CursoAcademico.semestreActivo`) tampoco está en el alcance de este caso de uso.
 
 ## Referencias
 

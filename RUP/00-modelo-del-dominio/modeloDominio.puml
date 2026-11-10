@@ -132,7 +132,7 @@ package "Guía docente" {
     semestre
     contenido
     estado
-    sesionesMinimas
+    /sesionesMinimas
     plantillaEvaluacion
     instrumentoExtraordinario
     porcentajeRecuperable

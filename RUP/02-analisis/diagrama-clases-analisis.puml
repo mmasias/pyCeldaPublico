@@ -345,7 +345,7 @@ package Controlador {
     +listarProfesoradoAsignado(asignaturaProgramaId) : List<Profesor>
     +listarAsignaturasProgramaDelPrograma(programaId) : List<AsignaturaPrograma>
     +obtenerParaEditar(asignaturaProgramaId) : (AsignaturaPrograma, boolean)
-    +guardarCambios(asignaturaProgramaId, curso, caracter, idioma, semestreDefault, nombre, ects, contenido) : AsignaturaPrograma
+    +guardarCambios(asignaturaProgramaId, curso, caracter, sesionesMinimas, idioma, semestreDefault, nombre, ects, contenido) : AsignaturaPrograma
     +cargarMetodologiasDocentesDisponibles(asignaturaProgramaId) : List<MetodologiaDocente>
     +asociarMetodologiaDocente(asignaturaProgramaId, metodologiaDocenteId)
     +quedaSinMetodologiasDocentesTrasDesasociar(asignaturaProgramaId, metodologiaDocenteId) : boolean
@@ -587,7 +587,7 @@ package Modelo {
     +listarDisponiblesParaAsignaturaPrograma(asignaturaProgramaId) : List<ResultadoAprendizaje>
   }
   class AsignaturaPrograma #F2AC4E {
-    +actualizar(curso, caracter, idioma, semestreDefault, nombre, ects, contenido)
+    +actualizar(curso, caracter, sesionesMinimas, idioma, semestreDefault, nombre, ects, contenido)
     +actualizarAdmin(materiaId, curso, caracter, sesionesMinimas)
     +sesionesMinimasEnCota(valor) : boolean
   }

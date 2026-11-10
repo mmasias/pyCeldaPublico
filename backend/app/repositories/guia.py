@@ -24,6 +24,9 @@ class GuiaRepository:
                 joinedload(Guia.asignatura_programa).selectinload(
                     AsignaturaPrograma.metodologias_docentes
                 ),
+                joinedload(Guia.asignatura_programa).selectinload(
+                    AsignaturaPrograma.competencias
+                ),
                 # issue #254: profesorado de la plantilla (lo presenta abrir_guia
                 # en vivo) e historial (para el banner de re-revisión por
                 # profesorado, comentario_revision_por_profesorado).
@@ -61,13 +64,11 @@ class GuiaRepository:
         semestre: int | None,
         curso_academico_id: int,
         contenido: str = "",
-        sesiones_minimas: int = 25,
     ) -> Guia:
         # Semilla del temario al nacer la Guia: sin Guia del curso anterior
         # (primer curso de esta AsignaturaPrograma), hereda de
         # AsignaturaPrograma.contenido -- 3 niveles Asignatura -> AsignaturaPrograma ->
         # Guia (discussion #191). Copia puntual, no resolución en vivo.
-        # sesiones_minimas es el mismo tipo de snapshot (discussion #206).
         # curso_academico_id (issue #433, columna NOT NULL): el CursoAcademico
         # Activo en el momento de crear la AsignaturaPrograma -- lo resuelve el
         # llamador vía CursoAcademicoRepository.activo().
@@ -75,7 +76,6 @@ class GuiaRepository:
             estado="Borrador",
             semestre=semestre,
             contenido=contenido,
-            sesiones_minimas=sesiones_minimas,
             programa_id=programa_id,
             asignatura_programa_id=asignatura_programa_id,
             curso_academico_id=curso_academico_id,
@@ -153,11 +153,13 @@ class GuiaRepository:
             .all()
         )
 
-    def listar_aprobadas_de_asignaturas_programa(
+    def listar_importables_de_asignaturas_programa(
         self, asignatura_programa_ids: list[int], curso_academico_id: int
     ) -> list[Guia]:
-        """Guías Aprobadas de un conjunto de AsignaturaPrograma (issue #184: las
-        hermanas de la guía destino). issue #443: curso_academico_id
+        """Guías Aprobadas o En revisión de un conjunto de AsignaturaPrograma
+        (issue #184: las hermanas de la guía destino; En revisión desde
+        2026-10-09, issue #740 -- quién puede importar una En revisión lo
+        filtra el router, no esta consulta). issue #443: curso_academico_id
         obligatorio, no opcional -- importar de guía hermana es una acción
         de escritura (reemplaza contenido real de la Guia destino), así que
         el listado de orígenes importables es deliberadamente estrecho:
@@ -175,7 +177,7 @@ class GuiaRepository:
             self.db.query(Guia)
             .filter(
                 Guia.asignatura_programa_id.in_(asignatura_programa_ids),
-                Guia.estado == "Aprobada",
+                Guia.estado.in_(("Aprobada", "EnRevision")),
                 Guia.curso_academico_id == curso_academico_id,
             )
             .options(

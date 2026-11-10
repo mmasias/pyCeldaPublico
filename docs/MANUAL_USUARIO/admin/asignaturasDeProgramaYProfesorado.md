@@ -18,13 +18,15 @@ La tabla de asignaturas del programa aparece en el detalle del programa (capítu
 
 1. Pulsar **➕ Crear asignatura del programa**.
 2. Elegir **Materia** y **Asignatura** (del catálogo institucional -- al elegirla, **Nombre**, **ECTS** y **Contenido** se rellenan con sus valores, editables si difieren).
-3. Rellenar **Curso** (1 a 4), **Carácter**, **Idioma**, **Semestre por defecto** y **Sesiones mínimas** (1 a 100: el mínimo de sesiones de planificación docente para poder enviar la guía a revisión).
+3. Rellenar **Curso** (1 a 4), **Carácter**, **Idioma**, **Semestre por defecto** y **Sesiones mínimas** (0 a 100: el mínimo de sesiones de planificación docente para poder enviar la guía a revisión; 0 si la asignatura no tiene sesiones, como el TFG).
 4. Pulsar **Crear**.
 
 
 ## Editar una asignatura de programa
 
 Pulsar **✏️ Editar** en el detalle. El Admin tiene los mismos campos editables que el director de programa: **Materia**, **Curso**, **Carácter**, **Sesiones mínimas**, **Idioma**, **Semestre por defecto**, **Nombre**, **ECTS**, **Contenido** (hasta 10.000 caracteres) y **Requisitos previos**. Se confirma con **Guardar**.
+
+Las **Sesiones mínimas** se aplican al momento a todas las guías de la asignatura, en cualquier estado: cada guía usa siempre el mínimo vigente de su asignatura. Se comprueba al enviar la guía a revisión, así que una guía que ya está en revisión o aprobada no se ve afectada hasta que vuelva a enviarse. El director de programa también puede cambiarlas desde su pantalla de edición.
 
 Si ya existen guías creadas para la asignatura, la **Materia** y el **Semestre por defecto** dejan de ser editables y la pantalla lo indica.
 
