@@ -177,6 +177,11 @@ package "Guía docente" {
 
   Guia *-- PlanificacionDocente
   PlanificacionDocente *-- Sesion
+
+  class ProfesorGuia {
+    imparte
+    esResponsable
+  }
 }
 
 package "Personas y roles" {
@@ -214,17 +219,21 @@ package "Personas y roles" {
     enlaceFoto
     enlaceScholar
   }
+  class AsignacionProfesor {
+    imparte
+    esResponsable
+  }
 
   Profesor -u-|> Actor
   Admin -u-|> Actor
   DirectorPrograma -u-|> Profesor
   Actor -> HistorialCambio
   Universidad -- Profesor
-  AsignaturaPrograma - Profesor
+  (AsignaturaPrograma, Profesor) .. AsignacionProfesor
   Programa o- DirectorPrograma
   (Profesor, CursoAcademico) .. PerfilProfesorCurso
 }
 
-Guia -- Profesor
+(Guia, Profesor) .. ProfesorGuia
 
 @enduml

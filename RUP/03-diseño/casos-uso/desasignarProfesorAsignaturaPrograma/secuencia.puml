@@ -15,7 +15,7 @@ Vista --> Admin: presenta confirmar/cancelar\n(con advertencia si es el único P
 Admin -> Vista: confirma la desasignación
 Vista -> API: DELETE /api/v1/admin/asignaturas-programa/{asignatura_programa_id}/profesorado/{profesor_id}
 activate API
-API -> AsignaturaProgramaRepo: imparte(asignatura_programa_id, profesor_id)
+API -> AsignaturaProgramaRepo: esta_asignado(asignatura_programa_id, profesor_id)
 activate AsignaturaProgramaRepo
 AsignaturaProgramaRepo -> DB: SELECT 1 FROM asignaturas_programa_profesores WHERE ...
 activate DB

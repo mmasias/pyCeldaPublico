@@ -270,6 +270,8 @@ Unión N:M AsignaturaPrograma-Profesor: profesorado asignado como plantilla esta
 |---|---|---|---|---|---|---|
 | `asignatura_programa_id` | Integer | no | -- | PK,FK -> asignaturas_programa.id | -- | -- |
 | `profesor_id` | Integer | no | -- | PK,FK -> profesores.id | -- | -- |
+| `imparte` | Boolean | no | True | -- | -- | -- |
+| `es_responsable` | Boolean | no | True | -- | -- | -- |
 
 #### `competencias`
 
@@ -427,12 +429,14 @@ Auditoría de cambios de estado y de contenido de una guía.
 
 #### `guias_profesores`
 
-Unión N:M Guia-Profesor: quién impartió esa guía ese curso (copia puntual al nacer).
+Unión N:M Guia-Profesor: profesorado de esa guía ese curso con sus papeles (copia de la asignación al nacer, re-derivada al aprobar).
 
 | columna | tipo | nulable | default | clave | dominio | nota |
 |---|---|---|---|---|---|---|
 | `guia_id` | Integer | no | -- | PK,FK -> guias.id | -- | -- |
 | `profesor_id` | Integer | no | -- | PK,FK -> profesores.id | -- | -- |
+| `imparte` | Boolean | no | True | -- | -- | -- |
+| `es_responsable` | Boolean | no | True | -- | -- | -- |
 
 ### Personas y roles
 
@@ -495,5 +499,17 @@ Unión N:M Programa-DirectorPrograma (un programa puede tener varios directores)
 | `anios_experiencia_docente_virtual` | Integer | sí | -- | -- | -- | -- |
 | `anios_experiencia_profesional` | Integer | sí | -- | -- | -- | -- |
 | `anios_experiencia_investigadora` | Integer | sí | -- | -- | -- | -- |
+
+#### `registros_acceso`
+
+Intento de login de Profesor/DirectorPrograma (con éxito o rechazado); Admin no se registra (#820).
+
+| columna | tipo | nulable | default | clave | dominio | nota |
+|---|---|---|---|---|---|---|
+| `id` | Integer | no | -- | PK | -- | -- |
+| `email` | String(200) | no | -- | -- | -- | email de la cuenta Google tal como llega; sin FK: un rechazo no_autorizado es un email que no está en profesores ni directores_programa |
+| `exitoso` | Boolean | no | -- | -- | -- | -- |
+| `motivo_rechazo` | String(30) | sí | -- | -- | {fuera_de_dominio, no_autorizado} | solo si exitoso = False |
+| `fecha` | DateTimeUTC | no | (runtime) | -- | -- | -- |
 
 <!-- END GENERADO -->

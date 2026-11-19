@@ -1,0 +1,12 @@
+@startsalt cambiarRolesProfesorAsignaturaPrograma-wireframe
+{
+    <b>PROFESORADO</b> | . | . | . | [Asignar profesor]
+    ====
+    {#
+        <b>Profesor</b> | <b>Responsable</b> | <b>Imparte</b> | .
+        Dr. Manuel Masías Vergara | [X] | [X] | [➖]
+        Dr. Jon Arambarri Basañez | [X] | [ ] | [➖]
+        Dra. Ana Pérez | [ ] | [X] | [➖]
+    }
+}
+@endsalt

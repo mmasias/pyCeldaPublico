@@ -36,7 +36,7 @@ Bajada a diseño de [`importarContenidoDeGuiaHermana()`](/RUP/02-analisis/casos-
 
 | Método | Ruta | Cuerpo | Respuesta | Autorización |
 |-|-|-|-|-|
-| `GET` | `/api/v1/guias/{guia_id}/importables` | -- | `list[GuiaHermanaImportableResponse]` | `get_current_profesor_id` + `imparte(destino.asignatura_programa_id, profesor_id)` -- reutilizado, ver [`importarBibliografiaDeGuiaHermana()`](/RUP/03-diseño/casos-uso/importarBibliografiaDeGuiaHermana/README.md) |
+| `GET` | `/api/v1/guias/{guia_id}/importables` | -- | `list[GuiaHermanaImportableResponse]` | `get_current_profesor_id` + `esta_asignado(destino.asignatura_programa_id, profesor_id)` -- reutilizado, ver [`importarBibliografiaDeGuiaHermana()`](/RUP/03-diseño/casos-uso/importarBibliografiaDeGuiaHermana/README.md) |
 | `POST` | `/api/v1/guias/{guia_id}/importar-contenido` | `{origen_guia_id: int}` | `GuiaResponse` | ídem + revalidación de que `origen_guia_id` pertenece al conjunto de guías importables de hermanas del curso activo (`Aprobada`, o `EnRevision` que el profesor también imparte; issue [#740](https://github.com/mmasias/pyCelda/issues/740)) |
 
 Sin schema nuevo: se reutilizan `ImportarDeGuiaHermanaRequest` y `GuiaResponse`.
@@ -45,7 +45,7 @@ Sin schema nuevo: se reutilizan `ImportarDeGuiaHermanaRequest` y `GuiaResponse`.
 
 - **Vista (React)**: `ImportarContenidoDeGuiaHermanaView` -- **sin fichero ni ruta propios**: es un control inline en `AbrirGuia.tsx` (select de origen + botón "Importar contenido" tras el campo de texto de Contenido), alimentado por `listarGuiasImportables(guiaId)`; cada opción lleva el estado del origen con su fecha vía `textoEstadoHermana()` (`frontend/src/guiaHermana.ts`). `importarContenido()` llama a `importarContenidoDeGuiaHermana(guiaId, origenGuiaId)` y asigna `respuesta.contenido` al estado local del campo de texto. No se ofrece en modo revisión ni si `listarGuiasImportables` no devuelve nada o falla (se trata como "sin importables").
 - **API**: `routers/importar_guia_hermana.py::importar_contenido(guia_id, datos)` -- función suelta. Helpers compartidos: `_guia_destino_o_404()`, `_guias_hermanas_importables()`, `_origen_o_404()`, `_identificador_origen()`, y el propio de este caso de uso, `_resumen_contenido()`.
-- **Repositorios** (reutilizados de la familia #184, sin cambio): `AsignaturaProgramaRepository.imparte()` (también para filtrar orígenes `EnRevision`) / `.listar_hermanas()`; `GuiaRepository.listar_importables_de_asignaturas_programa(ids, curso_academico_id)`; `CursoAcademicoRepository.activo(universidad_id)`.
+- **Repositorios** (reutilizados de la familia #184, sin cambio): `AsignaturaProgramaRepository.esta_asignado()` (también para filtrar orígenes `EnRevision`) / `.listar_hermanas()`; `GuiaRepository.listar_importables_de_asignaturas_programa(ids, curso_academico_id)`; `CursoAcademicoRepository.activo(universidad_id)`.
 - **Modelo**:
   - `Guia.actualizar_contenido(contenido)` -- ya existente (lo usa también `guardarBorradorGuia()`); devuelve el valor anterior si el texto cambió, `None` si llega igual.
   - `Guia.confirmar_guardado()` -- reutilizado sin cambios: `fecha_ultima_modificacion = now()` y, si `estado == "Aprobada"`, `-> "Borrador"`.

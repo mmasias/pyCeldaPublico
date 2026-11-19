@@ -51,6 +51,7 @@ SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()
 SISTEMA_DISPONIBLE --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()
 SISTEMA_DISPONIBLE --> COPIAS_SEGURIDAD_ABIERTO : consultarCopiasSeguridad()
 SISTEMA_DISPONIBLE --> HISTORIAL_CAMBIOS_ABIERTO : consultarHistorialCambios()
+SISTEMA_DISPONIBLE --> HISTORIAL_CAMBIOS_ABIERTO : consultarRegistroAccesos()
 
 SISTEMA_DISPONIBLE --> SISTEMA_DISPONIBLE : generarGuiasPDF()
 
@@ -210,6 +211,10 @@ MATERIA_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : abrirSistemasEvaluacion()
 ' reabrirGuiaPorIncidencia()), no una transicion de navegacion propia.
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asignarProfesorAAsignaturaPrograma()
 ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasignarProfesorAsignaturaPrograma()
+' cambiarRolesProfesorAsignaturaPrograma() (issue #824): responsable / imparte de un
+' Profesor ya asignado, editable en la misma lista. Self-loop, mismo efecto colateral
+' sobre la Guia activa que asignar/desasignar. Sin estado propio.
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : cambiarRolesProfesorAsignaturaPrograma()
 
 ' issue #599: paridad con DirectorPrograma (vía de corrección excepcional) -- cinco
 ' self-loops de navegación más, sin efecto sobre el ciclo de vida de la Guia.
@@ -319,5 +324,10 @@ COPIAS_SEGURIDAD_ABIERTO --> COPIAS_SEGURIDAD_ABIERTO : restaurarCopiaSeguridad(
 ' #401), sin CRUD. Self-loop conceptual: la navegación al detalle de un
 ' autor concreto vive dentro del mismo CU, no es un estado propio.
 HISTORIAL_CAMBIOS_ABIERTO --> SISTEMA_DISPONIBLE : abrirPanelAdministracion()
+
+' consultarRegistroAccesos() (issue #820): bloque "Últimos accesos" de la
+' misma pantalla de Auditoría -- últimos 25 intentos de inicio de sesión de
+' Profesor/DirectorPrograma. Sin estado propio: misma pantalla conceptual
+' que consultarHistorialCambios(), entra en HISTORIAL_CAMBIOS_ABIERTO.
 
 @enduml

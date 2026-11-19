@@ -1,0 +1,42 @@
+@startuml cambiarRolesProfesorAsignaturaPrograma-diseño
+title Diagrama de Secuencia - Cambiar los papeles de un Profesor en una AsignaturaPrograma
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+participant "AsignaturaProgramaRepository" as AsignaturaProgramaRepo
+database "Base de Datos" as DB
+
+Admin -> Vista: marca o desmarca "Responsable" / "Imparte"
+activate Vista
+alt las dos casillas quedarían desmarcadas
+Vista --> Admin: aviso, sin llamada HTTP
+else
+Vista -> API: PUT /api/v1/admin/asignaturas-programa/{asignatura_programa_id}/profesorado/{profesor_id}\n{imparte, es_responsable}
+activate API
+API -> AsignaturaProgramaRepo: roles_de(asignatura_programa_id, profesor_id)
+AsignaturaProgramaRepo -> DB: SELECT imparte, es_responsable FROM asignaturas_programa_profesores
+DB --> AsignaturaProgramaRepo: fila (o ninguna)
+AsignaturaProgramaRepo --> API: (imparte, es_responsable) o None
+alt no está asignado
+API --> Vista: 404 Not Found
+else mismas marcas
+API --> Vista: 204 No Content (no-op)
+else nadie impartiría
+API -> AsignaturaProgramaRepo: hay_quien_imparta_tras(asignatura_programa_id, cambios)
+AsignaturaProgramaRepo --> API: false
+API --> Vista: 409 Conflict
+else cambio válido
+API -> AsignaturaProgramaRepo: cambiar_roles_profesor(...)
+AsignaturaProgramaRepo -> DB: UPDATE asignaturas_programa_profesores SET imparte, es_responsable
+API -> API: _revisar_guia_por_cambio_de_profesorado()\n(si cambia imparte: Guia activa Aprobada -> EnRevision + HistorialCambio;\nsi solo cambia es_responsable: actualizar_responsable_en_copia())
+API --> Vista: 204 No Content
+end
+deactivate API
+Vista -> API: GET /api/v1/admin/asignaturas-programa/{asignatura_programa_id}
+API --> Vista: profesorado con imparte / es_responsable
+Vista --> Admin: lista actualizada (o motivo del rechazo)
+end
+deactivate Vista
+
+@enduml

@@ -25,7 +25,7 @@ ImportarPlanificacionDocenteDesdeTextoView --> ImportarPlanificacionDocenteDesde
 
 ImportarPlanificacionDocenteDesdeTextoController --> GuiaRepository: <font size=8>obtener(guiaDestinoId) : Guia
 
-ImportarPlanificacionDocenteDesdeTextoController --> AsignaturaProgramaRepository: <font size=8>imparte(asignaturaProgramaId, profesorId) : boolean
+ImportarPlanificacionDocenteDesdeTextoController --> AsignaturaProgramaRepository: <font size=8>estaAsignado(asignaturaProgramaId, profesorId) : boolean
 
 ImportarPlanificacionDocenteDesdeTextoController --> ParserPlanificacionTexto: <font size=8>parsear(texto) : lista de (tipo, descripcion)
 

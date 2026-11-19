@@ -14,13 +14,25 @@ state desasignarProfesorAsignaturaPrograma as "desasignarProfesorAsignaturaProgr
 
     state " " as ConfirmandoDesasignacion
 
+    [*] -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de rechazo por ser el único Profesor que imparte la AsignaturaPrograma y quedar Profesores responsables asignados
+    <b>Sistema</b> permite solicitar volver
+    <b>Admin</b> solicita volver
+    end note
+
     [*] -[#green]-> ConfirmandoDesasignacion
     note on link
-    <b>Sistema</b> presenta información de la asignación y advertencia si es el único Profesor de la AsignaturaPrograma
+    <b>Sistema</b> presenta información de la asignación, según su papel, y advertencia si es el único Profesor de la AsignaturaPrograma
     <b>Sistema</b> permite solicitar confirmar/cancelar desasignación
     end note
 
     ConfirmandoDesasignacion -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar desasignación
+    end note
+
+    ConfirmandoDesasignacion -[#red]-> [*]
     note on link
     <b>Admin</b> solicita confirmar desasignación
     end note
@@ -33,14 +45,18 @@ state desasignarProfesorAsignaturaPrograma as "desasignarProfesorAsignaturaProgr
 
 desasignarProfesorAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
 note on link
-lista actualizada. Si la plantilla cambio y la Guia activa esta Aprobada, pasa a
-EnRevision (+ fila de HistorialCambio, autor centinela) -- al re-aprobar el director,
-Guia--Profesor se re-deriva y el profesor desasignado sale de la copia.
+<b>Sistema</b> presenta la lista de Profesores actualizada, con su papel
 end note
 
 desasignarProfesorAsignaturaPrograma -[#blue]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
 note on link
-cancelada, sin cambios
+<b>Sistema</b> presenta la lista de Profesores sin cambios
+end note
+
+desasignarProfesorAsignaturaPrograma -[#red]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+<b>Sistema</b> presenta mensaje de rechazo por quedar la AsignaturaPrograma con Profesores asignados y ninguno que la imparta
+<b>Sistema</b> presenta la lista de Profesores sin cambios
 end note
 
 @enduml

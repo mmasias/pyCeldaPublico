@@ -1,0 +1,30 @@
+@startuml consultarRegistroAccesos-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
+rectangle #CDEBA5 ":HISTORIAL_CAMBIOS_ABIERTO" as HistorialCambiosAbiertoSalida
+
+package consultarRegistroAccesos as "consultarRegistroAccesos()" {
+    rectangle #629EF9 ConsultarHistorialCambiosView
+    rectangle #b5bd68 RegistroAccesoController
+    rectangle #F2AC4E RegistroAcceso
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E DirectorPrograma
+}
+
+SistemaDisponible --> ConsultarHistorialCambiosView: <font size=8>consultarRegistroAccesos()
+
+ConsultarHistorialCambiosView --> RegistroAccesoController: <font size=8>consultarUltimosAccesos() : ultimos 25
+
+RegistroAccesoController --> RegistroAcceso: <font size=8>ultimos(25) : List<RegistroAcceso> [fecha desc, id desc]
+
+RegistroAccesoController --> RegistroAccesoController: <font size=8>resolverUsuario(email) [nombre o email tal cual]
+
+RegistroAccesoController --> Profesor: <font size=8>nombre por email
+RegistroAccesoController --> DirectorPrograma: <font size=8>email
+
+ConsultarHistorialCambiosView --> HistorialCambiosAbiertoSalida: <font size=8>presenta el bloque "Ultimos accesos"
+
+@enduml

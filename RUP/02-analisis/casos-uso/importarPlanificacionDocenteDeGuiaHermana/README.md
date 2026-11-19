@@ -39,7 +39,7 @@ Traducción a clases de análisis del caso de uso [`importarPlanificacionDocente
 ### `ImportarPlanificacionDocenteDeGuiaHermanaController`
 
 **Responsabilidades:**
-- `listarOrigenesImportables(guiaDestinoId)`: guías importables de hermanas con su estado, fecha y recuentos -- alimenta el desplegable; lista vacía = botón ausente. De las candidatas `Aprobadas` o `EnRevision` del `CursoAcademico` activo, conserva las `Aprobadas` y solo las `EnRevision` cuya `AsignaturaPrograma` también imparte el `Profesor` (`AsignaturaProgramaRepository.imparte()`).
+- `listarOrigenesImportables(guiaDestinoId)`: guías importables de hermanas con su estado, fecha y recuentos -- alimenta el desplegable; lista vacía = botón ausente. De las candidatas `Aprobadas` o `EnRevision` del `CursoAcademico` activo, conserva las `Aprobadas` y solo las `EnRevision` cuya `AsignaturaPrograma` también imparte el `Profesor` (`AsignaturaProgramaRepository.estaAsignado()`).
 - vuelve a obtener la `Guia` origen por id (`GuiaRepository.obtener(guiaOrigenId)`) y `validarHermandad(guiaDestino, guiaOrigen)`: revalidación server-side -- comprueba que la guía origen es importable (`Aprobada`, o `EnRevision` de una `AsignaturaPrograma` que el `Profesor` también imparte) y que la `AsignaturaPrograma` de origen sigue siendo hermana de la de destino (mismo `asignaturaId` no nulo y mismo `Asignatura.codigo`). El `guiaOrigenId` del cliente nunca se confía; el detalle de la respuesta (404 uniforme si no valida) se fija en Diseño.
 - `importarPlanificacionDocente(guiaDestinoId, guiaOrigenId)`: orquesta el reemplazo -- borra todas las `Sesion` del destino, crea copias desde el origen replicando `vinculada` y renumerando 1..N, degrada la guía destino si estaba `Aprobada` y registra una fila de `HistorialCambio`.
 - real e inmediato: toda la operación persiste en un solo commit.
@@ -63,7 +63,7 @@ Traducción a clases de análisis del caso de uso [`importarPlanificacionDocente
 
 **Responsabilidades:**
 - `listarHermanas(asignaturaProgramaId)`: otras `AsignaturaPrograma` con el mismo `asignaturaId` y el mismo `codigo`, excluyendo la propia; `[]` si `asignaturaId` es nulo.
-- `imparte(asignaturaProgramaId, profesorId)`: si el `Profesor` imparte esa `AsignaturaPrograma` -- la misma comprobación que autoriza el destino, aplicada aquí a la guía origen `EnRevision` (issue #740).
+- `estaAsignado(asignaturaProgramaId, profesorId)`: si el `Profesor` imparte esa `AsignaturaPrograma` -- la misma comprobación que autoriza el destino, aplicada aquí a la guía origen `EnRevision` (issue #740).
 
 **Colaboraciones:**
 - **Entrada:** `ImportarPlanificacionDocenteDeGuiaHermanaController`.

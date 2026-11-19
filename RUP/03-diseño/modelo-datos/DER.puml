@@ -105,6 +105,8 @@ package "Estructura curricular" {
   class asignaturas_programa_profesores {
     asignatura_programa_id : Integer <<PK,FK>>
     profesor_id : Integer <<PK,FK>>
+    imparte : Boolean
+    es_responsable : Boolean
   }
   class competencias {
     id : Integer <<PK>>
@@ -207,6 +209,8 @@ package "Guía docente" {
   class guias_profesores {
     guia_id : Integer <<PK,FK>>
     profesor_id : Integer <<PK,FK>>
+    imparte : Boolean
+    es_responsable : Boolean
   }
 }
 
@@ -253,6 +257,13 @@ package "Personas y roles" {
     anios_experiencia_profesional : Integer
     anios_experiencia_investigadora : Integer
   }
+  class registros_acceso {
+    id : Integer <<PK>>
+    email : String(200)
+    exitoso : Boolean
+    motivo_rechazo : String(30)
+    fecha : DateTimeUTC
+  }
 }
 
 ' --- Relaciones (crow's foot) ---
@@ -273,8 +284,8 @@ asignaturas_programa ||--{ asignaturas_programa_resultados_aprendizaje
 resultados_aprendizaje ||--{ asignaturas_programa_resultados_aprendizaje
 asignaturas_programa ||--{ asignaturas_programa_competencias
 competencias ||--{ asignaturas_programa_competencias
-asignaturas_programa ||--{ asignaturas_programa_profesores
-profesores ||--{ asignaturas_programa_profesores
+asignaturas_programa_profesores }--|| asignaturas_programa
+asignaturas_programa_profesores }--|| profesores
 asignaturas_programa }--|| materias : concreta
 asignaturas_programa }--o| asignaturas
 competencias }--|| programas : del plan de
@@ -284,8 +295,8 @@ programas ||--{ programas_directores_programa
 directores_programa ||--{ programas_directores_programa
 programas }--o| facultades : adscrito a
 programas }--o| programas_padre : versión de
-guias ||--{ guias_profesores
-profesores ||--{ guias_profesores
+guias_profesores }--|| guias
+guias_profesores }--|| profesores
 guias }--o| asignaturas_programa : materializa
 guias }--|| cursos_academicos : cursada en
 historial_cambios }--|| guias : audita

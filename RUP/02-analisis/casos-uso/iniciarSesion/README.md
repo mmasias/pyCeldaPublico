@@ -52,10 +52,11 @@ Traducción a clases de análisis del caso de uso [`iniciarSesion()`](/RUP/01-re
 - el rol `director_programa` requiere que el email dirija `>= 1` `Programa` (fila en `DirectorPrograma` **y** pertenencia a la colección `directores` de algún `Programa`), no solo la fila -- discussion [#274](https://github.com/mmasias/pyCelda/discussions/274). Una fila huérfana de ex-director cae a `profesor`; si además no imparte, sigue resolviendo con éxito (rol `profesor`), **nunca rechaza** -- una cuenta autenticada y reconocida por el catálogo no se expulsa, la capacidad ausente la absorbe `abrirInicio()` como sección vacía. El `<<choice>>` no ramifica ese caso degenerado.
 - señaliza además, para `abrirInicio()`, las dos capacidades independientes de la cuenta: `esProfesor` (fila en `Profesor`) y `dirigeProgramas` (dirige `>= 1` `Programa`) -- `es_tambien_profesor` de la implementación real es una de ellas.
 - emite el token de sesión tras resolver el rol con éxito (`crearSesion(email)`).
+- registra cada intento de acceso académico (`Profesor`/`DirectorPrograma`) en `RegistroAcceso` (`registrar(email, exitoso, motivoRechazo)`): éxito, rechazo por dominio o rechazo por cuenta no autorizada -- issue [#820](https://github.com/mmasias/pyCelda/issues/820). El acceso de `Admin` no se registra.
 
 **Colaboraciones:**
 - **Entrada:** `IniciarSesionView`.
-- **Salida:** `DirectorProgramaRepository`, `ProfesorRepository`, `AdminRepository`.
+- **Salida:** `DirectorProgramaRepository`, `ProfesorRepository`, `AdminRepository`, `RegistroAcceso`.
 
 ## Clases de modelo
 
@@ -105,6 +106,15 @@ Ya existente en el consolidado (`AsignaturaPrograma -- Profesor`, `AsignaturaPro
 **Colaboraciones:**
 - **Entrada:** `SesionController`.
 - **Salida:** gestiona `Admin`.
+
+### `RegistroAcceso`
+
+**Responsabilidades:**
+- porta `email`, `exitoso`, `motivoRechazo` (`fuera_de_dominio` | `no_autorizado`, solo en un rechazo) y `fecha`. Guarda el email tal cual, sin relación con `Profesor`/`DirectorPrograma`: un intento rechazado puede no corresponder a nadie del catálogo.
+- se **escribe** aquí; se lee en [`consultarRegistroAccesos()`](../consultarRegistroAccesos/README.md).
+
+**Colaboraciones:**
+- **Entrada:** `SesionController`.
 
 ## Referencias
 

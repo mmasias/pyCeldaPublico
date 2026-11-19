@@ -62,6 +62,13 @@ Bug en producción: un `Admin` puro (sin fila `Profesor`/`DirectorPrograma`, cas
 - **Frontend**: `frontend/src/api.ts` -- `Rol` gana `"admin"`.
 - **Tests**: `tests/test_auth.py` -- `test_me_con_admin_puro_sin_profesor_ni_director` (el caso real de Prometeus), `test_me_con_admin_que_tambien_es_profesor_resuelve_admin` (efecto secundario). 627 en verde.
 
+## Registro de accesos (issue [#820](https://github.com/mmasias/pyCelda/issues/820))
+
+- **`routers/auth.py::callback()`**: escribe una fila de `RegistroAcceso` en sus tres salidas -- `motivo_rechazo="fuera_de_dominio"` antes del `403` de `hd`, `motivo_rechazo="no_autorizado"` antes del `403` de cuenta desconocida, `exitoso=True` antes del redirect con cookie. `callback_admin()` no escribe: el `Admin` queda fuera del registro.
+- **Modelo**: `RegistroAcceso` (tabla `registros_acceso`: `id`, `email`, `exitoso`, `motivo_rechazo`, `fecha` UTC). Migración [`scripts/migrar_registro_accesos.py`](/backend/app/scripts/migrar_registro_accesos.py), versión de esquema 7 -> 8, sin rellenar datos anteriores.
+- **Tests**: [`tests/test_registro_acceso.py`](/backend/tests/test_registro_acceso.py).
+- **Lectura**: `consultarRegistroAccesos()` (`GET /api/v1/registro-accesos`).
+
 ## Referencias
 
 - [`iniciarSesion()` en Diseño](/RUP/03-diseño/casos-uso/iniciarSesion/README.md) -- secuencia completa, decisión del endpoint separado, guard de rol de #274, corrección #314.

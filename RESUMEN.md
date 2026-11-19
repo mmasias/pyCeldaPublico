@@ -79,8 +79,8 @@ Aproximadamente 69.200 líneas de código (un tercio de ellas, tests) y 65.600 d
 
 ### RUP
 
-- 124 casos de uso con ficha de requisitos
-- 121 con las fases Análisis, Diseño, Desarrollo y Pruebas completas; los 3 restantes (eliminarMateria, generarGuiasPDF, reabrirGuiaPorIncidencia) siguen solo en Requisitos, despriorizados a propósito
+- 136 casos de uso con ficha de requisitos
+- 133 con las fases Análisis, Diseño, Desarrollo y Pruebas completas; los 3 restantes (eliminarMateria, generarGuiasPDF, reabrirGuiaPorIncidencia) siguen solo en Requisitos, despriorizados a propósito
 - 503 ficheros PlantUML, 731 SVG generados, 623 READMEs
 - 57.460 líneas de documentación RUP (35.670 `.md` + 21.790 `.puml`); documentación total del repo, 65.603 líneas en 1.350 ficheros `.md` + `.puml`
 - Cada caso de uso con su máquina de estados, wireframe, diagrama de colaboración, diagrama de secuencia y ficha de desarrollo enlazada al código real, no duplicada

@@ -1,0 +1,26 @@
+@startuml consultarRegistroAccesos
+
+skinparam linetype polyline
+
+state SISTEMA_DISPONIBLE
+state SISTEMA_DISPONIBLE_SALIDA as "SISTEMA_DISPONIBLE"
+
+SISTEMA_DISPONIBLE -[#green]-> consultarRegistroAccesos
+note on link
+<b>Admin</b> solicita consultar la Auditoría
+end note
+
+state consultarRegistroAccesos as "consultarRegistroAccesos()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta los últimos 25 intentos de acceso de Profesor y DirectorPrograma, del más reciente al más antiguo: fecha, usuario y resultado (acceso, rechazado por estar fuera del dominio institucional o rechazado por cuenta no autorizada)
+    end note
+}
+
+consultarRegistroAccesos -[#green]-> SISTEMA_DISPONIBLE_SALIDA
+note on link
+abrirPanelAdministracion()
+end note
+
+@enduml

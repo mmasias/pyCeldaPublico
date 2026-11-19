@@ -42,7 +42,7 @@ Traducción a clases de análisis del caso de uso [`asignarProfesorAAsignaturaPr
 
 **Responsabilidades:**
 - lista los `Profesor` no asignados aún a esta `AsignaturaPrograma` (`cargarProfesoresDisponibles(asignaturaProgramaId)`).
-- asigna real e inmediato (`asignarProfesor(asignaturaProgramaId, profesorId)`). Si la plantilla cambió y la `Guia` activa está `Aprobada`, dispara `Guia.enviarARevision()` + fila de `HistorialCambio` -- nunca toca `Guia.profesorado` directamente (issue #254).
+- asigna real e inmediato (`asignarProfesor(asignaturaProgramaId, profesorId)`). Si la plantilla cambió y la `Guia` activa está `Aprobada`, dispara `Guia.enviarARevision()` + fila de `HistorialCambio` -- nunca toca `Guia.profesorado` directamente (issue #254). Issue [#827](https://github.com/mmasias/pyCelda/issues/827): solo si cambia quién imparte; un cambio que solo toca el papel de responsable no cambia el estado de la `Guia` y se aplica directamente a la fila de ese `Profesor` en `Guia -- Profesor`.
 
 **Colaboraciones:**
 - **Entrada:** `AsignarProfesorAAsignaturaProgramaView`.
@@ -94,6 +94,10 @@ Traducción a clases de análisis del caso de uso [`asignarProfesorAAsignaturaPr
 **Colaboraciones:**
 - **Entrada:** `AsignaturaProgramaController`.
 - **Salida:** gestiona `Guia`.
+
+## Papel del profesorado (issue [#824](https://github.com/mmasias/pyCelda/issues/824))
+
+La asignación lleva dos marcas, `imparte` y `esResponsable` (al menos una). Antes de asignar, `AsignaturaProgramaController` consulta `AsignaturaProgramaRepository.hayQuienImparta(asignaturaProgramaId, cambios)` y rechaza la asignación que dejaría la `AsignaturaPrograma` con profesorado y sin nadie que la imparta. `AsignaturaProgramaRepository.estaAsignado()` (antes `imparte()`) dice si el `Profesor` está asignado con cualquiera de los dos papeles.
 
 ## Referencias
 

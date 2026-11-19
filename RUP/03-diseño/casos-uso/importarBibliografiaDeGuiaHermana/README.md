@@ -36,7 +36,7 @@ Bajada a diseño de [`importarBibliografiaDeGuiaHermana()`](/RUP/02-analisis/cas
 
 | Método | Ruta | Cuerpo | Respuesta | Autorización |
 |-|-|-|-|-|
-| `GET` | `/api/v1/guias/{guia_id}/importables` | -- | `list[GuiaHermanaImportableResponse]` | `get_current_profesor_id` + `imparte(destino.asignatura_programa_id, profesor_id)` |
+| `GET` | `/api/v1/guias/{guia_id}/importables` | -- | `list[GuiaHermanaImportableResponse]` | `get_current_profesor_id` + `esta_asignado(destino.asignatura_programa_id, profesor_id)` |
 | `POST` | `/api/v1/guias/{guia_id}/importar-bibliografia` | `{origen_guia_id: int}` | `GuiaResponse` | ídem + revalidación de que `origen_guia_id` pertenece al conjunto de guías importables de hermanas (`Aprobada`, o `EnRevision` que el profesor también imparte; issue [#740](https://github.com/mmasias/pyCelda/issues/740)) |
 | `POST` | `/api/v1/guias/{guia_id}/importar-planificacion-docente` | `{origen_guia_id: int}` | `GuiaResponse` | ídem (endpoint gemelo, ver [`importarPlanificacionDocenteDeGuiaHermana()`](../importarPlanificacionDocenteDeGuiaHermana/README.md)) |
 
@@ -50,7 +50,7 @@ Router propio: `backend/app/routers/importar_guia_hermana.py` (registrado en `ma
 - **API**: `routers/importar_guia_hermana.py` -- `listar_importables()`, `importar_bibliografia()`. Helpers: `_guia_destino_o_404()`, `_guias_hermanas_importables(db, guia_destino, profesor_id)`, `_origen_o_404(db, destino, origen_guia_id, profesor_id)`, `_fecha_estado()`, `_registrar_importacion()`.
 - **Repositorios**:
   - `AsignaturaProgramaRepository.listar_hermanas(asignatura_programa_id)` -- join a `Asignatura`, `asignatura_id ==` Y `Asignatura.codigo ==`, `id !=`; `[]` si `asignatura_id IS NULL` o el catálogo no tiene código.
-  - `AsignaturaProgramaRepository.imparte(asignatura_programa_id, profesor_id)` -- además de autorizar el destino, filtra las candidatas `EnRevision`: `_guias_hermanas_importables()` solo conserva una `EnRevision` si el profesor también imparte su `AsignaturaPrograma`.
+  - `AsignaturaProgramaRepository.esta_asignado(asignatura_programa_id, profesor_id)` -- además de autorizar el destino, filtra las candidatas `EnRevision`: `_guias_hermanas_importables()` solo conserva una `EnRevision` si el profesor también imparte su `AsignaturaPrograma`.
   - `GuiaRepository.listar_importables_de_asignaturas_programa(ids, curso_academico_id)` -- filtra `estado IN ("Aprobada", "EnRevision")` y el `CursoAcademico` activo (el filtro de "imparte" de las `EnRevision` no está en esta consulta, lo aplica el router), precarga `referencias`/`sesiones`/`historial`/`asignatura_programa.asignatura`.
   - `ReferenciaBibliograficaRepository.reemplazar_desde(guia_destino, referencias_origen)` -- borra vía ORM la colección ya cargada del destino, crea copias (`tipo`, `referencia`, `vinculada` replicada fila a fila), `flush()` sin `commit`.
 - **Modelo**:

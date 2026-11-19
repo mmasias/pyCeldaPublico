@@ -67,7 +67,7 @@ Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de 
 
 ## Importar de una asignatura hermana
 
-Igual que con la bibliografía: si la asignatura se imparte también en otro programa, la planificación docente completa de esa guía puede copiarse directamente si está aprobada o, si también la impartes, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
+Igual que con la bibliografía: si la asignatura se imparte también en otro programa, la planificación docente completa de esa guía puede copiarse directamente si está aprobada o, si también la tienes asignada, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
 
 1. Pulsar **📥 Importar de asignatura hermana**, en la fila de la leyenda, a la derecha (solo aparece si hay alguna guía de la que importar).
 2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, su estado ("aprobada el..." o "en revisión desde...") y cuántas sesiones tiene.

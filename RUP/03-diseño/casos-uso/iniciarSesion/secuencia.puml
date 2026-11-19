@@ -22,6 +22,11 @@ Usuario -> API: GET /auth/callback?code=...
 activate API
 note right of API: intercambia el code por el token,\nobtiene el email verificado de Google.\nSi google_hd está configurado y no coincide\ncon el hd de la cuenta: 403 (fuera de dominio institucional)
 
+opt hd no coincide
+  API -> DB: INSERT INTO registros_acceso (email, exitoso=false, motivo_rechazo='fuera_de_dominio')
+  API --> Usuario: 403 Forbidden (fuera de dominio institucional)
+end
+
 API -> DirectorProgramaRepo: obtener_por_email(email)
 activate DirectorProgramaRepo
 DirectorProgramaRepo -> DB: SELECT ... FROM directores_programa WHERE email = :email
@@ -33,8 +38,10 @@ deactivate DirectorProgramaRepo
 
 note right of API: callback() solo comprueba EXISTENCIA (Profesor o DirectorPrograma)\ny emite una cookie de sesión con solo el email -- la RESOLUCIÓN\nde rol ocurre en get_current_rol() en cada GET /auth/me
 alt email conocido (fila en Profesor o en DirectorPrograma)
+  API -> DB: INSERT INTO registros_acceso (email, exitoso=true)
   API --> Usuario: 302 redirect a frontend + cookie de sesión (JWT httpOnly, solo email)
 else ninguno coincide -- sin auto-registro
+  API -> DB: INSERT INTO registros_acceso (email, exitoso=false, motivo_rechazo='no_autorizado')
   API --> Usuario: 403 Forbidden ("Cuenta no autorizada")
 end
 deactivate API
@@ -85,7 +92,7 @@ deactivate VistaAdmin
 Usuario -> Usuario: (en Google) introduce credenciales, autoriza
 Usuario -> API: GET /auth/admin/callback?code=...
 activate API
-note right of API: intercambia el code por el token, obtiene el email.\nMismo chequeo de hd que la rama Profesor/DirectorPrograma.\n**No consulta DirectorProgramaRepository/ProfesorRepository\nni get_current_rol()** -- valida contra ADMIN_EMAILS\n(whitelist de configuración, no tabla de BD todavía)
+note right of API: intercambia el code por el token, obtiene el email.\nMismo chequeo de hd que la rama Profesor/DirectorPrograma.\nNo escribe en registros_acceso (Admin fuera del registro).\n**No consulta DirectorProgramaRepository/ProfesorRepository\nni get_current_rol()** -- valida contra ADMIN_EMAILS\n(whitelist de configuración, no tabla de BD todavía)
 alt email in settings.admin_emails
   API --> Usuario: 302 redirect a /panel-administracion + cookie de sesión\n(JWT con claim rol=admin explícito)
 else email no está en la whitelist -- sin auto-registro

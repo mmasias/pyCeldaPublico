@@ -38,6 +38,7 @@ package "Contenido de materias" {
 package "Profesorado de asignaturas" {
   usecase asignarProfesorAAsignaturaPrograma as "asignarProfesorAAsignaturaPrograma()"
   usecase desasignarProfesorAsignaturaPrograma as "desasignarProfesorAsignaturaPrograma()"
+  usecase cambiarRolesProfesorAsignaturaPrograma as "cambiarRolesProfesorAsignaturaPrograma()"
 }
 
 package "Curso académico" {
@@ -104,6 +105,7 @@ package "Copias de seguridad" {
 
 package "Auditoría" {
   usecase consultarHistorialCambios as "consultarHistorialCambios()"
+  usecase consultarRegistroAccesos as "consultarRegistroAccesos()"
 }
 
 abrirSistemasEvaluacion -- Admin
@@ -128,6 +130,7 @@ activarSemestre -- Admin
 
 Admin -- asignarProfesorAAsignaturaPrograma
 Admin -- desasignarProfesorAsignaturaPrograma
+Admin -- cambiarRolesProfesorAsignaturaPrograma
 
 ' issue #599: paridad con DirectorPrograma, vía de corrección excepcional
 Admin -- asociarResultadoAprendizajeAAsignaturaPrograma
@@ -167,5 +170,6 @@ Admin -- comprobarCopiasSeguridad
 Admin -- crearCopiaSeguridad
 Admin -- restaurarCopiaSeguridad
 Admin -- consultarHistorialCambios
+Admin -- consultarRegistroAccesos
 
 @enduml

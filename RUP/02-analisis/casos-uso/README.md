@@ -99,6 +99,7 @@ Los grupos tercero y cuarto: el CRUD del catálogo estructural que `Admin` gesti
 |[`crearSistemaEvaluacion()`](crearSistemaEvaluacion/README.md)|CRUD de cuatro campos bajo `Materia`, sin C->U; rango validado en Vista|
 |[`crearUniversidad()`](crearUniversidad/README.md)|CRUD nombre-only, el patrón original; salida vía `<<include>> editarUniversidad()`|
 |[`definirDirectorPrograma()`](definirDirectorPrograma/README.md)|Alta del rol `DirectorPrograma` sobre `Profesor`; resuelto por email, idempotente, sin `<<choice>>`|
+|[`cambiarRolesProfesorAsignaturaPrograma()`](cambiarRolesProfesorAsignaturaPrograma/README.md)|Responsable / imparte de un `Profesor` asignado; regla "al menos uno imparte"; mismo efecto sobre la `Guia` activa|
 |[`desasignarProfesorAsignaturaPrograma()`](desasignarProfesorAsignaturaPrograma/README.md)|Retira `Profesor` de `AsignaturaPrograma` sin bloqueo; nunca toca `Guia -- Profesor`|
 |[`editarActividadFormativa()`](editarActividadFormativa/README.md)|`codigo` de solo lectura tras crear; efectivamente solo `nombre` cambia|
 |[`editarAsignatura()`](editarAsignatura/README.md)|CRUD sin `<<choice>>`; `estado` fuera del formulario; destino del `<<include>>` de crear|
@@ -145,6 +146,7 @@ Existían como carpeta con ficha pero no figuraban en este índice (sincronizado
 |[`crearCopiaSeguridad()`](crearCopiaSeguridad/README.md)|Hecho|
 |[`restaurarCopiaSeguridad()`](restaurarCopiaSeguridad/README.md)|Hecho|
 |[`consultarHistorialCambios()`](consultarHistorialCambios/README.md)|Hecho|
+|[`consultarRegistroAccesos()`](consultarRegistroAccesos/README.md)|Hecho|
 |[`importarContenidoDeGuiaHermana()`](importarContenidoDeGuiaHermana/README.md)|Hecho|
 |[`duplicarSesion()`](duplicarSesion/README.md)|Hecho|
 
@@ -187,3 +189,11 @@ Ninguna ficha nueva ni retirada: 130 carpetas con ficha. Rehecha: [`editarTextoS
 ## Descarga de la planificación docente
 
 1 ficha nueva: 131 carpetas con ficha. [`descargarPlanificacionDocentePDF()`](descargarPlanificacionDocentePDF/README.md): PDF propio de la planificación docente, en cualquier estado de la guía (marca de agua en `Borrador` y `Rechazada`), para `Profesor`, `DirectorPrograma` y `Admin`.
+
+## Registro de accesos (issue [#820](https://github.com/mmasias/pyCelda/issues/820))
+
+1 ficha nueva: 132 carpetas con ficha. [`consultarRegistroAccesos()`](consultarRegistroAccesos/README.md): bloque "Últimos accesos" de la Auditoría de `Admin`, últimos 25 intentos de inicio de sesión de `Profesor`/`DirectorPrograma`. Retocada: [`iniciarSesion()`](iniciarSesion/README.md) (registra cada intento de acceso académico; el de `Admin` no).
+
+## Roles del profesorado (issue [#824](https://github.com/mmasias/pyCelda/issues/824))
+
+1 ficha nueva: 133 carpetas con ficha. [`cambiarRolesProfesorAsignaturaPrograma()`](cambiarRolesProfesorAsignaturaPrograma/README.md): papel de un `Profesor` asignado a una `AsignaturaPrograma` (responsable, imparte o ambas), con la regla "al menos uno imparte". Retocadas: [`asignarProfesorAAsignaturaPrograma()`](asignarProfesorAAsignaturaPrograma/README.md) y [`desasignarProfesorAsignaturaPrograma()`](desasignarProfesorAsignaturaPrograma/README.md).

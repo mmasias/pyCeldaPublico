@@ -28,7 +28,7 @@ DesasignarProfesorAsignaturaProgramaView --> AsignaturaProgramaController: <font
 AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>desasignarProfesor(asignaturaProgramaId, profesorId)
 
 AsignaturaProgramaController --> GuiaRepository: <font size=8>obtenerPorAsignaturaPrograma(asignaturaProgramaId) : Guia
-AsignaturaProgramaController --> Guia: <font size=8>enviarARevision() [solo si la plantilla cambio y la Guia esta Aprobada]
+AsignaturaProgramaController --> Guia: <font size=8>enviarARevision() [solo si el Profesor impartia y la Guia esta Aprobada]
 
 note on link
 issue #254: no se toca Guia -- Profesor aqui. Si la Guia activa

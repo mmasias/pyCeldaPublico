@@ -16,7 +16,7 @@ La sesión dura 12 horas. Si al guardar en un formulario de crear o editar (resu
 
 Si hay guías del programa esperando la revisión del director, **Inicio** lo dice en una línea: por ejemplo, "🚦 **3 guías esperan tu revisión** como director(a) del Grado en Ingeniería Informática". El nombre del programa es un enlace a sus guías. Si hay guías pendientes en varios de los programas dirigidos, aparecen todos en la misma línea, con el número de cada uno entre paréntesis. Si no hay nada pendiente, la línea no aparece.
 
-Si la cuenta también imparte asignaturas, Inicio muestra además la sección **Mis guías**. En ese caso hay que confirmar antes el perfil académico del curso con **🪪 Mi perfil** (ver el [manual de Profesor](../profesor/README.md)): mientras no esté confirmado, Inicio solo muestra el aviso, sin la línea de guías pendientes ni **Mis guías**.
+Si la cuenta está dada de alta también como profesor, Inicio muestra además la sección **Mis guías**, con las asignaturas que tiene asignadas (las imparta o sea su responsable). En ese caso hay que confirmar antes el perfil académico del curso con **🪪 Mi perfil** (ver el [manual de Profesor](../profesor/README.md)): mientras no esté confirmado, Inicio solo muestra el aviso, sin la línea de guías pendientes ni **Mis guías**.
 
 ## Mis programas
 
@@ -26,7 +26,7 @@ Si la cuenta también imparte asignaturas, Inicio muestra además la sección **
 
 Todas las pantallas de un programa tienen la misma estructura:
 
-1. Arriba, el **nombre del programa** y, a la derecha, los accesos generales: **🏠 Inicio**, **🎓 Mis programas**, **🪪 Mi perfil** (si la cuenta imparte) y, separado, **🚪 Cerrar sesión**.
+1. Arriba, el **nombre del programa** y, a la derecha, los accesos generales: **🏠 Inicio**, **🎓 Mis programas**, **🪪 Mi perfil** (si la cuenta está dada de alta también como profesor) y, separado, **🚪 Cerrar sesión**.
 2. Debajo, la **franja de pestañas** del programa, con fondo propio, en dos filas: arriba, las del trabajo diario, **📋 Vista general** y **📄 Guías**; debajo, algo más pequeñas, las de la estructura del programa, **📚 Materias**, **🎯 Resultados de aprendizaje**, **🧭 Competencias**, **🧩 Metodologías**, **🏋️ Actividades formativas** y **📘 Asignaturas**. La pestaña de la sección en la que se está aparece marcada en oscuro, en cualquiera de las dos filas. En el resto de este manual se cita simplemente como "la franja del programa".
 3. Bajo la franja, el **título de la sección** y, a su derecha, su acción o sus datos (por ejemplo, **➕ Crear** o **➕ Asociar**).
 4. El contenido.

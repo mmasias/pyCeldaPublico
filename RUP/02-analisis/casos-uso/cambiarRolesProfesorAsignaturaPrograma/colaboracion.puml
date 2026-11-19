@@ -1,0 +1,35 @@
+@startuml cambiarRolesProfesorAsignaturaPrograma-analisis
+skinparam linetype polyline
+
+left to right direction
+
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbierto
+rectangle #CDEBA5 ":ASIGNATURA_PROGRAMA_ABIERTO" as AsignaturaProgramaAbiertoSalida
+
+package cambiarRolesProfesorAsignaturaPrograma as "cambiarRolesProfesorAsignaturaPrograma()" {
+    rectangle #629EF9 AsignaturaProgramaAdminView
+    rectangle #b5bd68 AsignaturaProgramaController
+    rectangle #F2AC4E AsignaturaPrograma
+    rectangle #F2AC4E AsignaturaProgramaRepository
+    rectangle #F2AC4E Guia
+    rectangle #F2AC4E GuiaRepository
+}
+
+AsignaturaProgramaAbierto --> AsignaturaProgramaAdminView: <font size=8>cambiarRolesProfesorAsignaturaPrograma(asignaturaProgramaId, profesorId, imparte, esResponsable)
+
+AsignaturaProgramaAdminView --> AsignaturaProgramaController: <font size=8>cambiarRolesProfesor(asignaturaProgramaId, profesorId, imparte, esResponsable)
+
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>rolesDe(asignaturaProgramaId, profesorId)
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>hayQuienImparta(asignaturaProgramaId, cambios) : boolean
+AsignaturaProgramaController --> AsignaturaProgramaRepository: <font size=8>cambiarRolesProfesor(asignaturaProgramaId, profesorId, imparte, esResponsable)
+
+AsignaturaProgramaController --> GuiaRepository: <font size=8>obtenerPorAsignaturaPrograma(asignaturaProgramaId) : Guia
+AsignaturaProgramaController --> Guia: <font size=8>enviarARevision() [solo si cambio "imparte" y la Guia esta Aprobada]
+
+AsignaturaProgramaRepository -- AsignaturaPrograma
+GuiaRepository -- Guia
+
+AsignaturaProgramaAdminView ..[#green]> AsignaturaProgramaAbiertoSalida: <font size=8>papeles actualizados
+AsignaturaProgramaAdminView ..[#red]> AsignaturaProgramaAbiertoSalida: <font size=8>rechazado (sin papel, o sin nadie que imparta), sin cambios
+
+@enduml

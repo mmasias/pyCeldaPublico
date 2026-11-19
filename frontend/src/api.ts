@@ -103,7 +103,7 @@ export interface AbrirGuiaResponse extends GuiaResponse {
   puede_revisar: boolean;
   // issue #254: la plantilla AsignaturaPrograma -- Profesor en vivo, no la copia
   // Guia -- Profesor (que solo la lee el render del PDF/previsualización).
-  profesorado: Profesor[];
+  profesorado: ProfesorAsignado[];
   sesiones: Sesion[];
   // Umbral de la regla c3 (discussion #206), para el medidor "N / M sesiones".
   sesiones_minimas: number;
@@ -123,7 +123,7 @@ export interface GuiaResumenResponse {
   // issue #508: curso/semestre de la AsignaturaPrograma -- null si se borró.
   asignatura_programa_curso: number | null;
   asignatura_programa_semestre_default: number | null;
-  profesorado: Profesor[];
+  profesorado: ProfesorAsignado[];
   ultima_actualizacion: string;
   ultima_actualizacion_rol: string;
   // issue #262: la fila de la pantalla de Admin deshabilita "Descargar PDF"
@@ -751,6 +751,13 @@ export interface Profesor {
   num_asignaturas_programa: number;
 }
 
+// issue #824: un Profesor del profesorado de una AsignaturaPrograma (o de una
+// Guia), con su papel: responsable, imparte o ambas cosas.
+export interface ProfesorAsignado extends Profesor {
+  imparte: boolean;
+  es_responsable: boolean;
+}
+
 export interface DirectorProgramaResponse {
   profesor_id: number;
   nombre: string | null;
@@ -797,7 +804,7 @@ export interface AsignaturaProgramaResponse {
 }
 
 export interface AsignaturaProgramaConEstadoGuiaResponse extends AsignaturaProgramaResponse {
-  profesorado: Profesor[];
+  profesorado: ProfesorAsignado[];
   estado_guia: string | null;
 }
 
@@ -1427,7 +1434,7 @@ export interface ActividadFormativaAsignaturaProgramaResponse {
 export interface AsignaturaProgramaDetalleResponse extends AsignaturaProgramaResponse {
   // Código del catálogo institucional (Asignatura padre); null si no está vinculada.
   asignatura_codigo: string | null;
-  profesorado: Profesor[];
+  profesorado: ProfesorAsignado[];
   metodologias_docentes: MetodologiaDocenteResponse[];
   resultados_aprendizaje: ResultadoAprendizajeResponse[];
   competencias: CompetenciaResponse[];
@@ -2211,13 +2218,35 @@ export async function listarProfesoresDisponiblesParaAsignaturaPrograma(
   );
 }
 
+export interface RolesProfesor {
+  imparte: boolean;
+  es_responsable: boolean;
+}
+
 export async function asignarProfesorAAsignaturaPrograma(
   asignaturaProgramaId: number,
   profesorId: number,
+  // issue #824/#829: por defecto imparte, sin ser responsable (igual que la
+  // API). 422 si los dos son false; 409 si la asignatura quedaría con
+  // profesorado y sin nadie que la imparta.
+  roles: RolesProfesor = { imparte: true, es_responsable: false },
 ): Promise<void> {
   return post<void>(
     `/api/v1/admin/asignaturas-programa/${asignaturaProgramaId}/profesorado`,
-    { profesor_id: profesorId },
+    { profesor_id: profesorId, ...roles },
+  );
+}
+
+// issue #824: cambiarRolesProfesorAsignaturaPrograma(). Mismas 422/409 que
+// asignar; si la guía activa estaba Aprobada, vuelve a EnRevisión.
+export async function cambiarRolesProfesorAsignaturaPrograma(
+  asignaturaProgramaId: number,
+  profesorId: number,
+  roles: RolesProfesor,
+): Promise<void> {
+  return put<void>(
+    `/api/v1/admin/asignaturas-programa/${asignaturaProgramaId}/profesorado/${profesorId}`,
+    roles,
   );
 }
 
@@ -2225,8 +2254,9 @@ export async function desasignarProfesorDeAsignaturaPrograma(
   asignaturaProgramaId: number,
   profesorId: number,
 ): Promise<void> {
-  // Sin bloqueo (discussion #33) -- siempre 204, incluso si es el único
-  // profesor; la advertencia se calcula en el cliente antes de confirmar
+  // Sin bloqueo (discussion #33) -- 204 incluso si es el único profesor; la
+  // advertencia se calcula en el cliente antes de confirmar. issue #824: 409
+  // si quedarían solo responsables que no imparten.
   return del(
     `/api/v1/admin/asignaturas-programa/${asignaturaProgramaId}/profesorado/${profesorId}`,
   );
@@ -2419,4 +2449,21 @@ export async function consultarHistorialCambiosDeAutor(
   clave: string,
 ): Promise<HistorialCambioResponse[]> {
   return get<HistorialCambioResponse[]>(`/api/v1/historial-cambios/autores/${clave}`);
+}
+
+// consultarRegistroAccesos() -- issue #820. Últimos 25 intentos de login de
+// Profesor/DirectorPrograma (con éxito o rechazados); Admin no se registra.
+export type MotivoRechazoAcceso = "fuera_de_dominio" | "no_autorizado";
+
+export interface RegistroAccesoResponse {
+  id: number;
+  fecha: string;
+  email: string;
+  nombre: string; // nombre del Profesor si el email casa; si no, el email
+  exitoso: boolean;
+  motivo_rechazo: MotivoRechazoAcceso | null;
+}
+
+export async function consultarRegistroAccesos(): Promise<RegistroAccesoResponse[]> {
+  return get<RegistroAccesoResponse[]>("/api/v1/registro-accesos");
 }

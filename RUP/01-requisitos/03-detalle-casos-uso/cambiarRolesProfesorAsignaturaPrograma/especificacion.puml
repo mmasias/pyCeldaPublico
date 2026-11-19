@@ -1,0 +1,36 @@
+@startuml cambiarRolesProfesorAsignaturaPrograma
+
+skinparam linetype polyline
+
+state ASIGNATURA_PROGRAMA_ABIERTO
+state ASIGNATURA_PROGRAMA_ABIERTO_SALIDA as "ASIGNATURA_PROGRAMA_ABIERTO"
+
+ASIGNATURA_PROGRAMA_ABIERTO -[#green]-> cambiarRolesProfesorAsignaturaPrograma
+note on link
+<b>Admin</b> selecciona "Responsable" o "Imparte" de un Profesor asignado
+end note
+
+state cambiarRolesProfesorAsignaturaPrograma as "cambiarRolesProfesorAsignaturaPrograma()" {
+
+    [*] -[#green]-> [*]
+    note on link
+    <b>Sistema</b> presenta el nuevo papel del Profesor
+    end note
+
+    [*] -[#red]-> [*]
+    note on link
+    <b>Sistema</b> presenta mensaje de rechazo por quedar el Profesor sin ningún papel o la AsignaturaPrograma sin ningún Profesor que la imparta
+    end note
+}
+
+cambiarRolesProfesorAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+<b>Sistema</b> presenta la lista de Profesores con los papeles actualizados
+end note
+
+cambiarRolesProfesorAsignaturaPrograma -[#red]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+<b>Sistema</b> presenta la lista de Profesores sin cambios
+end note
+
+@enduml

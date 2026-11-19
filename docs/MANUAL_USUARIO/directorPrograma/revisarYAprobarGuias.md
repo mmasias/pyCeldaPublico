@@ -24,7 +24,7 @@ La misma tabla, para el curso vigente, aparece también en la pestaña **📋 Vi
 
 ## Abrir una guía para revisarla
 
-Al abrir una guía, la pestaña **📄 Guías** queda marcada y el título dice **📄 Guías › nombre de la asignatura**; pulsar **Guías** en ese título vuelve a la lista. Debajo, la ficha de la guía: semestre y profesorado a la izquierda; estado y fechas a la derecha.
+Al abrir una guía, la pestaña **📄 Guías** queda marcada y el título dice **📄 Guías › nombre de la asignatura**; pulsar **Guías** en ese título vuelve a la lista. Debajo, la ficha de la guía: semestre y profesorado a la izquierda, con el papel de cada profesor entre paréntesis (**Responsable**, **Imparte** o los dos); estado y fechas a la derecha. En el PDF solo aparecen quienes imparten.
 
 A continuación, la **barra de trabajo**, con el mismo fondo que la franja de pestañas. Según el estado de la guía, ofrece:
 
@@ -74,7 +74,7 @@ A diferencia del temario, aquí el estado cambia en el momento, sin esperar a **
 
 El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en la sección "Texto de convocatorias", eligiendo la plantilla y completando el instrumento y el porcentaje de la convocatoria extraordinaria, con **💾 Guardar texto de convocatorias**. El texto en sí no se edita. Aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
 
-El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor: en sus pantallas no aparecen esos botones. Si el director también imparte la asignatura, en la planificación y la bibliografía sí los tiene, como profesor; para importar el temario de una guía hermana tiene que entrar en la guía como profesor, desde su **Inicio**. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
+El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor: en sus pantallas no aparecen esos botones. Si el director también tiene asignada la asignatura (la imparta o sea su responsable), en la planificación y la bibliografía sí los tiene, como profesor; para importar el temario de una guía hermana tiene que entrar en la guía como profesor, desde su **Inicio**. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
 
 ---
 

@@ -178,7 +178,7 @@ def get_current_rol(request: Request, db: Session = Depends(get_db)) -> dict[str
     rol `director_programa` requiere dirigir >= 1 Programa (fila en `directores_programa`
     Y pertenencia a la colección `directores` de algún Programa): una fila
     huérfana de ex-director (tras quitarDirectorPrograma(), que nunca la borra)
-    cae a `profesor`, y aun sin impartir sigue resolviendo con éxito -- una
+    cae a `profesor`, y aun sin asignaturas asignadas sigue resolviendo con éxito -- una
     cuenta autenticada y reconocida por el catálogo NUNCA se expulsa con 403,
     la capacidad ausente la absorbe abrirInicio() como sección vacía.
 

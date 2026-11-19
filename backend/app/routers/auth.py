@@ -5,10 +5,25 @@ from sqlalchemy.orm import Session
 from app.core.auth import create_admin_session_token, create_session_token, get_current_rol, oauth
 from app.core.config import get_settings
 from app.core.database import get_db
+from app.models.registro_acceso import (
+    MOTIVO_FUERA_DE_DOMINIO,
+    MOTIVO_NO_AUTORIZADO,
+    RegistroAcceso,
+)
 from app.repositories.director_programa import DirectorProgramaRepository
 from app.repositories.profesor import ProfesorRepository
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+
+
+def _registrar_acceso(
+    db: Session, email: str, exitoso: bool, motivo_rechazo: str | None = None
+) -> None:
+    """Registro de accesos (#820): una fila por intento en /auth/callback.
+    Se confirma antes de lanzar el 403 o de devolver la cookie, para que el
+    rechazo quede registrado aunque la petición acabe en error."""
+    db.add(RegistroAcceso(email=email, exitoso=exitoso, motivo_rechazo=motivo_rechazo))
+    db.commit()
 
 
 @router.get("/me")
@@ -34,6 +49,7 @@ async def callback(request: Request, db: Session = Depends(get_db)):
     email = userinfo["email"]
 
     if settings.google_hd and userinfo.get("hd") != settings.google_hd:
+        _registrar_acceso(db, email, exitoso=False, motivo_rechazo=MOTIVO_FUERA_DE_DOMINIO)
         raise HTTPException(
             status_code=403, detail="Cuenta fuera del dominio institucional"
         )
@@ -43,10 +59,12 @@ async def callback(request: Request, db: Session = Depends(get_db)):
         or DirectorProgramaRepository(db).obtener_por_email(email) is not None
     )
     if not conocido:
+        _registrar_acceso(db, email, exitoso=False, motivo_rechazo=MOTIVO_NO_AUTORIZADO)
         raise HTTPException(
             status_code=403, detail="Cuenta no autorizada -- sin auto-registro"
         )
 
+    _registrar_acceso(db, email, exitoso=True)
     response = RedirectResponse(url=settings.frontend_url)
     response.set_cookie(
         settings.session_cookie_name,

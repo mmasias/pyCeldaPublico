@@ -41,7 +41,7 @@ Traducción a clases de análisis del caso de uso [`desasignarProfesorAsignatura
 
 **Responsabilidades:**
 - desasigna real e inmediato, sin `<<choice>>` que resolver (`desasignarProfesor(asignaturaProgramaId, profesorId)`).
-- si la plantilla cambió y la `Guia` activa está `Aprobada`, dispara `Guia.enviarARevision()` + fila de `HistorialCambio` -- nunca toca `Guia.profesorado` (issue #254).
+- si la plantilla cambió y la `Guia` activa está `Aprobada`, dispara `Guia.enviarARevision()` + fila de `HistorialCambio` -- nunca toca `Guia.profesorado` (issue #254). Issue [#827](https://github.com/mmasias/pyCelda/issues/827): solo si cambia quién imparte; un cambio que solo toca el papel de responsable no cambia el estado de la `Guia` y se aplica directamente a la fila de ese `Profesor` en `Guia -- Profesor`.
 
 **Colaboraciones:**
 - **Entrada:** `DesasignarProfesorAsignaturaProgramaView`.
@@ -75,6 +75,10 @@ Traducción a clases de análisis del caso de uso [`desasignarProfesorAsignatura
 **Colaboraciones:**
 - **Entrada:** `AsignaturaProgramaController`.
 - **Salida:** gestiona `Guia`.
+
+## Regla "al menos uno imparte" (issue [#824](https://github.com/mmasias/pyCelda/issues/824))
+
+Antes de desasignar, `AsignaturaProgramaController` consulta `AsignaturaProgramaRepository.hayQuienImparta(asignaturaProgramaId, cambios)`: si quedarían Profesores asignados y ninguno que imparta, rechaza la desasignación. Quedarse sin profesorado sigue siendo válido.
 
 ## Referencias
 

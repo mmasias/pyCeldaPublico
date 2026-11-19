@@ -8,7 +8,7 @@
 
 ## Qué es
 
-Una consulta de solo lectura del historial de cambios de las guías docentes: quién cambió qué, cuándo y con qué comentario. No permite modificar ni borrar nada.
+Una consulta de solo lectura del historial de cambios de las guías docentes (quién cambió qué, cuándo y con qué comentario) y de los últimos intentos de entrada en la aplicación. No permite modificar ni borrar nada.
 
 ## Cómo llegar
 
@@ -43,6 +43,16 @@ Bajo **Últimas 50 acciones** (o "Sin acciones registradas todavía."), de la m�
 ## Autores
 
 A la derecha, la lista **Autores** (o "Sin autores registrados todavía."), con un botón por persona que aparece en el historial mostrado; si es profesor y director a la vez, figura una sola vez. Al pulsar un nombre se abre **Actividad de** esa persona: todos sus cambios (sin el límite de 50 ni el filtro de curso), con las mismas columnas salvo **Rol** (**Profesor**, **Director** o **Admin**) en lugar de **Autor**. El título es una miga, **🔍 Auditoría › Actividad de ...**: pulsar **Auditoría** vuelve al historial completo.
+
+## Últimos accesos
+
+Debajo del historial, el bloque **Últimos accesos** (o "Sin accesos registrados todavía.") muestra los 25 intentos de inicio de sesión más recientes de profesores y directores, del más reciente al más antiguo, tanto los que entraron como los rechazados:
+
+- **Fecha**: fecha y hora del intento.
+- **Usuario**: nombre de la persona si su correo está dado de alta como profesor o director; si no (lo normal en un rechazo), el correo tal cual.
+- **Resultado**: **Acceso**, **Rechazado: fuera de dominio** (cuenta de Google ajena al dominio institucional) o **Rechazado: no autorizado** (cuenta del dominio que no está dada de alta).
+
+Los inicios de sesión de Admin no se registran. El selector **Curso académico:** no afecta a este bloque.
 
 ---
 

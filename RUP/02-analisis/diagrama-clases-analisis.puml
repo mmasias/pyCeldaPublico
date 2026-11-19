@@ -606,7 +606,7 @@ package Modelo {
     +quedaSinResultadosAprendizajeTrasDesasociar(asignaturaProgramaId, resultadoAprendizajeId) : boolean
     +listarProfesoradoDe(asignaturaProgramaId) : List<Profesor>
     +listarImpartidasPor(profesorId) : List<AsignaturaPrograma>
-    +imparte(asignaturaProgramaId, profesorId) : boolean
+    +estaAsignado(asignaturaProgramaId, profesorId) : boolean
     +asignarProfesor(asignaturaProgramaId, profesorId)
     +desasignarProfesor(asignaturaProgramaId, profesorId)
   }

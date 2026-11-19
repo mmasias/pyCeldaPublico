@@ -35,7 +35,7 @@ Igual que con los instrumentos de evaluación: pulsar el lápiz **✏️** (Edit
 
 ## Importar de una asignatura hermana
 
-Si la asignatura se imparte también en otro programa, la bibliografía de esa otra guía puede copiarse directamente en lugar de escribirla de cero: si está aprobada o, si también la impartes, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
+Si la asignatura se imparte también en otro programa, la bibliografía de esa otra guía puede copiarse directamente en lugar de escribirla de cero: si está aprobada o, si también la tienes asignada, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
 
 1. Pulsar **📥 Importar de asignatura hermana**, en la fila bajo el título, a la derecha (solo aparece si hay alguna guía de la que importar).
 2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, su estado ("aprobada el..." o "en revisión desde...") y cuántas referencias tiene.

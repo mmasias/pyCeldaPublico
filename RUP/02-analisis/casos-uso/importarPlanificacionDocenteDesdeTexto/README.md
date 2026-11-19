@@ -59,7 +59,7 @@ Traducción a clases de análisis del caso de uso [`importarPlanificacionDocente
 ### `AsignaturaProgramaRepository`
 
 **Responsabilidades:**
-- `imparte(asignaturaProgramaId, profesorId)`: comprueba que el `Profesor` imparte la `AsignaturaPrograma` de la guía destino.
+- `estaAsignado(asignaturaProgramaId, profesorId)`: comprueba que el `Profesor` imparte la `AsignaturaPrograma` de la guía destino.
 
 **Colaboraciones:**
 - **Entrada:** `ImportarPlanificacionDocenteDesdeTextoController`.

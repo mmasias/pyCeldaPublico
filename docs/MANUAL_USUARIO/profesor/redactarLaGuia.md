@@ -18,6 +18,8 @@ Desde **Inicio**, pulsar **📂 Abrir** en la fila de la asignatura correspondie
 
 Arriba, el título **Guía docente** y, debajo de la línea, el nombre de la asignatura en grande. A continuación, la ficha de la guía en dos columnas: a la izquierda, **Programa**, **Semestre** y **Profesores**; a la derecha, **Estado**, **Creación**, **Última modificación** y **Generación del PDF** ("--" si la guía no se ha aprobado nunca).
 
+En **Profesores**, junto a cada nombre aparece entre paréntesis su papel en la asignatura: **Responsable**, **Imparte** o los dos (**Responsable · Imparte**). Los dos papeles pueden editar la guía por igual. En el documento oficial (PDF y previsualización) solo aparecen quienes imparten.
+
 Si la guía está **Aprobada**, bajo la ficha aparece un aviso en ámbar: "⚠️ Esta guía está aprobada: si guardas un cambio, volverá a borrador y habrá que enviarla de nuevo a revisión."
 
 Debajo de la ficha, los botones de trabajo: **💾 Guardar borrador**, **📤 Enviar a revisión**, **👁️ Previsualizar** o, si la guía está aprobada, **⬇️ Descargar PDF** en su lugar (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
@@ -55,7 +57,7 @@ Lo que sigue vale para las tres importaciones de guía hermana: contenido, [bibl
 Una guía hermana es la guía de la misma asignatura del catálogo (mismo código) en otro programa, en el curso académico actual. Se puede importar de ella si:
 
 - está **Aprobada**, la imparta quien la imparta; o
-- está **En revisión** y quien importa también la imparte. Quien envía una guía a revisión responde de su contenido, así que puede llevarlo a sus otras guías hermanas sin esperar a que el director la apruebe. La guía en revisión de otro profesor no aparece en la lista hasta que su director la aprueba.
+- está **En revisión** y quien importa también la tiene asignada (la imparta o sea responsable). Quien envía una guía a revisión responde de su contenido, así que puede llevarlo a sus otras guías hermanas sin esperar a que el director la apruebe. La guía en revisión de otro profesor no aparece en la lista hasta que su director la aprueba.
 
 Las guías en **Borrador** o **Rechazada** nunca aparecen.
 
@@ -68,7 +70,7 @@ Importar es una copia. Lo copiado no cambia si después cambia la guía de orige
 - **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede descargar en PDF. El contenido sigue siendo editable, pero en cuanto se guarda cualquier cambio la guía vuelve automáticamente a **Borrador**: con **💾 Guardar borrador**, al editar un instrumento, una referencia o una sesión que ya forman parte de la guía, con **📑 Duplicar** una sesión, con **💾 Guardar texto** de convocatorias o con una importación. Una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar. El aviso en ámbar lo recuerda en la guía y en sus pantallas de gestión.
 - **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva bajo el estado, en la tabla de **Inicio** (dentro de la guía no se muestra). Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
-Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque Admin ha cambiado el profesorado asignado a esa asignatura estando la guía ya aprobada -- es automático, no un error.
+Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque Admin ha cambiado quién imparte esa asignatura estando la guía ya aprobada (cambiar solo quién es responsable no cambia el estado de la guía) -- es automático, no un error.
 
 Si el director revoca una aprobación ya concedida, la guía vuelve a **Borrador** y su comentario aparece en cursiva en la tabla de **Inicio**, igual que con un rechazo.
 

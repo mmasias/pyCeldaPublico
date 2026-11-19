@@ -1,0 +1,29 @@
+@startuml consultarRegistroAccesos-diseño
+title Diagrama de Secuencia - Consultar Registro de Accesos
+
+actor "Admin" as Admin
+participant "Vista (React)" as Vista
+participant "API (FastAPI)" as API
+database "Base de Datos" as DB
+
+Admin -> Vista: solicita consultar la Auditoría
+activate Vista
+note right of Vista: misma pantalla que consultarHistorialCambios();\nlas dos peticiones salen en paralelo
+Vista -> API: GET /api/v1/registro-accesos
+activate API
+note right of API: Depends(require_admin) -- auditoría solo para Admin
+API -> DB: SELECT * FROM registros_acceso\nORDER BY fecha DESC, id DESC LIMIT 25
+DB --> API: hasta 25 filas RegistroAcceso
+
+loop por cada fila
+    API -> DB: SELECT profesor / director_programa WHERE email = :email
+    DB --> API: fila o None
+    API -> API: nombre resuelto, o el email tal cual si no hay coincidencia
+end
+
+API --> Vista: 200 OK (lista JSON: id, fecha, email, nombre, exitoso, motivo_rechazo)
+deactivate API
+Vista --> Admin: bloque "Últimos accesos" (Fecha | Usuario | Resultado)
+deactivate Vista
+
+@enduml

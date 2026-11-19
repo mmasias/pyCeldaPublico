@@ -17,6 +17,7 @@ package iniciarSesion as "iniciarSesion()" {
     rectangle #F2AC4E DirectorProgramaRepository
     rectangle #F2AC4E Admin
     rectangle #F2AC4E AdminRepository
+    rectangle #F2AC4E RegistroAcceso
 }
 
 SesionCerrada --> IniciarSesionView: <font size=8>iniciarSesion()
@@ -34,6 +35,8 @@ SesionController --> ProfesorRepository: <font size=8>obtenerPorEmail(email) : P
 SesionController --> AdminRepository: <font size=8>obtenerPorEmail(email) : Admin
 
 SesionController --> IniciarSesionView: <font size=8>crearSesion(email) : String
+
+SesionController --> RegistroAcceso: <font size=8>registrar(email, exitoso, motivoRechazo) [solo acceso academico, no Admin]
 
 DirectorProgramaRepository -- DirectorPrograma
 ProfesorRepository -- Profesor

@@ -44,6 +44,7 @@ from app.repositories.guia import GuiaRepository
 from app.repositories.ponderacion_evaluacion import PonderacionEvaluacionRepository
 from app.repositories.referencia_bibliografica import ReferenciaBibliograficaRepository
 from app.repositories.sesion import SesionRepository
+from app.schemas.profesor import serializar_profesorado
 from app.schemas.guia import (
     AbrirGuiaResponse,
     AsignaturaProgramaDeGuiaResponse,
@@ -95,7 +96,7 @@ def _tiene_acceso_a_guia(
     if (
         profesor_id is not None
         and guia.asignatura_programa_id is not None
-        and AsignaturaProgramaRepository(db).imparte(
+        and AsignaturaProgramaRepository(db).esta_asignado(
             guia.asignatura_programa_id, profesor_id
         )
     ):
@@ -119,13 +120,13 @@ def autorizar_escritura_guia(
     DirectorPrograma (corrección excepcional), False si lo hace como Profesor.
     Lanza 404 si ninguna de las dos identidades tiene derecho.
 
-    Si el email resuelve a ambos roles y el Profesor imparte la asignatura,
+    Si el email resuelve a ambos roles y el Profesor tiene asignada la asignatura,
     gana la rama Profesor (comportamiento previo, sin transición de estado):
     criterio conservador."""
     if (
         profesor_id is not None
         and guia.asignatura_programa_id is not None
-        and AsignaturaProgramaRepository(db).imparte(
+        and AsignaturaProgramaRepository(db).esta_asignado(
             guia.asignatura_programa_id, profesor_id
         )
     ):
@@ -302,8 +303,12 @@ def abrir_guia(
         puede_revisar=_es_director_de_la_guia(db, guia, director_programa_id),
         # issue #254: el profesorado en vivo desde la plantilla, no la copia
         # guia.profesorado (esa solo la usa el render del PDF/previsualización).
+        # issue #824: con las marcas imparte / es_responsable.
         profesorado=(
-            guia.asignatura_programa.profesorado
+            serializar_profesorado(
+                guia.asignatura_programa.profesorado,
+                guia.asignatura_programa.roles_profesorado(),
+            )
             if guia.asignatura_programa is not None
             else []
         ),
@@ -449,7 +454,7 @@ def enviar_guia_a_revision(
         raise HTTPException(status_code=404, detail="Guia no encontrada")
 
     asignatura_repo = AsignaturaProgramaRepository(db)
-    if guia.asignatura_programa_id is None or not asignatura_repo.imparte(
+    if guia.asignatura_programa_id is None or not asignatura_repo.esta_asignado(
         guia.asignatura_programa_id, profesor_id
     ):
         raise HTTPException(status_code=404, detail="Guia no encontrada")
@@ -645,7 +650,7 @@ def editar_texto_sistema_evaluacion(
 ) -> GuiaResponse:
     """issue #791 (antes #610): el texto de convocatorias no se edita; se elige
     la plantilla y se rellenan sus dos campos (instrumento de la convocatoria
-    extraordinaria y porcentaje recuperable). Escribe el Profesor que imparte o,
+    extraordinaria y porcentaje recuperable). Escribe el Profesor que tiene asignada la asignatura o,
     como corrección excepcional (#612, #707), el DirectorPrograma que dirige el
     programa de la Guia, con la regla de estado común de las escrituras sobre
     la guía. Registra HistorialCambio campo="plantilla_evaluacion" con el autor
@@ -761,7 +766,7 @@ def _parte_nombre_fichero(texto: str) -> str:
 def descargar_planificacion_docente_pdf(
     guia_id: int,
     db: Session = Depends(get_db),
-    # Mismo acceso que descargar_guia_pdf(): Profesor que imparte, Director
+    # Mismo acceso que descargar_guia_pdf(): Profesor asignado, Director
     # del programa o Admin; 404 uniforme.
     profesor_id: int | None = Depends(get_current_profesor_id_opcional),
     director_programa_id: int | None = Depends(get_current_director_programa_id_opcional),
@@ -865,7 +870,10 @@ def listar_guias_del_programa(
             # issue #254: profesorado de la plantilla en vivo, no la copia
             # guia.profesorado.
             profesorado=(
-                guia.asignatura_programa.profesorado
+                serializar_profesorado(
+                    guia.asignatura_programa.profesorado,
+                    guia.asignatura_programa.roles_profesorado(),
+                )
                 if guia.asignatura_programa is not None
                 else []
             ),

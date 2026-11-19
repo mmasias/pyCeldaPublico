@@ -17,20 +17,34 @@ state asignarProfesorAAsignaturaPrograma as "asignarProfesorAAsignaturaPrograma(
     [*] -[#green]-> SolicitandoDatos
     note on link
     <b>Sistema</b> presenta selección de Profesores no asignados aún a esta AsignaturaPrograma
+    <b>Sistema</b> presenta los papeles "Responsable" e "Imparte", con "Imparte" marcado y "Responsable" sin marcar
     <b>Sistema</b> permite solicitar asignar
     end note
 
     SolicitandoDatos -[#green]-> [*]
     note on link
     <b>Admin</b> selecciona Profesor
+    <b>Admin</b> selecciona al menos un papel
+    <b>Admin</b> solicita asignar
+    end note
+
+    SolicitandoDatos -[#red]-> [*]
+    note on link
+    <b>Admin</b> selecciona Profesor
+    <b>Admin</b> selecciona solo el papel "Responsable"
     <b>Admin</b> solicita asignar
     end note
 }
 
 asignarProfesorAAsignaturaPrograma -[#green]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
 note on link
-<b>Sistema</b> presenta la lista de Profesores actualizada
-<b>Sistema</b> pasa la Guía activa a En revisión, si estaba Aprobada y la plantilla cambió de verdad, para que el director la re-apruebe
+<b>Sistema</b> presenta la lista de Profesores actualizada, con su papel
+end note
+
+asignarProfesorAAsignaturaPrograma -[#red]-> ASIGNATURA_PROGRAMA_ABIERTO_SALIDA
+note on link
+<b>Sistema</b> presenta mensaje de rechazo por quedar la AsignaturaPrograma sin ningún Profesor que la imparta
+<b>Sistema</b> presenta la lista de Profesores sin cambios
 end note
 
 @enduml

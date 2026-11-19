@@ -20,6 +20,7 @@ state iniciarSesion as "iniciarSesion()" {
     c -[#green]-> [*]
     note on link
     [email autenticado por Google, dentro del dominio institucional, y ya registrado como Profesor o Admin]
+    <b>Sistema</b> registra el acceso, salvo que el rol identificado sea Admin
     <b>Sistema</b> presenta el punto de partida propio del rol identificado
     <b>punto de extensión:</b> tras validación exitosa
     end note
@@ -27,12 +28,14 @@ state iniciarSesion as "iniciarSesion()" {
     c -[#red]-> [*]
     note on link
     [email autenticado por Google fuera del dominio institucional configurado]
+    <b>Sistema</b> registra el intento rechazado por estar fuera del dominio institucional, salvo en el acceso de Admin
     <b>Sistema</b> presenta mensaje de cuenta fuera del dominio institucional
     end note
 
     c -[#orange]-> [*]
     note on link
     [email autenticado por Google, dentro del dominio institucional, pero no registrado como Profesor ni Admin]
+    <b>Sistema</b> registra el intento rechazado por cuenta no autorizada, salvo en el acceso de Admin
     <b>Sistema</b> presenta mensaje de cuenta no autorizada -- sin auto-registro
     end note
 }

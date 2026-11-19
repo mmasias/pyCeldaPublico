@@ -63,13 +63,14 @@ package "Personas y roles" {
   class Admin
   class DirectorPrograma
   class PerfilProfesorCurso
+  class AsignacionProfesor
 
   Profesor -u-|> Actor
   Admin -u-|> Actor
   DirectorPrograma -u-|> Profesor
   Actor -r-> HistorialCambio
   Universidad -- Profesor
-  AsignaturaPrograma - Profesor
+  (AsignaturaPrograma, Profesor) .. AsignacionProfesor
   Programa o- DirectorPrograma
   (Profesor, CursoAcademico) .. PerfilProfesorCurso
 }
@@ -89,9 +90,10 @@ package "Guía docente" {
   class Sesion
   Guia *-- PlanificacionDocente
   PlanificacionDocente *-- Sesion
+  class ProfesorGuia
 }
 
 
-Guia -- Profesor
+(Guia, Profesor) .. ProfesorGuia
 
 @enduml

@@ -35,8 +35,8 @@ Bajada a diseño del caso de análisis [`desasignarProfesorAsignaturaPrograma()`
 
 - **Vista**: `DesasignarProfesorAsignaturaProgramaView` (React) -- carga el detalle de la `AsignaturaPrograma` (ya la trae el listado/detalle previos), calcula si el `Profesor` a desasignar es el único de la lista y presenta confirmar/cancelar con la advertencia si aplica; al confirmar, `DELETE`.
 - **API**: `routers/asignatura_programa.py::desasignar_profesor_de_asignatura_programa(asignatura_programa_id, profesor_id)` -- `404` si la `AsignaturaPrograma` no existe o si el `Profesor` no está asignado a ella.
-- **Modelo**: la asociación vive en la tabla M2M `asignaturas_programa_profesores` -- el router retira de `AsignaturaPrograma.profesorado`. Efecto colateral #254: el mismo helper `_revisar_guia_por_cambio_de_profesorado()` que `asignarProfesorAAsignaturaPrograma()` -- si la `Guia` activa está `Aprobada`, `guia.enviar_a_revision()` + fila de `HistorialCambio` (autor centinela), atómico con el `DELETE` de la plantilla. Nunca toca `Guia -- Profesor`.
-- **Repositorio**: `AsignaturaProgramaRepository.imparte(asignatura_programa_id, profesor_id)` (ya existía, reutilizado como guardia de pertenencia) / `.desasignar_profesor(asignatura_programa_id, profesor_id)` (nuevo).
+- **Modelo**: la asociación vive en la tabla M2M `asignaturas_programa_profesores` -- el router retira de `AsignaturaPrograma.profesorado`. Efecto colateral #254: el mismo helper `_revisar_guia_por_cambio_de_profesorado()` que `asignarProfesorAAsignaturaPrograma()` -- si la `Guia` activa está `Aprobada`, `guia.enviar_a_revision()` + fila de `HistorialCambio` (autor centinela), atómico con el `DELETE` de la plantilla. Nunca toca `Guia -- Profesor` cuando el `Profesor` impartía. Issue [#827](https://github.com/mmasias/pyCelda/issues/827): el helper recibe `cambio_solo_responsable=(profesor_id, roles | None)` cuando el cambio no toca `imparte` (alta o baja de quien solo es responsable, o cambio solo de `es_responsable`); entonces no cambia el estado de la `Guia` y aplica el delta de ese `Profesor` a su copia con `models.guia.actualizar_responsable_en_copia()` (nunca una re-copia completa, para no adelantar un cambio de `imparte` pendiente de re-aprobación).
+- **Repositorio**: `AsignaturaProgramaRepository.esta_asignado(asignatura_programa_id, profesor_id)` (ya existía, reutilizado como guardia de pertenencia) / `.desasignar_profesor(asignatura_programa_id, profesor_id)` (nuevo).
 
 ## Decisiones de diseño
 
@@ -48,6 +48,10 @@ Bajada a diseño del caso de análisis [`desasignarProfesorAsignaturaPrograma()`
 - **La rama "cancelada" no genera llamada HTTP**: no pulsar el botón es la cancelación.
 - **Autorización de `Admin`: `Depends(require_admin)`**.
 - **Sin capa Service**: Router delgado -> Repository.
+
+## Regla "al menos uno imparte" (issue [#824](https://github.com/mmasias/pyCelda/issues/824))
+
+`409` si `hay_quien_imparta_tras(asignatura_programa_id, {profesor_id: None})` da `false`. La guardia de pertenencia `imparte()` se llama ahora `esta_asignado()`.
 
 ## Referencias
 

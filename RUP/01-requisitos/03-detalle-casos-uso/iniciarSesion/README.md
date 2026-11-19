@@ -80,6 +80,8 @@ Ninguna de las dos tiene wireframe propio en esta ficha: la pantalla de cada ram
 
 - Regla de presentación de las pantallas de login (`Login.tsx` y `AdminLogin.tsx`, issues [#628](https://github.com/mmasias/pyCelda/issues/628) y [#630](https://github.com/mmasias/pyCelda/issues/630)): el pie muestra la versión de la aplicación seguida de la versión del esquema de la base de datos, "... - v<versión> · esquema N". La versión del esquema se consulta al sistema sin sesión, porque el login es previo a ella. Es un dato informativo: si la consulta falla, el sufijo " · esquema N" se omite sin mostrar error. No es un caso de uso propio, es presentación de `iniciarSesion()`.
 
+- Registro de accesos (issue [#820](https://github.com/mmasias/pyCelda/issues/820)): cada intento de inicio de sesión académico (`Profesor`/`DirectorPrograma`) deja una fila en `RegistroAcceso` en las tres salidas del `<<choice>>` -- éxito, rechazo por dominio (`fuera_de_dominio`) y rechazo por cuenta no autorizada (`no_autorizado`). El inicio de sesión de `Admin` (pantalla y canal propios) no se registra, ni con éxito ni rechazado. Lo consulta el `Admin` en [`consultarRegistroAccesos()`](../consultarRegistroAccesos/README.md), últimos 25 intentos.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `SESION_CERRADA --> INICIO_ABIERTO : iniciarSesion()`, self-loop de fracaso
@@ -93,3 +95,4 @@ Ninguna de las dos tiene wireframe propio en esta ficha: la pantalla de cada ram
 - Discussion [#47](https://github.com/mmasias/pyCelda/discussions/47) -- planificación de Análisis, origen de esta ficha y de la corrección de `Admin`
 - Issue [#318](https://github.com/mmasias/pyCelda/issues/318) -- manual de usuario de `Profesor`. Issue [#321](https://github.com/mmasias/pyCelda/issues/321) -- enlace en `abrirInicio()`. Issue [#326](https://github.com/mmasias/pyCelda/issues/326) -- mismo enlace aquí, en `SESION_CERRADA`
 - Issue [#329](https://github.com/mmasias/pyCelda/issues/329) -- manual de usuario de `DirectorPrograma`. Issue [#333](https://github.com/mmasias/pyCelda/issues/333) -- enlace en `abrirInicio()`. Issue [#336](https://github.com/mmasias/pyCelda/issues/336) -- mismo enlace aquí, en `SESION_CERRADA`
+- [`consultarRegistroAccesos()`](../consultarRegistroAccesos/README.md) -- lectura del registro de intentos de acceso que escribe este caso de uso (issue [#820](https://github.com/mmasias/pyCelda/issues/820))

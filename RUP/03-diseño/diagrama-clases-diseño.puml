@@ -775,7 +775,7 @@ package Repositorio {
     +listar_resultados_aprendizaje_de(asignatura_programa_id)
     +listar_profesorado_de(asignatura_programa_id)
     +listar_impartidas_por(profesor_id)
-    +imparte(asignatura_programa_id, profesor_id)
+    +esta_asignado(asignatura_programa_id, profesor_id)
     +asignar_profesor(asignatura_programa_id, profesor_id)
     +desasignar_profesor(asignatura_programa_id, profesor_id)
   }

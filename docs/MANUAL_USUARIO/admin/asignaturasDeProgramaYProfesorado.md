@@ -62,19 +62,34 @@ Si la asignatura tiene ECTS, bajo la tabla una línea compara sus horas con las 
 
 ## Profesorado de una asignatura de programa
 
-En el detalle de la asignatura de programa aparece una tabla con el profesorado asignado (**Profesor**: su nombre o, si no lo tiene registrado, su email; y **➖** (Quitar) en cada fila), o el aviso de que no tiene ninguno.
+En el detalle de la asignatura de programa aparece una tabla con el profesorado asignado (**Profesor**: su nombre o, si no lo tiene registrado, su email; las casillas **Responsable** e **Imparte**; y **➖** (Quitar) en cada fila), o el aviso de que no tiene ninguno.
+
+Cada profesor asignado es **responsable** de la asignatura, la **imparte** o ambas cosas. Los dos papeles pueden editar la guía por igual; la diferencia está en el PDF: en **DOCENTE** y **EMAIL** de la guía docente (y en **DOCENTE** de la planificación docente) solo aparece quien la imparte. En la guía dentro de la aplicación se ven los dos papeles junto a cada nombre.
+
+Una asignatura con profesorado tiene que tener siempre al menos un profesor que la imparta. Quedarse sin profesorado sí está permitido.
+
+**Efecto sobre la guía del curso activo.** Solo cambia la guía lo que cambia quién la imparte, porque es lo único que sale en el PDF. Si la guía estaba **Aprobada** y se asigna o se quita a un profesor que la imparte, o se le pone o quita **Imparte** a alguien, la guía pasa a **En revisión** para que el director la vuelva a aprobar. Asignar o quitar a alguien que solo es responsable, o cambiar solo **Responsable**, no cambia el estado de la guía.
 
 ### Asignar un profesor
 
 1. Pulsar **Asignar profesor** (en la sección **Profesorado**).
-2. Elegir el profesor en la lista -- solo aparecen los que todavía no imparten esta asignatura de programa.
-3. Pulsar **Asignar**.
+2. Elegir el profesor en la lista -- solo aparecen los que todavía no están asignados a esta asignatura de programa.
+3. Marcar su papel: **Responsable**, **Imparte** o los dos (por defecto, solo **Imparte**: **Responsable** se marca a propósito). Hay que marcar al menos uno.
+4. Pulsar **Asignar**.
+
+Si nadie imparte todavía la asignatura, el primer profesor que se asigne tiene que llevar **Imparte**: si no, el sistema rechaza la asignación.
 
 Si ya está todo el profesorado disponible asignado, la pantalla lo indica y solo ofrece volver atrás.
 
+### Cambiar el papel de un profesor
+
+Marcar o desmarcar **Responsable** o **Imparte** en su fila de la tabla: el cambio se guarda al momento. No se puede dejar a un profesor sin ningún papel (para eso está **➖** Quitar), ni quitar **Imparte** al único que la imparte: primero hay que marcar a otro. Si cambia **Imparte** y la guía del curso activo estaba **Aprobada**, pasa a **En revisión** para que el director la vuelva a aprobar; si solo cambia **Responsable**, la guía no cambia de estado.
+
 ### Quitar un profesor
 
-Pulsar **➖** (Quitar) en su fila. Si es el único profesor asignado, la pantalla advierte de que la asignatura quedará sin profesorado y de que la guía docente que se genere para ella podría quedar incompleta. Pulsar **Confirmar desasignación** para aplicarlo.
+Pulsar **➖** (Quitar) en su fila. La pantalla dice que el profesor "deja de impartir" la asignatura o, si solo es responsable, que "deja de estar asignado/a". Si es el único profesor asignado, advierte de que la asignatura quedará sin profesorado y de que la guía docente que se genere para ella podría quedar incompleta. Pulsar **Confirmar desasignación** para aplicarlo.
+
+Si es el único que imparte y quedan otros profesores asignados (solo responsables), la pantalla no ofrece confirmar: explica que no se puede desasignar y solo ofrece **Volver**. Antes hay que marcar **Imparte** a otro profesor o quitar a los responsables.
 
 ---
 

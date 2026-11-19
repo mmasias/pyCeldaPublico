@@ -12,7 +12,7 @@ El alta, edición y baja del profesorado, y el nombramiento o cese de directores
 
 ## Cómo llegar
 
-Pulsar **Profesores** en el panel de administración. Aparece una tabla con cada profesor (su nombre o, si aún no lo tiene registrado, su email), el número de asignaturas de programa que imparte, y los botones **Abrir** y **🗑️** (Eliminar).
+Pulsar **Profesores** en el panel de administración. Aparece una tabla con cada profesor (su nombre o, si aún no lo tiene registrado, su email), el número de asignaturas de programa que tiene asignadas, y los botones **Abrir** y **🗑️** (Eliminar).
 
 ## Crear un profesor
 
@@ -26,7 +26,7 @@ Pulsar **Editar** en su detalle. **Nombre** y **Email** son ambos editables.
 
 ## Detalle de un profesor
 
-Muestra las **Asignaturas que imparte** (asignatura y programa de cada una) y los **Programas que dirige**, con el botón **➖** (Quitar) en cada uno para cesarlo como director.
+Muestra las **Asignaturas asignadas** (asignatura y programa de cada una) y los **Programas que dirige**, con el botón **➖** (Quitar) en cada uno para cesarlo como director.
 
 ### Nombrar director de programa
 

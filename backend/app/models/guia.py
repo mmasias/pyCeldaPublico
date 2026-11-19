@@ -1,11 +1,14 @@
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Column, ForeignKey, String, Table, Text
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Boolean, Column, ForeignKey, String, Table, Text, select
+from sqlalchemy.orm import Mapped, Session, mapped_column, object_session, relationship
 
 from app.core.database import Base, DateTimeUTC
-from app.models.asignatura_programa import SESIONES_MINIMAS_POR_DEFECTO
+from app.models.asignatura_programa import (
+    SESIONES_MINIMAS_POR_DEFECTO,
+    asignaturas_programa_profesores,
+)
 from app.models.plantilla_evaluacion import (
     componer_texto_convocatorias,
     es_plantilla,
@@ -83,7 +86,101 @@ guias_profesores = Table(
     Base.metadata,
     Column("guia_id", ForeignKey("guias.id"), primary_key=True),
     Column("profesor_id", ForeignKey("profesores.id"), primary_key=True),
+    # issue #824: copia de las marcas de asignaturas_programa_profesores,
+    # re-derivada en cada sincronización (copiar_profesorado_a_guia).
+    Column("imparte", Boolean, nullable=False, default=True, server_default="1"),
+    Column(
+        "es_responsable", Boolean, nullable=False, default=True, server_default="1"
+    ),
 )
+
+
+def copiar_profesorado_a_guia(
+    db: Session, guia: "Guia", asignatura_programa_id: int
+) -> None:
+    """issue #824: copia guias_profesores desde asignaturas_programa_profesores
+    a nivel de tabla, con las marcas imparte/es_responsable. Asignar la
+    relación `profesorado` (secondary=) insertaría las filas con el default,
+    no con las marcas de la asignación vigente. flush previo (cambios
+    pendientes de la relación, y el id de una Guia recién creada), borrar e
+    insertar, y expire de `profesorado` para que la relación lea lo nuevo."""
+    db.flush()
+    db.execute(guias_profesores.delete().where(guias_profesores.c.guia_id == guia.id))
+    filas = db.execute(
+        select(
+            asignaturas_programa_profesores.c.profesor_id,
+            asignaturas_programa_profesores.c.imparte,
+            asignaturas_programa_profesores.c.es_responsable,
+        ).where(
+            asignaturas_programa_profesores.c.asignatura_programa_id
+            == asignatura_programa_id
+        )
+    ).all()
+    if filas:
+        db.execute(
+            guias_profesores.insert(),
+            [
+                {
+                    "guia_id": guia.id,
+                    "profesor_id": f.profesor_id,
+                    "imparte": f.imparte,
+                    "es_responsable": f.es_responsable,
+                }
+                for f in filas
+            ],
+        )
+    db.expire(guia, ["profesorado"])
+
+
+def actualizar_responsable_en_copia(
+    db: Session,
+    guia: "Guia",
+    profesor_id: int,
+    roles: tuple[bool, bool] | None,
+) -> None:
+    """issue #827, punto 5: un cambio que no toca quién imparte (alta o baja
+    de alguien que solo es responsable, o cambio solo de `es_responsable`) no
+    cambia el estado de la Guia: se aplica directamente a su copia
+    guias_profesores, para que no quede atrasada respecto a la asignación
+    vigente cuando el curso se cierre.
+
+    Se aplica solo el delta de ese Profesor, nunca una re-copia completa: si
+    la copia está pendiente de re-derivarse por un cambio anterior en quién
+    imparte (Guia EnRevision), esa parte sigue esperando a la aprobación.
+    `roles` = (imparte, es_responsable) tras el cambio, o None si se
+    desasigna (a alguien que solo era responsable). Si la fila no existe en
+    la copia, solo se inserta cuando no imparte: la de alguien que imparte la
+    añade la próxima aprobación. Si existe pero su `imparte` no coincide con
+    el vigente, hay un cambio en quién imparte pendiente de re-aprobación: la
+    fila no se toca (ni se actualiza ni se borra), para no adelantarlo ni
+    dejarla sin ningún papel."""
+    db.flush()
+    condicion = (guias_profesores.c.guia_id == guia.id) & (
+        guias_profesores.c.profesor_id == profesor_id
+    )
+    fila = db.execute(select(guias_profesores.c.imparte).where(condicion)).first()
+    if roles is None:
+        if fila is not None and not fila.imparte:
+            db.execute(guias_profesores.delete().where(condicion))
+    else:
+        imparte, es_responsable = roles
+        if fila is not None:
+            if fila.imparte == imparte:
+                db.execute(
+                    guias_profesores.update()
+                    .where(condicion)
+                    .values(es_responsable=es_responsable)
+                )
+        elif not imparte:
+            db.execute(
+                guias_profesores.insert().values(
+                    guia_id=guia.id,
+                    profesor_id=profesor_id,
+                    imparte=False,
+                    es_responsable=es_responsable,
+                )
+            )
+    db.expire(guia, ["profesorado"])
 
 
 class Guia(Base):
@@ -425,8 +522,34 @@ class Guia(Base):
         # activa (misma familia que Guia.contenido: un mantenedor y un ciclo de
         # re-aprobación). Si la Guia no tiene AsignaturaPrograma (columna nullable),
         # no hay plantilla de la que copiar y la copia se queda como está.
-        if self.asignatura_programa is not None:
+        # issue #824: la copia arrastra las marcas imparte/es_responsable.
+        if self.asignatura_programa is None:
+            return
+        db = object_session(self)
+        if db is None:
+            # Guia fuera de sesión: sin tabla que copiar, solo la relación
+            # (las marcas quedan con el default).
             self.profesorado = list(self.asignatura_programa.profesorado)
+            return
+        copiar_profesorado_a_guia(db, self, self.asignatura_programa.id)
+
+    def roles_profesorado(self) -> dict[int, tuple[bool, bool]]:
+        """issue #824: {profesor_id: (imparte, es_responsable)} de la copia
+        Guia -- Profesor (la que lee el render del PDF)."""
+        db = object_session(self)
+        if db is None or self.id is None:
+            return {p.id: (True, True) for p in self.profesorado}
+        db.flush()
+        return {
+            f.profesor_id: (bool(f.imparte), bool(f.es_responsable))
+            for f in db.execute(
+                select(
+                    guias_profesores.c.profesor_id,
+                    guias_profesores.c.imparte,
+                    guias_profesores.c.es_responsable,
+                ).where(guias_profesores.c.guia_id == self.id)
+            )
+        }
 
     def aprobar(self) -> None:
         # regenerar_pdf() como parte del propio cambio de estado (discussion
