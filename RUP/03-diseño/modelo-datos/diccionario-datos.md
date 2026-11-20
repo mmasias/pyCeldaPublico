@@ -43,6 +43,7 @@ Ninguna de estas columnas tiene `CHECK` ni tabla de catálogo en el esquema -- e
 | `resultados_aprendizaje.tipo` | `{Conocimientos o contenidos, Habilidades o destrezas, Competencias o capacidades, General}` | [modelo de dominio, `ResultadoAprendizaje`](/RUP/00-modelo-del-dominio/README.md) |
 | `referencias_bibliograficas.tipo` | `{Basica, Complementaria, WebsReferencia, OtrasFuentes}` | [modelo de dominio, bibliografía](/RUP/00-modelo-del-dominio/README.md) -- el enum guarda el nombre técnico, la UI muestra la forma legible |
 | `sesiones.tipo` | `{CLASE_TEORICA, CLASE_PRACTICA, CLASE_TEORICO_PRACTICA, CLASE_LABORATORIO, EVALUACION_CONTINUA, EVALUACION_PARCIAL}` | [modelo de dominio, `Sesion.tipo`](/RUP/00-modelo-del-dominio/README.md) (discussion #140; 6º valor `CLASE_TEORICO_PRACTICA` en la [#198](https://github.com/mmasias/pyCelda/discussions/198)) |
+| `historial_cambios.autor_tipo` | `{profesor, director_programa, admin}` | desde el esquema 10 ([#838](https://github.com/mmasias/pyCelda/issues/838)); `admin` va siempre con `autor_id = 0` (centinela, Admin no tiene tabla). Migración de las filas anteriores (`migrar_autor_tipo_historial.py`): las de contenido sin fila hermana de corrección del Director quedaron como `profesor`, y algunas pueden seguir mal atribuidas (ediciones del Director en Borrador/Rechazada entre el 2026-10-02 y el 2026-10-07, y sesiones pendientes creadas, editadas o duplicadas por el Director en Borrador/Rechazada) |
 | `historial_cambios.campo` | `{estado, contenido}` | `estado` desde el origen; `contenido` desde la [discussion #191](https://github.com/mmasias/pyCelda/discussions/191) |
 | `asignaturas_programa.caracter` | texto libre en la práctica (`Básica`, `Obligatoria`, `Optativa`, ...) | dato del plan de estudios, sin enum cerrado |
 
@@ -51,7 +52,7 @@ Ninguna de estas columnas tiene `CHECK` ni tabla de catálogo en el esquema -- e
 | asociación | representación física | por qué |
 |---|---|---|
 | `Guia` -> `Programa` (`guias.programa_id`) | columna `Integer` nullable, **sin `FOREIGN KEY`** | denormalización: `programa_id` es derivable vía `asignatura_programa.materia.programa`; se guarda para las guías que nacen sin `AsignaturaPrograma`. Ver [modelo de dominio](/RUP/00-modelo-del-dominio/README.md) |
-| `HistorialCambio` -> autor (`historial_cambios.autor_id`) | columna `Integer`, **sin `FOREIGN KEY`** | FK polimórfica: el autor es `Profesor`, `DirectorPrograma` o `Admin` -- el modelo lo resuelve por `Actor -> HistorialCambio`, no hay una tabla `actores` única |
+| `HistorialCambio` -> autor (`historial_cambios.autor_id`) | columna `Integer`, **sin `FOREIGN KEY`** | FK polimórfica: el autor es `Profesor`, `DirectorPrograma` o `Admin` -- el modelo lo resuelve por `Actor -> HistorialCambio`, no hay una tabla `actores` única. La tabla de la que sale el id la dice `historial_cambios.autor_tipo` (esquema 10, [#838](https://github.com/mmasias/pyCelda/issues/838)); hasta entonces se deducía de `campo` y las ediciones de contenido del Director se atribuían al `Profesor` con el mismo id. Sin `FOREIGN KEY` polimórfica: Admin no tiene tabla y complicaría el borrado de profesores |
 | `AsignaturaPrograma` -> `Programa` (`AsignaturaPrograma.programa_id`) | **no es columna**: `@property` que devuelve `materia.programa_id` | la pertenencia al programa va por `materia`, no se duplica |
 
 `AsignaturaPrograma` -> `Asignatura` (`asignaturas_programa.asignatura_id`) **ya no es FK lógica**: es FK física real y nullable desde el [issue #181](https://github.com/mmasias/pyCelda/issues/181) / [PR #250](https://github.com/mmasias/pyCelda/pull/250) -- trazabilidad hacia el catálogo, no vínculo vivo: `nombre`/`contenido`/`ects` en `asignaturas_programa` siguen siendo copias que pueden divergir a propósito del catálogo (patrón catálogo -> override -> materialización, [discussion #191](https://github.com/mmasias/pyCelda/discussions/191)). Queda `NULL` en las filas cuyo backfill (PR #250, `migrar_asignatura_catalogo_y_fk.py`) no encontró placeholder legado que reconciliar con el catálogo ([discussion #113](https://github.com/mmasias/pyCelda/discussions/113)).
@@ -420,7 +421,8 @@ Auditoría de cambios de estado y de contenido de una guía.
 |---|---|---|---|---|---|---|
 | `id` | Integer | no | -- | PK | -- | -- |
 | `guia_id` | Integer | no | -- | FK -> guias.id | -- | -- |
-| `autor_id` | Integer | no | -- | -- | -- | FK lógica polimórfica (Profesor | DirectorPrograma | Admin); sin FK física |
+| `autor_id` | Integer | no | -- | -- | -- | FK lógica polimórfica (Profesor | DirectorPrograma | Admin); sin FK física; la tabla la dice autor_tipo |
+| `autor_tipo` | String(20) | no | -- | -- | {profesor, director_programa, admin} | de qué tabla sale autor_id (#838, esquema 10); admin va con autor_id = 0 |
 | `campo` | String(50) | no | -- | -- | {estado, contenido} | -- |
 | `valor_anterior` | String(50) | no | -- | -- | -- | resumen del valor, no el texto completo |
 | `valor_nuevo` | String(50) | no | -- | -- | -- | resumen del valor, no el texto completo |

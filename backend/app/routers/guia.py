@@ -23,7 +23,12 @@ from app.models.guia import (
     LIMITE_CONTENIDO_GUIA,
     Guia,
 )
-from app.models.historial_cambio import HistorialCambio
+from app.models.historial_cambio import (
+    AUTOR_TIPO_DIRECTOR_PROGRAMA,
+    AUTOR_TIPO_PROFESOR,
+    HistorialCambio,
+    autor_de,
+)
 from app.models.plantilla_evaluacion import (
     CODIGOS_PLANTILLA,
     LIMITE_INSTRUMENTO_EXTRAORDINARIO,
@@ -161,6 +166,7 @@ def aplicar_regla_de_estado_por_escritura(
         db.add(
             HistorialCambio.registrar(
                 guia_id=guia.id,
+                autor_tipo=AUTOR_TIPO_PROFESOR,
                 autor_id=profesor_id,
                 campo="estado",
                 valor_anterior="Aprobada",
@@ -196,6 +202,7 @@ def aplicar_transicion_por_correccion_del_director(
         db.add(
             HistorialCambio.registrar(
                 guia_id=guia.id,
+                autor_tipo=AUTOR_TIPO_DIRECTOR_PROGRAMA,
                 autor_id=director_programa_id,
                 campo=CAMPO_CORRECCION_DIRECTOR,
                 valor_anterior=estado_anterior,
@@ -210,6 +217,7 @@ def aplicar_transicion_por_correccion_del_director(
     db.add(
         HistorialCambio.registrar(
             guia_id=guia.id,
+            autor_tipo=AUTOR_TIPO_DIRECTOR_PROGRAMA,
             autor_id=director_programa_id,
             campo="estado",
             valor_anterior=estado_anterior,
@@ -353,7 +361,7 @@ def guardar_borrador_guia(
     como_director = autorizar_escritura_guia(
         db, guia, profesor_id, director_programa_id
     )
-    autor_id = director_programa_id if como_director else profesor_id
+    autor_tipo, autor_id = autor_de(como_director, director_programa_id, profesor_id)
 
     # Tope de longitud del temario (issue #303): se comprueba antes de tocar
     # nada -- si el contenido pegado se pasa, la petición se rechaza entera,
@@ -378,6 +386,7 @@ def guardar_borrador_guia(
         db.add(
             HistorialCambio.registrar(
                 guia_id=guia.id,
+                autor_tipo=autor_tipo,
                 autor_id=autor_id,
                 campo="ponderaciones_evaluacion",
                 valor_anterior=f"{antes} ponderaciones",
@@ -397,6 +406,7 @@ def guardar_borrador_guia(
         db.add(
             HistorialCambio.registrar(
                 guia_id=guia.id,
+                autor_tipo=autor_tipo,
                 autor_id=autor_id,
                 campo="referencias_bibliograficas",
                 valor_anterior=f"{antes} referencias",
@@ -418,12 +428,14 @@ def guardar_borrador_guia(
     if datos.contenido is not None:
         contenido_anterior = guia.actualizar_contenido(datos.contenido)
         if contenido_anterior is not None:
-            # Fila de HistorialCambio con campo="contenido": es una edición del
-            # Profesor. Guia._ultimo_cambio_historial() ignora estas filas (solo
-            # mira campo="estado") para no atribuir el cambio al Director.
+            # Fila de HistorialCambio con campo="contenido", del Profesor o del
+            # Director según `como_director` (autor_tipo, #838). La autoría de
+            # "Última actualización" no sale de esta fila: la da la de estado
+            # o de corrección que deja aplicar_regla_de_estado_por_escritura().
             db.add(
                 HistorialCambio.registrar(
                     guia_id=guia.id,
+                    autor_tipo=autor_tipo,
                     autor_id=autor_id,
                     campo="contenido",
                     valor_anterior=_resumen_contenido(contenido_anterior),
@@ -507,6 +519,7 @@ def aprobar_guia(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
+        autor_tipo=AUTOR_TIPO_DIRECTOR_PROGRAMA,
         autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
@@ -549,6 +562,7 @@ def rechazar_guia(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
+        autor_tipo=AUTOR_TIPO_DIRECTOR_PROGRAMA,
         autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
@@ -577,6 +591,7 @@ def escalar_guia_a_aprobada(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
+        autor_tipo=AUTOR_TIPO_DIRECTOR_PROGRAMA,
         autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
@@ -609,6 +624,7 @@ def revocar_aprobacion_guia(
 
     historial = HistorialCambio.registrar(
         guia_id=guia.id,
+        autor_tipo=AUTOR_TIPO_DIRECTOR_PROGRAMA,
         autor_id=director_programa_id,
         campo="estado",
         valor_anterior=estado_anterior,
@@ -663,7 +679,7 @@ def editar_texto_sistema_evaluacion(
     como_director = autorizar_escritura_guia(
         db, guia, profesor_id, director_programa_id
     )
-    autor_id = director_programa_id if como_director else profesor_id
+    autor_tipo, autor_id = autor_de(como_director, director_programa_id, profesor_id)
 
     if datos.plantilla not in CODIGOS_PLANTILLA:
         raise HTTPException(status_code=422, detail="Plantilla desconocida")
@@ -714,6 +730,7 @@ def editar_texto_sistema_evaluacion(
     db.add(
         HistorialCambio.registrar(
             guia_id=guia.id,
+            autor_tipo=autor_tipo,
             autor_id=autor_id,
             campo="plantilla_evaluacion",
             valor_anterior=resumen_anterior,

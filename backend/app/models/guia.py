@@ -9,6 +9,11 @@ from app.models.asignatura_programa import (
     SESIONES_MINIMAS_POR_DEFECTO,
     asignaturas_programa_profesores,
 )
+from app.models.historial_cambio import (
+    AUTOR_TIPO_ADMIN,
+    AUTOR_TIPO_DIRECTOR_PROGRAMA,
+    AUTOR_TIPO_PROFESOR,
+)
 from app.models.plantilla_evaluacion import (
     componer_texto_convocatorias,
     es_plantilla,
@@ -35,20 +40,25 @@ COMENTARIO_REVISION_POR_PROFESORADO = (
     "En revisión por cambio en los profesores que la imparten"
 )
 
-# Discussion #731 (opción A, sin cambio de esquema): HistorialCambio no guarda
-# el rol del autor y los id de Profesor y DirectorPrograma son de tablas
-# distintas, así que la autoría de las filas que marcan quién tocó la guía se
-# distingue como la de Administración, por un valor fijo:
+# Discussion #731: las escrituras dejan una fila que marca quién tocó la guía:
 # - el Profesor que edita una guía Aprobada deja una fila campo="estado"
 #   (Aprobada -> Borrador) con COMENTARIO_EDICION_PROFESOR;
 # - el Director que corrige una guía en Borrador o Rechazada (sin transición de
 #   estado) deja una fila campo=CAMPO_CORRECCION_DIRECTOR.
-# La mejora limpia (opción B) es una columna de rol en HistorialCambio, con
-# subida de esquema.
+# Desde #838 (esquema 10, la "opción B" de #731) el autor de cada fila lo dice
+# HistorialCambio.autor_tipo; los valores fijos siguen sirviendo para
+# distinguir la edición del Profesor de una revocación (comentario_revocacion).
 COMENTARIO_EDICION_PROFESOR = "edición del Profesor sobre la guía aprobada"
 COMENTARIO_CORRECCION_DIRECTOR = "corrección directa del Director"
 CAMPO_CORRECCION_DIRECTOR = "correccion_director"
 
+
+# "Última actualización" (#838): rol según HistorialCambio.autor_tipo.
+ETIQUETAS_ROL_AUTOR = {
+    AUTOR_TIPO_PROFESOR: "Profesor",
+    AUTOR_TIPO_DIRECTOR_PROGRAMA: "Director",
+    AUTOR_TIPO_ADMIN: "Administración",
+}
 
 COMENTARIOS_RESERVADOS = (COMENTARIO_EDICION_PROFESOR, COMENTARIO_CORRECCION_DIRECTOR)
 
@@ -306,7 +316,9 @@ class Guia(Base):
         # las transiciones de estado (aprobar/rechazar/escalar/revocar, la del
         # Profesor que edita una aprobada y la administrativa de #254) y la
         # corrección del Director sin transición (#731). Las filas de contenido
-        # no: su autor_id no dice de qué tabla sale.
+        # no: toda escritura de contenido deja además una de estas con la
+        # misma fecha (salvo las altas pendientes), y las de contenido no
+        # mueven fecha_ultima_modificacion.
         cambios = [
             h for h in self.historial if h.campo in ("estado", CAMPO_CORRECCION_DIRECTOR)
         ]
@@ -332,14 +344,9 @@ class Guia(Base):
         # aplicar_regla_de_estado_por_escritura); con > esa fila no contaría.
         ultimo_historial = self._ultimo_cambio_historial()
         if ultimo_historial is not None and ultimo_historial.fecha >= self.fecha_ultima_modificacion:
-            # issue #254: la transición Aprobada -> EnRevision administrativa
-            # es campo="estado" pero no la hace el Director -- el autor centinela
-            # la distingue para no atribuírsela.
-            if ultimo_historial.autor_id == AUTOR_ADMIN_CENTINELA:
-                return "Administración"
-            if _es_edicion_del_profesor(ultimo_historial):
-                return "Profesor"
-            return "Director"
+            # #838: el rol sale de autor_tipo, no se deduce del campo ni del
+            # comentario.
+            return ETIQUETAS_ROL_AUTOR[ultimo_historial.autor_tipo]
         return "Profesor"
 
     @property
@@ -357,7 +364,7 @@ class Guia(Base):
         if (
             ultimo.valor_anterior == "Aprobada"
             and ultimo.valor_nuevo == "EnRevision"
-            and ultimo.autor_id == AUTOR_ADMIN_CENTINELA
+            and ultimo.autor_tipo == AUTOR_TIPO_ADMIN
         ):
             return ultimo.comentario
         return None

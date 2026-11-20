@@ -14,8 +14,8 @@
 - **Proyecto**: pyCelda
 - **Fase RUP**: Elaboración
 - **Disciplina**: Diseño
-- **Versión**: 1.0
-- **Fecha**: 2026-10-03
+- **Versión**: 1.1
+- **Fecha**: 2026-11-20 (1.0: 2026-10-03)
 - **Autor**: Claude Sonnet 5.5 (vía Claude Code)
 
 ## Propósito
@@ -42,7 +42,8 @@ Bajada a diseño del caso de análisis [`consultarHistorialCambios()`](/RUP/02-a
 
 ## Decisiones de diseño
 
-- **`autor_id` no es un único espacio de identificadores** (`_clasificar_autor`): `campo="estado"` con el centinela `AUTOR_ADMIN_CENTINELA` (`0`) es `Admin`; `campo="estado"` con identificador real es `DirectorPrograma.id`; cualquier otro `campo` (`contenido`, `planificacion_docente`, ...) es `Profesor.id`. La tabla de verdad está en la función, no en una columna.
+- **`autor_id` no es un único espacio de identificadores; la tabla la dice `autor_tipo`** (`_clasificar_autor`, issue [#838](https://github.com/mmasias/pyCelda/issues/838), esquema 10): `historial_cambios.autor_tipo` vale `profesor`, `director_programa` o `admin` (este último con el centinela `AUTOR_ADMIN_CENTINELA`, `0`: Admin no tiene tabla). Toda escritura lo da explícito -- `HistorialCambio.registrar()` lo exige sin valor por defecto, y en las escrituras que pueden hacer Profesor o Director el par (tipo, id) sale de un único helper, `autor_de(como_director, director_programa_id, profesor_id)`. Ni `_clasificar_autor` ni `Guia.ultima_actualizacion_rol` deducen ya el tipo del `campo` o del comentario. Hasta 0.11.53 se deducía (`estado`/corrección del Director -> `DirectorPrograma`, cualquier otro campo -> `Profesor`) y las ediciones de contenido del Director aparecían a nombre del `Profesor` con el mismo id. Sin email del autor ni FK polimórfica: Admin no tiene tabla y una FK complicaría el borrado de profesores.
+- **Filas anteriores al esquema 10, atribución heredada** (`migrar_autor_tipo_historial.py`): el centinela pasa a `admin`; las filas de `estado` y de corrección del Director, al tipo que ya les daba la lectura anterior; las de contenido, a `director_programa` si tienen fila hermana de corrección del Director (misma guía, mismo `autor_id`, a menos de 2 s) y a `profesor` en otro caso. **Limitación conocida, sin resolver a propósito**: algunas filas de contenido sin hermana pueden seguir mal atribuidas al `Profesor` -- las ediciones del Director sobre guías en Borrador o Rechazada entre el 2026-10-02 y el 2026-10-07 (antes de #731 no dejaban fila hermana) y, en cualquier fecha anterior al esquema 10, las sesiones pendientes que el Director creó, editó o duplicó en guías en Borrador o Rechazada. El `plan` del script da el recuento por regla, sin nombres.
 - **Índice de autores fusionado por email normalizado** (`_clave_agrupacion`, issue [#401](https://github.com/mmasias/pyCelda/issues/401)): `Profesor.email` y `DirectorPrograma.email` son `unique`; la misma persona con fila en las dos tablas fusiona en una sola entrada, con clave en minúsculas. `Admin` (sin email) queda aislado con clave literal `"admin"`. Si el `Profesor`/`DirectorPrograma` referenciado ya no existe, se aísla por `tipo:id` -- fallback defensivo, sin fusión posible.
 - **`DirectorPrograma` sin `nombre` propio** (issue [#62](https://github.com/mmasias/pyCelda/issues/62)): `_resolver_autor` cruza por email contra `Profesor` y muestra su nombre; si no hay `Profesor` con ese email, muestra el email; si el `DirectorPrograma` ya no existe, `Director #id`.
 - **`?curso=` opcional, default opuesto al de `consultarEstadoGuias()`** (issue [#442](https://github.com/mmasias/pyCelda/issues/442)): **sin filtro, histórico completo de todos los cursos**; con él, join `HistorialCambio -> Guia` filtrado por `curso_academico_id`. `404` (`CursoAcademico no encontrado`) si el curso no existe. Otros filtros naturales de una auditoría (profesor, fechas, campo...) quedan fuera a propósito.

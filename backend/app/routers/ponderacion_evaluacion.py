@@ -7,7 +7,7 @@ from app.core.auth import (
     get_current_rol,
 )
 from app.core.database import get_db
-from app.models.historial_cambio import HistorialCambio
+from app.models.historial_cambio import HistorialCambio, autor_de
 from app.models.ponderacion_evaluacion import PonderacionEvaluacion
 from app.repositories.asignatura_programa import AsignaturaProgramaRepository
 from app.repositories.guia import GuiaRepository
@@ -210,10 +210,12 @@ def editar_ponderacion_evaluacion(
                 f"; sistema: {ponderacion.sistema_evaluacion.codigo or ponderacion.sistema_evaluacion.etiqueta()}"
                 f" -> {sistema.codigo or sistema.etiqueta()}"
             )
+        autor_tipo, autor_id = autor_de(como_director, director_programa_id, profesor_id)
         db.add(
             HistorialCambio.registrar(
                 guia_id=guia.id,
-                autor_id=director_programa_id if como_director else profesor_id,
+                autor_tipo=autor_tipo,
+                autor_id=autor_id,
                 campo="ponderaciones_evaluacion",
                 valor_anterior=_resumen_contenido(
                     f"{ponderacion.descripcion} ({float(ponderacion.ponderacion):g}%)"

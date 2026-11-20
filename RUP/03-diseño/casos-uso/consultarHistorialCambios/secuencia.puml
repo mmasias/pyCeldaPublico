@@ -34,7 +34,7 @@ else sin filtro, o curso existente
     DB --> API: todas las filas del filtro
 
     loop por cada fila (feed y, para el índice, todas)
-        API -> API: _clasificar_autor(campo, autor_id) -> (tipo, id)
+        API -> API: _clasificar_autor(h) -> (autor_tipo, autor_id)
         API -> DB: SELECT profesor / director_programa (email, nombre)
         opt autor DirectorPrograma
             API -> ProfesorRepo: obtener_por_email(director.email)

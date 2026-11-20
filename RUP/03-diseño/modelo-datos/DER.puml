@@ -200,6 +200,7 @@ package "Guía docente" {
     id : Integer <<PK>>
     guia_id : Integer <<FK>>
     autor_id : Integer <<FK lógica poli>>
+    autor_tipo : String(20)
     campo : String(50)
     valor_anterior : String(50)
     valor_nuevo : String(50)
@@ -295,11 +296,11 @@ programas ||--{ programas_directores_programa
 directores_programa ||--{ programas_directores_programa
 programas }--o| facultades : adscrito a
 programas }--o| programas_padre : versión de
+historial_cambios }--|| guias : audita
 guias_profesores }--|| guias
 guias_profesores }--|| profesores
 guias }--o| asignaturas_programa : materializa
 guias }--|| cursos_academicos : cursada en
-historial_cambios }--|| guias : audita
 metodologias_docentes }--|| programas : del plan de
 metodologias_materia }--|| materias
 metodologias_materia }--|| metodologias_docentes

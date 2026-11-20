@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`consultarHistorialCambios()`](/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/README.md) (issue [#392](https://github.com/mmasias/pyCelda/issues/392)): auditoría de solo lectura, sin `<<choice>>` de bloqueo. Presenta dos cosas en una sola pantalla -- el feed de las últimas 50 acciones registradas en `HistorialCambio` y un índice de autores distintos -- y permite navegar al historial completo de un autor concreto, **dentro del mismo caso de uso** (no es un estado propio: el detalle por autor es otra lectura del mismo CU). Mismo molde que [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md) (verbo `consultar`, lectura/monitoreo con selector de curso opcional), con tres diferencias reales: (1) el **default del filtro es el opuesto** -- sin `?curso=`, histórico completo de todos los cursos, mientras `consultarEstadoGuias()` preselecciona el vigente (issue [#442](https://github.com/mmasias/pyCelda/issues/442)); (2) el **autor no es un único espacio de identificadores**: se resuelve según el campo que cambió (`estado` con el centinela de `Admin` es `Admin`; `estado` con identificador real es `DirectorPrograma`; `contenido`/`planificacion_docente`... es `Profesor`); (3) el **índice de autores se fusiona por email normalizado** -- un `Profesor` y un `DirectorPrograma` con el mismo email son una sola entrada (issue [#401](https://github.com/mmasias/pyCelda/issues/401)). `HistorialCambio` (`Guia *-- HistorialCambio`) solo se **lee** aquí; lo escriben otros casos de uso.
+Traducción a clases de análisis del caso de uso [`consultarHistorialCambios()`](/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/README.md) (issue [#392](https://github.com/mmasias/pyCelda/issues/392)): auditoría de solo lectura, sin `<<choice>>` de bloqueo. Presenta dos cosas en una sola pantalla -- el feed de las últimas 50 acciones registradas en `HistorialCambio` y un índice de autores distintos -- y permite navegar al historial completo de un autor concreto, **dentro del mismo caso de uso** (no es un estado propio: el detalle por autor es otra lectura del mismo CU). Mismo molde que [`consultarEstadoGuias()`](../consultarEstadoGuias/README.md) (verbo `consultar`, lectura/monitoreo con selector de curso opcional), con tres diferencias reales: (1) el **default del filtro es el opuesto** -- sin `?curso=`, histórico completo de todos los cursos, mientras `consultarEstadoGuias()` preselecciona el vigente (issue [#442](https://github.com/mmasias/pyCelda/issues/442)); (2) el **autor no es un único espacio de identificadores**: cada fila dice de qué tipo es su autor (`Profesor`, `DirectorPrograma` o `Admin`, issue [#838](https://github.com/mmasias/pyCelda/issues/838)); hasta entonces se deducía del campo que cambió y las ediciones de contenido del `DirectorPrograma` se atribuían al `Profesor` con el mismo identificador; (3) el **índice de autores se fusiona por email normalizado** -- un `Profesor` y un `DirectorPrograma` con el mismo email son una sola entrada (issue [#401](https://github.com/mmasias/pyCelda/issues/401)). `HistorialCambio` (`Guia *-- HistorialCambio`) solo se **lee** aquí; lo escriben otros casos de uso.
 
 <div align=center>
 
@@ -43,7 +43,7 @@ Traducción a clases de análisis del caso de uso [`consultarHistorialCambios()`
 **Responsabilidades:**
 - consulta el feed y el índice de autores (`consultarHistorial(cursoAcademicoId)`): sin curso, todo el histórico; con curso, solo las filas de las `Guia` de ese curso. Si el curso indicado no existe, lo rechaza (la comprobación previa se delega en `CursoAcademicoRepository.obtener()`).
 - consulta el historial completo de un autor (`consultarHistorialDeAutor(clave)`): sin límite de 50 ni filtro de curso. Una clave desconocida no es un error, es una búsqueda con cero resultados.
-- resuelve el autor de cada fila según el campo que cambió (`resolverAutor(campo, autorId)`) y agrupa por email normalizado (`claveAgrupacion(...)`), con `Admin` aislado bajo la clave literal `"admin"`.
+- resuelve el autor de cada fila según el tipo de autor que la propia fila registra (`resolverAutor(autorTipo, autorId)`) y agrupa por email normalizado (`claveAgrupacion(...)`), con `Admin` aislado bajo la clave literal `"admin"`.
 - no valida ni muta nada más -- caso de uso de solo lectura.
 
 **Colaboraciones:**
@@ -55,7 +55,7 @@ Traducción a clases de análisis del caso de uso [`consultarHistorialCambios()`
 ### `HistorialCambio`
 
 **Responsabilidades:**
-- porta `fecha`, `campo`, `valorAnterior`, `valorNuevo`, `comentario`, `autorId` y la `Guia` a la que pertenece (`Guia *-- HistorialCambio`); de la `Guia` salen la `AsignaturaPrograma` y el `Programa` que se muestran.
+- porta `fecha`, `campo`, `valorAnterior`, `valorNuevo`, `comentario`, `autorTipo` + `autorId` y la `Guia` a la que pertenece (`Guia *-- HistorialCambio`); de la `Guia` salen la `AsignaturaPrograma` y el `Programa` que se muestran.
 - se **lee** aquí, nunca se escribe: lo registran otros puntos del código (aprobar/rechazar/escalar/revocar guía, edición de contenido, planificación docente, importaciones...).
 - la consulta se hace directamente sobre `HistorialCambio`, sin repositorio propio: ordena por `fecha` descendente, desempatando por `id` descendente (varias filas pueden compartir el mismo instante).
 
