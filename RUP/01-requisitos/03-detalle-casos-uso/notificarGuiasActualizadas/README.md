@@ -38,6 +38,8 @@
 
 </div>
 
+**Pendiente de implementar -- caso de uso de la fase de Requisitos sin interfaz hoy.** El botón "Notificar guías actualizadas" se retiró de la interfaz en `5d243bcb` (2026-10-06) porque el endpoint `POST .../notificar-guias-actualizadas` existe pero no envía nada; la función `notificarGuiasActualizadas()` sigue en `frontend/src/api.ts` sin uso. Decisión de Manuel (2026-11-25): se mantiene en el RUP como requisito pendiente, no se retira. El wireframe de este caso dibuja la acción tal como se diseñó; los de `consultarEstadoGuias()` y `abrirPrograma()` dibujan la pantalla construida, sin el botón. Hasta que se implemente (aviso real al `Admin`), no aparece en los manuales de usuario.
+
 Self-loop de `GUIAS_DEL_PROGRAMA_ABIERTO`, no de una `Guia` concreta -- actúa sobre el conjunto completo del listado, por eso no reutiliza `abrirGuia()` como las otras cuatro decisiones (ver [`aprobarGuia()`](../aprobarGuia/README.md)). Formaliza el paso intermedio del [guión de eventos](/RUP/00-modelo-del-dominio/README.md): "cuando todas las guías del programa están `Aprobada`, el director notifica al admin, que genera las guías en PDF" -- el disparador real de [`generarGuiasPDF()`](../generarGuiasPDF/README.md).
 
 Sin `<<choice>>` que valide "todas Aprobada" antes de notificar: esa validación real vive en `generarGuiasPDF()` (el `Admin` es quien la necesita para decidir si genera o no), no aquí -- `notificarGuiasActualizadas()` es un aviso, no una puerta de paso. El `DirectorPrograma` puede notificar en cualquier momento; si notifica antes de tiempo, el `Admin` simplemente encontrará guías pendientes al intentar generar.
