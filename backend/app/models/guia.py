@@ -1,10 +1,12 @@
 from datetime import UTC, datetime
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, Column, ForeignKey, String, Table, Text, select
 from sqlalchemy.orm import Mapped, Session, mapped_column, object_session, relationship
 
 from app.core.database import Base, DateTimeUTC
+from app.core.ponderacion import ponderacion_exacta
 from app.models.asignatura_programa import (
     SESIONES_MINIMAS_POR_DEFECTO,
     asignaturas_programa_profesores,
@@ -467,26 +469,28 @@ class Guia(Base):
         vinculadas = [p for p in self.ponderaciones if p.vinculada]
         if not vinculadas:
             return "Rango por sistema de evaluación o suma total incorrectos"
-        if sum(float(p.ponderacion) for p in vinculadas) != 100:
+        # Aritmética exacta (#849): las ponderaciones son Numeric(5, 2); sumadas
+        # en float, [3.12, 72.68, 4.28, 19.92] daba 100.00000000000001 != 100.
+        if sum((ponderacion_exacta(p.ponderacion) for p in vinculadas), Decimal(0)) != 100:
             return "Rango por sistema de evaluación o suma total incorrectos"
-        por_sistema: dict[int, float] = {}
+        por_sistema: dict[int, Decimal] = {}
         for p in vinculadas:
-            por_sistema[p.sistema_evaluacion_id] = (
-                por_sistema.get(p.sistema_evaluacion_id, 0) + float(p.ponderacion)
-            )
+            por_sistema[p.sistema_evaluacion_id] = por_sistema.get(
+                p.sistema_evaluacion_id, Decimal(0)
+            ) + ponderacion_exacta(p.ponderacion)
         for sistema in self.asignatura_programa.materia.sistemas_evaluacion:
-            asignado = por_sistema.get(sistema.id, 0.0)
-            minima = float(sistema.ponderacion_minima)
-            maxima = float(sistema.ponderacion_maxima)
+            asignado = por_sistema.get(sistema.id, Decimal(0))
+            minima = ponderacion_exacta(sistema.ponderacion_minima)
+            maxima = ponderacion_exacta(sistema.ponderacion_maxima)
             if asignado < minima:
                 return (
-                    f"Falta asignar {minima - asignado:g}% en {sistema.etiqueta()} "
-                    f"(mínimo {minima:g}%, asignado {asignado:g}%)"
+                    f"Falta asignar {float(minima - asignado):g}% en {sistema.etiqueta()} "
+                    f"(mínimo {float(minima):g}%, asignado {float(asignado):g}%)"
                 )
             if asignado > maxima:
                 return (
-                    f"Sobra {asignado - maxima:g}% en {sistema.etiqueta()} "
-                    f"(máximo {maxima:g}%, asignado {asignado:g}%)"
+                    f"Sobra {float(asignado - maxima):g}% en {sistema.etiqueta()} "
+                    f"(máximo {float(maxima):g}%, asignado {float(asignado):g}%)"
                 )
         return None
 

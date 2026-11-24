@@ -8,14 +8,15 @@
 
 <div align=center>
 
-|**Con advertencia**|**Caso normal**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasignarProfesorAsignaturaPrograma/wireframe-advertencia.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasignarProfesorAsignaturaPrograma/wireframe-normal.svg)|
+|**Con advertencia**|**Bloqueo**|**Caso normal**|
+|---|---|---|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasignarProfesorAsignaturaPrograma/wireframe-advertencia.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasignarProfesorAsignaturaPrograma/wireframe-bloqueo.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasignarProfesorAsignaturaPrograma/wireframe-normal.svg)|
 
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarAsignaturaPrograma.md)|<sub>editarAsignaturaPrograma()</sub>|
 |[**Asignar Profesor**](asignarProfesorAAsignaturaPrograma.md)|<sub>asignarProfesorAAsignaturaPrograma()</sub>|
+|[**Cambiar roles profesor asignatura programa**](cambiarRolesProfesorAsignaturaPrograma.md)|<sub>cambiarRolesProfesorAsignaturaPrograma()</sub>|
 |[**Asociar Resultado de Aprendizaje**](asociarResultadoAprendizajeAAsignaturaPrograma.md)|<sub>asociarResultadoAprendizajeAAsignaturaPrograma()</sub>|
 |[**Quitar**](desasociarResultadoAprendizajeAsignaturaPrograma.md)|<sub>desasociarResultadoAprendizajeAsignaturaPrograma()</sub>|
 |[**Asociar competencia a la asignatura**](asociarCompetenciaAAsignaturaPrograma.md)|<sub>asociarCompetenciaAAsignaturaPrograma()</sub>|

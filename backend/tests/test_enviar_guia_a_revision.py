@@ -1,3 +1,6 @@
+import operator
+from functools import reduce
+
 import pytest
 
 from app.core.auth import get_current_profesor_id
@@ -489,3 +492,131 @@ def test_guia_sin_asignatura_programa_exige_el_minimo_por_defecto():
     from app.models.guia import Guia
 
     assert Guia(estado="Borrador").sesiones_minimas == SESIONES_MINIMAS_POR_DEFECTO == 25
+
+
+# ---------------------------------------------------------------------------
+# Issue #849: las ponderaciones son Numeric(5, 2); sumadas en float, combinaciones
+# que suman exactamente 100 (o exactamente el máximo de un sistema) daban
+# 100.00000000000001 / 40.00000000000001 y bloqueaban el envío con 422.
+# ---------------------------------------------------------------------------
+
+
+def _crear_vincular_y_enviar(client, guia, pares):
+    """Crea una PonderacionEvaluacion por (sistema_id, ponderacion), en orden,
+    las vincula junto con una Sesion y envía la guía a revisión."""
+    ids = []
+    for i, (sistema_id, ponderacion) in enumerate(pares, start=1):
+        r = client.post(
+            f"/api/v1/guias/{guia.id}/ponderaciones-evaluacion",
+            json={
+                "sistema_evaluacion_id": sistema_id,
+                "descripcion": f"P{i}",
+                "ponderacion": ponderacion,
+            },
+        )
+        assert r.status_code == 201, r.json()
+        ids.append(r.json()["id"])
+    rs = client.post(
+        f"/api/v1/guias/{guia.id}/sesiones",
+        json={"tipo": "CLASE_TEORICA", "descripcion": "S1"},
+    )
+    client.put(
+        f"/api/v1/guias/{guia.id}/borrador",
+        json={
+            "ids_ponderaciones_final": ids,
+            "ids_referencias_final": [],
+            "ids_sesiones_final": [rs.json()["id"]],
+        },
+    )
+    return client.post(f"/api/v1/guias/{guia.id}/enviar-a-revision")
+
+
+def test_enviar_guia_a_revision_suma_100_exacta_con_decimales(
+    client, db_session, guia_vinculada, materia_del_programa
+):
+    assert reduce(operator.add, [3.12, 72.68, 4.28, 19.92]) != 100  # caso del issue
+    sistema = SistemaEvaluacion(
+        materia_id=materia_del_programa.id,
+        tipo="Evaluación continua",
+        descripcion="Único",
+        ponderacion_minima=0,
+        ponderacion_maxima=100,
+    )
+    db_session.add(sistema)
+    db_session.commit()
+
+    resp = _crear_vincular_y_enviar(
+        client,
+        guia_vinculada,
+        [(sistema.id, v) for v in [3.12, 72.68, 4.28, 19.92]],
+    )
+    assert resp.status_code == 200, resp.json()
+    assert resp.json()["estado"] == "EnRevision"
+
+
+def test_enviar_guia_a_revision_subtotal_igual_al_maximo_con_decimales(
+    client, db_session, guia_vinculada, materia_del_programa
+):
+    # Acumulado en float (como el subtotal por sistema) roza el máximo por arriba.
+    assert reduce(operator.add, [37.95, 0.06, 1.99]) > 40
+    sistema_tope = SistemaEvaluacion(
+        materia_id=materia_del_programa.id,
+        tipo="Examen",
+        descripcion="Con tope",
+        ponderacion_minima=40,
+        ponderacion_maxima=40,
+    )
+    sistema_resto = SistemaEvaluacion(
+        materia_id=materia_del_programa.id,
+        tipo="Prácticas",
+        descripcion="Resto",
+        ponderacion_minima=0,
+        ponderacion_maxima=100,
+    )
+    db_session.add_all([sistema_tope, sistema_resto])
+    db_session.commit()
+
+    resp = _crear_vincular_y_enviar(
+        client,
+        guia_vinculada,
+        [
+            (sistema_tope.id, 37.95),
+            (sistema_tope.id, 0.06),
+            (sistema_tope.id, 1.99),
+            (sistema_resto.id, 60),
+        ],
+    )
+    assert resp.status_code == 200, resp.json()
+    assert resp.json()["estado"] == "EnRevision"
+
+
+def test_bloqueo_ponderaciones_mensaje_sin_ceros_decimales(
+    client, db_session, guia_vinculada, materia_del_programa
+):
+    """Con Decimal el texto con :g debe salir igual que antes ("5%", no "5.00%")."""
+    sistema_a = SistemaEvaluacion(
+        materia_id=materia_del_programa.id,
+        tipo="Examen",
+        descripcion="A",
+        ponderacion_minima=45,
+        ponderacion_maxima=60,
+    )
+    sistema_b = SistemaEvaluacion(
+        materia_id=materia_del_programa.id,
+        tipo="Prácticas",
+        descripcion="B",
+        ponderacion_minima=0,
+        ponderacion_maxima=100,
+    )
+    db_session.add_all([sistema_a, sistema_b])
+    db_session.commit()
+
+    resp = _crear_vincular_y_enviar(
+        client,
+        guia_vinculada,
+        [(sistema_a.id, 39.5), (sistema_b.id, 60.5)],
+    )
+    assert resp.status_code == 422
+    assert resp.json()["detail"] == (
+        "Falta asignar 5.5% en A (Examen) (mínimo 45%, asignado 39.5%)"
+    )

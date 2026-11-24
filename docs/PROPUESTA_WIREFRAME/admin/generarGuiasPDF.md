@@ -21,5 +21,6 @@
 |[**Cursos académicos**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
 |[**Consultar copias de seguridad**](consultarCopiasSeguridad.md)|<sub>consultarCopiasSeguridad()</sub>|
 |[**Consultar historial de cambios**](consultarHistorialCambios.md)|<sub>consultarHistorialCambios()</sub>|
+|[**Consultar registro accesos**](consultarRegistroAccesos.md)|<sub>consultarRegistroAccesos()</sub>|
 
 </div>

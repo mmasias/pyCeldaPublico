@@ -4,6 +4,7 @@ from sqlalchemy import ForeignKey, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
+from app.core.ponderacion import ponderacion_exacta
 
 if TYPE_CHECKING:
     from app.models.materia import Materia
@@ -51,4 +52,7 @@ class SistemaEvaluacion(Base):
         return self.tipo
 
     def validar_maximo(self, ponderacion: float) -> bool:
-        return ponderacion <= float(self.ponderacion_maxima)
+        # Comparación exacta (#849), sin pasar el límite Numeric(5, 2) a float.
+        return ponderacion_exacta(ponderacion) <= ponderacion_exacta(
+            self.ponderacion_maxima
+        )

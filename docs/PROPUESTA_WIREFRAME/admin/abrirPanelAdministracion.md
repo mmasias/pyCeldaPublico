@@ -19,6 +19,7 @@
 |[**Cursos académicos**](abrirCursosAcademicos.md)|<sub>abrirCursosAcademicos()</sub>|
 |[**Copias de seguridad**](consultarCopiasSeguridad.md)|<sub>consultarCopiasSeguridad()</sub>|
 |[**Auditoría**](consultarHistorialCambios.md)|<sub>consultarHistorialCambios()</sub>|
+|[**Consultar registro accesos**](consultarRegistroAccesos.md)|<sub>consultarRegistroAccesos()</sub>|
 |[**Generar guías PDF**](generarGuiasPDF.md)|<sub>generarGuiasPDF()</sub>|
 
 </div>

@@ -17,6 +17,7 @@
 |[**Editar**](editarAsignaturaPrograma.md)|<sub>editarAsignaturaPrograma()</sub>|
 |[**Asignar Profesor**](asignarProfesorAAsignaturaPrograma.md)|<sub>asignarProfesorAAsignaturaPrograma()</sub>|
 |[**Quitar profesor**](desasignarProfesorAsignaturaPrograma.md)|<sub>desasignarProfesorAsignaturaPrograma()</sub>|
+|[**Cambiar roles profesor asignatura programa**](cambiarRolesProfesorAsignaturaPrograma.md)|<sub>cambiarRolesProfesorAsignaturaPrograma()</sub>|
 |[**Asociar Resultado de Aprendizaje**](asociarResultadoAprendizajeAAsignaturaPrograma.md)|<sub>asociarResultadoAprendizajeAAsignaturaPrograma()</sub>|
 |[**Quitar**](desasociarResultadoAprendizajeAsignaturaPrograma.md)|<sub>desasociarResultadoAprendizajeAsignaturaPrograma()</sub>|
 |[**Asociar competencia a la asignatura**](asociarCompetenciaAAsignaturaPrograma.md)|<sub>asociarCompetenciaAAsignaturaPrograma()</sub>|

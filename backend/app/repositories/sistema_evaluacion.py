@@ -1,5 +1,8 @@
+from decimal import Decimal
+
 from sqlalchemy.orm import Session
 
+from app.core.ponderacion import ponderacion_exacta
 from app.models.asignatura_programa import AsignaturaPrograma
 from app.models.curso_academico import CursoAcademico
 from app.models.guia import Guia
@@ -86,19 +89,23 @@ class SistemaEvaluacionRepository:
             )
             .all()
         )
-        # Mismo redondeo que la columna Numeric(5, 2) en la que se guardará el rango.
-        ponderacion_minima = round(ponderacion_minima, 2)
-        ponderacion_maxima = round(ponderacion_maxima, 2)
+        # Mismo redondeo que la columna Numeric(5, 2) en la que se guardará el
+        # rango; suma y comparación en Decimal exacto (#849), no en float.
+        minima = ponderacion_exacta(round(ponderacion_minima, 2))
+        maxima = ponderacion_exacta(round(ponderacion_maxima, 2))
         fuera = []
         for guia in guias:
             asignado = sum(
-                float(p.ponderacion)
-                for p in guia.ponderaciones
-                if p.vinculada and p.sistema_evaluacion_id == sistema_evaluacion_id
+                (
+                    ponderacion_exacta(p.ponderacion)
+                    for p in guia.ponderaciones
+                    if p.vinculada and p.sistema_evaluacion_id == sistema_evaluacion_id
+                ),
+                Decimal(0),
             )
-            if asignado < ponderacion_minima or asignado > ponderacion_maxima:
+            if asignado < minima or asignado > maxima:
                 nombre = guia.asignatura_programa.nombre
-                fuera.append(f"{nombre} ({asignado:g} %)")
+                fuera.append(f"{nombre} ({float(asignado):g} %)")
         return sorted(fuera)
 
     def nombres_asignaciones(self, sistema_evaluacion_id: int) -> list[str]:
