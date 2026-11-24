@@ -8,7 +8,9 @@
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe.svg)
+|**Profesor**|**DirectorPrograma**|**DirectorPrograma, tras guardar**|
+|---|---|---|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe-director.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe-director-guardado.svg)|
 
 |Botón|CdU|
 |---|---|

@@ -19,7 +19,7 @@
 
 <div align=center>
 
-|Éxito (suma 100%)|Error (rango o suma incorrectos)|
+|Éxito (vuelve a Inicio, guía En revisión)|Error (rango o suma incorrectos)|
 |:-:|:-:|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-exito.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error.svg)|
 |![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error-items-sin-guardar.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error-planificacion.svg)|
@@ -49,9 +49,11 @@
 
 **Interacción con la importación entre guías hermanas** (issue [#184](https://github.com/mmasias/pyCelda/issues/184)): al importar bibliografía o planificación docente de una guía hermana, las filas copiadas replican el flag `vinculada` **del origen** fila a fila. Un origen `Aprobado` por el flujo normal tiene todas las filas vinculadas (lo garantiza `c1` de arriba), así que sus copias también -- sin efecto sobre este caso de uso. Pero si el origen llegó a `Aprobada` vía [`escalarGuiaAAprobada()`](../escalarGuiaAAprobada/README.md) (que bypasea `c1`) arrastrando candidatas `vinculada=False`, el destino las hereda y **`c1` bloquea su envío** hasta que el `Profesor` las resuelva -- vincularlas vía [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) o borrarlas. Consecuencia real y correcta, no un defecto: viene de la escalación del origen, no de "cualquier guía Aprobada". `c3` sigue midiendo contra `Guia.sesiones_minimas` del destino, que la importación no toca: importar la planificación de una hermana con más sesiones no garantiza cumplir el umbral propio si éste es mayor.
 
+**Salida con éxito: Inicio, sin pantalla de confirmación** (issue [#855](https://github.com/mmasias/pyCelda/issues/855), hallado en la revisión de #853): tras un envío aceptado, la aplicación vuelve a **Inicio** (`AbrirGuia.tsx`, `navigate("/inicio")`), donde la guía aparece ya **En revisión** en "Mis guías". No hay pantalla intermedia "Guía enviada a revisión" ni botón "Volver a mis asignaturas": el wireframe de éxito dibuja esa llegada a Inicio, y la transición de salida del diagrama de contexto pasa de `ASIGNATURAS_PROGRAMA_ABIERTO` a `INICIO_ABIERTO` (en el de `Profesor` y en el heredado de `DirectorPrograma`). Antes de enviar, si el temario tiene cambios sin guardar, la aplicación pide confirmación para salir (el envío no incluye el temario sin guardar). Los wireframes de rechazo no se tocan en esta revisión: siguen dibujando el aviso como pantalla propia, mientras que la aplicación muestra el mensaje de error en la propia ficha de la guía (fuera del alcance del issue #855).
+
 ## Referencias
 
-- [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()` (éxito) y `GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()` (rechazo, por ítems sin guardar o por validación de ponderaciones -- ambas razones convergen al mismo estado de salida).
+- [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> INICIO_ABIERTO : enviarGuiaARevision()` (éxito) y `GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()` (rechazo, por ítems sin guardar o por validación de ponderaciones -- ambas razones convergen al mismo estado de salida).
 - [actoresCasosUsoProfesor.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoProfesor.puml) -- catálogo de casos de uso de `Profesor` sobre `Guia`
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Guia *-d- PonderacionEvaluacion`, regla de suma 100% documentada en el README
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `Borrador -> EnRevision` / `Rechazada -> EnRevision`

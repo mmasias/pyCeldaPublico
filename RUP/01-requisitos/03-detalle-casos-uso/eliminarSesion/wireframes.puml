@@ -1,12 +1,13 @@
 @startsalt eliminarSesion-wireframe-confirmacion
 {
-    <b>ELIMINAR SESIÓN</b>
+    <b>PLANIFICACIÓN DOCENTE</b>
     ====
-    <b>Sesión 3 -- Clase Práctica</b>
-    "Temas aaa bbb"
-    --
-    <color:orange><b>Las sesiones siguientes se renumerarán.</b></color>
-    ====
-    {[ <b>Eliminar</b> ] | [Cancelar]}
+    {#
+        <b># | <b>Tipo | <b>Descripción | . | . | .
+        1 | ^Clase Teórica^ | "Tema aaaa" | [Duplicar] | [Eliminar] | .
+        2 | ^Clase Práctica^ | "Temas aaa bbb" | [Duplicar] | [Eliminar] | .
+        3 | ^Clase Práctica^ | "Temas ccc" | [Duplicar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
+        4 | ^Clase Teórico/Práctica^ | "Temas ddd" | [Duplicar] | [Eliminar] | .
+    }
 }
 @endsalt

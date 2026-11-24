@@ -16,8 +16,7 @@ state eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()" {
 
     [*] -[#green]-> ConfirmandoEliminacion
     note on link
-    <b>Sistema</b> presenta información de la PonderacionEvaluacion
-    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
+    <b>Sistema</b> permite solicitar confirmar/cancelar eliminación en la propia fila
     end note
 
     ConfirmandoEliminacion -[#green]-> [*]
@@ -33,7 +32,7 @@ state eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()" {
 
 eliminarPonderacionEvaluacion -[#green]-> PONDERACIONES_EVALUACION_ABIERTOS_SALIDA
 note on link
-eliminada en memoria, lista actualizada
+retirada de la lista; definitiva al guardar borrador
 end note
 
 eliminarPonderacionEvaluacion -[#blue]-> PONDERACIONES_EVALUACION_ABIERTOS_SALIDA

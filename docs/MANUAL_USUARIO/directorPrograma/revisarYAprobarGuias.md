@@ -105,6 +105,14 @@ Pulsar **↩️ Revocar aprobación** en una guía **Aprobada** que necesita cor
 
 ## Corregir el contenido (excepcional)
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe-director.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/guardarBorradorGuia.md)
+
+</div>
+
 El director puede editar el **Contenido** de la guía y guardarlo con **💾 Guardar borrador**. En cuanto hay algo que guardar (el temario cambiado, elementos pendientes de evaluación, bibliografía o planificación, o elementos eliminados en esas pantallas), aparece un recuadro con el aviso "⚠️ **Hay una corrección excepcional del director**: guardar esta edición la devuelve a borrador (si la guía está aprobada) o la rechaza (si está en revisión). El envío a revisión sigue siendo del profesorado." y el botón a su derecha; si se deshace el cambio, el recuadro desaparece; según el cambio, la guía puede incluir también evaluación, bibliografía y planificación docente (la pantalla lo describe como "contenido, evaluación, bibliografía o planificación docente"). Es una corrección excepcional, no la vía normal de trabajo, y tiene consecuencias sobre el estado que conviene tener presentes:
 
 - Guardar una edición sobre una guía **Aprobada** la devuelve a **Borrador**.

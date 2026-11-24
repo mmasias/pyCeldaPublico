@@ -1,13 +1,13 @@
 @startsalt eliminarReferenciaBibliografica-wireframe
 {
-    <b>ELIMINAR REFERENCIA</b>
+    <b>BIBLIOGRAFÍA</b>
     ====
-    <b>Tipo:</b> Otras fuentes de consulta
-    <b>Referencia:</b>
-    "https://github.com/mmasias/prg1"
-    ====
-    <i>¿Seguro que quieres eliminar esta referencia de la Guía?</i>
-    ====
-    {[Confirmar] | [Cancelar]}
+    {#
+        <b>Referencia | <b>Tipo | <b>Vinculada | . | . | .
+        Sedgewick, R. (2008) Introduction to programming in Java... | Básica | Sí | [Editar] | [Eliminar] | .
+        Martin, R. (2011) The Clean Coder Ed. Prentice Hall | Complementaria | Sí | [Editar] | [Eliminar] | .
+        http://www.java.com/es/ | Webs de referencia | Sí | [Editar] | [Eliminar] | .
+        https://github.com/mmasias/prg1 | Otras fuentes de consulta | Sí | [Editar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
+    }
 }
 @endsalt

@@ -144,10 +144,12 @@ ASIGNATURAS_PROGRAMA_ABIERTO --> INICIO_ABIERTO : abrirInicio()
 
 ' enviarGuiaARevision(): persiste, cambia el estado de dominio de la Guia a
 ' EnRevision (ver guia.puml) y cierra la sesión de edición -- ya no es turno del profesor.
+' Con exito vuelve a Inicio, no al listado de asignaturas (issue #855: el frontend
+' navega a /inicio; antes se modelaba ASIGNATURAS_PROGRAMA_ABIERTO).
 ' Asimetria real (ver especificacion.puml de este caso de uso): solo el envio con
 ' exito sale de aqui -- si la suma de PonderacionEvaluacion no da 100%, el sistema
 ' rechaza y la sesion de edicion sigue abierta, de ahi el self-loop de abajo.
-GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()
+GUIA_ABIERTO --> INICIO_ABIERTO : enviarGuiaARevision()
 GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
 
 @enduml

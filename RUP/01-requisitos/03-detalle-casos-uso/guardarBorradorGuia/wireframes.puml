@@ -1,14 +1,91 @@
 @startsalt guardarBorradorGuia-wireframe
 {
-    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <color:green><b>✓ BORRADOR GUARDADO</b></color>
+    <b>GUÍA DOCENTE</b>
+    <b>GII · Programación I</b>
     ====
-    <b>Estado:</b> Borrador
-    <b>Fecha de última modificación:</b> 07/08/2026
+    {#
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ] neutro
+        <b>Semestre:</b> 1 | <b>Creación:</b> 01/09/2026
+        <b>Profesores:</b> profesor1@uneatlantico.es | <b>Última modificación:</b> 07/09/2026
+         . | <b>Generación del PDF:</b> --
+    }
     ====
-    <i>Los cambios quedan guardados, incluido el temario (Contenido). Si la guía estaba Aprobada, vuelve a quedar en Borrador para que puedas terminar la corrección.</i>
+    <color:green>Borrador guardado</color>
+    {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
     ====
-    [ <b>Seguir editando</b> ]
+    <b>Contenido</b>
+    {+
+        "Tema 1. Fundamentos de la programación"
+        "Tema 2. Estructuras de control"
+        "Tema 3. Estructuras de datos"
+    }
+}
+@endsalt
+
+@startsalt guardarBorradorGuia-wireframe-director
+{
+    {+ Vista de Dirección · GII }
+    ====
+    <b>GUÍA DOCENTE</b>
+    <b>Programación I (GII)</b>
+    ====
+    {#
+        <b>Semestre:</b> 1 | <b>Estado:</b> [ En revisión ] ámbar
+        <b>Profesores:</b> profesor1@uneatlantico.es | <b>Creación:</b> 01/09/2026
+         . | <b>Última modificación:</b> 05/09/2026
+         . | <b>Generación del PDF:</b> --
+    }
+    ====
+    {[Aprobar] | [Rechazar] | [Previsualizar]}
+    <b>Resumen de completitud</b>
+    Sin ítems pendientes de guardar
+    Ponderaciones completas
+    Convocatoria extraordinaria concretada
+    <b>Planificación docente: 25 sesiones (mínimo 25)</b>
+    ====
+    {#
+        ⚠ <b>Hay una corrección excepcional del director</b>: guardar esta edición la devuelve a borrador (si la guía está aprobada) o la rechaza (si está en revisión). El envío a revisión sigue siendo del profesorado. | [Guardar borrador]
+    }
+    ====
+    <b>Contenido</b>
+    {+
+        "Tema 1. Fundamentos de la programación"
+        "Tema 2. Estructuras de control"
+        "Tema 3. Estructuras de datos y algoritmos"
+    }
+}
+@endsalt
+
+@startsalt guardarBorradorGuia-wireframe-director-guardado
+{
+    {+ Vista de Dirección · GII }
+    ====
+    <b>GUÍA DOCENTE</b>
+    <b>Programación I (GII)</b>
+    ====
+    {#
+        <b>Semestre:</b> 1 | <b>Estado:</b> [ Rechazada ] rojo
+        <b>Profesores:</b> profesor1@uneatlantico.es | <b>Creación:</b> 01/09/2026
+         . | <b>Última modificación:</b> 07/09/2026
+         . | <b>Generación del PDF:</b> --
+    }
+    ====
+    {[Escalar a aprobada] | [Previsualizar]}
+    <b>Resumen de completitud</b>
+    Sin ítems pendientes de guardar
+    Ponderaciones completas
+    Convocatoria extraordinaria concretada
+    <b>Planificación docente: 25 sesiones (mínimo 25)</b>
+    ====
+    <color:green>Borrador guardado</color>
+    ====
+    <b>Contenido</b>
+    {+
+        "Tema 1. Fundamentos de la programación"
+        "Tema 2. Estructuras de control"
+        "Tema 3. Estructuras de datos y algoritmos"
+    }
 }
 @endsalt

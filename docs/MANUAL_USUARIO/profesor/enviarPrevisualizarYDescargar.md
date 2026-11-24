@@ -8,6 +8,14 @@
 
 ## Enviar la guía a revisión
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-exito.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/enviarGuiaARevision.md)
+
+</div>
+
 Cuando el temario, la evaluación, la bibliografía y la planificación docente están listos, corresponde pulsar **📤 Enviar a revisión**, en la propia guía. La guía pasa a estado **En revisión**, la pantalla vuelve a **Inicio** y la guía queda a la espera de que el director de programa la apruebe o la rechace.
 
 Antes del envío se comprueban cuatro cosas -- si alguna falla, aparece un aviso explicando exactamente cuál:

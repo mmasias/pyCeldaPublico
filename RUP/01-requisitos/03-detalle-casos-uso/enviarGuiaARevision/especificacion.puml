@@ -4,7 +4,7 @@ skinparam linetype polyline
 
 state GUIA_ABIERTO
 state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
-state ASIGNATURAS_PROGRAMA_ABIERTOS_SALIDA as "ASIGNATURAS_PROGRAMA_ABIERTO"
+state INICIO_ABIERTO_SALIDA as "INICIO_ABIERTO"
 
 GUIA_ABIERTO -[#green]-> enviarGuiaARevision
 note on link
@@ -41,7 +41,7 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
     c4 -[#green]-> [*]
     note on link
     [plantilla de convocatorias sin campos, o con el instrumento y el porcentaje de la convocatoria extraordinaria rellenos]
-    <b>Sistema</b> presenta guía enviada a revisión
+    <b>Sistema</b> presenta Inicio con la guía en revisión
     end note
 
     c4 -[#red]-> [*]
@@ -57,7 +57,7 @@ state enviarGuiaARevision as "enviarGuiaARevision()" {
     end note
 }
 
-enviarGuiaARevision -[#green]-> ASIGNATURAS_PROGRAMA_ABIERTOS_SALIDA
+enviarGuiaARevision -[#green]-> INICIO_ABIERTO_SALIDA
 note on link
 enviada a revisión
 end note

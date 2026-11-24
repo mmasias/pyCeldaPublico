@@ -55,6 +55,14 @@ Si la referencia supera los 500 caracteres se rechaza con el mensaje "La referen
 
 </div>
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarReferenciaBibliografica.md)
+
+</div>
+
 Igual que con los instrumentos de evaluación: pulsar el lápiz **✏️** (Editar) de su fila para cambiarla, o pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía. Como con los instrumentos, editar una referencia que ya forma parte de la guía se guarda en el acto y, si la guía estaba **Aprobada**, la devuelve a **Borrador**.
 
 ## Importar de una asignatura hermana

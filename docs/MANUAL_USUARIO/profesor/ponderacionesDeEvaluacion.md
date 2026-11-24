@@ -69,6 +69,14 @@ Editar un instrumento que ya forma parte de la guía se guarda en el acto, sin p
 
 ## Eliminar un instrumento
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarPonderacionEvaluacion/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarPonderacionEvaluacion.md)
+
+</div>
+
 1. En la tabla, pulsar la papelera **🗑️** (Eliminar) en la fila del instrumento.
 2. El botón cambia a **🗑️ pulsa de nuevo para confirmar**. Pulsarlo otra vez confirma el borrado; **Cancelar** lo descarta.
 

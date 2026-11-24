@@ -78,8 +78,9 @@ GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : abrirAsignaturasPrograma()
 ' enviarGuiaARevision() heredado de Profesor sin cambios -- misma asimetria real
 ' (ver especificacion.puml del caso de uso): solo el envio con exito sale de aqui,
 ' si la suma de PonderacionEvaluacion no da 100% el sistema rechaza y la sesion
-' de edicion sigue abierta, de ahi el self-loop de abajo.
-GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()
+' de edicion sigue abierta, de ahi el self-loop de abajo. Con exito vuelve a
+' Inicio, como en Profesor (issue #855).
+GUIA_ABIERTO --> INICIO_ABIERTO : enviarGuiaARevision()
 GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()
 
 ' === Propio de DirectorPrograma (issue #612, Parte 2 de #601): correccion excepcional ===

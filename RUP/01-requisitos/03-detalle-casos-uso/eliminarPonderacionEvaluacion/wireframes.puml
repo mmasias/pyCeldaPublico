@@ -1,13 +1,16 @@
 @startsalt eliminarPonderacionEvaluacion-wireframe
 {
-    <b>ELIMINAR PONDERACIÓN</b>
+    {+ Vista de Docente }
     ====
-    <b>Sistema de evaluación:</b> Evaluación continua
-    <b>Descripción:</b> Interés y participación
-    <b>Ponderación:</b> 5%
+    <b>INSTRUMENTOS DE EVALUACIÓN</b>
     ====
-    <i>¿Seguro que quieres eliminar esta ponderación de la Guía?</i>
-    ====
-    {[Confirmar] | [Cancelar]}
+    {#
+        <b>Instrumento | <b>Sistema | <b>Ponderación | <b>Vinculada | . | . | .
+        Examen Parcial | Evaluación continua | 25% | Sí | [Editar] | [Eliminar] | .
+        Actividades y ejercicios | Evaluación continua | 20% | Sí | [Editar] | [Eliminar] | .
+        Interés y participación | Evaluación continua | 5% | Sí | [Editar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
+        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 50% | Sí | [Editar] | [Eliminar] | .
+    }
+    <b>Total asignado: 100%</b>
 }
 @endsalt

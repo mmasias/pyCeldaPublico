@@ -15,7 +15,8 @@
 |Botón|CdU|
 |---|---|
 |**Cerrar sesión**|<sub>cerrarSesion() (sin página: vuelve a login)</sub>|
+|[**Abrir asignaturas del programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
 |[**Volver a la guía**](abrirGuia.md)|<sub>abrirGuia()</sub>|
-|[**Abrir inicio**](abrirInicio.md)|<sub>abrirInicio()</sub>|
+|[**Editar perfil propio**](editarPerfilPropio.md)|<sub>editarPerfilPropio()</sub>|
 
 </div>

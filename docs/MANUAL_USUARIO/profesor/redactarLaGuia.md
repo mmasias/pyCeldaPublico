@@ -40,6 +40,14 @@ Después, en este orden:
 
 ## Editar y guardar el temario
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/guardarBorradorGuia.md)
+
+</div>
+
 1. Escribir o corregir el texto en el cuadro **Contenido**. El límite es de 10.000 caracteres; el contador, encima del cuadro a la derecha, junto a la nota "Se guarda con Guardar borrador.", indica cuánto se lleva escrito y se pone en rojo al llegar al límite.
 2. Pulsar **💾 Guardar borrador**.
 

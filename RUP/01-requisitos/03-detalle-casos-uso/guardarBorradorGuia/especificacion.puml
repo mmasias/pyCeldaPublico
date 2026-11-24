@@ -14,7 +14,7 @@ state guardarBorradorGuia as "guardarBorradorGuia()" {
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> presenta Guia guardada como borrador
+    <b>Sistema</b> presenta la Guia con el aviso de borrador guardado
     end note
 }
 
