@@ -1,5 +1,7 @@
 @startsalt abrirPonderacionesEvaluacion-wireframe
 {
+    {+ Vista de Docente }
+    ====
     <b>INSTRUMENTOS DE EVALUACIÓN</b>
     ====
     [ <b>Crear Instrumento</b> ] | [ <b>Volver a la guía</b> ] | [ Mis asignaturas ]
@@ -26,7 +28,8 @@
 
 @startsalt abrirPonderacionesEvaluacion-wireframe-director
 {
-    {+ Vista de director · GII }
+    {+ Vista de Dirección · GII }
+    ====
     <b>Grado en Ingeniería Informática</b>
     ====
     [ Vista general ] | [ <b>Guías</b> ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ Asignaturas ]

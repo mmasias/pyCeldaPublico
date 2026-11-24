@@ -10,7 +10,7 @@
 
 1. Abrir pyCelda en el navegador. Aparece la pantalla **Módulo docente: Profesores y Directores de Grado** con el botón **🔑 Iniciar sesión** (la autenticación es con Google) y, en la misma línea, los enlaces a los manuales. En la esquina superior derecha del recuadro gris del logo hay un pequeño **cuadrado azul**: es el enlace a la pantalla de entrada del **módulo de administración** (el azul es el color de la barra de ese modo); para volver hay otro cuadrado, naranja, en la misma esquina de esa pantalla. Al pie, en pequeño, se ve la versión de la aplicación y la de esquema (p. ej. `Versión v0.11.8 · esquema 2`).
 2. Pulsar el botón e iniciar sesión con la cuenta de correo de la universidad dada de alta por Admin. Con otra cuenta, el acceso no se completa.
-3. Tras iniciar sesión, la pantalla de destino es **Inicio**. Todas las pantallas del modo académico llevan una **barra naranja** fija en el borde superior de la ventana: es la señal de que se está en el modo del profesorado y los directores (el modo Admin tiene una barra azul).
+3. Tras iniciar sesión, la pantalla de destino es **Inicio**. Todas las pantallas del modo académico llevan una **barra naranja** fija en el borde superior de la ventana: es la señal de que se está en el modo del profesorado y los directores (el modo Admin tiene una barra azul). Si la cuenta, además de profesor, dirige algún programa, la barra lleva arriba a la izquierda la etiqueta **Vista de Docente** en la guía, sus pantallas y Mi perfil, y **Vista de Dirección** en las del programa: así se sabe con qué papel se mira cada pantalla.
 
 Si la cuenta no está dada de alta como profesor, corresponde contactar con Admin: pyCelda no permite crear una cuenta propia desde la pantalla de entrada.
 

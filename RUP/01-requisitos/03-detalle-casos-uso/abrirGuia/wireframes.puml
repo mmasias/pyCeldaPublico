@@ -1,5 +1,7 @@
 @startsalt abrirGuia-wireframe-profesor
 {
+    {+ Vista de Docente }
+    ====
     <b>GUÍA DOCENTE</b>
     <b>GII · Programación I</b>
     ====
@@ -83,7 +85,8 @@
 
 @startsalt abrirGuia-wireframe-revision
 {
-    {+ Vista de director · GII }
+    {+ Vista de Dirección · GII }
+    ====
     <b>GUÍA DOCENTE</b>
     <b>Programación I (GII)</b>
     ====
