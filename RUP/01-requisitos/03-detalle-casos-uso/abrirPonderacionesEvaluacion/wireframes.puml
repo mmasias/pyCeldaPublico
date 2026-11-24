@@ -11,14 +11,44 @@
         Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Abrir] | [Eliminar]
         Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Abrir] | [Eliminar]
     }
-    <b>Total asignado: 100% / 100%</b>
+    <b>Total asignado: En pantalla: 100% · Guardado: 45%</b>
+    Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
     ====
     <b>Sistemas de evaluación de la materia</b>
     {#
         <b>Tipo | <b>Descripción | <b>Ponderación mínima | <b>Ponderación máxima | <b>Asignado
         Evaluación continua | Pruebas y actividades durante el curso | 40% | 60% | 45%
-        Evaluación final | Examen final teoría | 25% | 80% | 35%
-        Evaluación final | Examen final prácticas | 10% | 40% | 20%
+        Evaluación final | Examen final teoría | 25% | 80% | En pantalla: 35% · Guardado: 0%
+        Evaluación final | Examen final prácticas | 10% | 40% | En pantalla: 20% · Guardado: 0%
+    }
+}
+@endsalt
+
+@startsalt abrirPonderacionesEvaluacion-wireframe-director
+{
+    {+ Vista de director · GII }
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ <b>Guías</b> ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ Asignaturas ]
+    ====
+    Guías › Programación I › <b>Evaluación</b> | [ <b>Crear Instrumento</b> ]
+    ====
+    {#
+        <b>Instrumento | <b>Sistema | <b>Ponderación | <b>Vinculada | . | .
+        Examen Parcial | Evaluación continua | 25% | Sí | [Abrir] | [Eliminar]
+        Actividades y ejercicios | Evaluación continua | 20% | Sí | [Abrir] | [Eliminar]
+        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Abrir] | [Eliminar]
+        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Abrir] | [Eliminar]
+    }
+    <b>Total asignado: En pantalla: 100% · Guardado: 45%</b>
+    Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
+    ====
+    <b>Sistemas de evaluación de la materia</b>
+    {#
+        <b>Tipo | <b>Descripción | <b>Ponderación mínima | <b>Ponderación máxima | <b>Asignado
+        Evaluación continua | Pruebas y actividades durante el curso | 40% | 60% | 45%
+        Evaluación final | Examen final teoría | 25% | 80% | En pantalla: 35% · Guardado: 0%
+        Evaluación final | Examen final prácticas | 10% | 40% | En pantalla: 20% · Guardado: 0%
     }
 }
 @endsalt

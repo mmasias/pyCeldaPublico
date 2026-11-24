@@ -19,9 +19,10 @@
 
 <div align=center>
 
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)|
-|-|
-|<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
+|**Profesor**|**DirectorPrograma**|
+|-|-|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe-director.svg)|
+|<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>||
 
 </div>
 
@@ -48,7 +49,12 @@ Primer listado del catálogo con columna de `SistemaEvaluacion` -- necesaria por
 
 ## Notas de diseño y trazabilidad
 
+- **Variante de DirectorPrograma y señal de papel** (issue [#841](https://github.com/mmasias/pyCelda/issues/841)): el director llega a esta pantalla desde la guía abierta en su programa (ruta con prefijo `/programas/:programaId`), con la cabecera del programa, su franja de pestañas con Guías marcada y la miga "Guías › asignatura › Evaluación". Sobre el título lleva la etiqueta "Vista de director · GII". Regla de presentación que Salt no pinta: en esa vista el fondo de la página es amarillo muy suave (`#fffef2`). El listado y el medidor son los mismos que en la variante de Profesor. Mecanismo único en el árbol de rutas (`RutasDirector` en `App.tsx`); criterio para el resto de pantallas en `docs/MANUAL_ESTILO.md` (fuera del subconjunto público).
 - Columna "Sistema": muestra "Descripción (Tipo)" cuando la Materia tiene dos sistemas del mismo tipo, y solo "Tipo" si la descripción está vacía o coincide (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). Con código de la memoria (fase F2 de [#768](https://github.com/mmasias/pyCelda/issues/768)), la etiqueta es "Código Denominación" ("SE1 Pruebas teóricas finales") y los sistemas se ordenan por código (E9 antes que E10); la regla vive en `SistemaEvaluacion.etiqueta()` y en `etiquetaSistemaEvaluacion()` del frontend. En la segunda tabla, la columna Descripción antepone el código; en el desplegable para elegir sistema de crear y editar un instrumento, cada opción es "Código Denominación -- Tipo (máx. N%)" o, sin código, "Tipo -- Descripción (máx. N%)". "Total asignado" va en cuerpo 0.875rem (issue [#285](https://github.com/mmasias/pyCelda/issues/285)). La segunda tabla ya distingue por su columna Descripción propia (issue [#279](https://github.com/mmasias/pyCelda/issues/279)) y no lleva el paréntesis.
+
+- En pantalla frente a guardado (issue [#842](https://github.com/mmasias/pyCelda/issues/842)): el medidor contaba lo que hay en pantalla (vinculadas + pendientes - marcadas para eliminar en `sessionStorage`), pero `Guia.bloqueo_ponderaciones()` -- resumen de la ficha y 422 de `enviarGuiaARevision()` -- cuenta solo las vinculadas. Una profesora veía 100% aquí y "suma total incorrecta" en la ficha. Sin cambiar el modelo "vinculada hasta Guardar borrador": cuando las dos cuentas difieren, "Total asignado" muestra "En pantalla: X% · Guardado: Y%" (cada cifra en rojo si no es 100%) y debajo un aviso en ámbar: hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía. En la columna "Asignado" de los sistemas, las dos cifras solo si el resultado de rango cambia entre una cuenta y otra (si las dos están dentro, o las dos fuera, se ve como antes). Cuando coinciden, como antes. "Guardado" es la suma de las filas con `vinculada = true` tal como vienen del backend, incluidas las marcadas para eliminar (la marca no ha llegado a la base de datos); no se reimplementa la regla (`frontend/src/enPantallaGuardado.ts`). El wireframe dibuja el caso con dos instrumentos sin vincular (los de "Vinculada: No"). El color ámbar del aviso no lo pinta Salt. El medidor desdoblado y el aviso son los mismos en las dos variantes del wireframe (`Profesor` y `DirectorPrograma`).
+
+- Referencias bibliográficas y planificación docente (issue [#842](https://github.com/mmasias/pyCelda/issues/842), punto 4): la pantalla de referencias no tiene contador ni medidor (solo la columna "Vinculada"), así que no hay nada que separar. La de planificación docente sí: su medidor de sesiones contaba las visibles (vinculadas + pendientes); ahora muestra "En pantalla: N sesiones · Guardado: M sesiones" con el mismo aviso cuando difieren (componente `MedidorPlanificacionDocente`, también en la ficha de la guía).
 
 ## Referencias
 

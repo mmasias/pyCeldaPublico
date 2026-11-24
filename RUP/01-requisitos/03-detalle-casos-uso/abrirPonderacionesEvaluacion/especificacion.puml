@@ -20,7 +20,10 @@ state abrirPonderacionesEvaluacion as "abrirPonderacionesEvaluacion()" {
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> presenta listado de PonderacionEvaluacion de la Guia
+    <b>Sistema</b> presenta listado de PonderacionEvaluacion de la Guia,
+    con el total asignado y lo asignado por SistemaEvaluacion;
+    si lo que hay en pantalla difiere de lo guardado, muestra las dos cuentas
+    y avisa de que los cambios no cuentan hasta Guardar borrador
     end note
 }
 

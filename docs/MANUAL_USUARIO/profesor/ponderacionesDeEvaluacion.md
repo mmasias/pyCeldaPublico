@@ -52,7 +52,7 @@ Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado
 
 ## Qué significa "Vinculada"
 
-Un instrumento **recién creado** aparece como **Vinculada: No** hasta confirmarlo con **💾 Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar. Editar un instrumento que ya estaba en **Sí** no lo devuelve a "No": el cambio se guarda en el acto (ver "Editar un instrumento").
+Un instrumento **recién creado** aparece como **Vinculada: No** hasta confirmarlo con **💾 Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar. Mientras haya instrumentos sin confirmar (o eliminados sin confirmar), el total muestra dos cifras, por ejemplo **En pantalla: 100% · Guardado: 0%**, con un aviso en ámbar: **En pantalla** es lo que ves en la lista; **Guardado** es lo que cuenta para enviar la guía a revisión, y no se pone al día hasta pulsar **💾 Guardar borrador** en la guía. La guía también avisa con **Hay ítems sin guardar** junto a ese botón. Editar un instrumento que ya estaba en **Sí** no lo devuelve a "No": el cambio se guarda en el acto (ver "Editar un instrumento").
 
 ## Texto de convocatorias
 

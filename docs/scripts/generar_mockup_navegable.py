@@ -102,6 +102,7 @@ WIREFRAME_LABELS = {
     "wireframe-seleccion.svg": "Selección",
     "wireframe-admin.svg": "Admin",
     "wireframe-profesor.svg": "Profesor",
+    "wireframe-director.svg": "DirectorPrograma",
     "wireframe-autor.svg": "Autor",
     "wireframe-aprobada.svg": "Aprobada",
     "wireframe-borrador.svg": "Borrador",

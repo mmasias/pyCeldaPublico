@@ -24,7 +24,7 @@ Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha d
 
 ## Qué muestra
 
-Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo.
+Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo. Si hay sesiones en pantalla que aún no cuentan (creadas o eliminadas sin pulsar **💾 Guardar borrador** en la guía), aparecen las dos cifras, por ejemplo **En pantalla: 30 sesiones · Guardado: 25 sesiones**, con un aviso en ámbar: para enviar la guía cuenta la de **Guardado**.
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador.
 

@@ -8,7 +8,9 @@
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)
+|**Profesor**|**DirectorPrograma**|
+|---|---|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe-director.svg)|
 
 |Botón|CdU|
 |---|---|

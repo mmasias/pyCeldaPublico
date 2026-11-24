@@ -76,12 +76,14 @@
     }
     [ <b>Gestionar bibliografía</b> ]
     ====
+    Hay ítems sin guardar: no cuentan hasta pulsar "Guardar borrador".
     {[Guardar borrador] | [Enviar a revisión] | [Volver a mis asignaturas]}
 }
 @endsalt
 
 @startsalt abrirGuia-wireframe-revision
 {
+    {+ Vista de director · GII }
     <b>GUÍA DOCENTE</b>
     <b>Programación I (GII)</b>
     ====
