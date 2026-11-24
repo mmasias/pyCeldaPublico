@@ -16,6 +16,14 @@ Desde la franja del programa, pulsar **📄 Guías**.
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoGuias/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/consultarEstadoGuias.md)
+
+</div>
+
 A la derecha del título **📄 Guías**, el selector **Curso académico**: al entrar muestra el curso vigente (marcado "(vigente)" en la lista), y permite consultar las guías de otros cursos.
 
 Debajo, una tabla con **Asignatura**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado"), **Estado** de la guía y **Última actualización**: quién hizo el último cambio (Profesor, Director o Administración) y cuánto hace, en términos aproximados ("hace dos días", "hace un momento"). Bajo el nombre de cada asignatura aparecen, en pequeño, su curso y semestre (por ejemplo, "(II-s1)"). Última columna, sin título: el botón **📂 Abrir**.
@@ -23,6 +31,14 @@ Debajo, una tabla con **Asignatura**, **Profesorado** (el nombre de cada profeso
 La misma tabla, para el curso vigente, aparece también en la pestaña **📋 Vista general**.
 
 ## Abrir una guía para revisarla
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-revision.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirGuia.md)
+
+</div>
 
 Al abrir una guía, la pestaña **📄 Guías** queda marcada y el título dice **📄 Guías › nombre de la asignatura**; pulsar **Guías** en ese título vuelve a la lista. Debajo, la ficha de la guía: semestre y profesorado a la izquierda, con el papel de cada profesor entre paréntesis (**Responsable**, **Imparte** o los dos); estado y fechas a la derecha. En el PDF solo aparecen quienes imparten.
 
@@ -41,17 +57,49 @@ Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la pantalla muestra un aviso 
 
 ## Aprobar
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/aprobarGuia/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/aprobarGuia.md)
+
+</div>
+
 Pulsar **✅ Aprobar** en una guía **En revisión**. La guía pasa a **Aprobada** sin necesidad de comentario -- el documento oficial queda disponible para descargar en PDF.
 
 ## Rechazar
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/rechazarGuia.md)
+
+</div>
 
 Pulsar **❌ Rechazar** en una guía **En revisión**. Aparece un formulario con un campo de **Comentario** (opcional) explicando el motivo; al pulsar **Rechazar**, la guía pasa a **Rechazada** y el comentario queda visible para el profesorado, en cursiva bajo el estado, en la tabla de guías de su **Inicio**.
 
 ## Escalar a aprobada
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/escalarGuiaAAprobada.md)
+
+</div>
+
 Pulsar **⏫ Escalar a aprobada** en una guía **Borrador** o **Rechazada** que ya se considera lista sin pasar primero por **En revisión**. La guía pasa directamente a **Aprobada**.
 
 ## Revocar una aprobación
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/revocarAprobacionGuia/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/revocarAprobacionGuia.md)
+
+</div>
 
 Pulsar **↩️ Revocar aprobación** en una guía **Aprobada** que necesita corregirse. Aparece un formulario con un campo de **Comentario** (opcional); al confirmar, la guía vuelve a **Borrador** y el comentario queda visible para el profesorado, igual que un rechazo.
 
@@ -67,6 +115,38 @@ El director puede editar el **Contenido** de la guía y guardarlo con **💾 Gua
 Si se ha cambiado el temario sin guardar, salir de la guía por la franja del programa, por **📄 Guías** en el título, por los accesos de arriba o con **❌ Rechazar** o **↩️ Revocar aprobación** pide confirmación: "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?".
 
 ### Evaluación, bibliografía y planificación
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe-director.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPonderacionesEvaluacion.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirReferenciasBibliograficas/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirReferenciasBibliograficas.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPlanificacionDocente.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarTextoSistemaEvaluacion/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarTextoSistemaEvaluacion.md)
+
+</div>
 
 Desde **🔧 Gestionar evaluación**, **🔧 Gestionar bibliografía** y **🔧 Gestionar planificación docente**, el director usa las mismas pantallas que el profesorado (ver el [manual de Profesor](../profesor/README.md)), con la franja del programa y el título en forma de miga: **📄 Guías › asignatura › Evaluación** (o Bibliografía, o Planificación docente). Pulsar **📄 Guías** vuelve a la lista y pulsar la asignatura vuelve a la guía; un nombre largo aparece recortado y se ve completo al pasar el ratón. Desde ellas puede crear, editar y eliminar instrumentos de evaluación, referencias y sesiones, y duplicar sesiones.
 

@@ -16,9 +16,25 @@ Desde la franja del programa, pulsar **📚 Materias**.
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMaterias/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMaterias.md)
+
+</div>
+
 Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Si alguna materia del programa tiene módulo, la tabla se agrupa por módulo: una fila de cabecera **🧱 código -- nombre** por módulo, con sus materias debajo, y al final **🧱 Sin módulo** con las que aún no tienen. Crear, renombrar y eliminar materias, y asignarles su módulo, lo hace el Admin desde su módulo de administración.
 
 ## Detalle de una materia
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMateria.md)
+
+</div>
 
 Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparecen el **Módulo** de la materia (código y nombre, o "Sin módulo"), sus **ECTS** y su **Código RUCT** si se han importado de la memoria (solo lectura) y, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
 
@@ -28,6 +44,14 @@ Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz espec
 
 ### Asociar una metodología docente
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarMetodologiaDocenteAMateria.md)
+
+</div>
+
 1. Pulsar **➕ Asociar metodología docente**.
 2. Elegir la metodología de la lista desplegable -- solo aparecen las del catálogo del programa (pestaña **🧩 Metodologías**) que la materia todavía no tiene.
 3. Pulsar **Asociar**.
@@ -36,21 +60,85 @@ Si no queda ninguna metodología disponible para asociar, la pantalla lo indica 
 
 ### Editar la descripción propia
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsociacionMetodologiaDocenteMateria/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarAsociacionMetodologiaDocenteMateria.md)
+
+</div>
+
 Pulsar **✏️ Editar** en la fila de la metodología. El código y la descripción general no son editables aquí, solo la **Descripción propia**.
 
 ### Quitar una metodología
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteMateria/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarMetodologiaDocenteMateria.md)
+
+</div>
 
 Pulsar **➖** (Quitar) en la fila de la metodología. Si ninguna asignatura de la materia la está usando, aparece una pantalla de confirmación (**Confirmar desasociación** / **Cancelar**). Si alguna asignatura la está usando, la desasociación queda bloqueada y la pantalla indica en qué asignaturas está en uso -- hace falta quitarla antes de esas asignaturas.
 
 ## Resultados de aprendizaje
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAMateria/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarResultadoAprendizajeAMateria.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarResultadoAprendizajeAMateria.md)
+
+</div>
+
 Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (el número de asignaturas de la materia que tienen asociado ese resultado; con fondo rojo suave si es 0) y el botón **➖** (Quitar) de cada fila; **➕ Asociar resultado de aprendizaje** para añadir uno de los disponibles. En el desplegable, cada resultado aparece con su código y el comienzo de su texto; el texto completo del elegido se ve debajo. Quitar uno en uso en alguna asignatura de la materia queda bloqueado, con el mismo tipo de aviso.
 
 ## Competencias
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAMateria/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarCompetenciaAMateria.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAMateria/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarCompetenciaAMateria.md)
+
+</div>
+
 Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (cuántas asignaturas de la materia tienen asociada la competencia; con fondo rojo suave si es 0) y **➖** (Quitar); **➕ Asociar competencia** para añadir una de las del programa que la materia aún no tiene. Quitar una que usa alguna asignatura de la materia queda bloqueado. Detalle en el capítulo [Competencias](competencias.md).
 
 ## Actividades formativas de la materia
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadesFormativasMateria.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/consultarEstadoActividadesFormativasMateria.md)
+
+</div>
 
 Tabla de solo lectura con **Actividad formativa**, **Horas** y **Presencialidad (%)**: la memoria fija las dos por materia (las asignaturas solo reparten horas). Pulsar **Editar reparto** abre un formulario con los dos campos por actividad (horas mínimo 0, presencialidad de 0 a 100) y el **Total** de horas; si la materia tiene sus ECTS de la memoria, junto al total aparecen las horas que corresponden a 25 h por ECTS y si cuadran. **Guardar** confirma los nuevos valores.
 
@@ -59,6 +147,30 @@ Si la materia tiene ECTS, bajo la tabla una línea compara sus horas con las que
 Debajo, la tabla **Estado de las actividades formativas** compara, por actividad, las horas de la materia con la suma de las de sus asignaturas: **OK** si cuadran o **Discrepancia** con la diferencia. Es solo informativa: no impide guardar. Si la materia tiene optatividad -- sus asignaturas no suman sus ECTS (idiomas alternativos, optativas, o asignaturas de la memoria que están en otra materia) y la materia sí suma 25 h por ECTS --, esta tabla no aparece: cada asignatura lleva 25 h por ECTS y la suma de sus horas no tiene por qué coincidir con la de la materia. En su lugar, bajo la línea de horas, la pantalla dice "Materia con optatividad: sus asignaturas suman X ECTS para Y de la materia". Que cada asignatura cuadre lo dice entonces su propia línea de horas (capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)).
 
 ## Sistemas de evaluación
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSistemaEvaluacion/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearSistemaEvaluacion.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSistemaEvaluacion/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarSistemaEvaluacion.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarSistemaEvaluacion.md)
+
+</div>
 
 Tabla con **Código**, **Tipo**, **Descripción**, **Ponderación mínima** y **Ponderación máxima** de cada sistema, con **✏️ Editar** y **🗑️** (Eliminar) en cada fila. En los títulos cuya memoria publica el RUCT con sistemas por materia, los carga la importación tal como figuran en ella (código, denominación y horquilla); en ese caso conviene no cambiarlos a mano, porque la guía tiene que nombrarlos como la memoria.
 

@@ -18,11 +18,27 @@ Desde la franja del programa, pulsar **🧭 Competencias** (a la derecha de **�
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCompetencias/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirCompetencias.md)
+
+</div>
+
 Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas del programa que tienen asociada cada competencia), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear competencia** está a la derecha del título de la sección.
 
 El número de asignaturas es solo informativo: una competencia con 0 no impide nada, pero indica que ninguna asignatura la cubre todavía, y su celda lleva fondo rojo suave para verla de un vistazo. Lo mismo en la tabla de competencias de cada materia.
 
 ## Crear una competencia
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearCompetencia/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearCompetencia.md)
+
+</div>
 
 1. Pulsar **➕ Crear competencia**.
 2. Escribir el **Código**. No puede repetirse dentro del programa, sin distinguir mayúsculas y minúsculas (CE1 y ce1 cuentan como el mismo); si ya lo usa otra competencia, el formulario lo indica y conserva lo escrito.
@@ -32,15 +48,39 @@ El número de asignaturas es solo informativo: una competencia con 0 no impide n
 
 ## Detalle de una competencia
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCompetencia/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirCompetencia.md)
+
+</div>
+
 Al abrir una competencia, la pestaña **🧭 Competencias** queda marcada y el título dice **🧭 Competencias › código de la competencia**; pulsar la primera parte vuelve a la lista. A la derecha del título, **✏️ Editar**.
 
 Debajo aparecen el **Tipo**, la **Descripción** y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que tienen asociada la competencia. Cada nombre es un enlace a su materia o asignatura.
 
 ## Editar una competencia
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarCompetencia/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarCompetencia.md)
+
+</div>
+
 Pulsar **✏️ Editar** y cambiar código, tipo o descripción; **Guardar** confirma los cambios. El código sigue sin poder repetirse dentro del programa, sin distinguir mayúsculas y minúsculas. El cambio se ve en todas las materias, asignaturas y guías que tienen la competencia.
 
 ## Eliminar una competencia
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarCompetencia/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarCompetencia.md)
+
+</div>
 
 Pulsar la papelera **🗑️** (Eliminar) en la fila de la competencia.
 

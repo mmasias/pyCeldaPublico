@@ -20,6 +20,14 @@ Pulsar **🪪 Mi perfil**, arriba a la derecha de cualquier pantalla.
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarPerfilPropio/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarPerfilPropio.md)
+
+</div>
+
 El formulario se divide en secciones:
 
 - **Generales**: Email (no editable), **Nombre** (obligatorio), **Enlace al CVN**, **ORCID**, **Enlace a Google Scholar**, **Enlace de la foto** y un **Mini-CV** de texto libre. Si hay enlace de foto, la foto aparece a la derecha del Mini-CV.

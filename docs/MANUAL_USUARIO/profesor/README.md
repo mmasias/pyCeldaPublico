@@ -17,6 +17,8 @@ Todas las pantallas del modo académico (Profesor y Director) se reconocen por u
 
 Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).
 
+Las imágenes de cada capítulo no son capturas reales: son los esquemas de diseño de cada pantalla; los datos son de ejemplo y el aspecto real cambia. Debajo de cada una, un enlace abre esa pantalla en el prototipo navegable.
+
 ## Índice
 
 1. [Entrar y ver las asignaturas](entrarYVerTusAsignaturas.md)

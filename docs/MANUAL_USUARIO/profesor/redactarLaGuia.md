@@ -16,6 +16,14 @@ Desde **Inicio**, pulsar **📂 Abrir** en la fila de la asignatura correspondie
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-profesor.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirGuia.md)
+
+</div>
+
 Arriba, el título **Guía docente** y, debajo de la línea, el nombre de la asignatura en grande. A continuación, la ficha de la guía en dos columnas: a la izquierda, **Programa**, **Semestre** y **Profesores**; a la derecha, **Estado**, **Creación**, **Última modificación** y **Generación del PDF** ("--" si la guía no se ha aprobado nunca).
 
 En **Profesores**, junto a cada nombre aparece entre paréntesis su papel en la asignatura: **Responsable**, **Imparte** o los dos (**Responsable · Imparte**). Los dos papeles pueden editar la guía por igual. En el documento oficial (PDF y previsualización) solo aparecen quienes imparten.
@@ -42,6 +50,14 @@ Si el texto del temario supera los 10.000 caracteres, al guardar aparece el erro
 La sesión dura 12 horas. Si al guardar (o al enviar, importar o descargar) la sesión ha caducado, la guía no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña de la guía y se pulsa otra vez el botón. Al importar contenido de una guía hermana, el aviso (o el error) sale junto al botón **📥 Importar contenido**, bajo el cuadro de texto. Lo mismo vale para el texto de convocatorias en 🔧 Gestionar evaluación, para los formularios de crear o editar instrumentos y referencias, para **Importar desde texto** y para **🪪 Mi perfil**; los formularios del director de programa, en [Entrar y ver los programas](../directorPrograma/entrarYVerLosProgramas.md#cómo-entrar). En la planificación docente, que guarda cada fila al salir del campo, el aviso sale sobre la tabla y la fila afectada muestra "Error: sesión caducada" con su botón **Reintentar**, que se pulsa tras entrar de nuevo; si lo que falló fue duplicar o crear las sesiones genéricas, basta con volver a pulsar ese botón.
 
 ## Importar el contenido de una guía hermana
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarContenidoDeGuiaHermana/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarContenidoDeGuiaHermana.md)
+
+</div>
 
 Si la misma asignatura se imparte también en otro programa y hay alguna guía de la que importar (ver [De qué guías hermanas se puede importar](#de-qué-guías-hermanas-se-puede-importar)), debajo del cuadro **Contenido** aparece **Importar de guía hermana**, con una lista de las guías de las que se puede copiar el temario. Cada opción indica el estado de la guía de origen: "aprobada el 07/10/2026" o "en revisión desde 05/10/2026".
 

@@ -19,9 +19,25 @@ Antes del envío se comprueban cuatro cosas -- si alguna falla, aparece un aviso
 
 ## Previsualizar el documento oficial
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/previsualizarGuia/wireframe-borrador.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/previsualizarGuia.md)
+
+</div>
+
 Mientras la guía no está **Aprobada**, **👁️ Previsualizar** muestra el documento tal y como se generaría oficialmente, en una pestaña nueva del navegador, cruzado en diagonal por la marca "BORRADOR - NO OFICIAL" y con un aviso arriba que indica el estado de la guía: es un borrador, no la versión oficial. Con la guía aprobada este botón no aparece: su lugar lo ocupa **⬇️ Descargar PDF**.
 
 ## Descargar el PDF
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/descargarGuiaPDF/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/descargarGuiaPDF.md)
+
+</div>
 
 El botón **⬇️ Descargar PDF** solo aparece mientras la guía está **Aprobada**. Al pulsarlo, el navegador descarga el documento oficial con el nombre `guia-<número>.pdf`.
 

@@ -16,9 +16,25 @@ Desde la franja del programa, pulsar **🎯 Resultados de aprendizaje**.
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirResultadosAprendizaje/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirResultadosAprendizaje.md)
+
+</div>
+
 Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta; si es 0, la celda lleva fondo rojo suave: ninguna asignatura lo cubre todavía, aunque no impide nada), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear resultado de aprendizaje** está a la derecha del título de la sección.
 
 ## Crear un resultado de aprendizaje
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearResultadoAprendizaje/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearResultadoAprendizaje.md)
+
+</div>
 
 1. Pulsar **➕ Crear resultado de aprendizaje**.
 2. Escribir el **Código**.
@@ -30,17 +46,41 @@ Para salir sin crear, **Cancelar**; si hay algo escrito, pide confirmación ante
 
 ## Detalle de un resultado de aprendizaje
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirResultadoAprendizaje/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirResultadoAprendizaje.md)
+
+</div>
+
 Al abrir un resultado, la pestaña **🎯 Resultados de aprendizaje** queda marcada y el título dice **🎯 Resultados de aprendizaje › código del resultado**; pulsar la primera parte vuelve a la lista. A la derecha del título, **✏️ Editar**.
 
 Debajo aparecen el **Tipo**, la **Descripción** (en cursiva) y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que tienen asociado el resultado ("Ninguna" si una columna está vacía). Cada nombre es un enlace a su materia o asignatura. Si no está asociado a nada, una sola línea lo indica.
 
 ## Editar un resultado de aprendizaje
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarResultadoAprendizaje/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarResultadoAprendizaje.md)
+
+</div>
+
 Pulsar **✏️ Editar** y cambiar código, tipo o descripción; **Guardar** confirma los cambios y vuelve al detalle. **Cancelar** con cambios sin guardar pide confirmación antes de descartarlos.
 
 Si el resultado tiene un tipo que no está entre los tres de la lista (por ejemplo, uno cargado desde la memoria verificada del programa), el desplegable lo ofrece también, en primer lugar, para que guardar sin tocarlo no lo cambie.
 
 ## Eliminar un resultado de aprendizaje
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarResultadoAprendizaje/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarResultadoAprendizaje.md)
+
+</div>
 
 Pulsar la papelera **🗑️** (Eliminar) en la fila del resultado. La pantalla siguiente muestra el código, el tipo y la descripción del resultado, para confirmar que es el correcto.
 

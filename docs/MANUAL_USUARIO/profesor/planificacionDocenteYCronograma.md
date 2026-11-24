@@ -24,15 +24,39 @@ Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha d
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirPlanificacionDocente.md)
+
+</div>
+
 Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo. Si hay sesiones en pantalla que aún no cuentan (creadas o eliminadas sin pulsar **💾 Guardar borrador** en la guía), aparecen las dos cifras, por ejemplo **En pantalla: 30 sesiones · Guardado: 25 sesiones**, con un aviso en ámbar: para enviar la guía cuenta la de **Guardado**.
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador.
 
 ## Descargar la planificación
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/descargarPlanificacionDocentePDF/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/descargarPlanificacionDocentePDF.md)
+
+</div>
+
 Junto al número de sesiones, **⬇️ Descargar planificación** descarga un PDF con la planificación docente: los datos de la asignatura y las sesiones guardadas, numeradas, con el color de su tipo (sin columna de tipo), y debajo el total y la leyenda de colores. Una planificación habitual cabe en una página. El fichero se llama, por ejemplo, `Planificacion_GII_Programacion-I_2026-2027.pdf`. Está disponible en cualquier estado de la guía: en borrador o rechazada lleva la marca de agua "BORRADOR - NO OFICIAL"; en revisión o aprobada sale sin ella. Las sesiones añadidas o editadas sin guardar todavía no aparecen. El mismo botón está en la sección **Planificación docente** de la guía.
 
 ## Crear una sesión
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframe-formulario.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearSesion.md)
+
+</div>
 
 1. Pulsar **➕ Añadir fila**. Se añade una fila vacía al final de la tabla.
 2. Elegir el **Tipo**: Clase Teórica, Clase Práctica, Clase Teórico/Práctica, Clase Laboratorio, Evaluación Continua o Evaluación Parcial.
@@ -46,17 +70,41 @@ La descripción de cada sesión admite un máximo de **500 caracteres**. Si se s
 
 ## Editar o eliminar una sesión
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/wireframe-formulario.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarSesion.md)
+
+</div>
+
 Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Si la sesión ya formaba parte de la guía y la guía estaba **Aprobada**, la guía vuelve a **Borrador**; lo mismo ocurre al **📑 Duplicar** una sesión que tenga otras detrás, porque se renumeran. Salir de una celda sin haber cambiado nada no cuenta como cambio. Pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda, cuando dice "pulsa de nuevo para confirmar") para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
 
 Si un guardado falla (por ejemplo, por un corte de red), aparece un mensaje de error con el botón **Reintentar**; lo escrito no se pierde.
 
 ## Duplicar una sesión
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/duplicarSesion/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/duplicarSesion.md)
+
+</div>
+
 Pulsar **📑 Duplicar** en la fila de una sesión crea una copia con el mismo tipo y la misma descripción, justo debajo de la original -- las sesiones que venían después se renumeran automáticamente para dejar sitio a la copia. Si falla, aparece el mismo tipo de aviso con el botón **Reintentar**.
 
 Pensado para sesiones consecutivas parecidas -- un tema que continúa, una práctica que se repite -- editando después solo lo que cambia en vez de escribir la sesión entera de nuevo.
 
 ## Arrancar la planificación de golpe
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/generarPlanificacionDocenteGenerica.md)
+
+</div>
 
 Si la guía todavía no tiene ninguna sesión creada y la asignatura exige un mínimo, aparece el botón **Crear N sesiones genéricas** (N es el mínimo exigido para la asignatura), en la fila de la leyenda, a la derecha. Es un atajo para no partir de una tabla completamente vacía.
 
@@ -66,6 +114,14 @@ Si la guía todavía no tiene ninguna sesión creada y la asignatura exige un m�
 Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de la 1 a la N, ya guardadas -- no hace falta pulsar **💾 Guardar borrador** después. A partir de ahí, cada una puede editarse para ajustar el tipo y añadir la descripción real de la clase. El botón solo está disponible mientras la planificación está completamente vacía: en cuanto existe al menos una sesión (aunque sea creada a mano), desaparece.
 
 ## Importar de una asignatura hermana
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarPlanificacionDocenteDeGuiaHermana/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarPlanificacionDocenteDeGuiaHermana.md)
+
+</div>
 
 Igual que con la bibliografía: si la asignatura se imparte también en otro programa, la planificación docente completa de esa guía puede copiarse directamente si está aprobada o, si también la tienes asignada, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
 
@@ -77,6 +133,14 @@ Igual que con la bibliografía: si la asignatura se imparte también en otro pro
 Como con la bibliografía, importar sustituye la planificación de inmediato -- no hace falta guardar el borrador después.
 
 ## Importar desde texto
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarPlanificacionDocenteDesdeTexto/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarPlanificacionDocenteDesdeTexto.md)
+
+</div>
 
 Alternativa a la importación de una asignatura hermana cuando la planificación ya existe como texto (un documento, un correo): se pega y pyCelda crea las sesiones.
 

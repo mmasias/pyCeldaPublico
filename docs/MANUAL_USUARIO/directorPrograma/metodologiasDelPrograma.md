@@ -20,9 +20,25 @@ Desde la franja del programa, pulsar **🧩 Metodologías**.
 
 ### Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMetodologiasDocentes.md)
+
+</div>
+
 Una tabla con **Descripción**, **Código** y **Nº de Asign.** (cuántas asignaturas del programa la tienen asociada; si es 0, la celda lleva fondo rojo suave), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear metodología docente** está a la derecha del título de la sección.
 
 ### Crear una metodología docente
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearMetodologiaDocente.md)
+
+</div>
 
 1. Pulsar **➕ Crear metodología docente**.
 2. Escribir el **Código**. No puede repetirse dentro del programa, sin distinguir mayúsculas y minúsculas; si ya lo usa otra metodología, el formulario lo indica y conserva lo escrito.
@@ -33,13 +49,37 @@ Para salir sin crear, **Cancelar**; si hay algo escrito, pide confirmación ante
 
 ### Detalle de una metodología docente
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiaDocente/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMetodologiaDocente.md)
+
+</div>
+
 Al abrirla, la pestaña **🧩 Metodologías** queda marcada y el título dice **🧩 Metodologías docentes › código**; pulsar la primera parte vuelve a la lista. A la derecha, **✏️ Editar**. Debajo aparecen la **Descripción** y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que la tienen asociada, cada una con un enlace a su ficha.
 
 ### Editar una metodología docente
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarMetodologiaDocente.md)
+
+</div>
+
 Pulsar **✏️ Editar** y cambiar código o descripción; **Guardar** confirma los cambios y vuelve al detalle. El cambio se ve en todas las materias, asignaturas y guías que la tienen.
 
 ### Eliminar una metodología docente
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarMetodologiaDocente.md)
+
+</div>
 
 Pulsar la papelera **🗑️** (Eliminar) en su fila.
 
@@ -54,19 +94,63 @@ Desde la franja del programa, pulsar **🏋️ Actividades formativas**.
 
 ### Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirActividadesFormativas.md)
+
+</div>
+
 Una tabla con **Nombre** y **Código** de cada actividad, en el orden en que se crearon (el de la memoria), con **📂 Abrir** y **🗑️** (Eliminar). **➕ Crear actividad formativa** está a la derecha del título.
 
 ### Crear una actividad formativa
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearActividadFormativa.md)
+
+</div>
 
 1. Pulsar **➕ Crear actividad formativa**.
 2. Escribir el **Código** (único dentro del programa, sin distinguir mayúsculas y minúsculas) y el **Nombre**.
 3. Pulsar **Crear**. Se abre la actividad recién creada, y todas las materias y asignaturas del programa reciben su fila a 0 horas.
 
+### Detalle de una actividad formativa
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirActividadFormativa.md)
+
+</div>
+
+Al abrirla, la pestaña **🏋️ Actividades formativas** queda marcada y la miga dice **🏋️ Actividades formativas › código**; pulsar la primera parte vuelve a la lista. A la derecha, **✏️ Editar**. Debajo aparece el **Nombre**. Las horas y la presencialidad de cada materia, y las horas de cada asignatura, no se editan aquí: se editan desde la materia y desde la asignatura.
+
 ### Editar una actividad formativa
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadFormativa.md)
+
+</div>
 
 En su ficha, pulsar **✏️ Editar** y cambiar código o nombre; **Guardar** confirma los cambios.
 
 ### Eliminar una actividad formativa
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframe-confirmacion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarActividadFormativa.md)
+
+</div>
 
 Pulsar la papelera **🗑️** (Eliminar) y confirmar con **🗑️ Confirmar eliminación**. Si alguna materia o asignatura del programa tiene horas en ella, la eliminación queda bloqueada con el aviso **⛔ No se puede eliminar** y las materias afectadas: hay que poner antes sus horas a 0. Si no, se retira también de todas las materias y asignaturas (donde estaba a 0) y no se puede deshacer.
 

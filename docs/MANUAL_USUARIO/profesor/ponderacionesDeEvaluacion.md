@@ -20,6 +20,14 @@ Desde la guía, pulsar **🔧 Gestionar evaluación**, a la derecha del título 
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirPonderacionesEvaluacion.md)
+
+</div>
+
 Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, **Ponderación** y **Vinculada** (Sí o No -- ver más abajo). En la última fila, bajo **Ponderación**, el total asignado, en rojo si no suma 100%.
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
@@ -27,6 +35,14 @@ Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guar
 Más abajo, alineada a la derecha y en pequeño porque es de referencia, la tabla **Sistemas de evaluación de la materia**: el catálogo completo de tipos de evaluación de la asignatura, con su porcentaje mínimo y máximo permitido, y cuánto hay asignado a cada uno. Si un sistema está fuera de su rango permitido, o en 0% siendo obligatorio, aparece marcado en rojo. Al pie, bajo **Asignado**, el total asignado, también en rojo si no suma 100%.
 
 ## Crear un instrumento
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearPonderacionEvaluacion/wireframe-formulario.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearPonderacionEvaluacion.md)
+
+</div>
 
 1. Pulsar **➕ Crear instrumento**, a la derecha del título.
 2. Elegir el **Sistema de evaluación** de la lista desplegable.
@@ -37,6 +53,14 @@ Más abajo, alineada a la derecha y en pequeño porque es de referencia, la tabl
 Si la ponderación es cero o un número negativo, aparece el error "La ponderación de un instrumento debe ser mayor que cero" y no se crea nada. Si supera el máximo del sistema elegido (la lista lo indica como "máx. N%"), aparece "La ponderación supera el máximo del sistema de evaluación".
 
 ## Editar un instrumento
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarPonderacionEvaluacion/wireframe-formulario.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarPonderacionEvaluacion.md)
+
+</div>
 
 1. En la tabla, pulsar el lápiz **✏️** (Editar) en la fila del instrumento.
 2. Cambiar lo necesario y pulsar **Guardar**; **Cancelar**, junto a él, vuelve a la lista sin guardar.
@@ -55,6 +79,14 @@ Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado
 Un instrumento **recién creado** aparece como **Vinculada: No** hasta confirmarlo con **💾 Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar. Mientras haya instrumentos sin confirmar (o eliminados sin confirmar), el total muestra dos cifras, por ejemplo **En pantalla: 100% · Guardado: 0%**, con un aviso en ámbar: **En pantalla** es lo que ves en la lista; **Guardado** es lo que cuenta para enviar la guía a revisión, y no se pone al día hasta pulsar **💾 Guardar borrador** en la guía. La guía también avisa con **Hay ítems sin guardar** junto a ese botón. Editar un instrumento que ya estaba en **Sí** no lo devuelve a "No": el cambio se guarda en el acto (ver "Editar un instrumento").
 
 ## Texto de convocatorias
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarTextoSistemaEvaluacion/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarTextoSistemaEvaluacion.md)
+
+</div>
 
 Al final de la pantalla, la sección **Texto de convocatorias** muestra el texto del apartado 5 de la guía (convocatoria ordinaria y extraordinaria). El texto **no se escribe**: sale de una plantilla, y lo único que se completa son dos datos de la convocatoria extraordinaria.
 

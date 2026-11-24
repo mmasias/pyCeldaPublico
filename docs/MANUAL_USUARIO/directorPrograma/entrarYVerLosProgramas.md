@@ -14,11 +14,27 @@ La sesión dura 12 horas. Si al guardar en un formulario de crear o editar (resu
 
 ## Qué muestra Inicio
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirInicio/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirInicio.md)
+
+</div>
+
 Si hay guías del programa esperando la revisión del director, **Inicio** lo dice en una línea: por ejemplo, "🚦 **3 guías esperan tu revisión** como director(a) del Grado en Ingeniería Informática". El nombre del programa es un enlace a sus guías. Si hay guías pendientes en varios de los programas dirigidos, aparecen todos en la misma línea, con el número de cada uno entre paréntesis. Si no hay nada pendiente, la línea no aparece.
 
 Si la cuenta está dada de alta también como profesor, Inicio muestra además la sección **Mis guías**, con las asignaturas que tiene asignadas (las imparta o sea su responsable). En ese caso hay que confirmar antes el perfil académico del curso con **🪪 Mi perfil** (ver el [manual de Profesor](../profesor/README.md)): mientras no esté confirmado, Inicio solo muestra el aviso, sin la línea de guías pendientes ni **Mis guías**.
 
 ## Mis programas
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirProgramas/wireframe-porDirector.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirProgramas.md)
+
+</div>
 
 **🎓 Mis programas**, arriba a la derecha, lleva a la tabla de programas a cargo: **Nombre**, **Código** y **Estado**, con el botón **📂 Abrir** de cada uno. Si la cuenta no dirige ningún programa, aparece el mensaje "No diriges ningún programa".
 
@@ -34,6 +50,14 @@ Todas las pantallas de un programa tienen la misma estructura:
 Al abrir un elemento (una materia, una asignatura, un resultado de aprendizaje, una competencia o una guía), la pestaña de su sección sigue marcada y el título indica dónde se está: por ejemplo, **📚 Materias › Programación**. La primera parte, **📚 Materias**, es un enlace que vuelve a la lista. Desde estas pantallas no hay botones "Volver": se vuelve con la pestaña o con ese enlace. Los formularios y las pantallas de confirmación (asociar, quitar, eliminar) sí tienen su **Cancelar**; si la acción está bloqueada ("⛔ No se puede eliminar"), la salida es **Volver a...**. En los formularios, si se ha escrito o cambiado algo, **Cancelar** pregunta "Tienes cambios sin guardar. ¿Salir sin guardarlos?" antes de descartarlo, y en los largos (las actividades formativas de una asignatura o de una materia) aparece también un **Guardar** arriba en cuanto hay cambios, con el aviso "Tienes cambios sin guardar.".
 
 ## La vista general
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/wireframe-porDirectorPrograma.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPrograma.md)
+
+</div>
 
 **📋 Vista general** es la pestaña con la que se abre un programa. Muestra las **Guías** del curso vigente (ver el capítulo [Revisar y aprobar guías](revisarYAprobarGuias.md)) y, a la derecha del título, el **Código** y el **Estado** del programa y, si se ha importado del RUCT, su **Código RUCT**, su **Denominación oficial** y su **Norma** (RD 1393/2007 o RD 822/2021, la norma con la que se verificó la memoria del título).
 

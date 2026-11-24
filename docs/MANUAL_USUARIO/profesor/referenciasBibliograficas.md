@@ -16,11 +16,27 @@ Desde la guía, pulsar **🔧 Gestionar bibliografía**, a la derecha del títul
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirReferenciasBibliograficas/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirReferenciasBibliograficas.md)
+
+</div>
+
 Una tabla con todas las referencias ya creadas: **Referencia**, **Tipo** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **💾 Guardar borrador** en la guía).
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
 
 ## Crear una referencia
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearReferenciaBibliografica/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearReferenciaBibliografica.md)
+
+</div>
 
 1. Pulsar **➕ Crear referencia**, a la derecha del título.
 2. Elegir el **Tipo**: Básica, Complementaria, Webs de referencia u Otras fuentes de consulta.
@@ -31,9 +47,25 @@ Si la referencia supera los 500 caracteres se rechaza con el mensaje "La referen
 
 ## Editar o eliminar una referencia
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarReferenciaBibliografica/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarReferenciaBibliografica.md)
+
+</div>
+
 Igual que con los instrumentos de evaluación: pulsar el lápiz **✏️** (Editar) de su fila para cambiarla, o pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda para confirmar) para quitarla de la vista. El borrado no se hace definitivo hasta guardar el borrador de la guía. Como con los instrumentos, editar una referencia que ya forma parte de la guía se guarda en el acto y, si la guía estaba **Aprobada**, la devuelve a **Borrador**.
 
 ## Importar de una asignatura hermana
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarBibliografiaDeGuiaHermana.md)
+
+</div>
 
 Si la asignatura se imparte también en otro programa, la bibliografía de esa otra guía puede copiarse directamente en lugar de escribirla de cero: si está aprobada o, si también la tienes asignada, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
 

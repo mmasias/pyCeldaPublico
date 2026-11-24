@@ -16,9 +16,25 @@ Desde la franja del programa, pulsar **📘 Asignaturas**.
 
 ## Qué muestra
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturasPrograma/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirAsignaturasPrograma.md)
+
+</div>
+
 Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado") y **Estado** (el estado de la guía docente de esa asignatura, con el mismo color que en otras listas de guías). Última columna, sin título: el botón **📂 Abrir**.
 
 ## Detalle de una asignatura de programa
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirAsignaturaPrograma.md)
+
+</div>
 
 Al abrir una asignatura, la pestaña **📘 Asignaturas** queda marcada y el título dice **📘 Asignaturas › nombre de la asignatura**; pulsar **Asignaturas** en ese título vuelve a la lista. A la derecha del título, **✏️ Editar**.
 
@@ -26,7 +42,63 @@ Debajo, la ficha de la asignatura en dos columnas: **Materia** (un enlace a la p
 
 Más abajo, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Metodologías docentes asociadas** y las **Actividades formativas**, con el mismo mecanismo de asociar y quitar descrito en el capítulo [Gestionar materias](gestionarMaterias.md) -- solo se ofrecen para asociar los resultados, competencias y metodologías que ya están en la materia y todavía no están en esta asignatura. Al final, el **Profesorado asignado**, de solo lectura: asignar o quitar profesorado lo gestiona Admin, no esta pantalla.
 
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaPrograma/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarResultadoAprendizajeAAsignaturaPrograma.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/wireframe-normal.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarResultadoAprendizajeAsignaturaPrograma.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAAsignaturaPrograma/wireframe-seleccion.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarCompetenciaAAsignaturaPrograma.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAsignaturaPrograma/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarCompetenciaAsignaturaPrograma.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAAsignaturaPrograma/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarMetodologiaDocenteAAsignaturaPrograma.md)
+
+</div>
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteAsignaturaPrograma/wireframe-normal.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarMetodologiaDocenteAsignaturaPrograma.md)
+
+</div>
+
 ## Editar una asignatura de programa
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/wireframe-completo.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarAsignaturaPrograma.md)
+
+</div>
 
 1. Pulsar **✏️ Editar**.
 2. Cambiar los campos que hagan falta. Los campos cortos van en una tabla de cuatro filas: **Nombre** y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** e **Idioma**; y **Sesiones mínimas**, sola. Curso, Carácter, Idioma y Sesiones mínimas son obligatorios. El Semestre por defecto es editable solo si la asignatura todavía no tiene ninguna guía creada -- en caso contrario aparece bloqueado, con una nota debajo. Debajo de la tabla, **Contenido** y **Requisitos previos**, de edición libre.
@@ -39,6 +111,14 @@ Dejar Requisitos previos vacío equivale a "No aplica" en la guía docente.
 **Sesiones mínimas** es el número mínimo de sesiones de planificación docente que debe tener la guía para poder enviarla a revisión: de 0 a 100 (0 si la asignatura no tiene sesiones, como el TFG o las prácticas). Fuera de ese rango no se guarda. El cambio se aplica al momento a todas las guías de la asignatura; como se comprueba al enviar a revisión, una guía que ya está en revisión o aprobada no se ve afectada hasta que vuelva a enviarse.
 
 ## Actividades formativas de la asignatura
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasAsignaturaPrograma/wireframe.svg)
+
+[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadesFormativasAsignaturaPrograma.md)
+
+</div>
 
 Tabla de solo lectura con **Actividad formativa**, **Horas** y **% presencialidad**. La presencialidad es la de la materia y se edita allí; aquí solo se reparten horas. Pulsar **Editar reparto** abre un formulario con las horas de cada actividad (la presencialidad aparece al lado, sin editar); bajo la tabla del formulario, la misma línea de horas frente a ECTS se actualiza mientras se escriben las horas, antes de guardar. **Guardar** confirma los nuevos valores.
 
