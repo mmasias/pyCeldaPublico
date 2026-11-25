@@ -6,11 +6,11 @@
     <b>Últimas 50 acciones | <b>Autores
     {#
         <b>Fecha | <b>Guía | <b>Campo | <b>Cambio | <b>Autor | <b>Comentario
-        15/9/2026, 14:48 | Programación II@GII | Contenido | Repaso... -> Repaso... | Dr. Manuel Masías Vergara | temario editado
-        8/9/2026, 11:22 | Programación I@GII | Estado | EnRevision -> Aprobada | Dr. Manuel Masías Vergara | aprobada sin incidencia
+        15/9/2026, 14:48 | Programación II@GII | Contenido | Repaso... -> Repaso... | Dr. Carlos Navarro Ruiz | temario editado
+        8/9/2026, 11:22 | Programación I@GII | Estado | EnRevision -> Aprobada | Dr. Carlos Navarro Ruiz | aprobada sin incidencia
     } | {
-        [ Dr. Manuel Masías Vergara ]
-        [ Dr. Jorge Crespo Álvarez ]
+        [ Dr. Carlos Navarro Ruiz ]
+        [ Dr. Pablo Ortega Sanz ]
         [ Admin ]
         [ Juan Luis Vidal ]
     }
@@ -20,7 +20,7 @@
 
 @startsalt consultarHistorialCambios-wireframe-autor
 {
-    { <b>Actividad de Dr. Manuel Masías Vergara     [ Volver a Auditoría ] }
+    { <b>Actividad de Dr. Carlos Navarro Ruiz     [ Volver a Auditoría ] }
     ====
     {#
         <b>Fecha | <b>Guía | <b>Campo | <b>Cambio | <b>Rol | <b>Comentario

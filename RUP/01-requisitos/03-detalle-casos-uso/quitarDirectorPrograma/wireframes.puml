@@ -4,7 +4,7 @@
     ====
     <color:red><b>⚠ NO SE PUEDE QUITAR</b></color>
     ====
-    <b>Dr. Manuel Masías Vergara</b> es el único DirectorPrograma de:
+    <b>Dr. Carlos Navarro Ruiz</b> es el único DirectorPrograma de:
 
     <b>GII -- Grado en Ingeniería Informática</b>
 
@@ -18,12 +18,12 @@
 {
     <b>QUITAR DIRECTOR DE PROGRAMA</b>
     ====
-    <b>Dr. Jon Arambarri Basañez</b> deja de dirigir:
+    <b>Dr. Javier Molina Ríos</b> deja de dirigir:
 
     <b>GII -- Grado en Ingeniería Informática</b>
 
     <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Queda otro DirectorPrograma activo en este Programa (Dr. Manuel Masías Vergara).
+    Queda otro DirectorPrograma activo en este Programa (Dr. Carlos Navarro Ruiz).
     ====
     {[Confirmar] | [Cancelar]}
 }
@@ -35,7 +35,7 @@
     ====
     <b>Directores:</b>
     {
-        Dr. Manuel Masías Vergara | [Quitar]
+        Dr. Carlos Navarro Ruiz | [Quitar]
     }
     <color:red>Error: El Profesor es el único DirectorPrograma de este Programa</color>
     ====

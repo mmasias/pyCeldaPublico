@@ -83,7 +83,7 @@ Regla del usuario, material docente de `idsw1`. Las notas de transición solo pu
 Mockups en Salt (`@startsalt`), un bloque por pantalla, varias pantallas en el mismo fichero cuando la especificación lo pida (estado vacío vs poblado, éxito vs error...). El wireframe tiene que corresponder **exactamente** a lo que la especificación modela -- ni un botón de más ("Cancelar" en una pantalla de un caso de uso que no modela cancelar) ni de menos.
 
 **Datos reales del seed** (`backend/app/data/seed/`, repo privado) como hilo narrativo, no nombres inventados:
-- Guía canónica: **`GII__IYA003`** (Programación I, Dr. Manuel Masías) -- limpia, ponderación suma 100, sin campos vacíos. Úsala por defecto para `Guia`/`PonderacionEvaluacion`/`ReferenciaBibliografica`; si un caso de uso necesita mostrar el caso "campo vacío" o "varios profesores", usa otra guía real puntual y dilo explícito en esa ficha.
+- Guía canónica: **`GII__IYA003`** (Programación I, Dr. Carlos Navarro) -- limpia, ponderación suma 100, sin campos vacíos. Úsala por defecto para `Guia`/`PonderacionEvaluacion`/`ReferenciaBibliografica`; si un caso de uso necesita mostrar el caso "campo vacío" o "varios profesores", usa otra guía real puntual y dilo explícito en esa ficha.
 - `CursoAcademico` canónico: **2026-2027, semestre 1, activo**.
 - Competencias/`ResultadoAprendizaje` reales, agrupación de `Materia`, y quién es `DirectorPrograma` de cada programa **no están en el seed** -- los aporta el usuario a demanda cuando toque el caso de uso concreto. No se fabrican por adivinanza.
 - Detalle completo de la auditoría del seed (qué está limpio, qué hace falta normalizar) en la [discussion #8](https://github.com/mmasias/pyCelda/discussions/8).

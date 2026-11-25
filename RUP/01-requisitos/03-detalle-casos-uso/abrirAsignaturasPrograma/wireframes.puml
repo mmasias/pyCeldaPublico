@@ -9,10 +9,10 @@
     <b>Asignaturas</b>
     {#
     <b>Asignatura                          | <b>Materia    | <b>Curso  | <b>Carácter | <b>Profesorado      |<b>Estado| .
-    Programación I                         | Programación  | I-s1      | Básica | profesor1@uneatlantico.es        |[ Borrador ]| [Abrir]
-    Estructuras de datos y algoritmos I    | Programación  | II-s1     | Obligatoria | profesor1@uneatlantico.es   |[ En revisión ]| [Abrir]
-    Redes de Ordenadores                   | Redes         | II-s2     | Obligatoria | profesor2@uneatlantico.es |[ Rechazada ]| [Abrir]
-    Ingeniería de Software I               | Ingeniería del Software | III-s1 | Obligatoria | profesor1@uneatlantico.es, profesor2@uneatlantico.es |[ Aprobada ]| [Abrir]
+    Programación I                         | Programación  | I-s1      | Básica | profesor1@ejemplo.edu        |[ Borrador ]| [Abrir]
+    Estructuras de datos y algoritmos I    | Programación  | II-s1     | Obligatoria | profesor1@ejemplo.edu   |[ En revisión ]| [Abrir]
+    Redes de Ordenadores                   | Redes         | II-s2     | Obligatoria | profesor2@ejemplo.edu |[ Rechazada ]| [Abrir]
+    Ingeniería de Software I               | Ingeniería del Software | III-s1 | Obligatoria | profesor1@ejemplo.edu, profesor2@ejemplo.edu |[ Aprobada ]| [Abrir]
     Prácticas Externas                     | Prácticas     | IV-s2     | Obligatoria | Sin profesorado asignado | -- | [Abrir]
     }
 }

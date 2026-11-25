@@ -49,7 +49,7 @@ Sin autenticación (se consulta desde las pantallas de login, antes de tener ses
 
 No reutiliza `get_current_rol()`. Decodifica la cookie, exige claim `rol == "admin"`. Aplicado a los 9 endpoints de `routers/universidad.py`/`routers/facultad.py`. (Hasta la corrección issue [#314](https://github.com/mmasias/pyCelda/issues/314) de abajo, `get_current_rol()` solo resolvía `Profesor`/`DirectorPrograma` -- ya no es el caso, pero `require_admin` sigue sin reutilizarlo por diseño, ver Diseño.)
 
-**Verificado en vivo** contra el servidor real: una cookie de sesión de `Profesor` real (`manuel@masiasweb.com`, emitida por el mecanismo real de `create_session_token`) fue rechazada con `403` real al llamar a `/api/v1/universidades`; una cookie de `Admin` real (`manuel.masias@uneatlantico.es`, añadida a `ADMIN_EMAILS` en `.env` local) fue aceptada con `200`. No solo `pytest` -- petición HTTP real contra el proceso real y la BD real.
+**Verificado en vivo** contra el servidor real: una cookie de sesión de `Profesor` real (`carlos.navarro@ejemplo.edu`, emitida por el mecanismo real de `create_session_token`) fue rechazada con `403` real al llamar a `/api/v1/universidades`; una cookie de `Admin` real (`carlos.navarro@ejemplo.edu`, añadida a `ADMIN_EMAILS` en `.env` local) fue aceptada con `200`. No solo `pytest` -- petición HTTP real contra el proceso real y la BD real.
 
 **Pendiente, no de esta rebanada**: el login real con Google en navegador (consentimiento OAuth de verdad) no se ha probado -- requiere la cuenta de Google real de Manuel, fuera del alcance de lo que esta sesión puede ejercitar. El mecanismo está probado con `_FakeGoogleClient` (mismo patrón que los tests ya existentes de `/auth/callback`), que sustituye la respuesta de Google sin red.
 

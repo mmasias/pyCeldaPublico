@@ -7,7 +7,7 @@
     {[Guardar] | Estos son tus datos del curso anterior. Revísalos y confirma.}
     <b>GENERALES</b>
     {
-    <b>Email:</b> | profesor1@uneatlantico.es | <b>Nombre (*):</b> | "Ana Pérez Gómez                "
+    <b>Email:</b> | profesor1@ejemplo.edu | <b>Nombre (*):</b> | "Ana Pérez Gómez                "
     <b>Enlace al CVN:</b> | {"https://editor.cvn.fecyt.es/editor/cvnOnline/..." | 🔗} | <b>ORCID:</b> | {"0000-0000-0000-0000" | 🔗}
     <b>Enlace a Google Scholar:</b> | {"https://scholar.google.com/citations?user=..." | 🔗} | <b>Enlace de la foto:</b> | "https://...                    "
     }

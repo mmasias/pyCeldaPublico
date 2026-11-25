@@ -5,10 +5,10 @@
     <b>Últimos accesos
     {#
         <b>Fecha | <b>Usuario | <b>Resultado
-        15/9/2026, 14:48 | Dr. Manuel Masías Vergara | Acceso
+        15/9/2026, 14:48 | Dr. Carlos Navarro Ruiz | Acceso
         15/9/2026, 14:47 | alguien@gmail.com | Rechazado: fuera de dominio
-        15/9/2026, 09:12 | becario@uneatlantico.es | Rechazado: no autorizado
-        14/9/2026, 18:03 | Dr. Jorge Crespo Álvarez | Acceso
+        15/9/2026, 09:12 | becario@ejemplo.edu | Rechazado: no autorizado
+        14/9/2026, 18:03 | Dr. Pablo Ortega Sanz | Acceso
     }
 }
 @endsalt

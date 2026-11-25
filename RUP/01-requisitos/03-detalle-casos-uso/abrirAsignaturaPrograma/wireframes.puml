@@ -52,8 +52,8 @@
     <b>Profesorado asignado</b>
     {#
         <b>Profesor | <b>Papel
-        profesor1@uneatlantico.es | Responsable · Imparte
-        profesor2@uneatlantico.es | Imparte
+        profesor1@ejemplo.edu | Responsable · Imparte
+        profesor2@ejemplo.edu | Imparte
     }
 }
 @endsalt
