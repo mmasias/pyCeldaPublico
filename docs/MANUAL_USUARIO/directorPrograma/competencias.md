@@ -14,7 +14,7 @@ Los programas cuya memoria sigue el formato nuevo no tienen competencias, solo r
 
 ## Cómo llegar
 
-Desde la franja del programa, pulsar **🧭 Competencias** (a la derecha de **🎯 Resultados de aprendizaje**).
+Desde la franja del programa, pulsar [**🧭 Competencias**](competencias.md#qué-muestra) (a la derecha de [**🎯 Resultados de aprendizaje**](resultadosDeAprendizaje.md#qué-muestra)).
 
 ## Qué muestra
 
@@ -26,7 +26,7 @@ Desde la franja del programa, pulsar **🧭 Competencias** (a la derecha de **�
 
 </div>
 
-Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas del programa que tienen asociada cada competencia), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear competencia** está a la derecha del título de la sección.
+Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas del programa que tienen asociada cada competencia), con los botones [**📂 Abrir**](competencias.md#detalle-de-una-competencia) y [**🗑️**](competencias.md#eliminar-una-competencia) (Eliminar) de cada fila. [**➕ Crear competencia**](competencias.md#crear-una-competencia) está a la derecha del título de la sección.
 
 El número de asignaturas es solo informativo: una competencia con 0 no impide nada, pero indica que ninguna asignatura la cubre todavía, y su celda lleva fondo rojo suave para verla de un vistazo. Lo mismo en la tabla de competencias de cada materia.
 
@@ -56,7 +56,7 @@ El número de asignaturas es solo informativo: una competencia con 0 no impide n
 
 </div>
 
-Al abrir una competencia, la pestaña **🧭 Competencias** queda marcada y el título dice **🧭 Competencias › código de la competencia**; pulsar la primera parte vuelve a la lista. A la derecha del título, **✏️ Editar**.
+Al abrir una competencia, la pestaña [**🧭 Competencias**](competencias.md#qué-muestra) queda marcada y el título dice **🧭 Competencias › código de la competencia**; pulsar la primera parte vuelve a la lista. A la derecha del título, [**✏️ Editar**](competencias.md#editar-una-competencia).
 
 Debajo aparecen el **Tipo**, la **Descripción** y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que tienen asociada la competencia. Cada nombre es un enlace a su materia o asignatura.
 

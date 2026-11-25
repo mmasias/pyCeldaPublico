@@ -16,7 +16,7 @@ Antes de poder enviar la guía a revisión, la suma de todos los porcentajes tie
 
 ## Cómo llegar
 
-Desde la guía, pulsar **🔧 Gestionar evaluación**, a la derecha del título **Evaluación**.
+Desde la guía, pulsar [**🔧 Gestionar evaluación**](ponderacionesDeEvaluacion.md#qué-muestra), a la derecha del título **Evaluación**.
 
 ## Qué muestra
 
@@ -28,7 +28,7 @@ Desde la guía, pulsar **🔧 Gestionar evaluación**, a la derecha del título 
 
 </div>
 
-Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, **Ponderación** y **Vinculada** (Sí o No -- ver más abajo), con el lápiz **✏️** (Editar) y la papelera **🗑️** (Eliminar) en cada fila. En la última fila, bajo **Ponderación**, el total asignado, en rojo si no suma 100%. La imagen muestra dos instrumentos aún sin confirmar (**Vinculada: No**), por eso el total sale con dos cifras (ver "Qué significa "Vinculada"" más abajo).
+Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, **Ponderación** y **Vinculada** (Sí o No -- ver más abajo), con el lápiz [**✏️**](ponderacionesDeEvaluacion.md#editar-un-instrumento) (Editar) y la papelera [**🗑️**](ponderacionesDeEvaluacion.md#eliminar-un-instrumento) (Eliminar) en cada fila. En la última fila, bajo **Ponderación**, el total asignado, en rojo si no suma 100%. La imagen muestra dos instrumentos aún sin confirmar (**Vinculada: No**), por eso el total sale con dos cifras (ver "Qué significa "Vinculada"" más abajo).
 
 Si la guía está **Aprobada**, bajo la miga aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
 
@@ -65,7 +65,7 @@ Si la ponderación es cero o un número negativo, aparece el error "La ponderaci
 1. En la tabla, pulsar el lápiz **✏️** (Editar) en la fila del instrumento.
 2. Cambiar lo necesario y pulsar **Guardar**; **Cancelar**, junto a él, vuelve a la lista sin guardar.
 
-Editar un instrumento que ya forma parte de la guía se guarda en el acto, sin pasar por **💾 Guardar borrador**. Si la guía estaba **Aprobada**, vuelve a **Borrador** (como con cualquier otro cambio en una guía aprobada) y habrá que enviarla de nuevo a revisión; el cambio queda en el historial.
+Editar un instrumento que ya forma parte de la guía se guarda en el acto, sin pasar por [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario). Si la guía estaba **Aprobada**, vuelve a **Borrador** (como con cualquier otro cambio en una guía aprobada) y habrá que enviarla de nuevo a revisión; el cambio queda en el historial.
 
 ## Eliminar un instrumento
 
@@ -80,11 +80,11 @@ Editar un instrumento que ya forma parte de la guía se guarda en el acto, sin p
 1. En la tabla, pulsar la papelera **🗑️** (Eliminar) en la fila del instrumento.
 2. El botón cambia a **🗑️ pulsa de nuevo para confirmar**. Pulsarlo otra vez confirma el borrado; **Cancelar** lo descarta.
 
-Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado no se hace definitivo hasta volver a la guía y pulsar **💾 Guardar borrador**. Si el navegador se cierra antes de guardar, el instrumento sigue existiendo la próxima vez que se entra.
+Al confirmar, el instrumento desaparece de la vista al instante, pero el borrado no se hace definitivo hasta volver a la guía y pulsar [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario). Si el navegador se cierra antes de guardar, el instrumento sigue existiendo la próxima vez que se entra.
 
 ## Qué significa "Vinculada"
 
-Un instrumento **recién creado** aparece como **Vinculada: No** hasta confirmarlo con **💾 Guardar borrador** en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar. Mientras haya instrumentos sin confirmar (o eliminados sin confirmar), el total muestra dos cifras, por ejemplo **En pantalla: 100% · Guardado: 0%**, con un aviso en ámbar: **En pantalla** es lo que ves en la lista; **Guardado** es lo que cuenta para enviar la guía a revisión, y no se pone al día hasta pulsar **💾 Guardar borrador** en la guía. La guía también avisa con **Hay ítems sin guardar** junto a ese botón. Editar un instrumento que ya estaba en **Sí** no lo devuelve a "No": el cambio se guarda en el acto (ver "Editar un instrumento").
+Un instrumento **recién creado** aparece como **Vinculada: No** hasta confirmarlo con [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) en la guía -- entonces pasa a **Sí**. Es normal ver instrumentos en "No" mientras la evaluación está a medio preparar. Mientras haya instrumentos sin confirmar (o eliminados sin confirmar), el total muestra dos cifras, por ejemplo **En pantalla: 100% · Guardado: 0%**, con un aviso en ámbar: **En pantalla** es lo que ves en la lista; **Guardado** es lo que cuenta para enviar la guía a revisión, y no se pone al día hasta pulsar **💾 Guardar borrador** en la guía. La guía también avisa con **Hay ítems sin guardar** junto a ese botón. Editar un instrumento que ya estaba en **Sí** no lo devuelve a "No": el cambio se guarda en el acto (ver "Editar un instrumento").
 
 ## Texto de convocatorias
 
@@ -103,13 +103,13 @@ Al final de la pantalla, la sección **Texto de convocatorias** muestra el texto
 - Debajo, en un recuadro gris, una propuesta calculada con los instrumentos de evaluación final de la lista de arriba, guardados o no: "**PROPUESTA:** *Según los instrumentos de evaluación final de la lista: la prueba de evaluación final (Examen final teórico-práctico), 50 %.*" Cambia en cuanto se crea o se elimina un instrumento, y repite sus nombres tal como están escritos: conviene revisarla antes de usarla. El botón **Usar esta propuesta**, a la derecha, la copia a los dos campos, que se pueden retocar. Si el porcentaje escrito no coincide con la suma de los instrumentos de evaluación final, aparece un aviso, que no impide guardar.
 - El recuadro inferior muestra el texto resultante tal como saldrá en el documento; `[TABLA]` marca dónde va la tabla de instrumentos. Mientras falte un dato, el texto dice "pendiente de concretar" en su lugar, y **la guía no se puede enviar a revisión** (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
 - Los cambios se guardan con **💾 Guardar texto de convocatorias**; mientras hay cambios sin guardar aparece "(cambios sin guardar)", y al guardar, "Texto de convocatorias guardado.".
-- Este guardado es independiente de **💾 Guardar borrador**: se confirma en el momento. Si la guía estaba **Aprobada**, vuelve a **Borrador**. Salir de la pantalla sin guardar no avisa y descarta el cambio.
+- Este guardado es independiente de [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario): se confirma en el momento. Si la guía estaba **Aprobada**, vuelve a **Borrador**. Salir de la pantalla sin guardar no avisa y descarta el cambio.
 
 Tras el texto de convocatorias, el documento oficial incluye siempre un párrafo fijo, **Régimen de uso de inteligencia artificial en las actividades de evaluación**, que remite al Protocolo de Medidas para Garantizar la Calidad y la Integridad Académicas de UNEATLANTICO. Ese párrafo no es editable y aparece en toda guía.
 
 ## Volver
 
-Bajo la cabecera, el título de la pantalla es una miga: **sigla del programa · nombre de la asignatura › Evaluación** (por ejemplo, **GII · Programación I › Evaluación**). **GII · Programación I** es un solo enlace que vuelve a la guía docente; **🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; al pasar el ratón se ven el nombre completo del programa y el de la asignatura.
+Bajo la cabecera, el título de la pantalla es una miga: **sigla del programa · nombre de la asignatura › Evaluación** (por ejemplo, **GII · Programación I › Evaluación**). [**GII · Programación I**](redactarLaGuia.md#qué-muestra) es un solo enlace que vuelve a la guía docente; [**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; al pasar el ratón se ven el nombre completo del programa y el de la asignatura.
 
 ---
 

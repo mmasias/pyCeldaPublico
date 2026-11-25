@@ -16,7 +16,7 @@ Si la cuenta no está dada de alta como profesor, corresponde contactar con Admi
 
 ## Primero, confirmar el perfil del curso
 
-Al empezar cada curso académico, el perfil académico hay que confirmarlo una vez. Mientras no esté confirmado, **Inicio** no muestra las guías, sino el aviso "Debes confirmar tu perfil académico de este curso antes de continuar", que remite al botón **🪪 Mi perfil** de arriba a la derecha. El capítulo [Mi perfil](miPerfil.md) explica cómo hacerlo; al guardar el perfil, Inicio ya muestra las guías.
+Al empezar cada curso académico, el perfil académico hay que confirmarlo una vez. Mientras no esté confirmado, **Inicio** no muestra las guías, sino el aviso "Debes confirmar tu perfil académico de este curso antes de continuar", que remite al botón [**🪪 Mi perfil**](miPerfil.md) de arriba a la derecha. El capítulo [Mi perfil](miPerfil.md) explica cómo hacerlo; al guardar el perfil, Inicio ya muestra las guías.
 
 ## Qué muestra Inicio
 
@@ -28,7 +28,7 @@ Al empezar cada curso académico, el perfil académico hay que confirmarlo una v
 
 </div>
 
-La imagen corresponde a una cuenta que, además de profesor, dirige un programa: por eso lleva arriba el acceso **🎓 Mis programas** y la línea de guías que esperan revisión. Sin esa función, la cabecera solo tiene **🪪 Mi perfil** y **🚪 Cerrar sesión**, y la línea no aparece.
+La imagen corresponde a una cuenta que, además de profesor, dirige un programa: por eso lleva arriba el acceso [**🎓 Mis programas**](../directorPrograma/entrarYVerLosProgramas.md#mis-programas) y la línea de guías que esperan revisión. Sin esa función, la cabecera solo tiene [**🪪 Mi perfil**](miPerfil.md) y **🚪 Cerrar sesión**, y la línea no aparece.
 
 En **Inicio** aparece la sección **Mis guías**. Si Admin ha activado un semestre en el curso, la sección muestra solo las asignaturas de ese semestre, y el desplegable a la derecha del título ("Semestre 1 (activo)") permite cambiar a **Todas**; sin semestre activado se ven todas, sin desplegable. Si en el semestre activo no hay ninguna asignatura, aparece "No tienes asignaturas en el semestre N.". Debajo del título, una línea resume cuántas guías de las mostradas hay en cada estado (por ejemplo, "6 guías: 1 rechazada, 2 en borrador, 3 aprobadas"), empezando por lo que más pide atención. Debajo, una tabla con una fila por cada asignatura asignada en el curso, se imparta o solo se sea responsable de ella (con el filtro, solo las del semestre activo).
 
@@ -40,7 +40,7 @@ Columnas de la tabla:
 - **Curso**: el curso en números romanos y el semestre por defecto combinados (p. ej. **II-s1**). La tabla se ordena por semestre, luego curso y nombre.
 - **Carácter**: Básica, Obligatoria, Optativa, etc.
 - **Estado**: el estado actual de la guía docente de esa asignatura -- Borrador, En revisión, Aprobada o Rechazada --, escrito sobre un fondo de color para distinguirlos de un vistazo. Si la guía se ha rechazado o se ha revocado su aprobación, el comentario del director aparece debajo, en cursiva. El significado de cada estado se explica en el capítulo [Redactar la guía](redactarLaGuia.md).
-- **Guía**: el botón **📂 Abrir**, que lleva a la guía correspondiente. Si el botón no aparece en una fila, es que esa asignatura todavía no tiene una guía creada -- corresponde avisar a Admin.
+- **Guía**: el botón [**📂 Abrir**](redactarLaGuia.md#qué-muestra), que lleva a la guía correspondiente. Si el botón no aparece en una fila, es que esa asignatura todavía no tiene una guía creada -- corresponde avisar a Admin.
 
 Si la cuenta no tiene asignaturas asignadas este curso, en lugar de la tabla aparece el mensaje "No tienes asignaturas asignadas.".
 
@@ -50,10 +50,10 @@ Si la cuenta también dirige algún programa y hay guías esperando su revisión
 
 Arriba a la derecha de cada pantalla están siempre los mismos accesos, en este orden:
 
-- **🏠 Inicio**: vuelve a esta pantalla desde cualquier sitio.
-- **🎓 Mis programas**: solo si la cuenta dirige algún programa.
-- **🪪 Mi perfil**: el perfil académico del curso.
-- Las pantallas de evaluación, bibliografía y planificación no tienen botón de volver: su título es una miga, por ejemplo **GII · Programación I › Evaluación**, y pulsar **GII · Programación I** vuelve a la guía. La sigla del programa va delante porque un mismo nombre de asignatura puede estar en varios programas. La guía lleva el mismo título, y los formularios de crear, editar e importar indican la asignatura y el programa.
+- [**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio): vuelve a esta pantalla desde cualquier sitio.
+- [**🎓 Mis programas**](../directorPrograma/entrarYVerLosProgramas.md#mis-programas): solo si la cuenta dirige algún programa.
+- [**🪪 Mi perfil**](miPerfil.md): el perfil académico del curso.
+- Las pantallas de evaluación, bibliografía y planificación no tienen botón de volver: su título es una miga, por ejemplo **GII · Programación I › Evaluación**, y pulsar [**GII · Programación I**](redactarLaGuia.md#qué-muestra) vuelve a la guía. La sigla del programa va delante porque un mismo nombre de asignatura puede estar en varios programas. La guía lleva el mismo título, y los formularios de crear, editar e importar indican la asignatura y el programa.
 - Al final, algo separado para no pulsarlo por error, **🚪 Cerrar sesión**.
 
 No aparece el acceso de la pantalla en la que ya se está. En los formularios de crear o editar no hay accesos: se sale con **Guardar** o con **Cancelar**. Si se ha escrito o cambiado algo, **Cancelar** pregunta "Tienes cambios sin guardar. ¿Salir sin guardarlos?" antes de descartarlo.

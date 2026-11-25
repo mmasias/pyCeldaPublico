@@ -12,7 +12,7 @@ La bibliografía de la guía: los libros, artículos y otras fuentes recomendada
 
 ## Cómo llegar
 
-Desde la guía, pulsar **🔧 Gestionar bibliografía**, a la derecha del título **Bibliografía**.
+Desde la guía, pulsar [**🔧 Gestionar bibliografía**](referenciasBibliograficas.md#qué-muestra), a la derecha del título **Bibliografía**.
 
 ## Qué muestra
 
@@ -24,7 +24,7 @@ Desde la guía, pulsar **🔧 Gestionar bibliografía**, a la derecha del títul
 
 </div>
 
-Una tabla con todas las referencias ya creadas, agrupadas por tipo en orden alfabético (Básica, Complementaria, Otras fuentes de consulta, Webs de referencia): **Referencia**, **Tipo** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **💾 Guardar borrador** en la guía).
+Una tabla con todas las referencias ya creadas, agrupadas por tipo en orden alfabético (Básica, Complementaria, Otras fuentes de consulta, Webs de referencia): **Referencia**, **Tipo** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) en la guía).
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
 
@@ -82,11 +82,11 @@ Si la asignatura se imparte también en otro programa, la bibliografía de esa o
 3. Aparece un aviso: la importación reemplaza por completo la bibliografía actual de la guía, incluida cualquier referencia añadida a mano. Si la guía de origen no tiene ninguna referencia, el aviso lo indica explícitamente.
 4. Pulsar **Importar bibliografía** para confirmar (no se activa hasta elegir una guía de origen), o **Cancelar**, arriba a la derecha, para volver a la bibliografía sin cambiar nada.
 
-A diferencia de crear o editar una referencia a mano, importar sustituye la bibliografía de inmediato -- no hace falta pulsar **💾 Guardar borrador** después.
+A diferencia de crear o editar una referencia a mano, importar sustituye la bibliografía de inmediato -- no hace falta pulsar [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) después.
 
 ## Volver
 
-Bajo la cabecera, el título de la pantalla es una miga: **sigla del programa · nombre de la asignatura › Bibliografía** (por ejemplo, **GII · Programación I › Bibliografía**). **GII · Programación I** es un solo enlace que vuelve a la guía docente; **🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; al pasar el ratón se ven el nombre completo del programa y el de la asignatura.
+Bajo la cabecera, el título de la pantalla es una miga: **sigla del programa · nombre de la asignatura › Bibliografía** (por ejemplo, **GII · Programación I › Bibliografía**). [**GII · Programación I**](redactarLaGuia.md#qué-muestra) es un solo enlace que vuelve a la guía docente; [**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; al pasar el ratón se ven el nombre completo del programa y el de la asignatura.
 
 ---
 

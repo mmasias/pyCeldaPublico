@@ -28,7 +28,7 @@ Pulsar **🪪 Mi perfil**, arriba a la derecha de cualquier pantalla.
 
 </div>
 
-La imagen muestra el perfil de un curso nuevo, relleno con los datos del curso anterior y aún sin confirmar, de una cuenta que además dirige un programa (de ahí la etiqueta **Vista de Docente** y el acceso **🎓 Mis programas**).
+La imagen muestra el perfil de un curso nuevo, relleno con los datos del curso anterior y aún sin confirmar, de una cuenta que además dirige un programa (de ahí la etiqueta **Vista de Docente** y el acceso [**🎓 Mis programas**](../directorPrograma/entrarYVerLosProgramas.md#mis-programas)).
 
 El formulario se divide en secciones:
 
@@ -51,7 +51,7 @@ El formulario es largo, así que **Guardar** aparece también arriba cuando hay 
 - "Estos son tus datos del curso anterior. Revísalos y confirma." si el perfil del curso todavía no está confirmado.
 - "Primer curso: completa tu perfil académico." si no hay datos de un curso anterior que revisar.
 
-Al guardar, el resultado aparece arriba y abajo: "✅ Perfil guardado y confirmado para este curso.", con el botón **Ir a Inicio**, o el error correspondiente.
+Al guardar, el resultado aparece arriba y abajo: "✅ Perfil guardado y confirmado para este curso.", con el botón [**Ir a Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), o el error correspondiente.
 
 ## Errores habituales
 

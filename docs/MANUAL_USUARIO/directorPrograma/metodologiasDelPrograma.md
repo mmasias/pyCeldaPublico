@@ -16,7 +16,7 @@ De su catálogo, cada materia asocia las metodologías que usa y, de las de la m
 
 ### Cómo llegar
 
-Desde la franja del programa, pulsar **🧩 Metodologías**.
+Desde la franja del programa, pulsar [**🧩 Metodologías**](metodologiasDelPrograma.md#qué-muestra).
 
 ### Qué muestra
 
@@ -28,7 +28,7 @@ Desde la franja del programa, pulsar **🧩 Metodologías**.
 
 </div>
 
-Una tabla con **Descripción**, **Código** y **Nº de Asign.** (cuántas asignaturas del programa la tienen asociada; si es 0, la celda lleva fondo rojo suave), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear metodología docente** está a la derecha del título de la sección.
+Una tabla con **Descripción**, **Código** y **Nº de Asign.** (cuántas asignaturas del programa la tienen asociada; si es 0, la celda lleva fondo rojo suave), con los botones [**📂 Abrir**](metodologiasDelPrograma.md#detalle-de-una-metodología-docente) y [**🗑️**](metodologiasDelPrograma.md#eliminar-una-metodología-docente) (Eliminar) de cada fila. [**➕ Crear metodología docente**](metodologiasDelPrograma.md#crear-una-metodología-docente) está a la derecha del título de la sección.
 
 ### Crear una metodología docente
 
@@ -57,7 +57,7 @@ Para salir sin crear, **Cancelar**; si hay algo escrito, pide confirmación ante
 
 </div>
 
-Al abrirla, la pestaña **🧩 Metodologías** queda marcada y el título dice **🧩 Metodologías docentes › código**; pulsar la primera parte vuelve a la lista. A la derecha, **✏️ Editar**. Debajo aparecen la **Descripción** y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que la tienen asociada, cada una con un enlace a su ficha.
+Al abrirla, la pestaña [**🧩 Metodologías**](metodologiasDelPrograma.md#qué-muestra) queda marcada y el título dice **🧩 Metodologías docentes › código**; pulsar la primera parte vuelve a la lista. A la derecha, [**✏️ Editar**](metodologiasDelPrograma.md#editar-una-metodología-docente). Debajo aparecen la **Descripción** y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que la tienen asociada, cada una con un enlace a su ficha.
 
 ### Editar una metodología docente
 
@@ -90,7 +90,7 @@ Pulsar la papelera **🗑️** (Eliminar) en su fila.
 
 ### Cómo llegar
 
-Desde la franja del programa, pulsar **🏋️ Actividades formativas**.
+Desde la franja del programa, pulsar [**🏋️ Actividades formativas**](metodologiasDelPrograma.md#qué-muestra-1).
 
 ### Qué muestra
 
@@ -102,7 +102,7 @@ Desde la franja del programa, pulsar **🏋️ Actividades formativas**.
 
 </div>
 
-Una tabla con **Nombre** y **Código** de cada actividad, en el orden en que se crearon (el de la memoria), con **📂 Abrir** y **🗑️** (Eliminar). **➕ Crear actividad formativa** está a la derecha del título.
+Una tabla con **Nombre** y **Código** de cada actividad, en el orden en que se crearon (el de la memoria), con [**📂 Abrir**](metodologiasDelPrograma.md#detalle-de-una-actividad-formativa) y [**🗑️**](metodologiasDelPrograma.md#eliminar-una-actividad-formativa) (Eliminar). [**➕ Crear actividad formativa**](metodologiasDelPrograma.md#crear-una-actividad-formativa) está a la derecha del título.
 
 ### Crear una actividad formativa
 
@@ -128,7 +128,7 @@ Una tabla con **Nombre** y **Código** de cada actividad, en el orden en que se 
 
 </div>
 
-Al abrirla, la pestaña **🏋️ Actividades formativas** queda marcada y la miga dice **🏋️ Actividades formativas › código**; pulsar la primera parte vuelve a la lista. A la derecha, **✏️ Editar**. Debajo aparece el **Nombre**. Las horas y la presencialidad de cada materia, y las horas de cada asignatura, no se editan aquí: se editan desde la materia y desde la asignatura.
+Al abrirla, la pestaña [**🏋️ Actividades formativas**](metodologiasDelPrograma.md#qué-muestra-1) queda marcada y la miga dice **🏋️ Actividades formativas › código**; pulsar la primera parte vuelve a la lista. A la derecha, [**✏️ Editar**](metodologiasDelPrograma.md#editar-una-actividad-formativa). Debajo aparece el **Nombre**. Las horas y la presencialidad de cada materia, y las horas de cada asignatura, no se editan aquí: se editan desde la materia y desde la asignatura.
 
 ### Editar una actividad formativa
 

@@ -12,7 +12,7 @@ El catálogo de resultados de aprendizaje del programa, que luego se asocian a m
 
 ## Cómo llegar
 
-Desde la franja del programa, pulsar **🎯 Resultados de aprendizaje**.
+Desde la franja del programa, pulsar [**🎯 Resultados de aprendizaje**](resultadosDeAprendizaje.md#qué-muestra).
 
 ## Qué muestra
 
@@ -24,7 +24,7 @@ Desde la franja del programa, pulsar **🎯 Resultados de aprendizaje**.
 
 </div>
 
-Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta; si es 0, la celda lleva fondo rojo suave: ninguna asignatura lo cubre todavía, aunque no impide nada), con los botones **📂 Abrir** y **🗑️** (Eliminar) de cada fila. **➕ Crear resultado de aprendizaje** está a la derecha del título de la sección.
+Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el número de asignaturas a las que está asociado cada resultado, o "--" si no consta; si es 0, la celda lleva fondo rojo suave: ninguna asignatura lo cubre todavía, aunque no impide nada), con los botones [**📂 Abrir**](resultadosDeAprendizaje.md#detalle-de-un-resultado-de-aprendizaje) y [**🗑️**](resultadosDeAprendizaje.md#eliminar-un-resultado-de-aprendizaje) (Eliminar) de cada fila. [**➕ Crear resultado de aprendizaje**](resultadosDeAprendizaje.md#crear-un-resultado-de-aprendizaje) está a la derecha del título de la sección.
 
 ## Crear un resultado de aprendizaje
 
@@ -54,7 +54,7 @@ Para salir sin crear, **Cancelar**; si hay algo escrito, pide confirmación ante
 
 </div>
 
-Al abrir un resultado, la pestaña **🎯 Resultados de aprendizaje** queda marcada y el título dice **🎯 Resultados de aprendizaje › código del resultado**; pulsar la primera parte vuelve a la lista. A la derecha del título, **✏️ Editar**.
+Al abrir un resultado, la pestaña [**🎯 Resultados de aprendizaje**](resultadosDeAprendizaje.md#qué-muestra) queda marcada y el título dice **🎯 Resultados de aprendizaje › código del resultado**; pulsar la primera parte vuelve a la lista. A la derecha del título, [**✏️ Editar**](resultadosDeAprendizaje.md#editar-un-resultado-de-aprendizaje).
 
 Debajo aparecen el **Tipo**, la **Descripción** (en cursiva) y la **Distribución**: dos columnas, **Materias** y **Asignaturas del programa**, con las que tienen asociado el resultado ("Ninguna" si una columna está vacía). Cada nombre es un enlace a su materia o asignatura. Si no está asociado a nada, una sola línea lo indica.
 

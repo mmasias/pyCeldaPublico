@@ -12,7 +12,7 @@ Cada asignatura de programa es la versión concreta de una asignatura dentro de 
 
 ## Cómo llegar
 
-Desde la franja del programa, pulsar **📘 Asignaturas**.
+Desde la franja del programa, pulsar [**📘 Asignaturas**](gestionarAsignaturasDePrograma.md#qué-muestra).
 
 ## Qué muestra
 
@@ -24,7 +24,7 @@ Desde la franja del programa, pulsar **📘 Asignaturas**.
 
 </div>
 
-Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado") y **Estado** (el estado de la guía docente de esa asignatura, con el mismo color que en otras listas de guías). Última columna, sin título: el botón **📂 Abrir**.
+Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado") y **Estado** (el estado de la guía docente de esa asignatura, con el mismo color que en otras listas de guías). Última columna, sin título: el botón [**📂 Abrir**](gestionarAsignaturasDePrograma.md#detalle-de-una-asignatura-de-programa).
 
 ## Detalle de una asignatura de programa
 
@@ -36,7 +36,7 @@ Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesora
 
 </div>
 
-Al abrir una asignatura, la pestaña **📘 Asignaturas** queda marcada y el título dice **📘 Asignaturas › nombre de la asignatura**; pulsar **Asignaturas** en ese título vuelve a la lista. A la derecha del título, **✏️ Editar**.
+Al abrir una asignatura, la pestaña [**📘 Asignaturas**](gestionarAsignaturasDePrograma.md#qué-muestra) queda marcada y el título dice **📘 Asignaturas › nombre de la asignatura**; pulsar **Asignaturas** en ese título vuelve a la lista. A la derecha del título, [**✏️ Editar**](gestionarAsignaturasDePrograma.md#editar-una-asignatura-de-programa).
 
 Debajo, la ficha de la asignatura en dos columnas: **Materia** (un enlace a la pantalla de la materia) y **ECTS**; **Curso** y **Semestre por defecto**; **Carácter** y **Sesiones mínimas para enviar a revisión**; **Idioma** y **Estado**; y **Código** (el de la asignatura en el catálogo institucional). Después, a ancho completo, el **Contenido** y los **Requisitos previos**.
 

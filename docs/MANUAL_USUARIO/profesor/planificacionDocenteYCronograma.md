@@ -20,7 +20,7 @@ Cuando Admin activa un curso nuevo, la guía de ese curso llega con la planifica
 
 ## Cómo llegar
 
-Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha del título **Planificación docente**.
+Desde la guía, pulsar [**🔧 Gestionar planificación docente**](planificacionDocenteYCronograma.md#qué-muestra), a la derecha del título **Planificación docente**.
 
 ## Qué muestra
 
@@ -32,7 +32,7 @@ Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha d
 
 </div>
 
-Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. El tipo se elige en un desplegable y la descripción se escribe en la propia fila (Mayúsculas+Enter añade una línea; Enter termina); cada fila lleva a la derecha **📑 Duplicar** y la papelera **🗑️** (Eliminar). Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo. Si hay sesiones en pantalla que aún no cuentan (creadas o eliminadas sin pulsar **💾 Guardar borrador** en la guía), aparecen las dos cifras, por ejemplo **En pantalla: 30 sesiones · Guardado: 25 sesiones**, con un aviso en ámbar: para enviar la guía cuenta la de **Guardado**.
+Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. El tipo se elige en un desplegable y la descripción se escribe en la propia fila (Mayúsculas+Enter añade una línea; Enter termina); cada fila lleva a la derecha [**📑 Duplicar**](planificacionDocenteYCronograma.md#duplicar-una-sesión) y la papelera [**🗑️**](planificacionDocenteYCronograma.md#editar-o-eliminar-una-sesión) (Eliminar). Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo. Si hay sesiones en pantalla que aún no cuentan (creadas o eliminadas sin pulsar [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) en la guía), aparecen las dos cifras, por ejemplo **En pantalla: 30 sesiones · Guardado: 25 sesiones**, con un aviso en ámbar: para enviar la guía cuenta la de **Guardado**.
 
 Si la guía está **Aprobada**, bajo la miga aparece un aviso en ámbar: guardar un cambio la devolverá a borrador.
 
@@ -62,7 +62,7 @@ Junto al número de sesiones, **⬇️ Descargar planificación** descarga un PD
 2. Elegir el **Tipo**: Clase Teórica, Clase Práctica, Clase Teórico/Práctica, Clase Laboratorio, Evaluación Continua o Evaluación Parcial.
 3. Escribir una **Descripción** breve de lo que se trabaja en esa sesión.
 
-La fila se guarda sola en cuanto la descripción deja de estar vacía y se pulsa Enter o se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". La sesión nueva no cuenta para el mínimo hasta pulsar **💾 Guardar borrador** en la guía: mientras tanto el indicador da las dos cifras (**En pantalla** y **Guardado**) con el aviso en ámbar. **➕ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **➖** (Quitar) antes de completarla.
+La fila se guarda sola en cuanto la descripción deja de estar vacía y se pulsa Enter o se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". La sesión nueva no cuenta para el mínimo hasta pulsar [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) en la guía: mientras tanto el indicador da las dos cifras (**En pantalla** y **Guardado**) con el aviso en ámbar. **➕ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **➖** (Quitar) antes de completarla.
 
 ## Límite de la descripción
 
@@ -86,7 +86,7 @@ La descripción de cada sesión admite un máximo de **500 caracteres**. Si se s
 
 </div>
 
-Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Si la sesión ya formaba parte de la guía y la guía estaba **Aprobada**, la guía vuelve a **Borrador**; lo mismo ocurre al **📑 Duplicar** una sesión que tenga otras detrás, porque se renumeran. Salir de una celda sin haber cambiado nada no cuenta como cambio. Pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda, cuando dice "pulsa de nuevo para confirmar") para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
+Cambiar el tipo o la descripción directamente en la fila de la tabla guarda el cambio al pasar a otro campo, igual que al crear una sesión. Si la sesión ya formaba parte de la guía y la guía estaba **Aprobada**, la guía vuelve a **Borrador**; lo mismo ocurre al [**📑 Duplicar**](planificacionDocenteYCronograma.md#duplicar-una-sesión) una sesión que tenga otras detrás, porque se renumeran. Salir de una celda sin haber cambiado nada no cuenta como cambio. Pulsar la papelera **🗑️** (Eliminar) dos veces seguidas (la segunda, cuando dice "pulsa de nuevo para confirmar") para quitar la sesión de la vista -- el borrado no se hace definitivo hasta guardar el borrador de la guía, igual que con los instrumentos de evaluación y la bibliografía.
 
 Si un guardado falla (por ejemplo, por un corte de red), aparece un mensaje de error con el botón **Reintentar**; lo escrito no se pierde.
 
@@ -100,7 +100,7 @@ Si un guardado falla (por ejemplo, por un corte de red), aparece un mensaje de e
 
 </div>
 
-Pulsar **📑 Duplicar** en la fila de una sesión crea una copia con el mismo tipo y la misma descripción, justo debajo de la original -- las sesiones que venían después se renumeran automáticamente para dejar sitio a la copia. Si falla, aparece el mismo tipo de aviso con el botón **Reintentar**.
+Pulsar **📑 Duplicar** en la fila de una sesión crea una copia con el mismo tipo y la misma descripción, justo debajo de la original -- las sesiones que venían después se renumeran automáticamente para dejar sitio a la copia. Si falla, aparece el mismo tipo de aviso con el botón [**Reintentar**](planificacionDocenteYCronograma.md#editar-o-eliminar-una-sesión).
 
 Pensado para sesiones consecutivas parecidas -- un tema que continúa, una práctica que se repite -- editando después solo lo que cambia en vez de escribir la sesión entera de nuevo.
 
@@ -119,7 +119,7 @@ Si la guía todavía no tiene ninguna sesión creada y la asignatura exige un m�
 1. Pulsar **Crear N sesiones genéricas**.
 2. El botón cambia a **Crear N sesiones genéricas (pulsa de nuevo para confirmar)**. Pulsarlo otra vez confirma la creación; **Cancelar** la descarta.
 
-Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de la 1 a la N, ya guardadas -- no hace falta pulsar **💾 Guardar borrador** después. A partir de ahí, cada una puede editarse para ajustar el tipo y añadir la descripción real de la clase. El botón solo está disponible mientras la planificación está completamente vacía: en cuanto existe al menos una sesión (aunque sea creada a mano), desaparece.
+Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de la 1 a la N, ya guardadas -- no hace falta pulsar [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) después. A partir de ahí, cada una puede editarse para ajustar el tipo y añadir la descripción real de la clase. El botón solo está disponible mientras la planificación está completamente vacía: en cuanto existe al menos una sesión (aunque sea creada a mano), desaparece.
 
 ## Importar de una asignatura hermana
 
@@ -177,7 +177,7 @@ La pantalla avisa de que la importación reemplaza por completo la planificació
 
 ## Volver
 
-Bajo la cabecera, el título de la pantalla es una miga: **sigla del programa · nombre de la asignatura › Planificación docente** (por ejemplo, **GII · Programación I › Planificación docente**). **GII · Programación I** es un solo enlace que vuelve a la guía docente; **🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; al pasar el ratón se ven el nombre completo del programa y el de la asignatura.
+Bajo la cabecera, el título de la pantalla es una miga: **sigla del programa · nombre de la asignatura › Planificación docente** (por ejemplo, **GII · Programación I › Planificación docente**). [**GII · Programación I**](redactarLaGuia.md#qué-muestra) es un solo enlace que vuelve a la guía docente; [**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), arriba a la derecha, vuelve a la lista de guías. Un nombre de asignatura largo aparece recortado con puntos suspensivos; al pasar el ratón se ven el nombre completo del programa y el de la asignatura.
 
 ---
 

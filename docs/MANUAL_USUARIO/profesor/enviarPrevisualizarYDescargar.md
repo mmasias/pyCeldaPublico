@@ -18,7 +18,7 @@
 
 Cuando el temario, la evaluación, la bibliografía y la planificación docente están listos, corresponde pulsar **📤 Enviar a revisión**, en la propia guía. La guía pasa a estado **En revisión**, la pantalla vuelve a **Inicio**, donde la guía ya aparece **En revisión** en la lista, y queda a la espera de que el director de programa la apruebe o la rechace. No hay pantalla de confirmación intermedia.
 
-El envío no incluye el texto del temario que no se haya guardado: si lo hay, antes de enviar pyCelda pregunta "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?". Para no perderlo, cancelar, pulsar **💾 Guardar borrador** y enviar después.
+El envío no incluye el texto del temario que no se haya guardado: si lo hay, antes de enviar pyCelda pregunta "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?". Para no perderlo, cancelar, pulsar [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) y enviar después.
 
 <div align=center>
 
@@ -43,7 +43,7 @@ Antes del envío se comprueban cuatro cosas, en este orden. Si alguna falla, la 
 
 </div>
 
-Mientras la guía no está **Aprobada**, **👁️ Previsualizar** muestra el documento tal y como se generaría oficialmente, en una pestaña nueva del navegador, cruzado en diagonal por la marca "BORRADOR - NO OFICIAL" y con un aviso arriba que indica el estado de la guía: es un borrador, no la versión oficial. Con la guía aprobada este botón no aparece: su lugar lo ocupa **⬇️ Descargar PDF**.
+Mientras la guía no está **Aprobada**, **👁️ Previsualizar** muestra el documento tal y como se generaría oficialmente, en una pestaña nueva del navegador, cruzado en diagonal por la marca "BORRADOR - NO OFICIAL" y con un aviso arriba que indica el estado de la guía: es un borrador, no la versión oficial. Con la guía aprobada este botón no aparece: su lugar lo ocupa [**⬇️ Descargar PDF**](enviarPrevisualizarYDescargar.md#descargar-el-pdf).
 
 ## Descargar el PDF
 
@@ -59,11 +59,11 @@ El botón **⬇️ Descargar PDF** solo aparece mientras la guía está **Aproba
 
 El PDF se genera en el momento a partir de la guía. pyCelda no guarda una copia de cada versión aprobada: si la guía vuelve a **Borrador** para editarla, el botón desaparece hasta la siguiente aprobación. Conviene descargar el PDF mientras la guía está aprobada si se necesita conservar esa versión.
 
-La planificación docente no forma parte del documento oficial: se descarga aparte, con **⬇️ Descargar planificación**, en la sección **Planificación docente** de la guía (ver [Planificación docente y cronograma](planificacionDocenteYCronograma.md#descargar-la-planificación)).
+La planificación docente no forma parte del documento oficial: se descarga aparte, con [**⬇️ Descargar planificación**](planificacionDocenteYCronograma.md#descargar-la-planificación), en la sección **Planificación docente** de la guía (ver [Planificación docente y cronograma](planificacionDocenteYCronograma.md#descargar-la-planificación)).
 
 ## Volver
 
-**🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías.
+[**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), arriba a la derecha, vuelve a la lista de guías.
 
 ---
 

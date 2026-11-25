@@ -12,7 +12,7 @@ Cada materia agrupa una o más asignaturas del programa. Sobre una materia se as
 
 ## Cómo llegar
 
-Desde la franja del programa, pulsar **📚 Materias**.
+Desde la franja del programa, pulsar [**📚 Materias**](gestionarMaterias.md#qué-muestra).
 
 ## Qué muestra
 
@@ -24,7 +24,7 @@ Desde la franja del programa, pulsar **📚 Materias**.
 
 </div>
 
-Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Si alguna materia del programa tiene módulo, la tabla se agrupa por módulo: una fila de cabecera **🧱 código -- nombre** por módulo, con sus materias debajo, y al final **🧱 Sin módulo** con las que aún no tienen. Crear, renombrar y eliminar materias, y asignarles su módulo, lo hace el Admin desde su módulo de administración.
+Una tabla con **Nombre** y el botón [**📂 Abrir**](gestionarMaterias.md#detalle-de-una-materia) de cada materia. Si alguna materia del programa tiene módulo, la tabla se agrupa por módulo: una fila de cabecera **🧱 código -- nombre** por módulo, con sus materias debajo, y al final **🧱 Sin módulo** con las que aún no tienen. Crear, renombrar y eliminar materias, y asignarles su módulo, lo hace el Admin desde su módulo de administración.
 
 ## Detalle de una materia
 
@@ -36,11 +36,11 @@ Una tabla con **Nombre** y el botón **📂 Abrir** de cada materia. Si alguna m
 
 </div>
 
-Al abrir una materia, la pestaña **📚 Materias** queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparecen el **Módulo** de la materia (código y nombre, o "Sin módulo"), sus **ECTS** y su **Código RUCT** si se han importado de la memoria (solo lectura) y, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con **📂 Abrir** en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
+Al abrir una materia, la pestaña [**📚 Materias**](gestionarMaterias.md#qué-muestra) queda marcada y el título dice **📚 Materias › nombre de la materia**; pulsar **Materias** en ese título vuelve a la lista. Debajo aparecen el **Módulo** de la materia (código y nombre, o "Sin módulo"), sus **ECTS** y su **Código RUCT** si se han importado de la memoria (solo lectura) y, en este orden: las **Asignaturas de esta materia** (Asignatura, Curso, Carácter, con [**📂 Abrir**](gestionarAsignaturasDePrograma.md#detalle-de-una-asignatura-de-programa) en cada una -- ver el capítulo [Gestionar asignaturas de programa](gestionarAsignaturasDePrograma.md)), las **Metodologías docentes asociadas**, los **Resultados de aprendizaje asociados**, las **Competencias**, las **Actividades formativas de la materia** y, al final, los **Sistemas de evaluación**. El nombre de la materia no se edita aquí (lo hace el Admin); lo que sí se gestiona desde aquí son las secciones siguientes. Admin puede hacer lo mismo desde su vista de la materia: las dos son espejo.
 
 ## Metodologías docentes
 
-Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz específico de esta materia sobre la metodología general) y los botones **✏️ Editar** y **➖** (Quitar) de cada fila.
+Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz específico de esta materia sobre la metodología general) y los botones [**✏️ Editar**](gestionarMaterias.md#editar-la-descripción-propia) y [**➖**](gestionarMaterias.md#quitar-una-metodología) (Quitar) de cada fila.
 
 ### Asociar una metodología docente
 
@@ -53,7 +53,7 @@ Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz espec
 </div>
 
 1. Pulsar **➕ Asociar metodología docente**.
-2. Elegir la metodología de la lista desplegable -- solo aparecen las del catálogo del programa (pestaña **🧩 Metodologías**) que la materia todavía no tiene.
+2. Elegir la metodología de la lista desplegable -- solo aparecen las del catálogo del programa (pestaña [**🧩 Metodologías**](metodologiasDelPrograma.md#qué-muestra)) que la materia todavía no tiene.
 3. Pulsar **Asociar**.
 
 Si no queda ninguna metodología disponible para asociar, la pantalla lo indica y solo ofrece volver atrás.
@@ -120,7 +120,7 @@ Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**,
 
 </div>
 
-Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (cuántas asignaturas de la materia tienen asociada la competencia; con fondo rojo suave si es 0) y **➖** (Quitar); **➕ Asociar competencia** para añadir una de las del programa que la materia aún no tiene. Quitar una que usa alguna asignatura de la materia queda bloqueado. Detalle en el capítulo [Competencias](competencias.md).
+Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo**, **Descripción**, **Asignaturas** (cuántas asignaturas de la materia tienen asociada la competencia; con fondo rojo suave si es 0) y **➖** (Quitar); [**➕ Asociar competencia**](competencias.md#asociar-competencias-a-materias-y-asignaturas) para añadir una de las del programa que la materia aún no tiene. Quitar una que usa alguna asignatura de la materia queda bloqueado. Detalle en el capítulo [Competencias](competencias.md).
 
 ## Actividades formativas de la materia
 

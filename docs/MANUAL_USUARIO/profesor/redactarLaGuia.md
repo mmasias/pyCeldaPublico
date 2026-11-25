@@ -12,7 +12,7 @@ La guía docente es el documento oficial de la asignatura: temario, evaluación,
 
 ## Cómo llegar
 
-Desde **Inicio**, pulsar **📂 Abrir** en la fila de la asignatura correspondiente.
+Desde **Inicio**, pulsar [**📂 Abrir**](redactarLaGuia.md#qué-muestra) en la fila de la asignatura correspondiente.
 
 ## Qué muestra
 
@@ -24,7 +24,7 @@ Desde **Inicio**, pulsar **📂 Abrir** en la fila de la asignatura correspondie
 
 </div>
 
-Arriba, el título **Guía docente**, con los accesos **🏠 Inicio**, **🎓 Mis programas** (solo si además se dirige algún programa), **🪪 Mi perfil** y **🚪 Cerrar sesión** a la derecha, y debajo, en grande, la sigla del programa y el nombre de la asignatura: "GII · Programación I" (al pasar el ratón se ve el nombre completo del programa). Quien además dirige algún programa ve arriba la etiqueta **Vista de Docente**. A continuación, la ficha de la guía en dos columnas: a la izquierda, **Programa**, **Semestre** y **Profesores**; a la derecha, **Estado**, **Creación**, **Última modificación** y **Generación del PDF** ("--" si la guía no se ha aprobado nunca).
+Arriba, el título **Guía docente**, con los accesos [**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), [**🎓 Mis programas**](../directorPrograma/entrarYVerLosProgramas.md#mis-programas) (solo si además se dirige algún programa), [**🪪 Mi perfil**](miPerfil.md) y **🚪 Cerrar sesión** a la derecha, y debajo, en grande, la sigla del programa y el nombre de la asignatura: "GII · Programación I" (al pasar el ratón se ve el nombre completo del programa). Quien además dirige algún programa ve arriba la etiqueta **Vista de Docente**. A continuación, la ficha de la guía en dos columnas: a la izquierda, **Programa**, **Semestre** y **Profesores**; a la derecha, **Estado**, **Creación**, **Última modificación** y **Generación del PDF** ("--" si la guía no se ha aprobado nunca).
 
 En **Profesores**, junto a cada nombre aparece entre paréntesis su papel en la asignatura: **Responsable**, **Imparte** o los dos (**Responsable · Imparte**). Los dos papeles pueden editar la guía por igual. En el documento oficial (PDF y previsualización) solo aparecen quienes imparten.
 
@@ -32,12 +32,12 @@ Si la guía está **Aprobada**, bajo la ficha aparece un aviso en ámbar: "⚠�
 
 Si hay instrumentos, referencias o sesiones creados o marcados para eliminar en las pantallas de gestión que aún no se han confirmado, aparece en ámbar "⚠️ Hay ítems sin guardar: no cuentan hasta pulsar \"Guardar borrador\"." (ver [Editar y guardar el temario](#editar-y-guardar-el-temario)).
 
-Debajo de la ficha, los botones de trabajo: **💾 Guardar borrador**, **📤 Enviar a revisión**, **👁️ Previsualizar** o, si la guía está aprobada, **⬇️ Descargar PDF** en su lugar (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
+Debajo de la ficha, los botones de trabajo: [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario), [**📤 Enviar a revisión**](enviarPrevisualizarYDescargar.md#enviar-la-guía-a-revisión), [**👁️ Previsualizar**](enviarPrevisualizarYDescargar.md#previsualizar-el-documento-oficial) o, si la guía está aprobada, [**⬇️ Descargar PDF**](enviarPrevisualizarYDescargar.md#descargar-el-pdf) en su lugar (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
 
 Después, en este orden:
 
 1. **Contenido**: arriba, en un recuadro gris, el **contenido aprobado en memoria** ("La guía debe ser coherente con este."); debajo, el rótulo **Contenido aportado por el profesor**, con la nota "Se guarda con Guardar borrador." y el contador de caracteres a la derecha, y a todo el ancho el cuadro de texto con el temario de la asignatura.
-2. **Evaluación**, **Bibliografía** y **Planificación docente**: un resumen de solo lectura de cada una, con su botón **🔧 Gestionar...** a la derecha del título. En Evaluación, bajo la tabla de instrumentos, el subtotal de cada sistema de evaluación con su horquilla permitida y el **Total asignado** (en rojo lo que no cuadra). En Planificación docente, sobre la tabla, la leyenda de colores, el número de sesiones y el botón **⬇️ Descargar planificación**. Cada una tiene su propio capítulo: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
+2. **Evaluación**, **Bibliografía** y **Planificación docente**: un resumen de solo lectura de cada una, con su botón **🔧 Gestionar...** a la derecha del título. En Evaluación, bajo la tabla de instrumentos, el subtotal de cada sistema de evaluación con su horquilla permitida y el **Total asignado** (en rojo lo que no cuadra). En Planificación docente, sobre la tabla, la leyenda de colores, el número de sesiones y el botón [**⬇️ Descargar planificación**](planificacionDocenteYCronograma.md#descargar-la-planificación). Cada una tiene su propio capítulo: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
 3. **Información adicional**: **Resultados de aprendizaje**, **Competencias** (solo en los títulos cuya memoria las define, los anteriores al RD 822/2021; si la asignatura aún no tiene, lo indica: las reparte el director de programa entre las asignaturas de la materia), **Metodologías docentes** y **Actividades formativas** de la asignatura. Es información fija, de solo lectura.
 
 ## Editar y guardar el temario
@@ -59,7 +59,7 @@ Al pulsar **💾 Guardar borrador** se confirma de una sola vez todo lo cambiado
 
 Si el texto del temario supera los 10.000 caracteres, al guardar aparece el error "El contenido supera el límite de 10.000 caracteres" y no se guarda nada, ni siquiera el resto de lo pendiente. Corresponde recortar el texto y guardar de nuevo.
 
-La sesión dura 12 horas. Si al guardar (o al enviar, importar o descargar) la sesión ha caducado, la guía no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña de la guía y se pulsa otra vez el botón. Al importar contenido de una guía hermana, el aviso (o el error) sale junto al botón **📥 Importar contenido**, bajo el cuadro de texto. Lo mismo vale para el texto de convocatorias en 🔧 Gestionar evaluación, para los formularios de crear o editar instrumentos y referencias, para **Importar desde texto** y para **🪪 Mi perfil**; los formularios del director de programa, en [Entrar y ver los programas](../directorPrograma/entrarYVerLosProgramas.md#cómo-entrar). En la planificación docente, que guarda cada fila al salir del campo, el aviso sale sobre la tabla y la fila afectada muestra "Error: sesión caducada" con su botón **Reintentar**, que se pulsa tras entrar de nuevo; si lo que falló fue duplicar o crear las sesiones genéricas, basta con volver a pulsar ese botón.
+La sesión dura 12 horas. Si al guardar (o al enviar, importar o descargar) la sesión ha caducado, la guía no se cierra ni se pierde lo escrito: aparece "⚠️ Tu sesión ha caducado. No pierdes lo escrito: entra de nuevo en otra pestaña y, al volver aquí, repite la acción." El enlace abre la entrada en una pestaña nueva; tras entrar, se vuelve a la pestaña de la guía y se pulsa otra vez el botón. Al importar contenido de una guía hermana, el aviso (o el error) sale junto al botón [**📥 Importar contenido**](redactarLaGuia.md#importar-el-contenido-de-una-guía-hermana), bajo el cuadro de texto. Lo mismo vale para el texto de convocatorias en 🔧 Gestionar evaluación, para los formularios de crear o editar instrumentos y referencias, para [**Importar desde texto**](planificacionDocenteYCronograma.md#importar-desde-texto) y para [**🪪 Mi perfil**](miPerfil.md); los formularios del director de programa, en [Entrar y ver los programas](../directorPrograma/entrarYVerLosProgramas.md#cómo-entrar). En la planificación docente, que guarda cada fila al salir del campo, el aviso sale sobre la tabla y la fila afectada muestra "Error: sesión caducada" con su botón **Reintentar**, que se pulsa tras entrar de nuevo; si lo que falló fue duplicar o crear las sesiones genéricas, basta con volver a pulsar ese botón.
 
 ## Importar el contenido de una guía hermana
 
@@ -76,7 +76,7 @@ Si la misma asignatura se imparte también en otro programa y hay alguna guía d
 1. Elegir la guía de origen en la lista. Aparece el aviso "Esto reemplazará el contenido actual, incluidos cambios sin guardar."
 2. Pulsar **📥 Importar contenido**.
 
-La importación sustituye el temario de inmediato y queda guardada: no hace falta pulsar **💾 Guardar borrador** después. Si la guía estaba **Aprobada**, pasa a **Borrador**, como con cualquier otro guardado; el estado de la ficha se actualiza al volver a abrir la guía.
+La importación sustituye el temario de inmediato y queda guardada: no hace falta pulsar [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) después. Si la guía estaba **Aprobada**, pasa a **Borrador**, como con cualquier otro guardado; el estado de la ficha se actualiza al volver a abrir la guía.
 
 ### De qué guías hermanas se puede importar
 
@@ -95,7 +95,7 @@ Importar es una copia. Lo copiado no cambia si después cambia la guía de orige
 
 - **Borrador**: la guía está en preparación. El contenido, la evaluación, la bibliografía y la planificación docente son editables libremente.
 - **En revisión**: la guía se ha enviado y está pendiente de que el director de programa la revise. Sigue siendo editable mientras tanto.
-- **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede descargar en PDF. El contenido sigue siendo editable, pero en cuanto se guarda cualquier cambio la guía vuelve automáticamente a **Borrador**: con **💾 Guardar borrador**, al editar un instrumento, una referencia o una sesión que ya forman parte de la guía, con **📑 Duplicar** una sesión, con **💾 Guardar texto** de convocatorias o con una importación. Una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar. El aviso en ámbar lo recuerda en la guía y en sus pantallas de gestión.
+- **Aprobada**: el director ha dado el visto bueno. En este estado el documento oficial ya se puede descargar en PDF. El contenido sigue siendo editable, pero en cuanto se guarda cualquier cambio la guía vuelve automáticamente a **Borrador**: con [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario), al editar un instrumento, una referencia o una sesión que ya forman parte de la guía, con [**📑 Duplicar**](planificacionDocenteYCronograma.md#duplicar-una-sesión) una sesión, con [**💾 Guardar texto**](ponderacionesDeEvaluacion.md#texto-de-convocatorias) de convocatorias o con una importación. Una guía aprobada no puede quedar con cambios sin revisar, así que hace falta enviarla a revisión otra vez al terminar de editar. El aviso en ámbar lo recuerda en la guía y en sus pantallas de gestión.
 - **Rechazada**: el director ha devuelto la guía con comentarios. El motivo del rechazo aparece en cursiva bajo el estado, en la tabla de **Inicio** (dentro de la guía no se muestra). Tras corregir lo necesario, la guía puede enviarse de nuevo a revisión.
 
 Si una guía pasa a **En revisión** sin ninguna acción del profesorado, y aparece un aviso en la parte de arriba explicando el motivo, es porque Admin ha cambiado quién imparte esa asignatura estando la guía ya aprobada (cambiar solo quién es responsable no cambia el estado de la guía) -- es automático, no un error.
@@ -110,7 +110,7 @@ El profesorado asignado lo gestiona Admin; el semestre es el de la memoria del t
 
 ## Volver
 
-**🏠 Inicio**, arriba a la derecha, vuelve a la lista de guías.
+[**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), arriba a la derecha, vuelve a la lista de guías.
 
 ---
 

@@ -13,7 +13,7 @@ pyCelda gestiona la guía docente de las asignaturas: temario, evaluación, bibl
 - Enviar la guía a revisión, previsualizar el documento oficial y descargar el PDF una vez aprobada.
 - Mantener el perfil académico (datos generales, doctorado, acreditación, sexenios y experiencia), que se confirma una vez por curso.
 
-Todas las pantallas del modo académico (Profesor y Director) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Arriba a la derecha de cada pantalla están siempre los mismos accesos: **🏠 Inicio**, **🎓 Mis programas** (si la cuenta dirige algún programa), **🪪 Mi perfil** y, separado, **🚪 Cerrar sesión**.
+Todas las pantallas del modo académico (Profesor y Director) se reconocen por una **barra naranja** fija en el borde superior de la ventana. Arriba a la derecha de cada pantalla están siempre los mismos accesos: [**🏠 Inicio**](entrarYVerTusAsignaturas.md#qué-muestra-inicio), [**🎓 Mis programas**](../directorPrograma/entrarYVerLosProgramas.md#mis-programas) (si la cuenta dirige algún programa), [**🪪 Mi perfil**](miPerfil.md) y, separado, **🚪 Cerrar sesión**.
 
 Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).
 
