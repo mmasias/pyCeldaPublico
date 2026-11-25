@@ -16,12 +16,15 @@
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarAsignaturaPrograma.md)|<sub>editarAsignaturaPrograma()</sub>|
-|[**Asociar Resultado de Aprendizaje**](asociarResultadoAprendizajeAAsignaturaPrograma.md)|<sub>asociarResultadoAprendizajeAAsignaturaPrograma()</sub>|
+|[**Asociar resultado de aprendizaje**](asociarResultadoAprendizajeAAsignaturaPrograma.md)|<sub>asociarResultadoAprendizajeAAsignaturaPrograma()</sub>|
 |[**Quitar**](desasociarResultadoAprendizajeAsignaturaPrograma.md)|<sub>desasociarResultadoAprendizajeAsignaturaPrograma()</sub>|
-|[**Asociar Metodología Docente**](asociarMetodologiaDocenteAAsignaturaPrograma.md)|<sub>asociarMetodologiaDocenteAAsignaturaPrograma()</sub>|
+|[**Asociar competencia**](asociarCompetenciaAAsignaturaPrograma.md)|<sub>asociarCompetenciaAAsignaturaPrograma()</sub>|
+|[**Quitar**](desasociarCompetenciaAsignaturaPrograma.md)|<sub>desasociarCompetenciaAsignaturaPrograma()</sub>|
+|[**Asociar metodología docente**](asociarMetodologiaDocenteAAsignaturaPrograma.md)|<sub>asociarMetodologiaDocenteAAsignaturaPrograma()</sub>|
 |[**Quitar**](desasociarMetodologiaDocenteAsignaturaPrograma.md)|<sub>desasociarMetodologiaDocenteAsignaturaPrograma()</sub>|
-|[**Volver al Programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
-|**Asignar profesor**||
-|**Quitar profesor**||
+|[**Editar reparto**](editarActividadesFormativasAsignaturaPrograma.md)|<sub>editarActividadesFormativasAsignaturaPrograma()</sub>|
+|[**Vista general**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
+|[**Asignaturas**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
+|[**Programación**](abrirMateria.md)|<sub>abrirMateria()</sub>|
 
 </div>

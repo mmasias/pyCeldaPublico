@@ -14,7 +14,9 @@ state aprobarGuia as "aprobarGuia()" {
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> presenta Guia aprobada
+    <b>Sistema</b> presenta Guia aprobada, con estado anterior, estado actual y comentario registrado
+    <b>Sistema</b> permite solicitar volver a las guías
+    <b>DirectorPrograma</b> solicita volver a las guías
     end note
 }
 

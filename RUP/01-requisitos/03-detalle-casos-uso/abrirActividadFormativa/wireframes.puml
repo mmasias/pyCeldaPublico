@@ -1,13 +1,15 @@
 @startsalt abrirActividadFormativa-wireframe
 {
-    <b>🏋️ ACTIVIDADES FORMATIVAS > AD1</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Nombre:</b>
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ Guías ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ <b>Actividades formativas</b> ] | [ Asignaturas ]
+    ====
+    Actividades formativas › <b>AD1</b> | [Editar]
+    <b>Nombre</b>
     <i>Actividad Dirigida: Clases de teoría</i>
-    --
-    <i>Las horas y la presencialidad de cada materia, y las horas de cada</i>
-    <i>asignatura, se editan desde la materia y desde la asignatura.</i>
-    ====
-    {[Editar]}
+    Las horas y la presencialidad de cada materia, y las horas de cada
+    asignatura, se editan desde la materia y desde la asignatura.
 }
 @endsalt

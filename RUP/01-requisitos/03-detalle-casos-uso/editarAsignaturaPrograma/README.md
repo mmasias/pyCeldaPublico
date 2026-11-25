@@ -60,6 +60,10 @@
 
 **Tope de longitud del `contenido`** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): el `contenido` no puede pasar de 10.000 caracteres (`LIMITE_CONTENIDO_GUIA`, el mismo tope que `Guia.contenido`), ni editado por `DirectorPrograma` ni por `Admin`. Si se supera, el backend responde `422` con `El contenido supera el límite de 10.000 caracteres` y no se modifica nada. Barrera de entrada, no precondición del dominio: no abre rama en el `<<choice>>` de `semestreDefault` ni añade otro. El campo del cliente lleva `maxlength` 10.000, sin contador visible.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Editar asignatura del programa" con Cancelar en la cabecera, línea "Programa: GII -- ..."; campos cortos en cuadrícula de dos pares por fila (Nombre/ECTS, Curso/Semestre por defecto, Carácter/Idioma, Sesiones mínimas con su ayuda), todos campos de texto (Carácter e Idioma no son desplegables); Contenido y Requisitos previos como áreas de texto, con la ayuda "Vacío o 'No aplica' se guardan como 'No aplica' en la guía docente"; Guardar y Cancelar al pie. Regla de presentación: con cambios sin guardar aparece también un Guardar arriba con el aviso "Tienes cambios sin guardar.", y en la variante bloqueada el semestre es un campo deshabilitado (Salt no pinta el deshabilitado; lo indica la ayuda).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarAsignaturaPrograma()`

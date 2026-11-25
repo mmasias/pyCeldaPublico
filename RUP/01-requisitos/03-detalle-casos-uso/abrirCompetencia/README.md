@@ -42,6 +42,10 @@ Ficha de la competencia con su **Distribución**: las `Materia` y las `Asignatur
 
 Códigos y textos de los wireframes ilustrativos: las competencias reales de cada programa se importarán de las memorias verificadas una vez implementado (#761, decisión 9), no están en el seed.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): cabecera con el nombre del programa y las pestañas del programa (activa Competencias); miga "Competencias › CE7" con "Editar" a su derecha; tipo, descripción y distribución (con "Ninguna" en la columna vacía y "Sin asignaciones a materias ni a asignaturas del programa." si no tiene ninguna).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `COMPETENCIAS_ABIERTO --> COMPETENCIA_ABIERTO : abrirCompetencia()`

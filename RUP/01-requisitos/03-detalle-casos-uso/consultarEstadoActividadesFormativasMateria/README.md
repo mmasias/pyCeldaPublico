@@ -51,6 +51,9 @@ Sin `<<choice>>` -- no hay rama de fallo, solo la presentación del estado. Verb
 
 **Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` ve también el medidor en su ficha de `Materia`, con la misma tabla y el mismo carácter informativo. Self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): el medidor no tiene pantalla propia, es una sección de la ficha de la materia; las dos variantes dibujan esa ficha (etiqueta de vista, programa, pestañas, miga) con la sección "Actividades formativas de la materia" y, sin optatividad, "Estado de las actividades formativas" con su texto real. Se retira `[Volver a la materia]` y la pantalla aparte ("ACTIVIDADES FORMATIVAS -- ESTADO DE LA MATERIA"), que no existían; el flujo no cambia (la especificación ya lo modelaba como self-loop de `MATERIA_ABIERTO`). Las demás secciones de la ficha se dibujan en [`abrirMateria()`](../abrirMateria/README.md).
 
 ## Referencias
 

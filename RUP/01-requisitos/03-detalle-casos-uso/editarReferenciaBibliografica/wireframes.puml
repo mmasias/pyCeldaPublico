@@ -1,19 +1,18 @@
 @startsalt editarReferenciaBibliografica-wireframe
 {
-    <b>EDITAR REFERENCIA</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
+    <b>Editar referencia bibliográfica</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {<b>Tipo:</b> | ^Básica^}
+    <b>Referencia:</b>
+    "Sedgewick, R. (2008) Introduction to programming in "
+    "Java, An interdisciplinary approach Ed. Pearson      "
+    "                                                     "
+    "                                                     "
     --
-    {
-        <b>Tipo (*):</b>
-        ^Básica^
-        <b>Referencia (*):</b>
-        "Sedgewick, R. (2008) Introduction to programming in "
-        "Java, An interdisciplinary approach Ed. Pearson      "
-        --
-        <i>(*) Campo obligatorio</i>
-    }
-    ~~
-    {[Guardar]}
+    {[<b>Guardar</b>] | [Cancelar]}
 }
 @endsalt

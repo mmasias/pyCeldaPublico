@@ -1,58 +1,80 @@
 @startsalt abrirMateria-wireframe
 {
-    <b>PROGRAMACIÓN</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Nombre:</b> Programación
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ Guías ] | [ <b>Materias</b> ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ Asignaturas ]
+    ====
+    Materias › <b>Programación</b>
     <b>Módulo:</b> M2 -- Común a la rama de informática
     <b>ECTS:</b> 12 · <b>Código RUCT:</b> 12345
     ====
-    <b>Metodologías docentes asociadas:</b>
+    <b>Asignaturas de esta materia</b>
+    {#
+        <b>Asignatura | <b>Curso | <b>Carácter | .
+        Programación I | I-s1 | Básica | [Abrir]
+        Programación II | I-s2 | Obligatoria | [Abrir]
+    }
+    ====
+    {
+        <b>Metodologías docentes asociadas</b> | [ Asociar metodología docente ]
+    }
     {#
         <b>Código | <b>Descripción | <b>Descripción propia | . | .
         MD1 | Método expositivo | -- | [Editar] | [Quitar]
         MD5 | Aprendizaje orientado a proyectos | Incluye trabajo por sprints | [Editar] | [Quitar]
     }
-    [ <b>+ Asociar Metodología Docente</b> ]
     ====
-    <b>Resultados de aprendizaje asociados:</b>
-    {#
-        <b>Código | <b>Tipo | <b>Asignaturas | .
-        RAK1 | Conocimientos o contenidos | 2 | [Quitar]
-        RAH1 | Habilidades o destrezas | 0 | [Quitar]
+    {
+        <b>Resultados de aprendizaje asociados</b> | [ Asociar resultado de aprendizaje ]
     }
-    [ <b>+ Asociar Resultado de Aprendizaje</b> ]
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | <b>Asignaturas | .
+        RAK1 | Conocimientos o contenidos | Conoce los fundamentos de la programación estructurada | 2 | [Quitar]
+        RAH1 | Habilidades o destrezas | Implementa algoritmos sencillos en un lenguaje de alto nivel | 0 | [Quitar]
+    }
     ====
-    <b>Competencias asociadas:</b>
+    {
+        <b>Competencias</b> | [ Asociar competencia ]
+    }
     {#
         <b>Código | <b>Tipo | <b>Descripción | <b>Asignaturas | .
         CE7 | Específica | Conocimiento y aplicación de los principios... | 2 | [Quitar]
         CG1 | General | Capacidad para concebir, redactar, organizar... | 0 | [Quitar]
     }
-    [ <b>+ Asociar competencia</b> ]
     ====
-    <b>Asignaturas de esta materia:</b>
-    {#
-        <b>Asignatura | <b>Curso | <b>Carácter | .
-        Programación I | I-s1 | Básica | [Abrir]
+    {
+        <b>Actividades formativas de la materia</b> | [ Editar reparto ]
     }
-    ====
-    <b>Actividades formativas de la materia:</b>
     {#
         <b>Actividad formativa | <b>Horas | <b>Presencialidad (%)
         Actividad Dirigida: Clases de teoría | 60 | 100
-        Actividad Autónoma: Estudio individual | 240 | 0
-        ... (todas las del catálogo del Programa) | |
+        Actividad Dirigida: Clases prácticas | 54 | 100
+        Actividad Supervisada: Tutorías | 12 | 50
+        Actividad Autónoma: Estudio personal | 120 | 0
+        Actividad Autónoma: Elaboración de trabajos | 54 | 0
     }
-    <i>Horas de la materia: 300 de 300 (12 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.</i>
-    [ <b>Editar reparto</b> ]  |  "Medidor AfM = ΣAfAdM (informativo, no bloquea)"
+    <b>Horas de la materia:</b> 300 de 300 (12 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
     ====
-    <b>Sistemas de evaluación:</b>
+    <b>Estado de las actividades formativas</b>
+    Regla "actividades formativas de la materia = suma de las de sus asignaturas" -- informativo, no bloquea guardar.
     {#
-        <b>Código | <b>Tipo | <b>Descripción | <b>Mín. | <b>Máx.
-        E1 | Evaluación continua | Prueba Parcial | 10 | 20
-        E4 | Evaluación final | Examen final | 40 | 60
+        <b>Actividad formativa | <b>Horas materia | <b>Σ asignaturas | <b>Estado
+        Actividad Dirigida: Clases de teoría | 60 | 60 | OK
+        Actividad Dirigida: Clases prácticas | 54 | 49 | Discrepancia (-5)
+        Actividad Supervisada: Tutorías | 12 | 14 | Discrepancia (+2)
+        Actividad Autónoma: Estudio personal | 120 | 120 | OK
+        Actividad Autónoma: Elaboración de trabajos | 54 | 54 | OK
     }
     ====
-    {[Editar] | [Volver al listado]}
+    {
+        <b>Sistemas de evaluación</b> | [ Crear sistema de evaluación ]
+    }
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | <b>Ponderación mínima | <b>Ponderación máxima | . | .
+        E1 | Evaluación continua | Prueba Parcial | 10 | 20 | [Editar] | [Eliminar]
+        E4 | Evaluación final | Examen final | 40 | 60 | [Editar] | [Eliminar]
+    }
 }
 @endsalt

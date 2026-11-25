@@ -1,36 +1,66 @@
 @startsalt consultarEstadoActividadesFormativasMateria-wireframe
 {
-    <b>ACTIVIDADES FORMATIVAS -- ESTADO DE LA MATERIA</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Programación</b> (12 ECTS)
-    --
-    <b>Horas de la materia:</b> 290 de 300 (12 ECTS a 25 h) -- Discrepancia (-10). Informativo, no bloquea guardar.
-    --
-    {#
-        <b>Actividad formativa</b>                     | <b>Horas materia</b> | <b>Σ asignaturas</b> | <b>Estado</b>
-        Actividad Dirigida: Clases de teoría            | 60                   | 60                   | OK
-        Actividad Dirigida: Clases prácticas            | 54                   | 49                   | Discrepancia (-5)
-        Actividad Supervisada: Tutorías                 | 12                   | 14                   | Discrepancia (+2)
-        Actividad Autónoma: Estudio personal            | 110                  | 110                  | OK
-        Actividad Autónoma: Elaboración de trabajos     | 54                   | 54                   | OK
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ Guías ] | [ <b>Materias</b> ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ Asignaturas ]
+    ====
+    Materias › <b>Programación</b>
+    <b>Módulo:</b> M2 -- Común a la rama de informática
+    <b>ECTS:</b> 12 · <b>Código RUCT:</b> 12345
+    ====
+    {
+        <b>Actividades formativas de la materia</b> | [ Editar reparto ]
     }
-    --
-    "Medidor informativo: las discrepancias NO impiden guardar ningún reparto (regla blanda)."
-    ~~
-    {[Volver a la materia]}
+    {#
+        <b>Actividad formativa | <b>Horas | <b>Presencialidad (%)
+        Actividad Dirigida: Clases de teoría | 60 | 100
+        Actividad Dirigida: Clases prácticas | 54 | 100
+        Actividad Supervisada: Tutorías | 12 | 50
+        Actividad Autónoma: Estudio personal | 110 | 0
+        Actividad Autónoma: Elaboración de trabajos | 54 | 0
+    }
+    <b>Horas de la materia:</b> 290 de 300 (12 ECTS a 25 h) -- Discrepancia (-10). Informativo, no bloquea guardar.
+    ====
+    <b>Estado de las actividades formativas</b>
+    Regla "actividades formativas de la materia = suma de las de sus asignaturas" -- informativo, no bloquea guardar.
+    {#
+        <b>Actividad formativa | <b>Horas materia | <b>Σ asignaturas | <b>Estado
+        Actividad Dirigida: Clases de teoría | 60 | 60 | OK
+        Actividad Dirigida: Clases prácticas | 54 | 49 | Discrepancia (-5)
+        Actividad Supervisada: Tutorías | 12 | 14 | Discrepancia (+2)
+        Actividad Autónoma: Estudio personal | 110 | 110 | OK
+        Actividad Autónoma: Elaboración de trabajos | 54 | 54 | OK
+    }
 }
 @endsalt
 
 @startsalt consultarEstadoActividadesFormativasMateria-wireframe-optatividad
 {
-    <b>ACTIVIDADES FORMATIVAS -- ESTADO DE LA MATERIA</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Programación</b> (12 ECTS)
-    --
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ Guías ] | [ <b>Materias</b> ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ Asignaturas ]
+    ====
+    Materias › <b>Programación</b>
+    <b>Módulo:</b> M2 -- Común a la rama de informática
+    <b>ECTS:</b> 12 · <b>Código RUCT:</b> 12345
+    ====
+    {
+        <b>Actividades formativas de la materia</b> | [ Editar reparto ]
+    }
+    {#
+        <b>Actividad formativa | <b>Horas | <b>Presencialidad (%)
+        Actividad Dirigida: Clases de teoría | 60 | 100
+        Actividad Dirigida: Clases prácticas | 54 | 100
+        Actividad Supervisada: Tutorías | 12 | 50
+        Actividad Autónoma: Estudio personal | 120 | 0
+        Actividad Autónoma: Elaboración de trabajos | 54 | 0
+    }
     <b>Horas de la materia:</b> 300 de 300 (12 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
     <b>Materia con optatividad:</b> sus asignaturas suman 18 ECTS para 12 de la materia.
     Cada asignatura lleva 25 h por ECTS, así que la suma de sus horas no se compara con las de la materia.
-    ~~
-    {[Volver a la materia]}
 }
 @endsalt

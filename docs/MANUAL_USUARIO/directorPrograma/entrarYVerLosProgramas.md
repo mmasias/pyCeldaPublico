@@ -22,9 +22,11 @@ La sesión dura 12 horas. Si al guardar en un formulario de crear o editar (resu
 
 </div>
 
-Si hay guías del programa esperando la revisión del director, **Inicio** lo dice en una línea: por ejemplo, "🚦 **3 guías esperan tu revisión** como director(a) del Grado en Ingeniería Informática". El nombre del programa es un enlace a sus guías. Si hay guías pendientes en varios de los programas dirigidos, aparecen todos en la misma línea, con el número de cada uno entre paréntesis. Si no hay nada pendiente, la línea no aparece.
+Arriba, el título **Inicio** y, a la derecha, **🎓 Mis programas**, **🪪 Mi perfil** (si la cuenta está dada de alta también como profesor) y, separado, **🚪 Cerrar sesión**. Inicio no muestra la tabla de programas: está en **🎓 Mis programas** (ver más abajo).
 
-Si la cuenta está dada de alta también como profesor, Inicio muestra además la sección **Mis guías**, con las asignaturas que tiene asignadas (las imparta o sea su responsable). En ese caso hay que confirmar antes el perfil académico del curso con **🪪 Mi perfil** (ver el [manual de Profesor](../profesor/README.md)): mientras no esté confirmado, Inicio solo muestra el aviso, sin la línea de guías pendientes ni **Mis guías**.
+Si hay guías del programa esperando la revisión del director en el curso activo, **Inicio** lo dice en una línea: por ejemplo, "🚦 **3 guías esperan tu revisión** como director(a) del Grado en Ingeniería Informática." El nombre del programa es un enlace a sus guías. Si hay guías pendientes en varios de los programas dirigidos, aparecen todos en la misma línea, con el número de cada uno entre paréntesis. Si no hay nada pendiente, la línea no aparece; si además la cuenta no es profesor, bajo la cabecera no hay nada más.
+
+Si la cuenta está dada de alta también como profesor, Inicio muestra además la sección **Mis guías**, con las asignaturas que tiene asignadas (las imparta o sea su responsable); es el caso que muestra la imagen. En ese caso hay que confirmar antes el perfil académico del curso con **🪪 Mi perfil** (ver el [manual de Profesor](../profesor/README.md)): mientras no esté confirmado, Inicio solo muestra el aviso, sin la línea de guías pendientes ni **Mis guías**.
 
 ## Mis programas
 

@@ -44,6 +44,10 @@ Mismo patrón lista/detalle que [`abrirResultadosAprendizaje()`](../abrirResulta
 
 Códigos y textos de los wireframes ilustrativos: las competencias reales de cada programa se importarán de las memorias verificadas una vez implementado (#761, decisión 9), no están en el seed.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): cabecera con la etiqueta de vista, el nombre del programa y las pestañas del programa (activa Competencias); título "Competencias" con el botón "Crear competencia" en la misma fila, encima de la tabla (antes iba debajo).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> COMPETENCIAS_ABIERTO : abrirCompetencias()`

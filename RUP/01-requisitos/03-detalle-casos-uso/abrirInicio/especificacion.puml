@@ -14,8 +14,11 @@ state abrirInicio as "abrirInicio()" {
 
     [*] -[#green]-> [*]
     note on link
-    <b>Sistema</b> presenta la pantalla de inicio: seccion "Mis guias" si la
-    cuenta es Profesor, seccion "Mis programas" si dirige algun Programa
+    <b>Sistema</b> presenta la pantalla de inicio: linea de guias que esperan
+    revision si dirige algun Programa con guias En revision, seccion "Mis guias"
+    si la cuenta es Profesor, y acceso "Mis programas" si dirige algun Programa.
+    Si el perfil academico del curso del Profesor no esta confirmado, solo
+    muestra el aviso que remite a "Mi perfil"
     end note
 }
 

@@ -2,19 +2,21 @@
 title Diagrama de Secuencia - Eliminar Referencia Bibliográfica (lista de trabajo)
 
 actor "Profesor" as Profesor
-participant "Vista (React)" as Vista
+participant "Vista (React)\nlistado de bibliografía" as Vista
+participant "sessionStorage\n(lista de excluidos)" as Sesion
 
-Profesor -> Vista: solicita eliminar una ReferenciaBibliografica de su fila en el listado
+Profesor -> Vista: pulsa la papelera de una ReferenciaBibliografica en su fila del listado
 activate Vista
-Vista --> Profesor: presenta la pregunta de confirmación
+Vista --> Profesor: en la misma fila, el botón pasa a "pulsa de nuevo para confirmar" y aparece Cancelar
 
 alt Profesor confirma
-  Profesor -> Vista: confirma
-  Vista -> Vista: quita el id de la lista de trabajo en memoria (estado local de React)
-  Vista --> Profesor: presenta la lista actualizada
+  Profesor -> Vista: pulsa de nuevo el mismo botón
+  Vista -> Sesion: añade el id a la lista de excluidos de la guía
+  Vista -> Vista: quita la fila del listado (estado local de React)
+  Vista --> Profesor: presenta la lista actualizada, sin esa fila
 else Profesor cancela
-  Profesor -> Vista: cancela
-  Vista --> Profesor: cierra la confirmación, sin cambios
+  Profesor -> Vista: pulsa Cancelar
+  Vista --> Profesor: devuelve la fila a su estado normal, sin cambios
 end
 deactivate Vista
 

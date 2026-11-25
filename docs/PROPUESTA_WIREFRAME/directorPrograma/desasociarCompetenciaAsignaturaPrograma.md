@@ -22,5 +22,6 @@
 |[**Importar actividades formativas de asignatura prima**](importarActividadesFormativasDeAsignaturaProgramaPrima.md)|<sub>importarActividadesFormativasDeAsignaturaProgramaPrima()</sub>|
 |[**Volver al Programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
 |[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|
+|[**Abrir asignaturas del programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
 
 </div>

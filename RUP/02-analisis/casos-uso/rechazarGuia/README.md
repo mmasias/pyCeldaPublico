@@ -32,7 +32,7 @@ Traducción a clases de análisis del caso de uso [`rechazarGuia()`](/RUP/01-req
 **Colaboraciones:**
 - **Entrada:** `:GUIA_ABIERTO` -- el `DirectorPrograma` solicita rechazar la `Guia` abierta.
 - **Control:** `GuiaController`.
-- **Salida:** `:GUIAS_DEL_PROGRAMA_ABIERTO`.
+- **Salida:** `:GUIAS_DEL_PROGRAMA_ABIERTO`; `:GUIA_ABIERTO` sin cambios si el `DirectorPrograma` cancela (botón "Cancelar", que pregunta antes de salir si hay un comentario escrito).
 
 ## Clases de controlador
 

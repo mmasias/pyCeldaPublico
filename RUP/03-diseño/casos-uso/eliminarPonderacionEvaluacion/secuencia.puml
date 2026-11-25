@@ -6,15 +6,15 @@ participant "Vista (React)" as Vista
 
 Profesor -> Vista: solicita eliminar una PonderacionEvaluacion de su fila en el listado
 activate Vista
-Vista --> Profesor: presenta la pregunta de confirmación
+Vista --> Profesor: presenta la confirmación en la propia fila\n(botón "pulsa de nuevo para confirmar" y "Cancelar")
 
 alt Profesor confirma
-  Profesor -> Vista: confirma
-  Vista -> Vista: quita el id de la lista de trabajo en memoria (estado local de React)
-  Vista --> Profesor: presenta la lista actualizada
+  Profesor -> Vista: confirma (segunda pulsación)
+  Vista -> Vista: añade el id a los excluidos de la guía\n(sessionStorage y estado local de React)
+  Vista --> Profesor: presenta la lista sin la fila
 else Profesor cancela
   Profesor -> Vista: cancela
-  Vista --> Profesor: cierra la confirmación, sin cambios
+  Vista --> Profesor: devuelve la fila a su estado normal, sin cambios
 end
 deactivate Vista
 

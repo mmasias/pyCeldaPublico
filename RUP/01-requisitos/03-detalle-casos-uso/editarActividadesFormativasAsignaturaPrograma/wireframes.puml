@@ -1,11 +1,20 @@
 @startsalt editarActividadesFormativasAsignaturaPrograma-wireframe
 {
-    <b>EDITAR ACTIVIDADES FORMATIVAS -- ASIGNATURA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar actividades formativas -- asignatura</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>Programación I</b> (6 ECTS)
+    <b>Importar de otra asignatura de la misma materia</b>
+    {#
+        <b>Asignatura | <b>ECTS | <b>Horas totales | .
+        Programación II | 6 (esta: 6) | 150 | [Importar de esta]
+        Estructuras de datos y algoritmos I | 6 (esta: 6) | 150 | [Importar de esta]
+    }
     --
     {#
-        <b>Actividad formativa</b>                          | <b>Horas</b> | <b>% presencialidad (de la materia)</b>
+        <b>Actividad formativa                          | <b>Horas | <b>% presencialidad (de la materia)
         AD1 -- Actividad Dirigida: Clases de teoría          | "30  "       | 100
         AD2 -- Actividad Dirigida: Clases prácticas          | "27  "       | 100
         AS1 -- Actividad Supervisada: Tutorías               | "6   "       | 50
@@ -14,8 +23,6 @@
     }
     <b>Horas de la asignatura:</b> 150 de 150 (6 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
     --
-    <i>La presencialidad la fija la materia; aquí solo se reparten horas.</i>
-    ~~
     {[Guardar] | [Cancelar]}
 }
 @endsalt

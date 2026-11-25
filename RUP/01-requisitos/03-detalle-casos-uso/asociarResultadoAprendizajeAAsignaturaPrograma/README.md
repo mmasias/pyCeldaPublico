@@ -46,6 +46,10 @@ Sin `<<choice>>`: asignación libre, mismo patrón que `asociarResultadoAprendiz
 
 **Texto del selector (v0.11.27)**: cada opción muestra `código -- extracto` de la descripción (unos 80 caracteres, cortado en un espacio, con "..."; `extractoResultado()` en `frontend/src/resultadoAprendizaje.ts`, común a materia y asignatura, Director y Admin), y bajo el selector se ve el texto completo del elegido. Las descripciones van de unos pocos caracteres a varios miles: ni la descripción entera ni el `tipo` (todos `General`) servían para elegir.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Asociar resultado de aprendizaje" con Cancelar en la cabecera, línea "Programa: GII -- ...", línea de la asignatura con materia y curso en romanos, extracto en el desplegable y texto completo del elegido debajo (gris de nota), y Asociar tras una línea separadora. Variante nueva `wireframe-sin-disponibles`: sin resultados disponibles, la pantalla lo dice y el botón de la cabecera pasa a Volver.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarResultadoAprendizajeAAsignaturaPrograma()`

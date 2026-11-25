@@ -41,6 +41,10 @@
 
 `<<choice>>` bloqueante por integridad de la cascada, mismo criterio que [`desasociarResultadoAprendizajeAMateria()`](../desasociarResultadoAprendizajeAMateria/README.md): las competencias de una `AsignaturaPrograma` son subconjunto de las de su `Materia`. El bloqueo nombra las `AsignaturaPrograma` en uso; el servidor lo vuelve a comprobar al desasociar (409). Códigos y textos de los wireframes ilustrativos: las competencias reales de cada programa se importarán de las memorias verificadas una vez implementado (#761, decisión 9), no están en el seed.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): en las dos variantes, título "Desasociar competencia" y línea "Programa: GII -- Grado en Ingeniería Informática". En la bloqueada, "Volver a Programación" pasa a la cabecera (a la derecha del título), no al pie. En la confirmación, Cancelar va en la cabecera y solo "Confirmar desasociación" queda al pie, tras una línea separadora. Asignaturas de ejemplo de la bloqueada cambiadas a dos de la propia materia (Programación I y II).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : desasociarCompetenciaAMateria()`

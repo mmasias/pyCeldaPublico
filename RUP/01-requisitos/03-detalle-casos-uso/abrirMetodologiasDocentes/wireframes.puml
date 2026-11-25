@@ -1,7 +1,12 @@
 @startsalt abrirMetodologiasDocentes-wireframe
 {
-    <b>METODOLOGÍAS DOCENTES -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ Guías ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ <b>Metodologías</b> ] | [ Actividades formativas ] | [ Asignaturas ]
+    ====
+    <b>Metodologías docentes</b> | [ Crear metodología docente ]
     {#
         <b>Descripción | <b>Código | <b>Nº de Asign. | . | .
         Método expositivo | MD1 | 12 | [Abrir] | [Eliminar]
@@ -9,7 +14,5 @@
         Resolución de ejercicios | MD3 | 9 | [Abrir] | [Eliminar]
         Aprendizaje orientado a proyectos | MD5 | 0 | [Abrir] | [Eliminar]
     }
-    ====
-    [ <b>+ Crear metodología docente</b> ]
 }
 @endsalt

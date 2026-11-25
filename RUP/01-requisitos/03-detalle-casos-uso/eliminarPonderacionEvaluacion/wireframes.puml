@@ -2,15 +2,16 @@
 {
     {+ Vista de Docente }
     ====
-    <b>INSTRUMENTOS DE EVALUACIÓN</b>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Evaluación</b> | [Crear instrumento]}
     ====
     {#
         <b>Instrumento | <b>Sistema | <b>Ponderación | <b>Vinculada | . | . | .
-        Examen Parcial | Evaluación continua | 25% | Sí | [Editar] | [Eliminar] | .
-        Actividades y ejercicios | Evaluación continua | 20% | Sí | [Editar] | [Eliminar] | .
-        Interés y participación | Evaluación continua | 5% | Sí | [Editar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
+        Examen Parcial | Actividades del curso (Evaluación continua) | 25% | Sí | [Editar] | [Eliminar] | .
+        Actividades y ejercicios | Actividades del curso (Evaluación continua) | 20% | Sí | [Editar] | [Eliminar] | .
+        Interés y participación | Actividades del curso (Evaluación continua) | 5% | Sí | [Editar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
         Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 50% | Sí | [Editar] | [Eliminar] | .
+        . | <b>Total asignado</b> | <b>100%</b> | . | . | . | .
     }
-    <b>Total asignado: 100%</b>
 }
 @endsalt

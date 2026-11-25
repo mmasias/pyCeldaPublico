@@ -1,31 +1,68 @@
 @startsalt editarPerfilPropio-wireframe
 {
-    { <b>MI PERFIL                                          [ Volver a Inicio ] }
+    {+ Vista de Docente }
     ====
-    Nombre (*) | "Dr. Manuel Masías Vergara"
-    Email | Dr.Manuel.Masias@uneatlantico.es
-    ..
-    <b>Identificador académico
-    ORCID | "0000-0002-1825-0097"
-    ..
-    <b>Doctorado
-    [X] Soy doctor/a
-    Universidad | "Universidad de Cantabria"
-    Año | "2010"
-    ..
-    <b>Acreditación
-    Figura | ^Titular de Universidad^
-    Organismo acreditador | ^ANECA^
-    ..
-    <b>Sexenios de investigación (CNEAI)
-    Número reconocidos | "2"
-    Año del último | "2020"
-    [X] Tengo un sexenio en evaluación actualmente
-    ..
-    <b>Quinquenios docentes
-    Número reconocidos | "3"
-    Año del último | "2022"
-    ..
-    [ Guardar ]
+    {<b>Mi perfil</b> | [Inicio] | [Mis programas] | [Cerrar sesión]}
+    ====
+    {[Guardar] | Estos son tus datos del curso anterior. Revísalos y confirma.}
+    <b>GENERALES</b>
+    {
+    <b>Email:</b> | profesor1@uneatlantico.es | <b>Nombre (*):</b> | "Ana Pérez Gómez                "
+    <b>Enlace al CVN:</b> | {"https://editor.cvn.fecyt.es/editor/cvnOnline/..." | 🔗} | <b>ORCID:</b> | {"0000-0000-0000-0000" | 🔗}
+    <b>Enlace a Google Scholar:</b> | {"https://scholar.google.com/citations?user=..." | 🔗} | <b>Enlace de la foto:</b> | "https://...                    "
+    }
+    {
+    <b>Mini-CV:</b> | .
+    {+
+    Profesora del área de Programación.
+    Docencia en Programación I y Estructuras de datos.
+    .
+    .
+    } | {+
+    .
+    (foto)
+    .
+    }
+    86 / 2.000 | .
+    }
+    --
+    <b>DOCTORADO</b>
+    [X] <b>Soy doctor/a</b>
+    {
+    <b>Universidad:</b> | "Universidad de Ejemplo          " | <b>Año:</b> | "2012"
+    <b>Programa de doctorado:</b> | "Doctorado en Ingeniería Informática" | . | [ ] Mención internacional
+    }
+    --
+    <b>ACREDITACIÓN</b>
+    En caso de disponer de más de una acreditación se consignará la de mayor exigibilidad.
+    {
+    <b>Nivel:</b> | ^3 -- Titular de Universidad^ | <b>Acreditado por:</b> | ^ANECA^
+    }
+    <b>0:</b> Sin acreditación.
+    <b>1:</b> Profesora o Profesor Ayudante Doctor
+    <b>2:</b> Profesora o Profesor de Universidad Privada o Contratado Doctor o Permanente laboral o ...
+    <b>3:</b> Titular de Universidad o Acreditación de investigación (sólo para Cataluña) o ...
+    <b>4:</b> Catedrática o Catedrático de Universidad o Acreditación de investigación avanzada ...
+    <b>5:</b> Sólo posee otra(s) acreditación(es) no recogida(s) anteriormente.
+    --
+    <b>SEXENIOS DE INVESTIGACIÓN</b>
+    CNEAI
+    {
+    <b>Número reconocidos:</b> | "2" | <b>Año del último:</b> | "2020"
+    }
+    [ ] Tengo un sexenio en evaluación actualmente
+    --
+    <b>QUINQUENIOS DOCENTES</b>
+    {
+    <b>Número reconocidos:</b> | "3" | <b>Año del último:</b> | "2022"
+    }
+    --
+    <b>EXPERIENCIA</b>
+    {
+    <b>Años de experiencia docente:</b> | "12" | <b>Años de experiencia docente virtual:</b> | "4"
+    <b>Años de experiencia profesional:</b> Excluyendo docencia | "3" | <b>Años de experiencia investigadora:</b> | "10"
+    }
+    --
+    [Guardar]
 }
 @endsalt

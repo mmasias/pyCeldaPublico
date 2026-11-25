@@ -1,22 +1,31 @@
 @startsalt editarSistemaEvaluacion-wireframe
 {
-    <b>EDITAR SISTEMA DE EVALUACIÓN</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar sistema de evaluación</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Código:</b>
-        {"E1  " | <i>(el de la memoria verificada)</i>}
-        <b>Tipo (*):</b>
-        ^Evaluación continua^
-        <b>Descripción:</b>
-        "Prueba Parcial"
-        <b>Ponderación mínima (*):</b>
-        "30  " %
-        <b>Ponderación máxima (*):</b>
-        "50  " %
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Código:</b> | "E1      " | <i>(el de la memoria verificada)</i>
     }
-    ~~
-    {[Guardar]}
+    {
+        <b>Tipo (*):</b> | ^Evaluación continua^
+    }
+    <b>Descripción:</b>
+    {+
+        "Prueba Parcial                                              "
+        "                                                            "
+        "                                                            "
+        "                                                            "
+    }
+    {
+        <b>Ponderación mínima (*):</b> | "30    " | %
+    }
+    {
+        <b>Ponderación máxima (*):</b> | "50    " | %
+    }
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

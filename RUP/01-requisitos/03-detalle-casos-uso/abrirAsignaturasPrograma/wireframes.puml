@@ -1,30 +1,32 @@
 @startsalt abrirAsignaturasPrograma-wireframe
 {
-    <b>ASIGNATURAS -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ Guías ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ <b>Asignaturas</b> ]
+    ====
+    <b>Asignaturas</b>
     {#
     <b>Asignatura                          | <b>Materia    | <b>Curso  | <b>Carácter | <b>Profesorado      |<b>Estado| .
-    Programación I                         | Programación  | 1         | Básica | Dr. Manuel Masías        |[ Borrador ] neutro| [Abrir]
-    Estructuras de datos y algoritmos I    | Programación  | 2         | Obligatoria | Dr. Manuel Masías   |[ En revisión ] ámbar| [Abrir]
-    Redes de Ordenadores                   | Redes         | 2         | Obligatoria | Dr. Mariano Benito Hoz |[ Rechazada ] rojo| [Abrir]
-    Ingeniería de Software I               | IdSw          | 3         | Obligatoria | Dr. Manuel Masías   |[ Aprobada ] verde| [Abrir]
-
+    Programación I                         | Programación  | I-s1      | Básica | profesor1@uneatlantico.es        |[ Borrador ]| [Abrir]
+    Estructuras de datos y algoritmos I    | Programación  | II-s1     | Obligatoria | profesor1@uneatlantico.es   |[ En revisión ]| [Abrir]
+    Redes de Ordenadores                   | Redes         | II-s2     | Obligatoria | profesor2@uneatlantico.es |[ Rechazada ]| [Abrir]
+    Ingeniería de Software I               | Ingeniería del Software | III-s1 | Obligatoria | profesor1@uneatlantico.es, profesor2@uneatlantico.es |[ Aprobada ]| [Abrir]
+    Prácticas Externas                     | Prácticas     | IV-s2     | Obligatoria | Sin profesorado asignado | -- | [Abrir]
     }
-    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
 }
 @endsalt
 
 @startsalt abrirAsignaturasPrograma-wireframe-porProfesor
 {
-    <b>MIS ASIGNATURAS -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
-    ====
+    <b>Mis guías</b> | ^Semestre 1 (activo)^
+    3 guías: 1 en borrador, 1 en revisión, 1 aprobada
     {#
-    <b>Asignatura                          | <b>Código | <b>Programa                          | <b>Curso |<b>Carácter |<b>Estado| .
-    Programación I                         | IYA003 | Grado en Ingeniería Informática    | I-s1 | Básica |[ Borrador ] neutro| [Abrir]
-    Ingeniería de Software I               | IYA038 | Grado en Ingeniería Informática    | III-s1 | Obligatoria |[ Aprobada ] verde| [Abrir]
-    Estructuras de datos y algoritmos I    | IYA025 | Grado en Ingeniería Informática    | II-s1 | Obligatoria |[ En revisión ] ámbar| [Abrir]
-
+    <b>Asignatura                          | <b>Código | <b>Programa                          | <b>Curso |<b>Carácter |<b>Estado| <b>Guía
+    Programación I                         | IYA003 | Grado en Ingeniería Informática    | I-s1 | Básica |[ Borrador ]| [Abrir]
+    Estructuras de datos y algoritmos I    | IYA025 | Grado en Ingeniería Informática    | II-s1 | Obligatoria |[ En revisión ]| [Abrir]
+    Ingeniería de Software I               | IYA038 | Grado en Ingeniería Informática    | III-s1 | Obligatoria |[ Aprobada ]| [Abrir]
     }
-    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
 }
 @endsalt

@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`crearSesion()`](/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/README.md): CRUD real e inmediato contra `SesionRepository`, sin ninguna interacción con `Guia`. La fila se crea con `guiaId` desde el principio (pertenece a esta `Guia` desde el momento de crearse), pero no queda **vinculada** a la `PlanificacionDocente` oficial hasta que [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)/[`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) sincronicen. Sin `<<choice>>` -- `Sesion` no se enlaza estructuralmente con `SistemaEvaluacion`/`PonderacionEvaluacion` en esta iteración (decisión 4 de discussion [#140](https://github.com/mmasias/pyCelda/discussions/140)): no hay regla de negocio que pueda rechazar el alta. `numero` no se solicita: lo calcula el sistema como el siguiente correlativo (o `1` si la planificación docente está vacía) y el formulario lo muestra como automático, no editable (decisión 6).
+Traducción a clases de análisis del caso de uso [`crearSesion()`](/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/README.md): CRUD real e inmediato contra `SesionRepository`, sin ninguna interacción con `Guia`. La fila se crea con `guiaId` desde el principio (pertenece a esta `Guia` desde el momento de crearse), pero no queda **vinculada** a la `PlanificacionDocente` oficial hasta que [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)/[`enviarGuiaARevision()`](../enviarGuiaARevision/README.md) sincronicen. Sin `<<choice>>` -- `Sesion` no se enlaza estructuralmente con `SistemaEvaluacion`/`PonderacionEvaluacion` en esta iteración (decisión 4 de discussion [#140](https://github.com/mmasias/pyCelda/discussions/140)): no hay regla de negocio que pueda rechazar el alta. `numero` no se solicita: lo calcula el sistema como el siguiente correlativo (o `1` si la planificación docente está vacía) y la tabla lo muestra como la posición de la fila, no editable (decisión 6).
 
 <div align=center>
 
@@ -26,15 +26,16 @@ Traducción a clases de análisis del caso de uso [`crearSesion()`](/RUP/01-requ
 ### `CrearSesionView`
 
 **Responsabilidades:**
-- presenta el formulario de creación: selector `tipo` con los seis valores del enum cerrado (`CLASE_TEORICA`, `CLASE_PRACTICA`, `CLASE_TEORICO_PRACTICA`, `CLASE_LABORATORIO`, `EVALUACION_CONTINUA`, `EVALUACION_PARCIAL`), `descripcion`, ambos obligatorios.
-- muestra `numero` como automático, no editable -- el siguiente correlativo, calculado por el sistema.
-- permite solicitar crear.
-- al volver, la sesión nueva ya es visible en el listado de `PLANIFICACION_DOCENTE_ABIERTO`.
+- presenta una fila nueva al final del listado, sin pantalla aparte: selector `tipo` con los seis valores del enum cerrado (`CLASE_TEORICA`, `CLASE_PRACTICA`, `CLASE_TEORICO_PRACTICA`, `CLASE_LABORATORIO`, `EVALUACION_CONTINUA`, `EVALUACION_PARCIAL`; preseleccionado el primero) y `descripcion`, obligatoria.
+- muestra como número la posición de la fila, no editable -- el correlativo persistido lo calcula el sistema.
+- da de alta la fila al confirmar la descripción (Enter o salir del campo) o al cambiar el tipo con la descripción ya escrita; sin descripción no pide nada al Controlador. No hay botón "Crear".
+- permite solicitar quitar la fila nueva antes de darla de alta (rama azul, sin llamar al Controlador).
+- tras el alta, la fila pasa a ser una sesión más del listado de `PLANIFICACION_DOCENTE_ABIERTO`, pendiente de vincular.
 
 **Colaboraciones:**
 - **Entrada:** `:PLANIFICACION_DOCENTE_ABIERTO` -- el `Profesor` solicita crear una sesión desde el listado de la Planificación docente.
 - **Control:** `PlanificacionDocenteController`.
-- **Salida:** `:PLANIFICACION_DOCENTE_ABIERTO` -- sesión creada con el siguiente número correlativo, pendiente de vincular.
+- **Salida:** `:PLANIFICACION_DOCENTE_ABIERTO` -- sesión creada con el siguiente número correlativo, pendiente de vincular (verde); o fila nueva quitada, sin cambios (azul).
 
 ## Clases de controlador
 
@@ -71,7 +72,7 @@ Traducción a clases de análisis del caso de uso [`crearSesion()`](/RUP/01-requ
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframes.puml) -- fuente de verdad del formulario con `numero` automático.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframes.puml) -- fuente de verdad del alta en una fila nueva de la tabla, con `numero` automático (alineada con la pantalla construida en #857).
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : crearSesion()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `PlanificacionDocente *-- Sesion`, `Sesion{numero, tipo, descripcion}`.
 - [`abrirPlanificacionDocente()`](../abrirPlanificacionDocente/README.md) -- quien fusiona lo vinculado con lo pendiente-sin-vincular para presentarlo.

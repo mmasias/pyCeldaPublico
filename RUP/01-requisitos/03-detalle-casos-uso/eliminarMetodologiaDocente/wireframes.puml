@@ -1,9 +1,11 @@
 @startsalt eliminarMetodologiaDocente-wireframe-bloqueada
 {
-    <b>ELIMINAR METODOLOGÍA DOCENTE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <color:red><b>⛔ No se puede eliminar</b></color>
+    <b>Eliminar metodología docente</b> | [ Volver a las <b>metodologías docentes</b> ]
     ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red>⛔ No se puede eliminar</color>
     <b>MD3</b>
     <i>Resolución de ejercicios</i>
     --
@@ -14,20 +16,20 @@
         . | Programación II
     }
     <i>Retira su asociación antes de eliminarla.</i>
-    ====
-    [ Volver a las <b>metodologías docentes</b> ]
 }
 @endsalt
 
 @startsalt eliminarMetodologiaDocente-wireframe-confirmacion
 {
-    <b>ELIMINAR METODOLOGÍA DOCENTE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Eliminar metodología docente</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>MD5</b>
     <i>Aprendizaje orientado a proyectos</i>
-
     Esta acción no se puede deshacer. Sin asignaciones a materias ni a asignaturas del programa.
-    ====
-    {[Confirmar eliminación] | [Cancelar]}
+    --
+    [Confirmar eliminación]
 }
 @endsalt

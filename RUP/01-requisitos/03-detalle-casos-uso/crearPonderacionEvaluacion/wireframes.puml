@@ -1,46 +1,36 @@
 @startsalt crearPonderacionEvaluacion-wireframe-formulario
 {
-    <b>CREAR INSTRUMENTO</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
-    --
+    <b>Crear instrumento de evaluación</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Sistema de evaluación (*):</b>
-        ^Evaluación continua^
-        <i>Ponderación: mayor que 0, hasta 60% (máximo por instrumento)</i>
-        <b>Descripción (*):</b>
-        "Prácticas de laboratorio                          "
-        <b>Ponderación (*):</b>
-        "  10" %
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Sistema de evaluación:</b> | ^Evaluación continua -- Actividades del curso (máx. 60%)^
+        <b>Descripción:</b> | "Prácticas de laboratorio          "
+        <b>Ponderación:</b> | {"10   " | Mayor que cero.}
     }
-    ~~
-    {[Crear]}
+    --
+    {[<b>Guardar</b>] | [Cancelar]}
 }
 @endsalt
 
 @startsalt crearPonderacionEvaluacion-wireframe-error
 {
-    <b>CREAR INSTRUMENTO</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
-    --
-    <color:red><b>⚠ NO SE PUEDE CREAR</b></color>
-    <color:red>Esta ponderación (65%) supera el máximo por instrumento de Evaluación continua (60%)</color>
-    --
+    <b>Crear instrumento de evaluación</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red>Error: La ponderación supera el máximo del sistema de evaluación</color>
     {
-        <b>Sistema de evaluación (*):</b>
-        ^Evaluación continua^
-        <i>Ponderación: mayor que 0, hasta 60% (máximo por instrumento)</i>
-        <b>Descripción (*):</b>
-        "Prácticas de laboratorio                          "
-        <b>Ponderación (*):</b>
-        "  65" %
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Sistema de evaluación:</b> | ^Evaluación continua -- Actividades del curso (máx. 60%)^
+        <b>Descripción:</b> | "Prácticas de laboratorio          "
+        <b>Ponderación:</b> | {"65   " | Mayor que cero.}
     }
-    ~~
-    {[Crear]}
+    --
+    {[<b>Guardar</b>] | [Cancelar]}
 }
 @endsalt

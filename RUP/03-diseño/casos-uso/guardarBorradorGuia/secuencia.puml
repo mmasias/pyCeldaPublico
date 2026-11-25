@@ -96,7 +96,9 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON)
 deactivate API
-Vista --> Profesor: "BORRADOR GUARDADO", estado y fecha actualizados
+Vista -> API: GET /api/v1/guias/{guia_id} (abrirGuia, recarga la ficha)
+API --> Vista: 200 OK (AbrirGuiaResponse JSON)
+Vista --> Profesor: misma ficha de la Guía, recargada, con el aviso "Borrador guardado"
 deactivate Vista
 
 @enduml

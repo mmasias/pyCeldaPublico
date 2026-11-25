@@ -41,6 +41,10 @@
 
 Borrado físico bloqueado relacionalmente, mismo patrón que [`eliminarResultadoAprendizaje()`](../eliminarResultadoAprendizaje/README.md): basta una asignación en cualquiera de los dos niveles de la cascada para bloquear. El mensaje de bloqueo nombra las `Materia` y `AsignaturaPrograma` concretas, en las mismas dos columnas que la Distribución de la ficha. El servidor vuelve a comprobarlo al borrar (409 con los nombres). Códigos y textos de los wireframes ilustrativos: las competencias reales de cada programa se importarán de las memorias verificadas una vez implementado (#761, decisión 9), no están en el seed.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): las dos variantes llevan la línea "Programa: GII -- ..."; en la bloqueada, "Volver a las competencias" está en la cabecera, junto al título; en la de confirmación, "Cancelar" está en la cabecera y "Confirmar eliminación" queda solo, al pie.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `COMPETENCIAS_ABIERTO --> COMPETENCIAS_ABIERTO : eliminarCompetencia()`

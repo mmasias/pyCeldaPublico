@@ -65,6 +65,8 @@ Sin botones hacia `Materias`/`ResultadosAprendizaje`/`AsignaturasPrograma` (plur
 
 - **Profesores: nombre o email, nunca los dos** (punto 4 de [#778](https://github.com/mmasias/pyCelda/issues/778)): cada profesor se muestra con su nombre si lo tiene registrado y, si no, con su email (`nombreProfesor()` en `frontend/src/profesor.ts`, la misma regla en todas las listas). El email completo sigue en la ficha del profesor y en el PDF de la guía.
 
+- Wireframe alineado con la pantalla construida (#858): variante `wireframe-porDirectorPrograma` con la etiqueta de vista, el nombre del programa como título y las pestañas del programa ("Vista general" activa); los datos del programa (código, estado, código RUCT, denominación oficial, norma) pasan a la derecha del título "Guías" y sin la línea "Nombre" (ya es el título); se retira `[Notificar guías actualizadas]` del dibujo (ya no está en la interfaz), pero el self-loop sigue en el diagrama de contexto: el requisito se mantiene como pendiente de implementar (ver [`notificarGuiasActualizadas()`](../notificarGuiasActualizadas/README.md), #859); la tabla de guías toma las columnas y textos reales ("Asignatura" con curso y semestre, estado legible "En revisión", última actualización imprecisa, `[Abrir]`) y profesorado ficticio. La variante de `Admin` no se toca.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()`, y ahora también `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : definirDirectorPrograma()` / `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : quitarDirectorPrograma()` (issue #492)

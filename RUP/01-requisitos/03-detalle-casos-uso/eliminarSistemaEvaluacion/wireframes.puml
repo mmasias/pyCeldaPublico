@@ -1,28 +1,28 @@
 @startsalt eliminarSistemaEvaluacion-wireframe-bloqueada
 {
-    <b>ELIMINAR SISTEMA DE EVALUACIÓN</b>
+    {+ Vista de Dirección · GII }
     ====
-    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    <b>Eliminar sistema de evaluación</b> | [ Volver a la <b>materia</b> ]
     ====
-    <b>Evaluación continua</b>
-
-    En uso en: AsignaturaPrograma 'Programación I', AsignaturaPrograma 'Cálculo II'
-
-    <i>Elimina primero las PonderacionEvaluacion que lo usan.</i>
-    ====
-    [ <b>Volver al listado</b> ]
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red><b>⛔ No se puede eliminar</b></color>
+    <b>Evaluación continua (40% -- 60%)</b>
+    Este sistema de evaluación está en uso en ponderaciones de guías.
+    <b>SistemaEvaluacion en uso en: AsignaturaPrograma 'Programación I', AsignaturaPrograma 'Programación II'</b>
+    <i>Elimina primero las ponderaciones de evaluación que lo usan.</i>
 }
 @endsalt
 
 @startsalt eliminarSistemaEvaluacion-wireframe-confirmacion
 {
-    <b>ELIMINAR SISTEMA DE EVALUACIÓN</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Evaluación final</b>
-
-    <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin ponderaciones asociadas.
+    <b>Eliminar sistema de evaluación</b> | [ Cancelar ]
     ====
-    {[Confirmar eliminación] | [Cancelar]}
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Evaluación final (25% -- 80%)</b>
+    <b>Esta acción no se puede deshacer.</b> Se comprobará antes de eliminar si tiene ponderaciones asociadas.
+    --
+    [Confirmar eliminación]
 }
 @endsalt

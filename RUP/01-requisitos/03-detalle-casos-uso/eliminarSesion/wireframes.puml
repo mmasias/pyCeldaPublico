@@ -1,13 +1,19 @@
 @startsalt eliminarSesion-wireframe-confirmacion
 {
-    <b>PLANIFICACIÓN DOCENTE</b>
+    {+ Vista de Docente }
     ====
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Planificación docente</b> | [Añadir fila]}
+    ====
+    {<b>Leyenda:</b> | Clase teórica | Clase práctica / de laboratorio | Clase teórico/práctica | [Importar de asignatura hermana] | [Importar desde texto]}
     {#
-        <b># | <b>Tipo | <b>Descripción | . | . | .
-        1 | ^Clase Teórica^ | "Tema aaaa" | [Duplicar] | [Eliminar] | .
-        2 | ^Clase Práctica^ | "Temas aaa bbb" | [Duplicar] | [Eliminar] | .
-        3 | ^Clase Práctica^ | "Temas ccc" | [Duplicar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
-        4 | ^Clase Teórico/Práctica^ | "Temas ddd" | [Duplicar] | [Eliminar] | .
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b> (Mayúsculas+Enter: nueva línea) | . | . | .
+        1 | ^Clase Teórica^ | "Presentación de la asignatura          " | [Duplicar] | [Eliminar] | .
+        2 | ^Clase Teórica^ | "Tema 1. Algoritmos y programas        " | [Duplicar] | [Eliminar] | .
+        3 | ^Clase Práctica^ | "Práctica 1. Entorno de desarrollo     " | [Duplicar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
+        4 | ^Clase Teórico/Práctica^ | "Tema 2. Estructuras de control        " | [Duplicar] | [Eliminar] | .
+        5 | ^Evaluación Continua^ | "Ejercicios del tema 2                 " | [Duplicar] | [Eliminar] | .
     }
+    {<color:red><b>5 sesiones</b> (mínimo 25)</color> | [Descargar planificación]}
 }
 @endsalt

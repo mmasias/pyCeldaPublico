@@ -25,6 +25,7 @@ PlanificacionDocenteController --> SesionRepository: <font size=8>crear(guiaId, 
 
 SesionRepository -- Sesion
 
-CrearSesionView --> PlanificacionDocenteSalida: <font size=8>sesión creada con el siguiente número correlativo, pendiente de vincular
+CrearSesionView ..[#green]> PlanificacionDocenteSalida: <font size=8>sesión creada con el siguiente número correlativo, pendiente de vincular
+CrearSesionView ..[#blue]> PlanificacionDocenteSalida: <font size=8>fila nueva quitada, sin cambios
 
 @enduml

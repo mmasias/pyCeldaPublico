@@ -40,6 +40,10 @@
 
 RAK1 es dato real del plan de estudios de GII, aportado por el usuario en la [issue #23](https://github.com/mmasias/pyCelda/issues/23).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): cabecera con el nombre del programa y las pestañas del programa; miga "Resultados de aprendizaje › RAK1" con "Editar" a su derecha (sin botón "Volver al listado": vuelve la miga o la pestaña); sin línea "Código"; se añade la Distribución en materias y asignaturas del programa, como en la ficha de competencia.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : abrirResultadoAprendizaje()`

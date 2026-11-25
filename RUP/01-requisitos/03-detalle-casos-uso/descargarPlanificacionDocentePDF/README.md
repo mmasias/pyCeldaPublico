@@ -49,6 +49,11 @@ El documento oficial de la guía ([`descargarGuiaPDF()`](../descargarGuiaPDF/REA
 
 **Retoque del indicador de sesiones** en esas dos pantallas (mismo cambio): dentro de la sección ya no repite "Planificación docente"; dice "29 sesiones". El mínimo solo aparece con la guía en `Borrador` o `Rechazada` y sin alcanzarlo: "12 sesiones (mínimo 25)", porque es lo que impide enviar a revisión. La leyenda de colores, un punto más pequeña. El resumen de completitud del `DirectorPrograma` en revisión no cambia.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con el documento generado (#857): se dibujan el logotipo de la cabecera, los rótulos de la tabla de datos en negrita, la lista de docentes que imparten (nombres separados por punto y coma; "No aplica" si no hay ninguno), la leyenda con su rótulo **Leyenda:** y el pie "Página 1 de 1". La variante `-borrador` dibuja el mismo documento con la marca "BORRADOR - NO OFICIAL" (en el PDF va en diagonal, rojo muy claro, sobre cada página) en vez de una nota explicativa en cursiva. Sin sesiones guardadas, la tabla dice "Sin sesiones guardadas".
+- Regla de presentación: el botón de la pantalla es "⬇️ Descargar planificación" (el wireframe omite el icono); mientras descarga dice "Descargando...".
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml), [de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) y [de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml)

@@ -28,6 +28,8 @@ Al empezar cada curso académico, el perfil académico hay que confirmarlo una v
 
 </div>
 
+La imagen corresponde a una cuenta que, además de profesor, dirige un programa: por eso lleva arriba el acceso **🎓 Mis programas** y la línea de guías que esperan revisión. Sin esa función, la cabecera solo tiene **🪪 Mi perfil** y **🚪 Cerrar sesión**, y la línea no aparece.
+
 En **Inicio** aparece la sección **Mis guías**. Si Admin ha activado un semestre en el curso, la sección muestra solo las asignaturas de ese semestre, y el desplegable a la derecha del título ("Semestre 1 (activo)") permite cambiar a **Todas**; sin semestre activado se ven todas, sin desplegable. Si en el semestre activo no hay ninguna asignatura, aparece "No tienes asignaturas en el semestre N.". Debajo del título, una línea resume cuántas guías de las mostradas hay en cada estado (por ejemplo, "6 guías: 1 rechazada, 2 en borrador, 3 aprobadas"), empezando por lo que más pide atención. Debajo, una tabla con una fila por cada asignatura asignada en el curso, se imparta o solo se sea responsable de ella (con el filtro, solo las del semestre activo).
 
 Columnas de la tabla:
@@ -40,7 +42,7 @@ Columnas de la tabla:
 - **Estado**: el estado actual de la guía docente de esa asignatura -- Borrador, En revisión, Aprobada o Rechazada --, escrito sobre un fondo de color para distinguirlos de un vistazo. Si la guía se ha rechazado o se ha revocado su aprobación, el comentario del director aparece debajo, en cursiva. El significado de cada estado se explica en el capítulo [Redactar la guía](redactarLaGuia.md).
 - **Guía**: el botón **📂 Abrir**, que lleva a la guía correspondiente. Si el botón no aparece en una fila, es que esa asignatura todavía no tiene una guía creada -- corresponde avisar a Admin.
 
-Si la cuenta no tiene asignaturas asignadas este curso, en lugar de la tabla aparece el mensaje "No tienes asignaturas asignadas".
+Si la cuenta no tiene asignaturas asignadas este curso, en lugar de la tabla aparece el mensaje "No tienes asignaturas asignadas.".
 
 Si la cuenta también dirige algún programa y hay guías esperando su revisión, Inicio lo indica en una línea encima de **Mis guías** (ver el [manual de Director de Programa](../directorPrograma/README.md)).
 

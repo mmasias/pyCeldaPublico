@@ -211,6 +211,13 @@ ASIGNATURA_PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : abrirPrograma()
 ' "Volver al Programa" ya existente. Incondicional, sin guarda de rol nueva: mismo
 ' actor que ya tiene acceso a MATERIA_ABIERTO por la entrada de arriba.
 ASIGNATURA_PROGRAMA_ABIERTO --> MATERIA_ABIERTO : abrirMateria()
+' #858 (wireframes alineados con la pantalla construida): el [Abrir] de cada fila del
+' listado de asignaturas del programa lleva a la ficha de la AsignaturaPrograma, y la
+' miga de la ficha ("Asignaturas") vuelve a ese listado. Las vueltas a PROGRAMA_ABIERTO
+' y MATERIA_ABIERTO siguen existiendo (pestana "Vista general" y enlace de la materia),
+' ya sin botones "Volver al Programa" / "Volver a la materia".
+ASIGNATURAS_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : abrirAsignaturaPrograma()
+ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : abrirAsignaturasPrograma()
 
 ' --- ResultadoAprendizaje: catalogo propio de Programa (Programa *-d- ResultadoAprendizaje),
 ' cascada de asociacion hacia Materia/AsignaturaPrograma ya modelada arriba ---

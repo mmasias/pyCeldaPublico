@@ -26,13 +26,13 @@ Traducción a clases de análisis del caso de uso [`eliminarPonderacionEvaluacio
 ### `EliminarPonderacionEvaluacionView`
 
 **Responsabilidades:**
-- presenta la información de la `PonderacionEvaluacion` (`SistemaEvaluacion`, `descripcion`, `ponderacion`) -- datos ya conocidos de la fila del listado que originó la solicitud, sin releer nada.
-- presenta la pregunta de confirmación y permite solicitar confirmar o cancelar.
+- no es una pantalla aparte: es el estado de confirmación de la propia fila del listado de `PONDERACIONES_EVALUACION_ABIERTO`, que ya muestra la `PonderacionEvaluacion` (`descripcion`, `SistemaEvaluacion`, `ponderacion`), sin releer nada.
+- presenta la confirmación en la fila (el botón de eliminar pasa a "pulsa de nuevo para confirmar" y aparece "Cancelar" a su lado) y permite solicitar confirmar (segunda pulsación) o cancelar.
 - en la rama verde, quita el ítem de la lista de trabajo de la sesión y presenta la lista actualizada.
-- en la rama azul, cierra la confirmación sin tocar la lista.
+- en la rama azul, devuelve la fila a su estado normal sin tocar la lista.
 
 **Colaboraciones:**
-- **Entrada:** `:PONDERACIONES_EVALUACION_ABIERTO` -- el `Profesor` solicita eliminar una `PonderacionEvaluacion` desde su fila en el listado.
+- **Entrada:** `:PONDERACIONES_EVALUACION_ABIERTO` -- el `Profesor` solicita eliminar una `PonderacionEvaluacion` con el botón de eliminar de su fila en el listado.
 - **Control:** `PonderacionEvaluacionController`.
 - **Salida:** `:PONDERACIONES_EVALUACION_ABIERTO` en ambos casos -- self-loop, con "quitada de la lista de trabajo" (verde) o "cancelada, sin cambios" (azul).
 
@@ -50,15 +50,19 @@ Traducción a clases de análisis del caso de uso [`eliminarPonderacionEvaluacio
 
 ## Flujo de colaboración principal
 
-1. Desde `:PONDERACIONES_EVALUACION_ABIERTO`, el `Profesor` solicita eliminar una `PonderacionEvaluacion` desde su fila en el listado -- los datos a presentar viajan con la solicitud, sin releer nada; se abre `EliminarPonderacionEvaluacionView` con la pregunta de confirmación.
+1. Desde `:PONDERACIONES_EVALUACION_ABIERTO`, el `Profesor` solicita eliminar una `PonderacionEvaluacion` con el botón de eliminar de su fila en el listado; `EliminarPonderacionEvaluacionView` presenta la confirmación en esa misma fila, sin abrir otra pantalla ni releer nada.
 
 ### Rama verde (confirmar)
 
-2. El `Profesor` solicita confirmar; la Vista pide al Controlador confirmar la eliminación (`confirmarEliminacion(ponderacionId)`); el Controlador no valida nada y confirma. La Vista quita el ítem de la lista de trabajo de la sesión y presenta la lista actualizada; la colaboración termina en `:PONDERACIONES_EVALUACION_ABIERTO`.
+2. El `Profesor` solicita confirmar (segunda pulsación del mismo botón); la Vista pide al Controlador confirmar la eliminación (`confirmarEliminacion(ponderacionId)`); el Controlador no valida nada y confirma. La Vista quita el ítem de la lista de trabajo de la sesión y presenta la lista actualizada; la colaboración termina en `:PONDERACIONES_EVALUACION_ABIERTO`.
 
 ### Rama azul (cancelar)
 
-3. El `Profesor` solicita cancelar; la Vista cierra la confirmación sin tocar la lista de trabajo; la colaboración termina en `:PONDERACIONES_EVALUACION_ABIERTO`, sin cambios.
+3. El `Profesor` solicita cancelar; la Vista devuelve la fila a su estado normal sin tocar la lista de trabajo; la colaboración termina en `:PONDERACIONES_EVALUACION_ABIERTO`, sin cambios.
+
+## Notas de trazabilidad
+
+- Alineado con el flujo construido (#857, río abajo de #855): la confirmación es en la propia fila del listado, sin pantalla de confirmación aparte; `EliminarPonderacionEvaluacionView` nombra ese estado de la fila, no una pantalla. La lista de trabajo la guarda la Vista (en la aplicación, la marca de "eliminada" vive en el almacenamiento de la pestaña del navegador hasta [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)).
 
 ## Referencias
 

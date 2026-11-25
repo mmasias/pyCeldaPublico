@@ -15,7 +15,9 @@
 
 @startsalt abrirProgramas-wireframe-porDirector
 {
-    <b>MIS PROGRAMAS</b>
+    {+ Vista de Dirección }
+    ====
+    <b>Mis programas</b>
     ====
     {#
         <b>Nombre | <b>Código | <b>Estado | .

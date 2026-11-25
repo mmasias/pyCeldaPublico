@@ -2,27 +2,48 @@
 {
     {+ Vista de Docente }
     ====
-    <b>INSTRUMENTOS DE EVALUACIÓN</b>
-    ====
-    [ <b>Crear Instrumento</b> ] | [ <b>Volver a la guía</b> ] | [ Mis asignaturas ]
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Evaluación</b> | [Crear instrumento]}
     ====
     {#
         <b>Instrumento | <b>Sistema | <b>Ponderación | <b>Vinculada | . | .
-        Examen Parcial | Evaluación continua | 25% | Sí | [Abrir] | [Eliminar]
-        Actividades y ejercicios | Evaluación continua | 20% | Sí | [Abrir] | [Eliminar]
-        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Abrir] | [Eliminar]
-        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Abrir] | [Eliminar]
+        Examen Parcial | Actividades del curso (Evaluación continua) | 25% | Sí | [Editar] | [Eliminar]
+        Actividades y ejercicios | Actividades del curso (Evaluación continua) | 20% | Sí | [Editar] | [Eliminar]
+        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Editar] | [Eliminar]
+        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Editar] | [Eliminar]
+        . | <b>Total asignado</b> | <b>En pantalla: 100% · Guardado: 45%</b> | . | . | .
     }
-    <b>Total asignado: En pantalla: 100% · Guardado: 45%</b>
-    Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
-    ====
+    ⚠ Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
+    --
     <b>Sistemas de evaluación de la materia</b>
     {#
         <b>Tipo | <b>Descripción | <b>Ponderación mínima | <b>Ponderación máxima | <b>Asignado
-        Evaluación continua | Pruebas y actividades durante el curso | 40% | 60% | 45%
+        Evaluación continua | Actividades del curso | 40% | 60% | 45%
         Evaluación final | Examen final teoría | 25% | 80% | En pantalla: 35% · Guardado: 0%
         Evaluación final | Examen final prácticas | 10% | 40% | En pantalla: 20% · Guardado: 0%
+        . | . | . | <b>Total asignado</b> | <b>En pantalla: 100% · Guardado: 45%</b>
     }
+    ====
+    <b>Texto de convocatorias</b>
+    Texto del apartado 5 de la guía. No se edita: sale de la plantilla que se elija, con
+    el instrumento y el porcentaje de la convocatoria extraordinaria. La tabla de
+    instrumentos va donde pone <b>&#91;TABLA]</b>.
+    {<b>Plantilla:</b> | ^Asignatura normal^}
+    {<b>Instrumento de la convocatoria extraordinaria:</b> | "las pruebas de evaluación final (Examen Teórico-Práctico y Entrega de proyecto)"}
+    {<b>Porcentaje recuperable en la extraordinaria:</b> | "55  " | %}
+    {+
+        <b>PROPUESTA:</b> <i>Según los instrumentos de evaluación final de la lista: las pruebas de evaluación final (Examen Teórico-Práctico y Entrega de proyecto), 55 %.</i> | [Usar esta propuesta]
+    }
+    {+
+        CONVOCATORIA ORDINARIA
+        .
+        En la convocatoria ordinaria de esta asignatura se aplican los siguientes instrumentos de evaluación:
+        .
+        &#91;TABLA]
+        .
+        ...
+    }
+    {[Guardar texto de convocatorias]}
 }
 @endsalt
 
@@ -30,28 +51,55 @@
 {
     {+ Vista de Dirección · GII }
     ====
-    <b>Grado en Ingeniería Informática</b>
+    {<b>Grado en Ingeniería Informática</b> | [Inicio] | [Mis programas] | [Cerrar sesión]}
+    {[Vista general] | [<b>Guías</b>]}
+    {[Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas] | [Asignaturas]}
     ====
-    [ Vista general ] | [ <b>Guías</b> ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ Asignaturas ]
-    ====
-    Guías › Programación I › <b>Evaluación</b> | [ <b>Crear Instrumento</b> ]
+    {Guías › Programación I › <b>Evaluación</b> | [Crear instrumento]}
     ====
     {#
         <b>Instrumento | <b>Sistema | <b>Ponderación | <b>Vinculada | . | .
-        Examen Parcial | Evaluación continua | 25% | Sí | [Abrir] | [Eliminar]
-        Actividades y ejercicios | Evaluación continua | 20% | Sí | [Abrir] | [Eliminar]
-        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Abrir] | [Eliminar]
-        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Abrir] | [Eliminar]
+        Examen Parcial | Actividades del curso (Evaluación continua) | 25% | Sí | [Editar] | [Eliminar]
+        Actividades y ejercicios | Actividades del curso (Evaluación continua) | 20% | Sí | [Editar] | [Eliminar]
+        Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35% | No | [Editar] | [Eliminar]
+        Entrega de proyecto | Examen final prácticas (Evaluación final) | 20% | No | [Editar] | [Eliminar]
+        . | <b>Total asignado</b> | <b>En pantalla: 100% · Guardado: 45%</b> | . | . | .
     }
-    <b>Total asignado: En pantalla: 100% · Guardado: 45%</b>
-    Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
-    ====
+    ⚠ Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
+    --
     <b>Sistemas de evaluación de la materia</b>
     {#
         <b>Tipo | <b>Descripción | <b>Ponderación mínima | <b>Ponderación máxima | <b>Asignado
-        Evaluación continua | Pruebas y actividades durante el curso | 40% | 60% | 45%
+        Evaluación continua | Actividades del curso | 40% | 60% | 45%
         Evaluación final | Examen final teoría | 25% | 80% | En pantalla: 35% · Guardado: 0%
         Evaluación final | Examen final prácticas | 10% | 40% | En pantalla: 20% · Guardado: 0%
+        . | . | . | <b>Total asignado</b> | <b>En pantalla: 100% · Guardado: 45%</b>
     }
+    ====
+    <b>Texto de convocatorias</b>
+    Texto del apartado 5 de la guía. No se edita: sale de la plantilla que se elija, con
+    el instrumento y el porcentaje de la convocatoria extraordinaria. La tabla de
+    instrumentos va donde pone <b>&#91;TABLA]</b>.
+    {<b>Plantilla:</b> | ^Asignatura normal^}
+    {<b>Instrumento de la convocatoria extraordinaria:</b> | "las pruebas de evaluación final (Examen Teórico-Práctico y Entrega de proyecto)"}
+    {<b>Porcentaje recuperable en la extraordinaria:</b> | "55  " | %}
+    {+
+        <b>PROPUESTA:</b> <i>Según los instrumentos de evaluación final de la lista: las pruebas de evaluación final (Examen Teórico-Práctico y Entrega de proyecto), 55 %.</i> | [Usar esta propuesta]
+    }
+    {+
+        CONVOCATORIA ORDINARIA
+        .
+        En la convocatoria ordinaria de esta asignatura se aplican los siguientes instrumentos de evaluación:
+        .
+        &#91;TABLA]
+        .
+        ...
+    }
+    {[Guardar texto de convocatorias]}
+    Corrección excepcional del director: guardar una edición de
+    contenido, evaluación, bibliografía o planificación docente
+    sobre una guía aprobada la devuelve a borrador, y sobre una guía
+    en revisión la rechaza. El envío a revisión sigue siendo del
+    profesorado.
 }
 @endsalt

@@ -3,19 +3,21 @@ title Diagrama de Secuencia - Eliminar Sesión (lista de trabajo)
 
 actor "Profesor" as Profesor
 participant "Vista (React)" as Vista
+participant "sessionStorage" as Almacen
 
-Profesor -> Vista: solicita eliminar una Sesion de su fila en el listado
+Profesor -> Vista: pulsa la papelera en la fila de una Sesion del listado
 activate Vista
-Vista --> Profesor: presenta la información de la sesión y el aviso de que las siguientes se renumerarán, con la pregunta de confirmación
+Vista --> Profesor: en la misma fila, el botón pasa a "pulsa de nuevo para confirmar" y aparece Cancelar
 
 alt Profesor confirma
-  Profesor -> Vista: confirma
-  Vista -> Vista: quita el id de la lista de trabajo en memoria (estado local de React)
-  Vista -> Vista: renumera localmente las filas siguientes para la presentación
-  Vista --> Profesor: presenta la lista actualizada, con las sesiones siguientes renumeradas
+  Profesor -> Vista: pulsa de nuevo
+  Vista -> Almacen: añade el id a las sesiones excluidas de la guía
+  Vista -> Vista: añade el id al estado local de excluidas y filtra el listado visible
+  Vista -> Vista: numera por posición: las filas siguientes suben un puesto
+  Vista --> Profesor: presenta el listado sin la fila; el medidor da "En pantalla" y "Guardado" con el aviso de cambios sin guardar
 else Profesor cancela
-  Profesor -> Vista: cancela
-  Vista --> Profesor: cierra la confirmación, sin cambios
+  Profesor -> Vista: pulsa Cancelar
+  Vista --> Profesor: la fila vuelve a su estado normal, sin cambios
 end
 deactivate Vista
 

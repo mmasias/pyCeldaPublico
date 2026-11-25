@@ -47,6 +47,10 @@ La salida lleva a la ficha de la actividad creada (nota `editarActividadFormativ
 
 **Histórico**: hasta #772 la actividad nacía en el catálogo institucional de una `Universidad` elegida en el formulario (issue [#655](https://github.com/mmasias/pyCelda/issues/655)), solo por `Admin` y sin control de código repetido.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Crear actividad formativa" (sin accesos globales: es formulario), línea "Programa: GII -- Grado en Ingeniería Informática" y código en la misma línea que su etiqueta. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : crearActividadFormativa()`

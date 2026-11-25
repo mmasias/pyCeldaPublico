@@ -15,7 +15,7 @@ PlanificacionDocenteAbierto --> EliminarSesionView: <font size=8>eliminarSesion(
 
 EliminarSesionView --> PlanificacionDocenteController: <font size=8>confirmarEliminacion(sesionId) : boolean
 
-EliminarSesionView ..[#green]> PlanificacionDocenteSalida: <font size=8>quitada de la lista de trabajo de la sesión, sesiones siguientes renumeradas en la vista
+EliminarSesionView ..[#green]> PlanificacionDocenteSalida: <font size=8>confirmada en la propia fila: quitada de la lista de trabajo, las siguientes suben un puesto
 EliminarSesionView ..[#blue]> PlanificacionDocenteSalida: <font size=8>cancelada, sin cambios
 
 @enduml

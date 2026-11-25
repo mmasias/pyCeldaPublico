@@ -52,6 +52,10 @@ Retoca [`abrirMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/R
 
 **Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición como vía de corrección, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`. Motivo: tras la carga de horas desde las memorias ANECA (#754), Admin necesita poder completar o corregir las de los programas que la carga automática no cubre.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Editar actividades formativas -- materia", línea del programa y nombre de la materia sin ECTS; el texto bajo el total es el real ("La regla ... es informativa, no bloquea guardar."). El botón `[Guardar]` superior y el aviso "Tienes cambios sin guardar." solo aparecen tras editar y no se dibujan.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : editarActividadesFormativasMateria()` (verde y rojo, ambas al mismo estado -- ver regla de la rama de fallo en el [README de Detalle](/RUP/01-requisitos/03-detalle-casos-uso/README.md))

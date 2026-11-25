@@ -58,6 +58,10 @@ Retocado el wireframe al construir L4 (mismo criterio que `abrirProfesor()` en L
 
 **Materia con optatividad (issue [#786](https://github.com/mmasias/pyCelda/issues/786))**: si la `Materia` suma 25 h por ECTS y sus `AsignaturaPrograma` no suman sus ECTS (idiomas alternativos, optativas, o asignaturas de la memoria en otra materia), bajo la línea de horas la ficha presenta `Materia con optatividad: sus asignaturas suman X ECTS para Y de la materia`, con la aclaración de que cada asignatura lleva 25 h por ECTS y la suma de sus horas no se compara con las de la materia; el medidor `AfM = Σ AfAdM` no se presenta. Detalle y wireframe en [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md), el caso de uso que la ficha compone; el wireframe de esta ficha muestra el caso sin optatividad. La especificación gana la línea correspondiente.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): el wireframe dibuja la vista de `DirectorPrograma` (etiqueta de vista, nombre del programa como título, pestañas con "Materias" activa y miga "Materias › Programación" en lugar del título y la línea "Nombre"); secciones en el orden real (asignaturas, metodologías, resultados de aprendizaje, competencias, actividades formativas, estado de las actividades formativas, sistemas de evaluación) con el botón de cada sección a la derecha de su título; la tabla de resultados de aprendizaje gana "Descripción"; la de actividades formativas lista las del catálogo sin fila de puntos suspensivos, seguida del medidor "Estado de las actividades formativas"; la de sistemas de evaluación gana `[Crear sistema de evaluación]`, `[Editar]`/`[Eliminar]` por fila y los encabezados completos de ponderación; se retiran `[Editar]` y `[Volver al listado]` (el nombre lo edita `Admin`; la vuelta es la pestaña o la miga).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIAS_ABIERTO --> MATERIA_ABIERTO : abrirMateria()`

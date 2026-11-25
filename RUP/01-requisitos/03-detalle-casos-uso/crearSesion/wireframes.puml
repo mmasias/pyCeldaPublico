@@ -1,19 +1,21 @@
-@startsalt crearSesion-wireframe-formulario
+@startsalt crearSesion-wireframe
 {
-    <b>CREAR SESIÓN</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
-    --
-    {
-        <b>Sesión número:</b> 6 (automático)
-        <b>Tipo (*):</b>
-        ^Clase Teórica^Clase Práctica^Clase Teórico/Práctica^Clase Laboratorio^Evaluación Continua^Evaluación Parcial^
-        <b>Descripción (*):</b>
-        "Tema eeee                                          "
-        --
-        <i>(*) Campo obligatorio</i>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Planificación docente</b> | [Añadir fila]}
+    ====
+    {<b>Leyenda:</b> | Clase teórica | Clase práctica / de laboratorio | Clase teórico/práctica | [Importar de asignatura hermana] | [Importar desde texto]}
+    {#
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b> (Mayúsculas+Enter: nueva línea) | . | .
+        1 | ^Clase Teórica^ | "Presentación de la asignatura          " | [Duplicar] | [Eliminar]
+        2 | ^Clase Teórica^ | "Tema 1. Algoritmos y programas        " | [Duplicar] | [Eliminar]
+        3 | ^Clase Práctica^ | "Práctica 1. Entorno de desarrollo     " | [Duplicar] | [Eliminar]
+        4 | ^Clase Teórico/Práctica^ | "Tema 2. Estructuras de control        " | [Duplicar] | [Eliminar]
+        5 | ^Evaluación Continua^ | "Ejercicios del tema 2                 " | [Duplicar] | [Eliminar]
+        6 | ^Clase Teórica^ | "Tema 3. Funciones                     " | [Quitar] | .
     }
-    ~~
-    {[Crear]}
+    {<color:red><b>En pantalla: 5 sesiones</b></color> · <color:red><b>Guardado: 4 sesiones</b></color> (mínimo 25) | [Descargar planificación]}
+    ⚠ Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
 }
 @endsalt

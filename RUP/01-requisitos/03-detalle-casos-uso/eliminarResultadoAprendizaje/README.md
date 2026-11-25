@@ -41,6 +41,10 @@
 
 Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()`/`eliminarMetodologiaDocente()`/`eliminarMateria()`: `ResultadoAprendizaje` no tiene `estado` propio, igual que `Materia` -- vive y muere con el `Programa` que lo contiene. El bloqueo cubre los dos niveles de la cascada de asignación (`Materia o-- ResultadoAprendizaje`, `AsignaturaPrograma o-- ResultadoAprendizaje`): basta con una asignación en cualquiera de los dos para bloquear, ningún RA llega a una `AsignaturaPrograma` sin pasar antes por su `Materia`. RAC2/RAH2 son datos reales del plan de estudios de GII, aportados por el usuario en la [issue #23](https://github.com/mmasias/pyCelda/issues/23); elección de cuál está bloqueado/libre es ilustrativa, no una afirmación sobre asignaciones reales (esa asignación concreta es L4, sin empezar).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): mismo diseño que eliminarCompetencia(): línea "Programa: GII -- ...", código, tipo y descripción; la bloqueada dice "⛔ No se puede eliminar", nombra las materias y asignaturas concretas en dos columnas y pone "Volver a los resultados de aprendizaje" en la cabecera; la de confirmación lleva "Cancelar" en la cabecera y "Confirmar eliminación" al pie.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : eliminarResultadoAprendizaje()`

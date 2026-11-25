@@ -33,16 +33,17 @@ El [issue #208](https://github.com/mmasias/pyCelda/issues/208) (2026-09-03) cerr
 
 **Responsabilidades:**
 - recoge la solicitud de enviar a revisión (un único paso, sin formulario).
-- presenta la confirmación de éxito: "GUÍA ENVIADA A REVISIÓN", tabla de evaluación con la suma (100%).
-- presenta el rechazo `c1` por ítems sin guardar: "guarda el borrador primero".
-- presenta el rechazo `c2` por validación de ponderaciones: "NO SE PUEDE ENVIAR A REVISIÓN", con el motivo concreto del primer incumplimiento (issue #208).
-- presenta el rechazo `c3` por planificación docente incompleta: "N de M sesiones".
+- tras un envío aceptado no presenta pantalla de confirmación propia: devuelve al `Profesor` a Inicio, donde la guía aparece ya En revisión en "Mis guías". Antes de enviar, si el temario tiene cambios sin guardar, pide confirmación para salir (el envío no incluye el temario sin guardar).
+- los rechazos no tienen pantalla propia: el motivo se presenta como mensaje de error ("Error: ...") en la propia ficha de la guía, sobre sus botones, y el `Profesor` sigue en edición.
+- presenta el rechazo `c1` por ítems sin guardar: "Hay items sin guardar -- guarda el borrador primero".
+- presenta el rechazo `c2` por validación de ponderaciones, con el motivo concreto (issue #208): "Rango por sistema de evaluación o suma total incorrectos".
+- presenta el rechazo `c3` por planificación docente incompleta: "Planificación docente incompleta: N de M sesiones".
 - presenta el rechazo `c4` por convocatoria extraordinaria sin concretar (#791): qué campo falta.
 
 **Colaboraciones:**
 - **Entrada:** `:GUIA_ABIERTO` -- el `Profesor` solicita enviar la `Guia` a revisión.
 - **Control:** `GuiaController`.
-- **Salida:** `:ASIGNATURAS_PROGRAMA_ABIERTO` (éxito); `:GUIA_ABIERTO` (rechazo, por cualquiera de las tres razones, sigue en edición).
+- **Salida:** `:INICIO_ABIERTO` (éxito); `:GUIA_ABIERTO` (rechazo, por cualquiera de las cuatro razones, sigue en edición). Hasta [#855](https://github.com/mmasias/pyCelda/issues/855) se modelaba `:ASIGNATURAS_PROGRAMA_ABIERTO` como salida de éxito; la aplicación vuelve a Inicio.
 
 ## Clases de controlador
 
@@ -113,7 +114,7 @@ El [issue #208](https://github.com/mmasias/pyCelda/issues/208) (2026-09-03) cerr
 ## Referencias
 
 - [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframes.puml) -- fuente de verdad de las comprobaciones (`c1`/`c2`/`c3`/`c4`).
-- [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> ASIGNATURAS_PROGRAMA_ABIERTO : enviarGuiaARevision()` (éxito), `GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()` (rechazo).
+- [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> INICIO_ABIERTO : enviarGuiaARevision()` (éxito), `GUIA_ABIERTO --> GUIA_ABIERTO : enviarGuiaARevision()` (rechazo).
 - [Diagrama de estados de Guia](/RUP/00-modelo-del-dominio/estados-entidades/guia.puml) -- `Borrador -> EnRevision` / `Rechazada -> EnRevision`.
 - [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- quien vincula lo pendiente; su ausencia es lo que dispara la precondición de rechazo.
 - [`crearPonderacionEvaluacion()`](../crearPonderacionEvaluacion/README.md) -- valida el máximo puntual; esta validación es distinta y agregada -- rango por `SistemaEvaluacion` y suma total.

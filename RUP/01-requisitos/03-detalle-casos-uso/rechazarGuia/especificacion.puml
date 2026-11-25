@@ -4,6 +4,7 @@ skinparam linetype polyline
 
 state GUIA_ABIERTO
 state GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA as "GUIAS_DEL_PROGRAMA_ABIERTO"
+state GUIA_ABIERTO_SALIDA as "GUIA_ABIERTO"
 
 GUIA_ABIERTO -[#green]-> rechazarGuia
 note on link
@@ -25,11 +26,21 @@ state rechazarGuia as "rechazarGuia()" {
     <b>DirectorPrograma</b> introduce comentario
     <b>DirectorPrograma</b> solicita rechazar
     end note
+
+    IntroduciendoComentario -[#blue]-> [*]
+    note on link
+    <b>DirectorPrograma</b> solicita cancelar
+    end note
 }
 
 rechazarGuia -[#green]-> GUIAS_DEL_PROGRAMA_ABIERTOS_SALIDA
 note on link
 EnRevision -> Rechazada; registra comentario (opcional) en HistorialCambio
+end note
+
+rechazarGuia -[#blue]-> GUIA_ABIERTO_SALIDA
+note on link
+<b>Sistema</b> presenta la Guia sin cambios
 end note
 
 @enduml

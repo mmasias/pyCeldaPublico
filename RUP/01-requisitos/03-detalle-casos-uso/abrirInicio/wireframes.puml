@@ -1,23 +1,16 @@
 @startsalt abrirInicio-wireframe
 {
-    <b>INICIO</b>
+    {<b>Inicio</b> | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
     ====
-    <b>Mis guías</b>
-    Manual del profesor
+    <b>2 guías esperan tu revisión</b> como director(a) del Grado en Ingeniería Informática.
+    {<b>Mis guías</b> | ^Semestre 1 (activo)^}
+    4 guías: 1 rechazada, 1 en borrador, 1 en revisión, 1 aprobada
     {#
-    <b>Asignatura                          | <b>Programa                          | <b>Carácter    |<b>Estado    | .
-    Programación I                         | Grado en Ingeniería Informática    | Básica         |Borrador     | [Abrir guía]
-    Ingeniería de Software I               | Grado en Ingeniería Informática    | Obligatoria    |Aprobada     | [Abrir guía]
-    Estructuras de datos y algoritmos I    | Grado en Ingeniería Informática    | Obligatoria    |En revisión  | [Abrir guía]
+    <b>Asignatura                          | <b>Código | <b>Programa                          | <b>Curso  | <b>Carácter   | <b>Estado          | <b>Guía
+    Fundamentos de computadores            | IYA005    | Grado en Ingeniería Informática    | I-s1      | Básica        | [ Rechazada ]      | [Abrir]
+    Programación I                         | IYA003    | Grado en Ingeniería Informática    | I-s1      | Básica        | [ Borrador ]       | [Abrir]
+    Estructuras de datos y algoritmos I    | IYA025    | Grado en Ingeniería Informática    | II-s1     | Obligatoria   | [ En revisión ]    | [Abrir]
+    Ingeniería de Software I               | IYA038    | Grado en Ingeniería Informática    | III-s1    | Obligatoria   | [ Aprobada ]       | [Abrir]
     }
-    ====
-    <b>Mis programas</b>
-    Manual del director de programa
-    {#
-    <b>Nombre                          | <b>Código | <b>Estado | .
-    Grado en Ingeniería Informática    | GII      | Vigente   | [Abrir]
-    }
-    ====
-    [ Cerrar sesión ]
 }
 @endsalt

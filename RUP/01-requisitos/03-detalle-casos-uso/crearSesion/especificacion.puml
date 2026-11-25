@@ -7,7 +7,7 @@ state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
 
 PLANIFICACION_DOCENTE_ABIERTO -[#green]-> crearSesion
 note on link
-<b>Profesor</b> solicita crear Sesion de la Planificación docente
+<b>Profesor</b> solicita añadir fila a la Planificación docente
 end note
 
 state crearSesion as "crearSesion()" {
@@ -16,22 +16,32 @@ state crearSesion as "crearSesion()" {
 
     [*] -[#green]-> SolicitandoDatos
     note on link
-    <b>Sistema</b> presenta solicitud de datos de la sesión
-    <b>Sistema</b> presenta selección de tipo
-    <b>Sistema</b> permite solicitar crear
+    <b>Sistema</b> presenta fila nueva al final del listado
+    <b>Sistema</b> presenta selección de tipo y solicitud de descripción
+    <b>Sistema</b> permite solicitar quitar la fila
     end note
 
     SolicitandoDatos -[#green]-> [*]
     note on link
     <b>Profesor</b> selecciona tipo
     <b>Profesor</b> introduce descripción
-    <b>Profesor</b> solicita crear
+    <b>Profesor</b> confirma la descripción
+    end note
+
+    SolicitandoDatos -[#blue]-> [*]
+    note on link
+    <b>Profesor</b> solicita quitar la fila
     end note
 }
 
 crearSesion -[#green]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
 note on link
 sesión creada con el siguiente número correlativo, listado actualizado
+end note
+
+crearSesion -[#blue]-> PLANIFICACION_DOCENTE_ABIERTO_SALIDA
+note on link
+fila quitada, sin cambios
 end note
 
 @enduml

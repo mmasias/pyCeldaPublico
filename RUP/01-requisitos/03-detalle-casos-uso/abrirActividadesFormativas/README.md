@@ -46,6 +46,10 @@ El listado sigue el orden de alta, que es el mismo de las filas de actividades f
 
 Códigos y nombres de los wireframes ilustrativos (formato de las memorias: `AD` dirigida, `AS` supervisada, `AA` autónoma).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, cabecera con el nombre del programa y pestañas del programa (activa Actividades formativas); el botón "Crear actividad formativa" pasa de bajo la tabla a la derecha del título "Actividades formativas". Columnas y acciones por fila sin cambios.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : abrirActividadesFormativas()`

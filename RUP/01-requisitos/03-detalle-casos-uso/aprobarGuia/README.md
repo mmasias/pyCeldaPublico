@@ -46,6 +46,10 @@ Primera de las cinco decisiones de la familia `aprobarGuia()`/`rechazarGuia()`/`
 
 **Sincronización de `Guia -- Profesor` (issue [#254](https://github.com/mmasias/pyCelda/issues/254))**: pasar a `Aprobada` re-deriva `Guia -- Profesor` de la plantilla `AsignaturaPrograma -- Profesor` en ese instante -- misma familia que la regeneración del PDF, un efecto de la transición, no un paso que el `DirectorPrograma` decida. Es el punto de sincronización de la copia: entre aprobaciones la copia puede quedar por detrás de la plantilla si el `Admin` la cambió, y una guía que volvió a `EnRevision` por ese cambio (efecto colateral de `asignar`/`desasignarProfesorAAsignaturaPrograma()`) recupera aquí la lista al día. Si `Guia.asignaturaPrograma` es nula (columna nullable), no se toca `Guia -- Profesor` y la aprobación sigue su curso. Ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md) y [`asignarProfesorAAsignaturaPrograma()`](../asignarProfesorAAsignaturaPrograma/README.md).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): el resultado no es una pantalla aparte "GUÍA DOCENTE -- Programación I (GII)": la ficha de la guía en la vista de Dirección (cabecera del programa, pestañas con Guías marcada, miga "Guías › Programación I") muestra arriba el aviso "✓ GUÍA APROBADA", el estado anterior y el actual como badges, el comentario registrado "Aprobada sin incidencia" y el botón "Volver a las guías" (antes "Volver al listado de guías"); debajo sigue la ficha, ya sin barra de decisiones, resumen de completitud ni recuadro de corrección. La especificación añade que el `DirectorPrograma` solicita volver a las guías para llegar a `GUIAS_DEL_PROGRAMA_ABIERTO`. Colores de los badges: los de [`abrirGuia()`](../abrirGuia/README.md).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : aprobarGuia()`

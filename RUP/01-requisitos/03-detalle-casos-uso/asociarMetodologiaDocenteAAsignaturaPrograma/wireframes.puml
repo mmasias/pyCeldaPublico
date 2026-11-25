@@ -1,17 +1,30 @@
 @startsalt asociarMetodologiaDocenteAAsignaturaPrograma-wireframe
 {
-    <b>ASOCIAR METODOLOGÍA DOCENTE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Programación I -- GII, 1er curso</b>
-    --
+    <b>Asociar metodología docente</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Programación I -- Programación, curso I</b>
     {
-        <b>Metodología docente (*):</b>
-        ^MD3 -- Resolución de ejercicios^
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>Solo se listan las ya asociadas a la Materia (Programación) y no asociadas aún a esta asignatura-en-programa</i>
+        <b>Metodología docente (*):</b> | ^MD3 -- Resolución de ejercicios^
     }
-    ~~
-    {[Asociar]}
+    <i>(*) Campo obligatorio</i>
+    <i>Solo se listan las ya asociadas a la materia (Programación) y no asociadas aún a esta asignatura-en-programa</i>
+    --
+    [Asociar]
+}
+@endsalt
+
+@startsalt asociarMetodologiaDocenteAAsignaturaPrograma-wireframe-sin-disponibles
+{
+    {+ Vista de Dirección · GII }
+    ====
+    <b>Asociar metodología docente</b> | [ Volver ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Programación I -- Programación, curso I</b>
+    No hay metodologías docentes disponibles para asociar.
+    <i>Solo se listan las ya asociadas a la materia (Programación) y no asociadas aún a esta asignatura-en-programa.</i>
 }
 @endsalt

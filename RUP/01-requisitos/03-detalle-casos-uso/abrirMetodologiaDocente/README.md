@@ -42,6 +42,10 @@ Ficha de la metodología con su **Distribución**: las `Materia` y las `Asignatu
 
 La descripción es la del catálogo del `Programa`; la `descripcionPropia` que una `Materia` pueda fijar en su asociación ([`editarAsociacionMetodologiaDocenteMateria()`](../editarAsociacionMetodologiaDocenteMateria/README.md)) no se muestra aquí.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, cabecera con el nombre del programa y pestañas del programa (activa Metodologías); miga "Metodologías docentes › MD3" con "Editar" a su derecha (antes al pie); secciones "Descripción" (texto en cursiva) y "Distribución". Si una de las dos columnas no tiene filas, presenta "Ninguna"; si no hay ninguna asignación, en lugar de las columnas se presenta "Sin asignaciones a materias ni a asignaturas del programa.". La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : abrirMetodologiaDocente()`

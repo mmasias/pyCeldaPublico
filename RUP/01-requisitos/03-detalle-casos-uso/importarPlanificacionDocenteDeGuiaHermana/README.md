@@ -64,6 +64,11 @@ Reutilizado por `DirectorPrograma`, misma ficha (`DirectorPrograma --|> Profesor
 
 **Tope de longitud de la descripción** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): la copia es literal, así que si alguna `Sesion` de la guía origen tiene una descripción de más de 500 caracteres (el tope de [`crearSesion()`](../crearSesion/README.md), no aplicado a datos anteriores), la importación entera se rechaza con `422` (`Sesión N: la descripción supera el límite de 500 caracteres`, siendo `N` el `numero` de la sesión origen) y el destino queda intacto: no se recorta en silencio. Barrera de entrada, sin rama en la especificación.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): etiqueta "Vista de Docente", título "Importar planificación docente" con **Cancelar** a la derecha (la pantalla no lleva miga ni accesos globales), líneas "Asignatura:" y "Programa:" bajo la cabecera, la opción del desplegable con el código de la asignatura antes que el del programa ("IYA003 / GIOI -- Informática (aprobada el 4/9/2026, 30 sesiones)") y el botón **Importar planificación docente** en negrita bajo una línea. Se retira del dibujo la línea en cursiva que explicaba el formato de una opción en revisión, porque no aparece en pantalla: esa opción se lee "(en revisión desde 2/9/2026, 30 sesiones)". El desplegable arranca en "(elige una guía)" y el aviso en rojo solo aparece tras elegir origen; si la guía origen no tiene sesiones, el aviso añade "La guía origen no tiene ninguna sesión: esto dejará la planificación docente vacía.".
+- Rama roja (ninguna hermana importable): la pantalla muestra solo "Ninguna asignatura hermana tiene una guía aprobada, o en revisión que también tengas asignada, de la que importar." y el botón de la cabecera pasa a ser "Volver a la planificación docente". En la práctica no se llega a ella desde la interfaz: el botón de entrada solo aparece si hay alguna guía importable.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : importarPlanificacionDocenteDeGuiaHermana()`

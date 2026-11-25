@@ -1,27 +1,27 @@
 @startsalt desasociarMetodologiaDocenteMateria-wireframe-bloqueada
 {
-    <b>DESASOCIAR METODOLOGÍA DOCENTE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <color:red><b>⚠ NO SE PUEDE DESASOCIAR</b></color>
+    <b>Desasociar metodología docente</b> | [ Volver a <b>Programación</b> ]
     ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red><b>⛔ No se puede desasociar</b></color>
     <b>MD1 -- Método expositivo</b> (Programación)
-
-    En uso en: AsignaturaPrograma "Programación I", AsignaturaPrograma "Programación II".
-
-    <i>Quítala primero de esas AsignaturaPrograma.</i>
-    ====
-    [ <b>Volver a Programación</b> ]
+    En uso en estas asignaturas de programa: "Programación I", "Programación II".
+    <i>Quítala primero de esas asignaturas de programa.</i>
 }
 @endsalt
 
 @startsalt desasociarMetodologiaDocenteMateria-wireframe-confirmacion
 {
-    <b>DESASOCIAR METODOLOGÍA DOCENTE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Desasociar metodología docente</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>MD5 -- Aprendizaje orientado a proyectos</b> (Programación)
-
     Sin asignaturas-en-programa de esta materia usándola.
-    ====
-    {[Confirmar desasociación] | [Cancelar]}
+    --
+    [Confirmar desasociación]
 }
 @endsalt

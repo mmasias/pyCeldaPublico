@@ -2,24 +2,28 @@
 {
     {+ Vista de Docente }
     ====
-    <b>GUÍA DOCENTE</b>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
     <b>GII · Programación I</b>
-    ====
-    {#
-        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ] neutro
-        <b>Semestre:</b> 1 | <b>Creación:</b> 01/09/2026
-        <b>Profesores:</b> profesor1@uneatlantico.es | <b>Última modificación:</b> 07/09/2026
-         . | <b>Generación del PDF:</b> --
+    {
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ]
+        <b>Semestre:</b> 1 | <b>Creación:</b> 1/9/2026, 10:30:00
+        <b>Profesores:</b> | <b>Última modificación:</b> 7/9/2026, 12:15:00
+        · Ana Pérez (Responsable · Imparte) | <b>Generación del PDF:</b> --
     }
     ====
     <color:green>Borrador guardado</color>
     {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
     ====
     <b>Contenido</b>
+    <b>Contenido aprobado en memoria</b>. La guía debe ser coherente con este.
+    {#
+        <i>Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control. Tema 3. Estructuras de datos.</i>
+    }
+    {<b>Contenido aportado por el profesor</b> | <i>Se guarda con <b>Guardar borrador</b>. 1.322 / 10.000</i>}
     {+
-        "Tema 1. Fundamentos de la programación"
-        "Tema 2. Estructuras de control"
-        "Tema 3. Estructuras de datos"
+        "Tema 1. Fundamentos de la programación                    "
+        "Tema 2. Estructuras de control                            "
+        "Tema 3. Estructuras de datos                              "
     }
 }
 @endsalt
@@ -28,32 +32,38 @@
 {
     {+ Vista de Dirección · GII }
     ====
-    <b>GUÍA DOCENTE</b>
-    <b>Programación I (GII)</b>
+    {<b>Grado en Ingeniería Informática</b> | [Inicio] | [Mis programas] | [Cerrar sesión]}
+    {[Vista general] | [<b>Guías</b>]}
+    {[Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas] | [Asignaturas]}
     ====
-    {#
-        <b>Semestre:</b> 1 | <b>Estado:</b> [ En revisión ] ámbar
-        <b>Profesores:</b> profesor1@uneatlantico.es | <b>Creación:</b> 01/09/2026
-         . | <b>Última modificación:</b> 05/09/2026
+    {Guías › <b>Programación I</b>}
+    {
+        <b>Semestre:</b> 1 | <b>Estado:</b> [ En revisión ]
+        <b>Profesores:</b> | <b>Creación:</b> 1/9/2026, 10:30:00
+        · Ana Pérez (Responsable · Imparte) | <b>Última modificación:</b> 5/9/2026, 09:45:00
          . | <b>Generación del PDF:</b> --
     }
-    ====
-    {[Aprobar] | [Rechazar] | [Previsualizar]}
-    <b>Resumen de completitud</b>
-    Sin ítems pendientes de guardar
-    Ponderaciones completas
-    Convocatoria extraordinaria concretada
-    <b>Planificación docente: 25 sesiones (mínimo 25)</b>
-    ====
+    {[<b>Aprobar</b>] | [<b>Rechazar</b>] | [Previsualizar]}
+    {
+        <b>Resumen de completitud</b> | Sin ítems pendientes de guardar
+        . | Ponderaciones completas
+        . | Convocatoria extraordinaria concretada
+        . | <b>Planificación docente: 25 sesiones (mínimo 25)</b>
+    }
     {#
         ⚠ <b>Hay una corrección excepcional del director</b>: guardar esta edición la devuelve a borrador (si la guía está aprobada) o la rechaza (si está en revisión). El envío a revisión sigue siendo del profesorado. | [Guardar borrador]
     }
     ====
     <b>Contenido</b>
+    <b>Contenido aprobado en memoria</b>. La guía debe ser coherente con este.
+    {#
+        <i>Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control. Tema 3. Estructuras de datos.</i>
+    }
+    {<b>Contenido aportado por el profesor</b> | <i>Se guarda con <b>Guardar borrador</b>. 1.341 / 10.000</i>}
     {+
-        "Tema 1. Fundamentos de la programación"
-        "Tema 2. Estructuras de control"
-        "Tema 3. Estructuras de datos y algoritmos"
+        "Tema 1. Fundamentos de la programación                    "
+        "Tema 2. Estructuras de control                            "
+        "Tema 3. Estructuras de datos y algoritmos                 "
     }
 }
 @endsalt
@@ -62,30 +72,36 @@
 {
     {+ Vista de Dirección · GII }
     ====
-    <b>GUÍA DOCENTE</b>
-    <b>Programación I (GII)</b>
+    {<b>Grado en Ingeniería Informática</b> | [Inicio] | [Mis programas] | [Cerrar sesión]}
+    {[Vista general] | [<b>Guías</b>]}
+    {[Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas] | [Asignaturas]}
     ====
-    {#
-        <b>Semestre:</b> 1 | <b>Estado:</b> [ Rechazada ] rojo
-        <b>Profesores:</b> profesor1@uneatlantico.es | <b>Creación:</b> 01/09/2026
-         . | <b>Última modificación:</b> 07/09/2026
+    {Guías › <b>Programación I</b>}
+    {
+        <b>Semestre:</b> 1 | <b>Estado:</b> [ Rechazada ]
+        <b>Profesores:</b> | <b>Creación:</b> 1/9/2026, 10:30:00
+        · Ana Pérez (Responsable · Imparte) | <b>Última modificación:</b> 7/9/2026, 12:15:00
          . | <b>Generación del PDF:</b> --
     }
-    ====
-    {[Escalar a aprobada] | [Previsualizar]}
-    <b>Resumen de completitud</b>
-    Sin ítems pendientes de guardar
-    Ponderaciones completas
-    Convocatoria extraordinaria concretada
-    <b>Planificación docente: 25 sesiones (mínimo 25)</b>
-    ====
+    {[<b>Escalar a aprobada</b>] | [Previsualizar]}
+    {
+        <b>Resumen de completitud</b> | Sin ítems pendientes de guardar
+        . | Ponderaciones completas
+        . | Convocatoria extraordinaria concretada
+        . | <b>Planificación docente: 25 sesiones (mínimo 25)</b>
+    }
     <color:green>Borrador guardado</color>
     ====
     <b>Contenido</b>
+    <b>Contenido aprobado en memoria</b>. La guía debe ser coherente con este.
+    {#
+        <i>Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control. Tema 3. Estructuras de datos.</i>
+    }
+    {<b>Contenido aportado por el profesor</b> | <i>Se guarda con <b>Guardar borrador</b>. 1.341 / 10.000</i>}
     {+
-        "Tema 1. Fundamentos de la programación"
-        "Tema 2. Estructuras de control"
-        "Tema 3. Estructuras de datos y algoritmos"
+        "Tema 1. Fundamentos de la programación                    "
+        "Tema 2. Estructuras de control                            "
+        "Tema 3. Estructuras de datos y algoritmos                 "
     }
 }
 @endsalt

@@ -20,7 +20,7 @@
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`editarSesion()`](/RUP/02-analisis/casos-uso/editarSesion/README.md): CRUD real e inmediato contra `SesionRepository`, sin capa Service. Dos pasos -- cargar la sesión actual y guardar -- a diferencia de [`editarPonderacionEvaluacion()`](/RUP/03-diseño/casos-uso/editarPonderacionEvaluacion/README.md), que necesita un tercero para el selector de `SistemaEvaluacion`. **Sin `<<choice>>`**: sin enlace estructural a `SistemaEvaluacion`/`PonderacionEvaluacion` (decisión 4 de la discussion [#140](https://github.com/mmasias/pyCelda/discussions/140)), no hay regla de negocio que pueda rechazar la edición. Solo `tipo` y `descripcion` son editables; `numero` es correlativo automático y permanece sin cambios (decisión 6).
+Bajada a diseño del caso de análisis [`editarSesion()`](/RUP/02-analisis/casos-uso/editarSesion/README.md): CRUD real e inmediato contra `SesionRepository`, sin capa Service. Un paso -- guardar: la tabla ya tiene los datos actuales de la sesión, editables en la fila, y no los vuelve a pedir -- a diferencia de [`editarPonderacionEvaluacion()`](/RUP/03-diseño/casos-uso/editarPonderacionEvaluacion/README.md), que necesita un tercero para el selector de `SistemaEvaluacion`. **Sin `<<choice>>`**: sin enlace estructural a `SistemaEvaluacion`/`PonderacionEvaluacion` (decisión 4 de la discussion [#140](https://github.com/mmasias/pyCelda/discussions/140)), no hay regla de negocio que pueda rechazar la edición. Solo `tipo` y `descripcion` son editables; `numero` es correlativo automático y permanece sin cambios (decisión 6).
 
 ## Diagrama de secuencia de diseño
 
@@ -34,7 +34,7 @@ Bajada a diseño del caso de análisis [`editarSesion()`](/RUP/02-analisis/casos
 
 ## Participantes
 
-- **Vista**: `EditarSesionView` (React) -- `GET /api/v1/sesiones/{sesion_id}` para poblar el formulario (`numero` visible, no editable; `tipo`/`descripcion` editables); `PUT /api/v1/sesiones/{sesion_id}` al confirmar.
+- **Vista**: `EditarSesionView` -- en la pantalla construida no es un componente aparte sino la propia fila de `PlanificacionDocente.tsx`: `tipo`/`descripcion` editables en línea con los datos del listado, sin `GET` previo; número (posición) visible, no editable. `PUT /api/v1/sesiones/{sesion_id}` al cambiar el tipo o al confirmar la descripción (Enter o salir del campo, `onBlur`); guardado por fila, con "Guardando..." y, si falla, error con **Reintentar**. El servidor trata un guardado sin cambios como no-edición (no cambia el estado ni escribe historial). `GET /api/v1/sesiones/{sesion_id}` sigue existiendo en la API, pero la pantalla no lo usa.
 - **API**: `routers/sesion.py::obtener_sesion(sesion_id)` / `editar_sesion(sesion_id, datos)` -- funciones sueltas, sin capa Service.
 - **Modelo**: `Sesion.actualizar(tipo, descripcion)` -- se actualiza a sí misma, Fat Model.
 - **Repositorio**: `SesionRepository.obtener(sesion_id)` / `actualizar(sesion)` -- `UPDATE` sobre `sesiones`.

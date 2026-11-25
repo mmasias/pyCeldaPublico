@@ -1,10 +1,21 @@
 @startsalt duplicarSesion-wireframe
 {
-    <b>PLANIFICACIÓN DOCENTE</b>
+    {+ Vista de Docente }
     ====
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Planificación docente</b> | [Añadir fila]}
+    ====
+    {<b>Leyenda:</b> | Clase teórica | Clase práctica / de laboratorio | Clase teórico/práctica | [Importar de asignatura hermana] | [Importar desde texto]}
     {#
-        <b>Nº</b> | <b>Tipo</b> | <b>Descripción</b> | .
-        3 | Clase Práctica | "Temas aaa bbb" | {[📑 Duplicar] | [🗑️ Eliminar]}
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b> (Mayúsculas+Enter: nueva línea) | . | .
+        1 | ^Clase Teórica^ | "Presentación de la asignatura          " | [Duplicar] | [Eliminar]
+        2 | ^Clase Teórica^ | "Tema 1. Algoritmos y programas        " | [Duplicar] | [Eliminar]
+        3 | ^Clase Práctica^ | "Práctica 1. Entorno de desarrollo     " | [Duplicar] | [Eliminar]
+        4 | ^Clase Práctica^ | "Práctica 1. Entorno de desarrollo     " | [Duplicar] | [Eliminar]
+        5 | ^Clase Teórico/Práctica^ | "Tema 2. Estructuras de control        " | [Duplicar] | [Eliminar]
+        6 | ^Evaluación Continua^ | "Ejercicios del tema 2                 " | [Duplicar] | [Eliminar]
     }
+    {<color:red><b>En pantalla: 6 sesiones</b></color> · <color:red><b>Guardado: 5 sesiones</b></color> (mínimo 25) | [Descargar planificación]}
+    ⚠ Hay cambios que no cuentan hasta pulsar "Guardar borrador" en la ficha de la guía.
 }
 @endsalt

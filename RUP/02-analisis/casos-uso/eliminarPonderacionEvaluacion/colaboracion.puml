@@ -11,7 +11,7 @@ package eliminarPonderacionEvaluacion as "eliminarPonderacionEvaluacion()" {
     rectangle #b5bd68 PonderacionEvaluacionController
 }
 
-PonderacionesEvaluacionAbierto --> EliminarPonderacionEvaluacionView: <font size=8>eliminarPonderacionEvaluacion(ponderacionId)
+PonderacionesEvaluacionAbierto --> EliminarPonderacionEvaluacionView: <font size=8>eliminarPonderacionEvaluacion(ponderacionId)\n<font size=8>confirmación en la propia fila
 
 EliminarPonderacionEvaluacionView --> PonderacionEvaluacionController: <font size=8>confirmarEliminacion(ponderacionId) : boolean
 

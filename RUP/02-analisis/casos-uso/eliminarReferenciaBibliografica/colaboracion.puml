@@ -11,11 +11,11 @@ package eliminarReferenciaBibliografica as "eliminarReferenciaBibliografica()" {
     rectangle #b5bd68 ReferenciaBibliograficaController
 }
 
-ReferenciasBibliograficasAbierto --> EliminarReferenciaBibliograficaView: <font size=8>eliminarReferenciaBibliografica(referenciaId)
+ReferenciasBibliograficasAbierto --> EliminarReferenciaBibliograficaView: <font size=8>eliminarReferenciaBibliografica(referenciaId) [confirmación en la propia fila]
 
 EliminarReferenciaBibliograficaView --> ReferenciaBibliograficaController: <font size=8>confirmarEliminacion(referenciaId) : boolean
 
 EliminarReferenciaBibliograficaView ..[#green]> ReferenciasBibliograficasSalida: <font size=8>quitada de la lista de trabajo de la sesión
-EliminarReferenciaBibliograficaView ..[#blue]> ReferenciasBibliograficasSalida: <font size=8>cancelada, sin cambios
+EliminarReferenciaBibliograficaView ..[#blue]> ReferenciasBibliograficasSalida: <font size=8>cancelada en la fila, sin cambios
 
 @enduml

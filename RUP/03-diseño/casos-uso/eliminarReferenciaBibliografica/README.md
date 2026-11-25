@@ -20,7 +20,7 @@
 
 ## Propósito
 
-Bajada a diseño del caso de análisis [`eliminarReferenciaBibliografica()`](/RUP/02-analisis/casos-uso/eliminarReferenciaBibliografica/README.md): **sin endpoint de backend**, mismo criterio que [`eliminarPonderacionEvaluacion()`](/RUP/03-diseño/casos-uso/eliminarPonderacionEvaluacion/README.md) -- decisión 2 de la discussion [#58](https://github.com/mmasias/pyCelda/discussions/58). Confirmar/cancelar es una mutación de la lista de trabajo del cliente: el `Profesor` quita el ítem de un array en estado local de React, sin ninguna llamada a la API. Sin Router, sin Repository, sin Base de Datos -- el efecto real solo se materializa después, cuando [`guardarBorradorGuia()`](/RUP/03-diseño/casos-uso/guardarBorradorGuia/README.md) reciba la lista completa (ya sin este `id`) y desvincule la fila real por ausencia.
+Bajada a diseño del caso de análisis [`eliminarReferenciaBibliografica()`](/RUP/02-analisis/casos-uso/eliminarReferenciaBibliografica/README.md): **sin endpoint de backend**, mismo criterio que [`eliminarPonderacionEvaluacion()`](/RUP/03-diseño/casos-uso/eliminarPonderacionEvaluacion/README.md) -- decisión 2 de la discussion [#58](https://github.com/mmasias/pyCelda/discussions/58). Confirmar/cancelar ocurre en la propia fila del listado, sin pantalla aparte, y es una mutación de la lista de trabajo del cliente: el `Profesor` añade el `id` a la lista de excluidos de la guía (en `sessionStorage`, reflejada en el estado local de React), sin ninguna llamada a la API. Sin Router, sin Repository, sin Base de Datos -- el efecto real solo se materializa después, cuando [`guardarBorradorGuia()`](/RUP/03-diseño/casos-uso/guardarBorradorGuia/README.md) reciba la lista completa (ya sin este `id`) y desvincule la fila real por ausencia.
 
 ## Diagrama de secuencia de diseño
 
@@ -34,7 +34,7 @@ Bajada a diseño del caso de análisis [`eliminarReferenciaBibliografica()`](/RU
 
 ## Participantes
 
-- **Vista**: `EliminarReferenciaBibliograficaView` (React) -- presenta la confirmación y, en la rama verde, quita el `id` del array de trabajo en estado local, sin red.
+- **Vista**: `EliminarReferenciaBibliograficaView` (React), realizada dentro del propio listado `ReferenciasBibliograficas.tsx` (estado `idAConfirmar`), no como pantalla aparte -- la primera pulsación de la papelera convierte ese botón en "🗑️ pulsa de nuevo para confirmar" y añade **Cancelar** a su lado; en la rama verde, la segunda pulsación añade el `id` a la lista de excluidos (`excluir(claveReferenciasExcluidas(guiaId), id)`, en `sessionStorage`) y la fila desaparece; en la rama azul, **Cancelar** devuelve la fila a su estado normal. Sin red.
 - **API**: ninguna -- sin ruta HTTP para este caso de uso.
 - **Modelo**: ninguno -- ninguna fila de `ReferenciaBibliografica` se lee, borra ni edita.
 - **Repositorio**: ninguno.
@@ -42,8 +42,9 @@ Bajada a diseño del caso de análisis [`eliminarReferenciaBibliografica()`](/RU
 ## Decisiones de diseño
 
 - **Sin endpoint de backend, por diseño**: mismo criterio que [`eliminarPonderacionEvaluacion()`](/RUP/03-diseño/casos-uso/eliminarPonderacionEvaluacion/README.md) -- decisión 2 de la discussion [#58](https://github.com/mmasias/pyCelda/discussions/58).
-- **La eliminación es reversible hasta que se guarda el borrador**: si el `Profesor` cierra la pestaña sin guardar, el ítem sigue vinculado en la base de datos.
-- **Ambas ramas (confirmar/cancelar) terminan en la misma pantalla** -- self-loop, sin navegación de salida distinta.
+- **La eliminación es reversible hasta que se guarda el borrador**: si el `Profesor` cierra la pestaña sin guardar, el ítem sigue vinculado en la base de datos. [`guardarBorradorGuia()`](/RUP/03-diseño/casos-uso/guardarBorradorGuia/README.md) lee la lista de excluidos y la limpia al guardar.
+- **Confirmación en la propia fila, sin pantalla aparte** (issue [#855](https://github.com/mmasias/pyCelda/issues/855)): la pantalla construida nunca abrió una vista de confirmación propia; el diagrama de secuencia lo refleja.
+- **Ambas ramas (confirmar/cancelar) terminan en la misma pantalla** -- self-loop, sin navegación: nunca se sale del listado.
 
 ## Referencias
 

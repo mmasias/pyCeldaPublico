@@ -26,11 +26,10 @@ Traducción a clases de análisis del caso de uso [`eliminarSesion()`](/RUP/01-r
 ### `EliminarSesionView`
 
 **Responsabilidades:**
-- presenta la información de la `Sesion` (`numero`, `tipo`, `descripcion`) -- datos ya conocidos de la fila del listado que originó la solicitud, sin releer nada.
-- presenta el aviso de que las sesiones siguientes se renumerarán.
-- presenta la pregunta de confirmación y permite solicitar confirmar o cancelar.
-- en la rama verde, quita el ítem de la lista de trabajo de la sesión y presenta el listado actualizado, con las sesiones siguientes renumeradas en la vista.
-- en la rama azul, cierra la confirmación sin tocar la lista.
+- presenta la confirmación en la propia fila del listado, sin pantalla aparte: el botón de eliminar de esa fila pasa a "pulsa de nuevo para confirmar" y aparece a su lado **Cancelar**. La fila sigue mostrando sus datos (`numero` posicional, `tipo`, `descripcion`); no se presenta ningún texto de aviso de renumeración.
+- permite solicitar confirmar (segunda pulsación) o cancelar.
+- en la rama verde, quita el ítem de la lista de trabajo de la sesión (una marca de exclusión guardada en el navegador, que dura mientras la pestaña siga abierta) y presenta el listado actualizado: la fila desaparece y las siguientes suben un puesto -- la renumeración se ve, no se avisa. El medidor pasa a dar las dos cifras ("En pantalla" / "Guardado") con el aviso de cambios sin guardar.
+- en la rama azul, devuelve el botón a su estado normal sin tocar la lista.
 
 **Colaboraciones:**
 - **Entrada:** `:PLANIFICACION_DOCENTE_ABIERTO` -- el `Profesor` solicita eliminar una `Sesion` desde su fila en el listado.
@@ -51,19 +50,19 @@ Traducción a clases de análisis del caso de uso [`eliminarSesion()`](/RUP/01-r
 
 ## Flujo de colaboración principal
 
-1. Desde `:PLANIFICACION_DOCENTE_ABIERTO`, el `Profesor` solicita eliminar una `Sesion` desde su fila en el listado -- los datos a presentar viajan con la solicitud, sin releer nada; se abre `EliminarSesionView` con el aviso de renumeración y la pregunta de confirmación.
+1. Desde `:PLANIFICACION_DOCENTE_ABIERTO`, el `Profesor` pulsa eliminar en la fila de una `Sesion`; `EliminarSesionView` presenta la confirmación en esa misma fila ("pulsa de nuevo para confirmar" y **Cancelar**), sin pantalla aparte, sin releer nada y sin texto de aviso de renumeración.
 
 ### Rama verde (confirmar)
 
-2. El `Profesor` solicita confirmar; la Vista pide al Controlador confirmar la eliminación (`confirmarEliminacion(sesionId)`); el Controlador no valida nada y confirma. La Vista quita el ítem de la lista de trabajo de la sesión y presenta el listado actualizado, con las sesiones siguientes renumeradas en la vista; la colaboración termina en `:PLANIFICACION_DOCENTE_ABIERTO`.
+2. El `Profesor` solicita confirmar; la Vista pide al Controlador confirmar la eliminación (`confirmarEliminacion(sesionId)`); el Controlador no valida nada y confirma. La Vista quita el ítem de la lista de trabajo de la sesión y presenta el listado actualizado: la fila desaparece y las siguientes suben un puesto (renumeración visible, sin aviso en texto); la colaboración termina en `:PLANIFICACION_DOCENTE_ABIERTO`.
 
 ### Rama azul (cancelar)
 
-3. El `Profesor` solicita cancelar; la Vista cierra la confirmación sin tocar la lista de trabajo; la colaboración termina en `:PLANIFICACION_DOCENTE_ABIERTO`, sin cambios.
+3. El `Profesor` solicita cancelar; la Vista devuelve el botón de la fila a su estado normal sin tocar la lista de trabajo; la colaboración termina en `:PLANIFICACION_DOCENTE_ABIERTO`, sin cambios.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSesion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSesion/wireframes.puml) -- fuente de verdad del patrón confirmar/cancelar sin `<<choice>>` y del aviso de renumeración.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSesion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarSesion/wireframes.puml) -- fuente de verdad del patrón confirmar/cancelar en la propia fila, sin `<<choice>>`; la renumeración se ve al confirmar, sin aviso en texto (alineado con la pantalla construida en #855 y #857).
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : eliminarSesion()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `PlanificacionDocente *-- Sesion`, sin entidad que dependa de `Sesion`.
 - [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- quien recibe la lista de trabajo ya sin este ítem y borra la fila real por ausencia (`db.delete`, issue [#93](https://github.com/mmasias/pyCelda/issues/93)).

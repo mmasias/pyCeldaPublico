@@ -44,6 +44,10 @@ Cuarta decisión de la familia, una de las tres transiciones de reapertura desde
 
 Wireframe con `GII__IYA003` mostrada hipotéticamente `Aprobada` -- estado real necesario como precondición de esta decisión, que el catálogo todavía no tiene documentado en ninguna `Guia` real; mismo criterio ilustrativo que el resto del lote.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): título "Revocar aprobación -- Programación I" con "Cancelar" a la derecha, línea "Programa: GII -- Grado en Ingeniería Informática", estado actual como badge sin texto de color, comentario en un cuadro de texto (el ejemplo es el texto de ayuda que muestra vacío) y botones "Revocar aprobación" y "Cancelar". La etiqueta de vista dice solo "Vista de Dirección": esta pantalla no le pasa la sigla del programa. "Cancelar" vuelve a la ficha de la guía sin cambios (pregunta antes si hay un comentario escrito); la especificación añade esa salida. Tras revocar, la aplicación vuelve a la lista de guías del programa sin mensaje de confirmación. Colores de los badges: los de [`abrirGuia()`](../abrirGuia/README.md).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : revocarAprobacionGuia()`

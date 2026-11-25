@@ -42,6 +42,10 @@ Mismo formulario que [`crearActividadFormativa()`](../crearActividadFormativa/RE
 
 **Histórico**: hasta #772 el `codigo` no era editable una vez creada la actividad y no había `<<choice>>`; el catálogo era de la `Universidad`, solo para `Admin`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Editar actividad formativa", línea "Programa: GII -- Grado en Ingeniería Informática" y código en la misma línea que su etiqueta. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ACTIVIDAD_FORMATIVA_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : editarActividadFormativa()`

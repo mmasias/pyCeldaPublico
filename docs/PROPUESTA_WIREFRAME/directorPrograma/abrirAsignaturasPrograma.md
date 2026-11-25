@@ -15,7 +15,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Abrir**](abrirGuia.md)|<sub>abrirGuia()</sub>|
-|[**Abrir programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
+|[**Abrir**](abrirAsignaturaPrograma.md)|<sub>abrirAsignaturaPrograma()</sub>|
+|[**Vista general**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
 
 </div>

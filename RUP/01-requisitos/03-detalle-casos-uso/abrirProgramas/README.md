@@ -50,6 +50,8 @@ Caso de uso reutilizado por `DirectorPrograma` (`DirectorPrograma --|> Profesor`
 
 - Modelado: parametrizado. La invocación directa de `Admin` (sin filtro, con Crear/Eliminar) y la variante de `DirectorPrograma` (filtrada a los programas que dirige, sin Crear/Eliminar) son el mismo caso de uso; la segunda la incluye `abrirInicio()` como "Mis programas" (`<<include>>`) y también es alcanzable por deep link (ver `actoresCasosUsoDirectorPrograma.puml`, `wireframe-porDirector.svg`). Mismo patrón que `abrirAsignaturasPrograma()` (issue [#48](https://github.com/mmasias/pyCelda/issues/48)): el filtro es el parámetro, no una rama nueva. El endpoint devuelve `[]` (no 403) para una cuenta que no dirige nada (discussion [#274](https://github.com/mmasias/pyCelda/discussions/274)).
 
+- Wireframe alineado con la pantalla construida (#858): variante `wireframe-porDirector` con la etiqueta de vista y el título "Mis programas" de la cabecera (antes "MIS PROGRAMAS"); tabla sin cambios. La variante de `Admin` no se toca.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `FACULTAD_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()`

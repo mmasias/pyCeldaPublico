@@ -26,8 +26,8 @@ Traducción a clases de análisis del caso de uso [`editarSesion()`](/RUP/01-req
 ### `EditarSesionView`
 
 **Responsabilidades:**
-- presenta el formulario con los datos actuales de la sesión: selector `tipo` con los seis valores del enum cerrado, y `descripcion`, ambos obligatorios; `numero` queda visible pero no editable.
-- permite solicitar guardar.
+- presenta los datos actuales de la sesión editables en su propia fila del listado, sin pantalla aparte: selector `tipo` con los seis valores del enum cerrado, y `descripcion`, ambos obligatorios; el número (posición de la fila) queda visible pero no editable.
+- pide guardar al cambiar el tipo o al confirmar la descripción (Enter o salir del campo); no hay botón "Guardar". Mientras guarda muestra "Guardando..." bajo la fila; si falla, el error con **Reintentar**, conservando lo escrito.
 
 **Colaboraciones:**
 - **Entrada:** `:PLANIFICACION_DOCENTE_ABIERTO` -- el `Profesor` solicita editar una `Sesion` desde su fila en el listado.
@@ -71,7 +71,7 @@ Traducción a clases de análisis del caso de uso [`editarSesion()`](/RUP/01-req
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/wireframes.puml) -- fuente de verdad del formulario editable.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/wireframes.puml) -- fuente de verdad de la edición en la propia fila (alineada con la pantalla construida en #857).
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : editarSesion()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Sesion{numero, tipo, descripcion}`.
 - [`crearSesion()`](../crearSesion/README.md) -- quien asigna el `numero` correlativo que aquí permanece sin cambios.

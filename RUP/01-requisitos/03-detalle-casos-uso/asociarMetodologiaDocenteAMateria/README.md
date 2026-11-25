@@ -42,6 +42,9 @@ Solo elige una `MetodologiaDocente` del catálogo del `Programa` de la `Materia`
 
 **Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`. La metodología elegida tiene que ser del mismo `Programa` que la `Materia`, para los dos actores.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): título "Asociar metodología docente" con Cancelar en la cabecera (Volver si no quedan metodologías disponibles), línea "Programa: GII -- Grado en Ingeniería Informática", nombre de la materia, selector en la misma línea que su etiqueta y Asociar tras una línea separadora.
 
 ## Referencias
 

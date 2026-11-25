@@ -1,11 +1,25 @@
 @startsalt descargarGuiaPDF-wireframe
 {
-    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <b>Fecha de generación de PDF:</b> 08/08/2026
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    <b>GII · Programación I</b>
+    {
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Aprobada ]
+        <b>Semestre:</b> 1 | <b>Creación:</b> 1/9/2026, 10:30:00
+        <b>Profesores:</b> | <b>Última modificación:</b> 10/9/2026, 11:20:00
+        · Ana Pérez (Responsable · Imparte) | <b>Generación del PDF:</b> 10/9/2026, 11:20:00
+    }
     ====
-    { "GII__IYA003 -- Programación I.pdf" }
+    ⚠ Esta guía está aprobada: si guardas un cambio, volverá a borrador y habrá que enviarla de nuevo a revisión.
+    {[Guardar borrador] | [Enviar a revisión] | [<b>Descargar PDF</b>]}
     ====
-    [ <b>Volver a la guía</b> ]
+    {#
+        <b>Descargas del navegador</b>
+        guia-42.pdf
+    }
+    ====
+    <b>Contenido</b>
+    ...
 }
 @endsalt

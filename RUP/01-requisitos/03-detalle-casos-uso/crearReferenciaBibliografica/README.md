@@ -48,6 +48,11 @@
 
 **Tope de longitud de la `referencia`** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): el texto de la `ReferenciaBibliografica` admite como máximo 500 caracteres (`LIMITE_REFERENCIA_BIBLIOGRAFICA`). Si se supera, el backend responde `422` con `La referencia bibliográfica supera el límite de 500 caracteres`. Barrera de entrada, no precondición del dominio: sin `<<choice>>` en la especificación. El campo del cliente lleva `maxlength` 500, sin contador visible.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): etiqueta `Vista de Docente`; título "Crear referencia bibliográfica" sin botones de cabecera; debajo, "Asignatura: Programación I" y "Programa: GII -- Grado en Ingeniería Informática"; `Tipo:` con el desplegable en la misma línea y `Referencia:` con un cuadro de texto de cuatro líneas; botones `[Guardar]` y `[Cancelar]`. Se retiran el rótulo "(*) Campo obligatorio" y los asteriscos, que la pantalla no muestra (los dos campos son obligatorios en el formulario), y el botón `[Crear]`, que en la pantalla es **Guardar**.
+- En la pantalla construida, **Guardar** y **Cancelar** vuelven al listado de [`abrirReferenciasBibliograficas()`](../abrirReferenciasBibliograficas/README.md) (`REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`), no a un detalle de la referencia; **Cancelar** con cambios sin guardar pide confirmación para descartarlos. La especificación y el diagrama de contexto siguen modelando la salida hacia `REFERENCIA_BIBLIOGRAFICA_ABIERTO`; su ajuste queda pendiente de la revisión del diagrama de contexto.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : crearReferenciaBibliografica()`

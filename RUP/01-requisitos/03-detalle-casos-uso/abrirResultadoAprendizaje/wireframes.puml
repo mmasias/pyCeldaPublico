@@ -1,14 +1,25 @@
 @startsalt abrirResultadoAprendizaje-wireframe
 {
-    <b>RAK1</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Código:</b> RAK1
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    [ Vista general ] | [ Guías ] | [ Materias ] | [ <b>Resultados de aprendizaje</b> ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ Asignaturas ]
+    ====
+    Resultados de aprendizaje › <b>RAK1</b> | [Editar]
     <b>Tipo:</b> Conocimientos o contenidos
-    <b>Descripción:</b>
-    "Describir los conceptos fundamentales de álgebra lineal, cálculo
-    diferencial e integral, métodos numéricos, algorítmica numérica,
-    estadística y optimización relevantes para la ingeniería."
-    ====
-    {[Editar] | [Volver al listado]}
+    --
+    <b>Descripción</b>
+    <i>Describir los conceptos fundamentales de álgebra lineal, cálculo</i>
+    <i>diferencial e integral, métodos numéricos, algorítmica numérica,</i>
+    <i>estadística y optimización relevantes para la ingeniería.</i>
+    --
+    <b>Distribución</b>
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Matemáticas | Álgebra
+        . | Cálculo
+        . | Estadística
+    }
 }
 @endsalt

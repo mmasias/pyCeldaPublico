@@ -1,16 +1,16 @@
 @startsalt editarAsociacionMetodologiaDocenteMateria-wireframe
 {
-    <b>EDITAR ASOCIACIÓN -- METODOLOGÍA DOCENTE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar asociación -- metodología docente</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>Programación</b>
+    <b>Código:</b> MD5
+    <b>Descripción:</b> Aprendizaje orientado a proyectos
+    <b>Descripción propia:</b>
+    "Incluye trabajo por sprints                       "
     --
-    {
-        <b>Código:</b> MD5
-        <b>Descripción:</b> Aprendizaje orientado a proyectos
-        <b>Descripción propia:</b>
-        "Incluye trabajo por sprints"
-    }
-    ~~
-    {[Guardar]}
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

@@ -40,6 +40,10 @@
 
 Mismo formulario que [`crearCompetencia()`](../crearCompetencia/README.md), con los datos precargados y el mismo `<<choice>>` de código repetido (el código propio de la competencia no cuenta como repetido). `codigo` y `tipo` son editables, como en el RA. La edición se refleja en vivo en todas las materias, asignaturas y guías que la tienen asignada: la asociación no copia el texto.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): título "Editar competencia", línea "Programa: GII -- Grado en Ingeniería Informática" y botones Guardar/Cancelar tras una línea separadora. Cancelar con cambios sin guardar pide confirmación antes de volver a la ficha.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `COMPETENCIA_ABIERTO --> COMPETENCIA_ABIERTO : editarCompetencia()`

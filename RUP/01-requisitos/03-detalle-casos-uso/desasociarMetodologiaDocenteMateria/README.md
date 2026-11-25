@@ -45,6 +45,9 @@ No es un borrado de entidad (la `MetodologiaDocente` sigue en el catálogo del `
 
 **Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): en las dos variantes, título "Desasociar metodología docente" y línea "Programa: GII -- Grado en Ingeniería Informática". En la bloqueada, aviso "⛔ No se puede desasociar" (antes ⚠ y en mayúsculas), mensaje "En uso en estas asignaturas de programa: ..." con los nombres entre comillas y ayuda "Quítala primero de esas asignaturas de programa."; "Volver a Programación" pasa a la cabecera. En la confirmación, Cancelar va en la cabecera y solo "Confirmar desasociación" queda al pie.
 
 ## Referencias
 

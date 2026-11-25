@@ -1,26 +1,27 @@
 @startsalt eliminarActividadFormativa-wireframe-bloqueada
 {
-    <b>ELIMINAR ACTIVIDAD FORMATIVA</b>
+    {+ Vista de Dirección · GII }
     ====
-    <color:red><b>⛔ No se puede eliminar.</b> ActividadFormativa asignada a: Fundamentos de programación, Programación</color>
+    <b>Eliminar actividad formativa</b> | [ Volver ]
     ====
-    <b>AD1 -- Actividad Dirigida: Clases de teoría</b>
-    --
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red>⛔ No se puede eliminar. ActividadFormativa asignada a: Fundamentos de programación, Programación</color>
+    <b>AD1</b> -- Actividad Dirigida: Clases de teoría
     <i>Pon a 0 sus horas en esas materias y en sus asignaturas antes de eliminarla.</i>
-    ====
-    [ Volver ]
 }
 @endsalt
 
 @startsalt eliminarActividadFormativa-wireframe-confirmacion
 {
-    <b>ELIMINAR ACTIVIDAD FORMATIVA</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>AA2 -- Actividad Autónoma: Elaboración de trabajos</b>
-
+    <b>Eliminar actividad formativa</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>AA2</b> -- Actividad Autónoma: Elaboración de trabajos
     Esta acción no se puede deshacer. Se retira de todas las materias
     y asignaturas del programa, donde está a 0 horas.
-    ====
-    {[Confirmar eliminación] | [Cancelar]}
+    --
+    [Confirmar eliminación]
 }
 @endsalt

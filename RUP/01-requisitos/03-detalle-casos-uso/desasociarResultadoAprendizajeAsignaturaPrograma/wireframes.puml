@@ -1,25 +1,29 @@
 @startsalt desasociarResultadoAprendizajeAsignaturaPrograma-wireframe-normal
 {
-    <b>DESASOCIAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>RAH1</b> (Programación I -- GII, 1er curso)
-
-    Queda otro Resultado de Aprendizaje asociado (RAK1).
+    <b>Desasociar resultado de aprendizaje</b>
     ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>RAH1</b> (Programación I -- Programación, curso I)
+    Queda otro resultado de aprendizaje asociado (RAK1).
+    --
     {[Confirmar desasociación] | [Cancelar]}
 }
 @endsalt
 
 @startsalt desasociarResultadoAprendizajeAsignaturaPrograma-wireframe-advertencia
 {
-    <b>DESASOCIAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <color:orange><b>⚠ Sin resultados de aprendizaje tras esta acción</b></color>
+    <b>Desasociar resultado de aprendizaje</b>
     ====
-    <b>RAK1</b> (Programación I -- GII, 1er curso)
-
-    <i>Esta asignatura-en-programa se quedará sin ningún Resultado de Aprendizaje asociado. La guía docente que se genere para ella podría quedar incompleta.</i>
-    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:orange><b>Sin resultados de aprendizaje tras esta acción</b></color>
+    --
+    <b>RAK1</b> (Programación I -- Programación, curso I)
+    <i>Esta asignatura-en-programa se quedará sin ningún resultado de aprendizaje asociado. La guía docente que se genere para ella podría quedar incompleta.</i>
+    --
     {[Confirmar desasociación] | [Cancelar]}
 }
 @endsalt

@@ -1,29 +1,35 @@
 @startsalt eliminarResultadoAprendizaje-wireframe-bloqueada
 {
-    <b>ELIMINAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
+    <b>Eliminar resultado de aprendizaje</b> | [ Volver a los <b>resultados de aprendizaje</b> ]
     ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red>⛔ No se puede eliminar</color>
     <b>RAC2 -- Competencias o capacidades</b>
-
-    Este resultado de aprendizaje está asignado a materias o
-    asignaturas-en-programa del catálogo.
-
+    <i>Desarrollar sistemas informáticos, considerando...</i>
+    --
+    Este resultado de aprendizaje está asignado a:
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Ingeniería del software | Ingeniería del software I
+        . | Proyecto de ingeniería
+    }
     <i>Retira su asociación antes de eliminarlo.</i>
-    ====
-    [ <b>Volver al listado</b> ]
 }
 @endsalt
 
 @startsalt eliminarResultadoAprendizaje-wireframe-confirmacion
 {
-    <b>ELIMINAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Eliminar resultado de aprendizaje</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>RAH2 -- Habilidades o destrezas</b>
-
-    <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin asignaciones a materias ni asignaturas-en-programa.
-    ====
-    {[Confirmar eliminación] | [Cancelar]}
+    <i>Aplicar métodos matemáticos avanzados en la...</i>
+    Esta acción no se puede deshacer. Sin asignaciones a materias ni a asignaturas del programa.
+    --
+    [Confirmar eliminación]
 }
 @endsalt

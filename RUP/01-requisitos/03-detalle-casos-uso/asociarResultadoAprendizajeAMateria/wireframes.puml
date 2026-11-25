@@ -1,17 +1,17 @@
 @startsalt asociarResultadoAprendizajeAMateria-wireframe
 {
-    <b>ASOCIAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Asociar resultado de aprendizaje</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>Programación</b>
-    --
     {
-        <b>Resultado de aprendizaje (*):</b>
-        ^RAK2 -- Describir la estructura, organización y arquitectura...^
-        <i>Describir la estructura, organización y arquitectura de los computadores y sus componentes.</i>
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Resultado de aprendizaje (*):</b> | ^RAK2 -- Describir la estructura, organización y arquitectura de los computadores y sus...^
     }
-    ~~
-    {[Asociar]}
+    <color:gray>Describir la estructura, organización y arquitectura de los computadores y sus componentes.</color>
+    <i>(*) Campo obligatorio</i>
+    --
+    [Asociar]
 }
 @endsalt

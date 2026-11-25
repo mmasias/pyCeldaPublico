@@ -46,7 +46,7 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON, con historial)
 deactivate API
-Vista --> DirectorPrograma: "GUÍA APROBADA" -- EnRevision -> Aprobada, "aprobada sin incidencia"
+Vista --> DirectorPrograma: aviso "GUÍA APROBADA" en la propia ficha -- estado anterior, estado actual, "Aprobada sin incidencia", botón para volver a las guías
 deactivate Vista
 
 @enduml

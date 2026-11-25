@@ -1,70 +1,61 @@
 @startsalt editarAsignaturaPrograma-wireframe-completo
 {
-    <b>EDITAR ASIGNATURA DEL PROGRAMA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar asignatura del programa</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>Asignatura: Programación I -- Materia: Programación</b>
-    --
     {
-        <b>Curso (*):</b>
-        "1  "
-        <b>Carácter (*):</b>
-        ^Básica^
-        <b>Idioma (*):</b>
-        ^Español^
-        <b>Semestre por defecto (*):</b>
-        ^1^
-        <b>Sesiones mínimas (*):</b>
-        "25 "
-        <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100; 0 si la asignatura no tiene sesiones).</i>
-        --
-        <b>Nombre:</b>
-        "Programación I                                    "
-        <b>ECTS:</b>
-        "6 "
-        <b>Contenido:</b>
-        "Tema 1. Introducción a la programación..."
-        <b>Requisitos previos:</b>
-        "Se recomienda haber cursado previamente Matemáticas I"
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Nombre:</b> | "Programación I                    " | <b>ECTS:</b> | "6 "
+        <b>Curso (*):</b> | "1  " | <b>Semestre por defecto (*):</b> | "1  "
+        <b>Carácter (*):</b> | "Básica          " | <b>Idioma (*):</b> | "Español         "
+        <b>Sesiones mínimas (*):</b> | "25 " | <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100; 0 si la asignatura no tiene sesiones).</i> | .
     }
-    ~~
-    {[Guardar]}
+    <b>Contenido:</b>
+    {+
+        "Tema 1. Fundamentos de la programación"
+        "Tema 2. Estructuras de control"
+        "Tema 3. Estructuras de datos y algoritmos"
+    }
+    <b>Requisitos previos:</b>
+    {+
+        "Se recomienda haber cursado previamente Matemáticas I"
+    }
+    <i>Vacío o "No aplica" se guardan como "No aplica" en la guía docente.</i>
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt
 
 @startsalt editarAsignaturaPrograma-wireframe-semestre-bloqueado
 {
-    <b>EDITAR ASIGNATURA DEL PROGRAMA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar asignatura del programa</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>Asignatura: Programación I -- Materia: Programación</b>
-    --
     {
-        <b>Curso (*):</b>
-        "1  "
-        <b>Carácter (*):</b>
-        ^Básica^
-        <b>Idioma (*):</b>
-        ^Español^
-        <b>Semestre por defecto:</b>
-        "1  " !!disabled
-        <i>Ya existen Guías creadas con este semestre por defecto -- no editable.</i>
-        <b>Sesiones mínimas (*):</b>
-        "25 "
-        <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100; 0 si la asignatura no tiene sesiones).</i>
-        --
-        <b>Nombre:</b>
-        "Programación I                                    "
-        <b>ECTS:</b>
-        "6 "
-        <b>Contenido:</b>
-        "Tema 1. Introducción a la programación..."
-        <b>Requisitos previos:</b>
-        "Se recomienda haber cursado previamente Matemáticas I"
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Nombre:</b> | "Programación I                    " | <b>ECTS:</b> | "6 "
+        <b>Curso (*):</b> | "1  " | <b>Semestre por defecto:</b> | {"1  " | <i>Ya existen guías creadas con este semestre por defecto -- no editable.</i>}
+        <b>Carácter (*):</b> | "Básica          " | <b>Idioma (*):</b> | "Español         "
+        <b>Sesiones mínimas (*):</b> | "25 " | <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100; 0 si la asignatura no tiene sesiones).</i> | .
     }
-    ~~
-    {[Guardar]}
+    <b>Contenido:</b>
+    {+
+        "Tema 1. Fundamentos de la programación"
+        "Tema 2. Estructuras de control"
+        "Tema 3. Estructuras de datos y algoritmos"
+    }
+    <b>Requisitos previos:</b>
+    {+
+        "Se recomienda haber cursado previamente Matemáticas I"
+    }
+    <i>Vacío o "No aplica" se guardan como "No aplica" en la guía docente.</i>
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

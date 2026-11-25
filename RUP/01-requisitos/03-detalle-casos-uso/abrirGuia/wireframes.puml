@@ -2,53 +2,31 @@
 {
     {+ Vista de Docente }
     ====
-    <b>GUÍA DOCENTE</b>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
     <b>GII · Programación I</b>
-    ====
-    {#
-        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ] neutro
-        <b>Semestre:</b> 1 | <b>Creación:</b> 01/09/2026
-        <b>Profesores:</b> profesor1@uneatlantico.es | <b>Última modificación:</b> 01/09/2026
-         | <b>Generación del PDF:</b> --
+    {
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ]
+        <b>Semestre:</b> 1 | <b>Creación:</b> 1/9/2026, 10:30:00
+        <b>Profesores:</b> | <b>Última modificación:</b> 7/9/2026, 12:15:00
+        · Ana Pérez (Responsable · Imparte) | <b>Generación del PDF:</b> --
     }
     ====
+    ⚠ Hay ítems sin guardar: no cuentan hasta pulsar "Guardar borrador".
+    {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
+    ====
+    <b>Contenido</b>
+    <b>Contenido aprobado en memoria</b>. La guía debe ser coherente con este.
     {#
-        <b>Contenido aportado por el profesor</b> | <b>Contenido aprobado en memoria</b>
-         | La guía debe ser coherente con este.
-        {+
-            "Tema 1. Fundamentos de la programación"
-            "Tema 2. Estructuras de control"
-            "Tema 3. Estructuras de datos"
-        } | Tema 1. Fundamentos de la programación
-        Tema 2. Estructuras de control
-        Tema 3. Estructuras de datos
+        <i>Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control. Tema 3. Estructuras de datos.</i>
+    }
+    {<b>Contenido aportado por el profesor</b> | <i>Se guarda con <b>Guardar borrador</b>. 1.322 / 10.000</i>}
+    {+
+        "Tema 1. Fundamentos de la programación                    "
+        "Tema 2. Estructuras de control                            "
+        "Tema 3. Estructuras de datos                              "
     }
     ====
-    <b>Información adicional</b>
-    Resultados de aprendizaje:
-    {#
-        <b>Código | <b>Tipo
-        RAK1 | Conocimientos o contenidos
-    }
-    Competencias:
-    {#
-        <b>Código | <b>Tipo | <b>Descripción
-        CE7 | Específica | Conocimiento y aplicación de los principios...
-    }
-    Metodologías docentes:
-    {#
-        <b>Código | <b>Descripción
-        MD3 | Resolución de ejercicios
-    }
-    Actividades formativas:
-    {#
-        <b>Actividad formativa | <b>Horas | <b>% presencialidad (de la materia)
-        Actividad Dirigida: Clases de teoría | 30 | 100
-        Actividad Dirigida: Clases prácticas | 27 | 100
-        ... (las del catálogo del programa, solo lectura) | |
-    }
-    ====
-    Evaluación:
+    {<b>Evaluación</b> | [<b>Gestionar evaluación</b>]}
     {#
         <b>Instrumento | <b>Sistema de evaluación | <b>Ponderación
         Examen Parcial | Evaluación continua | 25%
@@ -56,30 +34,57 @@
         Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35%
         Entrega de proyecto | Examen final prácticas (Evaluación final) | 20%
     }
-    Evaluación continua: [30%, 60%] 45%
-    Examen final teoría (Evaluación final): [25%, 80%] 35%
-    Examen final prácticas (Evaluación final): [10%, 40%] 20%
-    <b>Total asignado: 100% / 100%</b>
-    [ <b>Gestionar evaluación</b> ]
+    {
+        Evaluación continua | &#91;30%, 60%] | 45%
+        Examen final teoría (Evaluación final) | &#91;25%, 80%] | 35%
+        Examen final prácticas (Evaluación final) | &#91;10%, 40%] | 20%
+        <b>Total asignado</b> | . | <b>100%</b>
+    }
     ====
-    Bibliografía:
+    {<b>Bibliografía</b> | [<b>Gestionar bibliografía</b>]}
     {#
         <b>Tipo | <b>Referencia
         Básica | Sedgewick, R. (2008) Introduction to programming in Java...
         Básica | Streib, J. (2014) Guide to Java, A concise introduction...
         Complementaria | Serbat, A (2016) Fundamentos de Programación con Java...
-        Complementaria | Sedgewick R. Algorithms, 4th Edition Ed. Pearson
         Complementaria | Martin, R. (2011) The Clean Coder Ed. Prentice Hall
+        Otras fuentes de consulta | https://github.com/mmasias/prg1
         Webs de referencia | http://www.java.com/es/
         Webs de referencia | http://docs.oracle.com/javase/8/
-        Webs de referencia | https://developers.google.com/blockly/
-        Webs de referencia | http://introcs.cs.princeton.edu/java/home/
-        Otras fuentes de consulta | https://github.com/mmasias/prg1
     }
-    [ <b>Gestionar bibliografía</b> ]
     ====
-    Hay ítems sin guardar: no cuentan hasta pulsar "Guardar borrador".
-    {[Guardar borrador] | [Enviar a revisión] | [Volver a mis asignaturas]}
+    {<b>Planificación docente</b> | [<b>Gestionar planificación docente</b>]}
+    {<b>Leyenda:</b> Clase teórica · Clase práctica / de laboratorio · Clase teórico/práctica | <b>29 sesiones</b> | [Descargar planificación]}
+    {#
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b>
+        1 | Clase Teórica | Presentación de la asignatura. Introducción a la programación
+        2 | Clase Práctica | Entorno de desarrollo y primer programa
+        3 | Clase Teórico/Práctica | Variables, tipos y expresiones
+        ... | ... | ...
+    }
+    ====
+    <b>Información adicional</b>
+    <b>Resultados de aprendizaje</b>
+    {#
+        <b>Código</b> | <b>Tipo</b> | <b>Descripción</b>
+        RAK1 | Conocimientos o contenidos | Conocer los fundamentos de la programación estructurada
+    }
+    <b>Competencias</b>
+    {#
+        <b>Código</b> | <b>Tipo</b> | <b>Descripción</b>
+        CE7 | Específica | Conocimiento y aplicación de los principios fundamentales de la programación
+    }
+    <b>Metodologías docentes</b>
+    {#
+        <b>Código</b> | <b>Descripción</b>
+        MD3 | Resolución de ejercicios
+    }
+    <b>Actividades formativas</b>
+    {#
+        <b>Actividad formativa</b> | <b>Horas</b> | <b>% presencialidad</b>
+        Actividad Dirigida: Clases de teoría | 30 | 100
+        Actividad Dirigida: Clases prácticas | 27 | 100
+    }
 }
 @endsalt
 
@@ -87,55 +92,39 @@
 {
     {+ Vista de Dirección · GII }
     ====
-    <b>GUÍA DOCENTE</b>
-    <b>Programación I (GII)</b>
+    {<b>Grado en Ingeniería Informática</b> | [Inicio] | [Mis programas] | [Cerrar sesión]}
+    {[Vista general] | [<b>Guías</b>]}
+    {[Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas] | [Asignaturas]}
     ====
-    <color:orange>En revisión por cambio en los profesores que la imparten</color>
-    ====
-    {#
-        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ En revisión ] ámbar
-        <b>Semestre:</b> 1 | <b>Creación:</b> 01/09/2026
-        <b>Profesores:</b> profesor1@uneatlantico.es, profesor2@uneatlantico.es | <b>Última modificación:</b> 05/09/2026
-         | <b>Generación del PDF:</b> --
+    {Guías › <b>Programación I</b>}
+    <color:red>En revisión por cambio en los profesores que la imparten</color>
+    {
+        <b>Semestre:</b> 1 | <b>Estado:</b> [ En revisión ]
+        <b>Profesores:</b> | <b>Creación:</b> 1/9/2026, 10:30:00
+        · Ana Pérez (Responsable · Imparte) | <b>Última modificación:</b> 5/9/2026, 09:45:00
+        · Luis Gómez (Imparte) | <b>Generación del PDF:</b> --
     }
-    ====
-    {#
-        <b>Contenido aportado por el profesor</b> | <b>Contenido aprobado en memoria</b>
-         | La guía debe ser coherente con este.
-        {+
-            "Tema 1. Fundamentos de la programación"
-            "Tema 2. Estructuras de control"
-            "Tema 3. Estructuras de datos"
-        } | Tema 1. Fundamentos de la programación
-        Tema 2. Estructuras de control
-        Tema 3. Estructuras de datos
+    {[<b>Aprobar</b>] | [<b>Rechazar</b>] | [Previsualizar]}
+    {
+        <b>Resumen de completitud</b> | Sin ítems pendientes de guardar
+        . | Ponderaciones completas
+        . | Convocatoria extraordinaria concretada
+        . | <b>Planificación docente: 29 sesiones (mínimo 25)</b>
     }
     ====
-    <b>Información adicional</b>
-    Resultados de aprendizaje:
+    <b>Contenido</b>
+    <b>Contenido aprobado en memoria</b>. La guía debe ser coherente con este.
     {#
-        <b>Código | <b>Tipo
-        RAK1 | Conocimientos o contenidos
+        <i>Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control. Tema 3. Estructuras de datos.</i>
     }
-    Competencias:
-    {#
-        <b>Código | <b>Tipo | <b>Descripción
-        CE7 | Específica | Conocimiento y aplicación de los principios...
-    }
-    Metodologías docentes:
-    {#
-        <b>Código | <b>Descripción
-        MD3 | Resolución de ejercicios
-    }
-    Actividades formativas:
-    {#
-        <b>Actividad formativa | <b>Horas | <b>% presencialidad (de la materia)
-        Actividad Dirigida: Clases de teoría | 30 | 100
-        Actividad Dirigida: Clases prácticas | 27 | 100
-        ... (las del catálogo del programa, solo lectura) | |
+    {<b>Contenido aportado por el profesor</b> | <i>Se guarda con <b>Guardar borrador</b>. 1.322 / 10.000</i>}
+    {+
+        "Tema 1. Fundamentos de la programación                    "
+        "Tema 2. Estructuras de control                            "
+        "Tema 3. Estructuras de datos                              "
     }
     ====
-    Evaluación:
+    {<b>Evaluación</b> | [<b>Gestionar evaluación</b>]}
     {#
         <b>Instrumento | <b>Sistema de evaluación | <b>Ponderación
         Examen Parcial | Evaluación continua | 25%
@@ -143,29 +132,56 @@
         Examen Teórico-Práctico | Examen final teoría (Evaluación final) | 35%
         Entrega de proyecto | Examen final prácticas (Evaluación final) | 20%
     }
-    Evaluación continua: [30%, 60%] 45%
-    Examen final teoría (Evaluación final): [25%, 80%] 35%
-    Examen final prácticas (Evaluación final): [10%, 40%] 20%
-    <b>Total asignado: 100% / 100%</b>
-    [ <b>Gestionar evaluación</b> ]
+    {
+        Evaluación continua | &#91;30%, 60%] | 45%
+        Examen final teoría (Evaluación final) | &#91;25%, 80%] | 35%
+        Examen final prácticas (Evaluación final) | &#91;10%, 40%] | 20%
+        <b>Total asignado</b> | . | <b>100%</b>
+    }
     ====
-    Bibliografía:
+    {<b>Bibliografía</b> | [<b>Gestionar bibliografía</b>]}
     {#
         <b>Tipo | <b>Referencia
         Básica | Sedgewick, R. (2008) Introduction to programming in Java...
         Básica | Streib, J. (2014) Guide to Java, A concise introduction...
         Complementaria | Serbat, A (2016) Fundamentos de Programación con Java...
-        Complementaria | Sedgewick R. Algorithms, 4th Edition Ed. Pearson
         Complementaria | Martin, R. (2011) The Clean Coder Ed. Prentice Hall
+        Otras fuentes de consulta | https://github.com/mmasias/prg1
         Webs de referencia | http://www.java.com/es/
         Webs de referencia | http://docs.oracle.com/javase/8/
-        Webs de referencia | https://developers.google.com/blockly/
-        Webs de referencia | http://introcs.cs.princeton.edu/java/home/
-        Otras fuentes de consulta | https://github.com/mmasias/prg1
     }
-    [ <b>Gestionar bibliografía</b> ]
     ====
-    {[Aprobar] | [Rechazar] | [Guardar borrador] | [Volver al listado de guías]}
-    <i>Corrección excepcional del director: guardar una edición de contenido, evaluación, bibliografía o planificación docente sobre una guía aprobada la devuelve a borrador, y sobre una guía en revisión la rechaza. El envío a revisión sigue siendo del profesorado.</i>
+    {<b>Planificación docente</b> | [<b>Gestionar planificación docente</b>]}
+    {<b>Leyenda:</b> Clase teórica · Clase práctica / de laboratorio · Clase teórico/práctica | <b>29 sesiones</b> | [Descargar planificación]}
+    {#
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b>
+        1 | Clase Teórica | Presentación de la asignatura. Introducción a la programación
+        2 | Clase Práctica | Entorno de desarrollo y primer programa
+        3 | Clase Teórico/Práctica | Variables, tipos y expresiones
+        ... | ... | ...
+    }
+    ====
+    <b>Información adicional</b>
+    <b>Resultados de aprendizaje</b>
+    {#
+        <b>Código</b> | <b>Tipo</b> | <b>Descripción</b>
+        RAK1 | Conocimientos o contenidos | Conocer los fundamentos de la programación estructurada
+    }
+    <b>Competencias</b>
+    {#
+        <b>Código</b> | <b>Tipo</b> | <b>Descripción</b>
+        CE7 | Específica | Conocimiento y aplicación de los principios fundamentales de la programación
+    }
+    <b>Metodologías docentes</b>
+    {#
+        <b>Código</b> | <b>Descripción</b>
+        MD3 | Resolución de ejercicios
+    }
+    <b>Actividades formativas</b>
+    {#
+        <b>Actividad formativa</b> | <b>Horas</b> | <b>% presencialidad</b>
+        Actividad Dirigida: Clases de teoría | 30 | 100
+        Actividad Dirigida: Clases prácticas | 27 | 100
+    }
 }
 @endsalt

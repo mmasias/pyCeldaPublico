@@ -40,6 +40,10 @@
 
 Datos reales del plan de estudios de GII, aportados por el usuario en la [issue #23](https://github.com/mmasias/pyCelda/issues/23) (no estaban en el seed, `crearResultadoAprendizaje()` los difiere a propósito a este punto).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): cabecera con la etiqueta de vista, el nombre del programa y las pestañas del programa (activa Resultados de aprendizaje); botón "Crear resultado de aprendizaje" junto al título, encima de la tabla; columnas Descripción, Tipo, Código, Nº de Asign. (en ese orden) y filas ordenadas por código.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> RESULTADOS_APRENDIZAJE_ABIERTO : abrirResultadosAprendizaje()`
@@ -48,4 +52,4 @@ Datos reales del plan de estudios de GII, aportados por el usuario en la [issue 
 - [actoresCasosUsoAdminCatalogos.puml](/RUP/01-requisitos/01-actores-casos-uso/actoresCasosUsoAdminCatalogos.puml) -- catálogo de casos de uso de `Admin` (incluye este caso de uso desde el issue [#642](https://github.com/mmasias/pyCelda/issues/642))
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Programa *-d- ResultadoAprendizaje`: catálogo propio de Programa, no institucional
 
-**Columna "Asignaturas"** ([discussion #585](https://github.com/mmasias/pyCelda/discussions/585), issue #586): la tabla gana el número de `AsignaturaPrograma` **de todo el programa** (todas sus materias) que tienen ese RA asociado. Puramente informativo, sin bloquear nada ni filtrar por `caracter`. Con 0, la celda se presenta con fondo rojo suave (#761, punto 3): aviso visual, sin bloqueo.
+**Columna "Nº de Asign."** ([discussion #585](https://github.com/mmasias/pyCelda/discussions/585), issue #586): la tabla gana el número de `AsignaturaPrograma` **de todo el programa** (todas sus materias) que tienen ese RA asociado. Puramente informativo, sin bloquear nada ni filtrar por `caracter`. Con 0, la celda se presenta con fondo rojo suave (#761, punto 3): aviso visual, sin bloqueo.

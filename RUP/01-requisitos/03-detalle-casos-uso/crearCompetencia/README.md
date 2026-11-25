@@ -45,6 +45,10 @@ Sin patrón C→U, igual que [`crearResultadoAprendizaje()`](../crearResultadoAp
 
 La salida lleva a la ficha de la competencia creada (`<<include>>` de `editarCompetencia()`, nota obligatoria de la transición de salida).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): título "Crear competencia", línea "Programa: GII -- Grado en Ingeniería Informática" y botones Crear/Cancelar tras una línea separadora. Cancelar con cambios sin guardar pide confirmación antes de volver al listado.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `COMPETENCIAS_ABIERTO --> COMPETENCIA_ABIERTO : crearCompetencia()`

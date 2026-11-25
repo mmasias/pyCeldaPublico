@@ -24,18 +24,20 @@ Desde **Inicio**, pulsar **📂 Abrir** en la fila de la asignatura correspondie
 
 </div>
 
-Arriba, el título **Guía docente** y, debajo de la línea, el nombre de la asignatura en grande. A continuación, la ficha de la guía en dos columnas: a la izquierda, **Programa**, **Semestre** y **Profesores**; a la derecha, **Estado**, **Creación**, **Última modificación** y **Generación del PDF** ("--" si la guía no se ha aprobado nunca).
+Arriba, el título **Guía docente**, con los accesos **🏠 Inicio**, **🎓 Mis programas** (solo si además se dirige algún programa), **🪪 Mi perfil** y **🚪 Cerrar sesión** a la derecha, y debajo, en grande, la sigla del programa y el nombre de la asignatura: "GII · Programación I" (al pasar el ratón se ve el nombre completo del programa). Quien además dirige algún programa ve arriba la etiqueta **Vista de Docente**. A continuación, la ficha de la guía en dos columnas: a la izquierda, **Programa**, **Semestre** y **Profesores**; a la derecha, **Estado**, **Creación**, **Última modificación** y **Generación del PDF** ("--" si la guía no se ha aprobado nunca).
 
 En **Profesores**, junto a cada nombre aparece entre paréntesis su papel en la asignatura: **Responsable**, **Imparte** o los dos (**Responsable · Imparte**). Los dos papeles pueden editar la guía por igual. En el documento oficial (PDF y previsualización) solo aparecen quienes imparten.
 
 Si la guía está **Aprobada**, bajo la ficha aparece un aviso en ámbar: "⚠️ Esta guía está aprobada: si guardas un cambio, volverá a borrador y habrá que enviarla de nuevo a revisión."
 
+Si hay instrumentos, referencias o sesiones creados o marcados para eliminar en las pantallas de gestión que aún no se han confirmado, aparece en ámbar "⚠️ Hay ítems sin guardar: no cuentan hasta pulsar \"Guardar borrador\"." (ver [Editar y guardar el temario](#editar-y-guardar-el-temario)).
+
 Debajo de la ficha, los botones de trabajo: **💾 Guardar borrador**, **📤 Enviar a revisión**, **👁️ Previsualizar** o, si la guía está aprobada, **⬇️ Descargar PDF** en su lugar (ver [Enviar, previsualizar y descargar](enviarPrevisualizarYDescargar.md)).
 
 Después, en este orden:
 
-1. **Contenido**: arriba, en un recuadro gris, el **contenido aprobado en memoria**, la referencia con la que la guía debe ser coherente; debajo, a todo el ancho, el cuadro de texto con el temario de la asignatura.
-2. **Evaluación**, **Bibliografía** y **Planificación docente**: un resumen de solo lectura de cada una, con su botón **🔧 Gestionar...** a la derecha del título. Cada una tiene su propio capítulo: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
+1. **Contenido**: arriba, en un recuadro gris, el **contenido aprobado en memoria** ("La guía debe ser coherente con este."); debajo, el rótulo **Contenido aportado por el profesor**, con la nota "Se guarda con Guardar borrador." y el contador de caracteres a la derecha, y a todo el ancho el cuadro de texto con el temario de la asignatura.
+2. **Evaluación**, **Bibliografía** y **Planificación docente**: un resumen de solo lectura de cada una, con su botón **🔧 Gestionar...** a la derecha del título. En Evaluación, bajo la tabla de instrumentos, el subtotal de cada sistema de evaluación con su horquilla permitida y el **Total asignado** (en rojo lo que no cuadra). En Planificación docente, sobre la tabla, la leyenda de colores, el número de sesiones y el botón **⬇️ Descargar planificación**. Cada una tiene su propio capítulo: [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md), [Referencias bibliográficas](referenciasBibliograficas.md) y [Planificación docente y cronograma](planificacionDocenteYCronograma.md).
 3. **Información adicional**: **Resultados de aprendizaje**, **Competencias** (solo en los títulos cuya memoria las define, los anteriores al RD 822/2021; si la asignatura aún no tiene, lo indica: las reparte el director de programa entre las asignaturas de la materia), **Metodologías docentes** y **Actividades formativas** de la asignatura. Es información fija, de solo lectura.
 
 ## Editar y guardar el temario
@@ -50,6 +52,8 @@ Después, en este orden:
 
 1. Escribir o corregir el texto en el cuadro **Contenido**. El límite es de 10.000 caracteres; el contador, encima del cuadro a la derecha, junto a la nota "Se guarda con Guardar borrador.", indica cuánto se lleva escrito y se pone en rojo al llegar al límite.
 2. Pulsar **💾 Guardar borrador**.
+
+La guía se recarga y, sobre los botones, aparece en verde **Borrador guardado**. No se cambia de pantalla.
 
 Al pulsar **💾 Guardar borrador** se confirma de una sola vez todo lo cambiado desde el último guardado: el texto del temario, y cualquier instrumento de evaluación, referencia bibliográfica o sesión de planificación creado o marcado para eliminar en las pantallas de gestión (ver los capítulos correspondientes). Editar uno que ya forma parte de la guía no espera a este botón: se guarda en el acto. El texto del temario escrito desde el último guardado solo está en pantalla: si se intenta salir de la guía sin guardarlo con 🔧 Gestionar..., 📤 Enviar a revisión o los accesos de arriba, pyCelda pregunta antes "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?"; al cerrar o recargar la pestaña avisa el propio navegador, con su texto. La flecha atrás del navegador no avisa. Los cambios de las pantallas de gestión, en cambio, siguen ahí, sin confirmar, la próxima vez que se entra.
 
@@ -67,7 +71,7 @@ La sesión dura 12 horas. Si al guardar (o al enviar, importar o descargar) la s
 
 </div>
 
-Si la misma asignatura se imparte también en otro programa y hay alguna guía de la que importar (ver [De qué guías hermanas se puede importar](#de-qué-guías-hermanas-se-puede-importar)), debajo del cuadro **Contenido** aparece **Importar de guía hermana**, con una lista de las guías de las que se puede copiar el temario. Cada opción indica el estado de la guía de origen: "aprobada el 07/10/2026" o "en revisión desde 05/10/2026".
+Si la misma asignatura se imparte también en otro programa y hay alguna guía de la que importar (ver [De qué guías hermanas se puede importar](#de-qué-guías-hermanas-se-puede-importar)), debajo del cuadro **Contenido** aparece **Importar de guía hermana**, con una lista de las guías de las que se puede copiar el temario. Cada opción indica el estado de la guía de origen: "aprobada el 7/10/2026" o "en revisión desde 5/10/2026".
 
 1. Elegir la guía de origen en la lista. Aparece el aviso "Esto reemplazará el contenido actual, incluidos cambios sin guardar."
 2. Pulsar **📥 Importar contenido**.

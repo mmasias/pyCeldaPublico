@@ -1,19 +1,18 @@
 @startsalt crearReferenciaBibliografica-wireframe
 {
-    <b>CREAR REFERENCIA</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
+    <b>Crear referencia bibliográfica</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {<b>Tipo:</b> | ^Básica^}
+    <b>Referencia:</b>
+    "                                                   "
+    "                                                   "
+    "                                                   "
+    "                                                   "
     --
-    {
-        <b>Tipo (*):</b>
-        ^Básica^
-        <b>Referencia (*):</b>
-        "                                                   "
-        "                                                   "
-        --
-        <i>(*) Campo obligatorio</i>
-    }
-    ~~
-    {[Crear]}
+    {[<b>Guardar</b>] | [Cancelar]}
 }
 @endsalt

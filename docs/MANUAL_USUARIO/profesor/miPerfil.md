@@ -28,11 +28,13 @@ Pulsar **🪪 Mi perfil**, arriba a la derecha de cualquier pantalla.
 
 </div>
 
+La imagen muestra el perfil de un curso nuevo, relleno con los datos del curso anterior y aún sin confirmar, de una cuenta que además dirige un programa (de ahí la etiqueta **Vista de Docente** y el acceso **🎓 Mis programas**).
+
 El formulario se divide en secciones:
 
-- **Generales**: Email (no editable), **Nombre** (obligatorio), **Enlace al CVN**, **ORCID**, **Enlace a Google Scholar**, **Enlace de la foto** y un **Mini-CV** de texto libre. Si hay enlace de foto, la foto aparece a la derecha del Mini-CV.
+- **Generales**: Email (no editable), **Nombre** (obligatorio), **Enlace al CVN**, **ORCID**, **Enlace a Google Scholar**, **Enlace de la foto** y un **Mini-CV** de texto libre, de hasta 2.000 caracteres (el contador va debajo). Si hay enlace de foto, la foto aparece a la derecha del Mini-CV.
 - **Doctorado**: la casilla **Soy doctor/a**; al marcarla aparecen la universidad, el año, el programa de doctorado y la casilla de mención internacional.
-- **Acreditación**: el **Nivel**; si se elige un nivel de acreditación (no "Sin acreditación"), aparecen **Acreditado por** (ANECA u Otro) y, con Otro, **¿Cuál?** para escribir el organismo.
+- **Acreditación**: el **Nivel**; si se elige un nivel de acreditación (no "Sin acreditación"), aparecen **Acreditado por** (ANECA u Otro) y, con Otro, **¿Cuál?** para escribir el organismo. Debajo, en letra pequeña, se explica siempre qué abarca cada nivel; si hay varias acreditaciones, se consigna la de mayor exigibilidad.
 - **Sexenios de investigación**: el número reconocido, el año del último (si hay alguno) y la casilla de sexenio en evaluación.
 - **Quinquenios docentes**: el número reconocido y el año del último (si hay alguno).
 - **Experiencia**: años de experiencia docente, docente virtual, profesional e investigadora.

@@ -40,7 +40,7 @@ La misma tabla, para el curso vigente, aparece también en la pestaña **📋 Vi
 
 </div>
 
-Al abrir una guía, la pestaña **📄 Guías** queda marcada y el título dice **📄 Guías › nombre de la asignatura**; pulsar **Guías** en ese título vuelve a la lista. Debajo, la ficha de la guía: semestre y profesorado a la izquierda, con el papel de cada profesor entre paréntesis (**Responsable**, **Imparte** o los dos); estado y fechas a la derecha. En el PDF solo aparecen quienes imparten.
+Al abrir una guía, la cabecera sigue siendo la del programa, la pestaña **📄 Guías** queda marcada y el título dice **📄 Guías › nombre de la asignatura**; pulsar **Guías** en ese título vuelve a la lista. Si la guía ha vuelto a **En revisión** porque Admin cambió quién la imparte, debajo aparece en rojo "En revisión por cambio en los profesores que la imparten": basta con volver a aprobarla. Debajo, la ficha de la guía: semestre y profesorado a la izquierda, con el papel de cada profesor entre paréntesis (**Responsable**, **Imparte** o los dos); estado y fechas a la derecha. En el PDF solo aparecen quienes imparten.
 
 A continuación, la **barra de trabajo**, con el mismo fondo que la franja de pestañas. Según el estado de la guía, ofrece:
 
@@ -53,7 +53,7 @@ Justo debajo de la barra, el **Resumen de completitud**, con el rótulo a la izq
 
 Después, si hay algo que guardar, el recuadro de la corrección excepcional (ver más abajo), y el contenido de la guía: temario, evaluación, bibliografía, planificación docente e información adicional. Editarlos es tarea del profesorado, salvo esa corrección excepcional.
 
-Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la pantalla muestra un aviso de confirmación con el estado anterior, el estado nuevo y el comentario registrado, y el botón **Volver a las guías**. **❌ Rechazar** y **↩️ Revocar aprobación** llevan a un formulario aparte y, al confirmarlo, vuelven directamente a la lista de guías. Esos formularios no tienen la franja ni los accesos: se sale con el botón de confirmar o con **Cancelar** (arriba a la derecha y junto al de confirmar), que vuelve a la guía sin cambiar nada; si ya se ha escrito un comentario, pregunta antes "Tienes cambios sin guardar. ¿Salir sin guardarlos?".
+Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la guía sigue abierta y, sobre la ficha, aparece en verde "✓ GUÍA APROBADA" (o "✓ GUÍA ESCALADA A APROBADA") con el estado anterior, el estado actual y el comentario registrado, y el botón **Volver a las guías**; la barra de trabajo, el resumen de completitud y el recuadro de corrección dejan de mostrarse. **❌ Rechazar** y **↩️ Revocar aprobación** llevan a un formulario aparte y, al confirmarlo, vuelven directamente a la lista de guías. Esos formularios no tienen la franja ni los accesos: se sale con el botón de confirmar o con **Cancelar** (arriba a la derecha y junto al de confirmar), que vuelve a la guía sin cambiar nada; si ya se ha escrito un comentario, pregunta antes "Tienes cambios sin guardar. ¿Salir sin guardarlos?".
 
 ## Aprobar
 
@@ -148,21 +148,13 @@ Si se ha cambiado el temario sin guardar, salir de la guía por la franja del pr
 
 </div>
 
-<div align=center>
-
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarTextoSistemaEvaluacion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarTextoSistemaEvaluacion.md)
-
-</div>
-
-Desde **🔧 Gestionar evaluación**, **🔧 Gestionar bibliografía** y **🔧 Gestionar planificación docente**, el director usa las mismas pantallas que el profesorado (ver el [manual de Profesor](../profesor/README.md)), con la franja del programa y el título en forma de miga: **📄 Guías › asignatura › Evaluación** (o Bibliografía, o Planificación docente). Pulsar **📄 Guías** vuelve a la lista y pulsar la asignatura vuelve a la guía; un nombre largo aparece recortado y se ve completo al pasar el ratón. Desde ellas puede crear, editar y eliminar instrumentos de evaluación, referencias y sesiones, y duplicar sesiones.
+Desde **🔧 Gestionar evaluación**, **🔧 Gestionar bibliografía** y **🔧 Gestionar planificación docente**, el director usa las mismas pantallas que el profesorado (ver el [manual de Profesor](../profesor/README.md)), con la franja del programa y el título en forma de miga: **📄 Guías › asignatura › Evaluación** (o Bibliografía, o Planificación docente). La primera imagen es la de evaluación tal como la ve el director, con la sección "Texto de convocatorias" al final. Las de bibliografía y planificación docente muestran la vista del profesor (etiqueta "Vista de Docente", cabecera "Guía docente"): el director las ve con la cabecera del programa, la franja de pestañas y la miga **📄 Guías › asignatura › ...**, y sin los botones de arranque del profesor (**📥 Importar de asignatura hermana**, **📥 Importar desde texto** y **Crear N sesiones genéricas**), salvo que también tenga asignada la asignatura. Pulsar **📄 Guías** vuelve a la lista y pulsar la asignatura vuelve a la guía; un nombre largo aparece recortado y se ve completo al pasar el ratón. Desde ellas puede crear, editar y eliminar instrumentos de evaluación, referencias y sesiones, y duplicar sesiones.
 
 A diferencia del temario, aquí el estado cambia en el momento, sin esperar a **💾 Guardar borrador**: crear un elemento o editar uno que ya forma parte de la guía devuelve a **Borrador** una guía **Aprobada** y pasa a **Rechazada** una **En revisión**. Lo creado queda como **Vinculada: No** hasta pulsar **💾 Guardar borrador** en el recuadro de la guía, y lo eliminado no se hace definitivo hasta entonces. Un aviso en ámbar bajo el título, y en los formularios de editar, recuerda la consecuencia: "⚠️ Esta guía está en revisión: si guardas un cambio como corrección del director, quedará rechazada." (o, si está aprobada, que volverá a borrador). Si el director también imparte esa asignatura, sus cambios cuentan como del profesor: una guía en revisión no se rechaza y ese aviso no aparece.
 
 El **texto de convocatorias** (apartado 5 de la guía) también es editable como corrección excepcional: desde **🔧 Gestionar evaluación** (la pantalla mantiene la franja del programa y su título es **📄 Guías › asignatura › Evaluación**; pulsar la asignatura vuelve a la guía), en la sección "Texto de convocatorias", eligiendo la plantilla y completando el instrumento y el porcentaje de la convocatoria extraordinaria, con **💾 Guardar texto de convocatorias**. El texto en sí no se edita. Aplica las mismas consecuencias sobre el estado y el mismo registro en el historial que el resto de ediciones.
 
-El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor: en sus pantallas no aparecen esos botones. Si el director también tiene asignada la asignatura (la imparta o sea su responsable), en la planificación y la bibliografía sí los tiene, como profesor; para importar el temario de una guía hermana tiene que entrar en la guía como profesor, desde su **Inicio**. El contenido está limitado a 10.000 caracteres, con un contador bajo el cuadro de texto.
+El director **no puede enviar a revisión** (eso sigue siendo del profesorado) ni usar las importaciones ni la creación de sesiones genéricas, que son del profesor: en sus pantallas no aparecen esos botones. Si el director también tiene asignada la asignatura (la imparta o sea su responsable), en la planificación y la bibliografía sí los tiene, como profesor; para importar el temario de una guía hermana tiene que entrar en la guía como profesor, desde su **Inicio**. El contenido está limitado a 10.000 caracteres, con un contador encima del cuadro de texto, a la derecha.
 
 ---
 

@@ -1,62 +1,63 @@
-@startsalt previsualizarGuia-noOficial
+@startsalt previsualizarGuia-wireframe-borrador
 {
-    <b>&#9888; BORRADOR -- documento no oficial (estado de la Guía: EnRevisión)</b>
+    <b>⚠ BORRADOR -- documento no oficial (estado de la Guía: EnRevision). El documento oficial es el PDF que se genera cuando la guía está Aprobada.</b>
     ====
-    {
-        [ logo Universidad Europea del Atlántico ]       <b>GUÍA DOCENTE 2026-2027</b>
+    [ logo Universidad Europea del Atlántico ]
+    <b>GUÍA DOCENTE 2026-2027</b>
+    <i>BORRADOR - NO OFICIAL</i>
+    ====
+    <b>1. DATOS GENERALES DE LA ASIGNATURA</b>
+    {#
+        ASIGNATURA | Programación I
+        TITULACIÓN | Grado en Ingeniería Informática
+        CENTRO | Escuela Politécnica Superior
+        CARÁCTER | Básica
+        ECTS | 6
+        CURSO | Primero
+        SEMESTRE | Primero
+        IDIOMA | Castellano
+        DOCENTE | Ana Pérez
+        EMAIL | profesor1@uneatlantico.es
     }
-    ====
-    <b>DATOS GENERALES DE LA ASIGNATURA</b>
-    Asignatura            | Programación I
-    Plan de estudios      | Grado en Ingeniería Informática
-    Facultad              | Escuela Politécnica Superior
-    ECTS / Curso / Sem.   | 6  /  Primero  /  Primero
-    Idioma                | Castellano
-    Profesorado           | Dr. Manuel Masías  (manuel.masias@uneatlantico.es)
-    ====
-    <b>CONTENIDOS</b>
-    Tema 1: Algoritmos
-    Tema 2: El lenguaje de programación JAVA
-    Tema 3: Variables, Tipos de Datos y Operadores
-    ..(temario propio de la Guía)
-    ====
-    <b>RESULTADOS DE APRENDIZAJE</b>
-    ..(bloque único, leído en vivo de la asignatura)
-    ====
-    <b>METODOLOGÍAS DOCENTES</b>
-    ..(metodologías docentes de la asignatura)
-    ====
-    ACTIVIDADES_FORMATIVAS_AQUI
-    ====
-    <b>SISTEMA DE EVALUACIÓN</b>
-    ..(texto de la Guía antes de la tabla: convocatoria ordinaria)
-    Evaluación continua | Examen Parcial                                   | 25 %
-    Evaluación continua | Actividades y ejercicios                         | 20 %
-    Evaluación continua | Interés y participación del alumno               |  5 %
-    Evaluación final    | Examen Teórico-Práctico                          | 50 %
-    ..(texto de la Guía después de la tabla: nota de 4,0 puntos y convocatoria extraordinaria)
-    <b>RÉGIMEN DE USO DE INTELIGENCIA ARTIFICIAL EN LAS ACTIVIDADES DE EVALUACIÓN</b>
-    ..(párrafo institucional fijo, idéntico para toda Guía)
-    ====
-    <b>BIBLIOGRAFÍA</b>
-    ..(referencias vinculadas a la Guía, agrupadas por tipo)
-    ====
-    [ <b>Volver a la guía</b> ]
+    <b>2. DATOS ESPECÍFICOS DE LA ASIGNATURA</b>
+    REQUISITOS PREVIOS
+    No aplica
+    CONTENIDOS
+    Tema 1. Fundamentos de la programación
+    Tema 2. Estructuras de control
+    Tema 3. Estructuras de datos
+    <b>3. RESULTADOS DE APRENDIZAJE</b>
+    ...
+    <b>4. METODOLOGÍAS DOCENTES Y ACTIVIDADES FORMATIVAS</b>
+    ...
+    <b>5. SISTEMA DE EVALUACIÓN</b>
+    {#
+        . | <b>Actividades de evaluación</b> | <b>Ponderación</b>
+        Evaluación continua | Examen Parcial | 25 %
+        . | Actividades y ejercicios | 20 %
+        Evaluación final | Examen Teórico-Práctico | 35 %
+        . | Entrega de proyecto | 20 %
+    }
+    RÉGIMEN DE USO DE INTELIGENCIA ARTIFICIAL EN LAS ACTIVIDADES DE EVALUACIÓN
+    ...
+    <b>6. BIBLIOGRAFÍA Y RECURSOS DE REFERENCIA GENERALES</b>
+    BIBLIOGRAFÍA BÁSICA
+    · Sedgewick, R. (2008) Introduction to programming in Java...
+    ...
 }
 @endsalt
 
-@startsalt previsualizarGuia-aprobada
+@startsalt previsualizarGuia-wireframe-aprobada
 {
-    {
-        [ logo Universidad Europea del Atlántico ]       <b>GUÍA DOCENTE 2026-2027</b>
+    [ logo Universidad Europea del Atlántico ]
+    <b>GUÍA DOCENTE 2026-2027</b>
+    ====
+    <b>1. DATOS GENERALES DE LA ASIGNATURA</b>
+    {#
+        ASIGNATURA | Programación I
+        TITULACIÓN | Grado en Ingeniería Informática
+        ... | ...
     }
-    ====
-    <b>DATOS GENERALES DE LA ASIGNATURA</b>
-    Asignatura            | Programación I
-    ..                    | ..
-    ====
-    ..(mismo documento que la pantalla anterior, sin la banda de aviso)
-    ====
-    [ <b>Volver a la guía</b> ]
+    ...
 }
 @endsalt

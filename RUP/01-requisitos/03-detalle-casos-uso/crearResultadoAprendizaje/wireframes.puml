@@ -1,21 +1,19 @@
 @startsalt crearResultadoAprendizaje-wireframe
 {
-    <b>CREAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Grado en Ingeniería Informática</b>
-    --
+    <b>Crear resultado de aprendizaje</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Código (*):</b>
-        "          "
-        <b>Tipo (*):</b>
-        ^Conocimientos o contenidos^
-        <b>Descripción (*):</b>
-        "                                                  "
-        "                                                  "
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Código (*):</b> | "          "
+        <b>Tipo (*):</b> | ^Conocimientos o contenidos^
     }
-    ~~
-    {[Crear]}
+    <b>Descripción (*):</b>
+    "                                                  "
+    "                                                  "
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
 }
 @endsalt

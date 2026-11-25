@@ -22,5 +22,6 @@
 |[**Editar actividades formativas de la asignatura**](editarActividadesFormativasAsignaturaPrograma.md)|<sub>editarActividadesFormativasAsignaturaPrograma()</sub>|
 |[**Volver al Programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
 |[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|
+|[**Abrir asignaturas del programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
 
 </div>

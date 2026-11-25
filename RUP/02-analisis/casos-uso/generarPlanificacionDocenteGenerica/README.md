@@ -26,8 +26,9 @@ Traducción a clases de análisis del caso de uso [`generarPlanificacionDocenteG
 ### `GenerarPlanificacionDocenteGenericaView`
 
 **Responsabilidades:**
-- presenta el número de `Sesion` que se van a crear (`Guia.sesiones_minimas`) y una nota de que todas nacen como `CLASE_TEORICA` sin descripción, editables después.
-- permite solicitar confirmar o cancelar la generación.
+- presenta el número de `Sesion` que se van a crear (`Guia.sesiones_minimas`) en el propio botón de la planificación docente vacía ("Crear N sesiones genéricas").
+- permite solicitar confirmar (segunda pulsación del mismo botón) o cancelar la generación, sin pantalla aparte.
+- si el Controlador responde con conflicto (la planificación ya tiene sesiones), recarga el listado sin mensaje de bloqueo: el botón desaparece.
 - no se muestra si la planificación docente ya tiene sesiones (el botón de entrada, en `abrirPlanificacionDocente()`, solo aparece en el estado vacío).
 
 **Colaboraciones:**
@@ -100,7 +101,7 @@ Traducción a clases de análisis del caso de uso [`generarPlanificacionDocenteG
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/README.md) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframes.puml) -- fuente de verdad del comportamiento y la pantalla de confirmación.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/README.md) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframes.puml) -- fuente de verdad del comportamiento y de la confirmación en el propio botón (alineada con la pantalla construida en #857).
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : generarPlanificacionDocenteGenerica()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Guia *-- PlanificacionDocente *-- Sesion` (divergencia lateral con el `Sesion.guia_id` directo del código, ver Propósito).
 - [`importarPlanificacionDocenteDeGuiaHermana()`](../importarPlanificacionDocenteDeGuiaHermana/README.md) -- misma familia (arranque en bloque), copia de una hermana `Aprobada`; comparte `SesionRepository` y la traza de `HistorialCambio`.

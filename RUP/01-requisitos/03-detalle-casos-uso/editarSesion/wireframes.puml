@@ -1,18 +1,20 @@
-@startsalt editarSesion-wireframe-formulario
+@startsalt editarSesion-wireframe
 {
-    <b>EDITAR SESIÓN 3</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
-    --
-    {
-        <b>Tipo (*):</b>
-        ^Clase Teórica^Clase Práctica^Clase Teórico/Práctica^Clase Laboratorio^Evaluación Continua^Evaluación Parcial^
-        <b>Descripción (*):</b>
-        "Temas aaa bbb                                      "
-        --
-        <i>(*) Campo obligatorio</i>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Planificación docente</b> | [Añadir fila]}
+    ====
+    {<b>Leyenda:</b> | Clase teórica | Clase práctica / de laboratorio | Clase teórico/práctica | [Importar de asignatura hermana] | [Importar desde texto]}
+    {#
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b> (Mayúsculas+Enter: nueva línea) | . | .
+        1 | ^Clase Teórica^ | "Presentación de la asignatura          " | [Duplicar] | [Eliminar]
+        2 | ^Clase Teórica^ | "Tema 1. Algoritmos y programas        " | [Duplicar] | [Eliminar]
+        3 | ^Clase Laboratorio^ | "Práctica 1. Entorno de desarrollo y depuración" | [Duplicar] | [Eliminar]
+        . | . | Guardando... | . | .
+        4 | ^Clase Teórico/Práctica^ | "Tema 2. Estructuras de control        " | [Duplicar] | [Eliminar]
+        5 | ^Evaluación Continua^ | "Ejercicios del tema 2                 " | [Duplicar] | [Eliminar]
     }
-    ~~
-    {[Guardar]}
+    {<color:red><b>5 sesiones</b> (mínimo 25)</color> | [Descargar planificación]}
 }
 @endsalt

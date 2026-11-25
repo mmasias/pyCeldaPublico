@@ -46,6 +46,10 @@
 
 **Confirmación en la propia fila, sin pantalla aparte** (issue [#855](https://github.com/mmasias/pyCelda/issues/855), hallado en la revisión de #853): la aplicación no abre una pantalla de confirmación. Al pulsar la papelera de una fila, ese mismo botón pasa a "🗑️ pulsa de nuevo para confirmar" y aparece a su lado **Cancelar** (`ReferenciasBibliograficas.tsx`, `idAConfirmar`); la segunda pulsación confirma y **Cancelar** deja la fila como estaba. Al confirmar, la fila desaparece de la lista de bibliografía, pero es solo una marca en el navegador: el borrado se hace definitivo al pulsar **Guardar borrador** en la ficha de la guía ([`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)), y si se cierra el navegador sin guardar, la fila sigue existiendo la próxima vez que se entra. El wireframe dibuja el listado con una fila en ese estado de confirmación. En el wireframe, los botones de icono de la aplicación (lápiz, papelera) se escriben con su nombre.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): el listado se dibuja completo, con la etiqueta `Vista de Docente`, la cabecera `Guía docente` con `[Inicio] [Mis programas] [Mi perfil] [Cerrar sesión]`, la fila de miga `GII · Programación I › Bibliografía` con `[Crear referencia]` y la fila de `[Importar de asignatura hermana]`, igual que en [`abrirReferenciasBibliograficas()`](../abrirReferenciasBibliograficas/README.md); las filas siguen el orden real por etiqueta del tipo (Otras fuentes de consulta antes que Webs de referencia). El flujo no cambia: confirmación en la propia fila, sin pantalla aparte.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()`

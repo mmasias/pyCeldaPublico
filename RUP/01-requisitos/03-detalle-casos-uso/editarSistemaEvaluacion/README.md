@@ -44,6 +44,9 @@ Mismos campos editables que `crearSistemaEvaluacion()`, sin campo fijo desde el 
 
 **Guarda de rango (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: crear un sistema o cambiar su rango se rechaza (409) si alguna `Guia` del curso activo En revisión o Aprobada de la `Materia` dejaría de cumplir la regla de `Guia.bloqueo_ponderaciones()` para ese sistema -- suma de sus `PonderacionEvaluacion` vinculadas en [mínima, máxima]; un sistema nuevo cuenta como 0 %. Las guías en Borrador o Rechazada no cuentan: se revalidan en `enviarGuiaARevision()`. Sin esta guarda, estrechar un rango invalidaba en silencio guías ya validadas.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858), vista del DirectorPrograma (entrada desde la ficha de la materia; al guardar o cancelar vuelve a ella): título "Editar sistema de evaluación", línea "Programa: GII -- Grado en Ingeniería Informática", descripción como área de texto de cuatro líneas y botones Guardar/Cancelar al pie. Cancelar con cambios sin guardar pide confirmación.
 
 ## Referencias
 

@@ -28,9 +28,9 @@ Desde la guía, pulsar **🔧 Gestionar evaluación**, a la derecha del título 
 
 </div>
 
-Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, **Ponderación** y **Vinculada** (Sí o No -- ver más abajo). En la última fila, bajo **Ponderación**, el total asignado, en rojo si no suma 100%.
+Una tabla con todos los instrumentos ya creados: **Instrumento**, **Sistema**, **Ponderación** y **Vinculada** (Sí o No -- ver más abajo), con el lápiz **✏️** (Editar) y la papelera **🗑️** (Eliminar) en cada fila. En la última fila, bajo **Ponderación**, el total asignado, en rojo si no suma 100%. La imagen muestra dos instrumentos aún sin confirmar (**Vinculada: No**), por eso el total sale con dos cifras (ver "Qué significa "Vinculada"" más abajo).
 
-Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
+Si la guía está **Aprobada**, bajo la miga aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
 
 Más abajo, alineada a la derecha y en pequeño porque es de referencia, la tabla **Sistemas de evaluación de la materia**: el catálogo completo de tipos de evaluación de la asignatura, con su porcentaje mínimo y máximo permitido, y cuánto hay asignado a cada uno. Si un sistema está fuera de su rango permitido, o en 0% siendo obligatorio, aparece marcado en rojo. Al pie, bajo **Asignado**, el total asignado, también en rojo si no suma 100%.
 
@@ -44,13 +44,13 @@ Más abajo, alineada a la derecha y en pequeño porque es de referencia, la tabl
 
 </div>
 
-1. Pulsar **➕ Crear instrumento**, a la derecha del título.
+1. Pulsar **➕ Crear instrumento**, a la derecha de la miga.
 2. Elegir el **Sistema de evaluación** de la lista desplegable.
 3. Escribir una **Descripción** (por ejemplo, "Examen final" o "Trabajo en grupo").
 4. Escribir la **Ponderación**, el porcentaje que vale sobre el total. Tiene que ser mayor que cero.
 5. Pulsar **Guardar**; **Cancelar**, junto a él, vuelve a la lista sin crear nada.
 
-Si la ponderación es cero o un número negativo, aparece el error "La ponderación de un instrumento debe ser mayor que cero" y no se crea nada. Si supera el máximo del sistema elegido (la lista lo indica como "máx. N%"), aparece "La ponderación supera el máximo del sistema de evaluación".
+Si la ponderación es cero o un número negativo, aparece el error "La ponderación de un instrumento debe ser mayor que cero" y no se crea nada. Si supera el máximo del sistema elegido (la lista lo indica como "máx. N%"), aparece "La ponderación supera el máximo del sistema de evaluación". El error sale en rojo encima del formulario, precedido de "Error:", y lo escrito se conserva para corregirlo. El formulario no tiene accesos a Inicio ni miga: se sale con **Guardar** o **Cancelar**.
 
 ## Editar un instrumento
 

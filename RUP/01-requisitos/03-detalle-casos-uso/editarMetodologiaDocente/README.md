@@ -42,6 +42,10 @@ Mismo formulario que [`crearMetodologiaDocente()`](../crearMetodologiaDocente/RE
 
 Hasta #772 solo `descripcion` era editable y `codigo` se tenía por identificador institucional fijo (`MD1`-`MD7`); la verificación contra las memorias mostró que cada programa da a sus códigos significados propios (ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Editar metodología docente", línea "Programa: GII -- Grado en Ingeniería Informática", código en la misma línea que su etiqueta y descripción en área de texto de tres líneas. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `METODOLOGIA_DOCENTE_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : editarMetodologiaDocente()`

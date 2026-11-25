@@ -7,7 +7,7 @@ state PLANIFICACION_DOCENTE_ABIERTO_SALIDA as "PLANIFICACION_DOCENTE_ABIERTO"
 
 PLANIFICACION_DOCENTE_ABIERTO -[#green]-> editarSesion
 note on link
-<b>Profesor</b> solicita editar Sesion de la Planificación docente
+<b>Profesor</b> modifica una Sesion en su fila de la Planificación docente
 end note
 
 state editarSesion as "editarSesion()" {
@@ -16,16 +16,15 @@ state editarSesion as "editarSesion()" {
 
     [*] -[#green]-> EditandoDatos
     note on link
-    <b>Sistema</b> presenta datos actuales de la sesión
-    <b>Sistema</b> presenta selección de tipo
-    <b>Sistema</b> permite solicitar guardar
+    <b>Sistema</b> presenta en la fila los datos actuales de la sesión
+    <b>Sistema</b> presenta selección de tipo y descripción editables
     end note
 
     EditandoDatos -[#green]-> [*]
     note on link
     <b>Profesor</b> selecciona tipo
     <b>Profesor</b> introduce descripción
-    <b>Profesor</b> solicita guardar
+    <b>Profesor</b> confirma la descripción
     end note
 }
 

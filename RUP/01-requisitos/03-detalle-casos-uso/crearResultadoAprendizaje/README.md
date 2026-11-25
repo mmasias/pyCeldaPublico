@@ -40,6 +40,10 @@
 
 **Sin patrón C→U, a diferencia del resto de `crearX()` del catálogo**: el diseño original (caso de calibración, discussion #9) pedía solo `descripcion` y diferia `codigo`/`tipo` a `editarResultadoAprendizaje()`. Corregido en la revisión del lote L3 ([issue #24](https://github.com/mmasias/pyCelda/issues/24)): `ResultadoAprendizaje{codigo, tipo, descripcion}` es demasiado minimalista para que deferir dos de sus tres campos aporte algo -- los tres son igual de triviales de introducir en el momento de la creación, a diferencia de `Asignatura` (`crearAsignatura()` sí difiere `ects`/`contenido`/`estado`, 4 campos más allá de `nombre`). `crearResultadoAprendizaje()` y `editarResultadoAprendizaje()` terminan pidiendo el mismo formulario.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): título "Crear resultado de aprendizaje", línea "Programa: GII -- Grado en Ingeniería Informática" y botones Crear/Cancelar (Cancelar no figuraba). Cancelar con cambios sin guardar pide confirmación antes de volver al listado; el tipo es una lista cerrada de tres valores.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `RESULTADOS_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : crearResultadoAprendizaje()`

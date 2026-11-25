@@ -13,26 +13,35 @@ end note
 state eliminarSistemaEvaluacion as "eliminarSistemaEvaluacion()" {
 
     state " " as ConfirmandoEliminacion
+    state " " as Bloqueada
     state c <<choice>>
 
-    [*] -[#green]-> c
-
-    c -[#green]-> ConfirmandoEliminacion
+    [*] -[#green]-> ConfirmandoEliminacion
     note on link
-    [SistemaEvaluacion sin PonderacionEvaluacion asociadas]
     <b>Sistema</b> presenta información del sistema de evaluación y advertencia de eliminación
     <b>Sistema</b> permite solicitar confirmar/cancelar eliminación
     end note
 
-    c -[#red]-> [*]
+    ConfirmandoEliminacion -[#green]-> c
+    note on link
+    <b>Admin</b> solicita confirmar eliminación
+    end note
+
+    c -[#green]-> [*]
+    note on link
+    [SistemaEvaluacion sin PonderacionEvaluacion asociadas]
+    end note
+
+    c -[#red]-> Bloqueada
     note on link
     [SistemaEvaluacion con PonderacionEvaluacion asociadas]
     <b>Sistema</b> presenta mensaje de bloqueo por PonderacionEvaluacion asociadas
+    <b>Sistema</b> permite solicitar volver
     end note
 
-    ConfirmandoEliminacion -[#green]-> [*]
+    Bloqueada -[#red]-> [*]
     note on link
-    <b>Admin</b> solicita confirmar eliminación
+    <b>Admin</b> solicita volver
     end note
 
     ConfirmandoEliminacion -[#blue]-> [*]

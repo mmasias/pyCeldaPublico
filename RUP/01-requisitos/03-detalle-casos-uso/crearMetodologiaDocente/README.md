@@ -47,6 +47,10 @@ Sin patrón C→U, igual que [`crearCompetencia()`](../crearCompetencia/README.m
 
 La salida lleva a la ficha de la metodología creada (`<<include>>` de `editarMetodologiaDocente()`, nota obligatoria de la transición de salida). Hasta #772 el alta era solo del `Admin`, en el catálogo institucional de una `Universidad` elegida en el formulario, sin control de código repetido.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Crear metodología docente" (sin accesos globales: es formulario), línea "Programa: GII -- Grado en Ingeniería Informática", código en la misma línea que su etiqueta y descripción en área de texto de tres líneas. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIA_DOCENTE_ABIERTO : crearMetodologiaDocente()`

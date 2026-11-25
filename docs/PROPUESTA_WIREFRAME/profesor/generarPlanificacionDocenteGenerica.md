@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Bloqueo**|**Confirmación**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframe-bloqueo.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframe-confirmacion.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframe-confirmacion.svg)
 
 |Botón|CdU|
 |---|---|

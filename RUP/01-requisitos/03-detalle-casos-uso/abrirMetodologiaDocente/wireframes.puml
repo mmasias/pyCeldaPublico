@@ -1,17 +1,19 @@
 @startsalt abrirMetodologiaDocente-wireframe
 {
-    <b>METODOLOGÍAS DOCENTES > MD3</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Descripción:</b>
-    "Resolución de ejercicios"
+    <b>Grado en Ingeniería Informática</b>
     ====
+    [ Vista general ] | [ Guías ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ <b>Metodologías</b> ] | [ Actividades formativas ] | [ Asignaturas ]
+    ====
+    Metodologías docentes › <b>MD3</b> | [Editar]
+    <b>Descripción</b>
+    <i>Resolución de ejercicios</i>
     <b>Distribución</b>
     {
         <b>Materias</b> | <b>Asignaturas del programa</b>
         Programación | Programación I
         . | Programación II
     }
-    ====
-    {[Editar]}
 }
 @endsalt

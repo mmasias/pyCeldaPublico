@@ -1,14 +1,18 @@
 @startsalt consultarEstadoGuias-wireframe
 {
-    <b>GUÍAS DEL PROGRAMA -- GII</b>
+    {+ Vista de Dirección · GII }
     ====
-    [ <b>Notificar guías actualizadas</b> ]
+    {<b>Grado en Ingeniería Informática</b> | [Inicio] | [Mis programas] | [Cerrar sesión]}
+    {[Vista general] | [<b>Guías</b>]}
+    {[Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas] | [Asignaturas]}
     ====
+    {<b>Guías</b> | <b>Curso académico:</b> ^2026-2027 (vigente)^}
     {#
-        <b>AsignaturaPrograma | <b>Profesorado | <b>Estado | <b>Última actualización | .
-        Programación I | Dr. Manuel Masías, Dr. Pablo Herrero | [ En revisión ] ámbar | Administración, hace dos días | [Abrir]
+        <b>Asignatura</b> | <b>Profesorado</b> | <b>Estado</b> | <b>Última actualización</b> | .
+        Programación I (I-s1) | Ana Pérez, Luis Gómez | [ En revisión ] | Administración, hace dos días | [<b>Abrir</b>]
+        Cálculo I (I-s1) | Marta Ruiz | [ Borrador ] | Profesor, hace cinco días | [<b>Abrir</b>]
+        Ingeniería de Software I (III-s1) | Ana Pérez | [ Aprobada ] | Director, ayer | [<b>Abrir</b>]
     }
-    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
 }
 @endsalt
 
@@ -18,8 +22,8 @@
     ====
     {#
         <b>AsignaturaPrograma | <b>Profesorado | <b>Estado | <b>Última actualización | . | .
-        Programación I | Dr. Manuel Masías | [ Aprobada ] verde | Administración, hace dos días | [Previsualizar] | [Descargar PDF]
-        Cálculo I | Dra. Paz Gutiérrez | [ Borrador ] neutro | Profesor, hace cinco días | [Previsualizar] | [Descargar PDF] !!disabled
+        Programación I | Ana Pérez | [ Aprobada ] verde | Administración, hace dos días | [Previsualizar] | [Descargar PDF]
+        Cálculo I | Luis García | [ Borrador ] neutro | Profesor, hace cinco días | [Previsualizar] | [Descargar PDF] !!disabled
     }
     <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
 }

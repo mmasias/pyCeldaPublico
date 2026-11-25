@@ -1,28 +1,41 @@
 @startsalt editarTextoSistemaEvaluacion-wireframe
 {
-    <b>SISTEMA DE EVALUACIÓN -- Programación I (GII)</b>
+    {+ Vista de Docente }
+    ====
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Evaluación</b> | [Crear instrumento]}
+    ====
+    ...
     ====
     <b>Texto de convocatorias</b>
-    {
-        Plantilla: | ^Asignatura normal^
-        Instrumento de la convocatoria extraordinaria: | "la prueba de evaluación final (Examen final)"
-        Porcentaje recuperable en la extraordinaria: | {"50" | %}
-    }
+    Texto del apartado 5 de la guía. No se edita: sale de la plantilla que se elija, con
+    el instrumento y el porcentaje de la convocatoria extraordinaria. La tabla de
+    instrumentos va donde pone <b>&#91;TABLA]</b>.
+    {<b>Plantilla:</b> | ^Asignatura normal^}
+    {<b>Instrumento de la convocatoria extraordinaria:</b> | "la prueba de evaluación final (Examen Teórico-Práctico)"}
+    {<b>Porcentaje recuperable en la extraordinaria:</b> | "35  " | %}
     {+
-        <b>PROPUESTA:</b> <i>Según los instrumentos de evaluación final de la lista: la prueba de evaluación final (Examen final), 50 %.</i> | [Usar esta propuesta]
+        <b>PROPUESTA:</b> <i>Según los instrumentos de evaluación final de la lista: las pruebas de evaluación final (Examen Teórico-Práctico y Entrega de proyecto), 55 %.</i> | [Usar esta propuesta]
     }
-    ====
+    El porcentaje no coincide con la suma de los instrumentos de evaluación final (55 %).
     {+
-        <b>Texto resultante (no editable)</b>
         CONVOCATORIA ORDINARIA
+        .
         En la convocatoria ordinaria de esta asignatura se aplican los siguientes instrumentos de evaluación:
-        <i>(tabla de instrumentos)</i>
-        ...
+        .
+        &#91;TABLA]
+        .
+        La calificación del instrumento de la evaluación final (tanto de la convocatoria ordinaria como de la extraordinaria,
+        según corresponda) no podrá ser inferior, en ningún caso, a 4,0 puntos (escala 0 a 10) para aprobar la asignatura
+        y consecuentemente poder realizar el cálculo de porcentajes en la calificación final.
+        .
         CONVOCATORIA EXTRAORDINARIA
-        ... Esta consistirá en la prueba de evaluación final (Examen final),
-        con un valor del 50 % de la nota final de la asignatura. ...
+        .
+        La convocatoria extraordinaria tendrá lugar durante el mes de julio (consúltese el calendario académico fijado por
+        la universidad). Esta consistirá en la prueba de evaluación final (Examen Teórico-Práctico), con un valor del 35 %
+        de la nota final de la asignatura. El resto de la nota se complementará con la calificación obtenida en la
+        evaluación continua de la convocatoria ordinaria.
     }
-    ====
-    {[Guardar texto de convocatorias]}
+    {[Guardar texto de convocatorias] | (cambios sin guardar)}
 }
 @endsalt

@@ -46,6 +46,10 @@ Tercera decisión de la familia -- ver [`aprobarGuia()`](../aprobarGuia/README.m
 
 Único caso de uso de L9 con dato real, sin hipótesis: `GII__IYA003` está realmente en `Borrador` (estado visible en el catálogo desde L7), así que el wireframe la usa tal cual -- no hace falta forzar un estado hipotético, a diferencia del resto de decisiones de esta familia.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): el resultado no es una pantalla aparte "GUÍA DOCENTE -- Programación I (GII)": la ficha de la guía en la vista de Dirección (cabecera del programa, pestañas con Guías marcada, miga "Guías › Programación I") muestra arriba el aviso "✓ GUÍA ESCALADA A APROBADA", el estado anterior y el actual como badges, el comentario registrado "Escalada a aprobada sin incidencia" y el botón "Volver a las guías" (antes "Volver al listado de guías"); debajo sigue la ficha, ya sin barra de decisiones, resumen de completitud ni recuadro de corrección. La especificación añade que el `DirectorPrograma` solicita volver a las guías para llegar a `GUIAS_DEL_PROGRAMA_ABIERTO`. Colores de los badges: los de [`abrirGuia()`](../abrirGuia/README.md).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `GUIA_ABIERTO --> GUIAS_DEL_PROGRAMA_ABIERTO : escalarGuiaAAprobada()`

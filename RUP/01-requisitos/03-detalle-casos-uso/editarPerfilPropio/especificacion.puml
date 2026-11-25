@@ -19,12 +19,12 @@ state editarPerfilPropio as "editarPerfilPropio()" {
 
     [*] -[#blue]-> [*]
     note on link
-    <b>Profesor</b> guarda cambios -- <b>Sistema</b> persiste y refresca la pantalla con los valores guardados
+    <b>Profesor</b> guarda (con o sin cambios) -- <b>Sistema</b> persiste, da el perfil por confirmado para el curso y refresca la pantalla con los valores guardados y el aviso de guardado
     end note
 
     [*] -[#red]-> [*]
     note on link
-    ORCID con formato inválido, o "Otro" organismo acreditador sin especificar -- <b>Sistema</b> rechaza sin guardar, formulario intacto
+    ORCID, enlace al CVN, enlace a Google Scholar o enlace de la foto con formato inválido, o "Otro" organismo acreditador sin especificar -- <b>Sistema</b> rechaza sin guardar, formulario intacto
     end note
 }
 

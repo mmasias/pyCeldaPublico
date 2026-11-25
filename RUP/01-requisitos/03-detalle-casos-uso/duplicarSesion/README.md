@@ -42,6 +42,11 @@ Copia `tipo` y `descripcion` de la `Sesion` origen, la inserta con `numero` = or
 
 **Hueco de documentación hallado en la auditoría del issue [#605](https://github.com/mmasias/pyCelda/issues/605)**: endpoint y botón `📑 Duplicar` de `PlanificacionDocente` ya existían sin reflejo en el diagrama de contexto ni en el catálogo. Se documenta lo construido, sin cambiar comportamiento.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): en lugar de una sola fila suelta con cabecera "PLANIFICACIÓN DOCENTE" y columna "Nº", dibuja la pantalla completa de [`abrirPlanificacionDocente()`](../abrirPlanificacionDocente/README.md) (cabecera "Guía docente", miga "GII · Programación I › Planificación docente" con **Añadir fila**, leyenda, columna "#") justo después de duplicar la sesión 3: la copia aparece como 4 y las siguientes bajan un puesto. Como la copia no está vinculada hasta Guardar borrador, el medidor da las dos cifras ("En pantalla: 6 sesiones · Guardado: 5 sesiones (mínimo 25)") con el aviso ⚠ en ámbar.
+- Regla de presentación: en la aplicación los botones son "📑 Duplicar" y una papelera (🗑️, texto alternativo "Eliminar"); el wireframe los escribe como **Duplicar** y **Eliminar**. Si duplicar falla, bajo los botones aparece "Error al duplicar: ..." con **Reintentar**.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : duplicarSesion()`

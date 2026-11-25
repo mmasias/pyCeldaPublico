@@ -42,6 +42,10 @@ Primer escalón de la cascada `Programa`->`Materia`->`AsignaturaPrograma`, mismo
 
 **Actores**: `DirectorPrograma` sobre las materias de los programas que dirige y `Admin` sobre cualquier materia, con la misma pantalla en las dos vistas (espejo desde el diseño, #761 decisión 7). Códigos y textos de los wireframes ilustrativos: las competencias reales de cada programa se importarán de las memorias verificadas una vez implementado (#761, decisión 9), no están en el seed.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): título "Asociar competencia" con Cancelar en la cabecera (Volver si no quedan competencias disponibles), línea "Programa: GII -- Grado en Ingeniería Informática", nombre de la materia, selector en la misma línea que su etiqueta, texto completo de la elegida precedido de su tipo ("Específica. ..."), y Asociar tras una línea separadora. El texto completo se pinta en gris de nota, no en cursiva.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarCompetenciaAMateria()`

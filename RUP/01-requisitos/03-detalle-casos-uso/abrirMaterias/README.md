@@ -44,6 +44,10 @@ Caso de uso reutilizado por `DirectorPrograma` (`DirectorPrograma --|> Profesor`
 
 **Agrupación por módulo (issue [#762](https://github.com/mmasias/pyCelda/issues/762))**: si alguna `Materia` del `Programa` tiene `Modulo`, el listado se agrupa por módulo (cabecera `código -- nombre`) y deja al final el grupo **Sin módulo** con las materias que aún no tienen. Si ninguna materia tiene módulo (también cuando el programa tiene módulos aún vacíos), el listado es la tabla plana de siempre. Igual en las dos vistas: el `DirectorPrograma` ve la agrupación, pero no gestiona los módulos.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): el wireframe dibuja la vista de `DirectorPrograma` (etiqueta de vista, nombre del programa como título, pestañas del programa con "Materias" activa, título "Materias"); la tabla queda en "Nombre" y `[Abrir]` agrupada por módulo, sin la columna "Asignaturas", sin `[Eliminar]` ni `+ Crear Materia` (el CRUD de `Materia` es de `Admin`, que tiene pantalla propia).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()`

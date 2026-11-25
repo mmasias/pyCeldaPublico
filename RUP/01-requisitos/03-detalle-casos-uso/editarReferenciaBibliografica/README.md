@@ -46,6 +46,11 @@ Sin `<<choice>>`, mismo criterio que [`crearReferenciaBibliografica()`](../crear
 
 **Tope de longitud de la `referencia`** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): el texto de la `ReferenciaBibliografica` admite como máximo 500 caracteres (`LIMITE_REFERENCIA_BIBLIOGRAFICA`). Si se supera, el backend responde `422` con `La referencia bibliográfica supera el límite de 500 caracteres`. Barrera de entrada, no precondición del dominio: sin `<<choice>>` en la especificación. El campo del cliente lleva `maxlength` 500, sin contador visible.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): etiqueta `Vista de Docente`; título "Editar referencia bibliográfica" sin botones de cabecera; debajo, "Asignatura: Programación I" y "Programa: GII -- Grado en Ingeniería Informática"; `Tipo:` con el desplegable en la misma línea y `Referencia:` con un cuadro de texto de cuatro líneas con el texto actual; botones `[Guardar]` y `[Cancelar]`. Se retiran el rótulo "(*) Campo obligatorio" y los asteriscos, que la pantalla no muestra. Si la guía está `Aprobada` (o, en la vista de Dirección, `EnRevision`), bajo el programa aparece el mismo aviso de cambio de estado que en el listado; el wireframe dibuja una guía en `Borrador`, sin aviso.
+- En la pantalla construida se llega al formulario directamente desde el lápiz de la fila del listado (no hay detalle de solo lectura previo), y **Guardar** y **Cancelar** vuelven al listado de [`abrirReferenciasBibliograficas()`](../abrirReferenciasBibliograficas/README.md) (`REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`); **Cancelar** con cambios sin guardar pide confirmación para descartarlos. La especificación y el diagrama de contexto siguen modelando el caso como self-loop sobre `REFERENCIA_BIBLIOGRAFICA_ABIERTO`; su ajuste queda pendiente de la revisión del diagrama de contexto.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `REFERENCIA_BIBLIOGRAFICA_ABIERTO --> REFERENCIA_BIBLIOGRAFICA_ABIERTO : editarReferenciaBibliografica()`

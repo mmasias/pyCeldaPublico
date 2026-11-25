@@ -1,13 +1,26 @@
 @startsalt aprobarGuia-wireframe
 {
-    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Dirección · GII }
     ====
+    {<b>Grado en Ingeniería Informática</b> | [Inicio] | [Mis programas] | [Cerrar sesión]}
+    {[Vista general] | [<b>Guías</b>]}
+    {[Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas] | [Asignaturas]}
+    ====
+    {Guías › <b>Programación I</b>}
     <color:green><b>✓ GUÍA APROBADA</b></color>
-    ====
-    <b>Estado anterior:</b> EnRevision
-    <b>Estado actual:</b> Aprobada
+    <b>Estado anterior:</b> [ En revisión ]
+    <b>Estado actual:</b> [ Aprobada ]
     <b>Comentario registrado:</b> "Aprobada sin incidencia"
+    [Volver a las <b>guías</b>]
     ====
-    [ <b>Volver al listado de guías</b> ]
+    {
+        <b>Semestre:</b> 1 | <b>Estado:</b> [ Aprobada ]
+        <b>Profesores:</b> | <b>Creación:</b> 1/9/2026, 10:30:00
+        · Ana Pérez (Responsable · Imparte) | <b>Última modificación:</b> 10/9/2026, 11:20:00
+         . | <b>Generación del PDF:</b> --
+    }
+    ====
+    <b>Contenido</b>
+    ...
 }
 @endsalt

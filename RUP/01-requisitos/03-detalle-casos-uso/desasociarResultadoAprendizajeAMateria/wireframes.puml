@@ -1,27 +1,27 @@
 @startsalt desasociarResultadoAprendizajeAMateria-wireframe-bloqueada
 {
-    <b>DESASOCIAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <color:red><b>⚠ NO SE PUEDE DESASOCIAR</b></color>
+    <b>Desasociar resultado de aprendizaje</b> | [ Volver a <b>Programación</b> ]
     ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red><b>⛔ No se puede desasociar</b></color>
     <b>RAK1</b> (Programación)
-
-    En uso en: AsignaturaPrograma "Programación I", AsignaturaPrograma "Programación II".
-
-    <i>Quítalo primero de esas AsignaturaPrograma.</i>
-    ====
-    [ <b>Volver a Programación</b> ]
+    En uso en estas asignaturas de programa: "Programación I", "Programación II".
+    <i>Quítalo primero de esas asignaturas de programa.</i>
 }
 @endsalt
 
 @startsalt desasociarResultadoAprendizajeAMateria-wireframe-confirmacion
 {
-    <b>DESASOCIAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Desasociar resultado de aprendizaje</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>RAH1</b> (Programación)
-
     Sin asignaturas-en-programa de esta materia usándolo.
-    ====
-    {[Confirmar desasociación] | [Cancelar]}
+    --
+    [Confirmar desasociación]
 }
 @endsalt

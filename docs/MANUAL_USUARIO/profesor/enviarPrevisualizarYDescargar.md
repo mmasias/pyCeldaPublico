@@ -16,9 +16,17 @@
 
 </div>
 
-Cuando el temario, la evaluación, la bibliografía y la planificación docente están listos, corresponde pulsar **📤 Enviar a revisión**, en la propia guía. La guía pasa a estado **En revisión**, la pantalla vuelve a **Inicio** y la guía queda a la espera de que el director de programa la apruebe o la rechace.
+Cuando el temario, la evaluación, la bibliografía y la planificación docente están listos, corresponde pulsar **📤 Enviar a revisión**, en la propia guía. La guía pasa a estado **En revisión**, la pantalla vuelve a **Inicio**, donde la guía ya aparece **En revisión** en la lista, y queda a la espera de que el director de programa la apruebe o la rechace. No hay pantalla de confirmación intermedia.
 
-Antes del envío se comprueban cuatro cosas -- si alguna falla, aparece un aviso explicando exactamente cuál:
+El envío no incluye el texto del temario que no se haya guardado: si lo hay, antes de enviar pyCelda pregunta "Tienes cambios sin guardar en el contenido. ¿Salir sin guardarlos?". Para no perderlo, cancelar, pulsar **💾 Guardar borrador** y enviar después.
+
+<div align=center>
+
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-error-planificacion.svg)
+
+</div>
+
+Antes del envío se comprueban cuatro cosas, en este orden. Si alguna falla, la guía no se envía y no se cambia de pantalla: en la propia guía, sobre los botones, aparece en rojo "Error:" seguido del motivo (solo el de la primera comprobación que falla):
 
 - **Todo guardado**. Si hay instrumentos de evaluación, referencias o sesiones creados y todavía sin confirmar, aparece el aviso "Hay items sin guardar -- guarda el borrador primero". Corresponde pulsar **💾 Guardar borrador** antes de reintentar.
 - **Evaluación completa**. La suma de las ponderaciones de evaluación tiene que llegar exactamente al 100%, y cada sistema de evaluación tiene que quedarse dentro de su rango permitido. Si no es así, aparece un mensaje como "Falta asignar 10% en SE2 Pruebas prácticas finales (mínimo 10%, asignado 0%)" o "Sobra 5% en SE3 Actividades de evaluación continua y formativa (máximo 60%, asignado 65%)", que nombra el sistema con el código y la denominación de la memoria del título e indica exactamente dónde está el desajuste; o, si todavía no se ha creado ningún instrumento, el mensaje más genérico "Rango por sistema de evaluación o suma total incorrectos". Ver el capítulo [Ponderaciones de evaluación](ponderacionesDeEvaluacion.md) para corregirlo.

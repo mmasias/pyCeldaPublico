@@ -32,9 +32,9 @@ Desde la guía, pulsar **🔧 Gestionar planificación docente**, a la derecha d
 
 </div>
 
-Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo. Si hay sesiones en pantalla que aún no cuentan (creadas o eliminadas sin pulsar **💾 Guardar borrador** en la guía), aparecen las dos cifras, por ejemplo **En pantalla: 30 sesiones · Guardado: 25 sesiones**, con un aviso en ámbar: para enviar la guía cuenta la de **Guardado**.
+Una tabla numerada con cada sesión: **#**, **Tipo** y **Descripción**. El tipo se elige en un desplegable y la descripción se escribe en la propia fila (Mayúsculas+Enter añade una línea; Enter termina); cada fila lleva a la derecha **📑 Duplicar** y la papelera **🗑️** (Eliminar). Las filas se colorean según el tipo de clase (teórica, práctica o teórico/práctica) para identificarlas de un vistazo; hay una leyenda encima de la tabla. Debajo, el total de sesiones guardadas ("29 sesiones"); con la guía en borrador o rechazada y sin llegar al mínimo, el mínimo entre paréntesis y en rojo. Si hay sesiones en pantalla que aún no cuentan (creadas o eliminadas sin pulsar **💾 Guardar borrador** en la guía), aparecen las dos cifras, por ejemplo **En pantalla: 30 sesiones · Guardado: 25 sesiones**, con un aviso en ámbar: para enviar la guía cuenta la de **Guardado**.
 
-Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador.
+Si la guía está **Aprobada**, bajo la miga aparece un aviso en ámbar: guardar un cambio la devolverá a borrador.
 
 ## Descargar la planificación
 
@@ -52,17 +52,17 @@ Junto al número de sesiones, **⬇️ Descargar planificación** descarga un PD
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframe-formulario.svg)
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframe.svg)
 
 [Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearSesion.md)
 
 </div>
 
-1. Pulsar **➕ Añadir fila**. Se añade una fila vacía al final de la tabla.
+1. Pulsar **➕ Añadir fila**, a la derecha de la miga. Se añade una fila al final de la tabla, con el tipo Clase Teórica ya elegido y la descripción vacía.
 2. Elegir el **Tipo**: Clase Teórica, Clase Práctica, Clase Teórico/Práctica, Clase Laboratorio, Evaluación Continua o Evaluación Parcial.
 3. Escribir una **Descripción** breve de lo que se trabaja en esa sesión.
 
-La fila se guarda sola en cuanto la descripción deja de estar vacía y se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". **➕ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **➖** (Quitar) antes de completarla.
+La fila se guarda sola en cuanto la descripción deja de estar vacía y se pulsa Enter o se pasa a otro campo -- no hay un botón "Guardar" aparte, y mientras se guarda aparece el aviso "Guardando...". La sesión nueva no cuenta para el mínimo hasta pulsar **💾 Guardar borrador** en la guía: mientras tanto el indicador da las dos cifras (**En pantalla** y **Guardado**) con el aviso en ámbar. **➕ Añadir fila** puede pulsarse varias veces seguidas para preparar varias sesiones sin salir de la pantalla; una fila todavía vacía puede descartarse con **➖** (Quitar) antes de completarla.
 
 ## Límite de la descripción
 
@@ -72,7 +72,7 @@ La descripción de cada sesión admite un máximo de **500 caracteres**. Si se s
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/wireframe-formulario.svg)
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/wireframe.svg)
 
 [Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarSesion.md)
 
@@ -134,9 +134,9 @@ Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de 
 Igual que con la bibliografía: si la asignatura se imparte también en otro programa, la planificación docente completa de esa guía puede copiarse directamente si está aprobada o, si también la tienes asignada, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
 
 1. Pulsar **📥 Importar de asignatura hermana**, en la fila de la leyenda, a la derecha (solo aparece si hay alguna guía de la que importar).
-2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, su estado ("aprobada el..." o "en revisión desde...") y cuántas sesiones tiene.
+2. En **Importar desde**, elegir la guía de origen (al entrar dice "(elige una guía)"). Cada opción muestra el código de la asignatura, el programa, el nombre de la asignatura, su estado ("aprobada el..." o "en revisión desde...") y cuántas sesiones tiene; por ejemplo, "IYA003 / GIOI -- Informática (aprobada el 4/9/2026, 30 sesiones)".
 3. Aparece un aviso: la importación reemplaza por completo la planificación actual de la guía, incluida cualquier sesión añadida a mano, y las sesiones importadas se renumeran de 1 en adelante. Si la guía de origen no tiene ninguna sesión, el aviso lo indica explícitamente.
-4. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
+4. Pulsar **Importar planificación docente** para confirmar, o **Cancelar** (arriba a la derecha) para volver atrás sin cambiar nada.
 
 Como con la bibliografía, importar sustituye la planificación de inmediato -- no hace falta guardar el borrador después.
 
@@ -163,7 +163,7 @@ El código (mayúsculas o minúsculas, da igual) fija el tipo de la sesión:
 | `CT` | Clase teórica |
 | `CP` | Clase práctica |
 | `CTP` | Clase teórico-práctica |
-| `CL` | Clase laboratorio |
+| `CL` | Clase de laboratorio |
 | `EC` | Evaluación continua |
 | `EP` | Evaluación parcial |
 

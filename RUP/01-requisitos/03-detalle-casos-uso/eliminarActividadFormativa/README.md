@@ -47,6 +47,10 @@ A diferencia de [`eliminarCompetencia()`](../eliminarCompetencia/README.md), el 
 
 Códigos y nombres de los wireframes ilustrativos.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): en las dos variantes, etiqueta de vista, título "Eliminar actividad formativa" con su salida a la derecha ("Cancelar" antes de confirmar, "Volver" tras el bloqueo) y línea "Programa: GII -- Grado en Ingeniería Informática"; "Confirmar eliminación" queda solo al pie. El mensaje de bloqueo es el literal del sistema (incluye el nombre de clase `ActividadFormativa`). Flujo sin cambios. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDADES_FORMATIVAS_ABIERTO : eliminarActividadFormativa()`

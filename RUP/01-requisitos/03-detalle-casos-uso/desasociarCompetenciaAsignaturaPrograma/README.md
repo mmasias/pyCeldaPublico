@@ -40,6 +40,10 @@
 
 Sin `<<choice>>`: `AsignaturaPrograma` es el último escalón, nada depende de este reparto. **Sin la advertencia de "último elemento"** que tiene [`desasociarResultadoAprendizajeAsignaturaPrograma()`](../desasociarResultadoAprendizajeAsignaturaPrograma/README.md): una asignatura sin competencias es el caso normal en los programas de formato nuevo (#761, punto 3), así que avisar sería ruido.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Desasociar competencia", línea "Programa: GII -- ...", contexto "(asignatura -- materia, curso I)" y descripción completa en cursiva.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasociarCompetenciaAsignaturaPrograma()`

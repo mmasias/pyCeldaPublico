@@ -1,38 +1,34 @@
 @startsalt abrirPlanificacionDocente-wireframe
 {
-    <b>PLANIFICACIÓN DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <b>Leyenda:</b> [ celeste ] Clase teórica   [ verde ] Clase práctica / de laboratorio   [ amarillo ] Clase teórico/práctica
-    ~~
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Planificación docente</b> | [Añadir fila]}
+    ====
+    {<b>Leyenda:</b> | Clase teórica | Clase práctica / de laboratorio | Clase teórico/práctica | [Importar de asignatura hermana] | [Importar desde texto]}
     {#
-        <b># | <b>Tipo | <b>Descripción | . | .
-        1 | CLASE_TEORICA <&caret-right> celeste | Tema aaaa | [Editar] | [Eliminar]
-        2 | CLASE_PRACTICA <&caret-right> verde | Temas aaa bbb | [Editar] | [Eliminar]
-        3 | CLASE_LABORATORIO <&caret-right> verde | Temas ccc | [Editar] | [Eliminar]
-        4 | CLASE_TEORICO_PRACTICA <&caret-right> amarillo | Temas ddd | [Editar] | [Eliminar]
-        5 | EVALUACION_CONTINUA <&caret-right> sin fondo | Temas aaa bbb ccc | [Editar] | [Eliminar]
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b> (Mayúsculas+Enter: nueva línea) | . | .
+        1 | ^Clase Teórica^ | "Presentación de la asignatura          " | [Duplicar] | [Eliminar]
+        2 | ^Clase Teórica^ | "Tema 1. Algoritmos y programas        " | [Duplicar] | [Eliminar]
+        3 | ^Clase Práctica^ | "Práctica 1. Entorno de desarrollo     " | [Duplicar] | [Eliminar]
+        4 | ^Clase Teórico/Práctica^ | "Tema 2. Estructuras de control        " | [Duplicar] | [Eliminar]
+        5 | ^Evaluación Continua^ | "Ejercicios del tema 2                 " | [Duplicar] | [Eliminar]
     }
-    ~~
-    {<color:red><b>5 sesiones</b> (mínimo 25)</color> | [ <b>Descargar planificación</b> ]}
-    ====
-    [ <b>+ Crear Sesión</b> ] | [ <b>Importar de asignatura hermana</b> ]
-    ====
-    {[Volver a la guía] | [Mis asignaturas]}
+    {<color:red><b>5 sesiones</b> (mínimo 25)</color> | [Descargar planificación]}
 }
 @endsalt
 
 @startsalt abrirPlanificacionDocente-wireframe-vacia
 {
-    <b>PLANIFICACIÓN DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <b>Leyenda:</b> [ celeste ] Clase teórica   [ verde ] Clase práctica / de laboratorio   [ amarillo ] Clase teórico/práctica
-    ~~
-    <i>Todavía no hay sesiones en esta planificación docente.</i>
-    ~~
-    {<color:red><b>0 sesiones</b> (mínimo 25)</color> | [ <b>Descargar planificación</b> ]}
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Planificación docente</b> | [Añadir fila]}
     ====
-    [ <b>+ Crear Sesión</b> ] | [ <b>Crear 25 sesiones genéricas</b> ] | [ <b>Importar de asignatura hermana</b> ]
-    ====
-    {[Volver a la guía] | [Mis asignaturas]}
+    {<b>Leyenda:</b> | Clase teórica | Clase práctica / de laboratorio | Clase teórico/práctica | [Crear 25 sesiones genéricas] | [Importar de asignatura hermana] | [Importar desde texto]}
+    {#
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b> (Mayúsculas+Enter: nueva línea) | .
+    }
+    {<color:red><b>0 sesiones</b> (mínimo 25)</color> | [Descargar planificación]}
 }
 @endsalt

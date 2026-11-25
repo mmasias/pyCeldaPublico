@@ -1,13 +1,17 @@
 @startsalt eliminarReferenciaBibliografica-wireframe
 {
-    <b>BIBLIOGRAFÍA</b>
+    {+ Vista de Docente }
+    ====
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    {GII · Programación I › <b>Bibliografía</b> | [Crear referencia]}
+    {. | [Importar de asignatura hermana]}
     ====
     {#
         <b>Referencia | <b>Tipo | <b>Vinculada | . | . | .
         Sedgewick, R. (2008) Introduction to programming in Java... | Básica | Sí | [Editar] | [Eliminar] | .
         Martin, R. (2011) The Clean Coder Ed. Prentice Hall | Complementaria | Sí | [Editar] | [Eliminar] | .
-        http://www.java.com/es/ | Webs de referencia | Sí | [Editar] | [Eliminar] | .
         https://github.com/mmasias/prg1 | Otras fuentes de consulta | Sí | [Editar] | [ <b>pulsa de nuevo para confirmar</b> ] | [Cancelar]
+        http://www.java.com/es/ | Webs de referencia | Sí | [Editar] | [Eliminar] | .
     }
 }
 @endsalt

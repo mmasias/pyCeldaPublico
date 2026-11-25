@@ -1,18 +1,31 @@
 @startsalt asociarResultadoAprendizajeAAsignaturaPrograma-wireframe
 {
-    <b>ASOCIAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Programación I -- GII, 1er curso</b>
-    --
+    <b>Asociar resultado de aprendizaje</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Programación I -- Programación, curso I</b>
     {
-        <b>Resultado de aprendizaje (*):</b>
-        ^RAK1 -- Resolver problemas de programación aplicando abstracción y...^
-        <i>Resolver problemas de programación aplicando abstracción y descomposición modular.</i>
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>Solo se listan los ya asignados a la Materia (Programación) y no asignados aún a esta asignatura-en-programa</i>
+        <b>Resultado de aprendizaje (*):</b> | ^RAK1 -- Resolver problemas de programación aplicando abstracción y descomposición...^
     }
-    ~~
-    {[Asociar]}
+    <color:gray>Resolver problemas de programación aplicando abstracción y descomposición modular.</color>
+    <i>(*) Campo obligatorio</i>
+    <i>Solo se listan los ya asignados a la materia (Programación) y no asignados aún a esta asignatura-en-programa</i>
+    --
+    [Asociar]
+}
+@endsalt
+
+@startsalt asociarResultadoAprendizajeAAsignaturaPrograma-wireframe-sin-disponibles
+{
+    {+ Vista de Dirección · GII }
+    ====
+    <b>Asociar resultado de aprendizaje</b> | [ Volver ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Programación I -- Programación, curso I</b>
+    No hay resultados de aprendizaje disponibles para asociar.
+    <i>Solo se listan los ya asignados a la materia (Programación) y no asignados aún a esta asignatura-en-programa.</i>
 }
 @endsalt

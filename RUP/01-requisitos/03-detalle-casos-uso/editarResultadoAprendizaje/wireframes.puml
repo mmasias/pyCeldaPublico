@@ -1,20 +1,20 @@
 @startsalt editarResultadoAprendizaje-wireframe
 {
-    <b>EDITAR RESULTADO DE APRENDIZAJE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar resultado de aprendizaje</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Código (*):</b>
-        "RAK1"
-        <b>Tipo (*):</b>
-        ^Conocimientos o contenidos^
-        <b>Descripción (*):</b>
-        "Describir los conceptos fundamentales de álgebra lineal, cálculo
-        diferencial e integral, métodos numéricos, algorítmica numérica,
-        estadística y optimización relevantes para la ingeniería."
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Código (*):</b> | "RAK1      "
+        <b>Tipo (*):</b> | ^Conocimientos o contenidos^
     }
-    ~~
-    {[Guardar]}
+    <b>Descripción (*):</b>
+    "Describir los conceptos fundamentales de álgebra lineal, cálculo"
+    "diferencial e integral, métodos numéricos, algorítmica numérica,"
+    "estadística y optimización relevantes para la ingeniería.       "
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

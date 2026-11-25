@@ -1,15 +1,27 @@
 @startsalt importarContenidoDeGuiaHermana-wireframe
 {
-    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
+    ====
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    <b>GII · Programación I</b>
+    ...
+    {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
     ====
     <b>Contenido</b>
-    {
-        "Tema 1: Introducción a la programación estructurada.
-        Tema 2: Tipos de datos y estructuras de control.
-        ..."
+    <b>Contenido aprobado en memoria</b>. La guía debe ser coherente con este.
+    {#
+        <i>Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control. Tema 3. Estructuras de datos.</i>
     }
-    <b>Importar de guía hermana:</b>
-    ^GIOI / IYA003 -- Informática (aprobada el 04/09/2026)^  [Importar contenido]
-    <color:red>Esto reemplazará el contenido actual del textarea, incluidos cambios sin guardar.</color>
+    {<b>Contenido aportado por el profesor</b> | <i>Se guarda con <b>Guardar borrador</b>. 1.322 / 10.000</i>}
+    {+
+        "Tema 1. Introducción a la programación estructurada.      "
+        "Tema 2. Tipos de datos y estructuras de control.          "
+        "...                                                       "
+    }
+    {<b>Importar de guía hermana:</b> | ^IYA003 / GIOI -- Informática (aprobada el 4/9/2026)^ | [Importar contenido]}
+    <color:red>Esto reemplazará el contenido actual, incluidos cambios sin guardar.</color>
+    ====
+    {<b>Evaluación</b> | [<b>Gestionar evaluación</b>]}
+    ...
 }
 @endsalt

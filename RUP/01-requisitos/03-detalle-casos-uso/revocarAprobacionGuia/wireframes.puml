@@ -1,12 +1,17 @@
 @startsalt revocarAprobacionGuia-wireframe
 {
-    <b>REVOCAR APROBACIÓN -- Programación I (GII)</b>
+    {+ Vista de Dirección }
     ====
-    <b>Estado actual:</b> [ Aprobada ] verde
-    --
+    {<b>Revocar aprobación -- Programación I</b> | [Cancelar]}
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Estado actual:</b> [ Aprobada ]
     <b>Comentario (opcional):</b>
-    "Revisar el temario del segundo semestre antes de reaprobar"
+    {+
+        "Revisar el temario del segundo semestre antes de reaprobar"
+        " "
+        " "
+    }
     ====
-    {[Revocar aprobación]}
+    {[<b>Revocar aprobación</b>] | [Cancelar]}
 }
 @endsalt

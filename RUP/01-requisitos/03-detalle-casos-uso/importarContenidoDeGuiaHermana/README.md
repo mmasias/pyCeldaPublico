@@ -64,6 +64,8 @@
 
 ## Notas de diseño y trazabilidad
 
+- Wireframe alineado con la pantalla construida (#857): la cabecera "GUÍA DOCENTE -- Programación I (GII)" pasa a la de la ficha del Profesor ("Guía docente" con accesos globales y "GII · Programación I"); la sección Contenido muestra arriba el recuadro "Contenido aprobado en memoria" y el rótulo "Contenido aportado por el profesor" con "Se guarda con Guardar borrador. N / 10.000"; el control "Importar de guía hermana" va en una fila bajo el cuadro de texto (desplegable con "código de la asignatura / sigla del programa -- nombre (estado)", que empieza en "(elige una guía)", y botón "Importar contenido"); el aviso en rojo, que solo sale tras elegir una guía, dice "Esto reemplazará el contenido actual, incluidos cambios sin guardar." (sin "del textarea"). Si la importación falla, el motivo sale como "Error: ..." bajo el control. Los "..." marcan las partes de la ficha que no se dibujan.
+
 - Control ligero, sin pantalla ni ruta propia, sin previsualización de origen ni recuento (a diferencia de [`importarBibliografiaDeGuiaHermana()`](../importarBibliografiaDeGuiaHermana/README.md)). Solo es visible para el Profesor autor, nunca en modo revisor. Planteamiento acordado con Manuel: un botón y nada más.
 
 - Modelado: a diferencia de `importarBibliografiaDeGuiaHermana()`/`importarPlanificacionDocenteDeGuiaHermana()` (self-loop de su propio listado, `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`/`PLANIFICACION_DOCENTE_ABIERTO`), `contenido` es un campo escalar de la propia `Guia`: self-loop directo de `GUIA_ABIERTO`, sin pantalla propia (issue [#409](https://github.com/mmasias/pyCelda/issues/409)).

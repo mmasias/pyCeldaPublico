@@ -1,16 +1,17 @@
 @startsalt editarActividadFormativa-wireframe
 {
-    <b>EDITAR ACTIVIDAD FORMATIVA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar actividad formativa</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Código (*):</b>
-        "AD1       "
-        <b>Nombre (*):</b>
-        "Actividad Dirigida: Clases de teoría              "
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Código (*):</b> | "AD1       "
     }
-    ~~
+    <b>Nombre (*):</b>
+    "Actividad Dirigida: Clases de teoría              "
+    <i>(*) Campo obligatorio</i>
+    --
     {[Guardar] | [Cancelar]}
 }
 @endsalt

@@ -1,46 +1,36 @@
 @startsalt editarPonderacionEvaluacion-wireframe-formulario
 {
-    <b>EDITAR INSTRUMENTO</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
-    --
+    <b>Editar instrumento de evaluación</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Sistema de evaluación (*):</b>
-        ^Evaluación continua^
-        <i>Ponderación: mayor que 0, hasta 60% (máximo por instrumento)</i>
-        <b>Descripción (*):</b>
-        "Examen Parcial                                    "
-        <b>Ponderación (*):</b>
-        "  30" %
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Sistema de evaluación:</b> | ^Evaluación continua -- Actividades del curso (máx. 60%)^
+        <b>Descripción:</b> | "Examen Parcial                    "
+        <b>Ponderación:</b> | {"30   " | Mayor que cero.}
     }
-    ~~
-    {[Guardar]}
+    --
+    {[<b>Guardar</b>] | [Cancelar]}
 }
 @endsalt
 
 @startsalt editarPonderacionEvaluacion-wireframe-error
 {
-    <b>EDITAR INSTRUMENTO</b>
+    {+ Vista de Docente }
     ====
-    <b>Programación I -- GII</b>
-    --
-    <color:red><b>⚠ NO SE PUEDE GUARDAR</b></color>
-    <color:red>Esta ponderación (65%) supera el máximo por instrumento de Evaluación continua (60%)</color>
-    --
+    <b>Editar instrumento de evaluación</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <color:red>Error: La ponderación supera el máximo del sistema de evaluación</color>
     {
-        <b>Sistema de evaluación (*):</b>
-        ^Evaluación continua^
-        <i>Ponderación: mayor que 0, hasta 60% (máximo por instrumento)</i>
-        <b>Descripción (*):</b>
-        "Examen Parcial                                    "
-        <b>Ponderación (*):</b>
-        "  65" %
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Sistema de evaluación:</b> | ^Evaluación continua -- Actividades del curso (máx. 60%)^
+        <b>Descripción:</b> | "Examen Parcial                    "
+        <b>Ponderación:</b> | {"65   " | Mayor que cero.}
     }
-    ~~
-    {[Guardar]}
+    --
+    {[<b>Guardar</b>] | [Cancelar]}
 }
 @endsalt

@@ -1,56 +1,59 @@
 @startsalt abrirAsignaturaPrograma-wireframe
 {
-    <b>PROGRAMACIÓN I -- GII, 1er CURSO</b>
+    {+ Vista de Dirección · GII }
     ====
-    <b>Asignatura:</b> Programación I
-    <b>Materia:</b> Programación
-    <b>Curso:</b> 1
-    <b>Carácter:</b> Básica
-    <b>Sesiones mínimas para enviar a revisión:</b> 25
-    <b>Idioma:</b> Español
-    <b>ECTS:</b> 6 (heredado de Asignatura)
-    <b>Semestre por defecto:</b> 1
-    <b>Contenido:</b> (heredado de Asignatura)
-    <b>Estado:</b> Vigente
+    <b>Grado en Ingeniería Informática</b>
     ====
-    <b>Profesorado asignado:</b>
-    {#
-        <b>Profesor | .
-        Dr. Manuel Masías Vergara | [Quitar]
+    [ Vista general ] | [ Guías ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] | [ <b>Asignaturas</b> ]
+    ====
+    Asignaturas › <b>Programación I</b> | [Editar]
+    ====
+    {
+        <b>Materia:</b> Programación | <b>ECTS:</b> 6
+        <b>Curso:</b> I | <b>Semestre por defecto:</b> 1
+        <b>Carácter:</b> Básica | <b>Sesiones mínimas para enviar a revisión:</b> 25
+        <b>Idioma:</b> Español | <b>Estado:</b> Vigente
+        <b>Código:</b> IYA003 | .
     }
-    [ <b>+ Asignar Profesor</b> ]
+    <b>Contenido:</b>
+    Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control...
+    <b>Requisitos previos:</b>
+    No aplica
     ====
-    <b>Resultados de aprendizaje asociados:</b>
-    {#
-        <b>Código | <b>Tipo | .
-        RAK1 | Conocimientos o contenidos | [Quitar]
-    }
-    [ <b>+ Asociar Resultado de Aprendizaje</b> ]
-    ====
-    <b>Competencias asociadas:</b>
+    <b>Resultados de aprendizaje asociados</b> | [ Asociar resultado de aprendizaje ]
     {#
         <b>Código | <b>Tipo | <b>Descripción | .
-        CE7 | Específica | Conocimiento y aplicación de los principios... | [Quitar]
+        RAK1 | Conocimientos o contenidos | Resolver problemas de programación aplicando abstracción y descomposición modular. | [Quitar]
     }
-    [ <b>+ Asociar competencia</b> ]
     ====
-    <b>Metodologías docentes asociadas:</b>
+    <b>Competencias</b> | [ Asociar competencia ]
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | .
+        CE7 | Específica | Conocimiento y aplicación de los principios fundamentales y técnicas básicas de la programación... | [Quitar]
+    }
+    ====
+    <b>Metodologías docentes asociadas</b> | [ Asociar metodología docente ]
     {#
         <b>Código | <b>Descripción | .
         MD3 | Resolución de ejercicios | [Quitar]
     }
-    [ <b>+ Asociar Metodología Docente</b> ]
     ====
-    <b>Actividades formativas:</b>
+    <b>Actividades formativas</b> | [ Editar reparto ]
     {#
         <b>Actividad formativa | <b>Horas | <b>% presencialidad (de la materia)
         Actividad Dirigida: Clases de teoría | 30 | 100
         Actividad Dirigida: Clases prácticas | 27 | 100
-        ... (todas las del catálogo del programa, siempre) | |
+        Actividad Supervisada: Tutorías | 6 | 50
+        Actividad Autónoma: Estudio personal | 60 | 0
+        Actividad Autónoma: Elaboración de trabajos | 27 | 0
     }
     <b>Horas de la asignatura:</b> 150 de 150 (6 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
-    [ <b>Editar reparto</b> ]
     ====
-    {[Editar] | [Volver al Programa] | [Volver a la materia]}
+    <b>Profesorado asignado</b>
+    {#
+        <b>Profesor | <b>Papel
+        profesor1@uneatlantico.es | Responsable · Imparte
+        profesor2@uneatlantico.es | Imparte
+    }
 }
 @endsalt

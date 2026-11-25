@@ -1,30 +1,29 @@
 @startsalt asociarCompetenciaAAsignaturaPrograma-wireframe-seleccion
 {
-    <b>ASOCIAR COMPETENCIA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Asociar competencia</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>Programación II</b> -- Programación, curso I
-    --
     {
-        <b>Competencia (*):</b>
-        ^CE7 -- Conocimiento y aplicación de los principios fundamentales y...^
-        <i>Conocimiento y aplicación de los principios fundamentales y técnicas básicas de la programación paralela, concurrente, distribuida y de tiempo real.</i>
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Competencia (*):</b> | ^CE7 -- Conocimiento y aplicación de los principios fundamentales y técnicas básicas de...^
     }
-    ~~
-    {[Asociar] | [Cancelar]}
+    <color:gray>Específica. Conocimiento y aplicación de los principios fundamentales y técnicas básicas de la programación paralela, concurrente, distribuida y de tiempo real.</color>
+    <i>(*) Campo obligatorio</i>
+    --
+    [Asociar]
 }
 @endsalt
 
 @startsalt asociarCompetenciaAAsignaturaPrograma-wireframe-sin-disponibles
 {
-    <b>ASOCIAR COMPETENCIA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Asociar competencia</b> | [ Volver ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     <b>Programación II</b> -- Programación, curso I
-    --
-    No hay competencias disponibles para asociar. Solo se pueden elegir las de la materia
-    <b>Programación</b> que aún no tenga esta asignatura.
-    ~~
-    [Volver]
+    No hay competencias disponibles para asociar. Solo se pueden elegir las de la materia <b>Programación</b> que aún no tenga esta asignatura.
 }
 @endsalt

@@ -51,6 +51,10 @@
 
 **Sin pantalla de confirmación: el aviso sale en la propia ficha** (issue [#855](https://github.com/mmasias/pyCelda/issues/855), hallado en la revisión de #853): al guardar, la aplicación recarga la guía y muestra "Borrador guardado" en la misma ficha (`AbrirGuia.tsx`, `mensajeExito`), sobre los botones; no hay pantalla "Borrador guardado" con botón "Seguir editando". El wireframe del `Profesor` dibuja esa ficha tras guardar. En la vista de Dirección hay dos wireframes: antes de guardar, el recuadro de corrección excepcional (aviso y botón **Guardar borrador**), que solo aparece cuando hay algo que guardar -- temario cambiado, ítems pendientes de evaluación, bibliografía o planificación, o eliminaciones sin confirmar --; y después de guardar sobre una `Guia` `EnRevision`, la ficha ya `Rechazada` (los botones pasan a los de ese estado), sin recuadro y con el aviso "Borrador guardado" debajo. Los datos de los wireframes son de ejemplo. Colores de los badges de estado: los mismos que en [`abrirGuia()`](../abrirGuia/README.md) (neutro, ámbar, verde, rojo).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): las dos variantes de Dirección pasan de "GUÍA DOCENTE / Programación I (GII)" a la cabecera del programa (nombre del programa, pestañas con Guías marcada) y la miga "Guías › Programación I"; en las tres variantes, accesos globales en la cabecera, profesores en lista "Nombre (Responsable · Imparte)", fechas con hora, badges sin texto de color (colores en [`abrirGuia()`](../abrirGuia/README.md)), y Contenido con el recuadro "Contenido aprobado en memoria" arriba y "Se guarda con Guardar borrador. N / 10.000" junto al rótulo "Contenido aportado por el profesor". El "Resumen de completitud" lleva el rótulo a la izquierda y un criterio por línea a su derecha.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> GUIA_ABIERTO : guardarBorradorGuia()`

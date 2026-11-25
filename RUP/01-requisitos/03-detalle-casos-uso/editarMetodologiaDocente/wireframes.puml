@@ -1,16 +1,19 @@
 @startsalt editarMetodologiaDocente-wireframe
 {
-    <b>EDITAR METODOLOGÍA DOCENTE</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Editar metodología docente</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Código (*):</b>
-        "MD3"
-        <b>Descripción (*):</b>
-        "Resolución de ejercicios"
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Código (*):</b> | "MD3       "
     }
-    ~~
+    <b>Descripción (*):</b>
+    "Resolución de ejercicios                          "
+    "                                                  "
+    "                                                  "
+    <i>(*) Campo obligatorio</i>
+    --
     {[Guardar] | [Cancelar]}
 }
 @endsalt

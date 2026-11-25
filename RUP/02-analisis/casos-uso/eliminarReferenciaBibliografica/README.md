@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`eliminarReferenciaBibliografica()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/README.md): confirmación simple, sin `<<choice>>` (nada depende estructuralmente de una `ReferenciaBibliografica`). Su único efecto es quitar el ítem de la **lista de trabajo de la sesión** -- la misma lista que `abrirReferenciasBibliograficas()`/`abrirGuia()` construyen por fusión vinculado+pendiente, y que [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) recibirá completa al guardar. **No toca la fila de `ReferenciaBibliografica`** -- no la borra, no la edita, ningún repositorio de esa entidad interviene aquí -- y **no toca `Guia`**. Mismo criterio que [`eliminarPonderacionEvaluacion()`](../eliminarPonderacionEvaluacion/README.md): sin ninguna clase de Modelo en su diagrama de colaboración, solo Vista y Controlador -- no hay ninguna entidad de dominio involucrada, "eliminar" significa "excluir de la lista que se enviará a `guardarBorradorGuia()`", que es quien de verdad decide, por ausencia en esa lista, desvincular la fila real.
+Traducción a clases de análisis del caso de uso [`eliminarReferenciaBibliografica()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/README.md): confirmación simple en la propia fila del listado, sin pantalla aparte y sin `<<choice>>` (nada depende estructuralmente de una `ReferenciaBibliografica`). Su único efecto es quitar el ítem de la **lista de trabajo de la sesión** -- la misma lista que `abrirReferenciasBibliograficas()`/`abrirGuia()` construyen por fusión vinculado+pendiente, y que [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) recibirá completa al guardar. **No toca la fila de `ReferenciaBibliografica`** -- no la borra, no la edita, ningún repositorio de esa entidad interviene aquí -- y **no toca `Guia`**. Mismo criterio que [`eliminarPonderacionEvaluacion()`](../eliminarPonderacionEvaluacion/README.md): sin ninguna clase de Modelo en su diagrama de colaboración, solo Vista y Controlador -- no hay ninguna entidad de dominio involucrada, "eliminar" significa "excluir de la lista que se enviará a `guardarBorradorGuia()`", que es quien de verdad decide, por ausencia en esa lista, desvincular la fila real.
 
 <div align=center>
 
@@ -26,10 +26,10 @@ Traducción a clases de análisis del caso de uso [`eliminarReferenciaBibliograf
 ### `EliminarReferenciaBibliograficaView`
 
 **Responsabilidades:**
-- presenta la información de la `ReferenciaBibliografica` (`tipo`, `referencia`) -- datos ya conocidos de la fila del listado que originó la solicitud, sin releer nada.
-- presenta la pregunta de confirmación y permite solicitar confirmar o cancelar.
-- en la rama verde, quita el ítem de la lista de trabajo de la sesión y presenta la lista actualizada.
-- en la rama azul, cierra la confirmación sin tocar la lista.
+- no abre una pantalla aparte: la confirmación vive en la propia fila del listado de `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`, cuyos datos (`tipo`, `referencia`) ya están a la vista, sin releer nada.
+- presenta la confirmación en la fila: el botón de eliminar de esa fila pasa a pedir una segunda pulsación ("pulsa de nuevo para confirmar") y aparece a su lado la opción de cancelar; permite solicitar confirmar o cancelar.
+- en la rama verde, quita el ítem de la lista de trabajo de la sesión y presenta la lista actualizada, ya sin esa fila.
+- en la rama azul, devuelve la fila a su estado normal sin tocar la lista.
 
 **Colaboraciones:**
 - **Entrada:** `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO` -- el `Profesor` solicita eliminar una `ReferenciaBibliografica` desde su fila en el listado.
@@ -50,7 +50,7 @@ Traducción a clases de análisis del caso de uso [`eliminarReferenciaBibliograf
 
 ## Flujo de colaboración principal
 
-1. Desde `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`, el `Profesor` solicita eliminar una `ReferenciaBibliografica` desde su fila en el listado -- los datos a presentar viajan con la solicitud, sin releer nada; se abre `EliminarReferenciaBibliograficaView` con la pregunta de confirmación.
+1. Desde `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`, el `Profesor` solicita eliminar una `ReferenciaBibliografica` desde su fila en el listado -- los datos a presentar viajan con la solicitud, sin releer nada; `EliminarReferenciaBibliograficaView` presenta la confirmación en esa misma fila, sin abrir otra pantalla.
 
 ### Rama verde (confirmar)
 
@@ -58,11 +58,11 @@ Traducción a clases de análisis del caso de uso [`eliminarReferenciaBibliograf
 
 ### Rama azul (cancelar)
 
-3. El `Profesor` solicita cancelar; la Vista cierra la confirmación sin tocar la lista de trabajo; la colaboración termina en `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`, sin cambios.
+3. El `Profesor` solicita cancelar; la Vista devuelve la fila a su estado normal sin tocar la lista de trabajo; la colaboración termina en `:REFERENCIAS_BIBLIOGRAFICAS_ABIERTO`, sin cambios.
 
 ## Referencias
 
-- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/wireframes.puml) -- fuente de verdad del patrón confirmar/cancelar sin `<<choice>>`.
+- [Especificación de Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/especificacion.puml) y [wireframes](/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/wireframes.puml) -- fuente de verdad del patrón confirmar/cancelar en la propia fila, sin `<<choice>>` (alineado con la pantalla construida en el issue [#855](https://github.com/mmasias/pyCelda/issues/855)).
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `REFERENCIAS_BIBLIOGRAFICAS_ABIERTO --> REFERENCIAS_BIBLIOGRAFICAS_ABIERTO : eliminarReferenciaBibliografica()`.
 - [Modelo del dominio](/RUP/00-modelo-del-dominio/modeloDominio.puml) -- `Guia *-- ReferenciaBibliografica`, sin entidad que dependa de ella.
 - [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) -- quien recibe la lista de trabajo ya sin este ítem y desvincula la fila real por ausencia (`Guia.sincronizarReferencias()`).

@@ -53,8 +53,8 @@ SesionRepo --> API: boolean
 deactivate SesionRepo
 
 alt c1 -- hay pendientes sin guardar
-  API --> Vista: 409 Conflict (guarda el borrador primero)
-  Vista --> Profesor: "guarda el borrador primero"
+  API --> Vista: 409 Conflict ("Hay items sin guardar -- guarda el borrador primero")
+  Vista --> Profesor: ficha de la guía con "Error: Hay items sin guardar -- guarda el borrador primero"
 else c1 -- sin pendientes
   API -> Guia: bloqueo_ponderaciones()
   activate Guia
@@ -63,7 +63,7 @@ else c1 -- sin pendientes
 
   alt c2 -- bloqueo_ponderaciones() devuelve motivo (no null)
     API --> Vista: 422 Unprocessable Entity (detail = motivo)
-    Vista --> Profesor: "NO SE PUEDE ENVIAR A REVISIÓN"
+    Vista --> Profesor: ficha de la guía con "Error: " + motivo
   else c2 -- bloqueo_ponderaciones() es null
     API -> Guia: planificacion_docente_completa()
     activate Guia
@@ -72,7 +72,7 @@ else c1 -- sin pendientes
 
     alt c3 -- sesiones vinculadas < sesiones_minimas
       API --> Vista: 422 Unprocessable Entity ("Planificación docente incompleta: N de M sesiones")
-      Vista --> Profesor: "NO SE PUEDE ENVIAR A REVISIÓN"
+      Vista --> Profesor: ficha de la guía con "Error: Planificación docente incompleta: N de M sesiones"
     else c3 -- planificación docente completa
       API -> Guia: bloqueo_convocatoria()
       activate Guia
@@ -80,7 +80,7 @@ else c1 -- sin pendientes
       deactivate Guia
       alt c4 -- bloqueo_convocatoria() devuelve motivo (#791)
         API --> Vista: 422 Unprocessable Entity (detail = motivo)
-        Vista --> Profesor: "NO SE PUEDE ENVIAR A REVISIÓN"
+        Vista --> Profesor: ficha de la guía con "Error: " + motivo
       else c4 -- convocatoria extraordinaria concretada o sin campos
         API -> Guia: enviar_a_revision()
         activate Guia
@@ -94,7 +94,7 @@ else c1 -- sin pendientes
         GuiaRepo --> API: Guia
         deactivate GuiaRepo
         API --> Vista: 200 OK (GuiaResponse JSON)
-        Vista --> Profesor: "GUÍA ENVIADA A REVISIÓN"
+        Vista --> Profesor: navega a Inicio (/inicio), guía En revisión
       end
     end
   end

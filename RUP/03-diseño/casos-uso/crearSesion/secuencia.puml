@@ -7,11 +7,16 @@ participant "API (FastAPI)" as API
 participant "SesionRepository" as SesionRepo
 database "Base de Datos" as DB
 
-Profesor -> Vista: abre formulario de creación desde el listado de la Planificación docente
+Profesor -> Vista: pulsa Añadir fila en el listado de la Planificación docente
 activate Vista
-Vista --> Profesor: muestra formulario: selector tipo (6 valores del enum cerrado) y descripcion; numero automático, no editable
+Vista --> Profesor: añade una fila nueva al final: selector tipo (6 valores del enum cerrado, el primero preseleccionado) y descripcion; numero = posición, no editable
 
-Profesor -> Vista: elige tipo, completa descripcion, confirma
+alt Profesor quita la fila nueva
+  Profesor -> Vista: pulsa Quitar
+  Vista --> Profesor: la fila desaparece, sin llamar a la API
+else Profesor escribe la sesión
+Profesor -> Vista: elige tipo, escribe descripcion y confirma (Enter o sale del campo)
+note right of Vista: sin descripción no se envía nada
 Vista -> API: POST /api/v1/guias/{guia_id}/sesiones (SesionCreate JSON)
 activate API
 
@@ -37,7 +42,8 @@ SesionRepo --> API: Sesion (con id)
 deactivate SesionRepo
 API --> Vista: 201 Created (SesionResponse JSON)
 deactivate API
-Vista --> Profesor: vuelve al listado de abrirPlanificacionDocente(), la sesión nueva ya es visible
+Vista --> Profesor: la fila queda como sesión guardada del listado (pendiente de vincular)
+end
 deactivate Vista
 
 @enduml

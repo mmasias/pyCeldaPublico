@@ -41,11 +41,13 @@
 
 Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()`/`eliminarMetodologiaDocente()`/`eliminarMateria()`: `SistemaEvaluacion` no tiene `estado` propio -- vive y muere con la `Materia` que lo contiene, así que su borrado es siempre físico. El bloqueo usa `PonderacionEvaluacion` (`PonderacionEvaluacion --> SistemaEvaluacion`), no `AsignaturaPrograma` como `eliminarMateria()`: es la relación real que referencia a `SistemaEvaluacion`, desde la Guía. "Evaluación continua"/"Evaluación final" para bloqueada/confirmación son los dos valores reales de `tipo`; qué `PonderacionEvaluacion` concretas lo usan no está en el seed (`Guia`/`PonderacionEvaluacion` son L7/L8, todavía sin construir).
 
-El mensaje de bloqueo nombra las `AsignaturaPrograma` donde el `SistemaEvaluacion` está en uso (`En uso en: AsignaturaPrograma 'Programación I', ...`), no cuenta ponderaciones: mismo patrón que `desasociarResultadoAprendizaje()` (issue #581).
+El mensaje de bloqueo nombra las `AsignaturaPrograma` donde el `SistemaEvaluacion` está en uso (`SistemaEvaluacion en uso en: AsignaturaPrograma 'Programación I', ...`), no cuenta ponderaciones: mismo patrón que `desasociarResultadoAprendizaje()` (issue #581). La comprobación no se hace al entrar: el usuario ve siempre primero la confirmación, y el bloqueo aparece si el servidor rechaza el borrado al confirmar (409).
 
 **Actor `DirectorPrograma` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: el `DirectorPrograma` gana esta transición sobre las materias de sus programas, espejo de `Admin`. Mismo formulario y mismas reglas; es un self-loop de `MATERIA_ABIERTO` en [diagramaContextoDirectorPrograma.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml), que vuelve a la ficha de la materia.
 
+## Notas de diseño y trazabilidad
 
+- Wireframe alineado con la pantalla construida (#858), vista del DirectorPrograma (entrada desde la ficha de la materia; vuelve a ella): la pantalla de confirmación sale siempre primero, con el sistema como "tipo (mínima% -- máxima%)" y el aviso "Esta acción no se puede deshacer. Se comprobará antes de eliminar si tiene ponderaciones asociadas."; Cancelar va en la cabecera. El bloqueo no se decide al entrar: aparece solo si, al confirmar, el servidor rechaza el borrado porque hay ponderaciones que usan el sistema. La pantalla bloqueada muestra "⛔ No se puede eliminar", el sistema, "Este sistema de evaluación está en uso en ponderaciones de guías.", el mensaje literal del servidor ("SistemaEvaluacion en uso en: AsignaturaPrograma '...'") y la ayuda "Elimina primero las ponderaciones de evaluación que lo usan.", con "Volver a la materia" en la cabecera. Especificación reordenada en consecuencia (confirmación antes del `<<choice>>`).
 
 ## Referencias
 

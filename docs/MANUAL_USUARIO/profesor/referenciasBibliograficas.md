@@ -24,7 +24,7 @@ Desde la guía, pulsar **🔧 Gestionar bibliografía**, a la derecha del títul
 
 </div>
 
-Una tabla con todas las referencias ya creadas: **Referencia**, **Tipo** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **💾 Guardar borrador** en la guía).
+Una tabla con todas las referencias ya creadas, agrupadas por tipo en orden alfabético (Básica, Complementaria, Otras fuentes de consulta, Webs de referencia): **Referencia**, **Tipo** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con **💾 Guardar borrador** en la guía).
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
 
@@ -78,9 +78,9 @@ Igual que con los instrumentos de evaluación: pulsar el lápiz **✏️** (Edit
 Si la asignatura se imparte también en otro programa, la bibliografía de esa otra guía puede copiarse directamente en lugar de escribirla de cero: si está aprobada o, si también la tienes asignada, en revisión. El detalle, en [De qué guías hermanas se puede importar](redactarLaGuia.md#de-qué-guías-hermanas-se-puede-importar).
 
 1. Pulsar **📥 Importar de asignatura hermana**, en la fila bajo el título, a la derecha (solo aparece si hay alguna guía de la que importar).
-2. En **Importar desde**, elegir la guía de origen. Cada opción muestra el programa, el código de la asignatura, su estado ("aprobada el..." o "en revisión desde...") y cuántas referencias tiene.
+2. En **Importar desde**, elegir la guía de origen (el desplegable empieza en "(elige una guía)"). Cada opción muestra el código de la asignatura, el programa, el nombre de la asignatura en ese programa, su estado ("aprobada el..." o "en revisión desde...") y cuántas referencias tiene; por ejemplo, "IYA003 / GIOI -- Informática (aprobada el 4/9/2026, 12 referencias)".
 3. Aparece un aviso: la importación reemplaza por completo la bibliografía actual de la guía, incluida cualquier referencia añadida a mano. Si la guía de origen no tiene ninguna referencia, el aviso lo indica explícitamente.
-4. Pulsar **Importar bibliografía** para confirmar, o **Cancelar** para volver atrás sin cambiar nada.
+4. Pulsar **Importar bibliografía** para confirmar (no se activa hasta elegir una guía de origen), o **Cancelar**, arriba a la derecha, para volver a la bibliografía sin cambiar nada.
 
 A diferencia de crear o editar una referencia a mano, importar sustituye la bibliografía de inmediato -- no hace falta pulsar **💾 Guardar borrador** después.
 

@@ -46,6 +46,10 @@ Mismo patrón lista/detalle que [`abrirCompetencias()`](../abrirCompetencias/REA
 
 Códigos y textos de los wireframes ilustrativos: cada programa tiene los de su memoria (en las memorias, el mismo código MD2 puede significar cosas distintas según el programa).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista "Vista de Dirección · GII", cabecera con el nombre del programa y pestañas del programa (activa Metodologías); el botón "Crear metodología docente" pasa de bajo la tabla a la derecha del título "Metodologías docentes". Columnas y acciones por fila sin cambios.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `PROGRAMA_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : abrirMetodologiasDocentes()`

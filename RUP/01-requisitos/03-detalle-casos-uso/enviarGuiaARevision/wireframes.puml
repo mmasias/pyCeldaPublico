@@ -1,78 +1,126 @@
 @startsalt enviarGuiaARevision-wireframe-exito
 {
-    <b>INICIO</b>
+    {<b>Inicio</b> | [Mi perfil] | [Cerrar sesión]}
     ====
     {<b>Mis guías</b> | ^Semestre 1 (activo)^}
     3 guías: 1 en borrador, 1 en revisión, 1 aprobada
     {#
     <b>Asignatura | <b>Código | <b>Programa | <b>Curso | <b>Carácter | <b>Estado | <b>Guía
-    Programación I | IYA001 | Grado en Ingeniería Informática | 1 | Básica | En revisión | [Abrir]
-    Ingeniería de Software I | IYA021 | Grado en Ingeniería Informática | 2 | Obligatoria | Aprobada | [Abrir]
-    Estructuras de datos y algoritmos I | IYA012 | Grado en Ingeniería Informática | 2 | Obligatoria | Borrador | [Abrir]
+    Programación I | IYA003 | Grado en Ingeniería Informática | I-s1 | Básica | [ En revisión ] | [Abrir]
+    Estructuras de datos y algoritmos I | IYA025 | Grado en Ingeniería Informática | II-s1 | Obligatoria | [ Borrador ] | [Abrir]
+    Ingeniería de Software I | IYA038 | Grado en Ingeniería Informática | III-s1 | Obligatoria | [ Aprobada ] | [Abrir]
     }
 }
 @endsalt
 
 @startsalt enviarGuiaARevision-wireframe-error
 {
-    <b>GUÍA DOCENTE -- Bases de Datos I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
-    ====
-    Evaluación:
-    {T
-        Exámenes Parciales | 25%
-        Entregas de Portafolios y Ejercicios | 25%
-        Interés y participación | 5%
-        Prueba Teórico Práctica | 50%
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    <b>GII · Programación I</b>
+    {
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ]
+        <b>Semestre:</b> 1 | <b>Creación:</b> 1/9/2026, 10:30:00
+        <b>Profesores:</b> | <b>Última modificación:</b> 7/9/2026, 12:15:00
+        · Ana Pérez (Responsable · Imparte) | <b>Generación del PDF:</b> --
     }
-    <color:red><b>Suma: 105% -- debe ser exactamente 100%</b></color>
     ====
-    <i>Corrige las ponderaciones antes de enviar a revisión.</i>
+    <color:red>Error: Rango por sistema de evaluación o suma total incorrectos</color>
+    {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
     ====
-    [ <b>Volver a la guía</b> ]
+    <b>Contenido</b>
+    ...
+    ====
+    {<b>Evaluación</b> | [<b>Gestionar evaluación</b>]}
+    {#
+        <b>Instrumento | <b>Sistema de evaluación | <b>Ponderación
+        Entregas de Portafolios y Ejercicios | Evaluación continua | 25%
+        Exámenes Parciales | Evaluación continua | 25%
+        Interés y participación | Evaluación continua | 5%
+        Prueba Teórico Práctica | Evaluación final | 50%
+    }
+    {
+        Evaluación continua | &#91;30%, 60%] | 55%
+        Evaluación final | &#91;40%, 70%] | 50%
+        <color:red><b>Total asignado</b></color> | . | <color:red><b>105%</b></color>
+    }
+    ====
+    ...
 }
 @endsalt
 
 @startsalt enviarGuiaARevision-wireframe-error-items-sin-guardar
 {
-    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    <b>GII · Programación I</b>
+    {
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ]
+        <b>Semestre:</b> 1 | <b>Creación:</b> 1/9/2026, 10:30:00
+        <b>Profesores:</b> | <b>Última modificación:</b> 7/9/2026, 12:15:00
+        · Ana Pérez (Responsable · Imparte) | <b>Generación del PDF:</b> --
+    }
     ====
-    <color:red>Hay ítems sin guardar. Guarda el borrador antes de enviar a revisión.</color>
+    <color:red>Error: Hay items sin guardar -- guarda el borrador primero</color>
+    ⚠ Hay ítems sin guardar: no cuentan hasta pulsar "Guardar borrador".
+    {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
     ====
-    <i>Se han creado o editado ponderaciones, bibliografía o sesiones que aún no están en el borrador guardado.</i>
-    ====
-    [ <b>Volver a la guía</b> ]
+    <b>Contenido</b>
+    ...
 }
 @endsalt
 
 @startsalt enviarGuiaARevision-wireframe-error-planificacion
 {
-    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    <b>GII · Programación I</b>
+    {
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ]
+        <b>Semestre:</b> 1 | <b>Creación:</b> 1/9/2026, 10:30:00
+        <b>Profesores:</b> | <b>Última modificación:</b> 7/9/2026, 12:15:00
+        · Ana Pérez (Responsable · Imparte) | <b>Generación del PDF:</b> --
+    }
     ====
-    Planificación docente:
-    <color:red><b>18 / 25 sesiones -- planificación docente incompleta</b></color>
+    <color:red>Error: Planificación docente incompleta: 18 de 25 sesiones</color>
+    {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
     ====
-    <i>Añade las sesiones que faltan antes de enviar a revisión.</i>
+    ...
     ====
-    [ <b>Volver a la guía</b> ]
+    {<b>Planificación docente</b> | [<b>Gestionar planificación docente</b>]}
+    {<b>Leyenda:</b> Clase teórica · Clase práctica / de laboratorio · Clase teórico/práctica | <color:red><b>18 sesiones</b> (mínimo 25)</color> | [Descargar planificación]}
+    {#
+        <b>#</b> | <b>Tipo</b> | <b>Descripción</b>
+        1 | Clase Teórica | Presentación de la asignatura. Introducción a la programación
+        2 | Clase Práctica | Entorno de desarrollo y primer programa
+        ... | ... | ...
+        18 | Clase Práctica | Ejercicios de recursividad
+    }
+    ====
+    ...
 }
 @endsalt
 
 @startsalt enviarGuiaARevision-wireframe-error-convocatoria
 {
-    <b>GUÍA DOCENTE -- Programación I (GII)</b>
+    {+ Vista de Docente }
     ====
-    <color:red><b>⚠ NO SE PUEDE ENVIAR A REVISIÓN</b></color>
+    {<b>Guía docente</b> | [Inicio] | [Mis programas] | [Mi perfil] | [Cerrar sesión]}
+    <b>GII · Programación I</b>
+    {
+        <b>Programa:</b> Grado en Ingeniería Informática | <b>Estado:</b> [ Borrador ]
+        <b>Semestre:</b> 1 | <b>Creación:</b> 1/9/2026, 10:30:00
+        <b>Profesores:</b> | <b>Última modificación:</b> 7/9/2026, 12:15:00
+        · Ana Pérez (Responsable · Imparte) | <b>Generación del PDF:</b> --
+    }
     ====
-    <color:red><b>Convocatoria extraordinaria sin concretar: falta el instrumento y el porcentaje recuperable</b></color>
+    <color:red>Error: Convocatoria extraordinaria sin concretar: falta el instrumento y el porcentaje recuperable</color>
+    {[Guardar borrador] | [Enviar a revisión] | [Previsualizar]}
     ====
-    <i>Complétalos en el texto de convocatorias de la evaluación antes de enviar a revisión.</i>
-    ====
-    [ <b>Volver a la guía</b> ]
+    <b>Contenido</b>
+    ...
 }
 @endsalt

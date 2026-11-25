@@ -1,16 +1,17 @@
 @startsalt crearActividadFormativa-wireframe
 {
-    <b>CREAR ACTIVIDAD FORMATIVA</b>
+    {+ Vista de Dirección · GII }
     ====
+    <b>Crear actividad formativa</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
     {
-        <b>Código (*):</b>
-        "          "
-        <b>Nombre (*):</b>
-        "                                                  "
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Código (*):</b> | "          "
     }
-    ~~
+    <b>Nombre (*):</b>
+    "                                                  "
+    <i>(*) Campo obligatorio</i>
+    --
     {[Crear] | [Cancelar]}
 }
 @endsalt

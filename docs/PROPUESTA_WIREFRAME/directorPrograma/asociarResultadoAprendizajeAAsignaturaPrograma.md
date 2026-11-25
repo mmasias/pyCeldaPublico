@@ -8,7 +8,9 @@
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaPrograma/wireframe.svg)
+|**Vista principal**|**Sin disponibles**|
+|---|---|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaPrograma/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaPrograma/wireframe-sin-disponibles.svg)|
 
 |Botón|CdU|
 |---|---|
@@ -22,5 +24,6 @@
 |[**Importar actividades formativas de asignatura prima**](importarActividadesFormativasDeAsignaturaProgramaPrima.md)|<sub>importarActividadesFormativasDeAsignaturaProgramaPrima()</sub>|
 |[**Volver al Programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
 |[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|
+|[**Abrir asignaturas del programa**](abrirAsignaturasPrograma.md)|<sub>abrirAsignaturasPrograma()</sub>|
 
 </div>

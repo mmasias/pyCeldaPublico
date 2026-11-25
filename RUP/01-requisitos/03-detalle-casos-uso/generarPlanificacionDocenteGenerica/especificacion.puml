@@ -19,11 +19,13 @@ state generarPlanificacionDocenteGenerica as "generarPlanificacionDocenteGeneric
 
     c -[#red]-> [*]
     note on link
-    <b>Sistema</b> presenta mensaje de bloqueo: la planificación docente ya tiene sesiones
+    [la planificación docente ya tiene sesiones]
+    <b>Sistema</b> presenta la planificación docente actual, sin crear nada
     end note
 
     c -[#green]-> ConfirmandoGeneracion
     note on link
+    [la planificación docente está vacía]
     <b>Sistema</b> muestra el número de sesiones que se crearán (el mínimo de la guía)
     <b>Sistema</b> permite solicitar confirmar/cancelar la generación
     end note

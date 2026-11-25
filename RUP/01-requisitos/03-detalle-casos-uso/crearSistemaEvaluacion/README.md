@@ -46,6 +46,9 @@
 
 **`codigo` y `descripcion` de la memoria (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: `codigo` es el código del sistema en la memoria verificada (p. ej. `E1`), opcional y de hasta 20 caracteres; vacío se guarda como nulo. `descripcion` deja de ser un detalle libre de la `Materia` y pasa a ser la denominación literal de la memoria (p. ej. "Prueba Parcial"), porque ANECA exige que la Guía nombre la herramienta de evaluación tal como figura en ella. `tipo` se mantiene como clasificación. No hay catálogo de sistemas de evaluación por `Programa`: la importación desde el RUCT carga en cada `Materia` los sistemas de su memoria.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858), vista del DirectorPrograma (entrada desde la ficha de la materia, sección de sistemas de evaluación; al crear o cancelar vuelve a ella): título "Crear sistema de evaluación", línea "Programa: GII -- Grado en Ingeniería Informática" (la pantalla no muestra el nombre de la materia, que el wireframe anterior sí dibujaba), descripción como área de texto de cuatro líneas y botones Crear/Cancelar al pie. Cancelar con cambios sin guardar pide confirmación.
 
 ## Referencias
 

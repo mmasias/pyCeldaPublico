@@ -54,6 +54,10 @@ Retoca [`abrirAsignaturaPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/abr
 
 **Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Editar actividades formativas -- asignatura" (sin botón en la cabecera), línea "Programa: GII -- ...", y la sección "Importar de otra asignatura de la misma materia" (de [`importarActividadesFormativasDeAsignaturaProgramaPrima()`](../importarActividadesFormativasDeAsignaturaProgramaPrima/README.md)) encima de la tabla de reparto, en la misma pantalla. Se retira la nota en cursiva sobre la presencialidad (no aparece en pantalla). Regla de presentación: con cambios sin guardar aparece también un Guardar arriba con el aviso "Tienes cambios sin guardar."; sin asignaturas importables, la sección dice "No hay asignaturas de la misma materia con actividades formativas configuradas."
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : editarActividadesFormativasAsignaturaPrograma()` (verde y rojo al mismo estado)

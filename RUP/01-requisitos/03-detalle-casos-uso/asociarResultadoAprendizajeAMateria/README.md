@@ -45,6 +45,10 @@ Primer escalón de la cascada `Programa`->`Materia`->`AsignaturaPrograma`. A dif
 
 **Texto del selector (v0.11.27)**: cada opción muestra `código -- extracto` de la descripción (unos 80 caracteres, cortado en un espacio, con "..."; `extractoResultado()` en `frontend/src/resultadoAprendizaje.ts`, común a materia y asignatura, Director y Admin), y bajo el selector se ve el texto completo del elegido. Las descripciones van de unos pocos caracteres a varios miles: ni la descripción entera ni el `tipo` (todos `General`) servían para elegir.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): título "Asociar resultado de aprendizaje" con Cancelar en la cabecera (Volver si no quedan resultados disponibles), línea "Programa: GII -- Grado en Ingeniería Informática", nombre de la materia, selector en la misma línea que su etiqueta con el extracto real de `extractoResultado()`, texto completo del elegido en gris de nota (no cursiva) y Asociar tras una línea separadora.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : asociarResultadoAprendizajeAMateria()`

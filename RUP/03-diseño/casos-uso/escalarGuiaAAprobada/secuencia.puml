@@ -47,7 +47,7 @@ deactivate GuiaRepo
 
 API --> Vista: 200 OK (GuiaResponse JSON, con historial)
 deactivate API
-Vista --> DirectorPrograma: "GUÍA ESCALADA A APROBADA" -- estado anterior, Aprobada, comentario fijo
+Vista --> DirectorPrograma: aviso "GUÍA ESCALADA A APROBADA" en la propia ficha -- estado anterior, estado actual, "Escalada a aprobada sin incidencia", botón para volver a las guías
 deactivate Vista
 
 @enduml

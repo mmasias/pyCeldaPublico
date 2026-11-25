@@ -31,8 +31,8 @@ Traducción a clases de análisis del caso de uso [`guardarBorradorGuia()`](/RUP
 
 **Responsabilidades:**
 - recoge la solicitud de guardar borrador, con la lista completa de ids de `PonderacionEvaluacion`/`ReferenciaBibliografica`/`Sesion` que la sub-vista de cada colección ha ido curando, y el texto del `contenido` (temario) tal como está en el `textarea`.
-- presenta la confirmación: "BORRADOR GUARDADO", estado actual, fecha de última modificación, y la nota de que si la `Guia` estaba `Aprobada` vuelve a `Borrador`.
-- permite continuar editando (vuelve a `GUIA_ABIERTO`, no sale de la sesión).
+- no presenta pantalla de confirmación propia: vuelve a presentar la ficha de la `Guia` (`GUIA_ABIERTO`) con sus datos recargados (estado actual, fecha de última modificación) y el aviso "Borrador guardado" en la propia ficha. Si la `Guia` estaba `Aprobada` vuelve a `Borrador`; antes de guardar, la ficha ya avisa de ello.
+- el `Profesor` (o el `DirectorPrograma`) sigue editando en la misma ficha, sin salir de la sesión.
 
 **Colaboraciones:**
 - **Entrada:** `:GUIA_ABIERTO` -- el `Profesor` solicita guardar borrador.

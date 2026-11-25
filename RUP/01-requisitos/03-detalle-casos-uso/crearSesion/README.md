@@ -19,7 +19,7 @@
 
 <div align=center>
 
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframe-formulario.svg)|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframe.svg)|
 |-|
 |<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
 
@@ -51,6 +51,12 @@
 **Desarrollo** (Bloque 2 de la discussion [#206](https://github.com/mmasias/pyCelda/discussions/206)): mismo patrón CRUD real + inmediato con `vinculada: bool` que `PonderacionEvaluacion` y `ReferenciaBibliografica`. `crearSesion()` escribe la fila al instante con `vinculada=False`; es [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md) quien la vincula si sigue en la lista de trabajo enviada, o la borra si el profesor la quitó ([`eliminarSesion()`](../eliminarSesion/README.md)). Hasta #206 el backend no cumplía esto -- `guardarBorradorGuia` no sincronizaba sesiones y `enviarGuiaARevision` no las contaba entre los ítems sin guardar (`409`); el RUP y el frontend ya lo asumían.
 
 **Tope de longitud de la `descripcion`** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): la descripción de la `Sesion` admite como máximo 500 caracteres (`LIMITE_DESCRIPCION_SESION`). Si se supera, el backend responde `422` con `La descripción de la sesión supera el límite de 500 caracteres`, antes de tocar nada. Es una barrera de entrada, no una precondición del dominio: no abre rama en el diagrama de estados ni un `<<choice>>` en la especificación (misma naturaleza que el tope de `Guia.contenido` en [`guardarBorradorGuia()`](../guardarBorradorGuia/README.md)). El campo de texto del cliente lleva `maxlength` 500, sin contador visible.
+
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): la variante `crearSesion-wireframe-formulario` (pantalla "CREAR SESIÓN" con "Sesión número: 6 (automático)", "(*) Campo obligatorio" y botón Crear) se retira porque esa pantalla ya no existe; la sustituye `crearSesion-wireframe`, que dibuja el alta en la propia tabla de [`abrirPlanificacionDocente()`](../abrirPlanificacionDocente/README.md): **Añadir fila** (en la miga, a la derecha) añade al final una fila con el tipo "Clase Teórica" preseleccionado, el campo de descripción (texto de ayuda "Descripción") y un botón **Quitar**; el número es la posición en la tabla. El flujo de la especificación cambia en consecuencia: no hay botón "Crear"; la fila se da de alta sola al confirmar la descripción (Enter o salir del campo) o al cambiar el tipo con la descripción ya escrita, y **Quitar** la descarta sin crear nada (rama azul nueva). Mientras se guarda aparece "Guardando..."; si falla, "Error: ..." con **Reintentar**, sin perder lo escrito.
+- La variante dibuja también el medidor con cambios sin guardar ("En pantalla: 5 sesiones · Guardado: 4 sesiones (mínimo 25)" y el aviso ⚠ en ámbar): la fila 5 se añadió en esta sesión de trabajo y aún no cuenta hasta Guardar borrador.
+- Regla de presentación: los botones llevan icono en la aplicación (➕ Añadir fila, ➖ en Quitar, 🗑️ en Eliminar, 📑 Duplicar); el wireframe los escribe con su nombre. Los colores de fila son los de [`abrirPlanificacionDocente()`](../abrirPlanificacionDocente/README.md).
 
 ## Referencias
 

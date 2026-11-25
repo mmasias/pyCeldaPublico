@@ -43,6 +43,10 @@ Borrado físico bloqueado relacionalmente, mismo patrón que [`eliminarCompetenc
 
 Hasta #772 el bloqueo solo miraba las `Materia` y el mensaje era genérico ("en uso en materias del catálogo"), sin nombres. Códigos y textos de los wireframes ilustrativos.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): en las dos variantes, etiqueta de vista, título "Eliminar metodología docente" con su salida a la derecha y línea "Programa: GII -- Grado en Ingeniería Informática". Bloqueada: "Volver a las metodologías docentes" pasa del pie a la cabecera. Confirmación: "Cancelar" pasa a la cabecera y "Confirmar eliminación" queda solo al pie. Flujo sin cambios. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `METODOLOGIAS_DOCENTES_ABIERTO --> METODOLOGIAS_DOCENTES_ABIERTO : eliminarMetodologiaDocente()`

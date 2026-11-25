@@ -42,6 +42,10 @@ Ficha de solo lectura con `codigo` y `nombre` (issue [#772](https://github.com/m
 
 **Histórico**: hasta #772 la ficha era de una actividad del catálogo institucional de la `Universidad`, solo para `Admin`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): etiqueta de vista, cabecera con el nombre del programa y pestañas del programa (activa Actividades formativas); miga "Actividades formativas › AD1" con "Editar" a su derecha (antes al pie); sección "Nombre" (texto en cursiva) y nota sobre la edición de horas, que en pantalla es texto normal, no cursiva. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ACTIVIDADES_FORMATIVAS_ABIERTO --> ACTIVIDAD_FORMATIVA_ABIERTO : abrirActividadFormativa()`

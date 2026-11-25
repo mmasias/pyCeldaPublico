@@ -43,6 +43,10 @@ Segundo escalón de la cascada (#761, decisión 4): el selector solo ofrece las 
 
 Si no queda ninguna disponible (la materia no tiene competencias, por ser un programa de formato nuevo o por no haberse hecho el reparto, o la asignatura ya las tiene todas), no se muestra el selector: la pantalla indica "No hay competencias disponibles para asociar. Solo se pueden elegir las de la materia X que aún no tenga esta asignatura." y solo ofrece **Volver**.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Asociar competencia" con Cancelar en la cabecera (Volver si no hay competencias disponibles), línea "Programa: GII -- ...", selector en la línea de su etiqueta, texto completo de la elegida precedido de su tipo ("Específica. ...") en gris de nota, y Asociar tras una línea separadora.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asociarCompetenciaAAsignaturaPrograma()`

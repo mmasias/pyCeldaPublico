@@ -1,12 +1,17 @@
 @startsalt rechazarGuia-wireframe
 {
-    <b>RECHAZAR GUÍA -- Programación I (GII)</b>
+    {+ Vista de Dirección }
     ====
-    <b>Estado actual:</b> [ En revisión ] ámbar
-    --
+    {<b>Rechazar guía -- Programación I</b> | [Cancelar]}
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Estado actual:</b> [ En revisión ]
     <b>Comentario (opcional):</b>
-    "Falta justificar la ponderación de Interés y participación"
+    {+
+        "Falta justificar la ponderación de Interés y participación"
+        " "
+        " "
+    }
     ====
-    {[Rechazar]}
+    {[<b>Rechazar</b>] | [Cancelar]}
 }
 @endsalt

@@ -69,6 +69,11 @@ Reutilizado por `DirectorPrograma`, misma ficha (`DirectorPrograma --|> Profesor
 
 **Tope de longitud de la descripción** (issue [#669](https://github.com/mmasias/pyCelda/issues/669)): cada `Sesion` creada respeta el tope de 500 caracteres de [`crearSesion()`](../crearSesion/README.md). Si la descripción de alguna línea lo supera, la importación entera se rechaza con `422` (`Línea N: la descripción supera el límite de 500 caracteres`, siendo `N` el número de línea del texto pegado, contando las vacías) y no se borra nada: no se recorta en silencio. Es una barrera de entrada, no abre rama en la especificación ni cambia la regla de que ninguna línea del parseo se descarta.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#857): etiqueta "Vista de Docente", título "Importar planificación docente desde texto" con **Cancelar** a la derecha (sin miga ni accesos globales), líneas "Asignatura:" y "Programa:" bajo la cabecera, el texto de ayuda completo ("... Las líneas vacías se ignoran; una línea sin código reconocido se importa como clase teórica con la línea completa como descripción."), códigos en negrita y el botón **Importar planificación docente** en negrita bajo una línea. El área de texto se dibuja con el texto de ejemplo que la aplicación muestra como ayuda mientras está vacía. Con el texto vacío, el aviso en rojo añade "El texto está vacío: esto dejará la planificación docente vacía.".
+- Solo el profesor de la asignatura ve el botón de entrada; en la vista del director no se ofrece.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `PLANIFICACION_DOCENTE_ABIERTO --> PLANIFICACION_DOCENTE_ABIERTO : importarPlanificacionDocenteDesdeTexto()`

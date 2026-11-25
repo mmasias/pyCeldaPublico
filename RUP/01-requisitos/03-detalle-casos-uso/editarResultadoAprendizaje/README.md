@@ -40,6 +40,10 @@
 
 A diferencia de `editarMetodologiaDocente()` (`codigo` fijo desde el alta, catálogo institucional con códigos MD1-MD7 de significado estable), aquí `codigo` y `tipo` son editables. Mismo formulario que `crearResultadoAprendizaje()`: la entidad es demasiado minimalista para que el patrón C→U aporte algo (ver corrección en la revisión del lote, [issue #24](https://github.com/mmasias/pyCelda/issues/24), y el README de `crearResultadoAprendizaje()`), así que ambos casos de uso piden los mismos tres campos -- la diferencia real es que aquí llegan precargados. RAK1 es dato real del plan de estudios de GII, aportado por el usuario en la [issue #23](https://github.com/mmasias/pyCelda/issues/23).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#858): título "Editar resultado de aprendizaje", línea "Programa: GII -- Grado en Ingeniería Informática" y botones Guardar/Cancelar (Cancelar no figuraba). Cancelar con cambios sin guardar pide confirmación antes de volver a la ficha.
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `RESULTADO_APRENDIZAJE_ABIERTO --> RESULTADO_APRENDIZAJE_ABIERTO : editarResultadoAprendizaje()`
