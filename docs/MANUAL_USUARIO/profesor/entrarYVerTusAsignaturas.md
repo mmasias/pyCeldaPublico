@@ -22,9 +22,9 @@ Al empezar cada curso académico, el perfil académico hay que confirmarlo una v
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirInicio/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirInicio.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirInicio/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirInicio.md)</sub>
 
 </div>
 
