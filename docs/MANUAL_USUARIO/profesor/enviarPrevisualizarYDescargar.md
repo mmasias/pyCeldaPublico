@@ -10,9 +10,9 @@
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-exito.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/enviarGuiaARevision.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/enviarGuiaARevision/wireframe-exito.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/enviarGuiaARevision.md)</sub>
 
 </div>
 
@@ -37,9 +37,9 @@ Antes del envío se comprueban cuatro cosas, en este orden. Si alguna falla, la 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/previsualizarGuia/wireframe-borrador.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/previsualizarGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/previsualizarGuia/wireframe-borrador.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/previsualizarGuia.md)</sub>
 
 </div>
 
@@ -49,9 +49,9 @@ Mientras la guía no está **Aprobada**, **👁️ Previsualizar** muestra el do
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/descargarGuiaPDF/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/descargarGuiaPDF.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/descargarGuiaPDF/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/descargarGuiaPDF.md)</sub>
 
 </div>
 

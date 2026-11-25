@@ -26,9 +26,9 @@ Desde la guía, pulsar [**🔧 Gestionar planificación docente**](planificacion
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirPlanificacionDocente.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirPlanificacionDocente.md)</sub>
 
 </div>
 
@@ -40,9 +40,9 @@ Si la guía está **Aprobada**, bajo la miga aparece un aviso en ámbar: guardar
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/descargarPlanificacionDocentePDF/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/descargarPlanificacionDocentePDF.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/descargarPlanificacionDocentePDF/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/descargarPlanificacionDocentePDF.md)</sub>
 
 </div>
 
@@ -52,9 +52,9 @@ Junto al número de sesiones, **⬇️ Descargar planificación** descarga un PD
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearSesion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSesion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearSesion.md)</sub>
 
 </div>
 
@@ -72,17 +72,17 @@ La descripción de cada sesión admite un máximo de **500 caracteres**. Si se s
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarSesion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSesion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarSesion.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarSesion/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarSesion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarSesion/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarSesion.md)</sub>
 
 </div>
 
@@ -94,9 +94,9 @@ Si un guardado falla (por ejemplo, por un corte de red), aparece un mensaje de e
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/duplicarSesion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/duplicarSesion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/duplicarSesion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/duplicarSesion.md)</sub>
 
 </div>
 
@@ -108,9 +108,9 @@ Pensado para sesiones consecutivas parecidas -- un tema que continúa, una prác
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/generarPlanificacionDocenteGenerica.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/generarPlanificacionDocenteGenerica/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/generarPlanificacionDocenteGenerica.md)</sub>
 
 </div>
 
@@ -125,9 +125,9 @@ Esto crea de golpe N sesiones de Clase Teórica, sin descripción, numeradas de 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarPlanificacionDocenteDeGuiaHermana/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarPlanificacionDocenteDeGuiaHermana.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarPlanificacionDocenteDeGuiaHermana/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarPlanificacionDocenteDeGuiaHermana.md)</sub>
 
 </div>
 
@@ -144,9 +144,9 @@ Como con la bibliografía, importar sustituye la planificación de inmediato -- 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarPlanificacionDocenteDesdeTexto/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarPlanificacionDocenteDesdeTexto.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarPlanificacionDocenteDesdeTexto/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarPlanificacionDocenteDesdeTexto.md)</sub>
 
 </div>
 

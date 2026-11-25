@@ -18,9 +18,9 @@ Desde la guía, pulsar [**🔧 Gestionar bibliografía**](referenciasBibliografi
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirReferenciasBibliograficas/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirReferenciasBibliograficas.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirReferenciasBibliograficas/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirReferenciasBibliograficas.md)</sub>
 
 </div>
 
@@ -32,9 +32,9 @@ Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guar
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearReferenciaBibliografica/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearReferenciaBibliografica.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearReferenciaBibliografica/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearReferenciaBibliografica.md)</sub>
 
 </div>
 
@@ -49,17 +49,17 @@ Si la referencia supera los 500 caracteres se rechaza con el mensaje "La referen
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarReferenciaBibliografica/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarReferenciaBibliografica.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarReferenciaBibliografica/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarReferenciaBibliografica.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarReferenciaBibliografica.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarReferenciaBibliografica/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarReferenciaBibliografica.md)</sub>
 
 </div>
 
@@ -69,9 +69,9 @@ Igual que con los instrumentos de evaluación: pulsar el lápiz **✏️** (Edit
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarBibliografiaDeGuiaHermana.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarBibliografiaDeGuiaHermana/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarBibliografiaDeGuiaHermana.md)</sub>
 
 </div>
 

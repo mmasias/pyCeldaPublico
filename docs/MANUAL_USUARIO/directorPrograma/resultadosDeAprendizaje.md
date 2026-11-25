@@ -18,9 +18,9 @@ Desde la franja del programa, pulsar [**🎯 Resultados de aprendizaje**](result
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirResultadosAprendizaje/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirResultadosAprendizaje.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirResultadosAprendizaje/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirResultadosAprendizaje.md)</sub>
 
 </div>
 
@@ -30,9 +30,9 @@ Una tabla con **Descripción**, **Tipo**, **Código** y **Nº de Asign.** (el n�
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearResultadoAprendizaje/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearResultadoAprendizaje.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearResultadoAprendizaje/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearResultadoAprendizaje.md)</sub>
 
 </div>
 
@@ -48,9 +48,9 @@ Para salir sin crear, **Cancelar**; si hay algo escrito, pide confirmación ante
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirResultadoAprendizaje/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirResultadoAprendizaje.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirResultadoAprendizaje/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirResultadoAprendizaje.md)</sub>
 
 </div>
 
@@ -62,9 +62,9 @@ Debajo aparecen el **Tipo**, la **Descripción** (en cursiva) y la **Distribuci�
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarResultadoAprendizaje/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarResultadoAprendizaje.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarResultadoAprendizaje/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarResultadoAprendizaje.md)</sub>
 
 </div>
 
@@ -76,9 +76,9 @@ Si el resultado tiene un tipo que no está entre los tres de la lista (por ejemp
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarResultadoAprendizaje/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarResultadoAprendizaje.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarResultadoAprendizaje/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarResultadoAprendizaje.md)</sub>
 
 </div>
 

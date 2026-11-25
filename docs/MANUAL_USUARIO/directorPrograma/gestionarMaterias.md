@@ -18,9 +18,9 @@ Desde la franja del programa, pulsar [**📚 Materias**](gestionarMaterias.md#qu
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMaterias/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMaterias.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMaterias/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMaterias.md)</sub>
 
 </div>
 
@@ -30,9 +30,9 @@ Una tabla con **Nombre** y el botón [**📂 Abrir**](gestionarMaterias.md#detal
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMateria.md)</sub>
 
 </div>
 
@@ -46,9 +46,9 @@ Tabla con **Código**, **Descripción**, **Descripción propia** (un matiz espec
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarMetodologiaDocenteAMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarMetodologiaDocenteAMateria.md)</sub>
 
 </div>
 
@@ -62,9 +62,9 @@ Si no queda ninguna metodología disponible para asociar, la pantalla lo indica 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsociacionMetodologiaDocenteMateria/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarAsociacionMetodologiaDocenteMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsociacionMetodologiaDocenteMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarAsociacionMetodologiaDocenteMateria.md)</sub>
 
 </div>
 
@@ -74,9 +74,9 @@ Pulsar **✏️ Editar** en la fila de la metodología. El código y la descripc
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteMateria/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarMetodologiaDocenteMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteMateria/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarMetodologiaDocenteMateria.md)</sub>
 
 </div>
 
@@ -86,17 +86,17 @@ Pulsar **➖** (Quitar) en la fila de la metodología. Si ninguna asignatura de 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAMateria/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarResultadoAprendizajeAMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarResultadoAprendizajeAMateria.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarResultadoAprendizajeAMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarResultadoAprendizajeAMateria.md)</sub>
 
 </div>
 
@@ -106,17 +106,17 @@ Misma mecánica que las metodologías docentes: tabla con **Código**, **Tipo**,
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAMateria/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarCompetenciaAMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarCompetenciaAMateria.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAMateria/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarCompetenciaAMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAMateria/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarCompetenciaAMateria.md)</sub>
 
 </div>
 
@@ -126,17 +126,17 @@ Misma mecánica que los resultados de aprendizaje: tabla con **Código**, **Tipo
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadesFormativasMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadesFormativasMateria.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/consultarEstadoActividadesFormativasMateria.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/consultarEstadoActividadesFormativasMateria.md)</sub>
 
 </div>
 
@@ -150,25 +150,25 @@ Debajo, la tabla **Estado de las actividades formativas** compara, por actividad
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSistemaEvaluacion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearSistemaEvaluacion.md)
-
-</div>
-
-<div align=center>
-
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSistemaEvaluacion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarSistemaEvaluacion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSistemaEvaluacion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearSistemaEvaluacion.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/wireframe-confirmacion.svg)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSistemaEvaluacion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarSistemaEvaluacion.md)</sub>
 
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarSistemaEvaluacion.md)
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarSistemaEvaluacion.md)</sub>
 
 </div>
 

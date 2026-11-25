@@ -18,9 +18,9 @@ Desde la franja del programa, pulsar [**📘 Asignaturas**](gestionarAsignaturas
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturasPrograma/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirAsignaturasPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturasPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirAsignaturasPrograma.md)</sub>
 
 </div>
 
@@ -30,9 +30,9 @@ Una tabla con **Asignatura**, **Materia**, **Curso**, **Carácter**, **Profesora
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirAsignaturaPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirAsignaturaPrograma.md)</sub>
 
 </div>
 
@@ -44,49 +44,49 @@ Más abajo, los **Resultados de aprendizaje asociados**, las **Competencias**, l
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaPrograma/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarResultadoAprendizajeAAsignaturaPrograma.md)
-
-</div>
-
-<div align=center>
-
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/wireframe-normal.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarResultadoAprendizajeAsignaturaPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarResultadoAprendizajeAAsignaturaPrograma.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAAsignaturaPrograma/wireframe-seleccion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarCompetenciaAAsignaturaPrograma.md)
-
-</div>
-
-<div align=center>
-
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAsignaturaPrograma/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarCompetenciaAsignaturaPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/wireframe-normal.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarResultadoAprendizajeAsignaturaPrograma.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAAsignaturaPrograma/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarMetodologiaDocenteAAsignaturaPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAAsignaturaPrograma/wireframe-seleccion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarCompetenciaAAsignaturaPrograma.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteAsignaturaPrograma/wireframe-normal.svg)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarCompetenciaAsignaturaPrograma.md)</sub>
 
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarMetodologiaDocenteAsignaturaPrograma.md)
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/asociarMetodologiaDocenteAAsignaturaPrograma.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteAsignaturaPrograma/wireframe-normal.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/desasociarMetodologiaDocenteAsignaturaPrograma.md)</sub>
 
 </div>
 
@@ -94,9 +94,9 @@ Más abajo, los **Resultados de aprendizaje asociados**, las **Competencias**, l
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/wireframe-completo.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarAsignaturaPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/wireframe-completo.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarAsignaturaPrograma.md)</sub>
 
 </div>
 
@@ -114,9 +114,9 @@ Dejar Requisitos previos vacío equivale a "No aplica" en la guía docente.
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasAsignaturaPrograma/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadesFormativasAsignaturaPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadesFormativasAsignaturaPrograma.md)</sub>
 
 </div>
 

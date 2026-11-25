@@ -22,9 +22,9 @@ Desde la franja del programa, pulsar [**🧩 Metodologías**](metodologiasDelPro
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMetodologiasDocentes.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiasDocentes/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMetodologiasDocentes.md)</sub>
 
 </div>
 
@@ -34,9 +34,9 @@ Una tabla con **Descripción**, **Código** y **Nº de Asign.** (cuántas asigna
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearMetodologiaDocente.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearMetodologiaDocente/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearMetodologiaDocente.md)</sub>
 
 </div>
 
@@ -51,9 +51,9 @@ Para salir sin crear, **Cancelar**; si hay algo escrito, pide confirmación ante
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiaDocente/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMetodologiaDocente.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMetodologiaDocente/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirMetodologiaDocente.md)</sub>
 
 </div>
 
@@ -63,9 +63,9 @@ Al abrirla, la pestaña [**🧩 Metodologías**](metodologiasDelPrograma.md#qué
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarMetodologiaDocente.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarMetodologiaDocente.md)</sub>
 
 </div>
 
@@ -75,9 +75,9 @@ Pulsar **✏️ Editar** y cambiar código o descripción; **Guardar** confirma 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarMetodologiaDocente.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarMetodologiaDocente/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarMetodologiaDocente.md)</sub>
 
 </div>
 
@@ -96,9 +96,9 @@ Desde la franja del programa, pulsar [**🏋️ Actividades formativas**](metodo
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirActividadesFormativas.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadesFormativas/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirActividadesFormativas.md)</sub>
 
 </div>
 
@@ -108,9 +108,9 @@ Una tabla con **Nombre** y **Código** de cada actividad, en el orden en que se 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearActividadFormativa.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearActividadFormativa/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearActividadFormativa.md)</sub>
 
 </div>
 
@@ -122,9 +122,9 @@ Una tabla con **Nombre** y **Código** de cada actividad, en el orden en que se 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirActividadFormativa.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirActividadFormativa/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirActividadFormativa.md)</sub>
 
 </div>
 
@@ -134,9 +134,9 @@ Al abrirla, la pestaña [**🏋️ Actividades formativas**](metodologiasDelProg
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadFormativa.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadFormativa/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarActividadFormativa.md)</sub>
 
 </div>
 
@@ -146,9 +146,9 @@ En su ficha, pulsar **✏️ Editar** y cambiar código o nombre; **Guardar** co
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarActividadFormativa.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarActividadFormativa.md)</sub>
 
 </div>
 

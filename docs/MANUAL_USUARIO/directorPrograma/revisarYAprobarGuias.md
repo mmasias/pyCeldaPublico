@@ -18,9 +18,9 @@ Desde la franja del programa, pulsar [**📄 Guías**](revisarYAprobarGuias.md#q
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoGuias/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/consultarEstadoGuias.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoGuias/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/consultarEstadoGuias.md)</sub>
 
 </div>
 
@@ -34,9 +34,9 @@ La misma tabla, para el curso vigente, aparece también en la pestaña [**📋 V
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-revision.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-revision.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirGuia.md)</sub>
 
 </div>
 
@@ -59,9 +59,9 @@ Tras **✅ Aprobar** o **⏫ Escalar a aprobada**, la guía sigue abierta y, sob
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/aprobarGuia/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/aprobarGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/aprobarGuia/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/aprobarGuia.md)</sub>
 
 </div>
 
@@ -71,9 +71,9 @@ Pulsar **✅ Aprobar** en una guía **En revisión**. La guía pasa a **Aprobada
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/rechazarGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/rechazarGuia/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/rechazarGuia.md)</sub>
 
 </div>
 
@@ -83,9 +83,9 @@ Pulsar **❌ Rechazar** en una guía **En revisión**. Aparece un formulario con
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/escalarGuiaAAprobada.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/escalarGuiaAAprobada/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/escalarGuiaAAprobada.md)</sub>
 
 </div>
 
@@ -95,9 +95,9 @@ Pulsar **⏫ Escalar a aprobada** en una guía **Borrador** o **Rechazada** que 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/revocarAprobacionGuia/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/revocarAprobacionGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/revocarAprobacionGuia/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/revocarAprobacionGuia.md)</sub>
 
 </div>
 
@@ -107,9 +107,9 @@ Pulsar **↩️ Revocar aprobación** en una guía **Aprobada** que necesita cor
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe-director.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/guardarBorradorGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe-director.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/guardarBorradorGuia.md)</sub>
 
 </div>
 
@@ -126,25 +126,25 @@ Si se ha cambiado el temario sin guardar, salir de la guía por la franja del pr
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe-director.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPonderacionesEvaluacion.md)
-
-</div>
-
-<div align=center>
-
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirReferenciasBibliograficas/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirReferenciasBibliograficas.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe-director.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPonderacionesEvaluacion.md)</sub>
 
 </div>
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirReferenciasBibliograficas/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirReferenciasBibliograficas.md)</sub>
 
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPlanificacionDocente.md)
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPlanificacionDocente/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPlanificacionDocente.md)</sub>
 
 </div>
 

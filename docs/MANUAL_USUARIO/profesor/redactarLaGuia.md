@@ -18,9 +18,9 @@ Desde **Inicio**, pulsar [**📂 Abrir**](redactarLaGuia.md#qué-muestra) en la 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-profesor.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirGuia/wireframe-profesor.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirGuia.md)</sub>
 
 </div>
 
@@ -44,9 +44,9 @@ Después, en este orden:
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/guardarBorradorGuia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/guardarBorradorGuia/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/guardarBorradorGuia.md)</sub>
 
 </div>
 
@@ -65,9 +65,9 @@ La sesión dura 12 horas. Si al guardar (o al enviar, importar o descargar) la s
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarContenidoDeGuiaHermana/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarContenidoDeGuiaHermana.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/importarContenidoDeGuiaHermana/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/importarContenidoDeGuiaHermana.md)</sub>
 
 </div>
 

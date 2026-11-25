@@ -16,9 +16,9 @@ La sesión dura 12 horas. Si al guardar en un formulario de crear o editar (resu
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirInicio/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirInicio.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirInicio/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirInicio.md)</sub>
 
 </div>
 
@@ -32,9 +32,9 @@ Si la cuenta está dada de alta también como profesor, Inicio muestra además l
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirProgramas/wireframe-porDirector.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirProgramas.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirProgramas/wireframe-porDirector.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirProgramas.md)</sub>
 
 </div>
 
@@ -55,9 +55,9 @@ Al abrir un elemento (una materia, una asignatura, un resultado de aprendizaje, 
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/wireframe-porDirectorPrograma.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPrograma.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/wireframe-porDirectorPrograma.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirPrograma.md)</sub>
 
 </div>
 

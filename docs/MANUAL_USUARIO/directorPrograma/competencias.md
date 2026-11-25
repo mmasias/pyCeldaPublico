@@ -20,9 +20,9 @@ Desde la franja del programa, pulsar [**🧭 Competencias**](competencias.md#qu�
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCompetencias/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirCompetencias.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCompetencias/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirCompetencias.md)</sub>
 
 </div>
 
@@ -34,9 +34,9 @@ El número de asignaturas es solo informativo: una competencia con 0 no impide n
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearCompetencia/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearCompetencia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearCompetencia/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/crearCompetencia.md)</sub>
 
 </div>
 
@@ -50,9 +50,9 @@ El número de asignaturas es solo informativo: una competencia con 0 no impide n
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCompetencia/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirCompetencia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCompetencia/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/abrirCompetencia.md)</sub>
 
 </div>
 
@@ -64,9 +64,9 @@ Debajo aparecen el **Tipo**, la **Descripción** y la **Distribución**: dos col
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarCompetencia/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarCompetencia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarCompetencia/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/editarCompetencia.md)</sub>
 
 </div>
 
@@ -76,9 +76,9 @@ Pulsar **✏️ Editar** y cambiar código, tipo o descripción; **Guardar** con
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarCompetencia/wireframe-confirmacion.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarCompetencia.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarCompetencia/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/directorPrograma/eliminarCompetencia.md)</sub>
 
 </div>
 

@@ -22,9 +22,9 @@ Desde la guía, pulsar [**🔧 Gestionar evaluación**](ponderacionesDeEvaluacio
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirPonderacionesEvaluacion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPonderacionesEvaluacion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/abrirPonderacionesEvaluacion.md)</sub>
 
 </div>
 
@@ -38,9 +38,9 @@ Más abajo, alineada a la derecha y en pequeño porque es de referencia, la tabl
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearPonderacionEvaluacion/wireframe-formulario.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearPonderacionEvaluacion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearPonderacionEvaluacion/wireframe-formulario.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/crearPonderacionEvaluacion.md)</sub>
 
 </div>
 
@@ -56,9 +56,9 @@ Si la ponderación es cero o un número negativo, aparece el error "La ponderaci
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarPonderacionEvaluacion/wireframe-formulario.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarPonderacionEvaluacion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarPonderacionEvaluacion/wireframe-formulario.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarPonderacionEvaluacion.md)</sub>
 
 </div>
 
@@ -71,9 +71,9 @@ Editar un instrumento que ya forma parte de la guía se guarda en el acto, sin p
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarPonderacionEvaluacion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarPonderacionEvaluacion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarPonderacionEvaluacion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/eliminarPonderacionEvaluacion.md)</sub>
 
 </div>
 
@@ -90,9 +90,9 @@ Un instrumento **recién creado** aparece como **Vinculada: No** hasta confirmar
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarTextoSistemaEvaluacion/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarTextoSistemaEvaluacion.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarTextoSistemaEvaluacion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarTextoSistemaEvaluacion.md)</sub>
 
 </div>
 

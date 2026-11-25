@@ -22,9 +22,9 @@ Pulsar **🪪 Mi perfil**, arriba a la derecha de cualquier pantalla.
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarPerfilPropio/wireframe.svg)
-
-[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarPerfilPropio.md)
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarPerfilPropio/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/profesor/editarPerfilPropio.md)</sub>
 
 </div>
 
