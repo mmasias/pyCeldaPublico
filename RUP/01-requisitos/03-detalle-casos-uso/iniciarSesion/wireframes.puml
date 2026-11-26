@@ -1,0 +1,14 @@
+@startsalt iniciarSesion-wireframe-admin
+{
+    {+
+        <size:24><b>CELDA</b></size>
+        <i>Catálogo ELectrónico de Documentación Académica</i>
+    }
+    <b>Módulo de administración</b>
+    {
+        [Iniciar sesión] | . | <u>Manual del administrador</u>
+    }
+    --
+    <i>Versión v0.11.60 · esquema 10</i>
+}
+@endsalt
