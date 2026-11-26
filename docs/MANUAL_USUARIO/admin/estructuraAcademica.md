@@ -372,7 +372,7 @@ El módulo de cada materia se elige al crearla o editarla, en el desplegable **M
 
 </div>
 
-Junto al **Código** y el **Estado** del programa, la sección **Directores** lista los directores de programa ya nombrados (el nombre de cada uno o, si no lo tiene registrado, su email) con un botón **➖** (Quitar) en cada fila.
+Junto al **Código** y el **Estado** del programa, la sección **Directores** lista los directores de programa ya nombrados (el nombre de cada uno o, si no lo tiene registrado, su email) con un botón [**➖**](profesores.md#quitar-un-director) (Quitar) en cada fila, que lleva a la pantalla de confirmación.
 
 Si queda algún profesor de la universidad sin nombrar, aparece además un selector con esos profesores disponibles y un botón **👑 Nombrar**; si ya todos dirigen el programa, en su lugar se muestra el aviso "No hay profesores disponibles: todos ya dirigen este programa."
 

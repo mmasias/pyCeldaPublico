@@ -7,46 +7,67 @@ state PROGRAMA_ABIERTO
 state PROFESOR_ABIERTO_SALIDA as "PROFESOR_ABIERTO"
 state PROGRAMA_ABIERTO_SALIDA as "PROGRAMA_ABIERTO"
 
-state quitarDirectorPrograma as "quitarDirectorPrograma()" {
-
-    state cProfesor <<choice>>
-    state cPrograma <<choice>>
-}
-
-PROFESOR_ABIERTO -[#green]-> cProfesor
+PROFESOR_ABIERTO -[#green]-> quitarDirectorPrograma
 note on link
 <b>Admin</b> (desde el Profesor) solicita quitar rol de director de Programa
 end note
 
-PROGRAMA_ABIERTO -[#green]-> cPrograma
+PROGRAMA_ABIERTO -[#green]-> quitarDirectorPrograma
 note on link
 <b>Admin</b> (desde el Programa) solicita quitar rol de director de Programa
 end note
 
-cProfesor -[#green]-> PROFESOR_ABIERTO_SALIDA
+state quitarDirectorPrograma as "quitarDirectorPrograma()" {
+
+    state " " as ConfirmandoQuitar
+    state c <<choice>>
+
+    [*] -[#green]-> c
+
+    c -[#green]-> ConfirmandoQuitar
+    note on link
+    [Programa con más de un DirectorPrograma activo]
+    <b>Sistema</b> presenta Profesor, Programa y lo que implica quitar el rol
+    <b>Sistema</b> permite solicitar confirmar/cancelar
+    end note
+
+    c -[#red]-> [*]
+    note on link
+    [Programa con un único DirectorPrograma activo]
+    <b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa
+    end note
+
+    ConfirmandoQuitar -[#green]-> [*]
+    note on link
+    <b>Admin</b> solicita confirmar
+    end note
+
+    ConfirmandoQuitar -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar
+    end note
+}
+
+quitarDirectorPrograma -[#green]-> PROFESOR_ABIERTO_SALIDA
 note on link
-[Programa con más de un DirectorPrograma activo]
-<b>Admin</b> solicita quitar, sin pantalla de confirmación
 rol quitado, lista actualizada
+(vuelve a la pantalla de la que salió)
 end note
 
-cProfesor -[#red]-> PROFESOR_ABIERTO_SALIDA
+quitarDirectorPrograma -[#green]-> PROGRAMA_ABIERTO_SALIDA
+
+quitarDirectorPrograma -[#red]-> PROFESOR_ABIERTO_SALIDA
 note on link
-[Programa con un único DirectorPrograma activo]
-<b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa (llega como error tras el intento, sin pantalla de bloqueo propia)
+bloqueada, sin cambios
 end note
 
-cPrograma -[#green]-> PROGRAMA_ABIERTO_SALIDA
+quitarDirectorPrograma -[#red]-> PROGRAMA_ABIERTO_SALIDA
+
+quitarDirectorPrograma -[#blue]-> PROFESOR_ABIERTO_SALIDA
 note on link
-[Programa con más de un DirectorPrograma activo]
-<b>Admin</b> solicita quitar, sin pantalla de confirmación
-rol quitado, lista actualizada
+cancelada, sin cambios
 end note
 
-cPrograma -[#red]-> PROGRAMA_ABIERTO_SALIDA
-note on link
-[Programa con un único DirectorPrograma activo]
-<b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa (llega como error tras el intento, sin pantalla de bloqueo propia)
-end note
+quitarDirectorPrograma -[#blue]-> PROGRAMA_ABIERTO_SALIDA
 
 @enduml

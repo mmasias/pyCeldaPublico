@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`quitarDirectorPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/quitarDirectorPrograma/README.md): `<<choice>>` bloqueante aplicado a quitar un rol, no a borrar una entidad -- mismo patrón que [`eliminarFacultad()`](../eliminarFacultad/README.md)/[`eliminarProfesor()`](../eliminarProfesor/README.md). Un `Programa` no puede quedarse sin ningún `DirectorPrograma`: si el `Profesor` es el único director de ese `Programa`, el caso de uso bloquea y no retira el rol. No hay paso de confirmación: la solicitud desde la fila es la acción, y el bloqueo se presenta como mensaje de error en la misma pantalla.
+Traducción a clases de análisis del caso de uso [`quitarDirectorPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/quitarDirectorPrograma/README.md): `<<choice>>` bloqueante aplicado a quitar un rol, no a borrar una entidad -- mismo patrón que [`eliminarFacultad()`](../eliminarFacultad/README.md)/[`eliminarProfesor()`](../eliminarProfesor/README.md). Un `Programa` no puede quedarse sin ningún `DirectorPrograma`: si el `Profesor` es el único director de ese `Programa`, el caso de uso bloquea y no retira el rol. Desde el issue [#885](https://github.com/mmasias/pyCelda/issues/885) la vista presenta el bloqueo antes de intentar nada y, si no hay bloqueo, pide confirmación (con opción de cancelar) antes de retirar el rol.
 
 <div align=center>
 
@@ -26,13 +26,13 @@ Traducción a clases de análisis del caso de uso [`quitarDirectorPrograma()`](/
 ### `QuitarDirectorProgramaView`
 
 **Responsabilidades:**
-- en la rama verde, retira el rol sin paso de confirmación y presenta la lista actualizada.
-- en la rama roja, presenta el mensaje de bloqueo por ser el único `DirectorPrograma` del `Programa`.
+- en la rama verde, presenta el `Profesor`, el `Programa` y lo que implica quitar el rol, y permite confirmar o cancelar; al confirmar, retira el rol.
+- en la rama roja, presenta el mensaje de bloqueo por ser el único `DirectorPrograma` del `Programa`, sin ofrecer confirmar.
 
 **Colaboraciones:**
-- **Entrada:** `:PROFESOR_ABIERTO` -- el `Admin` solicita quitar el rol sobre un `Programa` de la sección "Programas que dirige" del detalle.
+- **Entrada:** `:PROFESOR_ABIERTO` -- el `Admin` solicita quitar el rol sobre un `Programa` de la sección "Programas que dirige" del detalle; o `:PROGRAMA_ABIERTO` -- sobre un director de la sección "Directores" (#492).
 - **Control:** `ProfesorController`.
-- **Salida:** `:PROFESOR_ABIERTO` (self-loop) en los dos casos -- "rol quitado, lista actualizada" (verde) o "bloqueado, sin cambios" (rojo).
+- **Salida:** la pantalla de entrada (`:PROFESOR_ABIERTO` o `:PROGRAMA_ABIERTO`) en los tres casos -- "rol quitado, lista actualizada" (verde), "bloqueado, sin cambios" (rojo) o "cancelado, sin cambios" (azul).
 
 ## Clases de controlador
 

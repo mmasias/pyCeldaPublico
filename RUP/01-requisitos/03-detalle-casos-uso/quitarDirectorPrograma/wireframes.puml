@@ -1,38 +1,26 @@
 @startsalt quitarDirectorPrograma-wireframe-bloqueada
 {
-    <b>Profesores</b>
+    { <b>Quitar director de programa</b> | [ Volver al <b>profesor</b> ] }
     ====
-    { Profesores › <b>Dr. Carlos Navarro Ruiz</b> | [ Editar ] }
-    ====
-    <b>Nombre:</b> Dr. Carlos Navarro Ruiz
-    <b>Email:</b> carlos.navarro@ejemplo.edu
-    ====
-    { <b>Programas que dirige</b> | [ Nombrar director de programa ] }
-    <color:red>Error: Profesor es el único director de este Programa</color>
-    {#
-        <b>Programa</b> | .
-        GII -- Grado en Ingeniería Informática | [Quitar]
-    }
-    ..
+    <color:red><b>No se puede quitar</b></color>
+    <b>Profesor:</b> Dr. Carlos Navarro Ruiz
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+
+    Es el único director del programa: un programa no puede quedarse sin director.
+    <i>Nombra antes a otro director del programa.</i>
 }
 @endsalt
 
 @startsalt quitarDirectorPrograma-wireframe-confirmacion
 {
-    <b>Profesores</b>
+    { <b>Quitar director de programa</b> | [ Cancelar ] }
     ====
-    { Profesores › <b>Dr. Javier Molina Ríos</b> | [ Editar ] }
-    ====
-    <b>Nombre:</b> Dr. Javier Molina Ríos
-    <b>Email:</b> javier.molina@ejemplo.edu
-    ====
-    { <b>Programas que dirige</b> | [ Nombrar director de programa ] }
-    {#
-        <b>Programa</b> | .
-        GII -- Grado en Ingeniería Informática | [Quitar]
-        GIOI -- Grado en Ingeniería de Organización Industrial | [Quitar]
-    }
-    ..
+    <b>Profesor:</b> Dr. Javier Molina Ríos
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+
+    Dejará de ver este programa en "Mis programas" y de revisar sus guías docentes.
+    --
+    [ Confirmar ]
 }
 @endsalt
 
@@ -54,9 +42,9 @@
             <b>Norma:</b> RD 1393/2007
         } | {
             <b>Directores:</b>
-            <color:red>Error: Profesor es el único director de este Programa</color>
             { Dr. Carlos Navarro Ruiz | [Quitar] }
-            { ^Dr. Javier Molina Ríos^ | [Nombrar] }
+            { Dr. Javier Molina Ríos | [Quitar] }
+            { ^Seleccione un profesor^ | [Nombrar] }
         }
     }
     ..

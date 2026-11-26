@@ -58,7 +58,7 @@ Pulsar **Editar** en su detalle. **Nombre** y **Email** son ambos editables.
 
 </div>
 
-Muestra las **Asignaturas asignadas** (asignatura y programa de cada una) y los **Programas que dirige**, con el botón **➖** (Quitar) en cada uno para cesarlo como director.
+Muestra las **Asignaturas asignadas** (asignatura y programa de cada una) y los **Programas que dirige**, con el botón [**➖**](#quitar-un-director) (Quitar) en cada uno para cesarlo como director.
 
 ### Nombrar director de programa
 
@@ -75,6 +75,24 @@ Muestra las **Asignaturas asignadas** (asignatura y programa de cada una) y los 
 3. Pulsar **Nombrar**.
 
 Si ya dirige todos los programas existentes, la pantalla lo indica y solo ofrece volver atrás.
+
+### Quitar un director
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/quitarDirectorPrograma/wireframe-confirmacion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/quitarDirectorPrograma.md)</sub>
+
+</div>
+
+1. Pulsar **➖** (Quitar) en la fila del programa, en **Programas que dirige** del detalle del profesor, o en la del director, en la sección **Directores** de la ficha del programa ([Estructura académica](estructuraAcademica.md)).
+2. La pantalla muestra el profesor y el programa, y avisa de que dejará de ver ese programa en "Mis programas" y de revisar sus guías.
+3. Pulsar **➖ Confirmar**, o **Cancelar** para no hacer nada.
+
+En los dos casos se vuelve a la pantalla desde la que se pulsó **➖**.
+
+Un programa no puede quedarse sin director: si el profesor es su único director, la pantalla lo indica, no ofrece confirmar y solo permite volver. Hace falta nombrar antes a otro director del programa.
 
 ## Dar de baja un profesor
 

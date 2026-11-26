@@ -14,19 +14,12 @@
 
 |Botón|CdU|
 |---|---|
+|[**Volver al profesor**](abrirProfesor.md)|<sub>abrirProfesor()</sub>|
+|[**Volver al programa**](abrirPrograma.md)|<sub>abrirPrograma()</sub>|
+|[**Confirmar**](abrirProfesor.md)|<sub>quitarDirectorPrograma()</sub>|
+|[**Cancelar**](abrirProfesor.md)|<sub>abrirProfesor()</sub>|
+|[**Quitar**](quitarDirectorPrograma.md)|<sub>quitarDirectorPrograma()</sub>|
+|[**Nombrar**](definirDirectorPrograma.md)|<sub>definirDirectorPrograma()</sub>|
 |[**Editar**](editarPrograma.md)|<sub>editarPrograma()</sub>|
-|[**Definir director de programa**](definirDirectorPrograma.md)|<sub>definirDirectorPrograma()</sub>|
-|[**Abrir resultados de aprendizaje**](abrirResultadosAprendizaje.md)|<sub>abrirResultadosAprendizaje()</sub>|
-|[**Abrir competencias**](abrirCompetencias.md)|<sub>abrirCompetencias()</sub>|
-|[**Abrir metodologías docentes**](abrirMetodologiasDocentes.md)|<sub>abrirMetodologiasDocentes()</sub>|
-|[**Abrir actividades formativas**](abrirActividadesFormativas.md)|<sub>abrirActividadesFormativas()</sub>|
-|[**Abrir módulos**](abrirModulos.md)|<sub>abrirModulos()</sub>|
-|[**Volver al listado**](abrirProgramas.md)|<sub>abrirProgramas()</sub>|
-|[**Eliminar programa**](eliminarPrograma.md)|<sub>eliminarPrograma()</sub>|
-|[**Abrir materias**](abrirMaterias.md)|<sub>abrirMaterias()</sub>|
-|[**Crear AsignaturaPrograma**](crearAsignaturaPrograma.md)|<sub>crearAsignaturaPrograma()</sub>|
-|[**Eliminar**](eliminarAsignaturaPrograma.md)|<sub>eliminarAsignaturaPrograma()</sub>|
-|[**Abrir**](abrirAsignaturaPrograma.md)|<sub>abrirAsignaturaPrograma()</sub>|
-|[**Consultar estado de guías**](consultarEstadoGuias.md)|<sub>consultarEstadoGuias()</sub>|
 
 </div>

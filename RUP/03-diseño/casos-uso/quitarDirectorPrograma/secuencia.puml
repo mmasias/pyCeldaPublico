@@ -9,8 +9,18 @@ participant "DirectorProgramaRepository" as DirectorRepo
 participant "ProgramaRepository" as ProgramaRepo
 database "Base de Datos" as DB
 
-Admin -> Vista: pulsa [Quitar] en una fila de "Programas que dirige"
+Admin -> Vista: pulsa [Quitar] en una fila (ficha del Profesor o del Programa)
 activate Vista
+Vista -> API: GET /api/v1/profesores/{profesor_id}
+API --> Vista: 200 OK (ProfesorDetalleResponse JSON)
+Vista -> API: GET /api/v1/admin/programas/{programa_id}
+API --> Vista: 200 OK (ProgramaResponse JSON, con directores)
+alt único DirectorPrograma del Programa
+  Vista --> Admin: presenta el bloqueo, solo ofrece volver
+else queda al menos otro DirectorPrograma
+  Vista --> Admin: presenta Profesor, Programa y lo que implica; pide confirmar o cancelar
+  Admin -> Vista: confirma
+end
 Vista -> API: DELETE /api/v1/profesores/{profesor_id}/directores-programa/{programa_id}
 activate API
 note right of API: Depends(require_admin) -- catálogo de Admin,\nsin pertenencia que verificar
@@ -53,7 +63,7 @@ else es el único DirectorPrograma del Programa
   deactivate ProgramaRepo
   API --> Vista: 409 Conflict (detail: "Profesor es el único director de este Programa")
   deactivate API
-  Vista --> Admin: presenta el bloqueo con el detail tal cual, sin cambios
+  Vista --> Admin: presenta el detail tal cual en la misma pantalla, sin cambios (carrera)
 else queda al menos otro DirectorPrograma
   API -> ProgramaRepo: contar_directores(programa_id)
   activate ProgramaRepo
@@ -73,9 +83,7 @@ else queda al menos otro DirectorPrograma
   deactivate ProgramaRepo
   API --> Vista: 204 No Content
   deactivate API
-  Vista -> API: GET /api/v1/profesores/{profesor_id} (refresca el detalle)
-  API --> Vista: 200 OK (ProfesorDetalleResponse JSON -- Programa quitado)
-  Vista --> Admin: presenta la sección actualizada
+  Vista --> Admin: vuelve a la ficha de origen, que recarga sus datos
 end
 deactivate Vista
 
