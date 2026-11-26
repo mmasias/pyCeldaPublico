@@ -26,7 +26,7 @@ Desde la guía, pulsar [**🔧 Gestionar bibliografía**](referenciasBibliografi
 
 Una tabla con todas las referencias ya creadas, agrupadas por tipo en orden alfabético (Básica, Complementaria, Otras fuentes de consulta, Webs de referencia): **Referencia**, **Tipo** y **Vinculada** (Sí o No -- el mismo mecanismo que en las ponderaciones de evaluación: "No" mientras el cambio está pendiente de confirmar con [**💾 Guardar borrador**](redactarLaGuia.md#editar-y-guardar-el-temario) en la guía).
 
-Dentro de cada tipo, las referencias se ordenan alfabéticamente solas (sin distinguir mayúsculas ni tildes, y sin contar comillas o corchetes iniciales), también en la guía y en el PDF; no hace falta darlas de alta en ningún orden. Los espacios y signos cuentan como en las normas de citación: Brown va antes que Browning.
+Dentro de cada tipo, las referencias se ordenan alfabéticamente solas (sin distinguir mayúsculas ni tildes, y sin contar comillas o corchetes iniciales), también en la guía y en el PDF; no hace falta darlas de alta en ningún orden. Los espacios y signos cuentan como en las normas de citación: Brown va antes que Browning. Las direcciones web se ordenan por el nombre del sitio, sin contar `http://`, `https://` ni `www.`.
 
 Si la guía está **Aprobada**, bajo el título aparece un aviso en ámbar: guardar un cambio la devolverá a borrador. El formulario de editar lo muestra también.
 
