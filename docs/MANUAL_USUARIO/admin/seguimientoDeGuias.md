@@ -12,9 +12,17 @@ El estado de las guías docentes de un programa, desde el punto de vista de Admi
 
 ## Cómo llegar
 
-Pulsar la pestaña **🚦 Guías** del programa.
+Pulsar la pestaña [**🚦 Guías**](seguimientoDeGuias.md#qué-muestra) del programa.
 
 ## Qué muestra
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoGuias/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/consultarEstadoGuias.md)</sub>
+
+</div>
 
 Una tabla con **Asignatura**, **Profesorado** (el nombre de cada profesor asignado, o su email si no tiene nombre registrado; o "Sin profesorado asignado"), **Estado** de la guía (**Borrador**, **En revisión**, **Aprobada** o **Rechazada**) y **Última actualización**: quién hizo el último cambio y cuánto hace, en términos aproximados.
 

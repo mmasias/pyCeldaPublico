@@ -12,9 +12,17 @@ Una consulta de solo lectura del historial de cambios de las guías docentes (qu
 
 ## Cómo llegar
 
-Pulsar **🔍 Auditoría** en el panel de administración. Para volver al panel, **⚙️ Panel**, arriba a la derecha.
+Pulsar [**🔍 Auditoría**](auditoria.md#qué-registra) en el panel de administración. Para volver al panel, [**⚙️ Panel**](entrarYElPanel.md#el-panel-de-administración), arriba a la derecha.
 
 ## Qué registra
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/consultarHistorialCambios.md)</sub>
+
+</div>
 
 Cada fila es un cambio en una guía. Los tipos de cambio (columna **Campo**) son:
 
@@ -42,9 +50,25 @@ Bajo **Últimas 50 acciones** (o "Sin acciones registradas todavía."), de la m�
 
 ## Autores
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarHistorialCambios/wireframe-autor.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/consultarHistorialCambios.md)</sub>
+
+</div>
+
 A la derecha, la lista **Autores** (o "Sin autores registrados todavía."), con un botón por persona que aparece en el historial mostrado; si es profesor y director a la vez, figura una sola vez. Al pulsar un nombre se abre **Actividad de** esa persona: todos sus cambios (sin el límite de 50 ni el filtro de curso), con las mismas columnas salvo **Rol** (**Profesor**, **Director** o **Admin**) en lugar de **Autor**. El título es una miga, **🔍 Auditoría › Actividad de ...**: pulsar **Auditoría** vuelve al historial completo.
 
 ## Últimos accesos
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarRegistroAccesos/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/consultarRegistroAccesos.md)</sub>
+
+</div>
 
 Debajo del historial, el bloque **Últimos accesos** (o "Sin accesos registrados todavía.") muestra los 25 intentos de inicio de sesión más recientes de profesores y directores, del más reciente al más antiguo, tanto los que entraron como los rechazados:
 

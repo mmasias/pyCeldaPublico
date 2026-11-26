@@ -12,10 +12,18 @@ El acceso de Admin tiene una dirección propia, separada de la del profesorado y
 
 ## El panel de administración
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPanelAdministracion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/abrirPanelAdministracion.md)</sub>
+
+</div>
+
 Tras entrar aparece el panel de administración, con un botón por cada bloque de gestión, en dos grupos:
 
-- **Estructura y catálogos**: **🏛️ Universidades**, **📘 Asignaturas**, **🧑‍🏫 Profesores** y **🗓️ Cursos académicos** ([capítulo](cursosAcademicos.md)).
-- **Sistema**: **💾 Copias de seguridad**, **🔍 Auditoría** ([capítulo](auditoria.md)) y **📄 Generar guías PDF**.
+- **Estructura y catálogos**: [**🏛️ Universidades**](estructuraAcademica.md#universidades), [**📘 Asignaturas**](catalogoDeAsignaturasYMetodologias.md#asignaturas), [**🧑‍🏫 Profesores**](profesores.md#cómo-llegar) y [**🗓️ Cursos académicos**](cursosAcademicos.md#qué-muestra) ([capítulo](cursosAcademicos.md)).
+- **Sistema**: [**💾 Copias de seguridad**](copiasDeSeguridad.md#qué-muestra), [**🔍 Auditoría**](auditoria.md#qué-registra) ([capítulo](auditoria.md)) y **📄 Generar guías PDF**.
 
 Los bloques de gestión llevan al capítulo correspondiente de este manual. Los programas y sus materias no tienen botón propio en el panel: se llega a ellos entrando primero en una universidad y su facultad (capítulo [Estructura académica](estructuraAcademica.md)).
 

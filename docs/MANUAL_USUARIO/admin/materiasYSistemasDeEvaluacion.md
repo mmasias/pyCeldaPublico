@@ -12,13 +12,29 @@ Cada materia agrupa una o más asignaturas de un programa. Desde Admin se crea l
 
 ## Cómo llegar
 
-Pulsar la pestaña **📚 Materias** del programa.
+Pulsar la pestaña [**📚 Materias**](materiasYSistemasDeEvaluacion.md#qué-muestra) del programa.
 
 ## Qué muestra
 
-Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que tiene y el botón **Abrir**. Si alguna materia del programa tiene módulo, la tabla se agrupa por módulo: una fila de cabecera **🧱 código -- nombre** por módulo y, al final, **🧱 Sin módulo** con las que aún no tienen (los módulos se gestionan en la pestaña **🧱 Módulos**, capítulo [Estructura académica](estructuraAcademica.md)). El botón **🗑️** (Eliminar) aparece desactivado: no está disponible en esta versión.
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMaterias/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/abrirMaterias.md)</sub>
+
+</div>
+
+Una tabla con el **Nombre** de cada materia, el número de **Asignaturas** que tiene y el botón [**Abrir**](materiasYSistemasDeEvaluacion.md#detalle-de-una-materia). Si alguna materia del programa tiene módulo, la tabla se agrupa por módulo: una fila de cabecera **🧱 código -- nombre** por módulo y, al final, **🧱 Sin módulo** con las que aún no tienen (los módulos se gestionan en la pestaña [**🧱 Módulos**](estructuraAcademica.md#módulos-del-programa), capítulo [Estructura académica](estructuraAcademica.md)). El botón **🗑️** (Eliminar) aparece desactivado: no está disponible en esta versión.
 
 ### Crear una materia
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/crearMateria.md)</sub>
+
+</div>
 
 1. Pulsar **➕ Crear materia**.
 2. Rellenar **Nombre**.
@@ -29,9 +45,81 @@ Tras crearla, la pantalla pasa directamente a editarla.
 
 ## Detalle de una materia
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/abrirMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarMateria/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/editarMateria.md)</sub>
+
+</div>
+
 Al abrir una materia aparece, en este orden: sus **Asignaturas** (Asignatura, Curso -- curso en números romanos y semestre por defecto combinados, p. ej. **II-s1** --, Carácter, con acceso a cada una -- capítulo [Asignaturas de programa y profesorado](asignaturasDeProgramaYProfesorado.md)), sus **Sistemas de evaluación**, sus **Resultados de aprendizaje** (tabla con **Código**, **Tipo**, **Descripción** y **Asignaturas**, el número de asignaturas de la materia en que está asociado cada uno, con fondo rojo suave si es 0), sus **Competencias** (misma tabla), sus **Metodologías docentes** asociadas y las **Actividades formativas de la materia** (ver más abajo). Debajo del nombre, el **Módulo** de la materia (código y nombre, o "Sin módulo") y, si se han importado de la memoria, sus **ECTS** y su **Código RUCT** (solo lectura). Pulsar **Editar** cambia el **Nombre** y el **Módulo** de la materia (**Sin módulo** la saca de su módulo).
 
 ## Resultados de aprendizaje, competencias y metodologías docentes
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/asociarResultadoAprendizajeAMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/asociarCompetenciaAMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/asociarMetodologiaDocenteAMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsociacionMetodologiaDocenteMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/editarAsociacionMetodologiaDocenteMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/desasociarResultadoAprendizajeAMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/desasociarCompetenciaAMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/desasociarMetodologiaDocenteMateria.md)</sub>
+
+</div>
 
 Funcionan igual que para el director de programa (ver su capítulo [Gestionar materias](../directorPrograma/gestionarMaterias.md)):
 
@@ -41,6 +129,22 @@ Funcionan igual que para el director de programa (ver su capítulo [Gestionar ma
 
 ## Actividades formativas de la materia
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/editarActividadesFormativasMateria.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/consultarEstadoActividadesFormativasMateria.md)</sub>
+
+</div>
+
 La tabla muestra las **Horas** y la **Presencialidad (%)** de cada actividad formativa de la materia: la memoria fija las dos por materia. **Editar reparto** abre un formulario con los dos campos por actividad (horas mínimo 0, presencialidad de 0 a 100) y el total de horas frente a 25 h por ECTS si la materia tiene ECTS; se confirma con **Guardar**. Lo mismo que puede hacer el director de programa.
 
 Si la materia tiene ECTS, bajo la tabla una línea compara sus horas con las que corresponden: **OK** o **Discrepancia**. Es informativa.
@@ -49,9 +153,25 @@ Debajo, la tabla **Estado de las actividades formativas** compara, por actividad
 
 ## Sistemas de evaluación
 
-Pulsar **Abrir sistemas de evaluación** en el detalle de la materia. Aparece una tabla con **Código**, **Tipo**, **Descripción**, **Ponderación** (mínima -- máxima, en porcentaje) y los botones **Abrir** y **🗑️** (Eliminar) de cada sistema. En los títulos cuya memoria publica el RUCT con sistemas por materia, los carga la importación tal como figuran en ella (código, denominación y horquilla); en ese caso conviene no cambiarlos a mano, porque la guía tiene que nombrarlos como la memoria.
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirSistemasEvaluacion/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/abrirSistemasEvaluacion.md)</sub>
+
+</div>
+
+Pulsar **Abrir sistemas de evaluación** en el detalle de la materia. Aparece una tabla con **Código**, **Tipo**, **Descripción**, **Ponderación** (mínima -- máxima, en porcentaje) y los botones **Abrir** y [**🗑️**](materiasYSistemasDeEvaluacion.md#eliminar-un-sistema-de-evaluación) (Eliminar) de cada sistema. En los títulos cuya memoria publica el RUCT con sistemas por materia, los carga la importación tal como figuran en ella (código, denominación y horquilla); en ese caso conviene no cambiarlos a mano, porque la guía tiene que nombrarlos como la memoria.
 
 ### Crear un sistema de evaluación
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearSistemaEvaluacion/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/crearSistemaEvaluacion.md)</sub>
+
+</div>
 
 1. Pulsar **➕ Crear sistema de evaluación**.
 2. Escribir, opcionalmente, el **Código** de la memoria (p. ej. E1).
@@ -64,6 +184,14 @@ La ponderación mínima no puede superar la máxima, y ambas deben quedar entre 
 
 ### Editar un sistema de evaluación
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarSistemaEvaluacion/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/editarSistemaEvaluacion.md)</sub>
+
+</div>
+
 Pulsar **Editar** en el detalle. Los mismos campos que en el alta quedan editables.
 
 ### Rangos que dejarían guías fuera
@@ -71,6 +199,14 @@ Pulsar **Editar** en el detalle. Los mismos campos que en el alta quedan editabl
 Crear un sistema o cambiar el rango de uno existente se rechaza si alguna guía del curso activo que está **En revisión** o **Aprobada** dejaría de cumplirlo: la suma de sus instrumentos de ese sistema tiene que quedar entre la ponderación mínima y la máxima, y un sistema nuevo cuenta como 0 % en las guías que ya existen. El aviso dice "El rango deja fuera guías en revisión o aprobadas del curso activo:" seguido de cada asignatura con lo que tiene asignado, por ejemplo **Programación I (40 %)**. Las guías en borrador o rechazadas no cuentan: se vuelven a comprobar al enviarlas a revisión.
 
 ### Eliminar un sistema de evaluación
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarSistemaEvaluacion/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/eliminarSistemaEvaluacion.md)</sub>
+
+</div>
 
 Pulsar **🗑️** (Eliminar) y confirmar en **Confirmar eliminación**. Si el sistema está en uso en la evaluación de alguna guía docente, la eliminación queda bloqueada y la pantalla muestra el aviso "SistemaEvaluacion en uso en:" seguido de los nombres de las asignaturas que lo bloquean -- hace falta retirarlo primero de esas guías.
 

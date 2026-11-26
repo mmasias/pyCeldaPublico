@@ -12,20 +12,36 @@ La pantalla donde se gestionan los cursos académicos de cada universidad: ver l
 
 ## Cómo llegar
 
-Pulsar **🗓️ Cursos académicos** en el panel de administración. Para volver al panel, **⚙️ Panel**, arriba a la derecha.
+Pulsar [**🗓️ Cursos académicos**](cursosAcademicos.md#qué-muestra) en el panel de administración. Para volver al panel, [**⚙️ Panel**](entrarYElPanel.md#el-panel-de-administración), arriba a la derecha.
 
 ## Qué muestra
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCursosAcademicos/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/abrirCursosAcademicos.md)</sub>
+
+</div>
 
 Encima de la tabla, el selector **Universidad:** (cada universidad tiene su propio plan de cursos; se preselecciona la primera). La tabla tiene las columnas:
 
 - **Curso**: el curso con formato `AAAA-AAAA` (año de inicio y año de fin).
 - **Estado**: **Activo** o **Inactivo**. En cada universidad hay a lo sumo un curso **Activo**.
 - **Semestre activo**: **1**, **2** o "--" si no se ha fijado ninguno.
-- Dos columnas de botones: **📂 Abrir** (en todas las filas) y **Activar** (solo en las filas elegibles; ver más abajo).
+- Dos columnas de botones: [**📂 Abrir**](cursosAcademicos.md#abrir-un-curso) (en todas las filas) y [**Activar**](cursosAcademicos.md#activar-un-curso) (solo en las filas elegibles; ver más abajo).
 
 Si se acaba de activar un curso, sobre la tabla aparece un mensaje de confirmación en verde.
 
 ## Crear un curso académico
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearCursoAcademico/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/crearCursoAcademico.md)</sub>
+
+</div>
 
 1. Pulsar **➕ Crear curso académico**.
 2. Elegir la **Universidad (\*)** (viene preseleccionada si solo hay una) e indicar **Inicio (\*)** y **Fin (\*)**, ambas fechas obligatorias.
@@ -35,15 +51,39 @@ El curso nace **Inactivo** y sin semestre activo: la propia pantalla lo recuerda
 
 ## Abrir un curso
 
-**📂 Abrir** muestra el detalle del curso: **Inicio**, **Fin**, **Estado** y **Semestre activo**, con los botones **✏️ Editar** y **Activar semestre** a la derecha del título. El título es una miga, **🗓️ Cursos académicos › curso**: pulsar **Cursos académicos** vuelve a la lista.
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirCursoAcademico/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/abrirCursoAcademico.md)</sub>
+
+</div>
+
+**📂 Abrir** muestra el detalle del curso: **Inicio**, **Fin**, **Estado** y **Semestre activo**, con los botones [**✏️ Editar**](cursosAcademicos.md#editar-un-curso) y [**Activar semestre**](cursosAcademicos.md#activar-el-semestre) a la derecha del título. El título es una miga, **🗓️ Cursos académicos › curso**: pulsar **Cursos académicos** vuelve a la lista.
 
 ## Editar un curso
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarCursoAcademico/wireframe-edicion.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/editarCursoAcademico.md)</sub>
+
+</div>
 
 Desde el detalle, **✏️ Editar** permite corregir **Inicio (\*)** y **Fin (\*)** y se confirma con **Guardar** (o **Cancelar**).
 
 La edición queda **bloqueada en cuanto el curso tiene guías asociadas**: la pantalla muestra **⛔ No se puede editar** ("Este curso académico tiene guías asociadas. Los datos de inicio/fin quedan fijos una vez el curso tiene actividad"). El botón **✏️ Editar** sigue visible; el bloqueo se comprueba al entrar en la pantalla. Un curso recién creado, sin guías, sí se puede corregir.
 
 ## Activar un curso
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/activarCursoAcademico/wireframe-activado.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/activarCursoAcademico.md)</sub>
+
+</div>
 
 El botón **Activar** solo aparece en las filas elegibles. Es elegible:
 
@@ -65,6 +105,14 @@ Al pulsar **Activar**, la pantalla muestra el curso y avisa: **Esta acción no s
 Al terminar, la pantalla vuelve al listado con el mensaje "Curso académico AAAA-AAAA activado." y, si lo había, "AAAA-AAAA pasa a inactivo."
 
 ## Activar el semestre
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/activarSemestre/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/activarSemestre.md)</sub>
+
+</div>
 
 Desde el detalle, **Activar semestre** abre una pantalla con el **Semestre activo actual** y la elección **Nuevo semestre:** (**1** o **2**, preseleccionado el actual). **Guardar** aplica el cambio sin confirmación adicional.
 

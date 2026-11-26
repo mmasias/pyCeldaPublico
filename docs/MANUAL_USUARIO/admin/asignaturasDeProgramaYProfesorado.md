@@ -12,9 +12,17 @@ Cada asignatura de programa nace de una asignatura del catálogo institucional, 
 
 ## Cómo llegar
 
-La tabla de asignaturas del programa aparece en el detalle del programa (capítulo [Estructura académica](estructuraAcademica.md)), con **Asignatura**, **Materia**, **Curso** (curso en números romanos y semestre por defecto combinados, p. ej. **II-s1**), **Carácter**, **Estado** (**Vigente** o **Extinguido**) y los botones **Abrir** y **🗑️** (Eliminar) de cada una.
+La tabla de asignaturas del programa aparece en el detalle del programa (capítulo [Estructura académica](estructuraAcademica.md)), con **Asignatura**, **Materia**, **Curso** (curso en números romanos y semestre por defecto combinados, p. ej. **II-s1**), **Carácter**, **Estado** (**Vigente** o **Extinguido**) y los botones [**Abrir**](asignaturasDeProgramaYProfesorado.md#detalle-de-una-asignatura-de-programa) y [**🗑️**](asignaturasDeProgramaYProfesorado.md#dar-de-baja-una-asignatura-de-programa) (Eliminar) de cada una.
 
 ## Crear una asignatura de programa
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/crearAsignaturaPrograma.md)</sub>
+
+</div>
 
 1. Pulsar **➕ Crear asignatura del programa**.
 2. Elegir **Materia** y **Asignatura** (del catálogo institucional -- al elegirla, **Nombre**, **ECTS** y **Contenido** se rellenan con sus valores, editables si difieren).
@@ -23,6 +31,14 @@ La tabla de asignaturas del programa aparece en el detalle del programa (capítu
 
 
 ## Editar una asignatura de programa
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/editarAsignaturaPrograma.md)</sub>
+
+</div>
 
 Pulsar **✏️ Editar** en el detalle. El Admin tiene los mismos campos editables que el director de programa: **Materia**, **Curso**, **Carácter**, **Sesiones mínimas**, **Idioma**, **Semestre por defecto**, **Nombre**, **ECTS**, **Contenido** (hasta 10.000 caracteres) y **Requisitos previos**. Se confirma con **Guardar**.
 
@@ -34,13 +50,45 @@ Tampoco se puede cambiar la asignatura a una materia que no tenga todas sus comp
 
 ## Dar de baja una asignatura de programa
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/eliminarAsignaturaPrograma.md)</sub>
+
+</div>
+
 Pulsar **🗑️** (Eliminar) y confirmar en **🗑️ Confirmar eliminación**. Esta acción no se puede deshacer: la asignatura de programa pasa a estado **Extinguido**, deja de admitir altas nuevas apoyadas en ella, pero las guías ya existentes permanecen intactas.
 
 ## Detalle de una asignatura de programa
 
-Al abrir una asignatura de programa aparecen **Materia**, **Curso**, **Carácter**, **Sesiones mínimas para enviar a revisión**, **Idioma**, **ECTS**, **Semestre por defecto**, **Contenido** y **Requisitos previos**, y debajo estas secciones, en este orden: **Profesorado**, **Resultados de aprendizaje asociados**, **Competencias**, **Metodologías docentes asociadas** y **Actividades formativas**. Arriba, la franja del programa con **📚 Materias** marcada y, debajo, la miga **📚 Materias › materia › asignatura**: cada paso vuelve a su pantalla; la ficha del programa con su tabla de asignaturas está en la pestaña **📋 Ficha**.
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/abrirAsignaturaPrograma.md)</sub>
+
+</div>
+
+Al abrir una asignatura de programa aparecen **Materia**, **Curso**, **Carácter**, **Sesiones mínimas para enviar a revisión**, **Idioma**, **ECTS**, **Semestre por defecto**, **Contenido** y **Requisitos previos**, y debajo estas secciones, en este orden: **Profesorado**, **Resultados de aprendizaje asociados**, **Competencias**, **Metodologías docentes asociadas** y **Actividades formativas**. Arriba, la franja del programa con [**📚 Materias**](materiasYSistemasDeEvaluacion.md#qué-muestra) marcada y, debajo, la miga **📚 Materias › materia › asignatura**: cada paso vuelve a su pantalla; la ficha del programa con su tabla de asignaturas está en la pestaña [**📋 Ficha**](estructuraAcademica.md#detalle-de-un-programa).
 
 ## Resultados de aprendizaje asociados
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarResultadoAprendizajeAAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/asociarResultadoAprendizajeAAsignaturaPrograma.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/desasociarResultadoAprendizajeAsignaturaPrograma.md)</sub>
+
+</div>
 
 La tabla muestra **Código**, **Tipo** y **Descripción** de cada resultado asociado, con **➖** (Quitar) en cada fila.
 
@@ -48,13 +96,53 @@ Para añadir uno, pulsar **➕ Asociar resultado de aprendizaje**, elegirlo en *
 
 ## Competencias
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/asociarCompetenciaAAsignaturaPrograma.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarCompetenciaAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/desasociarCompetenciaAsignaturaPrograma.md)</sub>
+
+</div>
+
 Tabla con **Código**, **Tipo** y **Descripción** de cada competencia asociada, con **➖** (Quitar) en cada fila; quitar pide confirmación. **➕ Asociar competencia** añade una: solo se ofrecen las ya asociadas a la materia de la asignatura y que esta aún no tiene; si no queda ninguna, la pantalla lo indica. Las competencias de la asignatura aparecen también, en solo lectura, en su guía docente.
 
 ## Metodologías docentes asociadas
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarMetodologiaDocenteAAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/asociarMetodologiaDocenteAAsignaturaPrograma.md)</sub>
+
+</div>
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarMetodologiaDocenteAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/desasociarMetodologiaDocenteAsignaturaPrograma.md)</sub>
+
+</div>
+
 La tabla muestra **Código** y **Descripción**, con **➖** (Quitar) en cada fila. **➕ Asociar metodología docente** añade otra, elegida de las disponibles (si no queda ninguna, la pantalla lo indica). Al quitar la última metodología asociada, la pantalla advierte **Sin metodologías docentes tras esta acción**: la guía docente que se genere para esa asignatura podría quedar incompleta.
 
 ## Actividades formativas
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarActividadesFormativasAsignaturaPrograma/wireframe-admin.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/editarActividadesFormativasAsignaturaPrograma.md)</sub>
+
+</div>
 
 La tabla muestra, por cada actividad formativa, las **Horas** y el **% presencialidad**, que es el de la materia (se edita en la materia). **Editar reparto** abre un formulario con las **Horas** de cada actividad (mínimo 0) y se confirma con **Guardar**.
 
@@ -62,7 +150,7 @@ Si la asignatura tiene ECTS, bajo la tabla una línea compara sus horas con las 
 
 ## Profesorado de una asignatura de programa
 
-En el detalle de la asignatura de programa aparece una tabla con el profesorado asignado (**Profesor**: su nombre o, si no lo tiene registrado, su email; las casillas **Responsable** e **Imparte**; y **➖** (Quitar) en cada fila), o el aviso de que no tiene ninguno.
+En el detalle de la asignatura de programa aparece una tabla con el profesorado asignado (**Profesor**: su nombre o, si no lo tiene registrado, su email; las casillas **Responsable** e **Imparte**; y [**➖**](asignaturasDeProgramaYProfesorado.md#quitar-un-profesor) (Quitar) en cada fila), o el aviso de que no tiene ninguno.
 
 Cada profesor asignado es **responsable** de la asignatura, la **imparte** o ambas cosas. Los dos papeles pueden editar la guía por igual; la diferencia está en el PDF: en **DOCENTE** y **EMAIL** de la guía docente (y en **DOCENTE** de la planificación docente) solo aparece quien la imparte. En la guía dentro de la aplicación se ven los dos papeles junto a cada nombre.
 
@@ -71,6 +159,14 @@ Una asignatura con profesorado tiene que tener siempre al menos un profesor que 
 **Efecto sobre la guía del curso activo.** Solo cambia la guía lo que cambia quién la imparte, porque es lo único que sale en el PDF. Si la guía estaba **Aprobada** y se asigna o se quita a un profesor que la imparte, o se le pone o quita **Imparte** a alguien, la guía pasa a **En revisión** para que el director la vuelva a aprobar. Asignar o quitar a alguien que solo es responsable, o cambiar solo **Responsable**, no cambia el estado de la guía.
 
 ### Asignar un profesor
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asignarProfesorAAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/asignarProfesorAAsignaturaPrograma.md)</sub>
+
+</div>
 
 1. Pulsar **Asignar profesor** (en la sección **Profesorado**).
 2. Elegir el profesor en la lista -- solo aparecen los que todavía no están asignados a esta asignatura de programa.
@@ -83,9 +179,25 @@ Si ya está todo el profesorado disponible asignado, la pantalla lo indica y sol
 
 ### Cambiar el papel de un profesor
 
-Marcar o desmarcar **Responsable** o **Imparte** en su fila de la tabla: el cambio se guarda al momento. No se puede dejar a un profesor sin ningún papel (para eso está **➖** Quitar), ni quitar **Imparte** al único que la imparte: primero hay que marcar a otro. Si cambia **Imparte** y la guía del curso activo estaba **Aprobada**, pasa a **En revisión** para que el director la vuelva a aprobar; si solo cambia **Responsable**, la guía no cambia de estado.
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/cambiarRolesProfesorAsignaturaPrograma/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/cambiarRolesProfesorAsignaturaPrograma.md)</sub>
+
+</div>
+
+Marcar o desmarcar **Responsable** o **Imparte** en su fila de la tabla: el cambio se guarda al momento. No se puede dejar a un profesor sin ningún papel (para eso está [**➖**](asignaturasDeProgramaYProfesorado.md#quitar-un-profesor) Quitar), ni quitar **Imparte** al único que la imparte: primero hay que marcar a otro. Si cambia **Imparte** y la guía del curso activo estaba **Aprobada**, pasa a **En revisión** para que el director la vuelva a aprobar; si solo cambia **Responsable**, la guía no cambia de estado.
 
 ### Quitar un profesor
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasignarProfesorAsignaturaPrograma/wireframe-normal.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/desasignarProfesorAsignaturaPrograma.md)</sub>
+
+</div>
 
 Pulsar **➖** (Quitar) en su fila. La pantalla dice que el profesor "deja de impartir" la asignatura o, si solo es responsable, que "deja de estar asignado/a". Si es el único profesor asignado, advierte de que la asignatura quedará sin profesorado y de que la guía docente que se genere para ella podría quedar incompleta. Pulsar **Confirmar desasignación** para aplicarlo.
 

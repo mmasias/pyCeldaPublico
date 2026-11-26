@@ -12,19 +12,35 @@ La pantalla donde se ven las copias de seguridad de la base de datos y se gestio
 
 ## Cómo llegar
 
-Pulsar **💾 Copias de seguridad** en el panel de administración. Para volver al panel, **⚙️ Panel**, arriba a la derecha.
+Pulsar [**💾 Copias de seguridad**](copiasDeSeguridad.md#qué-muestra) en el panel de administración. Para volver al panel, [**⚙️ Panel**](entrarYElPanel.md#el-panel-de-administración), arriba a la derecha.
 
 ## Qué muestra
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarCopiasSeguridad/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/consultarCopiasSeguridad.md)</sub>
+
+</div>
 
 Una tabla con las columnas **Familia**, **Fecha**, **Tamaño**, **Esquema**, **Motivo**, **Salud** y **Restaurar**. Si todavía no hay ninguna copia registrada, la pantalla lo indica.
 
 - **Familia**: **Diario** (las automáticas), **Puntual** (las hechas a demanda) o **Previa a restaurar** (la que el sistema hace solo justo antes de cada restauración).
 - **Esquema**: la versión de esquema de la base de datos con la que se hizo la copia, o "—" si no se pudo leer. La versión de esquema vigente (y la de la aplicación) se ve también al pie de la pantalla de entrada: `Versión v0.11.8 · esquema 2`.
-- **Salud**: vacía hasta que se pulsa **🩺 Comprobar salud de las copias** (ver más abajo).
+- **Salud**: vacía hasta que se pulsa [**🩺 Comprobar salud de las copias**](copiasDeSeguridad.md#comprobar-la-salud-de-las-copias) (ver más abajo).
 
 Por defecto solo se listan las copias **restaurables**: las que existen en el volumen y tienen exactamente la misma versión de esquema que la base de datos actual. Encima de la tabla, la casilla **Mostrar todos (incluye no restaurables)** muestra el historial completo; no borra nada, es solo un filtro visual. Un texto indica cuántas se muestran ("Mostrando X de Y copias"); si ninguna es restaurable, la pantalla lo dice y sugiere activar la casilla.
 
 ## Hacer una copia ahora
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/crearCopiaSeguridad/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/crearCopiaSeguridad.md)</sub>
+
+</div>
 
 1. Pulsar **📦 Hacer copia de seguridad ahora**.
 2. Escribir, si se quiere, un **Motivo (opcional)**.
@@ -34,9 +50,25 @@ Se crea una copia de la base de datos actual, de familia **Puntual**; no modific
 
 ## Comprobar la salud de las copias
 
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/comprobarCopiasSeguridad/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/comprobarCopiasSeguridad.md)</sub>
+
+</div>
+
 Pulsar **🩺 Comprobar salud de las copias**. Revisa cada copia y rellena la columna **Salud** con **Correcta**, **Dañada**, **Ilegible** o **No disponible**, y sobre la tabla aparece el resumen ("N correctas, N dañadas, N ilegibles, N no disponibles"). Al pasar el ratón por una copia dañada se ve el primer mensaje del informe de SQLite. El resultado solo se muestra en pantalla: no se guarda y hay que repetir la comprobación en cada visita. Si hay copias dañadas o ilegibles ocultas por el filtro, el resumen lo advierte; activar **Mostrar todos** para verlas.
 
 ## Restaurar una copia
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/restaurarCopiaSeguridad/wireframe.svg)
+|:-:
+<sub>[Ver la pantalla en el prototipo navegable](/docs/PROPUESTA_WIREFRAME/admin/restaurarCopiaSeguridad.md)</sub>
+
+</div>
 
 Restaurar **sobrescribe la base de datos viva** con el contenido de la copia y es irreversible para todo lo que se haya hecho después de ella. No es una operación para usar a la ligera: solo ante una pérdida o corrupción de datos real.
 

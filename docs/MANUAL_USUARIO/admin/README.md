@@ -6,7 +6,7 @@ pyCelda gestiona el catálogo académico de la institución (universidades, facu
 
 - En la estructura académica:
   - Crear universidades y facultades.
-  - En cada programa: crear, editar el nombre, dar de baja (desde **Editar**), nombrar directores y gestionar sus catálogos de metodologías docentes, actividades formativas, resultados de aprendizaje y competencias, y sus módulos.
+  - En cada programa: crear, editar el nombre, dar de baja (desde [**Editar**](estructuraAcademica.md#dar-de-baja-un-programa)), nombrar directores y gestionar sus catálogos de metodologías docentes, actividades formativas, resultados de aprendizaje y competencias, y sus módulos.
 - Gestionar el catálogo institucional de asignaturas: crear, editar, dar de baja.
 - En las materias de un programa:
   - Crearlas y asignarles su módulo.
@@ -29,6 +29,8 @@ Todas las pantallas de Admin se reconocen por una **barra azul** fija en el bord
 
 Para el mapa completo de qué depende de qué y quién gestiona cada bloque del sistema, ver [Cómo se organiza pyCelda en conjunto](../estructuraDelSistema.md).
 
+Las imágenes de cada capítulo no son capturas reales: son los esquemas de diseño de cada pantalla; los datos son de ejemplo y el aspecto real cambia. Debajo de cada una, un enlace abre esa pantalla en el prototipo navegable.
+
 ## Índice
 
 1. [Entrar y el panel de administración](entrarYElPanel.md)
@@ -41,3 +43,13 @@ Para el mapa completo de qué depende de qué y quién gestiona cada bloque del 
 8. [Copias de seguridad](copiasDeSeguridad.md)
 9. [Cursos académicos](cursosAcademicos.md)
 10. [Auditoría](auditoria.md)
+
+## Estados de una guía en CELDA
+
+<div align=center>
+
+|![](/images/RUP/00-modelo-del-dominio/estados-entidades/guia.svg)
+|-
+|
+
+</div>
