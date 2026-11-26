@@ -43,6 +43,7 @@ Mismo formulario que [`crearCompetencia()`](../crearCompetencia/README.md), con 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): título "Editar competencia", línea "Programa: GII -- Grado en Ingeniería Informática" y botones Guardar/Cancelar tras una línea separadora. Cancelar con cambios sin guardar pide confirmación antes de volver a la ficha.
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin es el mismo formulario sin etiqueta de vista: título "Editar competencia" sin botones en la cabecera, línea "Programa: GII -- ...", campos precargados y Guardar/Cancelar al pie.
 
 ## Referencias
 

@@ -45,6 +45,7 @@ Códigos y textos de los wireframes ilustrativos: las competencias reales de cad
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): cabecera con el nombre del programa y las pestañas del programa (activa Competencias); miga "Competencias › CE7" con "Editar" a su derecha; tipo, descripción y distribución (con "Ninguna" en la columna vacía y "Sin asignaciones a materias ni a asignaturas del programa." si no tiene ninguna).
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin dibuja la cabecera de programa de Admin (miga de estructura, nombre del programa con Panel y Cerrar sesión, pestañas con Competencias activa, sin etiqueta de vista) y debajo la misma ficha que el director: miga "Competencias › CE7" con "Editar", tipo, descripción y distribución.
 
 ## Referencias
 

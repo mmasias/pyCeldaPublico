@@ -46,6 +46,7 @@ Hasta #772 el bloqueo solo miraba las `Materia` y el mensaje era genérico ("en 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): en las dos variantes, etiqueta de vista, título "Eliminar metodología docente" con su salida a la derecha y línea "Programa: GII -- Grado en Ingeniería Informática". Bloqueada: "Volver a las metodologías docentes" pasa del pie a la cabecera. Confirmación: "Cancelar" pasa a la cabecera y "Confirmar eliminación" queda solo al pie. Flujo sin cambios. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja la confirmación normal en Admin: título "Eliminar metodología docente" con Cancelar a la derecha, sin etiqueta de vista (el resto, igual que la de `DirectorPrograma`). La pantalla bloqueada de Admin solo difiere de la del director en la etiqueta de vista; no se duplica.
 
 ## Referencias
 

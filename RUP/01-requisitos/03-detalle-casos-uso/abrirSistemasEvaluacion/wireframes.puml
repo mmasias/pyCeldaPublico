@@ -1,13 +1,16 @@
 @startsalt abrirSistemasEvaluacion-wireframe
 {
-    <b>SISTEMAS DE EVALUACIÓN -- PROGRAMACIÓN</b>
+    Universidades › Universidad Europea del Atlántico (UNEATLANTICO) › Escuela Politécnica Superior
+    <b>Grado en Ingeniería Informática</b>
     ====
+    { [ Ficha ] | [ Guías ] }
+    { [ Módulos ] | [ <b>Materias</b> ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] }
+    ====
+    { Materias › Programación › <b>Sistemas de evaluación</b> | [ Crear sistema de evaluación ] }
     {#
-        <b>Tipo | <b>Descripción | <b>Ponderación | . | .
-        Evaluación continua | Incluye prácticas de laboratorio y entregas semanales | 30% -- 50% | [Abrir] | [Eliminar]
-        Evaluación final | Examen escrito individual | 50% -- 70% | [Abrir] | [Eliminar]
+        <b>Código | <b>Tipo | <b>Descripción | <b>Ponderación | . | .
+        E1 | Evaluación continua | Incluye prácticas de laboratorio y entregas semanales | 30% -- 50% | [Abrir] | [Eliminar]
+        E2 | Evaluación final | Examen escrito individual | 50% -- 70% | [Abrir] | [Eliminar]
     }
-    ====
-    [ <b>+ Crear Sistema de Evaluación</b> ]
 }
 @endsalt

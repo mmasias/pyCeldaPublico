@@ -19,9 +19,9 @@
 
 <div align=center>
 
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/restaurarCopiaSeguridad/wireframe.svg)|
-|-|
-|<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/restaurarCopiaSeguridad/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/restaurarCopiaSeguridad/wireframe-en-curso.svg)|
+|-|-|
+||<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
 
 </div>
 
@@ -54,6 +54,8 @@
 - El filtro por defecto de solo restaurables (#634/#635) oculta, no borra; el aviso "Mostrar todos" cubre las copias ocultas.
 - El frontend decide la restaurabilidad con el `esquema_version` y el `disponible` que devuelve el listado, leídos del propio fichero de cada copia (#679), frente a la versión de esquema de la BD actual, por lo que no detecta una copia dañada: esa la detecta el backend al confirmar (o la comprobación de salud).
 - El destino "reinicio" se documenta como `COPIAS_SEGURIDAD_ABIERTO` por no existir un estado de reinicio en el diagrama de contexto.
+
+- Wireframe alineado con la pantalla construida (#872): botones de acción en la cabecera junto al título, sin "Volver al panel de administración"; campo de confirmación y botones en una fila con el error debajo; botón Restaurar deshabilitado dibujado sin corchetes en vez de la nota en cursiva; el aviso de restauración en curso pasa a la variante `wireframe-en-curso` (sustituye al panel de confirmación, encima del listado).
 
 ## Referencias
 

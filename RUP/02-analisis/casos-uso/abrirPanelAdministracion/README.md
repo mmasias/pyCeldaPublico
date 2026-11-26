@@ -11,9 +11,9 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`abrirPanelAdministracion()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirPanelAdministracion/README.md): primitiva de navegación pura, sin `<<choice>>` ni dato de dominio detrás -- un menú fijo de seis enlaces (`Universidades`, `Asignaturas`, `Metodologías docentes`, `Profesores`, `Cursos académicos`, más `generarGuiasPDF()` como self-loop). Mismo estatus que [`iniciarSesion()`](../iniciarSesion/README.md): no cuenta en el catálogo de 91 casos de uso, pero tiene ficha completa.
+Traducción a clases de análisis del caso de uso [`abrirPanelAdministracion()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirPanelAdministracion/README.md): primitiva de navegación pura, sin `<<choice>>` ni dato de dominio detrás -- un menú fijo de siete enlaces (`Universidades`, `Asignaturas`, `Profesores`, `Cursos académicos`, `Copias de seguridad`, `Auditoría`, más `generarGuiasPDF()` como self-loop). Mismo estatus que [`iniciarSesion()`](../iniciarSesion/README.md): no cuenta en el catálogo de 91 casos de uso, pero tiene ficha completa.
 
-**Sin `Controlador` ni `Modelo`**: a diferencia de todos los demás CU ya traducidos, este no recupera ni muta ningún dato -- el contenido es estático (seis botones fijos), así que no hay nada que un controlador orqueste ni una clase de modelo que porte. La `Vista` navega directamente a los seis casos de uso ya catalogados.
+**Sin `Controlador` ni `Modelo`**: a diferencia de todos los demás CU ya traducidos, este no recupera ni muta ningún dato -- el contenido es estático (siete botones fijos), así que no hay nada que un controlador orqueste ni una clase de modelo que porte. La `Vista` navega directamente a los siete casos de uso ya catalogados.
 
 <div align=center>
 
@@ -28,7 +28,7 @@ Traducción a clases de análisis del caso de uso [`abrirPanelAdministracion()`]
 ### `AbrirPanelAdministracionView`
 
 **Responsabilidades:**
-- presenta el menú fijo de seis accesos: `Universidades`, `Asignaturas`, `Metodologías docentes`, `Profesores`, `Cursos académicos`, `Generar guías PDF` -- contenido estático, sin datos de dominio que cargar.
+- presenta el menú fijo de siete accesos: `Universidades`, `Asignaturas`, `Profesores`, `Cursos académicos`, `Copias de seguridad`, `Auditoría`, `Generar guías PDF` -- contenido estático, sin datos de dominio que cargar.
 
 **Colaboraciones:**
 - **Entrada:** `:SISTEMA_DISPONIBLE` -- el `Admin` solicita volver al panel; también alcanzable como `<<extend>>` de [`iniciarSesion()`](../iniciarSesion/README.md) (condición `rol == Admin`).

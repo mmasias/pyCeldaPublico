@@ -1,15 +1,14 @@
 @startsalt abrirProgramas-wireframe
 {
-    <b>PROGRAMAS -- ESCUELA POLITÉCNICA SUPERIOR</b>
+    {<b>Universidades</b> | [Panel] | [Cerrar sesión]}
     ====
+    {Universidades › Universidad Europea del Atlántico › <b>Facultad de Ciencias e Ingeniería</b> | [Editar] | [Crear programa]}
     {#
         <b>Código | <b>Nombre | <b>Estado | . | .
         GII | Grado en Ingeniería Informática | Vigente | [Abrir] | [Eliminar]
         GIOI | Grado en Ingeniería de Organización Industrial | Vigente | [Abrir] | [Eliminar]
         GIIAA | Grado en Ingeniería de las Industrias Agrarias y Alimentarias | Vigente | [Abrir] | [Eliminar]
     }
-    ====
-    [ <b>+ Crear Programa</b> ]
 }
 @endsalt
 

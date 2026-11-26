@@ -44,6 +44,7 @@ Borrado físico bloqueado relacionalmente, mismo patrón que `eliminarFacultad()
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): mismo diseño que eliminarCompetencia(): línea "Programa: GII -- ...", código, tipo y descripción; la bloqueada dice "⛔ No se puede eliminar", nombra las materias y asignaturas concretas en dos columnas y pone "Volver a los resultados de aprendizaje" en la cabecera; la de confirmación lleva "Cancelar" en la cabecera y "Confirmar eliminación" al pie.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin` de la confirmación (Cancelar en la cabecera, línea "Programa: GII -- ...", código, tipo y descripción, "Confirmar eliminación" al pie), sin etiqueta de vista; la bloqueada de Admin solo difiere en esa etiqueta y no se duplica.
 
 ## Referencias
 

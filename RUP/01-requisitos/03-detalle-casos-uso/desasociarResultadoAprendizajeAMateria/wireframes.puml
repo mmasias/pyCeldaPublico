@@ -25,3 +25,15 @@
     [Confirmar desasociación]
 }
 @endsalt
+
+@startsalt desasociarResultadoAprendizajeAMateria-wireframe-admin
+{
+    {<b>Desasociar resultado de aprendizaje</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>RAH1</b> (Programación)
+    Sin asignaturas-en-programa de esta materia usándolo.
+    --
+    [Confirmar desasociación]
+}
+@endsalt

@@ -44,6 +44,7 @@
 
 - Dos entradas: el botón "Eliminar" de la fila del `Programa` en el listado de la `Facultad` (`PROGRAMAS_ABIERTO`, `Facultad.tsx`) y el botón "Eliminar" de la "Zona de riesgo" de la pantalla de edición (`EditarProgramaAdmin.tsx`), alcanzable desde `PROGRAMA_ABIERTO` (issue [#645](https://github.com/mmasias/pyCelda/issues/645)). Ambas llevan a la misma pantalla de confirmación.
 - La salida es única, también desde la segunda entrada: tanto al confirmar como al cancelar se vuelve al listado de Programas de la `Facultad` (`PROGRAMAS_ABIERTO`); si el `Programa` es legado y no tiene `Facultad`, se cae al panel de administración.
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas como en pantalla y texto de consecuencias literal ("no admitirá materias ni asignaturas de programa nuevas").
 
 ## Referencias
 

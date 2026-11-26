@@ -47,6 +47,7 @@ Mismos campos editables que `crearSistemaEvaluacion()`, sin campo fijo desde el 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858), vista del DirectorPrograma (entrada desde la ficha de la materia; al guardar o cancelar vuelve a ella): título "Editar sistema de evaluación", línea "Programa: GII -- Grado en Ingeniería Informática", descripción como área de texto de cuatro líneas y botones Guardar/Cancelar al pie. Cancelar con cambios sin guardar pide confirmación.
+- Wireframe alineado con la pantalla construida (#873): la variante de `Admin` (`editarSistemaEvaluacion-wireframe-admin`) es el mismo formulario sin etiqueta de vista (título "Editar sistema de evaluación" sin botones en la cabecera, línea "Programa: GII -- ...", campos y Guardar/Cancelar al pie); se entra desde la ficha del sistema de evaluación y, al guardar o cancelar, vuelve a ella.
 
 ## Referencias
 

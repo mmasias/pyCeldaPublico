@@ -1,9 +1,8 @@
 @startsalt eliminarModulo-wireframe-bloqueada
 {
-    <b>ELIMINAR MÓDULO</b>
+    { <b>Eliminar módulo</b> | [ Volver a los <b>módulos</b> ] }
     ====
-    <color:red><b>⛔ No se puede eliminar</b></color>
-    ====
+    <color:red><b>No se puede eliminar</b></color>
     <b>M1 -- Formación básica</b>
 
     El módulo tiene estas materias:
@@ -14,19 +13,17 @@
         . | • Programación
     }
     <i>Cambia el módulo de esas materias (al editarlas) antes de eliminarlo.</i>
-    ====
-    [ Volver a los <b>módulos</b> ]
 }
 @endsalt
 
 @startsalt eliminarModulo-wireframe-confirmacion
 {
-    <b>ELIMINAR MÓDULO</b>
+    { <b>Eliminar módulo</b> | [ Cancelar ] }
     ====
     <b>M5 -- Trabajo fin de grado</b>
 
     Esta acción no se puede deshacer. El módulo no tiene materias.
-    ====
-    {[Confirmar eliminación] | [Cancelar]}
+    --
+    [ Confirmar eliminación ]
 }
 @endsalt

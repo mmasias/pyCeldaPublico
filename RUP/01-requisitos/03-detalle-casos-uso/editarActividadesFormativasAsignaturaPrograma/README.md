@@ -48,15 +48,17 @@ Es este nivel (`AsignaturaPrograma`) el que consume el render de la `Guia` para 
 
 **Total frente a ECTS (issue [#786](https://github.com/mmasias/pyCelda/issues/786))**: si la `AsignaturaPrograma` tiene `ects`, la rejilla presenta bajo la tabla el total de horas frente a 25 h por ECTS, con el mismo formato que la ficha de la asignatura ([`abrirAsignaturaPrograma()`](../abrirAsignaturaPrograma/README.md)), y lo actualiza mientras se teclean las horas, antes de guardar. Informativo: no entra en el `<<choice>>` ni bloquea el guardado, mismo criterio que el total de [`editarActividadesFormativasMateria()`](../editarActividadesFormativasMateria/README.md). La regla `AfM = Σ AfAdM` sigue sin validarse aquí: vive en [`consultarEstadoActividadesFormativasMateria()`](../consultarEstadoActividadesFormativasMateria/README.md).
 
-La misma pantalla ofrece copiar las horas de una asignatura prima de la misma materia ([`importarActividadesFormativasDeAsignaturaProgramaPrima()`](../importarActividadesFormativasDeAsignaturaProgramaPrima/README.md)).
+La misma pantalla del `DirectorPrograma` ofrece copiar las horas de una asignatura prima de la misma materia ([`importarActividadesFormativasDeAsignaturaProgramaPrima()`](../importarActividadesFormativasDeAsignaturaProgramaPrima/README.md)).
 
 Retoca [`abrirAsignaturaPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/README.md): la pantalla de detalle de `AsignaturaPrograma` gana la sección "Actividades formativas" con la rejilla y el botón de entrada, sin tocar su especificación.
 
-**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
+**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha y mismas reglas, con la pantalla propia de la variante `wireframe-admin` (sin la importación desde una asignatura prima, que es solo del `DirectorPrograma`); es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Editar actividades formativas -- asignatura" (sin botón en la cabecera), línea "Programa: GII -- ...", y la sección "Importar de otra asignatura de la misma materia" (de [`importarActividadesFormativasDeAsignaturaProgramaPrima()`](../importarActividadesFormativasDeAsignaturaProgramaPrima/README.md)) encima de la tabla de reparto, en la misma pantalla. Se retira la nota en cursiva sobre la presencialidad (no aparece en pantalla). Regla de presentación: con cambios sin guardar aparece también un Guardar arriba con el aviso "Tienes cambios sin guardar."; sin asignaturas importables, la sección dice "No hay asignaturas de la misma materia con actividades formativas configuradas."
+
+- Wireframe alineado con la pantalla construida (#873): nueva variante `wireframe-admin`: misma rejilla y misma línea de horas por ECTS que la del `DirectorPrograma`, sin la línea del programa y sin la sección "Importar de otra asignatura de la misma materia", que la pantalla de `Admin` no tiene.
 
 ## Referencias
 

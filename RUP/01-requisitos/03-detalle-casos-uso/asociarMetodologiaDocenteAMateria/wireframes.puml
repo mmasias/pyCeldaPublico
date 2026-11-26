@@ -14,3 +14,18 @@
     [Asociar]
 }
 @endsalt
+
+@startsalt asociarMetodologiaDocenteAMateria-wireframe-admin
+{
+    {<b>Asociar metodología docente</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Programación</b>
+    {
+        <b>Metodología docente (*):</b> | ^MD3 -- Resolución de ejercicios^
+    }
+    <i>(*) Campo obligatorio</i>
+    --
+    [Asociar]
+}
+@endsalt

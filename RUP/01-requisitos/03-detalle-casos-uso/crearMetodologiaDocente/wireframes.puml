@@ -17,3 +17,21 @@
     {[Crear] | [Cancelar]}
 }
 @endsalt
+
+@startsalt crearMetodologiaDocente-wireframe-admin
+{
+    <b>Crear metodología docente</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {
+        <b>Código (*):</b> | "          "
+    }
+    <b>Descripción (*):</b>
+    "                                                  "
+    "                                                  "
+    "                                                  "
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
+}
+@endsalt

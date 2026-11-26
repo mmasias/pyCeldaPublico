@@ -42,11 +42,12 @@ Primer caso de uso construido de la cascada `MetodologiaDocente` en dos pasos (`
 
 **Sin `editarAsociacionX()` propio**: a diferencia de `MetodologiaMateria` (que sí tiene atributo propio, `descripcionPropia`), la asociación `AsignaturaPrograma`-`MetodologiaDocente` es agregación simple sin atributo -- no hay nada que editar aparte de la propia pertenencia. Cierre de catálogo (completa el trío pendiente desde L4) y de forma en la discussion [#33](https://github.com/mmasias/pyCelda/discussions/33). Sin `<<choice>>`: asignación libre, mismo patrón que `asociarResultadoAprendizajeAAsignaturaPrograma()`.
 
-**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
+**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha y mismas reglas; su pantalla se dibuja en la variante `wireframe-admin`; es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Asociar metodología docente" con Cancelar en la cabecera, línea "Programa: GII -- ...", línea de la asignatura con materia y curso en romanos, y Asociar tras una línea separadora. Variante nueva `wireframe-sin-disponibles`: sin metodologías disponibles, la pantalla lo dice y el botón de la cabecera pasa a Volver.
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja el formulario de Admin (desde la ficha de la asignatura de Admin): título "Asociar metodología docente" con Cancelar a la derecha, sin etiqueta de vista y **sin** la línea "Programa: ..." (la pantalla de Admin es propia y no la muestra), línea de la asignatura con materia y curso, selector, ayudas y Asociar. Sin metodologías disponibles, la pantalla de Admin es la variante `wireframe-sin-disponibles` sin etiqueta de vista ni línea "Programa: ..."; no se duplica.
 
 ## Referencias
 

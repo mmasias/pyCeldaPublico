@@ -45,6 +45,10 @@ Primer caso de uso del catálogo que solicita `codigo` en la creación (`Asignat
 
 **Retocado (issue #148, 2026-09-05)**: `codigo` no tenía restricción de unicidad -- permitió un duplicado real en producción (`GIOI` dos veces, distinta `Facultad`). Se añade una rama de rechazo: si el `codigo` introducido ya existe en cualquier `Facultad`, `crearPrograma()` no crea el `Programa` y presenta un mensaje de error, mismo patrón de `<<choice>>` que [`editarPonderacionEvaluacion()`](/RUP/01-requisitos/03-detalle-casos-uso/editarPonderacionEvaluacion/especificacion.puml) (rango superado). El rechazo es global al catálogo, no por `Facultad`: dos `Programa` con el mismo `codigo` en `Facultad` distintas seguirían siendo el mismo error -- `codigo` identifica el Programa, la `Facultad` es dónde se administra, no una partición del espacio de nombres.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título "Crear programa", campos en línea con su etiqueta, botón "Cancelar" junto a "Crear"; en la variante de error, el mensaje real "Error: Ya existe un Programa con código '...'" en lugar del rótulo "NO SE PUEDE CREAR".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMAS_ABIERTO --> PROGRAMA_ABIERTO : crearPrograma()`

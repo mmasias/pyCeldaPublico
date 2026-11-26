@@ -23,6 +23,7 @@ state crearAsignaturaPrograma as "crearAsignaturaPrograma()" {
     <b>Sistema</b> muestra carácter
     <b>Sistema</b> muestra idioma
     <b>Sistema</b> muestra semestre por defecto
+    <b>Sistema</b> muestra sesiones mínimas
     <b>Sistema</b> muestra nombre heredado de la Asignatura
     <b>Sistema</b> muestra ects heredados de la Asignatura
     <b>Sistema</b> muestra contenido heredado de la Asignatura
@@ -37,6 +38,7 @@ state crearAsignaturaPrograma as "crearAsignaturaPrograma()" {
     <b>Admin</b> introduce carácter
     <b>Admin</b> introduce idioma
     <b>Admin</b> introduce semestre por defecto
+    <b>Admin</b> introduce sesiones mínimas
     <b>Admin</b> introduce nombre, si difiere del heredado
     <b>Admin</b> introduce ects, si difieren de los heredados
     <b>Admin</b> introduce contenido, si difiere del heredado

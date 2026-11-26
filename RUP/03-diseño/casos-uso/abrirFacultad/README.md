@@ -34,7 +34,7 @@ Bajada a diseño del caso de análisis [`abrirFacultad()`](/RUP/02-analisis/caso
 
 ## Participantes
 
-- **Vista**: `AbrirFacultadView` (React) -- pide `GET /api/v1/facultades/{facultad_id}`; presenta `nombre` y la navegación (`[Editar]`/`[Ver Programas]`/`[Volver al listado]`).
+- **Vista**: `AbrirFacultadView` (React) -- pide `GET /api/v1/facultades/{facultad_id}`; presenta `nombre` (en la miga), el listado de sus `Programa` y la navegación (`[Editar]`/`[Crear programa]`/`[Abrir]`/`[Eliminar]`/miga).
 - **API**: `routers/facultad.py::obtener_facultad(facultad_id)` -- función suelta.
 - **Modelo**: ninguno con lógica propia invocada -- `Facultad` solo porta los datos presentados.
 - **Repositorio**: `FacultadRepository.obtener(facultad_id)` -- `SELECT` por clave primaria.

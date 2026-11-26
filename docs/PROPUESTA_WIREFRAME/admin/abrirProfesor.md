@@ -13,7 +13,7 @@
 |Botón|CdU|
 |---|---|
 |[**Editar**](editarProfesor.md)|<sub>editarProfesor()</sub>|
-|[**Nombrar director de Programa**](definirDirectorPrograma.md)|<sub>definirDirectorPrograma()</sub>|
+|[**Nombrar director de programa**](definirDirectorPrograma.md)|<sub>definirDirectorPrograma()</sub>|
 |[**Quitar**](quitarDirectorPrograma.md)|<sub>quitarDirectorPrograma()</sub>|
 |[**Volver al listado**](abrirProfesores.md)|<sub>abrirProfesores()</sub>|
 

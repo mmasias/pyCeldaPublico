@@ -45,6 +45,7 @@ La descripción es la del catálogo del `Programa`; la `descripcionPropia` que u
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista, cabecera con el nombre del programa y pestañas del programa (activa Metodologías); miga "Metodologías docentes › MD3" con "Editar" a su derecha (antes al pie); secciones "Descripción" (texto en cursiva) y "Distribución". Si una de las dos columnas no tiene filas, presenta "Ninguna"; si no hay ninguna asignación, en lugar de las columnas se presenta "Sin asignaciones a materias ni a asignaturas del programa.". La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja la ficha en Admin: miga de estructura (Universidades › universidad › facultad), nombre del programa con Panel y Cerrar sesión a la derecha y las dos filas de pestañas del programa de Admin (activa Metodologías), sin etiqueta de vista; miga "Metodologías docentes › MD3" con "Editar" a la derecha y secciones "Descripción" y "Distribución" como en la del director.
 
 ## Referencias
 

@@ -6,8 +6,8 @@ participant "Vista (React)" as Vista
 
 Admin -> Vista: solicita volver al panel de administración
 activate Vista
-note right of Vista: contenido estático (6 enlaces fijos) --\nsin llamada a la API, sin Modelo ni Repositorio\nque consultar (ver Análisis)
-Vista --> Admin: presenta el menú (Universidades, Asignaturas,\nMetodologías docentes, Profesores, Cursos académicos,\nGenerar guías PDF)
+note right of Vista: contenido estático (7 enlaces fijos) --\nsin llamada a la API, sin Modelo ni Repositorio\nque consultar (ver Análisis)
+Vista --> Admin: presenta el menú (Universidades, Asignaturas,\nProfesores, Cursos académicos, Copias de seguridad,\nAuditoría, Generar guías PDF)
 deactivate Vista
 
 @enduml

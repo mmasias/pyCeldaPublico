@@ -55,6 +55,8 @@ Sin `<<choice>>` -- no hay rama de fallo, solo la presentación del estado. Verb
 
 - Wireframe alineado con la pantalla construida (#858): el medidor no tiene pantalla propia, es una sección de la ficha de la materia; las dos variantes dibujan esa ficha (etiqueta de vista, programa, pestañas, miga) con la sección "Actividades formativas de la materia" y, sin optatividad, "Estado de las actividades formativas" con su texto real. Se retira `[Volver a la materia]` y la pantalla aparte ("ACTIVIDADES FORMATIVAS -- ESTADO DE LA MATERIA"), que no existían; el flujo no cambia (la especificación ya lo modelaba como self-loop de `MATERIA_ABIERTO`). Las demás secciones de la ficha se dibujan en [`abrirMateria()`](../abrirMateria/README.md).
 
+- Wireframe alineado con la pantalla construida (#873): nueva variante `wireframe-admin`: la ficha de la materia de `Admin` (cabecera del programa con "Materias" activa, miga "Materias › Programación" con `[Editar]`, Nombre, Módulo, ECTS y código RUCT) con la sección "Actividades formativas de la materia", la línea de horas y el medidor "Estado de las actividades formativas". Con optatividad la pantalla de `Admin` solo difiere de la del director en la cabecera, así que no lleva variante propia. Las demás secciones de la ficha de `Admin` se dibujan en [`abrirMateria()`](../abrirMateria/README.md).
+
 ## Referencias
 
 - [Diagrama de contexto de DirectorPrograma](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoDirectorPrograma.puml) -- `MATERIA_ABIERTO --> MATERIA_ABIERTO : consultarEstadoActividadesFormativasMateria()`

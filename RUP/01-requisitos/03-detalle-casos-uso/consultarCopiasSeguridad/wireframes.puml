@@ -1,25 +1,21 @@
 @startsalt consultarCopiasSeguridad-wireframe
 {
-    <b>COPIAS DE SEGURIDAD</b>
-    ====
-    [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] | [ Volver al panel de administración ]
+    { <b>Copias de seguridad</b> | [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] }
     ====
     [ ] Mostrar todos (incluye no restaurables)
     Mostrando 2 de 3 copias.
     {#
         <b>Familia | <b>Fecha | <b>Tamaño | <b>Esquema | <b>Motivo | <b>Salud | <b>Restaurar
-        Puntual | 11/09/2026, 2:00:00 | 928.0 KB | 3 | deploy 307 | . | [ Restaurar ]
-        Diario  | 11/09/2026, 4:30:00 | 1.1 MB   | 3 | --         | . | [ Restaurar ]
+        Puntual | 11/9/2026, 2:00:00 | 928.0 KB | 3 | deploy 307 | . | [ Restaurar ]
+        Diario  | 11/9/2026, 4:30:00 | 1.1 MB   | 3 | —         | . | [ Restaurar ]
     }
 }
 @endsalt
 
 @startsalt consultarCopiasSeguridad-wireframe-vacia
 {
-    <b>COPIAS DE SEGURIDAD</b>
+    { <b>Copias de seguridad</b> | [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] }
     ====
-    [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] | [ Volver al panel de administración ]
-    ====
-    <i>No hay copias de seguridad registradas todavía.</i>
+    No hay copias de seguridad registradas todavía.
 }
 @endsalt

@@ -38,6 +38,10 @@
 
 </div>
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): la ficha de la Facultad es su listado de Programas: cabecera "Universidades", miga `Universidades › <universidad> › <facultad>` con "Editar" y "Crear programa", tabla Código/Nombre/Estado con "Abrir" y "Eliminar"; fuera "Nombre:", "Ver Programas" y "Volver al listado". "Editar" aparece deshabilitado en pantalla (funcionalidad en construcción).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `FACULTADES_ABIERTO --> FACULTAD_ABIERTO : abrirFacultad()`

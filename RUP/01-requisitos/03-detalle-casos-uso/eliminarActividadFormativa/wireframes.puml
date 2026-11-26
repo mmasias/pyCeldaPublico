@@ -25,3 +25,16 @@
     [Confirmar eliminación]
 }
 @endsalt
+
+@startsalt eliminarActividadFormativa-wireframe-admin
+{
+    {<b>Eliminar actividad formativa</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>AA2</b> -- Actividad Autónoma: Elaboración de trabajos
+    Esta acción no se puede deshacer. Se retira de todas las materias
+    y asignaturas del programa, donde está a 0 horas.
+    --
+    [Confirmar eliminación]
+}
+@endsalt

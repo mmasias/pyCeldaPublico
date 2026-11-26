@@ -45,6 +45,7 @@ Hasta #772 solo `descripcion` era editable y `codigo` se tenía por identificado
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Editar metodología docente", línea "Programa: GII -- Grado en Ingeniería Informática", código en la misma línea que su etiqueta y descripción en área de texto de tres líneas. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja el formulario de Admin: título "Editar metodología docente" sin accesos globales, sin etiqueta de vista (el resto, igual que la de `DirectorPrograma`).
 
 ## Referencias
 

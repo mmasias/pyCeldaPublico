@@ -40,11 +40,13 @@
 
 Único campo editable: `descripcionPropia` de `MetodologiaMateria`. `codigo` y `descripcion` de la `MetodologiaDocente` se muestran de solo lectura (pertenecen al catálogo del `Programa` (#772; antes institucional), se editan desde [`editarMetodologiaDocente()`](/RUP/01-requisitos/03-detalle-casos-uso/editarMetodologiaDocente/README.md), no desde aquí). Patrón catálogo+override, mismo que `nombre`/`ects` en `AsignaturaPrograma` o `semestre` en `Guia`: vacío por defecto (usa la descripción canónica), y este caso de uso es donde el director registra el matiz si lo necesita.
 
-**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha y mismas reglas, con la pantalla de la variante `wireframe-admin`; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Editar asociación -- metodología docente", línea del programa y botón `[Cancelar]` junto a `[Guardar]`.
+
+- Wireframe alineado con la pantalla construida (#873): nueva variante `wireframe-admin`: la misma pantalla que la del `DirectorPrograma` (título, línea del programa, materia, código, descripción, descripción propia, Guardar y Cancelar) sin la etiqueta de vista.
 
 ## Referencias
 

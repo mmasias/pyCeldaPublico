@@ -18,3 +18,23 @@
     }
 }
 @endsalt
+
+@startsalt abrirResultadosAprendizaje-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [Materias] | [<b>Resultados de aprendizaje</b>] | [Competencias] | [Metodologías] | [Actividades formativas]}
+    ====
+    {<b>Resultados de aprendizaje</b> | [Crear resultado de aprendizaje]}
+    {#
+        <b>Descripción | <b>Tipo | <b>Código | <b>Nº de Asign. | . | .
+        Aplicar conceptos de economía, organización y... | Competencias o capacidades | RAC1 | 4 | [Abrir] | [Eliminar]
+        Desarrollar sistemas informáticos, considerando... | Competencias o capacidades | RAC2 | 2 | [Abrir] | [Eliminar]
+        Aplicar principios físicos y electrónicos en la... | Habilidades o destrezas | RAH1 | 1 | [Abrir] | [Eliminar]
+        Aplicar métodos matemáticos avanzados en la... | Habilidades o destrezas | RAH2 | 0 | [Abrir] | [Eliminar]
+        Describir los conceptos fundamentales de álgebra lineal... | Conocimientos o contenidos | RAK1 | 3 | [Abrir] | [Eliminar]
+        Describir la estructura, organización y arquitectura... | Conocimientos o contenidos | RAK2 | 2 | [Abrir] | [Eliminar]
+    }
+}
+@endsalt

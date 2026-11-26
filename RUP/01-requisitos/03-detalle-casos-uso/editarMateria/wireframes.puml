@@ -1,16 +1,13 @@
 @startsalt editarMateria-wireframe
 {
-    <b>EDITAR MATERIA</b>
+    <b>Editar materia</b>
     ====
     {
-        <b>Nombre (*):</b>
-        "Programación"
-        <b>Módulo:</b>
-        ^M2 -- Común a la rama de informática^
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Nombre (*):</b> | "Programación                            "
+        <b>Módulo:</b> | ^M2 -- Común a la rama de informática^
     }
-    ~~
-    {[Guardar]}
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

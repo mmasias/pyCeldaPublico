@@ -66,6 +66,8 @@ Wireframe con una guía de ejemplo `Aprobada` y con PDF ya generado (`fechaGener
 
 - Wireframe alineado con la pantalla construida (#857): no hay pantalla de descarga con la fecha, el nombre del fichero y "Volver a la guía". **Descargar PDF** está en la propia ficha de la guía (en la botonera del Profesor, en el lugar de Previsualizar, y en la barra del director), solo con la guía `Aprobada` y con PDF generado; al pulsarlo el navegador descarga el fichero (`guia-<id>.pdf`) y la ficha sigue igual. El wireframe dibuja la ficha del Profesor con una guía aprobada (aviso de que guardar la devolverá a borrador, fecha de "Generación del PDF") y, aparte, el fichero descargado; el recuadro "Descargas del navegador" representa lo que muestra el navegador, no la aplicación. Si la descarga falla, el motivo sale como "Error: ..." sobre los botones.
 
+- Wireframe alineado con la pantalla construida (#873): `Admin` no abre la ficha de la guía (no tiene pantalla de `abrirGuia()`); descarga el PDF desde su lista de guías del programa. La variante `descargarGuiaPDF-wireframe-admin` dibuja esa lista (cabecera del programa de Admin con la pestaña Guías marcada, selector "Curso académico") con el botón "Descargar PDF" en la fila de la guía Aprobada con PDF generado -- en las demás filas el botón es "Previsualizar" -- y, aparte, el fichero descargado (`guia-<id>.pdf`); la lista sigue igual tras la descarga. Por eso, para `Admin`, la transición es un self-loop de `GUIAS_DEL_PROGRAMA_ABIERTO`, no de `GUIA_ABIERTO`. Si la descarga falla, el motivo sale como "Error: ..." sobre la tabla.
+
 ## Referencias
 
 - [Diagrama de contexto de Profesor](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoProfesor.puml) -- `GUIA_ABIERTO --> GUIA_ABIERTO : descargarGuiaPDF()`

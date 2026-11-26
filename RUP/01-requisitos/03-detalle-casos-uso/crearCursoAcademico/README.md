@@ -40,6 +40,10 @@
 
 Patrón C→U: solo `inicio`/`fin` se piden al crear. `estado` nace Inactivo (dar de alta no activa, ver [modelo del dominio](/RUP/00-modelo-del-dominio/README.md)) y `semestreActivo` no se fija aquí -- ambos son eventos explícitos y posteriores (`activarCursoAcademico()`, `activarSemestre()`), no datos de alta.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): nuevo campo obligatorio "Universidad", campos de fecha en la misma fila que su etiqueta y botón "Cancelar".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `CURSOS_ACADEMICOS_ABIERTO --> CURSO_ACADEMICO_ABIERTO : crearCursoAcademico()`

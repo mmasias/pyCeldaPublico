@@ -1,17 +1,15 @@
 @startsalt editarPrograma-wireframe
 {
-    <b>EDITAR PROGRAMA</b>
+    <b>Editar programa</b>
     ====
     {
         <b>Código:</b> GII
-        <b>Nombre (*):</b>
-        "Grado en Ingeniería Informática"
-        --
+        <b>Nombre (*):</b> | "Grado en Ingeniería Informática"
         <i>(*) Campo obligatorio</i>
-        <i>El código no es editable una vez creado el Programa</i>
+        <i>El código no es editable una vez creado el programa</i>
     }
-    ~~
-    {[Guardar]}
+    --
+    {[Guardar] | [Cancelar]}
     ==
     <b>Zona de riesgo</b>
     {[Eliminar]}

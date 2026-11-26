@@ -1,15 +1,14 @@
 @startsalt abrirAsignaturas-wireframe
 {
-    <b>ASIGNATURAS</b>
+    <b>Asignaturas</b>
     ====
+    [ Crear asignatura ]
     {#
         <b>Nombre | <b>Código | <b>ECTS | <b>Estado | . | .
         Programación I | GII-1001 | 6 | Vigente | [Abrir] | [Eliminar]
         Matemática I | GII-1002 | 6 | Vigente | [Abrir] | [Eliminar]
-        Bases de Datos II | (sin código, legacy) | 6 | Vigente | [Abrir] | [Eliminar]
+        Bases de Datos II | -- | 6 | Vigente | [Abrir] | [Eliminar]
         Física | GII-1004 | 6 | Vigente | [Abrir] | [Eliminar]
     }
-    ====
-    [ <b>+ Crear Asignatura</b> ]
 }
 @endsalt

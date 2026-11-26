@@ -1,16 +1,14 @@
 @startsalt editarProfesor-wireframe
 {
-    <b>EDITAR PROFESOR</b>
+    <b>Editar profesor</b>
     ====
     {
-        <b>Nombre (*):</b>
-        "Dr. Carlos Navarro Ruiz"
-        <b>Email (*):</b>
-        "carlos.navarro@ejemplo.edu"
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Nombre (*):</b> | "Dr. Carlos Navarro Ruiz                 "
+        <b>Email (*):</b> | "carlos.navarro@ejemplo.edu              "
+        <b>Universidad (*):</b> | ^Universidad Europea del Atlántico^
     }
-    ~~
-    {[Guardar]}
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

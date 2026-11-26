@@ -42,9 +42,10 @@ Mismo criterio que `editarMetodologiaDocente()`: `codigo` se muestra pero no se 
 
 ## Notas de diseño y trazabilidad
 
-- La pantalla incluye una "Zona de riesgo" con el botón "Eliminar", que lleva a [`eliminarPrograma()`](../eliminarPrograma/README.md) (issue [#645](https://github.com/mmasias/pyCelda/issues/645), `EditarProgramaAdmin.tsx`). El botón queda deshabilitado, con el texto "Eliminar (Ya Extinguido)", cuando el `Programa` ya está en estado `Extinguido`; el wireframe muestra el caso de un `Programa` vigente.
-- La pantalla incluye además un botón "Cancelar" que vuelve al `Programa`; no se dibuja en el wireframe, misma convención que [`crearPrograma()`](../crearPrograma/README.md).
+- La pantalla incluye una "Zona de riesgo" con el botón "Eliminar", que lleva a [`eliminarPrograma()`](../eliminarPrograma/README.md) (issue [#645](https://github.com/mmasias/pyCelda/issues/645), `EditarProgramaAdmin.tsx`). El botón queda deshabilitado, con el texto "Eliminar (ya extinguido)", cuando el `Programa` ya está en estado `Extinguido`; el wireframe muestra el caso de un `Programa` vigente.
+- La pantalla incluye además un botón "Cancelar" que vuelve al `Programa`.
 - Eliminar desde aquí es una segunda entrada a `eliminarPrograma()`: el diagrama de contexto no modela la pantalla de edición como estado propio (`editarPrograma()` es un bucle sobre `PROGRAMA_ABIERTO`), de ahí que la entrada se modele desde `PROGRAMA_ABIERTO`.
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas como en pantalla, etiqueta y campo de nombre en la misma fila, botón "Cancelar" junto a "Guardar" y "programa" en minúscula en el texto de ayuda.
 
 ## Referencias
 

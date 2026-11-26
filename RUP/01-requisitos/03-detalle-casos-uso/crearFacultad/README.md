@@ -42,7 +42,8 @@
 
 - El botón "Crear Facultad" está en la pantalla `Universidad` (datos de la Universidad más la lista de sus Facultades), no en un listado `FACULTADES_ABIERTO` propio, aunque el diagrama de contexto sitúe la transición en `FACULTADES_ABIERTO` (issue [#625](https://github.com/mmasias/pyCelda/issues/625), activado en [#626](https://github.com/mmasias/pyCelda/issues/626)).
 - La salida `<<include>> editarFacultad()` no se materializa: tras crear se navega al detalle de la Facultad, donde "Editar" sigue deshabilitado.
-- El formulario de la pantalla incluye también un botón "Cancelar" que vuelve a la `Universidad`. No se dibuja en el wireframe ni se narra en la especificación para mantener la misma convención que [`crearPrograma()`](../crearPrograma/README.md) y [`crearMateria()`](../crearMateria/README.md), cuyas pantallas lo tienen igualmente sin reflejarlo.
+- El formulario de la pantalla incluye también un botón "Cancelar" que vuelve a la `Universidad` (con confirmación si hay cambios sin guardar). Se dibuja en el wireframe pero no se narra en la especificación, misma convención que [`crearPrograma()`](../crearPrograma/README.md) y [`crearMateria()`](../crearMateria/README.md).
+- Wireframe alineado con la pantalla construida (#872): título "Crear facultad", campo en la misma línea que su etiqueta y botón "Cancelar" junto a "Crear".
 
 ## Referencias
 

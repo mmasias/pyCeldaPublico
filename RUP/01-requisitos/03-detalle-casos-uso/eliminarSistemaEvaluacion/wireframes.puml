@@ -26,3 +26,15 @@
     [Confirmar eliminación]
 }
 @endsalt
+
+@startsalt eliminarSistemaEvaluacion-wireframe-admin
+{
+    <b>Eliminar sistema de evaluación</b> | [ Cancelar ]
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Evaluación final (25% -- 80%)</b>
+    <b>Esta acción no se puede deshacer.</b> Se comprobará antes de eliminar si tiene ponderaciones asociadas.
+    --
+    [Confirmar eliminación]
+}
+@endsalt

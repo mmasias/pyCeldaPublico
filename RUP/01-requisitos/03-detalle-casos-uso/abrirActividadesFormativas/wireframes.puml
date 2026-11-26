@@ -17,3 +17,22 @@
     }
 }
 @endsalt
+
+@startsalt abrirActividadesFormativas-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [<b>Actividades formativas</b>]}
+    ====
+    {<b>Actividades formativas</b> | [Crear actividad formativa]}
+    {#
+        <b>Nombre | <b>Código | . | .
+        Actividad Dirigida: Clases de teoría | AD1 | [Abrir] | [Eliminar]
+        Actividad Dirigida: Clases prácticas | AD2 | [Abrir] | [Eliminar]
+        Actividad Supervisada: Tutorías | AS1 | [Abrir] | [Eliminar]
+        Actividad Autónoma: Estudio personal | AA1 | [Abrir] | [Eliminar]
+        Actividad Autónoma: Elaboración de trabajos | AA2 | [Abrir] | [Eliminar]
+    }
+}
+@endsalt

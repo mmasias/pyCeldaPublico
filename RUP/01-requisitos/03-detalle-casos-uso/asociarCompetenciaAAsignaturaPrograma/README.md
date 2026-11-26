@@ -46,6 +46,7 @@ Si no queda ninguna disponible (la materia no tiene competencias, por ser un pro
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Asociar competencia" con Cancelar en la cabecera (Volver si no hay competencias disponibles), línea "Programa: GII -- ...", selector en la línea de su etiqueta, texto completo de la elegida precedido de su tipo ("Específica. ...") en gris de nota, y Asociar tras una línea separadora.
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin dibuja la selección sin etiqueta de vista ("Asociar competencia" con Cancelar en la cabecera, línea "Programa: GII -- ...", asignatura con materia y curso, selector y Asociar al pie); la de "sin disponibles" de Admin solo difiere en la cabecera y no tiene variante propia.
 
 ## Referencias
 

@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Bloqueada**|**Confirmación**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframe-confirmacion.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/eliminarActividadFormativa/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

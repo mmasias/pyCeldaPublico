@@ -1,34 +1,25 @@
 @startsalt editarCursoAcademico-wireframe-bloqueada
 {
-    <b>EDITAR CURSO ACADÉMICO</b>
+    { <b>Editar curso académico</b> | [ Volver a los cursos académicos ] }
     ====
-    <color:red><b>⚠ NO SE PUEDE EDITAR</b></color>
-    ====
-    <b>Curso Académico 2026-2027</b>
-
-    Este curso académico tiene Guías asociadas.
-
+    <color:red>No se puede editar</color>
+    <b>Curso académico 2026-2027</b>
+    Este curso académico tiene guías asociadas.
     <i>Los datos de inicio/fin quedan fijos una vez el curso tiene actividad.</i>
-    ====
-    [ <b>Volver al listado</b> ]
 }
 @endsalt
 
 @startsalt editarCursoAcademico-wireframe-edicion
 {
-    <b>EDITAR CURSO ACADÉMICO</b>
+    { <b>Editar curso académico</b> | [ Cancelar ] }
     ====
+    <b>Curso académico 2027-2028</b>
     {
-        <b>Curso Académico 2027-2028</b>
-        --
-        <b>Inicio (*):</b>
-        "01/09/2027"
-        <b>Fin (*):</b>
-        "31/07/2028"
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Inicio (*):</b> | "01/09/2027"
+        <b>Fin (*):</b> | "31/07/2028"
     }
-    ~~
-    {[Guardar]}
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

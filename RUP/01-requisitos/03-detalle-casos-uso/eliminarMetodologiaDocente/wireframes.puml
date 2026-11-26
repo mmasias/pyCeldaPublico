@@ -33,3 +33,16 @@
     [Confirmar eliminación]
 }
 @endsalt
+
+@startsalt eliminarMetodologiaDocente-wireframe-admin
+{
+    {<b>Eliminar metodología docente</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>MD5</b>
+    <i>Aprendizaje orientado a proyectos</i>
+    Esta acción no se puede deshacer. Sin asignaciones a materias ni a asignaturas del programa.
+    --
+    [Confirmar eliminación]
+}
+@endsalt

@@ -40,6 +40,11 @@
 
 Datos del `CursoAcademico` canónico (2026-2027, semestre 1, ver [discussion #8](https://github.com/mmasias/pyCelda/discussions/8)). Dos acciones posibles desde aquí, `[Editar]` y `[Activar semestre]` -- ambas presentes en el botón con independencia de si `editarCursoAcademico()` acabará bloqueada por `Guia` asociadas: el bloqueo lo resuelve el `<<choice>>` de ese caso al solicitarlo, no un filtro previo aquí.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): cabecera "Cursos académicos" con miga "Cursos académicos › <curso>" y "Editar" / "Activar semestre" a su derecha; se retira "Volver al listado" (la vuelta es la miga).
+- Regla de presentación: el estado se pinta como etiqueta de color (Activo en verde, Inactivo en gris), que el wireframe no puede dibujar.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `CURSOS_ACADEMICOS_ABIERTO --> CURSO_ACADEMICO_ABIERTO : abrirCursoAcademico()`

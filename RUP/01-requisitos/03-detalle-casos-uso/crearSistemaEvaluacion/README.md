@@ -49,6 +49,7 @@
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858), vista del DirectorPrograma (entrada desde la ficha de la materia, sección de sistemas de evaluación; al crear o cancelar vuelve a ella): título "Crear sistema de evaluación", línea "Programa: GII -- Grado en Ingeniería Informática" (la pantalla no muestra el nombre de la materia, que el wireframe anterior sí dibujaba), descripción como área de texto de cuatro líneas y botones Crear/Cancelar al pie. Cancelar con cambios sin guardar pide confirmación.
+- Wireframe alineado con la pantalla construida (#873): la variante de `Admin` (`crearSistemaEvaluacion-wireframe-admin`) es el mismo formulario sin etiqueta de vista (título "Crear sistema de evaluación" sin botones en la cabecera, línea "Programa: GII -- ...", campos y Crear/Cancelar al pie); se entra desde la lista de sistemas de evaluación de la materia, al crear va a la ficha del sistema creado y al cancelar vuelve a la lista.
 
 ## Referencias
 

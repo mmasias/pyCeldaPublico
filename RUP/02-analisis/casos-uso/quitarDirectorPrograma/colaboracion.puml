@@ -41,6 +41,5 @@ DirectorPrograma -- Profesor: <font size=8>rol resuelto por email
 
 QuitarDirectorProgramaView ..[#green]> ProfesorAbiertoSalida: <font size=8>rol quitado, lista actualizada
 QuitarDirectorProgramaView ..[#red]> ProfesorAbiertoSalida: <font size=8>bloqueado, sin cambios -- único DirectorPrograma del Programa
-QuitarDirectorProgramaView ..[#blue]> ProfesorAbiertoSalida: <font size=8>cancelado, sin cambios
 
 @enduml

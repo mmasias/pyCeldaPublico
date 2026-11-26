@@ -27,3 +27,14 @@
     {[Confirmar desasociación] | [Cancelar]}
 }
 @endsalt
+
+@startsalt desasociarMetodologiaDocenteAsignaturaPrograma-wireframe-admin
+{
+    <b>Desasociar metodología docente</b>
+    ====
+    <b>MD5 -- Aprendizaje orientado a proyectos</b> (Programación I -- Programación, curso I)
+    Queda otra metodología docente asociada (MD3 -- Resolución de ejercicios).
+    --
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

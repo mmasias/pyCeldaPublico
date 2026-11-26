@@ -42,6 +42,10 @@
 
 **Actividades formativas (invariante de autopoblado, issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: al crearse, la `Materia` recibe una fila a 0 horas y 0 % de presencialidad por cada `ActividadFormativa` del catálogo de su `Programa` ([`abrirActividadesFormativas()`](../abrirActividadesFormativas/README.md)). Es efecto del alta, sin paso adicional en el formulario: el reparto se edita después en [`editarActividadesFormativasMateria()`](../editarActividadesFormativasMateria/README.md). Un programa sin catálogo deja la materia sin filas. `codigoRuct` y `ects` de la `Materia` no se piden aquí: los escribe solo la importación desde el RUCT. Hasta #772 las filas venían del catálogo institucional de la `Universidad`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas como en pantalla, etiqueta y campo en la misma fila y botón "Cancelar" junto a "Crear".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIAS_ABIERTO --> MATERIA_ABIERTO : crearMateria()`

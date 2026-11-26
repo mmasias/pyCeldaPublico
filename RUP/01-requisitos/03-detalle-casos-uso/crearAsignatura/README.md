@@ -45,6 +45,10 @@
 
 **Divergencia histórica cerrada**: la nota de [`crearPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/crearPrograma/README.md) ("`Asignatura`/`MetodologiaDocente` también lo tienen, pero sus `crearX()` no lo piden -- divergencia histórica de L0/L1, sin corregir retroactivamente") queda desactualizada para `Asignatura` por este cambio -- `MetodologiaDocente` sigue la divergencia (fuera de alcance de #181, sin encargo).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas, etiqueta y campo en la misma fila, nota de obligatorios en una línea, botón "Cancelar"; la variante de error muestra el mensaje literal "Error: …" del sistema en vez del bloque "NO SE PUEDE CREAR".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : crearAsignatura()`

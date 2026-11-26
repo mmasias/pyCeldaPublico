@@ -46,11 +46,13 @@
 
 ## Notas de diseño y trazabilidad
 
-- Presentación (issue [#683](https://github.com/mmasias/pyCelda/issues/683)): la columna Salud está vacía hasta pulsar el botón; el resultado es solo lectura (no borra, no marca, no persiste) y comprueba todas las copias, también las ocultas por el filtro (#634). El texto de resumen del wireframe ("28 correctas, 1 dañadas, ...") es el resumen de una línea.
+- Presentación (issue [#683](https://github.com/mmasias/pyCelda/issues/683)): la columna Salud está vacía hasta pulsar el botón; el resultado es solo lectura (no borra, no marca, no persiste) y comprueba todas las copias, también las ocultas por el filtro (#634). El texto de resumen del wireframe ("1 correctas, 1 dañadas, ...") es el resumen de una línea.
 
 - Modelado: autotransición de `COPIAS_SEGURIDAD_ABIERTO` (issue #683), bajo demanda, solo lectura y sin estado. Ninguna precondición puede rechazarla: un fallo en una copia es un resultado (dañada, ilegible, no disponible), no un error, por eso no hay `<<choice>>`.
 
 - El "deploy 307" del motivo en el wireframe (y en el de [`consultarCopiasSeguridad()`](../consultarCopiasSeguridad/README.md)) es un ejemplo de motivo de copia; referencia a issue #307 solo como origen del ejemplo.
+
+- Wireframe alineado con la pantalla construida (#872): botones de acción en la cabecera junto al título, sin "Volver al panel de administración" (el regreso es el acceso global Panel); resumen de salud coherente con las tres copias.
 
 ## Referencias
 

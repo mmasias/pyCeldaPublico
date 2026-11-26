@@ -52,6 +52,8 @@
 
 - **Profesores: nombre o email, nunca los dos** (punto 4 de [#778](https://github.com/mmasias/pyCelda/issues/778)): cada profesor se muestra con su nombre si lo tiene registrado y, si no, con su email (`nombreProfesor()` en `frontend/src/profesor.ts`, la misma regla en todas las listas). El email completo sigue en la ficha del profesor y en el PDF de la guía.
 
+- Wireframe alineado con la pantalla construida (#872): título "Profesores" en tipografía de pantalla, botón "Crear profesor" encima de la tabla y columna "Universidad" entre "Profesor" y "Asignaturas".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()`

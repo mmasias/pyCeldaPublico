@@ -40,6 +40,10 @@
 
 Composición real de `Materia` (`Materia *-- SistemaEvaluacion`), mismo patrón que `AsignaturaPrograma`: se navega desde dentro de una `Materia` concreta ya abierta, sin reutilización cruzada. "Evaluación continua"/"Evaluación final" son los dos valores reales de `tipo` (issue [#14](https://github.com/mmasias/pyCelda/issues/14)); descripción y rangos de ponderación son ilustrativos -- no hay datos reales de `SistemaEvaluacion` por `Materia` en el seed extraído.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): cabecera del programa (miga de estructura, pestañas con Materias activa) y miga "Materias › <materia> › Sistemas de evaluación" con "Crear sistema de evaluación" a la derecha (antes debajo de la tabla); nueva columna "Código".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MATERIA_ABIERTO --> SISTEMAS_EVALUACION_ABIERTO : abrirSistemasEvaluacion()`

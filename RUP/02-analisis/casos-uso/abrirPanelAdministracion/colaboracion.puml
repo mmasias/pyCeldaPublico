@@ -6,9 +6,10 @@ left to right direction
 rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponible
 rectangle #CDEBA5 ":UNIVERSIDADES_ABIERTO" as UniversidadesAbierto
 rectangle #CDEBA5 ":ASIGNATURAS_ABIERTO" as AsignaturasAbierto
-rectangle #CDEBA5 ":METODOLOGIAS_DOCENTES_ABIERTO" as MetodologiasDocentesAbierto
 rectangle #CDEBA5 ":PROFESORES_ABIERTO" as ProfesoresAbierto
 rectangle #CDEBA5 ":CURSOS_ACADEMICOS_ABIERTO" as CursosAcademicosAbierto
+rectangle #CDEBA5 ":COPIAS_SEGURIDAD_ABIERTO" as CopiasSeguridadAbierto
+rectangle #CDEBA5 ":HISTORIAL_CAMBIOS_ABIERTO" as HistorialCambiosAbierto
 rectangle #CDEBA5 ":SISTEMA_DISPONIBLE" as SistemaDisponibleSalida
 
 package abrirPanelAdministracion as "abrirPanelAdministracion()" {
@@ -19,9 +20,10 @@ SistemaDisponible --> AbrirPanelAdministracionView: <font size=8>abrirPanelAdmin
 
 AbrirPanelAdministracionView --> UniversidadesAbierto: <font size=8>abrirUniversidades()
 AbrirPanelAdministracionView --> AsignaturasAbierto: <font size=8>abrirAsignaturas()
-AbrirPanelAdministracionView --> MetodologiasDocentesAbierto: <font size=8>abrirMetodologiasDocentes()
 AbrirPanelAdministracionView --> ProfesoresAbierto: <font size=8>abrirProfesores()
 AbrirPanelAdministracionView --> CursosAcademicosAbierto: <font size=8>abrirCursosAcademicos()
+AbrirPanelAdministracionView --> CopiasSeguridadAbierto: <font size=8>consultarCopiasSeguridad()
+AbrirPanelAdministracionView --> HistorialCambiosAbierto: <font size=8>consultarHistorialCambios()
 AbrirPanelAdministracionView --> SistemaDisponibleSalida: <font size=8>generarGuiasPDF() (self-loop)
 
 @enduml

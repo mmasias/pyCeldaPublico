@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear Asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
+|[**Crear asignatura**](crearAsignatura.md)|<sub>crearAsignatura()</sub>|
 |[**Abrir**](abrirAsignatura.md)|<sub>abrirAsignatura()</sub>|
 |[**Eliminar**](eliminarAsignatura.md)|<sub>eliminarAsignatura()</sub>|
 |[**Abrir panel de administración**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|

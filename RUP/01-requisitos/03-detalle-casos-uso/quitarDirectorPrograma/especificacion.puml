@@ -9,7 +9,6 @@ state PROGRAMA_ABIERTO_SALIDA as "PROGRAMA_ABIERTO"
 
 state quitarDirectorPrograma as "quitarDirectorPrograma()" {
 
-    state " " as ConfirmandoQuitarRolDesdeProfesor
     state cProfesor <<choice>>
     state cPrograma <<choice>>
 }
@@ -24,17 +23,17 @@ note on link
 <b>Admin</b> (desde el Programa) solicita quitar rol de director de Programa
 end note
 
-cProfesor -[#green]-> ConfirmandoQuitarRolDesdeProfesor
+cProfesor -[#green]-> PROFESOR_ABIERTO_SALIDA
 note on link
 [Programa con más de un DirectorPrograma activo]
-<b>Sistema</b> presenta información del Programa y advertencia de pérdida del rol
-<b>Sistema</b> permite solicitar confirmar/cancelar
+<b>Admin</b> solicita quitar, sin pantalla de confirmación
+rol quitado, lista actualizada
 end note
 
 cProfesor -[#red]-> PROFESOR_ABIERTO_SALIDA
 note on link
 [Programa con un único DirectorPrograma activo]
-<b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa
+<b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa (llega como error tras el intento, sin pantalla de bloqueo propia)
 end note
 
 cPrograma -[#green]-> PROGRAMA_ABIERTO_SALIDA
@@ -48,18 +47,6 @@ cPrograma -[#red]-> PROGRAMA_ABIERTO_SALIDA
 note on link
 [Programa con un único DirectorPrograma activo]
 <b>Sistema</b> presenta mensaje de bloqueo por ser el único DirectorPrograma del Programa (llega como error tras el intento, sin pantalla de bloqueo propia)
-end note
-
-ConfirmandoQuitarRolDesdeProfesor -[#green]-> PROFESOR_ABIERTO_SALIDA
-note on link
-<b>Admin</b> solicita confirmar quitar director
-rol quitado, lista actualizada
-end note
-
-ConfirmandoQuitarRolDesdeProfesor -[#blue]-> PROFESOR_ABIERTO_SALIDA
-note on link
-<b>Admin</b> solicita cancelar quitar director
-cancelado, sin cambios
 end note
 
 @enduml

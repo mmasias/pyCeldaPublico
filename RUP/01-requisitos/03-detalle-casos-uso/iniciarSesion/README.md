@@ -45,7 +45,15 @@ Un único punto de extensión ("tras validación exitosa"), **dos** ramas mutuam
 
 </div>
 
-Ninguna de las dos tiene wireframe propio en esta ficha: la pantalla de cada rama es la de una primitiva de navegación ya catalogada que **extiende** a `iniciarSesion()` con una condición, no contenido nuevo. Esta carpeta no tiene `wireframes.puml` propio.
+Ninguna de las dos tiene wireframe propio en esta ficha: la pantalla de cada rama es la de una primitiva de navegación ya catalogada que **extiende** a `iniciarSesion()` con una condición, no contenido nuevo. Lo que sí tiene esta ficha es el dibujo de la pantalla de entrada de `Admin`:
+
+<div align=center>
+
+|![](/images/RUP/01-requisitos/03-detalle-casos-uso/iniciarSesion/wireframe-admin.svg)|
+|-|
+|<div align=right><sup>Código fuente: [wireframes.puml](wireframes.puml)</sup></div>|
+
+</div>
 
 **De tres ramas a dos (discussion [#274](https://github.com/mmasias/pyCelda/discussions/274)).** Antes había tres ramas simétricas: `Profesor -> abrirAsignaturasPrograma()`, `DirectorPrograma -> abrirProgramas()`, `Admin -> abrirPanelAdministracion()`. Un email con doble identidad (`DirectorPrograma` **y** `Profesor`, roles no exclusivos) quedaba enrutado a una sola de ellas -- en la práctica, `abrirProgramas()`, que para un ex-director sin programas a su cargo es un listado vacío sin salida directa a sus guías. La rama de `Profesor` y la de `DirectorPrograma` se fusionan en [`abrirInicio()`](../abrirInicio/README.md), que compone "Mis guías" y "Mis programas" en una pantalla; la de `Admin` no cambia.
 
@@ -81,6 +89,7 @@ Ninguna de las dos tiene wireframe propio en esta ficha: la pantalla de cada ram
 - Regla de presentación de las pantallas de login (`Login.tsx` y `AdminLogin.tsx`, issues [#628](https://github.com/mmasias/pyCelda/issues/628) y [#630](https://github.com/mmasias/pyCelda/issues/630)): el pie muestra la versión de la aplicación seguida de la versión del esquema de la base de datos, "... - v<versión> · esquema N". La versión del esquema se consulta al sistema sin sesión, porque el login es previo a ella. Es un dato informativo: si la consulta falla, el sufijo " · esquema N" se omite sin mostrar error. No es un caso de uso propio, es presentación de `iniciarSesion()`.
 
 - Registro de accesos (issue [#820](https://github.com/mmasias/pyCelda/issues/820)): cada intento de inicio de sesión académico (`Profesor`/`DirectorPrograma`) deja una fila en `RegistroAcceso` en las tres salidas del `<<choice>>` -- éxito, rechazo por dominio (`fuera_de_dominio`) y rechazo por cuenta no autorizada (`no_autorizado`). El inicio de sesión de `Admin` (pantalla y canal propios) no se registra, ni con éxito ni rechazado. Lo consulta el `Admin` en [`consultarRegistroAccesos()`](../consultarRegistroAccesos/README.md), últimos 25 intentos.
+- Wireframe alineado con la pantalla construida (#872): nueva variante `iniciarSesion-wireframe-admin` con la pantalla de entrada de Admin (logo y nombre CELDA, "Módulo de administración", "Iniciar sesión", enlace "Manual del administrador", versión). El cuadrado de acceso cruzado al módulo docente (naranja, sin texto) no se dibuja: es solo color.
 
 ## Referencias
 

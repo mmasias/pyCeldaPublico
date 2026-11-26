@@ -49,6 +49,7 @@ Códigos y textos de los wireframes ilustrativos: cada programa tiene los de su 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista "Vista de Dirección · GII", cabecera con el nombre del programa y pestañas del programa (activa Metodologías); el botón "Crear metodología docente" pasa de bajo la tabla a la derecha del título "Metodologías docentes". Columnas y acciones por fila sin cambios.
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja la pestaña del programa en Admin: miga de estructura (Universidades › universidad › facultad), nombre del programa con Panel y Cerrar sesión a la derecha y las dos filas de pestañas del programa de Admin (Ficha y Guías; Módulos, Materias, Resultados de aprendizaje, Competencias, Metodologías activa y Actividades formativas, sin Asignaturas), sin etiqueta de vista; título "Metodologías docentes" con "Crear metodología docente" a la derecha y la misma tabla que el director. Las filas de la tabla van a menor tamaño de letra y la barra de modo Admin no lleva texto: reglas de presentación que Salt no dibuja.
 
 ## Referencias
 

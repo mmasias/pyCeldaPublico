@@ -34,7 +34,7 @@ Bajada a diseño del caso de análisis [`abrirUniversidad()`](/RUP/02-analisis/c
 
 ## Participantes
 
-- **Vista**: `AbrirUniversidadView` (React) -- pide `GET /api/v1/universidades/{universidad_id}`; presenta `nombre` y la navegación (`[Editar]`/`[Ver Facultades]`/`[Volver al listado]`).
+- **Vista**: `AbrirUniversidadView` (React) -- pide `GET /api/v1/universidades/{universidad_id}`; presenta `nombre` (en la miga), el listado de sus `Facultad` y la navegación (`[Editar]`/`[Crear facultad]`/`[Abrir]`/miga `Universidades`).
 - **API**: `routers/universidad.py::obtener_universidad(universidad_id)` -- función suelta.
 - **Modelo**: ninguno con lógica propia invocada -- `Universidad` solo porta los datos presentados.
 - **Repositorio**: `UniversidadRepository.obtener(universidad_id)` -- `SELECT` por clave primaria.

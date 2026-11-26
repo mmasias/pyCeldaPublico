@@ -38,6 +38,10 @@
 
 </div>
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): el listado de Facultades se construye dentro de la pantalla de la Universidad: mismo dibujo que `abrirUniversidad()` (miga, "Editar", "Crear facultad", columnas Nombre/Programas, "Abrir" y "Eliminar"); "Crear facultad" pasa arriba. "Editar" y "Eliminar" aparecen deshabilitados en pantalla (funcionalidad en construcción).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `UNIVERSIDAD_ABIERTO --> FACULTADES_ABIERTO : abrirFacultades()`

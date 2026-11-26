@@ -47,6 +47,7 @@ Códigos y textos de los wireframes ilustrativos: las competencias reales de cad
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): cabecera con la etiqueta de vista, el nombre del programa y las pestañas del programa (activa Competencias); título "Competencias" con el botón "Crear competencia" en la misma fila, encima de la tabla (antes iba debajo).
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin dibuja la cabecera de programa de Admin (miga Universidades › universidad › facultad, nombre del programa con Panel y Cerrar sesión, pestañas Ficha/Guías y la fila de estructura con Competencias activa, sin etiqueta de vista) sobre el mismo título, botón "Crear competencia" y tabla que la del director.
 
 ## Referencias
 

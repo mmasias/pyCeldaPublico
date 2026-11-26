@@ -1,16 +1,13 @@
 @startsalt crearMateria-wireframe
 {
-    <b>CREAR MATERIA</b>
+    <b>Crear materia</b>
     ====
     {
-        <b>Nombre (*):</b>
-        "                                                  "
-        <b>Módulo:</b>
-        ^Sin módulo^
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Nombre (*):</b> | "                                        "
+        <b>Módulo:</b> | ^Sin módulo^
     }
-    ~~
-    {[Crear]}
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
 }
 @endsalt

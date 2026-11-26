@@ -18,3 +18,22 @@
     {[Guardar] | [Cancelar]}
 }
 @endsalt
+
+@startsalt editarCompetencia-wireframe-admin
+{
+    <b>Editar competencia</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {
+        <b>Código (*):</b> | "CE7       "
+        <b>Tipo (*):</b> | ^Específica^
+    }
+    <b>Descripción (*):</b>
+    "Conocimiento y aplicación de los principios fundamentales y técnicas"
+    "básicas de la programación paralela, concurrente, distribuida y de  "
+    "tiempo real.                                                        "
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

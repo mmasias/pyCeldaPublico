@@ -10,14 +10,26 @@ note on link
 <b>Admin</b> solicita activar CursoAcademico
 end note
 
-' No implementado en código -- caso de uso solo de la fase de Requisitos.
-' Mismo régimen que Requisito/CursoAcademico en el modelo del dominio:
-' representación correcta, pendiente de construir.
 state activarCursoAcademico as "activarCursoAcademico()" {
 
+    state " " as ConfirmandoActivacion
     state c <<choice>>
 
-    [*] -[#green]-> c
+    [*] -[#green]-> ConfirmandoActivacion
+    note on link
+    <b>Sistema</b> presenta CursoAcademico y advertencia de activación irreversible con su efecto sobre las Guias
+    <b>Sistema</b> permite solicitar confirmar/cancelar activación
+    end note
+
+    ConfirmandoActivacion -[#green]-> c
+    note on link
+    <b>Admin</b> solicita confirmar activación
+    end note
+
+    ConfirmandoActivacion -[#blue]-> [*]
+    note on link
+    <b>Admin</b> solicita cancelar activación
+    end note
 
     c -[#green]-> [*]
     note on link
@@ -46,6 +58,11 @@ end note
 activarCursoAcademico -[#red]-> CURSOS_ACADEMICOS_ABIERTOS_SALIDA
 note on link
 bloqueado, sin cambios
+end note
+
+activarCursoAcademico -[#blue]-> CURSOS_ACADEMICOS_ABIERTOS_SALIDA
+note on link
+cancelada, sin cambios
 end note
 
 @enduml

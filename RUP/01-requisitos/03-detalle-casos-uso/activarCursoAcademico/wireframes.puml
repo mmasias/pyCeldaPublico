@@ -1,34 +1,45 @@
+@startsalt activarCursoAcademico-wireframe-confirmacion
+{
+    { <b>Activar curso académico</b> | [ Cancelar ] }
+    ====
+    <b>2027-2028</b>
+    <color:orange><b>Esta acción no se puede deshacer.</b></color>
+    Se creará una guía nueva por cada asignatura de programa activa de la institución. Cuando
+    alguna de esas asignaturas tenga guía en el curso que se desactiva, la nueva la
+    hereda: clona sus ponderaciones de evaluación, su bibliografía y las sesiones guardadas
+    de su planificación docente, y toma su contenido y su plantilla del texto de
+    convocatorias con sus dos campos; si no tiene guía previa,
+    nace de los datos propios de la asignatura. El semestre y las sesiones mínimas salen
+    siempre de la asignatura. El curso que estaba activo pasa a inactivo automáticamente.
+    --
+    [ Confirmar activación ]
+}
+@endsalt
+
 @startsalt activarCursoAcademico-wireframe-bloqueada
 {
-    <b>ACTIVAR CURSO ACADÉMICO</b>
+    { <b>Activar curso académico</b> | [ Volver a los cursos académicos ] }
     ====
-    <color:red><b>⚠ NO SE PUEDE ACTIVAR</b></color>
-    ====
-    <b>Curso Académico 2026-2027</b>
-
-    El curso académico 2027-2028 (último) ya tiene actividad registrada.
-    Solo el último curso académico creado, o el penúltimo si el último
-    no tiene actividad registrada, pueden activarse.
-
-    ====
-    [ <b>Volver al listado</b> ]
+    <color:red>No se puede activar</color>
+    <b>2026-2027</b>
+    CursoAcademico no elegible para activar -- solo el último creado, o el penúltimo
+    si el último no tiene actividad registrada
 }
 @endsalt
 
 @startsalt activarCursoAcademico-wireframe-activado
 {
-    <b>CURSOS ACADÉMICOS</b>
+    <b>Cursos académicos</b>
     ====
-    <color:green><b>Curso Académico 2027-2028 activado.</b></color>
-    2026-2027 pasa a Inactivo.
-    ====
-    {
-        {2024-2025 | Inactivo | [Abrir]}
-        {2025-2026 | Inactivo | [Abrir]}
-        {2026-2027 | Inactivo | [Abrir] | [Activar]}
-        {2027-2028 | Activo (semestre 1) | [Abrir]}
+    <color:green>Curso académico 2027-2028 activado. 2026-2027 pasa a inactivo.</color>
+    { <b>Universidad:</b> | ^Universidad Europea del Atlántico^ }
+    [ Crear curso académico ]
+    {#
+        <b>Curso | <b>Estado | <b>Semestre activo | . | .
+        2024-2025 | Inactivo | 2 | [Abrir] | .
+        2025-2026 | Inactivo | 2 | [Abrir] | .
+        2026-2027 | Inactivo | 1 | [Abrir] | [Activar]
+        2027-2028 | Activo | -- | [Abrir] | .
     }
-    ====
-    [ <b>+ Crear Curso Académico</b> ]
 }
 @endsalt

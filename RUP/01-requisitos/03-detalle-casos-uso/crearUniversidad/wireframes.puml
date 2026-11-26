@@ -1,14 +1,12 @@
 @startsalt crearUniversidad-wireframe
 {
-    <b>CREAR UNIVERSIDAD</b>
+    <b>Crear universidad</b>
     ====
     {
-        <b>Nombre (*):</b>
-        "                                                  "
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Nombre (*):</b> | "                                                  "
     }
-    ~~
-    {[Crear]}
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
 }
 @endsalt

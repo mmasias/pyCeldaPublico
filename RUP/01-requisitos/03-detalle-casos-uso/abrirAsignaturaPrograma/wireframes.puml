@@ -57,3 +57,60 @@
     }
 }
 @endsalt
+
+@startsalt abrirAsignaturaPrograma-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [<b>Materias</b>] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas]}
+    ====
+    {Materias › Programación › <b>Programación I</b> | [Editar]}
+    <b>Materia:</b> Programación
+    <b>Curso:</b> I-s1 -- <b>Carácter:</b> Básica
+    <b>Sesiones mínimas para enviar a revisión:</b> 25
+    <b>Idioma:</b> Español
+    <b>ECTS:</b> 6
+    <b>Semestre por defecto:</b> 1
+    <b>Contenido:</b>
+    Tema 1. Fundamentos de la programación. Tema 2. Estructuras de control...
+    <b>Requisitos previos:</b>
+    No aplica
+    ====
+    {<b>Profesorado</b> | [Asignar profesor]}
+    {#
+        <b>Profesor | <b>Responsable | <b>Imparte | .
+        Ana Pérez | [X] | [X] | [Quitar]
+        Luis Gómez | [ ] | [X] | [Quitar]
+    }
+    ====
+    {<b>Resultados de aprendizaje asociados</b> | [Asociar resultado de aprendizaje]}
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | .
+        RAK1 | Conocimientos o contenidos | Resolver problemas de programación aplicando abstracción y descomposición modular. | [Quitar]
+    }
+    ====
+    {<b>Competencias</b> | [Asociar competencia]}
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | .
+        CE7 | Específica | Conocimiento y aplicación de los principios fundamentales y técnicas básicas de la programación... | [Quitar]
+    }
+    ====
+    {<b>Metodologías docentes asociadas</b> | [Asociar metodología docente]}
+    {#
+        <b>Código | <b>Descripción | .
+        MD3 | Resolución de ejercicios | [Quitar]
+    }
+    ====
+    {<b>Actividades formativas</b> | [Editar reparto]}
+    {#
+        <b>Actividad formativa | <b>Horas | <b>% presencialidad (de la materia)
+        Actividad Dirigida: Clases de teoría | 30 | 100
+        Actividad Dirigida: Clases prácticas | 27 | 100
+        Actividad Supervisada: Tutorías | 6 | 50
+        Actividad Autónoma: Estudio personal | 60 | 0
+        Actividad Autónoma: Elaboración de trabajos | 27 | 0
+    }
+    <b>Horas de la asignatura:</b> 150 de 150 (6 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
+}
+@endsalt

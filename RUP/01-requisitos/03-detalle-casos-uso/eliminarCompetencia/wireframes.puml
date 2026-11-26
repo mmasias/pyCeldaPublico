@@ -32,3 +32,16 @@
     [Confirmar eliminación]
 }
 @endsalt
+
+@startsalt eliminarCompetencia-wireframe-admin
+{
+    {<b>Eliminar competencia</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>CT2 -- Transversal</b>
+    <i>Capacidad de trabajo en equipo interdisciplinar...</i>
+    Esta acción no se puede deshacer. Sin asignaciones a materias ni a asignaturas del programa.
+    --
+    [Confirmar eliminación]
+}
+@endsalt

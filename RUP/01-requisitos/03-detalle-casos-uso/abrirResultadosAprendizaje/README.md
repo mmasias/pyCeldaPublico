@@ -43,6 +43,7 @@ Datos reales del plan de estudios de GII, aportados por el usuario en la [issue 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): cabecera con la etiqueta de vista, el nombre del programa y las pestañas del programa (activa Resultados de aprendizaje); botón "Crear resultado de aprendizaje" junto al título, encima de la tabla; columnas Descripción, Tipo, Código, Nº de Asign. (en ese orden) y filas ordenadas por código.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin` con la cabecera de programa de Admin (miga Universidades › universidad › facultad, nombre del programa con Panel y Cerrar sesión, pestañas Ficha/Guías y fila de estructura con Resultados de aprendizaje activa), título "Resultados de aprendizaje" con "Crear resultado de aprendizaje" a la derecha y la misma tabla que la del director (Descripción, Tipo, Código, Nº de Asign., Abrir, Eliminar), sin etiqueta de vista.
 
 ## Referencias
 

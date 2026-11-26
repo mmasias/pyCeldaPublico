@@ -1,31 +1,44 @@
 @startsalt definirDirectorPrograma-wireframe
 {
-    <b>NOMBRAR DIRECTOR DE PROGRAMA -- DR. JON ARAMBARRI BASAÑEZ</b>
+    { <b>Nombrar director de programa -- Dr. Javier Molina Ríos</b> | [ Cancelar ] }
     ====
     {
-        <b>Programa (*):</b>
-        ^GII -- Grado en Ingeniería Informática^
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>Solo se listan los Programas que el Profesor todavía no dirige</i>
+        <b>Programa (*):</b> | ^GII -- Grado en Ingeniería Informática^
     }
-    ~~
-    {[Nombrar]}
+    <i>(*) Campo obligatorio</i>
+    <i>Solo se listan los programas que el profesor todavía no dirige</i>
+    --
+    [Nombrar]
 }
 @endsalt
 
 @startsalt definirDirectorPrograma-wireframe-desdePrograma
 {
-    <b>GII -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería
+    <b>Grado en Ingeniería Informática</b>
     ====
-    <b>Directores:</b>
+    { [ <b>Ficha</b> ] | [ Guías ] }
+    { [ Módulos ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] }
+    ====
+    { <b>Ficha</b> | [ Editar ] }
     {
-        Dr. Carlos Navarro Ruiz | [Quitar]
+        {
+            <b>Código:</b> GII
+            <b>Estado:</b> Vigente
+            <b>Código RUCT:</b> 25032182025111701
+            <b>Denominación oficial:</b> Graduado o Graduada en Ingeniería Informática
+            <b>Norma:</b> RD 1393/2007
+        } | {
+            <b>Directores:</b>
+            { Dr. Carlos Navarro Ruiz | [Quitar] }
+            { ^Dr. Javier Molina Ríos^ | [Nombrar] }
+        }
     }
     ====
-    {
-        ^Dr. Javier Molina Ríos^ | [Nombrar]
+    { <b>Asignaturas del programa</b> | [ Crear asignatura del programa ] }
+    {#
+        <b>Asignatura</b> | <b>Materia</b> | <b>Curso</b> | <b>Carácter</b> | <b>Estado</b> | . | .
+        Programación I | Programación | I-s1 | Básica | Vigente | [Abrir] | [Eliminar]
     }
-    <i>Solo se listan los Profesores que todavía no dirigen este Programa</i>
 }
 @endsalt

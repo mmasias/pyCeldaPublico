@@ -9,6 +9,12 @@ database "Base de Datos" as DB
 
 Admin -> Vista: solicita activar (botón [Activar] de un curso Inactivo)
 activate Vista
+Vista --> Admin: presenta el curso y la advertencia (acción irreversible, efecto sobre las guías)
+alt cancela
+    Admin -> Vista: Cancelar
+    Vista --> Admin: vuelve a la lista de CursoAcademico, sin cambios
+else confirma
+Admin -> Vista: Confirmar activación
 Vista -> API: POST /api/v1/admin/cursos-academicos/{id}/activar
 activate API
 note right of API: Depends(require_admin) -- dependencia fijada en el\ndiseño de iniciarSesion(), no implementada en este documento
@@ -57,6 +63,7 @@ else existe
 end
 deactivate API
 Vista --> Admin: lista de CursoAcademico actualizada, o mensaje de bloqueo
+end
 deactivate Vista
 
 @enduml

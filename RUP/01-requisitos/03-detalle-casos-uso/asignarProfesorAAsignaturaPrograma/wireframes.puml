@@ -1,19 +1,16 @@
 @startsalt asignarProfesorAAsignaturaPrograma-wireframe
 {
-    <b>ASIGNAR PROFESOR</b>
+    { <b>Asignar profesor</b> | [ Cancelar ] }
     ====
-    <b>Programación I -- GII, 1er curso</b>
+    <b>Programación I -- Programación, curso I</b>
     --
     {
-        <b>Profesor (*):</b>
-        ^Dr. Carlos Navarro Ruiz^
-        <b>Papel (*):</b>
-        {[ ] Responsable | [X] Imparte}
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>Solo se listan los Profesores todavía no asignados a esta asignatura-en-programa</i>
+        <b>Profesor (*):</b> | ^Dr. Carlos Navarro Ruiz^
+        <b>Papel (*):</b> | {[ ] Responsable | [X] Imparte}
     }
-    ~~
-    {[Asignar]}
+    <i>(*) Campo obligatorio</i>
+    <i>Solo se listan los profesores todavía no asignados a esta asignatura-en-programa</i>
+    --
+    [Asignar]
 }
 @endsalt

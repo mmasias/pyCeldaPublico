@@ -1,25 +1,36 @@
 @startsalt restaurarCopiaSeguridad-wireframe
 {
-    <b>COPIAS DE SEGURIDAD</b>
-    ====
-    [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] | [ Volver al panel de administración ]
+    { <b>Copias de seguridad</b> | [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] }
     ====
     Vas a sobrescribir la base de datos viva con <b>pyCelda-puntual-20260911-020000.db</b>. Es irreversible.
     Escribe el nombre exacto del archivo para confirmar:
-    "pyCelda-puntual-20260911-020000.db      "
-    [ Restaurar ] | [ Cancelar ]
+    { "pyCelda-puntual-20260911-020000.db      " | [ Restaurar ] | [ Cancelar ] }
+    Error: La copia está dañada (integrity_check): no se puede restaurar
     ====
     [X] Mostrar todos (incluye no restaurables)
+    2 correctas, 1 dañadas, 0 ilegibles, 0 no disponibles
+    Mostrando 3 de 3 copias.
+    {#
+        <b>Familia | <b>Fecha | <b>Tamaño | <b>Esquema | <b>Motivo | <b>Salud | <b>Restaurar
+        Puntual | 11/9/2026, 2:00:00 | 928.0 KB | 3 | deploy | Dañada   | [ Restaurar ]
+        Diario  | 11/9/2026, 4:30:00 | 1.1 MB   | 3 | —     | Correcta | [ Restaurar ]
+        Diario  | 10/9/2026, 4:30:00 | 921.7 KB | 2 | —     | Correcta | Restaurar
+    }
+}
+@endsalt
+
+@startsalt restaurarCopiaSeguridad-wireframe-en-curso
+{
+    { <b>Copias de seguridad</b> | [ Hacer copia de seguridad ahora ] | [ Comprobar salud de las copias ] }
+    ====
+    Restauración en curso. El sistema se reiniciará en unos segundos -- recarga la página en 30 segundos.
+    ====
+    [ ] Mostrar todos (incluye no restaurables)
     Mostrando 2 de 3 copias.
     {#
         <b>Familia | <b>Fecha | <b>Tamaño | <b>Esquema | <b>Motivo | <b>Salud | <b>Restaurar
-        Puntual | 11/09/2026, 2:00:00 | 928.0 KB | 3 | deploy | Correcta | [ Restaurar ]
-        Diario  | 11/09/2026, 4:30:00 | 1.1 MB   | 3 | --     | Dañada   | [ Restaurar ]
-        Diario  | 10/09/2026, 4:30:00 | 921.7 KB | 2 | --     | Correcta | [ Restaurar ]
+        Puntual | 11/9/2026, 2:00:00 | 928.0 KB | 3 | deploy | . | Restaurar
+        Diario  | 11/9/2026, 4:30:00 | 1.1 MB   | 3 | —     | . | Restaurar
     }
-    <i>Restaurar deshabilitado, con ayuda al pasar el ratón: "Copia no disponible en el volumen", "Versión de esquema ilegible" o "Esquema incompatible con la versión actual".</i>
-    ====
-    Error: Esquema incompatible: la copia tiene versión 2 y la base de datos actual 3
-    <i>Restauración en curso. El sistema se reiniciará en unos segundos -- recarga la página en 30 segundos.</i>
 }
 @endsalt

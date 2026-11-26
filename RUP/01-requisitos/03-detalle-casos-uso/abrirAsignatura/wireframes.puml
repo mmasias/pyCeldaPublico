@@ -1,6 +1,8 @@
 @startsalt abrirAsignatura-wireframe
 {
-    <b>PROGRAMACIÓN I</b>
+    <b>Asignaturas</b>
+    ====
+    Asignaturas › <b>Programación I</b> | [Editar]
     ====
     <b>Nombre:</b> Programación I
     <b>ECTS:</b> 6
@@ -9,20 +11,20 @@
     "Introducción a la programación estructurada: variables, control
     de flujo, funciones, estructuras de datos básicas y depuración."
     ====
-    <b>Presente en:</b>
+    <b>Presente en</b>
     {#
         <b>Programa | <b>Materia | <b>Curso | <b>Carácter
-        GII -- Grado en Ingeniería Informática | Programación | I-s1 | Básica
-        GADE -- Grado en Administración y Dirección de Empresas | Informática Aplicada | III-s1 | Optativa
+        Grado en Ingeniería Informática | Programación | I-s1 | Básica
+        Grado en Administración y Dirección de Empresas | Informática Aplicada | III-s1 | Optativa
     }
-    ====
-    {[Editar] | [Volver al listado]}
 }
 @endsalt
 
 @startsalt abrirAsignatura-wireframe-sinProgramas
 {
-    <b>ASIGNATURA NUEVA SIN INSTANCIAR</b>
+    <b>Asignaturas</b>
+    ====
+    Asignaturas › <b>Asignatura Nueva Sin Instanciar</b> | [Editar]
     ====
     <b>Nombre:</b> Asignatura Nueva Sin Instanciar
     <b>ECTS:</b> --
@@ -30,9 +32,7 @@
     <b>Contenido:</b>
     --
     ====
-    <b>Presente en:</b>
-    Esta Asignatura no está en ningún Programa todavía.
-    ====
-    {[Editar] | [Volver al listado]}
+    <b>Presente en</b>
+    Esta asignatura no está en ningún programa todavía.
 }
 @endsalt

@@ -52,7 +52,9 @@
 - Límite fijo de 25 filas, orden por fecha descendente. Sin filtros, sin paginación y sin vista por usuario (a diferencia del índice de autores de `consultarHistorialCambios()`).
 - Columna Usuario: el nombre del `Profesor` (o del `DirectorPrograma`, cruzado por email contra `Profesor`) cuando el email está en el catálogo; si no -- caso típico de un rechazo por cuenta no autorizada o fuera de dominio --, el email tal cual.
 - Columna Resultado: "Acceso", "Rechazado: fuera de dominio" o "Rechazado: no autorizado".
-- La pantalla de Auditoría muestra el bloque de este caso de uso junto al feed y al índice de autores de `consultarHistorialCambios()`; el wireframe de esta ficha solo dibuja el bloque nuevo.
+- La pantalla de Auditoría muestra el bloque de este caso de uso junto al feed y al índice de autores de `consultarHistorialCambios()`; el wireframe de esta ficha dibuja la cabecera, el selector de curso y el bloque nuevo, no el feed ni el índice de autores que van debajo.
+
+- Wireframe alineado con la pantalla construida (#872): título "Auditoría" sin botón "Volver al panel de administración" (el regreso es el acceso global Panel); se dibuja el selector de curso académico que precede al bloque; formato de fecha real; correo de ejemplo fuera de dominio ficticio.
 
 ## Referencias
 

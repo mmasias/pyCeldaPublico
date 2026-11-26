@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear Curso Académico**](crearCursoAcademico.md)|<sub>crearCursoAcademico()</sub>|
+|[**Crear curso académico**](crearCursoAcademico.md)|<sub>crearCursoAcademico()</sub>|
 |[**Abrir**](abrirCursoAcademico.md)|<sub>abrirCursoAcademico()</sub>|
 |[**Activar**](activarCursoAcademico.md)|<sub>activarCursoAcademico()</sub>|
 |[**Abrir panel de administración**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|

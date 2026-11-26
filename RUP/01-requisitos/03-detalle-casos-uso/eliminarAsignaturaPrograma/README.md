@@ -42,6 +42,10 @@
 
 Self-loop sobre `PROGRAMA_ABIERTO` (no sobre un listado propio de `AsignaturaPrograma`, que `Admin` no tiene -- ver [`abrirAsignaturaPrograma()`](../abrirAsignaturaPrograma/README.md)): el retoque de [`abrirPrograma()`](../abrirPrograma/README.md) añade la tabla de `AsignaturaPrograma` desde la que se dispara esta acción.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas y cabecera literal (nombre de la asignatura, nombre completo del programa y curso en romano: "Programación I -- Grado en Ingeniería Informática, I curso").
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : eliminarAsignaturaPrograma()`

@@ -27,3 +27,14 @@
     {[Confirmar desasociación] | [Cancelar]}
 }
 @endsalt
+
+@startsalt desasociarResultadoAprendizajeAsignaturaPrograma-wireframe-admin
+{
+    <b>Desasociar resultado de aprendizaje</b>
+    ====
+    <b>RAH1</b> (Programación I -- Programación, curso I)
+    Queda otro resultado de aprendizaje asociado (RAK1).
+    --
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

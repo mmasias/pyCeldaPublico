@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear Sistema de Evaluación**](crearSistemaEvaluacion.md)|<sub>crearSistemaEvaluacion()</sub>|
+|[**Crear sistema de evaluación**](crearSistemaEvaluacion.md)|<sub>crearSistemaEvaluacion()</sub>|
 |[**Abrir**](abrirSistemaEvaluacion.md)|<sub>abrirSistemaEvaluacion()</sub>|
 |[**Eliminar**](eliminarSistemaEvaluacion.md)|<sub>eliminarSistemaEvaluacion()</sub>|
 |[**Abrir materia**](abrirMateria.md)|<sub>abrirMateria()</sub>|

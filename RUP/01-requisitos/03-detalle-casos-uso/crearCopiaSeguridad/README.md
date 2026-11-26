@@ -50,6 +50,8 @@
 - **Panel en la propia pantalla**: no hay pantalla nueva; el panel con el motivo aparece sobre el listado, con el botón de creación deshabilitado mientras esté abierto.
 - **Presentación**: el botón lleva el icono 📦 en pantalla ("📦 Hacer copia de seguridad ahora"); el campo de motivo muestra el texto de ayuda "Motivo (opcional)".
 
+- Wireframe alineado con la pantalla construida (#872): botones de acción en la cabecera junto al título, sin "Volver al panel de administración"; bajo el panel se dibujan el interruptor "Mostrar todos", el contador y la columna Salud que la tabla tiene siempre.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `COPIAS_SEGURIDAD_ABIERTO --> COPIAS_SEGURIDAD_ABIERTO : crearCopiaSeguridad()`

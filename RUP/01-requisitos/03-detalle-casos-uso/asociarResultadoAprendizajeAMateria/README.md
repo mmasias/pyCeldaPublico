@@ -40,7 +40,7 @@
 
 Primer escalón de la cascada `Programa`->`Materia`->`AsignaturaPrograma`. A diferencia de `asociarMetodologiaDocenteAMateria()`, aquí no hace falta un `editarAsociacionX()`: `Materia o-u- ResultadoAprendizaje` es agregación simple, sin clase de asociación ni atributo propio que editar -- el trío se queda en par (`asociar`/`desasociar`), cerrado así en la discussion [#27](https://github.com/mmasias/pyCelda/discussions/27). El selector solo ofrece `ResultadoAprendizaje` del `Programa` todavía no asociados a esta `Materia`. RAK2 es dato real (issue [#23](https://github.com/mmasias/pyCelda/issues/23)); qué `ResultadoAprendizaje` concretos usa "Programación" es ilustrativo.
 
-**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha y mismas reglas, con wireframe propio de Admin (variante `wireframe-admin`); es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
 
 
 **Texto del selector (v0.11.27)**: cada opción muestra `código -- extracto` de la descripción (unos 80 caracteres, cortado en un espacio, con "..."; `extractoResultado()` en `frontend/src/resultadoAprendizaje.ts`, común a materia y asignatura, Director y Admin), y bajo el selector se ve el texto completo del elegido. Las descripciones van de unos pocos caracteres a varios miles: ni la descripción entera ni el `tipo` (todos `General`) servían para elegir.
@@ -48,6 +48,7 @@ Primer escalón de la cascada `Programa`->`Materia`->`AsignaturaPrograma`. A dif
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): título "Asociar resultado de aprendizaje" con Cancelar en la cabecera (Volver si no quedan resultados disponibles), línea "Programa: GII -- Grado en Ingeniería Informática", nombre de la materia, selector en la misma línea que su etiqueta con el extracto real de `extractoResultado()`, texto completo del elegido en gris de nota (no cursiva) y Asociar tras una línea separadora.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin` del formulario: mismo contenido que el del director (Cancelar en la cabecera, línea "Programa: GII -- ...", materia, selector con extracto, texto completo del elegido, Asociar), sin etiqueta de vista.
 
 ## Referencias
 

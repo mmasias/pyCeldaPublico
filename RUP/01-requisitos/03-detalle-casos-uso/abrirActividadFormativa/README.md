@@ -45,6 +45,7 @@ Ficha de solo lectura con `codigo` y `nombre` (issue [#772](https://github.com/m
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista, cabecera con el nombre del programa y pestañas del programa (activa Actividades formativas); miga "Actividades formativas › AD1" con "Editar" a su derecha (antes al pie); sección "Nombre" (texto en cursiva) y nota sobre la edición de horas, que en pantalla es texto normal, no cursiva. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja la ficha en Admin: miga de estructura (Universidades › universidad › facultad), nombre del programa con Panel y Cerrar sesión a la derecha y las dos filas de pestañas del programa de Admin (activa Actividades formativas), sin etiqueta de vista; miga "Actividades formativas › AD1" con "Editar" a la derecha, sección "Nombre" y la nota sobre la edición de horas.
 
 ## Referencias
 

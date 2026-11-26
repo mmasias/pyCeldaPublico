@@ -43,6 +43,7 @@ Sin `<<choice>>`: `AsignaturaPrograma` es el último escalón, nada depende de e
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Desasociar competencia", línea "Programa: GII -- ...", contexto "(asignatura -- materia, curso I)" y descripción completa en cursiva.
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin es la misma confirmación sin etiqueta de vista: "Desasociar competencia" sin botones en la cabecera, línea "Programa: GII -- ...", contexto de la asignatura, descripción y Confirmar desasociación/Cancelar al pie.
 
 ## Referencias
 

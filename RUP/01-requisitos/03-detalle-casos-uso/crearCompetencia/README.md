@@ -48,6 +48,7 @@ La salida lleva a la ficha de la competencia creada (`<<include>>` de `editarCom
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): título "Crear competencia", línea "Programa: GII -- Grado en Ingeniería Informática" y botones Crear/Cancelar tras una línea separadora. Cancelar con cambios sin guardar pide confirmación antes de volver al listado.
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin es el mismo formulario sin etiqueta de vista: título "Crear competencia" sin botones en la cabecera, línea "Programa: GII -- ...", campos y Crear/Cancelar al pie.
 
 ## Referencias
 

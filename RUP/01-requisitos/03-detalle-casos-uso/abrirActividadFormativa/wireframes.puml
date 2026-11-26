@@ -13,3 +13,18 @@
     asignatura, se editan desde la materia y desde la asignatura.
 }
 @endsalt
+
+@startsalt abrirActividadFormativa-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [<b>Actividades formativas</b>]}
+    ====
+    {Actividades formativas › <b>AD1</b> | [Editar]}
+    <b>Nombre</b>
+    <i>Actividad Dirigida: Clases de teoría</i>
+    Las horas y la presencialidad de cada materia, y las horas de cada
+    asignatura, se editan desde la materia y desde la asignatura.
+}
+@endsalt

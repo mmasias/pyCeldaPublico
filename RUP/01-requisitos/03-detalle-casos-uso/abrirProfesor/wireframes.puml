@@ -1,16 +1,38 @@
 @startsalt abrirProfesor-wireframe
 {
-    <b>DR. MANUEL MASÍAS VERGARA</b>
+    <b>Profesores</b>
+    ====
+    { Profesores › <b>Dr. Carlos Navarro Ruiz</b> | [ Editar ] }
     ====
     <b>Nombre:</b> Dr. Carlos Navarro Ruiz
     <b>Email:</b> carlos.navarro@ejemplo.edu
     ====
-    <b>Programas que dirige:</b>
-    {
-        {GII -- Grado en Ingeniería Informática | [Quitar]}
+    { <b>Programas que dirige</b> | [ Nombrar director de programa ] }
+    {#
+        <b>Programa</b> | .
+        GII -- Grado en Ingeniería Informática | [Quitar]
     }
-    [ <b>+ Nombrar director de Programa</b> ]
     ====
-    {[Editar] | [Volver al listado]}
+    <b>Asignaturas asignadas</b>
+    {#
+        <b>Asignatura</b> | <b>Programa</b>
+        Programación I | GII -- Grado en Ingeniería Informática
+        Programación II | GII -- Grado en Ingeniería Informática
+        Estructuras de datos | GII -- Grado en Ingeniería Informática
+    }
+    ====
+    <b>Perfil académico</b>
+    <b>Validado:</b> Sí
+    <b>ORCID:</b> 0000-0000-0000-0000
+    <b>Enlace al CVN:</b> —
+    <b>Google Scholar:</b> —
+    <b>Biografía:</b> Doctor en Ingeniería Informática, docente de programación desde 2010.
+    <b>Doctorado:</b> Sí -- Universidad Europea del Atlántico (2012)
+    <b>Programa de doctorado:</b> Doctorado en Ingeniería Informática
+    <b>Mención internacional:</b> No
+    <b>Acreditación (escala SIIU):</b> 2 -- Prof. de universidad privada (ANECA)
+    Profesora o Profesor de Universidad Privada o Contratado Doctor o Permanente laboral o ...
+    <b>Sexenios de investigación (CNEAI):</b> 1 (último: 2021)
+    <b>Quinquenios docentes:</b> 2 (último: 2023)
 }
 @endsalt

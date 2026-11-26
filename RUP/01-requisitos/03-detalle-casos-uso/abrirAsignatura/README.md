@@ -41,6 +41,10 @@
 
 **Retocado el wireframe al cerrar la tanda #486/#487/#488/#492 (issue [#496](https://github.com/mmasias/pyCelda/issues/496)), sin tocar la especificación**: el detalle gana la sección "Presente en" -- tabla con cada `AsignaturaPrograma` que instancia esta `Asignatura` del catálogo (`Programa`, `Materia`, `Curso`/`Semestre`, `Carácter`), resuelta vía `filter_by(asignatura_id=...)` (reverse-lookup, precedente directo en `AsignaturaProgramaRepository.listar_hermanas()`) -- issue [#488](https://github.com/mmasias/pyCelda/issues/488). Caso borde de una `Asignatura` sin ninguna `AsignaturaPrograma` todavía (recién creada, "Asignatura Nueva Sin Instanciar" en el segundo bloque `@startsalt`): mensaje explícito ("no está en ningún Programa todavía"), no una tabla vacía ni un error.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): cabecera "Asignaturas" con miga "Asignaturas › <asignatura>" y "Editar" a su derecha (se retira "Volver al listado": la vuelta es la miga); sección "Presente en" con el nombre del programa sin sigla y mensaje literal en la variante sin programas.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTO : abrirAsignatura()`

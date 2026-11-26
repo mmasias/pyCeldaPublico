@@ -22,3 +22,27 @@
     }
 }
 @endsalt
+
+@startsalt abrirCompetencia-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [Materias] | [Resultados de aprendizaje] | [<b>Competencias</b>] | [Metodologías] | [Actividades formativas]}
+    ====
+    {Competencias › <b>CE7</b> | [Editar]}
+    <b>Tipo:</b> Específica
+    --
+    <b>Descripción</b>
+    <i>Conocimiento y aplicación de los principios fundamentales y técnicas</i>
+    <i>básicas de la programación paralela, concurrente, distribuida y de</i>
+    <i>tiempo real.</i>
+    --
+    <b>Distribución</b>
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Programación | Programación II
+        . | Sistemas operativos
+    }
+}
+@endsalt

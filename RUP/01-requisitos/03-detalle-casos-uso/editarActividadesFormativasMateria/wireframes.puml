@@ -20,3 +20,23 @@
     {[Guardar] | [Cancelar]}
 }
 @endsalt
+
+@startsalt editarActividadesFormativasMateria-wireframe-admin
+{
+    <b>Editar actividades formativas -- materia</b>
+    ====
+    <b>Programación</b>
+    {#
+        <b>Actividad formativa | <b>Horas | <b>Presencialidad (%)
+        AD1 -- Actividad Dirigida: Clases de teoría | "60  " | "100 "
+        AD2 -- Actividad Dirigida: Clases prácticas | "54  " | "100 "
+        AS1 -- Actividad Supervisada: Tutorías | "12  " | "50  "
+        AA1 -- Actividad Autónoma: Estudio personal | "120 " | "0   "
+        AA2 -- Actividad Autónoma: Elaboración de trabajos | "54  " | "0   "
+    }
+    <b>Total:</b> 300 h -- la memoria fija 12 ECTS, 300 h a 25 h por ECTS (cuadra).
+    La regla "actividades formativas de la materia = suma de las de sus asignaturas" es informativa, no bloquea guardar.
+    --
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

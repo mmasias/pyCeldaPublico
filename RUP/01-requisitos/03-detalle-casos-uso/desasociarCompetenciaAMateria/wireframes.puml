@@ -25,3 +25,15 @@
     [Confirmar desasociación]
 }
 @endsalt
+
+@startsalt desasociarCompetenciaAMateria-wireframe-admin
+{
+    {<b>Desasociar competencia</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>CG1</b> (Programación)
+    Ninguna asignatura de programa de esta materia la usa.
+    --
+    [Confirmar desasociación]
+}
+@endsalt

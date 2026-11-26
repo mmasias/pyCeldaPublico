@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Bloqueada**|**Confirmación**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/wireframe-bloqueada.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/wireframe-confirmacion.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAMateria/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

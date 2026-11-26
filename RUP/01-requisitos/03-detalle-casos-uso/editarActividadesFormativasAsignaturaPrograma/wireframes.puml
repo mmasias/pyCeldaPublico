@@ -26,3 +26,22 @@
     {[Guardar] | [Cancelar]}
 }
 @endsalt
+
+@startsalt editarActividadesFormativasAsignaturaPrograma-wireframe-admin
+{
+    <b>Editar actividades formativas -- asignatura</b>
+    ====
+    <b>Programación I</b> (6 ECTS)
+    {#
+        <b>Actividad formativa                          | <b>Horas | <b>% presencialidad (de la materia)
+        AD1 -- Actividad Dirigida: Clases de teoría          | "30  "       | 100
+        AD2 -- Actividad Dirigida: Clases prácticas          | "27  "       | 100
+        AS1 -- Actividad Supervisada: Tutorías               | "6   "       | 50
+        AA1 -- Actividad Autónoma: Estudio personal          | "60  "       | 0
+        AA2 -- Actividad Autónoma: Elaboración de trabajos   | "27  "       | 0
+    }
+    <b>Horas de la asignatura:</b> 150 de 150 (6 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
+    --
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

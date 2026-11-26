@@ -43,11 +43,12 @@
 
 Confirmación con advertencia condicional, no bloqueo: si el `ResultadoAprendizaje` que se desasocia es el único de esa `AsignaturaPrograma`, el sistema lo advierte -- la guía docente que se genere sobre ella podría quedar incompleta -- pero permite confirmar igual, mismo criterio y misma discussion de cierre que [`desasignarProfesorAsignaturaPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/desasignarProfesorAsignaturaPrograma/README.md). RAK1/RAH1 para normal/advertencia son ilustrativos: la asignación real RA-`AsignaturaPrograma` no está en el seed extraído.
 
-**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
+**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha y mismas reglas, con wireframe propio de Admin (variante `wireframe-admin`); es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Desasociar resultado de aprendizaje", línea "Programa: GII -- ...", contexto "(asignatura -- materia, curso I)", textos en minúscula como en pantalla; el aviso naranja no lleva ⚠.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin` de la confirmación normal: igual que la del director pero sin etiqueta de vista y **sin** la línea "Programa: GII -- ..." (la pantalla de Admin no la pinta); la advertencia de Admin tiene la misma diferencia y no se duplica.
 
 ## Referencias
 

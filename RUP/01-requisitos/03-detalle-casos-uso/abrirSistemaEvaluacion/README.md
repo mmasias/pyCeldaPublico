@@ -40,6 +40,10 @@
 
 **`codigo` (issue [#772](https://github.com/mmasias/pyCelda/issues/772))**: el detalle muestra también el código del sistema en la memoria verificada (p. ej. `E1`), o `--` si aún no lo tiene; `descripcion` es la denominación literal de la memoria (ver [`crearSistemaEvaluacion()`](../crearSistemaEvaluacion/README.md)).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): cabecera del programa y miga "Materias › <materia> › Sistemas de evaluación › <tipo>" con "Editar" a la derecha; se retira "Volver al listado" (la vuelta es la miga).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMAS_EVALUACION_ABIERTO --> SISTEMA_EVALUACION_ABIERTO : abrirSistemaEvaluacion()`

@@ -27,7 +27,7 @@ Traducción a clases de análisis del caso de uso [`abrirUniversidad()`](/RUP/01
 
 **Responsabilidades:**
 - presenta el `nombre` de la `Universidad`.
-- ofrece la navegación a editar, a volver al listado y a las `Facultad` que la componen (`[Editar]`/`[Ver Facultades]`/`[Volver al listado]`).
+- presenta en la misma pantalla el listado de las `Facultad` que la componen y ofrece la navegación a editar, a crear `Facultad`, a abrir cada `Facultad` y, por la miga, a volver al listado de `Universidad` (`[Editar]`/`[Crear facultad]`/`[Abrir]`/miga `Universidades`).
 
 **Colaboraciones:**
 - **Entrada:** `:UNIVERSIDADES_ABIERTO` -- el `Admin` solicita abrir una `Universidad` del listado.

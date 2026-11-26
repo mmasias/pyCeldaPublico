@@ -34,7 +34,7 @@ Es el destino de la rama `Admin` de [`iniciarSesion()`](/RUP/03-diseño/casos-us
 
 ## Participantes
 
-- **Vista**: `PanelAdministracion.tsx` (React, no construida en esta rebanada) -- presenta los accesos (`Universidades`, `Asignaturas`, `Metodologías docentes`, `Actividades formativas`, `Profesores`, `Cursos académicos`, `Copias de seguridad`, `Auditoría`, `Generar guías PDF`) como rutas del propio frontend (`react-router-dom`), sin `fetch` a la API.
+- **Vista**: `PanelAdministracion.tsx` (React, no construida en esta rebanada) -- presenta los accesos (`Universidades`, `Asignaturas`, `Profesores`, `Cursos académicos`, `Copias de seguridad`, `Auditoría`, `Generar guías PDF`) como rutas del propio frontend (`react-router-dom`), sin `fetch` a la API.
 - **API / Modelo / Repositorio**: ninguno -- no hay endpoint que diseñar para este CU.
 
 ## Decisiones de diseño

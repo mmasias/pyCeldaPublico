@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`activarCursoAcademico()`](/RUP/01-requisitos/03-detalle-casos-uso/activarCursoAcademico/README.md): combina el patrón `<<choice>>` bloqueante de [`eliminarFacultad()`](../eliminarFacultad/README.md) (acción de conjunto, self-loop sobre el listado, sin pantalla de confirmación intermedia) con el efecto colateral de creación masiva de [`crearAsignaturaPrograma()`](../crearAsignaturaPrograma/README.md) -- pero aquí no es una `Guia`, son todas: una por cada `AsignaturaPrograma` con `estado="Activo"` de la institución. Es el caso de uso de mayor alcance del catálogo: segunda mitad de [#222](https://github.com/mmasias/pyCelda/issues/222) (la primera, [`crearCursoAcademico()`](../crearCursoAcademico/README.md), ya construida).
+Traducción a clases de análisis del caso de uso [`activarCursoAcademico()`](/RUP/01-requisitos/03-detalle-casos-uso/activarCursoAcademico/README.md): combina el patrón `<<choice>>` bloqueante de [`eliminarFacultad()`](../eliminarFacultad/README.md) (acción de conjunto, self-loop sobre el listado), precedido de una confirmación con advertencia que el `Admin` puede cancelar, con el efecto colateral de creación masiva de [`crearAsignaturaPrograma()`](../crearAsignaturaPrograma/README.md) -- pero aquí no es una `Guia`, son todas: una por cada `AsignaturaPrograma` con `estado="Activo"` de la institución. Es el caso de uso de mayor alcance del catálogo: segunda mitad de [#222](https://github.com/mmasias/pyCelda/issues/222) (la primera, [`crearCursoAcademico()`](../crearCursoAcademico/README.md), ya construida).
 
 <div align=center>
 

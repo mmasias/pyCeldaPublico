@@ -41,12 +41,12 @@ Bajada a diseño del caso de análisis [`quitarDirectorPrograma()`](/RUP/02-anal
 
 ## Decisiones de diseño
 
-- **El `<<choice>>` se resuelve dentro del `DELETE`, sin pantalla de confirmación dedicada** -- divergencia deliberada del wireframe de Requisitos (que anticipaba pantallas confirmación/bloqueo propias): la confirmación vive implícita en el click del botón de la fila, y el bloqueo llega como `409` con `detail="Profesor es el único director de este Programa"`, presentado tal cual. La invariante queda en el servidor: aunque un cliente dispare el `DELETE` a ciegas, el endpoint cuenta los directores antes de retirar.
+- **El `<<choice>>` se resuelve dentro del `DELETE`, sin pantalla de confirmación dedicada** -- el wireframe de Requisitos ya lo dibuja así, sin pantallas de confirmación ni de bloqueo propias: la confirmación vive implícita en el click del botón de la fila, y el bloqueo llega como `409` con `detail="Profesor es el único director de este Programa"`, presentado tal cual. La invariante queda en el servidor: aunque un cliente dispare el `DELETE` a ciegas, el endpoint cuenta los directores antes de retirar.
 - **`404`, no `409`, para "no dirige ese Programa"**: pedir la baja de un rol que no se tiene es un problema de identificador (la fila de `programas_directores_programa` no existe), no un conflicto de estado -- mismo reparto que el `404` de recurso inexistente.
 - **`contar_directores(programa_id) == 1` como condición del bloqueo**: el conteo exacto, no `<= 1` -- llegar aquí ya implica (vía `dirige()`) que este director es una de las filas; si el total es 1, es él.
 - **La fila `DirectorPrograma` sobrevive a la retirada**: un `DirectorPrograma` sin ningún `Programa` sigue resolviendo el email en el login y deja de ser bloqueo en `eliminarProfesor()` -- retirar el rol no es borrar la cuenta.
 - **`204 No Content`**: la mutación es la retirada de una fila M2M, no hay entidad que devolver -- la Vista refresca el detalle con su `GET`.
-- **La rama "cancelada" no genera llamada HTTP**: no pulsar el botón es la cancelación -- se modela como ausencia de llamada, igual que en los demás CU con confirmación.
+- **Sin rama "cancelada"**: no pulsar el botón es no solicitar -- no hay llamada HTTP que modelar.
 - **Autorización de `Admin`: `Depends(require_admin)`** -- escritura sobre el rol que gobierna el acceso del hilo `DirectorPrograma`, explícito.
 - **Sin capa Service**: Router delgado -> Repository.
 

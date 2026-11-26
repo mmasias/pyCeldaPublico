@@ -11,3 +11,15 @@
     {[Confirmar desasociación] | [Cancelar]}
 }
 @endsalt
+
+@startsalt desasociarCompetenciaAsignaturaPrograma-wireframe-admin
+{
+    <b>Desasociar competencia</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>CE7</b> (Programación II -- Programación, curso I)
+    <i>Conocimiento y aplicación de los principios fundamentales y técnicas básicas de la programación paralela, concurrente, distribuida y de tiempo real.</i>
+    --
+    {[Confirmar desasociación] | [Cancelar]}
+}
+@endsalt

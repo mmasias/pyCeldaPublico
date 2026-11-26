@@ -1,18 +1,25 @@
 @startsalt consultarHistorialCambios-wireframe
 {
-    { <b>AUDITORÍA                                    [ Volver al panel de administración ] }
+    <b>Auditoría</b>
     ====
+    { <b>Curso académico:</b> | ^Todos los cursos^ }
+    <b>Últimos accesos</b>
+    {#
+        <b>Fecha | <b>Usuario | <b>Resultado
+        15/9/2026, 14:48:00 | Dr. Carlos Navarro Ruiz | Acceso
+        14/9/2026, 18:03:00 | Dr. Pablo Ortega Sanz | Acceso
+    }
     {
     <b>Últimas 50 acciones | <b>Autores
     {#
         <b>Fecha | <b>Guía | <b>Campo | <b>Cambio | <b>Autor | <b>Comentario
-        15/9/2026, 14:48 | Programación II@GII | Contenido | Repaso... -> Repaso... | Dr. Carlos Navarro Ruiz | temario editado
-        8/9/2026, 11:22 | Programación I@GII | Estado | EnRevision -> Aprobada | Dr. Carlos Navarro Ruiz | aprobada sin incidencia
+        15/9/2026, 14:48:00 | Programación II@GII | Contenido | Repaso... → Repaso... | Dr. Carlos Navarro Ruiz | temario editado
+        8/9/2026, 11:22:00 | Programación I@GII | Estado | EnRevision → Aprobada | Dr. Carlos Navarro Ruiz | aprobada sin incidencia
     } | {
         [ Dr. Carlos Navarro Ruiz ]
         [ Dr. Pablo Ortega Sanz ]
         [ Admin ]
-        [ Juan Luis Vidal ]
+        [ Dr. Javier Molina Ríos ]
     }
     }
 }
@@ -20,12 +27,13 @@
 
 @startsalt consultarHistorialCambios-wireframe-autor
 {
-    { <b>Actividad de Dr. Carlos Navarro Ruiz     [ Volver a Auditoría ] }
+    <b>Auditoría</b>
     ====
+    Auditoría › <b>Actividad de Dr. Carlos Navarro Ruiz</b>
     {#
         <b>Fecha | <b>Guía | <b>Campo | <b>Cambio | <b>Rol | <b>Comentario
-        15/9/2026, 14:48 | Programación II@GII | Contenido | Repaso... -> Repaso... | Profesor | temario editado
-        8/9/2026, 11:22 | Programación I@GII | Estado | EnRevision -> Aprobada | Director | aprobada sin incidencia
+        15/9/2026, 14:48:00 | Programación II@GII | Contenido | Repaso... → Repaso... | Profesor | temario editado
+        8/9/2026, 11:22:00 | Programación I@GII | Estado | EnRevision → Aprobada | Director | aprobada sin incidencia
     }
 }
 @endsalt

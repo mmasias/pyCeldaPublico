@@ -25,3 +25,15 @@
     [Confirmar desasociación]
 }
 @endsalt
+
+@startsalt desasociarMetodologiaDocenteMateria-wireframe-admin
+{
+    {<b>Desasociar metodología docente</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>MD5 -- Aprendizaje orientado a proyectos</b> (Programación)
+    Sin asignaturas-en-programa de esta materia usándola.
+    --
+    [Confirmar desasociación]
+}
+@endsalt

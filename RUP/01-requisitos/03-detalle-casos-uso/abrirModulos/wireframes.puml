@@ -1,14 +1,17 @@
 @startsalt abrirModulos-wireframe
 {
-    <b>MÓDULOS -- GRADO EN INGENIERÍA INFORMÁTICA</b>
+    Universidades › Universidad Europea del Atlántico (UNEATLANTICO) › Escuela Politécnica Superior
+    <b>Grado en Ingeniería Informática</b>
     ====
+    { [ Ficha ] | [ Guías ] }
+    { [ <b>Módulos</b> ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] }
+    ====
+    { <b>Módulos</b> | [ Crear módulo ] }
     {#
         <b>Código | <b>Nombre | <b>Descripción | <b>Nº de materias | . | .
         M1 | Formación básica | Materias de formación básica de la rama... | 4 | [Editar] | [Eliminar]
         M2 | Común a la rama de informática | . | 7 | [Editar] | [Eliminar]
         M5 | Trabajo fin de grado | . | 0 | [Editar] | [Eliminar]
     }
-    ====
-    [ <b>+ Crear módulo</b> ]
 }
 @endsalt

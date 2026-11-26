@@ -33,3 +33,16 @@
     [Confirmar eliminación]
 }
 @endsalt
+
+@startsalt eliminarResultadoAprendizaje-wireframe-admin
+{
+    {<b>Eliminar resultado de aprendizaje</b> | [Cancelar]}
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>RAH2 -- Habilidades o destrezas</b>
+    <i>Aplicar métodos matemáticos avanzados en la...</i>
+    Esta acción no se puede deshacer. Sin asignaciones a materias ni a asignaturas del programa.
+    --
+    [Confirmar eliminación]
+}
+@endsalt

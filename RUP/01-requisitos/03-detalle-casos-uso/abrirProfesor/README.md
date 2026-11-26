@@ -38,7 +38,11 @@
 
 </div>
 
-`PROFESOR_ABIERTO` también aloja `definirDirectorPrograma()`/`quitarDirectorPrograma()` (self-loop, ver diagrama de contexto) -- casos de uso de una capa posterior (L2), sin especificación propia todavía. Este wireframe no anticipa esos botones; se añadirán a esta misma pantalla cuando se detallen.
+`PROFESOR_ABIERTO` también aloja `definirDirectorPrograma()`/`quitarDirectorPrograma()` (self-loop, ver diagrama de contexto) -- casos de uso con especificación propia; sus botones ("Nombrar director de programa" y "Quitar" por programa) aparecen en esta misma pantalla.
+
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): cabecera "Profesores" con miga "Profesores › <profesor>" y botón "Editar" a su derecha (sin "Volver al listado"); "Programas que dirige" como tabla con "Quitar" por fila y "Nombrar director de programa" junto al título de la sección; añadidas las secciones "Asignaturas asignadas" y "Perfil académico". La foto del perfil, que solo aparece si el profesor la informó, no se dibuja.
 
 ## Referencias
 

@@ -1,12 +1,11 @@
 @startsalt abrirUniversidades-wireframe
 {
-    <b>UNIVERSIDADES</b>
+    <b>Universidades</b>
     ====
+    [Crear universidad]
     {#
         <b>Nombre | <b>Facultades | .
         Universidad Europea del Atlántico (UNEATLANTICO) | 3 | [Abrir]
     }
-    ====
-    [ <b>+ Crear Universidad</b> ]
 }
 @endsalt

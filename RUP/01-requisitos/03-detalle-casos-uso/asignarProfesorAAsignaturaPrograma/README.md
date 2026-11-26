@@ -56,6 +56,8 @@
 
 - "Responsable" nace desmarcado (issue [#829](https://github.com/mmasias/pyCelda/issues/829), decisión de Manuel, 2026-11-17): al asignar, la pantalla propone "Imparte" marcado y "Responsable" sin marcar, y el `POST` sin marcas asigna `imparte=true`, `es_responsable=false`. El `server_default "1"` de las columnas en el modelo y en la migración no cambia (cambiar un DEFAULT en SQLite exige reconstruir la tabla, y las inserciones de la aplicación nombran siempre las dos marcas).
 
+- Wireframe alineado con la pantalla construida (#872): "Cancelar" en la cabecera, asignatura como "<asignatura> -- <materia>, curso <romano>" y textos en minúscula.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : asignarProfesorAAsignaturaPrograma()`

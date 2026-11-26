@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Completo**|**Semestre bloqueado**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/wireframe-completo.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/wireframe-semestre-bloqueado.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarAsignaturaPrograma/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

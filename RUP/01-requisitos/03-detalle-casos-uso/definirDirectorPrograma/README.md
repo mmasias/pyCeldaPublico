@@ -43,6 +43,10 @@
 
 **Segunda entrada desde `PROGRAMA_ABIERTO`, issue [#492](https://github.com/mmasias/pyCelda/issues/492)** -- la "extensión trivial futura" que la discussion #18 dejó pendiente: **flujo alternativo del mismo caso de uso**, no uno nuevo (mismo objetivo de actor -- nombrar un `Profesor` director de un `Programa` --, misma postcondición, mismo endpoint `POST /profesores/{profesor_id}/directores-programa`). Lo único que cambia es qué dato ya se conoce de antemano y cuál hay que seleccionar: desde el Profesor se selecciona el Programa (selector excluye los que ya dirige); desde el Programa se selecciona el Profesor (selector nuevo, `GET /admin/programas/{programa_id}/profesores-disponibles-para-dirigir`, reverso exacto del que ya existía). Sin pantalla propia en la nueva entrada: `ProgramaAdmin.tsx` la resuelve inline en la propia portada del Programa (ver retoque de [`abrirPrograma()`](../abrirPrograma/README.md)), a diferencia de la entrada desde el Profesor que sí navega a una pantalla dedicada (`DefinirDirectorPrograma.tsx`).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): desde el Profesor, "Cancelar" en la cabecera y textos en minúscula; desde el Programa, cabecera de Admin del programa (miga de estructura y pestañas) y sección "Directores" junto a los datos de la ficha. Sin variante para "No hay programas disponibles: el profesor ya dirige todos." (con botón "Volver").
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROFESOR_ABIERTO --> PROFESOR_ABIERTO : definirDirectorPrograma()`, y ahora también `PROGRAMA_ABIERTO --> PROGRAMA_ABIERTO : definirDirectorPrograma()` (issue #492)

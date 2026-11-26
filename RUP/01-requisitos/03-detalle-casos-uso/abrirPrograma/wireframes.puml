@@ -1,30 +1,25 @@
 @startsalt abrirPrograma-wireframe
 {
-    <b>GII -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[<b>Ficha</b>] | [Guías]}
+    {[Módulos] | [Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas]}
     ====
-    <b>Código:</b> GII
-    <b>Nombre:</b> Grado en Ingeniería Informática
-    <b>Estado:</b> Vigente
-    <b>Código RUCT:</b> 25032182025111701
-    <b>Denominación oficial:</b> Graduado o Graduada en Ingeniería Informática por la Universidad Europea del Atlántico
-    <b>Norma:</b> RD 1393/2007
+    {<b>Ficha</b> | [Editar]}
+    {
+        <b>Código:</b> GII | <b>Directores:</b>
+        <b>Estado:</b> Vigente | {Dr. Carlos Navarro Ruiz | [Quitar]}
+        <b>Código RUCT:</b> 25032182025111701 | {^Seleccione un profesor^ | [Nombrar]}
+        <b>Denominación oficial:</b> Graduado o Graduada en Ingeniería Informática por la Universidad Europea del Atlántico | .
+        <b>Norma:</b> RD 1393/2007 | .
+    }
     ====
-    <b>Asignaturas del programa:</b>
+    {<b>Asignaturas del programa</b> | [Crear asignatura del programa]}
     {#
-        <b>Asignatura | <b>Materia | <b>Curso | <b>Carácter | . | .
-        Programación I | Programación | I-s1 | Básica | [Abrir] | [Eliminar]
+        <b>Asignatura | <b>Materia | <b>Curso | <b>Carácter | <b>Estado | . | .
+        Programación I | Programación | I-s1 | Básica | Vigente | [Abrir] | [Eliminar]
+        Programación II | Programación | I-s2 | Obligatoria | Vigente | [Abrir] | [Eliminar]
     }
-    [ <b>+ Crear AsignaturaPrograma</b> ]
-    ====
-    <b>Directores:</b>
-    {
-        Dra. Ana Pérez Gómez | [Quitar]
-    }
-    {
-        ^Dr. Luis Gómez Ruiz^ | [Nombrar]
-    }
-    ====
-    {[Editar] | [Volver al listado]}
 }
 @endsalt
 

@@ -14,3 +14,18 @@
     {[Guardar] | [Cancelar]}
 }
 @endsalt
+
+@startsalt editarAsociacionMetodologiaDocenteMateria-wireframe-admin
+{
+    <b>Editar asociación -- metodología docente</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    <b>Programación</b>
+    <b>Código:</b> MD5
+    <b>Descripción:</b> Aprendizaje orientado a proyectos
+    <b>Descripción propia:</b>
+    "Incluye trabajo por sprints                       "
+    --
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

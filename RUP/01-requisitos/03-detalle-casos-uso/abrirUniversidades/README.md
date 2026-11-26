@@ -40,6 +40,10 @@
 
 **Retocado el wireframe al cerrar la tanda #486/#487/#488/#492 (issue [#496](https://github.com/mmasias/pyCelda/issues/496)), sin tocar la especificación**: el listado gana la columna "Facultades" -- contador derivado (`COUNT` agregado, sin N+1) del número de `Facultad` de cada `Universidad`, issue [#487](https://github.com/mmasias/pyCelda/issues/487). Mismo patrón de campo calculado ya usado en `elegible_para_activar`/`tiene_guia_asociada`/`num_asignaturas_programa`, sin columna nueva en el modelo de dominio.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título "Universidades", botón "Crear universidad" sobre la tabla (antes debajo), sin separadores.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> UNIVERSIDADES_ABIERTO : abrirUniversidades()`

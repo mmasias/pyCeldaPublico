@@ -27,7 +27,7 @@ deactivate API
 alt actor DirectorPrograma (ListaGuiasDelPrograma modo="director")
   Vista --> Actor: listado con [Abrir] por fila + [Notificar guías actualizadas]
 else actor Admin (modo="admin")
-  Vista --> Actor: listado con [Previsualizar] + [Descargar PDF] (deshabilitado si !tiene_pdf), sin [Abrir] ni [Notificar]
+  Vista --> Actor: listado con [Descargar PDF] si Aprobada y tiene_pdf, si no [Previsualizar]; + [Planificación]; sin [Abrir] ni [Notificar]
 end
 deactivate Vista
 

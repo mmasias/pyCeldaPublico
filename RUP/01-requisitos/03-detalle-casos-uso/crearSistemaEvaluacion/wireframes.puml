@@ -29,3 +29,33 @@
     {[Crear] | [Cancelar]}
 }
 @endsalt
+
+@startsalt crearSistemaEvaluacion-wireframe-admin
+{
+    <b>Crear sistema de evaluación</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {
+        <b>Código:</b> | "E1      " | <i>(el de la memoria verificada)</i>
+    }
+    {
+        <b>Tipo (*):</b> | ^Evaluación continua^
+    }
+    <b>Descripción:</b>
+    {+
+        "                                                            "
+        "                                                            "
+        "                                                            "
+        "                                                            "
+    }
+    {
+        <b>Ponderación mínima (*):</b> | "      " | %
+    }
+    {
+        <b>Ponderación máxima (*):</b> | "      " | %
+    }
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
+}
+@endsalt

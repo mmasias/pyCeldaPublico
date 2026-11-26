@@ -40,6 +40,10 @@
 
 Único caso de los 14 de este lote sin el patrón C→U (crear mínimo, transferir a editar): `Profesor` solo tiene dos atributos (`nombre`, `email`) y ambos son necesarios para que el alta tenga sentido -- no hay nada que diferir a `editarProfesor()`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): añadido el desplegable obligatorio "Universidad" (preseleccionado cuando solo hay una) y el botón "Cancelar" junto a "Crear".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROFESORES_ABIERTO --> PROFESOR_ABIERTO : crearProfesor()`

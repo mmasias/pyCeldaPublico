@@ -1,9 +1,12 @@
 @startsalt abrirFacultad-wireframe
 {
-    <b>ESCUELA POLITÉCNICA SUPERIOR</b>
+    <b>Universidades</b>
     ====
-    <b>Nombre:</b> Escuela Politécnica Superior
-    ====
-    {[Editar] | [Ver Programas] | [Volver al listado]}
+    {Universidades › Universidad Europea del Atlántico (UNEATLANTICO) › <b>Escuela Politécnica Superior</b> | [Editar] | [Crear programa]}
+    {#
+        <b>Código | <b>Nombre | <b>Estado | . | .
+        GII | Grado en Ingeniería Informática | Vigente | [Abrir] | [Eliminar]
+        GIOI | Grado en Ingeniería de Organización Industrial | Vigente | [Abrir] | [Eliminar]
+    }
 }
 @endsalt

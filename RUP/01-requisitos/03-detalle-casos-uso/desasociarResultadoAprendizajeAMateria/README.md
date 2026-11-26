@@ -43,11 +43,12 @@
 
 **Retocado (issue #179, 2026-09-05)**: el mensaje de bloqueo nombra las `AsignaturaPrograma` concretas en uso, en vez de un genérico "está en uso en asignaturas-en-programa de esta materia" -- mismo patrón ya construido para [`eliminarResultadoAprendizaje()`](/RUP/01-requisitos/03-detalle-casos-uso/eliminarResultadoAprendizaje/README.md) (PR #178), auditado y replicado aquí.
 
-**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición con paridad completa respecto a `DirectorPrograma` -- las dos vistas de la materia son espejo en responsabilidades, para que cualquiera de los dos pueda corregir. Misma ficha y mismas reglas, con wireframe propio de Admin (variante `wireframe-admin`); es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`.
 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): en las dos variantes, título "Desasociar resultado de aprendizaje" y línea "Programa: GII -- Grado en Ingeniería Informática". En la bloqueada, aviso "⛔ No se puede desasociar" (antes ⚠ y en mayúsculas), mensaje "En uso en estas asignaturas de programa: ..." con los nombres entre comillas y ayuda "Quítalo primero de esas asignaturas de programa."; "Volver a Programación" pasa a la cabecera. En la confirmación, Cancelar va en la cabecera y solo "Confirmar desasociación" queda al pie.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin` de la confirmación (Cancelar en la cabecera, línea "Programa: GII -- ...", código y materia, "Confirmar desasociación" al pie), sin etiqueta de vista; la bloqueada de Admin solo difiere en esa etiqueta y no se duplica.
 
 ## Referencias
 

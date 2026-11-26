@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Con advertencia**|**Caso normal**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/wireframe-advertencia.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/wireframe-normal.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/desasociarResultadoAprendizajeAsignaturaPrograma/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

@@ -42,6 +42,10 @@ Pestaña **🧱 Módulos** del programa en la vista de Admin (`/admin/programas/
 
 El `DirectorPrograma` no tiene este caso de uso: ve el módulo de cada materia en [`abrirMaterias()`](../abrirMaterias/README.md) (agrupada por módulo) y en [`abrirMateria()`](../abrirMateria/README.md), sin gestionarlo (#762, decisión 6). Datos de los wireframes ilustrativos: los módulos reales de cada programa se importarán de las memorias una vez implementado (#762, decisión 8).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): cabecera de programa de Admin (miga de estructura, nombre del programa y las dos filas de pestañas con "Módulos" activa) y "Crear módulo" a la derecha del subtítulo "Módulos", en lugar de al pie.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> MODULOS_ABIERTO : abrirModulos()`

@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Vista principal**|**Admin**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoGuias/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoGuias/wireframe-admin.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoGuias/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

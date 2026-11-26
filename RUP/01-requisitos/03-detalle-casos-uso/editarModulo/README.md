@@ -40,6 +40,10 @@
 
 Se invoca desde la fila del listado (**✏️ Editar**), sin pasar por una ficha. Mismo formulario y mismo `<<choice>>` de código repetido que [`crearModulo()`](../crearModulo/README.md). El cambio de nombre se ve en vivo en las listas de materias agrupadas por módulo. Datos de los wireframes ilustrativos: los módulos reales de cada programa se importarán de las memorias una vez implementado (#762, decisión 8).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas como en pantalla; código y nombre con etiqueta y campo en la misma fila, descripción como área de texto bajo su etiqueta.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MODULOS_ABIERTO --> MODULOS_ABIERTO : editarModulo()`

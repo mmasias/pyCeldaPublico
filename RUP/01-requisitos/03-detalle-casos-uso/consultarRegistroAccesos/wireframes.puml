@@ -1,14 +1,15 @@
 @startsalt consultarRegistroAccesos-wireframe
 {
-    { <b>AUDITORÍA                                    [ Volver al panel de administración ] }
+    <b>Auditoría</b>
     ====
-    <b>Últimos accesos
+    { <b>Curso académico:</b> | ^Todos los cursos^ }
+    <b>Últimos accesos</b>
     {#
         <b>Fecha | <b>Usuario | <b>Resultado
-        15/9/2026, 14:48 | Dr. Carlos Navarro Ruiz | Acceso
-        15/9/2026, 14:47 | alguien@gmail.com | Rechazado: fuera de dominio
-        15/9/2026, 09:12 | becario@ejemplo.edu | Rechazado: no autorizado
-        14/9/2026, 18:03 | Dr. Pablo Ortega Sanz | Acceso
+        15/9/2026, 14:48:00 | Dr. Carlos Navarro Ruiz | Acceso
+        15/9/2026, 14:47:00 | alguien@ejemplo.org | Rechazado: fuera de dominio
+        15/9/2026, 9:12:00 | becario@ejemplo.edu | Rechazado: no autorizado
+        14/9/2026, 18:03:00 | Dr. Pablo Ortega Sanz | Acceso
     }
 }
 @endsalt

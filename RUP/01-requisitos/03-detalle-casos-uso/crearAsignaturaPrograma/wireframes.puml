@@ -1,37 +1,35 @@
 @startsalt crearAsignaturaPrograma-wireframe
 {
-    <b>CREAR ASIGNATURA DEL PROGRAMA</b>
+    <b>Crear asignatura del programa</b>
     ====
     <b>Grado en Ingeniería Informática</b>
+    { [Crear] | <color:red>Tienes cambios sin guardar.</color> }
+    {
+        <b>Materia (*):</b> | ^Programación^
+        <b>Asignatura (*):</b> | ^Programación I^
+        <b>Curso (*):</b> | "1  "
+        <b>Carácter (*):</b> | ^Básica^
+        <b>Idioma (*):</b> | ^Español^
+        <b>Semestre por defecto (*):</b> | ^1^
+        <b>Sesiones mínimas (*):</b> | "25 "
+    }
+    <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100).</i>
     --
     {
-        <b>Materia (*):</b>
-        ^Programación^
-        <b>Asignatura (*):</b>
-        ^Programación I^
-        <b>Curso (*):</b>
-        "1  "
-        <b>Carácter (*):</b>
-        ^Básica^
-        <b>Idioma (*):</b>
-        ^Español^
-        <b>Semestre por defecto (*):</b>
-        ^1^
-        --
-        <b>Nombre:</b>
-        "Programación I                                    "
-        <i>Heredado de la Asignatura -- edítalo solo si difiere</i>
-        <b>ECTS:</b>
-        "6 "
-        <i>Heredado de la Asignatura -- edítalo solo si difieren</i>
-        <b>Contenido:</b>
-        "Heredado de la Asignatura: Tema 1. Introducción a la
-        programación...                                    "
-        <i>Heredado de la Asignatura -- edítalo solo si difiere</i>
-        --
-        <i>(*) Campo obligatorio</i>
+        <b>Nombre:</b> | "Programación I                                    "
     }
-    ~~
-    {[Crear]}
+    <i>Heredado de la asignatura -- edítalo solo si difiere</i>
+    {
+        <b>ECTS:</b> | "6 "
+    }
+    <i>Heredado de la asignatura -- edítalo solo si difieren</i>
+    <b>Contenido:</b>
+    "Tema 1. Introducción a la programación...          "
+    "                                                   "
+    <i>Heredado de la asignatura -- edítalo solo si difiere</i>
+    --
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
 }
 @endsalt

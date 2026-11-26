@@ -1,40 +1,36 @@
 @startsalt desasignarProfesorAsignaturaPrograma-wireframe-normal
 {
-    <b>DESASIGNAR PROFESOR</b>
+    <b>Desasignar profesor</b>
     ====
     <b>Dr. Javier Molina Ríos</b> deja de impartir:
-
-    <b>Programación I -- GII, 1er curso</b>
-
-    Queda otro Profesor asignado (Dr. Carlos Navarro Ruiz).
-    ====
+    <b>Programación I -- Programación, curso I</b>
+    Queda otro profesor asignado (Dr. Carlos Navarro Ruiz).
+    --
     {[Confirmar desasignación] | [Cancelar]}
 }
 @endsalt
 
 @startsalt desasignarProfesorAsignaturaPrograma-wireframe-advertencia
 {
-    <b>DESASIGNAR PROFESOR</b>
+    <b>Desasignar profesor</b>
     ====
-    <color:orange><b>⚠ Sin profesorado tras esta acción</b></color>
-    ====
+    <color:red><b>⚠ Sin profesorado tras esta acción</b></color>
+    --
     <b>Dr. Carlos Navarro Ruiz</b> deja de impartir:
-
-    <b>Programación I -- GII, 1er curso</b>
-
-    <i>Esta asignatura-en-programa se quedará sin ningún Profesor asignado. La guía docente que se genere para ella podría quedar incompleta.</i>
-    ====
+    <b>Programación I -- Programación, curso I</b>
+    <i>Esta asignatura-en-programa se quedará sin ningún profesor asignado. La guía docente que se genere para ella podría quedar incompleta.</i>
+    --
     {[Confirmar desasignación] | [Cancelar]}
 }
 @endsalt
 
 @startsalt desasignarProfesorAsignaturaPrograma-wireframe-bloqueo
 {
-    <b>DESASIGNAR PROFESOR</b>
+    <b>Desasignar profesor</b>
     ====
-    <color:red>No se puede desasignar: es el único profesor que imparte la asignatura y quedan responsables asignados.</color>
-    <color:red>Marque antes a otro profesor como 'Imparte' o desasigne a los responsables.</color>
-    ====
-    {[Volver]}
+    <color:red>No se puede desasignar: es el único profesor que imparte la asignatura y quedan</color>
+    <color:red>responsables asignados. Marque antes a otro profesor como 'Imparte' o desasigne a los responsables.</color>
+    --
+    [Volver]
 }
 @endsalt

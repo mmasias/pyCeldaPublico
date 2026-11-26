@@ -1,14 +1,13 @@
 @startsalt abrirFacultades-wireframe
 {
-    <b>FACULTADES</b>
+    <b>Universidades</b>
     ====
+    {Universidades › <b>Universidad Europea del Atlántico (UNEATLANTICO)</b> | [Editar] | [Crear facultad]}
     {#
-        <b>Nombre | . | .
-        Escuela Politécnica Superior | [Abrir] | [Eliminar]
-        Facultad de Ciencias Sociales y Humanidades | [Abrir] | [Eliminar]
-        Facultad de Ciencias de la Salud | [Abrir] | [Eliminar]
+        <b>Nombre | <b>Programas | . | .
+        Escuela Politécnica Superior | 4 | [Abrir] | [Eliminar]
+        Facultad de Ciencias Sociales y Humanidades | 3 | [Abrir] | [Eliminar]
+        Facultad de Ciencias de la Salud | 5 | [Abrir] | [Eliminar]
     }
-    ====
-    [ <b>+ Crear Facultad</b> ]
 }
 @endsalt

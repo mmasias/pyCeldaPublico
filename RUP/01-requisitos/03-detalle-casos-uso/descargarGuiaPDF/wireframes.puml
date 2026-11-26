@@ -23,3 +23,25 @@
     ...
 }
 @endsalt
+
+@startsalt descargarGuiaPDF-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [<b>Guías</b>]}
+    {[Módulos] | [Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas]}
+    ====
+    <b>Guías</b>
+    {<b>Curso académico:</b> | ^2026-2027 (vigente)^}
+    {#
+        <b>Asignatura</b> | <b>Profesorado</b> | <b>Estado</b> | <b>Última actualización</b> | . | .
+        Programación I (I-s1) | Ana Pérez, Luis Gómez | [ En revisión ] | Administración, hace dos días | [Previsualizar] | [Planificación]
+        Ingeniería de Software I (III-s1) | Ana Pérez | [ Aprobada ] | Director, ayer | [<b>Descargar PDF</b>] | [Planificación]
+    }
+    ====
+    {#
+        <b>Descargas del navegador</b>
+        guia-42.pdf
+    }
+}
+@endsalt

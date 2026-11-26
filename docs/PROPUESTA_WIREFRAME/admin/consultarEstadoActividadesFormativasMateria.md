@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Vista principal**|**Optatividad**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe-optatividad.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/consultarEstadoActividadesFormativasMateria/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

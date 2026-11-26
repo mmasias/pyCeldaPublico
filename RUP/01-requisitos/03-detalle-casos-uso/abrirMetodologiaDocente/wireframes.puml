@@ -17,3 +17,22 @@
     }
 }
 @endsalt
+
+@startsalt abrirMetodologiaDocente-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [Materias] | [Resultados de aprendizaje] | [Competencias] | [<b>Metodologías</b>] | [Actividades formativas]}
+    ====
+    {Metodologías docentes › <b>MD3</b> | [Editar]}
+    <b>Descripción</b>
+    <i>Resolución de ejercicios</i>
+    <b>Distribución</b>
+    {
+        <b>Materias</b> | <b>Asignaturas del programa</b>
+        Programación | Programación I
+        . | Programación II
+    }
+}
+@endsalt

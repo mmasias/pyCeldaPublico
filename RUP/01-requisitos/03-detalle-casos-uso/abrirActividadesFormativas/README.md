@@ -49,6 +49,7 @@ Códigos y nombres de los wireframes ilustrativos (formato de las memorias: `AD`
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista, cabecera con el nombre del programa y pestañas del programa (activa Actividades formativas); el botón "Crear actividad formativa" pasa de bajo la tabla a la derecha del título "Actividades formativas". Columnas y acciones por fila sin cambios.
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja la pestaña del programa en Admin: miga de estructura (Universidades › universidad › facultad), nombre del programa con Panel y Cerrar sesión a la derecha y las dos filas de pestañas del programa de Admin (activa Actividades formativas, sin Asignaturas), sin etiqueta de vista; título "Actividades formativas" con "Crear actividad formativa" a la derecha y la misma tabla que el director. Las filas de la tabla van a menor tamaño de letra: regla de presentación que Salt no dibuja.
 
 ## Referencias
 

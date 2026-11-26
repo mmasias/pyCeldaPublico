@@ -44,6 +44,7 @@ Borrado físico bloqueado relacionalmente, mismo patrón que [`eliminarResultado
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): las dos variantes llevan la línea "Programa: GII -- ..."; en la bloqueada, "Volver a las competencias" está en la cabecera, junto al título; en la de confirmación, "Cancelar" está en la cabecera y "Confirmar eliminación" queda solo, al pie.
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin dibuja la confirmación normal sin etiqueta de vista ("Eliminar competencia" con Cancelar en la cabecera, línea "Programa: GII -- ...", "Confirmar eliminación" al pie); la bloqueada de Admin solo difiere en la cabecera y no tiene variante propia.
 
 ## Referencias
 

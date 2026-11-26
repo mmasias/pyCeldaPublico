@@ -20,3 +20,25 @@
     }
 }
 @endsalt
+
+@startsalt abrirMaterias-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [<b>Materias</b>] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas]}
+    ====
+    {<b>Materias</b> | [Crear materia]}
+    {#
+        <b>Nombre | <b>Asignaturas | . | .
+        <b>M1 -- Formación básica</b> | . | . | .
+        Matemáticas | 2 | [Abrir] | [Eliminar]
+        <b>M2 -- Común a la rama de informática</b> | . | . | .
+        Programación | 2 | [Abrir] | [Eliminar]
+        Bases de Datos | 2 | [Abrir] | [Eliminar]
+        Ingeniería del Software | 3 | [Abrir] | [Eliminar]
+        <b>Sin módulo</b> | . | . | .
+        Prácticas externas | 1 | [Abrir] | [Eliminar]
+    }
+}
+@endsalt

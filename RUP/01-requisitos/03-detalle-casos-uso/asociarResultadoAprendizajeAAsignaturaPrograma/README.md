@@ -42,13 +42,14 @@ Segundo escalón de la cascada en dos pasos documentada en el [modelo del domini
 
 Sin `<<choice>>`: asignación libre, mismo patrón que `asociarResultadoAprendizajeAMateria()`/`asociarMetodologiaDocenteAMateria()`.
 
-**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
+**Actor `Admin` (issue [#599](https://github.com/mmasias/pyCelda/issues/599))**: `Admin` gana esta transición como vía de corrección excepcional, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha y mismas reglas, con wireframe propio de Admin (variante `wireframe-admin`); es un self-loop de `ASIGNATURA_PROGRAMA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `AsignaturaPrograma`.
 
 **Texto del selector (v0.11.27)**: cada opción muestra `código -- extracto` de la descripción (unos 80 caracteres, cortado en un espacio, con "..."; `extractoResultado()` en `frontend/src/resultadoAprendizaje.ts`, común a materia y asignatura, Director y Admin), y bajo el selector se ve el texto completo del elegido. Las descripciones van de unos pocos caracteres a varios miles: ni la descripción entera ni el `tipo` (todos `General`) servían para elegir.
 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): barra "Vista de Dirección · GII", título "Asociar resultado de aprendizaje" con Cancelar en la cabecera, línea "Programa: GII -- ...", línea de la asignatura con materia y curso en romanos, extracto en el desplegable y texto completo del elegido debajo (gris de nota), y Asociar tras una línea separadora. Variante nueva `wireframe-sin-disponibles`: sin resultados disponibles, la pantalla lo dice y el botón de la cabecera pasa a Volver.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin` del formulario: igual que la del director pero sin etiqueta de vista y **sin** la línea "Programa: GII -- ..." (la pantalla de Admin no la pinta); el caso sin resultados disponibles tiene la misma diferencia y no se duplica.
 
 ## Referencias
 

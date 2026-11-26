@@ -1,15 +1,15 @@
 @startsalt abrirCursosAcademicos-wireframe
 {
-    <b>CURSOS ACADÉMICOS</b>
+    <b>Cursos académicos</b>
     ====
+    { <b>Universidad:</b> | ^Universidad Europea del Atlántico^ }
+    [ Crear curso académico ]
     {#
-        <b>Curso académico | <b>Estado | . | .
-        2024-2025 | Inactivo | [Abrir] | .
-        2025-2026 | Inactivo | [Abrir] | .
-        2026-2027 | Activo (semestre 1) | [Abrir] | .
-        2027-2028 | Inactivo | [Abrir] | [Activar]
+        <b>Curso | <b>Estado | <b>Semestre activo | . | .
+        2024-2025 | Inactivo | 2 | [Abrir] | .
+        2025-2026 | Inactivo | 2 | [Abrir] | .
+        2026-2027 | Activo | 1 | [Abrir] | .
+        2027-2028 | Inactivo | -- | [Abrir] | [Activar]
     }
-    ====
-    [ <b>+ Crear Curso Académico</b> ]
 }
 @endsalt

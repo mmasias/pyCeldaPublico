@@ -1,12 +1,23 @@
 @startsalt cambiarRolesProfesorAsignaturaPrograma-wireframe
 {
-    <b>PROFESORADO</b> | . | . | . | [Asignar profesor]
+    Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería
+    <b>Grado en Ingeniería Informática</b>
     ====
+    { [ Ficha ] | [ Guías ] }
+    { [ Módulos ] | [ <b>Materias</b> ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] }
+    ====
+    { Materias › Programación › <b>Programación I</b> | [ Editar ] }
+    <b>Materia:</b> Programación
+    <b>Curso:</b> I-s1 -- <b>Carácter:</b> Básica
+    ..
+    ====
+    { <b>Profesorado</b> | [ Asignar profesor ] }
     {#
         <b>Profesor</b> | <b>Responsable</b> | <b>Imparte</b> | .
-        Dr. Carlos Navarro Ruiz | [X] | [X] | [➖]
-        Dr. Javier Molina Ríos | [X] | [ ] | [➖]
-        Dra. Ana Pérez | [ ] | [X] | [➖]
+        Dr. Carlos Navarro Ruiz | [X] | [X] | [Quitar]
+        Dr. Javier Molina Ríos | [X] | [ ] | [Quitar]
+        Ana Pérez | [ ] | [X] | [Quitar]
     }
+    ..
 }
 @endsalt

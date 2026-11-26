@@ -45,6 +45,7 @@ Mismo formulario que [`crearActividadFormativa()`](../crearActividadFormativa/RE
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Editar actividad formativa", línea "Programa: GII -- Grado en Ingeniería Informática" y código en la misma línea que su etiqueta. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja el formulario de Admin: título "Editar actividad formativa" sin accesos globales, sin etiqueta de vista (el resto, igual que la de `DirectorPrograma`).
 
 ## Referencias
 

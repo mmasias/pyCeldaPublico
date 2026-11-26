@@ -45,6 +45,7 @@ Primer escalón de la cascada `Programa`->`Materia`->`AsignaturaPrograma`, mismo
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): título "Asociar competencia" con Cancelar en la cabecera (Volver si no quedan competencias disponibles), línea "Programa: GII -- Grado en Ingeniería Informática", nombre de la materia, selector en la misma línea que su etiqueta, texto completo de la elegida precedido de su tipo ("Específica. ..."), y Asociar tras una línea separadora. El texto completo se pinta en gris de nota, no en cursiva.
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin es el mismo formulario sin etiqueta de vista: "Asociar competencia" con Cancelar en la cabecera, línea "Programa: GII -- ...", nombre de la materia, selector con el texto completo de la elegida y Asociar al pie.
 
 ## Referencias
 

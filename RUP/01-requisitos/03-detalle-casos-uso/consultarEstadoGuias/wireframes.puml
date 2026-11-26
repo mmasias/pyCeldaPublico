@@ -18,13 +18,18 @@
 
 @startsalt consultarEstadoGuias-wireframe-admin
 {
-    <b>GUÍAS DEL PROGRAMA -- GII (curso actual)</b>
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [<b>Guías</b>]}
+    {[Módulos] | [Materias] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas]}
     ====
+    <b>Guías</b>
+    {<b>Curso académico:</b> | ^2026-2027 (vigente)^}
     {#
-        <b>AsignaturaPrograma | <b>Profesorado | <b>Estado | <b>Última actualización | . | .
-        Programación I | Ana Pérez | [ Aprobada ] verde | Administración, hace dos días | [Previsualizar] | [Descargar PDF]
-        Cálculo I | Luis García | [ Borrador ] neutro | Profesor, hace cinco días | [Previsualizar] | [Descargar PDF] !!disabled
+        <b>Asignatura</b> | <b>Profesorado</b> | <b>Estado</b> | <b>Última actualización</b> | . | .
+        Programación I (I-s1) | Ana Pérez, Luis Gómez | [ En revisión ] | Administración, hace dos días | [Previsualizar] | [Planificación]
+        Cálculo I (I-s1) | Marta Ruiz | [ Borrador ] | Profesor, hace cinco días | [Previsualizar] | [Planificación]
+        Ingeniería de Software I (III-s1) | Ana Pérez | [ Aprobada ] | Director, ayer | [Descargar PDF] | [Planificación]
     }
-    <b>Leyenda de estado:</b> [ Borrador ] neutro   [ En revisión ] ámbar   [ Aprobada ] verde   [ Rechazada ] rojo
 }
 @endsalt

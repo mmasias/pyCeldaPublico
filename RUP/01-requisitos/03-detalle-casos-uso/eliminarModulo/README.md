@@ -41,6 +41,10 @@
 
 Borrado físico bloqueado si alguna `Materia` está en el módulo (#762, decisión 4); el bloqueo nombra las materias y el servidor lo vuelve a comprobar (409). Para vaciarlo, se cambia el módulo de esas materias en [`editarMateria()`](../editarMateria/README.md). Datos de los wireframes ilustrativos: los módulos reales de cada programa se importarán de las memorias una vez implementado (#762, decisión 8).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): salida ("Volver a los módulos" en la variante bloqueada, "Cancelar" en la de confirmación) arriba a la derecha junto al título, y "Confirmar eliminación" solo al pie; título en minúsculas.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `MODULOS_ABIERTO --> MODULOS_ABIERTO : eliminarModulo()`

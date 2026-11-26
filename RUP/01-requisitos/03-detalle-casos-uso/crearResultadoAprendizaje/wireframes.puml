@@ -17,3 +17,21 @@
     {[Crear] | [Cancelar]}
 }
 @endsalt
+
+@startsalt crearResultadoAprendizaje-wireframe-admin
+{
+    <b>Crear resultado de aprendizaje</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {
+        <b>Código (*):</b> | "          "
+        <b>Tipo (*):</b> | ^Conocimientos o contenidos^
+    }
+    <b>Descripción (*):</b>
+    "                                                  "
+    "                                                  "
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
+}
+@endsalt

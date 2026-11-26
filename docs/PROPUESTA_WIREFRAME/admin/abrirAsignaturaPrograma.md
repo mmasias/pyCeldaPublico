@@ -11,7 +11,7 @@
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframe.svg)
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirAsignaturaPrograma/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

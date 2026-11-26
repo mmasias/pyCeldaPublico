@@ -54,6 +54,8 @@ Confirmación con advertencia condicional, no bloqueo: si el `Profesor` que se d
 
 - Solo un cambio en **quién imparte** cambia el estado de la `Guia` (issue [#827](https://github.com/mmasias/pyCelda/issues/827), decisión de Manuel, 2026-11-17): es lo único que cambia el PDF. Asignar a alguien solo como responsable, desasignar a quien solo era responsable o cambiar solo el papel de responsable no cambia el estado de la `Guia` activa: se actualiza directamente su copia `Guia -- Profesor` (solo la fila de ese `Profesor`), para que no quede atrasada respecto a la asignación vigente cuando el curso se cierre. Cualquier cambio en quién imparte sigue el mecanismo de #254 (`Aprobada -> EnRevision`). La transición a En revisión queda implícita en la especificación (convención de verbos: el sistema presenta, no computa).
 
+- Wireframe alineado con la pantalla construida (#872): asignatura como "<asignatura> -- <materia>, curso <romano>", textos en minúscula y aviso de "Sin profesorado" en rojo como en pantalla.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : desasignarProfesorAsignaturaPrograma()`

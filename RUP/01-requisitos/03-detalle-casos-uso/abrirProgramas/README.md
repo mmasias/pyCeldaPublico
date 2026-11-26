@@ -52,6 +52,8 @@ Caso de uso reutilizado por `DirectorPrograma` (`DirectorPrograma --|> Profesor`
 
 - Wireframe alineado con la pantalla construida (#858): variante `wireframe-porDirector` con la etiqueta de vista y el título "Mis programas" de la cabecera (antes "MIS PROGRAMAS"); tabla sin cambios. La variante de `Admin` no se toca.
 
+- Wireframe alineado con la pantalla construida (#873): el bloque principal `wireframe` es la vista de `Admin` y se corrige en su sitio. En `Admin` el listado de programas no es una pantalla aparte: es la ficha de la `Facultad`, con la cabecera "Universidades" (`[Panel]`, `[Cerrar sesión]`) y la miga "Universidades › universidad › facultad" con `[Editar]` y `[Crear programa]` a la derecha; la tabla (Código, Nombre, Estado, `[Abrir]`, `[Eliminar]`) no cambia. Regla de presentación: `[Editar]` de la facultad aparece deshabilitado ("Funcionalidad en construcción"). El flujo no cambia: `FACULTAD_ABIERTO` y `PROGRAMAS_ABIERTO` se presentan hoy en la misma pantalla.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `FACULTAD_ABIERTO --> PROGRAMAS_ABIERTO : abrirProgramas()`

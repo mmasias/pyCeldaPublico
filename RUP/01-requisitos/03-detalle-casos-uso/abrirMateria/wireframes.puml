@@ -78,3 +78,74 @@
     }
 }
 @endsalt
+
+@startsalt abrirMateria-wireframe-admin
+{
+    {Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería}
+    {<b>Grado en Ingeniería Informática</b> | [Panel] | [Cerrar sesión]}
+    {[Ficha] | [Guías]}
+    {[Módulos] | [<b>Materias</b>] | [Resultados de aprendizaje] | [Competencias] | [Metodologías] | [Actividades formativas]}
+    ====
+    {Materias › <b>Programación</b> | [Editar]}
+    <b>Nombre:</b> Programación
+    <b>Módulo:</b> M2 -- Común a la rama de informática
+    <b>ECTS:</b> 12 · <b>Código RUCT:</b> 12345
+    ====
+    <b>Asignaturas</b>
+    {#
+        <b>Asignatura | <b>Curso | <b>Carácter | .
+        Programación I | I-s1 | Básica | [Abrir]
+        Programación II | I-s2 | Obligatoria | [Abrir]
+    }
+    ====
+    {<b>Sistemas de evaluación</b> | [Abrir sistemas de evaluación]}
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | <b>Ponderación mínima | <b>Ponderación máxima
+        E1 | Evaluación continua | Prueba Parcial | 10 | 20
+        E4 | Evaluación final | Examen final | 40 | 60
+    }
+    ====
+    {<b>Resultados de aprendizaje</b> | [Asociar resultado de aprendizaje]}
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | <b>Asignaturas | .
+        RAK1 | Conocimientos o contenidos | Conoce los fundamentos de la programación estructurada | 2 | [Quitar]
+        RAH1 | Habilidades o destrezas | Implementa algoritmos sencillos en un lenguaje de alto nivel | 0 | [Quitar]
+    }
+    ====
+    {<b>Competencias</b> | [Asociar competencia]}
+    {#
+        <b>Código | <b>Tipo | <b>Descripción | <b>Asignaturas | .
+        CE7 | Específica | Conocimiento y aplicación de los principios... | 2 | [Quitar]
+        CG1 | General | Capacidad para concebir, redactar, organizar... | 0 | [Quitar]
+    }
+    ====
+    {<b>Metodologías docentes</b> | [Asociar metodología docente]}
+    {#
+        <b>Código | <b>Descripción | <b>Descripción propia | . | .
+        MD1 | Método expositivo | -- | [Editar] | [Quitar]
+        MD5 | Aprendizaje orientado a proyectos | Incluye trabajo por sprints | [Editar] | [Quitar]
+    }
+    ====
+    {<b>Actividades formativas de la materia</b> | [Editar reparto]}
+    {#
+        <b>Actividad formativa | <b>Horas | <b>Presencialidad (%)
+        Actividad Dirigida: Clases de teoría | 60 | 100
+        Actividad Dirigida: Clases prácticas | 54 | 100
+        Actividad Supervisada: Tutorías | 12 | 50
+        Actividad Autónoma: Estudio personal | 120 | 0
+        Actividad Autónoma: Elaboración de trabajos | 54 | 0
+    }
+    <b>Horas de la materia:</b> 300 de 300 (12 ECTS a 25 h) -- OK. Informativo, no bloquea guardar.
+    ====
+    <b>Estado de las actividades formativas</b>
+    Regla "actividades formativas de la materia = suma de las de sus asignaturas" -- informativo, no bloquea guardar.
+    {#
+        <b>Actividad formativa | <b>Horas materia | <b>Σ asignaturas | <b>Estado
+        Actividad Dirigida: Clases de teoría | 60 | 60 | OK
+        Actividad Dirigida: Clases prácticas | 54 | 49 | Discrepancia (-5)
+        Actividad Supervisada: Tutorías | 12 | 14 | Discrepancia (+2)
+        Actividad Autónoma: Estudio personal | 120 | 120 | OK
+        Actividad Autónoma: Elaboración de trabajos | 54 | 54 | OK
+    }
+}
+@endsalt

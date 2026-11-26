@@ -59,3 +59,36 @@
     {[Guardar] | [Cancelar]}
 }
 @endsalt
+
+@startsalt editarAsignaturaPrograma-wireframe-admin
+{
+    <b>Editar asignatura del programa</b>
+    ====
+    <b>Asignatura:</b> Programación I
+    {
+        <b>Materia (*):</b> | ^Programación^
+        <b>Curso (*):</b> | "1  "
+        <b>Carácter (*):</b> | ^Básica^
+        <b>Sesiones mínimas (*):</b> | "25 "
+        . | <i>Mínimo de sesiones para poder enviar una guía a revisión (0-100).</i>
+        <b>Idioma (*):</b> | "Español         "
+        <b>Semestre por defecto (*):</b> | "1  "
+        <b>Nombre:</b> | "Programación I                    "
+        <b>ECTS:</b> | "6 "
+    }
+    <b>Contenido:</b>
+    {+
+        "Tema 1. Fundamentos de la programación"
+        "Tema 2. Estructuras de control"
+        "Tema 3. Estructuras de datos y algoritmos"
+    }
+    <b>Requisitos previos:</b>
+    {+
+        "Se recomienda haber cursado previamente Matemáticas I"
+    }
+    <i>Vacío o "No aplica" se guardan como "No aplica" en la guía docente.</i>
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

@@ -1,16 +1,14 @@
 @startsalt abrirPanelAdministracion-wireframe
 {
-    <b>PANEL DE ADMINISTRACIÓN</b>
+    <b>Panel de administración</b>
     ====
-    [ <b>Universidades</b> ]
-    [ <b>Asignaturas</b> ]
-    [ <b>Metodologías docentes</b> ]
-    [ <b>Actividades formativas</b> ]
-    [ <b>Profesores</b> ]
-    [ <b>Cursos académicos</b> ]
-    --
-    [ <b>Copias de seguridad</b> ]
-    [ <b>Auditoría</b> ]
-    [ <b>Generar guías PDF</b> ]
+    <b>Estructura y catálogos</b>
+    {
+        [Universidades] | [Asignaturas] | [Profesores] | [Cursos académicos]
+    }
+    <b>Sistema</b>
+    {
+        [Copias de seguridad] | [Auditoría] | [Generar guías PDF]
+    }
 }
 @endsalt

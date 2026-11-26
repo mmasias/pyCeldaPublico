@@ -40,6 +40,10 @@
 
 **Nota de diseño, distinta del patrón de `eliminarFacultad()`**: el modelo de dominio cierra que `Asignatura` (junto con `Programa` y `AsignaturaPrograma`) **nunca se borra físicamente** -- usa `estado` (Vigente/Extinguido); Extinguido bloquea altas nuevas pero preserva lo existente para no romper Guías históricas. Por eso este caso de uso no tiene rama roja de bloqueo por "tiene hijos" (a diferencia de `eliminarFacultad()`, donde `Facultad` sí se borra físicamente y sí necesita ese `<<choice>>`): confirmar aquí siempre tiene éxito, el único fallo posible es la cancelación del propio actor.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas y texto literal ("asignaturas de programa nuevas").
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURAS_ABIERTO --> ASIGNATURAS_ABIERTO : eliminarAsignatura()`

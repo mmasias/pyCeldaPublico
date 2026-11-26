@@ -11,7 +11,7 @@
 
 ## Propósito
 
-Traducción a clases de análisis del caso de uso [`quitarDirectorPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/quitarDirectorPrograma/README.md): `<<choice>>` bloqueante aplicado a quitar un rol, no a borrar una entidad -- mismo patrón que [`eliminarFacultad()`](../eliminarFacultad/README.md)/[`eliminarProfesor()`](../eliminarProfesor/README.md). Un `Programa` no puede quedarse sin ningún `DirectorPrograma`: si el `Profesor` es el único director de ese `Programa`, el caso de uso bloquea sin llegar a pedir confirmación. El `<<choice>>` valida al inicio, antes de la pantalla de confirmación.
+Traducción a clases de análisis del caso de uso [`quitarDirectorPrograma()`](/RUP/01-requisitos/03-detalle-casos-uso/quitarDirectorPrograma/README.md): `<<choice>>` bloqueante aplicado a quitar un rol, no a borrar una entidad -- mismo patrón que [`eliminarFacultad()`](../eliminarFacultad/README.md)/[`eliminarProfesor()`](../eliminarProfesor/README.md). Un `Programa` no puede quedarse sin ningún `DirectorPrograma`: si el `Profesor` es el único director de ese `Programa`, el caso de uso bloquea y no retira el rol. No hay paso de confirmación: la solicitud desde la fila es la acción, y el bloqueo se presenta como mensaje de error en la misma pantalla.
 
 <div align=center>
 
@@ -26,13 +26,13 @@ Traducción a clases de análisis del caso de uso [`quitarDirectorPrograma()`](/
 ### `QuitarDirectorProgramaView`
 
 **Responsabilidades:**
-- en la rama verde, presenta la información del `Programa` y la advertencia de pérdida del rol, y pide confirmar/cancelar.
+- en la rama verde, retira el rol sin paso de confirmación y presenta la lista actualizada.
 - en la rama roja, presenta el mensaje de bloqueo por ser el único `DirectorPrograma` del `Programa`.
 
 **Colaboraciones:**
 - **Entrada:** `:PROFESOR_ABIERTO` -- el `Admin` solicita quitar el rol sobre un `Programa` de la sección "Programas que dirige" del detalle.
 - **Control:** `ProfesorController`.
-- **Salida:** `:PROFESOR_ABIERTO` (self-loop) en los tres casos -- "rol quitado, lista actualizada" (verde), "bloqueado, sin cambios" (rojo) o "cancelado, sin cambios" (azul).
+- **Salida:** `:PROFESOR_ABIERTO` (self-loop) en los dos casos -- "rol quitado, lista actualizada" (verde) o "bloqueado, sin cambios" (rojo).
 
 ## Clases de controlador
 
@@ -40,7 +40,7 @@ Traducción a clases de análisis del caso de uso [`quitarDirectorPrograma()`](/
 
 **Responsabilidades:**
 - aplica el `<<choice>>`: comprueba si el `Profesor` (rol resuelto por email) es el único `DirectorPrograma` de ese `Programa` (`esUnicoDirectorDelPrograma(profesorId, programaId)`) -- dirige el `Programa` y el conteo de directores es exactamente 1.
-- si no está bloqueado y el `Admin` confirma, retira la asociación (`quitarDirectorPrograma(profesorId, programaId)`).
+- si no está bloqueado, retira la asociación (`quitarDirectorPrograma(profesorId, programaId)`).
 
 **Colaboraciones:**
 - **Entrada:** `QuitarDirectorProgramaView`.

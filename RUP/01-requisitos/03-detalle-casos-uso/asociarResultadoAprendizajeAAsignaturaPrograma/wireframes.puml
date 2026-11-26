@@ -29,3 +29,19 @@
     <i>Solo se listan los ya asignados a la materia (Programación) y no asignados aún a esta asignatura-en-programa.</i>
 }
 @endsalt
+
+@startsalt asociarResultadoAprendizajeAAsignaturaPrograma-wireframe-admin
+{
+    {<b>Asociar resultado de aprendizaje</b> | [Cancelar]}
+    ====
+    <b>Programación I -- Programación, curso I</b>
+    {
+        <b>Resultado de aprendizaje (*):</b> | ^RAK1 -- Resolver problemas de programación aplicando abstracción y descomposición...^
+    }
+    <color:gray>Resolver problemas de programación aplicando abstracción y descomposición modular.</color>
+    <i>(*) Campo obligatorio</i>
+    <i>Solo se listan los ya asignados a la materia (Programación) y no asignados aún a esta asignatura-en-programa</i>
+    --
+    [Asociar]
+}
+@endsalt

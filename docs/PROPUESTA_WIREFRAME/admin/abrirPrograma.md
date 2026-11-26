@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Vista principal**|**Por el director de programa**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/wireframe.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/wireframe-porDirectorPrograma.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/abrirPrograma/wireframe.svg)
 
 |Botón|CdU|
 |---|---|

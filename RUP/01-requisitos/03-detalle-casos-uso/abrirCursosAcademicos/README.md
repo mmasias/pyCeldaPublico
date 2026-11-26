@@ -42,6 +42,11 @@ Cuatro filas ilustran de un vistazo el resto del lote: `2026-2027` es el `CursoA
 
 El botón `[Activar]` **no** aparece en toda fila Inactiva por igual: `2024-2025`/`2025-2026` son anteriores al penúltimo, bloqueados siempre sin excepción, así que el listado ya no les ofrece el botón -- mostrarlo sería un clic desperdiciado, mismo criterio de "validar antes de presentar" que ya aplica `eliminarFacultad()`. Solo lo llevan el último creado (`2027-2028`, siempre elegible mientras esté Inactivo) y, cuando corresponda, el penúltimo -- ver [`activarCursoAcademico()`](/RUP/01-requisitos/03-detalle-casos-uso/activarCursoAcademico/README.md) para el caso en que el penúltimo sí está Inactivo y su elegibilidad depende de si el último tiene actividad registrada, algo que el `<<choice>>` resuelve al solicitarlo porque cambia en tiempo real.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título "Cursos académicos", selector "Universidad", botón "Crear curso académico" encima de la tabla y columnas "Curso | Estado | Semestre activo" (antes el semestre iba dentro del estado).
+- Regla de presentación: el estado se pinta como etiqueta de color (Activo en verde, Inactivo en gris), que el wireframe no puede dibujar.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> CURSOS_ACADEMICOS_ABIERTO : abrirCursosAcademicos()`

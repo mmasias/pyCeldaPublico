@@ -21,6 +21,8 @@ package activarCursoAcademico as "activarCursoAcademico()" {
 
 CursosAcademicosAbierto --> ActivarCursoAcademicoView: <font size=8>activarCursoAcademico(cursoAcademicoId)
 
+ActivarCursoAcademicoView --> CursosAcademicosAbiertoSalida: <font size=8>cancelada (azul) -- sin cambios
+
 ActivarCursoAcademicoView --> CursoAcademicoController: <font size=8>esElegibleParaActivar(cursoAcademicoId) : <<choice>>
 
 CursoAcademicoController --> CursoAcademicoRepository: <font size=8>ultimo() : CursoAcademico

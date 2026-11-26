@@ -12,7 +12,7 @@
 
 |Botón|CdU|
 |---|---|
-|[**Crear Universidad**](crearUniversidad.md)|<sub>crearUniversidad()</sub>|
+|[**Crear universidad**](crearUniversidad.md)|<sub>crearUniversidad()</sub>|
 |[**Abrir**](abrirUniversidad.md)|<sub>abrirUniversidad()</sub>|
 |[**Abrir panel de administración**](abrirPanelAdministracion.md)|<sub>abrirPanelAdministracion()</sub>|
 

@@ -61,7 +61,9 @@
 
 - Modelado: lectura pura, sin precondición que pueda rechazarla (issue [#392](https://github.com/mmasias/pyCelda/issues/392)): un historial vacío es un estado válido (listas vacías), no un error -- sin `<<choice>>`, mismo criterio que `consultarCopiasSeguridad()`/`consultarEstadoGuias()`.
 
-- La misma pantalla de Auditoría aloja, bajo el historial, el bloque "Últimos accesos" de [`consultarRegistroAccesos()`](../consultarRegistroAccesos/README.md) (issue [#820](https://github.com/mmasias/pyCelda/issues/820)); el wireframe de esta ficha no lo dibuja.
+- La misma pantalla de Auditoría aloja, encima del historial, el bloque "Últimos accesos" de [`consultarRegistroAccesos()`](../consultarRegistroAccesos/README.md) (issue [#820](https://github.com/mmasias/pyCelda/issues/820)); el wireframe de esta ficha lo dibuja en su posición real.
+
+- Wireframe alineado con la pantalla construida (#872): título "Auditoría" sin botón "Volver al panel de administración" (el regreso es el acceso global Panel); se dibujan el selector de curso académico y el bloque "Últimos accesos" encima del feed; la ficha de autor vuelve por la miga "Auditoría › Actividad de ..." en vez de "Volver a Auditoría".
 
 ## Referencias
 

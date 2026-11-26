@@ -1,14 +1,18 @@
 @startsalt abrirSistemaEvaluacion-wireframe
 {
-    <b>EVALUACIÓN CONTINUA</b>
+    Universidades › Universidad Europea del Atlántico (UNEATLANTICO) › Escuela Politécnica Superior
+    <b>Grado en Ingeniería Informática</b>
+    ====
+    { [ Ficha ] | [ Guías ] }
+    { [ Módulos ] | [ <b>Materias</b> ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] }
+    ====
+    { Materias › Programación › Sistemas de evaluación › <b>Evaluación continua</b> | [ Editar ] }
     ====
     <b>Código:</b> E1
     <b>Tipo:</b> Evaluación continua
     <b>Descripción:</b>
-    "Prueba Parcial"
+    Prueba Parcial
     <b>Ponderación mínima:</b> 30%
     <b>Ponderación máxima:</b> 50%
-    ====
-    {[Editar] | [Volver al listado]}
 }
 @endsalt

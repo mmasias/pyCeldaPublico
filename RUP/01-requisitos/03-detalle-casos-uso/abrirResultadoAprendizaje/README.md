@@ -43,6 +43,7 @@ RAK1 es dato real del plan de estudios de GII, aportado por el usuario en la [is
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): cabecera con el nombre del programa y las pestañas del programa; miga "Resultados de aprendizaje › RAK1" con "Editar" a su derecha (sin botón "Volver al listado": vuelve la miga o la pestaña); sin línea "Código"; se añade la Distribución en materias y asignaturas del programa, como en la ficha de competencia.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin` con la cabecera de programa de Admin (pestaña Resultados de aprendizaje activa), miga "Resultados de aprendizaje › RAK1" con Editar a la derecha, Tipo, Descripción y Distribución en dos columnas, igual que la del director salvo la cabecera.
 
 ## Referencias
 

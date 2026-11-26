@@ -1,43 +1,64 @@
 @startsalt quitarDirectorPrograma-wireframe-bloqueada
 {
-    <b>QUITAR DIRECTOR DE PROGRAMA</b>
+    <b>Profesores</b>
     ====
-    <color:red><b>⚠ NO SE PUEDE QUITAR</b></color>
+    { Profesores › <b>Dr. Carlos Navarro Ruiz</b> | [ Editar ] }
     ====
-    <b>Dr. Carlos Navarro Ruiz</b> es el único DirectorPrograma de:
-
-    <b>GII -- Grado en Ingeniería Informática</b>
-
-    <i>Nombra a otro Profesor como director de este Programa antes de quitar el rol.</i>
+    <b>Nombre:</b> Dr. Carlos Navarro Ruiz
+    <b>Email:</b> carlos.navarro@ejemplo.edu
     ====
-    [ <b>Volver</b> ]
+    { <b>Programas que dirige</b> | [ Nombrar director de programa ] }
+    <color:red>Error: Profesor es el único director de este Programa</color>
+    {#
+        <b>Programa</b> | .
+        GII -- Grado en Ingeniería Informática | [Quitar]
+    }
+    ..
 }
 @endsalt
 
 @startsalt quitarDirectorPrograma-wireframe-confirmacion
 {
-    <b>QUITAR DIRECTOR DE PROGRAMA</b>
+    <b>Profesores</b>
     ====
-    <b>Dr. Javier Molina Ríos</b> deja de dirigir:
-
-    <b>GII -- Grado en Ingeniería Informática</b>
-
-    <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Queda otro DirectorPrograma activo en este Programa (Dr. Carlos Navarro Ruiz).
+    { Profesores › <b>Dr. Javier Molina Ríos</b> | [ Editar ] }
     ====
-    {[Confirmar] | [Cancelar]}
+    <b>Nombre:</b> Dr. Javier Molina Ríos
+    <b>Email:</b> javier.molina@ejemplo.edu
+    ====
+    { <b>Programas que dirige</b> | [ Nombrar director de programa ] }
+    {#
+        <b>Programa</b> | .
+        GII -- Grado en Ingeniería Informática | [Quitar]
+        GIOI -- Grado en Ingeniería de Organización Industrial | [Quitar]
+    }
+    ..
 }
 @endsalt
 
 @startsalt quitarDirectorPrograma-wireframe-desdePrograma
 {
-    <b>GII -- PROGRAMA EN INGENIERÍA INFORMÁTICA</b>
+    Universidades › Universidad Europea del Atlántico › Facultad de Ciencias e Ingeniería
+    <b>Grado en Ingeniería Informática</b>
     ====
-    <b>Directores:</b>
+    { [ <b>Ficha</b> ] | [ Guías ] }
+    { [ Módulos ] | [ Materias ] | [ Resultados de aprendizaje ] | [ Competencias ] | [ Metodologías ] | [ Actividades formativas ] }
+    ====
+    { <b>Ficha</b> | [ Editar ] }
     {
-        Dr. Carlos Navarro Ruiz | [Quitar]
+        {
+            <b>Código:</b> GII
+            <b>Estado:</b> Vigente
+            <b>Código RUCT:</b> 25032182025111701
+            <b>Denominación oficial:</b> Graduado o Graduada en Ingeniería Informática
+            <b>Norma:</b> RD 1393/2007
+        } | {
+            <b>Directores:</b>
+            <color:red>Error: Profesor es el único director de este Programa</color>
+            { Dr. Carlos Navarro Ruiz | [Quitar] }
+            { ^Dr. Javier Molina Ríos^ | [Nombrar] }
+        }
     }
-    <color:red>Error: El Profesor es el único DirectorPrograma de este Programa</color>
-    ====
+    ..
 }
 @endsalt

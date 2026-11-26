@@ -8,9 +8,7 @@
 
 <div align=center>
 
-|**Selección**|**Sin disponibles**|
-|---|---|
-|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAAsignaturaPrograma/wireframe-seleccion.svg)|![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAAsignaturaPrograma/wireframe-sin-disponibles.svg)|
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/asociarCompetenciaAAsignaturaPrograma/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

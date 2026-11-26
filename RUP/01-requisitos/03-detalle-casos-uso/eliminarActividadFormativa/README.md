@@ -50,6 +50,7 @@ Códigos y nombres de los wireframes ilustrativos.
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): en las dos variantes, etiqueta de vista, título "Eliminar actividad formativa" con su salida a la derecha ("Cancelar" antes de confirmar, "Volver" tras el bloqueo) y línea "Programa: GII -- Grado en Ingeniería Informática"; "Confirmar eliminación" queda solo al pie. El mensaje de bloqueo es el literal del sistema (incluye el nombre de clase `ActividadFormativa`). Flujo sin cambios. La etiqueta "Vista de Dirección · GII" se dibuja con sigla aunque la pantalla no la registre hoy (no pasa `siglaPrograma` a `CabeceraPagina`).
+- Wireframe alineado con la pantalla construida (#873): la variante `wireframe-admin` dibuja la confirmación normal en Admin: título "Eliminar actividad formativa" con Cancelar a la derecha, sin etiqueta de vista (el resto, igual que la de `DirectorPrograma`). La pantalla bloqueada de Admin solo difiere de la del director en la etiqueta de vista; no se duplica.
 
 ## Referencias
 

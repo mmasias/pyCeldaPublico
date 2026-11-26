@@ -27,7 +27,7 @@ Traducción a clases de análisis del caso de uso [`abrirFacultad()`](/RUP/01-re
 
 **Responsabilidades:**
 - presenta el `nombre` de la `Facultad`.
-- ofrece la navegación a editar, a volver al listado y a los `Programa` que la componen (`[Editar]`/`[Ver Programas]`/`[Volver al listado]`).
+- presenta en la misma pantalla el listado de los `Programa` que la componen y ofrece la navegación a editar, a crear `Programa`, a abrir y eliminar cada `Programa` y, por la miga, a volver a la `Universidad` o al listado de `Universidad` (`[Editar]`/`[Crear programa]`/`[Abrir]`/`[Eliminar]`/miga).
 
 **Colaboraciones:**
 - **Entrada:** `:FACULTADES_ABIERTO` -- el `Admin` solicita abrir una `Facultad` del listado.

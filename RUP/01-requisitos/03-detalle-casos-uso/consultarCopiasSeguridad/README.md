@@ -67,6 +67,8 @@ Alcanzable desde [`abrirPanelAdministracion()`](../abrirPanelAdministracion/READ
 
 - Modelado: lectura pura, sin precondición que pueda rechazarla (issue [#308](https://github.com/mmasias/pyCelda/issues/308)): el manifiesto ausente o vacío es un estado válido (lista vacía), no un error -- sin `<<choice>>`, mismo criterio que `consultarEstadoGuias()`.
 
+- Wireframe alineado con la pantalla construida (#872): botones de acción en la cabecera junto al título, sin "Volver al panel de administración" (el regreso es el acceso global Panel); formato de fecha real; mensaje de lista vacía sin cursiva.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> COPIAS_SEGURIDAD_ABIERTO : consultarCopiasSeguridad()`, vuelta con `abrirPanelAdministracion()`

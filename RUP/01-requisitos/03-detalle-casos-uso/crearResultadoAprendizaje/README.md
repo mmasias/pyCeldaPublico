@@ -43,6 +43,7 @@
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): título "Crear resultado de aprendizaje", línea "Programa: GII -- Grado en Ingeniería Informática" y botones Crear/Cancelar (Cancelar no figuraba). Cancelar con cambios sin guardar pide confirmación antes de volver al listado; el tipo es una lista cerrada de tres valores.
+- Wireframe alineado con la pantalla construida (#873): variante `wireframe-admin`: mismo formulario que el del director (título sin accesos globales, línea "Programa: GII -- ...", Código, Tipo, Descripción, Crear/Cancelar), sin etiqueta de vista.
 
 ## Referencias
 

@@ -8,7 +8,7 @@
 
 <div align=center>
 
-![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarCompetencia/wireframe.svg)
+![](/images/RUP/01-requisitos/03-detalle-casos-uso/editarCompetencia/wireframe-admin.svg)
 
 |Botón|CdU|
 |---|---|

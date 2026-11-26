@@ -40,6 +40,10 @@
 
 **Retocado el wireframe al cerrar la tanda #486/#487/#488/#492 (issue [#496](https://github.com/mmasias/pyCelda/issues/496)), sin tocar la especificación**: el listado de `Facultad` gana la columna "Programas" -- contador derivado del número de `Programa` de cada `Facultad`, issue [#487](https://github.com/mmasias/pyCelda/issues/487). De paso se corrige una divergencia previa entre el wireframe y `Universidad.tsx`: el código real ya mostraba la tabla de Facultades en línea en esta misma pantalla (sin pasar por un botón `[Ver Facultades]` hacia otra pantalla, que el wireframe anterior sí sugería) -- se actualiza el wireframe para reflejarlo, hallazgo incidental al tocar este fichero por #487, no un caso de uso nuevo.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): cabecera "Universidades" y miga `Universidades › <universidad>` con "Editar" y "Crear facultad" a la derecha; fuera la fila "Nombre:" y los botones "Volver al listado" (la vuelta es la miga). En pantalla "Editar" y el "Eliminar" de cada facultad aparecen deshabilitados (funcionalidad en construcción); Salt no pinta el estado deshabilitado.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `UNIVERSIDADES_ABIERTO --> UNIVERSIDAD_ABIERTO : abrirUniversidad()`

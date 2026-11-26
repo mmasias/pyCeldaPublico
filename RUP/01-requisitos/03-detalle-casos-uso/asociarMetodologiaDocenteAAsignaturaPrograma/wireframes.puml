@@ -28,3 +28,18 @@
     <i>Solo se listan las ya asociadas a la materia (Programación) y no asociadas aún a esta asignatura-en-programa.</i>
 }
 @endsalt
+
+@startsalt asociarMetodologiaDocenteAAsignaturaPrograma-wireframe-admin
+{
+    {<b>Asociar metodología docente</b> | [Cancelar]}
+    ====
+    <b>Programación I -- Programación, curso I</b>
+    {
+        <b>Metodología docente (*):</b> | ^MD3 -- Resolución de ejercicios^
+    }
+    <i>(*) Campo obligatorio</i>
+    <i>Solo se listan las ya asociadas a la materia (Programación) y no asociadas aún a esta asignatura-en-programa</i>
+    --
+    [Asociar]
+}
+@endsalt

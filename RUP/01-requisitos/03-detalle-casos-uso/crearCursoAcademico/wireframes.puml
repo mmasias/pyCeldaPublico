@@ -1,17 +1,15 @@
 @startsalt crearCursoAcademico-wireframe
 {
-    <b>CREAR CURSO ACADÉMICO</b>
+    <b>Crear curso académico</b>
     ====
     {
-        <b>Inicio (*):</b>
-        "          "
-        <b>Fin (*):</b>
-        "          "
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>Estado y semestre activo se gestionan al activar el curso</i>
+        <b>Universidad (*):</b> | ^Universidad Europea del Atlántico^
+        <b>Inicio (*):</b> | "dd/mm/aaaa"
+        <b>Fin (*):</b> | "dd/mm/aaaa"
     }
-    ~~
-    {[Crear]}
+    <i>(*) Campo obligatorio</i>
+    <i>Estado y semestre activo se gestionan al activar el curso</i>
+    --
+    {[Crear] | [Cancelar]}
 }
 @endsalt

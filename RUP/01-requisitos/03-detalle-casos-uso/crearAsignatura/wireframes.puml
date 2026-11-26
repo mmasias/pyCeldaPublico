@@ -1,38 +1,28 @@
 @startsalt crearAsignatura-wireframe
 {
-    <b>CREAR ASIGNATURA</b>
+    <b>Crear asignatura</b>
     ====
     {
-        <b>Código (*):</b>
-        "          "
-        <b>Nombre (*):</b>
-        "                                                  "
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>ECTS, contenido y estado se completan al editar</i>
+        <b>Código (*):</b> | "          "
+        <b>Nombre (*):</b> | "                                                  "
     }
-    ~~
-    {[Crear]}
+    <i>(*) Campo obligatorio -- ECTS, contenido y estado se completan al editar</i>
+    --
+    {[Crear] | [Cancelar]}
 }
 @endsalt
 
 @startsalt crearAsignatura-wireframe-error
 {
-    <b>CREAR ASIGNATURA</b>
+    <b>Crear asignatura</b>
     ====
-    <color:red><b>⚠ NO SE PUEDE CREAR</b></color>
-    <color:red>Ya existe una Asignatura con código IYA003</color>
-    --
+    <color:red>Error: Ya existe una Asignatura con código 'IYA003'</color>
     {
-        <b>Código (*):</b>
-        "IYA003    "
-        <b>Nombre (*):</b>
-        "Programación I                                    "
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>ECTS, contenido y estado se completan al editar</i>
+        <b>Código (*):</b> | "IYA003    "
+        <b>Nombre (*):</b> | "Programación I                                    "
     }
-    ~~
-    {[Crear]}
+    <i>(*) Campo obligatorio -- ECTS, contenido y estado se completan al editar</i>
+    --
+    {[Crear] | [Cancelar]}
 }
 @endsalt

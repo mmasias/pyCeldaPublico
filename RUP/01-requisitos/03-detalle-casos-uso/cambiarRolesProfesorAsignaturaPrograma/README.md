@@ -57,6 +57,8 @@ Un `Profesor` asignado a una `AsignaturaPrograma` puede ser **responsable** de e
 - En el PDF de la guía (`DOCENTE`/`EMAIL`) y en el de la planificación docente solo aparece quien imparte; la vista de la guía en la aplicación muestra los dos papeles.
 - Sin estado nuevo en el diagrama de contexto: self-loop sobre `ASIGNATURA_PROGRAMA_ABIERTO`, como asignar y desasignar.
 
+- Wireframe alineado con la pantalla construida (#872): dibujada dentro de la ficha de la asignatura de programa de Admin (cabecera del programa, pestaña Materias, miga "Materias › <materia> › <asignatura>" con "Editar"); botón de fila "Quitar" sin icono.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURA_PROGRAMA_ABIERTO --> ASIGNATURA_PROGRAMA_ABIERTO : cambiarRolesProfesorAsignaturaPrograma()`

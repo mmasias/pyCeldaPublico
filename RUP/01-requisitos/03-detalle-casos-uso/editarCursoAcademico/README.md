@@ -41,6 +41,11 @@
 
 Primera vez que el patrón `<<choice>>` bloqueante (hasta ahora exclusivo de `eliminarX()`) se aplica a **editar**: cerrado en la [discussion #15](https://github.com/mmasias/pyCelda/discussions/15) junto con el resto de `CursoAcademico`. No existe `eliminarCursoAcademico()` en el catálogo -- corregir un error de fecha es editar, no borrar y recrear. `2026-2027` (Activo, con `Guia` clonadas) ilustra el bloqueo; `2027-2028` (recién creado, nunca activado, sin `Guia`) ilustra la edición libre -- mismos dos cursos usados en [`abrirCursosAcademicos()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirCursosAcademicos/README.md).
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): bloqueada con "Volver a los cursos académicos" en la cabecera y textos literales; edición con "Cancelar" en la cabecera y junto a "Guardar".
+- En la variante bloqueada, "cursos académicos" va en negrita dentro del botón "Volver a los cursos académicos"; el wireframe no lo distingue.
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : editarCursoAcademico()`

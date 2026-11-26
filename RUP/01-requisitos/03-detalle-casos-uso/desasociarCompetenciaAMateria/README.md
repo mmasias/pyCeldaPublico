@@ -44,6 +44,7 @@
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): en las dos variantes, título "Desasociar competencia" y línea "Programa: GII -- Grado en Ingeniería Informática". En la bloqueada, "Volver a Programación" pasa a la cabecera (a la derecha del título), no al pie. En la confirmación, Cancelar va en la cabecera y solo "Confirmar desasociación" queda al pie, tras una línea separadora. Asignaturas de ejemplo de la bloqueada cambiadas a dos de la propia materia (Programación I y II).
+- Wireframe alineado con la pantalla construida (#873): la variante de Admin dibuja la confirmación normal sin etiqueta de vista ("Desasociar competencia" con Cancelar en la cabecera, línea "Programa: GII -- ...", "Confirmar desasociación" al pie); la bloqueada de Admin solo difiere en la cabecera y no tiene variante propia.
 
 ## Referencias
 

@@ -1,21 +1,21 @@
 @startsalt editarAsignatura-wireframe
 {
-    <b>EDITAR ASIGNATURA</b>
+    <b>Editar asignatura</b>
     ====
+    <b>Código:</b> IYA003
     {
-        <b>Código:</b> IYA003
-        <b>Nombre (*):</b>
-        "Programación I"
-        <b>ECTS (*):</b>
-        "6"
-        <b>Contenido:</b>
-        "Introducción a la programación estructurada: variables, control
-        de flujo, funciones, estructuras de datos básicas y depuración."
-        --
-        <i>(*) Campo obligatorio</i>
-        <i>El código no es editable una vez creada la Asignatura</i>
+        <b>Nombre (*):</b> | "Programación I                                    "
+        <b>ECTS (*):</b> | "6   "
     }
-    ~~
-    {[Guardar]}
+    <b>Contenido:</b>
+    {+
+        Introducción a la programación estructurada: variables, control
+        de flujo, funciones, estructuras de datos básicas y depuración.
+        .
+        .
+    }
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
 }
 @endsalt

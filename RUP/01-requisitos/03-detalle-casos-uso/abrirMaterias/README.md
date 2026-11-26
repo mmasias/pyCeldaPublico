@@ -48,6 +48,8 @@ Caso de uso reutilizado por `DirectorPrograma` (`DirectorPrograma --|> Profesor`
 
 - Wireframe alineado con la pantalla construida (#858): el wireframe dibuja la vista de `DirectorPrograma` (etiqueta de vista, nombre del programa como título, pestañas del programa con "Materias" activa, título "Materias"); la tabla queda en "Nombre" y `[Abrir]` agrupada por módulo, sin la columna "Asignaturas", sin `[Eliminar]` ni `+ Crear Materia` (el CRUD de `Materia` es de `Admin`, que tiene pantalla propia).
 
+- Wireframe alineado con la pantalla construida (#873): nueva variante `wireframe-admin` con la cabecera del programa de `Admin` (miga de estructura, `[Panel]`, `[Cerrar sesión]`, pestañas con "Materias" activa), título "Materias" con `[Crear materia]` a la derecha y la tabla agrupada por módulo con las columnas Nombre y Asignaturas, `[Abrir]` y `[Eliminar]`. Regla de presentación: `[Eliminar]` aparece deshabilitado ("Funcionalidad en construcción").
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROGRAMA_ABIERTO --> MATERIAS_ABIERTO : abrirMaterias()`

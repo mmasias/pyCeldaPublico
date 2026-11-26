@@ -40,6 +40,10 @@
 
 **Retocado el wireframe al cerrar la tanda #486/#487/#488/#492 (issue [#496](https://github.com/mmasias/pyCelda/issues/496)), sin tocar la especificación**: el listado gana la columna "Código" (`AsignaturaResponse.codigo`, ya expuesto por el backend, sin endpoint nuevo -- issue [#486](https://github.com/mmasias/pyCelda/issues/486)). Caso borde de `codigo` nulo (asignaturas legacy sin código) reflejado en el wireframe con una fila propia, texto explicativo en vez de "null".
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título "Asignaturas", botón "Crear asignatura" encima de la tabla (antes debajo) y código nulo mostrado como "--" (antes un texto explicativo).
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `SISTEMA_DISPONIBLE --> ASIGNATURAS_ABIERTO : abrirAsignaturas()`

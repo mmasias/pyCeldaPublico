@@ -1,32 +1,24 @@
 @startsalt eliminarProfesor-wireframe-bloqueada
 {
-    <b>ELIMINAR PROFESOR</b>
+    { <b>Eliminar profesor</b> | [ Volver a los <b>profesores</b> ] }
     ====
-    <color:red><b>⚠ NO SE PUEDE ELIMINAR</b></color>
-    ====
+    <color:red>⛔ No se puede eliminar</color>
     <b>Dr. Carlos Navarro Ruiz</b>
-
     Este profesor no se puede eliminar:
-    • Tiene 3 AsignaturaPrograma asignadas
-    • Es DirectorPrograma del Grado en Ingeniería Informática
-    • Ha impartido Guías en cursos anteriores
-
-    <i>Desasigna sus asignaturas y quítale el rol de director antes de eliminarlo.
-    Las Guías impartidas no se pueden desasignar: el bloqueo por ese motivo es permanente.</i>
-    ====
-    [ <b>Volver al listado</b> ]
+    <b>Profesor asignado a: AsignaturaPrograma 'Programación I', AsignaturaPrograma 'Programación II';</b>
+    <b>estuvo asignado a: Guia de AsignaturaPrograma 'Programación I';</b>
+    <b>dirige: Programa 'Grado en Ingeniería Informática'</b>
+    <i>Desasígnalo de esas asignaturas de programa y quítale la dirección de esos programas antes de eliminarlo.</i>
 }
 @endsalt
 
 @startsalt eliminarProfesor-wireframe-confirmacion
 {
-    <b>ELIMINAR PROFESOR</b>
+    { <b>Eliminar profesor</b> | [ Cancelar ] }
     ====
     <b>Dr. Pablo Ortega Sanz</b>
-
-    <color:orange><b>Esta acción no se puede deshacer.</b></color>
-    Sin AsignaturaPrograma asignadas, sin rol de DirectorPrograma y sin Guías impartidas.
-    ====
-    {[Confirmar eliminación] | [Cancelar]}
+    <b>Esta acción no se puede deshacer.</b> Se comprobará antes de eliminar si tiene asignaturas de programa asignadas o dirige algún programa.
+    --
+    [Confirmar eliminación]
 }
 @endsalt

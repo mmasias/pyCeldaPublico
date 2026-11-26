@@ -38,6 +38,10 @@
 
 </div>
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): añadido el desplegable obligatorio "Universidad" y el botón "Cancelar" junto a "Guardar".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `PROFESOR_ABIERTO --> PROFESOR_ABIERTO : editarProfesor()`

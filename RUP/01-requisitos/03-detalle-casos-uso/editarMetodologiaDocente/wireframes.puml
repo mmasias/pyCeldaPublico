@@ -17,3 +17,21 @@
     {[Guardar] | [Cancelar]}
 }
 @endsalt
+
+@startsalt editarMetodologiaDocente-wireframe-admin
+{
+    <b>Editar metodología docente</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {
+        <b>Código (*):</b> | "MD3       "
+    }
+    <b>Descripción (*):</b>
+    "Resolución de ejercicios                          "
+    "                                                  "
+    "                                                  "
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Guardar] | [Cancelar]}
+}
+@endsalt

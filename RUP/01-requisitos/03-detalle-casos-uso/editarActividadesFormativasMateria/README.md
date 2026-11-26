@@ -50,11 +50,13 @@ El `DirectorPrograma` teclea, en una rejilla, las horas y el porcentaje de prese
 
 Retoca [`abrirMateria()`](/RUP/01-requisitos/03-detalle-casos-uso/abrirMateria/README.md): la pantalla de detalle de `Materia` gana la sección "Actividades formativas de la materia" (horas y presencialidad) con el botón de entrada a este caso de uso, sin tocar la especificación de `abrirMateria()` -- mismo criterio que los retoques de L2/L4/L5.
 
-**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición como vía de corrección, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha, mismo wireframe y mismas reglas; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`. Motivo: tras la carga de horas desde las memorias ANECA (#754), Admin necesita poder completar o corregir las de los programas que la carga automática no cubre.
+**Actor `Admin` (issue [#755](https://github.com/mmasias/pyCelda/issues/755))**: `Admin` gana esta transición como vía de corrección, con paridad completa respecto a `DirectorPrograma` -- no sustituye su flujo normal, lo complementa. Misma ficha y mismas reglas, con la pantalla de la variante `wireframe-admin`; es un self-loop de `MATERIA_ABIERTO` también en [diagramaContextoAdmin.puml](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml). Sin alcance por programa: `Admin` actúa sobre cualquier `Materia`. Motivo: tras la carga de horas desde las memorias ANECA (#754), Admin necesita poder completar o corregir las de los programas que la carga automática no cubre.
 
 ## Notas de diseño y trazabilidad
 
 - Wireframe alineado con la pantalla construida (#858): etiqueta de vista, título "Editar actividades formativas -- materia", línea del programa y nombre de la materia sin ECTS; el texto bajo el total es el real ("La regla ... es informativa, no bloquea guardar."). El botón `[Guardar]` superior y el aviso "Tienes cambios sin guardar." solo aparecen tras editar y no se dibujan.
+
+- Wireframe alineado con la pantalla construida (#873): nueva variante `wireframe-admin`: misma rejilla, mismo total y mismo texto de la regla que la del `DirectorPrograma`, sin la línea del programa.
 
 ## Referencias
 

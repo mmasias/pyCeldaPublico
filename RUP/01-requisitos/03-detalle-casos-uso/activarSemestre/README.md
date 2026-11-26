@@ -40,6 +40,10 @@
 
 Edición simple de un atributo (`semestreActivo`), sin `<<choice>>` ni confirmación -- mismo molde que `editarUniversidad()`, no el de `activarCursoAcademico()`: aquí no hay ninguna precondición que bloquee, solo sustituir el valor. Sin evento simétrico de "desactivar semestre": el nuevo valor ya sustituye al anterior en la misma fila. Nunca inferido de la fecha de hoy -- evento explícito del admin, mismo criterio que `CursoAcademico.estado`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas con "Cancelar" en la cabecera y botón "Cancelar" junto a "Guardar".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `CURSO_ACADEMICO_ABIERTO --> CURSO_ACADEMICO_ABIERTO : activarSemestre()`

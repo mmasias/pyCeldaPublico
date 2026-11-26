@@ -40,6 +40,10 @@
 
 **Retocado (issue #181, 2026-09-05)**: `codigo` (obligatorio y único desde `crearAsignatura()`, ver [Requisitos](/RUP/01-requisitos/03-detalle-casos-uso/crearAsignatura/README.md)) se muestra pero no se ofrece como campo editable -- mismo criterio que `editarPrograma()`/`editarMetodologiaDocente()`.
 
+## Notas de diseño y trazabilidad
+
+- Wireframe alineado con la pantalla construida (#872): título en minúsculas, contenido como área de texto, solo la nota "(*) Campo obligatorio" y botón "Cancelar".
+
 ## Referencias
 
 - [Diagrama de contexto de Admin](/RUP/01-requisitos/01-actores-casos-uso/diagramaContextoAdmin.puml) -- `ASIGNATURA_ABIERTO --> ASIGNATURA_ABIERTO : editarAsignatura()`

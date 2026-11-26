@@ -17,3 +17,21 @@
     {[Crear] | [Cancelar]}
 }
 @endsalt
+
+@startsalt crearCompetencia-wireframe-admin
+{
+    <b>Crear competencia</b>
+    ====
+    <b>Programa:</b> GII -- Grado en Ingeniería Informática
+    {
+        <b>Código (*):</b> | "          "
+        <b>Tipo (*):</b> | ^Específica^
+    }
+    <b>Descripción (*):</b>
+    "                                                  "
+    "                                                  "
+    <i>(*) Campo obligatorio</i>
+    --
+    {[Crear] | [Cancelar]}
+}
+@endsalt
